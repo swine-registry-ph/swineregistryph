@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+Route::get('/manage-swine', function(){
+    return view('users.breeder.manage');
+});
+
+Route::get('/manage-swine/register', function(){
+    return view('users.breeder.form');
+});
+
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
