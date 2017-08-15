@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        // Initialize default swine property names first before
+        // adding swine instances to user's collection
+        $this->call(PropertyInstancesSeeder::class)
+        $this->call(UserInstancesSeeder::class);
     }
 }
