@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -69,6 +69,35 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="container">
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Name</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="email" type="text" class="validate">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="password-confirm" type="password" class="validate">
+                    <label for="password-confirm">Confirm Password</label>
+                </div>
+                <a class="waves-effect waves-light btn indigo right">Register</a>
             </div>
         </div>
     </div>

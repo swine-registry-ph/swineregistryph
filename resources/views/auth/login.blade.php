@@ -75,7 +75,7 @@
     <div class="row"></div>
     <div class="row"></div>
     <div class="row">
-        <div class="col s6 offset-s3">
+        <div class="col s4 offset-s4">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="email" type="text" class="validate">
