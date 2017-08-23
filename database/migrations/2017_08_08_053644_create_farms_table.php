@@ -19,7 +19,7 @@ class CreateFarmsTable extends Migration
             $table->integer('farm_code_id')->unsigned();
             $table->string('name');
             $table->text('address');
-            $table->enum('type', ['tv', 'ntv'])->default('ntv');
+            $table->enum('type', ['tunnel', 'open'])->default('open');
             $table->timestamps();
         });
     }
