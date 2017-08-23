@@ -17,13 +17,14 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/manage-swine', function(){
-    return view('users.breeder.manage');
-});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/manage-swine', function () {
+        return view('users.breeder.manage');
+    });
 
-Route::get('/manage-swine/register', function(){
-    return view('users.breeder.form');
+    Route::get('/manage-swine/register', function () {
+        return view('users.breeder.form');
+    });
 });
-
 
 Route::get('/home', 'HomeController@index')->name('home');

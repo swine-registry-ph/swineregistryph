@@ -32,7 +32,16 @@
                     <li><a href="{{ url('login') }}">Login</a></li>
                     <li><a href="{{ url('register') }}">Register</a></li>
                 @else
+                    <li><a href="{{ url('home') }}">{{ Auth::user()->name }}</a></li>
                     <li><a href="{{ url('manage-swine') }}">Manage Swine</a></li>
+                    <li>
+                        <a href="{{ url('manage-swine') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
                 @endif
             </ul>
         </div>
