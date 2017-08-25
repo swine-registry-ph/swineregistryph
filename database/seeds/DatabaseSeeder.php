@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         // Initialize default swine property names first before
         // adding swine instances to user's collection
-        $this->call(PropertyInstancesSeeder::class)
+        $this->call(PropertyInstancesSeeder::class);
+        $this->call(BreedInstancesSeeder::class);
         $this->call(UserInstancesSeeder::class);
     }
 }

@@ -15,6 +15,7 @@ class CreateFarmCodesTable extends Migration
     {
         Schema::create('farm_codes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('farm_id')->unsigned();
             $table->text('farm_code');
             $table->text('farm_accreditation_no');
         });

@@ -16,7 +16,6 @@ class CreateFarmsTable extends Migration
         Schema::create('farms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('farm_code_id')->unsigned();
             $table->string('name');
             $table->text('address');
             $table->enum('type', ['tunnel', 'open'])->default('open');
