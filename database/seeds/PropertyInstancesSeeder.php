@@ -34,6 +34,11 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'weight'
             ],
             [
+                'property' => 'Average Daily Gain',
+                'definition' => 'Average Daily Gain, g/day',
+                'slug' => 'adg'
+            ],
+            [
                 'property' => 'Backfat Thickness',
                 'definition' => 'Backfat Thickness (mm)',
                 'slug' => 'bft'
@@ -51,32 +56,32 @@ class PropertyInstancesSeeder extends Seeder
             [
                 'property' => 'Total (M) when born',
                 'definition' => 'Total male when born',
-                'slug' => 'total-male'
+                'slug' => 'littersize-male'
             ],
             [
                 'property' => 'Total (F) when born',
                 'definition' => 'Total female when born',
-                'slug' => 'total-female'
-            ],
-            [
-                'property' => 'Littersize born alive',
-                'definition' => 'Littersize born alive',
-                'slug' => 'litter-alive'
+                'slug' => 'littersize-female'
             ],
             [
                 'property' => 'Parity',
-                'definition' => 'Parity',
+                'definition' => 'The number of litters a sow has carried (including current pregnancy)',
                 'slug' => 'parity'
             ],
             [
                 'property' => 'Littersize at weaning',
                 'definition' => 'Littersize at weaning',
-                'slug' => 'litter-weaning'
+                'slug' => 'littersize-weaning'
             ],
             [
                 'property' => 'Total litterweight at weaning',
                 'definition' => 'Total litterweight at weaning',
                 'slug' => 'litterweight-weaning'
+            ],
+            [
+                'property' => 'Age at weaning',
+                'definition' => 'Age at weaning in days',
+                'slug' => 'age-weaning'
             ],
             [
                 'property' => 'GP Sire',

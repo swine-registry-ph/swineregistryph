@@ -148,6 +148,7 @@ $factory->define(App\Models\Collection::class, function (Faker\Generator $faker)
 $factory->define(App\Models\Swine::class, function (Faker\Generator $faker) {
 
     return [
+        'breed_id' => random_int(1,3),
         'registration_no' => str_random(15),
         'date_registered' => \Carbon\Carbon::now()
     ];
