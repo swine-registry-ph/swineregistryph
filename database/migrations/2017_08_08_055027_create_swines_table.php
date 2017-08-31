@@ -18,7 +18,9 @@ class CreateSwinesTable extends Migration
             $table->integer('collection_id')->unsigned();
             $table->integer('breed_id')->unsigned();
             $table->integer('farm_id')->unsigned();
-            $table->text('registration_no');
+            $table->integer('gpSire_id')->unsigned()->nullable();
+            $table->integer('gpDam_id')->unsigned()->nullable();
+            $table->text('registration_no')->nullable();
             $table->date('date_registered');
             $table->timestamps();
         });

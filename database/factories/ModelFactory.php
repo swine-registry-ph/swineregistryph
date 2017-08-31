@@ -130,10 +130,15 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
     // open - open area
     $typeArray = ['tunnel', 'open'];
 
+    // Generate random integer for choosing province
+    $rand = random_int(0,sizeof($provinces)-1);
+
     return [
         'user_id' => 0,
         'name' => $faker->company,
-        'address' => $faker->address,
+        'address_line1' => $faker->streetAddress,
+        'address_line2' => $faker->secondaryAddress,
+        'province' => $provinces[$rand],
         'type' => $typeArray[random_int(0,1)]
     ];
 });
@@ -149,7 +154,6 @@ $factory->define(App\Models\Swine::class, function (Faker\Generator $faker) {
 
     return [
         'breed_id' => random_int(1,3),
-        'registration_no' => str_random(15),
         'date_registered' => \Carbon\Carbon::now()
     ];
 });

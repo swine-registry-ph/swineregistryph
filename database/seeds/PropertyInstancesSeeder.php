@@ -64,6 +64,11 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'littersize-female'
             ],
             [
+                'property' => 'Littersize born alive',
+                'definition' => 'Littersize born alive',
+                'slug' => 'littersize-alive'
+            ],
+            [
                 'property' => 'Parity',
                 'definition' => 'The number of litters a sow has carried (including current pregnancy)',
                 'slug' => 'parity'
@@ -82,16 +87,6 @@ class PropertyInstancesSeeder extends Seeder
                 'property' => 'Age at weaning',
                 'definition' => 'Age at weaning in days',
                 'slug' => 'age-weaning'
-            ],
-            [
-                'property' => 'GP Sire',
-                'definition' => 'The boar father of the swine',
-                'slug' => 'gp-sire'
-            ],
-            [
-                'property' => 'GP Dam',
-                'definition' => 'The sow mother of the swine',
-                'slug' => 'gp-dam'
             ]
         ];
 

@@ -18,8 +18,7 @@ class UserInstancesSeeder extends Seeder
              */
             $farm = factory(App\Models\Farm::class)->create();
 
-            // (?) How do we even create a farm code?
-            // (?) I think we need adjustments on getting the address
+            // (?) How do we even create a farm code? NOT SURE YET.
             $farmCode = new App\Models\FarmCode;
             $farmCode->farm_id = 0;
             $farmCode->farm_code = crypt($farm->name, md5($farm->name));
@@ -33,15 +32,10 @@ class UserInstancesSeeder extends Seeder
             $user->farms()->save($farm);
 
             /**
-             * 2. Add properties to Swine
+             * 2. Add Swine Collection
              */
-            // Need to contextualize properties like age/weight when data was collected.
-            // Especially in GP A/Sire (father of pig) and GP B/Dam (mother of pig)
-
-            // In implementing properties
-            // --- Total littersize is a derived property
-            // (?) Should GP Sire and GP B be a column instead rather than a property?
-            // (?) What is registration number? Is the registration number only subject to one swine?
+            // Need to contextualize properties like age/weight when data was collected
+            // especially in GP A/Sire (father of pig) and GP B/Dam (mother of pig)
 
             $collection = factory(App\Models\Collection::class)->create([
                 'user_id' => $user->id
@@ -52,7 +46,8 @@ class UserInstancesSeeder extends Seeder
 
                 $swine = factory(App\Models\Swine::class)->create([
                     'collection_id' => $collection->id,
-                    'farm_id' => $farm->id
+                    'farm_id' => $farm->id,
+                    'registration_no' => str_random(15)
                 ]);
 
                 // breed, sex, birth date, age when data, weight when data
@@ -195,7 +190,7 @@ class UserInstancesSeeder extends Seeder
                     ]
                 );
 
-                // Create GP dam of swine
+                // Create default GP dam of swine
                 $gpDam = factory(App\Models\Swine::class)->create([
                     'collection_id' => $collection->id,
                     'farm_id' => $farm->id
@@ -256,20 +251,10 @@ class UserInstancesSeeder extends Seeder
                     ]
                 );
 
-                $swine->swineProperties()->saveMany(
-                    [
-                        new App\Models\SwineProperty([
-                            'property_id' => 15, // gp sire
-                            'value_quantitative' => 0,
-                            'value_qualitative' => $gpSire->id
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 16, // gp dam
-                            'value_quantitative' => 0,
-                            'value_qualitative' => $gpDam->id
-                        ])
-                    ]
-                );
+                // Attach GP sire and GP dam to swine
+                $swine->gpSire_id = $gpSire->id;
+                $swine->gpDam_id = $gpDam->id;
+                $swine->save();
 
             } // endfor
 

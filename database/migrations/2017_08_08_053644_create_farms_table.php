@@ -17,7 +17,9 @@ class CreateFarmsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->text('address');
+            $table->text('address_line1');
+            $table->text('address_line2');
+            $table->text('province');
             $table->enum('type', ['tunnel', 'open'])->default('open');
             $table->timestamps();
         });
