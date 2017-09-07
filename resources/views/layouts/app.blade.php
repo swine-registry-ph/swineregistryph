@@ -11,16 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }} @yield('title') </title>
 
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet">  --}}
-    <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/icon.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
 </head>
 <body>
 
@@ -50,9 +42,9 @@
     @yield('content')
 
     <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/materialize.min.js') }}"></script>
+    <script src="{{ asset('js/manifest.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     @yield('customScript')
 
 </body>
