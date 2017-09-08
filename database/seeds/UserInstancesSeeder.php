@@ -57,73 +57,59 @@ class UserInstancesSeeder extends Seeder
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 1, // sex
-                            'value_quantitative' => 0,
-                            'value_qualitative' => 'Male'
+                            'value' => 'Male'
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 2, // birthdate
-                            'value_quantitative' => 0,
-                            'value_qualitative' => \Carbon\Carbon::now()->subYear()
+                            'value' => \Carbon\Carbon::now()->subYear()
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 3, // age when data was collected
-                            'value_quantitative' => 1,
-                            'value_qualitative' => ''
+                            'value' => 1
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 4, // weight when data was collected
-                            'value_quantitative' => random_int(70,130)/1.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(70,130)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 5, // adg
-                            'value_quantitative' => random_int(70,110)/100.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(70,110)/100.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // bft
-                            'value_quantitative' => random_int(90,130)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(90,130)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 7, // feed efficiency
-                            'value_quantitative' => random_int(10,30)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(10,30)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // birth weight
-                            'value_quantitative' => random_int(10,20)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 9, // total male when born
-                            'value_quantitative' => random_int(3,9),
-                            'value_qualitative' => ''
+                            'value' => random_int(3,9)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 10, // total female when born
-                            'value_quantitative' => random_int(3,9),
-                            'value_qualitative' => ''
+                            'value' => random_int(3,9)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 11, // parity
-                            'value_quantitative' => random_int(1,5),
-                            'value_qualitative' => ''
+                            'value' => random_int(1,5)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 12, // littersize at weaning
-                            'value_quantitative' => random_int(6,16),
-                            'value_qualitative' => ''
+                            'value' => random_int(6,16)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 13, // litterweight at weaning
-                            'value_quantitative' => random_int(36,96),
-                            'value_qualitative' => ''
+                            'value' => random_int(36,96)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 14, // age at weaning
-                            'value_quantitative' => random_int(18,23),
-                            'value_qualitative' => ''
+                            'value' => random_int(18,23)
                         ])
                     ]
                 );
@@ -139,53 +125,43 @@ class UserInstancesSeeder extends Seeder
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 5, // adg
-                            'value_quantitative' => random_int(70,110)/100.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(70,110)/100.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // bft
-                            'value_quantitative' => random_int(90,130)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(90,130)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 7, // feed efficiency
-                            'value_quantitative' => random_int(10,30)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(10,30)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // birth weight
-                            'value_quantitative' => random_int(10,20)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 9, // total male when born
-                            'value_quantitative' => random_int(3,9),
-                            'value_qualitative' => ''
+                            'value' => random_int(3,9)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 10, // total female when born
-                            'value_quantitative' => random_int(3,9),
-                            'value_qualitative' => ''
+                            'value' => random_int(3,9)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 11, // parity
-                            'value_quantitative' => random_int(1,5),
-                            'value_qualitative' => ''
+                            'value' => random_int(1,5)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 12, // littersize at weaning
-                            'value_quantitative' => random_int(6,16),
-                            'value_qualitative' => ''
+                            'value' => random_int(6,16)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 13, // litterweight at weaning
-                            'value_quantitative' => random_int(36,96),
-                            'value_qualitative' => ''
+                            'value' => random_int(36,96)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 14, // age at weaning
-                            'value_quantitative' => random_int(18,23),
-                            'value_qualitative' => ''
+                            'value' => random_int(18,23)
                         ])
                     ]
                 );
@@ -200,53 +176,43 @@ class UserInstancesSeeder extends Seeder
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 5, // adg
-                            'value_quantitative' => random_int(70,110)/100.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(70,110)/100.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // bft
-                            'value_quantitative' => random_int(90,130)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(90,130)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 7, // feed efficiency
-                            'value_quantitative' => random_int(10,30)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(10,30)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // birth weight
-                            'value_quantitative' => random_int(10,20)/10.0,
-                            'value_qualitative' => ''
+                            'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 9, // total male when born
-                            'value_quantitative' => random_int(3,9),
-                            'value_qualitative' => ''
+                            'value' => random_int(3,9)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 10, // total female when born
-                            'value_quantitative' => random_int(3,9),
-                            'value_qualitative' => ''
+                            'value' => random_int(3,9)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 11, // parity
-                            'value_quantitative' => random_int(1,5),
-                            'value_qualitative' => ''
+                            'value' => random_int(1,5)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 12, // littersize at weaning
-                            'value_quantitative' => random_int(6,16),
-                            'value_qualitative' => ''
+                            'value' => random_int(6,16)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 13, // litterweight at weaning
-                            'value_quantitative' => random_int(36,96),
-                            'value_qualitative' => ''
+                            'value' => random_int(36,96)
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 14, // age at weaning
-                            'value_quantitative' => random_int(18,23),
-                            'value_qualitative' => ''
+                            'value' => random_int(18,23)
                         ])
                     ]
                 );

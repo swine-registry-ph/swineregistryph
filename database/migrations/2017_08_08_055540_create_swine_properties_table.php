@@ -17,8 +17,7 @@ class CreateSwinePropertiesTable extends Migration
             $table->increments('id');
             $table->integer('swine_id')->unsigned();
             $table->integer('property_id')->unsigned();
-            $table->float('value_quantitative');
-            $table->text('value_qualitative');
+            $table->string('value');
         });
     }
 
