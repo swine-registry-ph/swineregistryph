@@ -124,6 +124,22 @@ class UserInstancesSeeder extends Seeder
                 $gpSire->swineProperties()->saveMany(
                     [
                         new App\Models\SwineProperty([
+                            'property_id' => 1, // sex
+                            'value' => 'Male'
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 2, // birthdate
+                            'value' => \Carbon\Carbon::now()->subYear(2)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 3, // age when data was collected
+                            'value' => 3
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 4, // weight when data was collected
+                            'value' => random_int(70,130)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
                             'property_id' => 5, // adg
                             'value' => random_int(70,110)/100.0
                         ]),
@@ -174,6 +190,22 @@ class UserInstancesSeeder extends Seeder
 
                 $gpDam->swineProperties()->saveMany(
                     [
+                        new App\Models\SwineProperty([
+                            'property_id' => 1, // sex
+                            'value' => 'Female'
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 2, // birthdate
+                            'value' => \Carbon\Carbon::now()->subYear(2)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 3, // age when data was collected
+                            'value' => 3
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 4, // weight when data was collected
+                            'value' => random_int(70,130)/1.0
+                        ]),
                         new App\Models\SwineProperty([
                             'property_id' => 5, // adg
                             'value' => random_int(70,110)/100.0

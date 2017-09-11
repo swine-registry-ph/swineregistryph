@@ -21,7 +21,7 @@ class PropertyInstancesSeeder extends Seeder
             [
                 'property' => 'Birth Date',
                 'definition' => 'Birth Date',
-                'slug' => 'birth-date'
+                'slug' => 'birth_date'
             ],
             [
                 'property' => 'Age when data was collected',
@@ -51,22 +51,22 @@ class PropertyInstancesSeeder extends Seeder
             [
                 'property' => 'Birth Weight',
                 'definition' => 'Birth Weight',
-                'slug' => 'birth-weight'
+                'slug' => 'birth_weight'
             ],
             [
                 'property' => 'Total (M) when born',
                 'definition' => 'Total male when born',
-                'slug' => 'littersize-male'
+                'slug' => 'littersize_male'
             ],
             [
                 'property' => 'Total (F) when born',
                 'definition' => 'Total female when born',
-                'slug' => 'littersize-female'
+                'slug' => 'littersize_female'
             ],
             [
                 'property' => 'Littersize born alive',
                 'definition' => 'Littersize born alive',
-                'slug' => 'littersize-alive'
+                'slug' => 'littersize_alive'
             ],
             [
                 'property' => 'Parity',
@@ -76,17 +76,17 @@ class PropertyInstancesSeeder extends Seeder
             [
                 'property' => 'Littersize at weaning',
                 'definition' => 'Littersize at weaning',
-                'slug' => 'littersize-weaning'
+                'slug' => 'littersize_weaning'
             ],
             [
                 'property' => 'Total litterweight at weaning',
                 'definition' => 'Total litterweight at weaning',
-                'slug' => 'litterweight-weaning'
+                'slug' => 'litterweight_weaning'
             ],
             [
                 'property' => 'Age at weaning',
                 'definition' => 'Age at weaning in days',
-                'slug' => 'age-weaning'
+                'slug' => 'age_weaning'
             ]
         ];
 

@@ -15,8 +15,11 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('swine-properties', require('./components/SwineProperties.vue'));
+Vue.component('upload-photo', require('./components/UploadPhoto.vue'));
+Vue.component('collection', require('./components/Collection.vue'));
 
-// const app = new Vue({
-//     el: '#app'
-// });
+
+const app = new Vue({
+    el: '#app'
+});
