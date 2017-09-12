@@ -85,7 +85,7 @@ class PropertyInstancesSeeder extends Seeder
             ],
             [
                 'property' => 'Age at weaning',
-                'definition' => 'Age at weaning in days',
+                'definition' => 'Age (days) at weaning',
                 'slug' => 'age_weaning'
             ]
         ];

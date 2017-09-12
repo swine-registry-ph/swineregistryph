@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage-swine/register', function () {
         return view('users.breeder.form');
     });
+
 });
 
+Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
 Route::get('/home', 'HomeController@index')->name('home');

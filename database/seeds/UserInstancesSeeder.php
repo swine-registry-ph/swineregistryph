@@ -118,7 +118,8 @@ class UserInstancesSeeder extends Seeder
                 // Create default GP sire of swine
                 $gpSire = factory(App\Models\Swine::class)->create([
                     'collection_id' => $collection->id,
-                    'farm_id' => $farm->id
+                    'farm_id' => $farm->id,
+                    'registration_no' => str_random(15)
                 ]);
 
                 $gpSire->swineProperties()->saveMany(
@@ -185,7 +186,8 @@ class UserInstancesSeeder extends Seeder
                 // Create default GP dam of swine
                 $gpDam = factory(App\Models\Swine::class)->create([
                     'collection_id' => $collection->id,
-                    'farm_id' => $farm->id
+                    'farm_id' => $farm->id,
+                    'registration_no' => str_random(15)
                 ]);
 
                 $gpDam->swineProperties()->saveMany(
