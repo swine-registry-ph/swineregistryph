@@ -30,3 +30,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/sample-admin-view', 'AdminController@viewFarms');
