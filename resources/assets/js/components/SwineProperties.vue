@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
     <div :id="category" class="row">
         <div class="card col s12">
             <div class="card-content">
@@ -92,28 +92,20 @@
                         <label :for="categoryWithDash + 'birth-weight'">Birth weight</label>
                     </div>
                     <div class="col s12 input-field">
-                        <input v-model="gpOne.littersize_male"
+                        <input v-model="gpOne.littersizeAlive_male"
                             :id="categoryWithDash + 'total-m'"
                             type="text"
                             class="validate"
                         >
-                        <label :for="categoryWithDash + 'total-m'">Total (M) when born</label>
+                        <label :for="categoryWithDash + 'total-m'">Total (M) born alive</label>
                     </div>
                     <div class="col s12 input-field">
-                        <input v-model="gpOne.littersize_female"
+                        <input v-model="gpOne.littersizeAlive_female"
                             :id="categoryWithDash + 'total-f'"
                             type="text"
                             class="validate"
                         >
-                        <label :for="categoryWithDash + 'total-f'">Total (F) when born</label>
-                    </div>
-                    <div class="col s12 input-field">
-                        <input v-model="gpOne.littersize_alive"
-                            :id="categoryWithDash + 'littersize-alive'"
-                            type="text"
-                            class="validate"
-                        >
-                        <label :for="categoryWithDash + 'littersize-alive'">Littersize born alive</label>
+                        <label :for="categoryWithDash + 'total-f'">Total (F) born alive</label>
                     </div>
                     <div class="col s12 input-field">
                         <input v-model="gpOne.parity"
@@ -140,12 +132,12 @@
                         <label :for="categoryWithDash + 'litterweight-weaning'">Litter weight at weaning</label>
                     </div>
                     <div class="col s12 input-field">
-                        <input v-model="gpOne.age_weaning"
+                        <input v-model="gpOne.date_weaning"
                             :id="categoryWithDash + 'age-weaning'"
-                            type="text"
-                            class="validate"
+                            type="date"
+                            class="validate datepicker"
                         >
-                        <label :for="categoryWithDash + 'age-weaning'">Age (days) at weaning</label>
+                        <label :for="categoryWithDash + 'age-weaning'">Date at weaning</label>
                     </div>
                     <div class="col s12">
                         <button class="btn waves-effect waves-light right" type="submit" name="action">
@@ -175,13 +167,12 @@
                     bft: '',
                     fe: '',
                     birth_weight: '',
-                    littersize_male: '',
-                    littersize_female: '',
-                    littersize_alive: '',
+                    littersizeAlive_male: '',
+                    littersizeAlive_female: '',
                     parity: '',
                     littersize_weaning: '',
                     litterweight_weaning: '',
-                    age_weaning: ''
+                    date_weaning: ''
                 }
             }
         },

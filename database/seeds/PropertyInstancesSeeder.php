@@ -24,14 +24,14 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'birth_date'
             ],
             [
-                'property' => 'Age when data was collected',
-                'definition' => 'Age when data was collected',
-                'slug' => 'age'
+                'property' => 'Date when data was collected',
+                'definition' => 'Date when data was collected',
+                'slug' => 'date_collected'
             ],
             [
                 'property' => 'Weight when data was collected',
                 'definition' => 'Weight when data was collected',
-                'slug' => 'weight'
+                'slug' => 'collected_weight'
             ],
             [
                 'property' => 'Average Daily Gain',
@@ -54,19 +54,14 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'birth_weight'
             ],
             [
-                'property' => 'Total (M) when born',
-                'definition' => 'Total male when born',
+                'property' => 'Total (M) born alive',
+                'definition' => 'Total male born alive',
                 'slug' => 'littersize_male'
             ],
             [
-                'property' => 'Total (F) when born',
-                'definition' => 'Total female when born',
+                'property' => 'Total (F) born alive',
+                'definition' => 'Total female born alive',
                 'slug' => 'littersize_female'
-            ],
-            [
-                'property' => 'Littersize born alive',
-                'definition' => 'Littersize born alive',
-                'slug' => 'littersize_alive'
             ],
             [
                 'property' => 'Parity',
@@ -84,9 +79,9 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'litterweight_weaning'
             ],
             [
-                'property' => 'Age at weaning',
-                'definition' => 'Age (days) at weaning',
-                'slug' => 'age_weaning'
+                'property' => 'Date at weaning',
+                'definition' => 'Date at weaning',
+                'slug' => 'date_weaning'
             ]
         ];
 

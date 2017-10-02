@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
     <div class="col s10 offset-s1">
         <div class="row" style="margin-bottom:0;">
             <div class="col s12" style="margin-top:2rem; padding:0;">
@@ -7,8 +7,9 @@
                     <li class="tab col s2"><a href="#gp-1">GP1</a></li>
                     <li class="tab col s2"><a href="#gp-sire">GP Sire</a></li>
                     <li class="tab col s2"><a href="#gp-dam">GP Dam</a></li>
+                    <li class="tab col s2"><a href="#photos">Photos</a></li>
                     <li class="tab col s2"><a href="#summary">Summary</a></li>
-                    <li class="tab col s2"><a href="#swinecart">SwineCart</a></li>
+                    <!-- <li class="tab col s2"><a href="#swinecart">SwineCart</a></li> -->
                 </ul>
             </div>
         </div>
@@ -35,12 +36,20 @@
                             <label for="sex">Sex</label>
                         </div>
                         <div class="input-field col s6">
+                            <input v-model="basicInfo.birthDate"
+                                id="birth-year"
+                                type="date"
+                                class="validate datepicker"
+                            >
+                            <label for="birth-year">Birth Date</label>
+                        </div>
+                        <div class="input-field col s6">
                             <input v-model="basicInfo.age"
                                 id="age"
-                                type="text"
-                                class="validate"
+                                type="date"
+                                class="validate datepicker"
                             >
-                            <label for="age">Age when data was collected</label>
+                            <label for="age">Date when data was collected</label>
                         </div>
                         <div class="input-field col s6">
                             <input v-model="basicInfo.weight"
@@ -50,23 +59,6 @@
                             >
                             <label for="weight">Weight when data was collected</label>
                         </div>
-                        <div class="input-field col s6">
-                            <input v-model="basicInfo.birthYear"
-                                id="birth-year"
-                                type="date"
-                                class="validate datepicker"
-                            >
-                            <label for="birth-year">Birth Year</label>
-                        </div>
-                        <div class="file-field input-field col s8">
-                            <div class="btn">
-                                <span>Upload Photo</span>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
                         <div class="col s12">
                             <br>
                         </div>
@@ -75,10 +67,34 @@
             </div>
         </div>
 
-        <!-- GP 1, GP Sire, and GP Dam tab containers -->
-        <swine-properties v-on:addParents="getParents" :category="'gp-1'" :data="''"></swine-properties>
-        <swine-properties :category="'gp-sire'" :data="gpSireData"></swine-properties>
-        <swine-properties :category="'gp-dam'" :data="gpDamData"></swine-properties>
+        <!-- GP 1, GP Sire, and GP Dam tab components -->
+        <swine-properties
+            :category="'gp-1'"
+            :data="''"
+            v-on:addParents="getParents"
+        >
+        </swine-properties>
+
+        <swine-properties
+            :category="'gp-sire'"
+            :data="gpSireData"
+        >
+        </swine-properties>
+
+        <swine-properties
+            :category="'gp-dam'"
+            :data="gpDamData"
+        >
+        </swine-properties>
+
+        <div id="photos" class="row">
+            <div class="card col s12">
+                <div class="card-content">
+                    <span class="card-title center-align">Upload Photos</span>
+                    <p></p>
+                </div>
+            </div>
+        </div>
 
         <div id="summary" class="row">
             <div class="card col s12">
@@ -89,14 +105,14 @@
             </div>
         </div>
 
-        <div id="swinecart" class="row">
+        <!-- <div id="swinecart" class="row">
             <div class="card col s12">
                 <div class="card-content">
                     <span class="card-title center-align">Link for SwineCart (E-commerce)</span>
                     <p></p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -111,7 +127,7 @@
                 basicInfo: {
                     breed: '',
                     sex: '',
-                    birthYear: '',
+                    birthDate: '',
                     age: '',
                     weight: ''
                 }
