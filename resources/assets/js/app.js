@@ -16,10 +16,11 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('swine-properties', require('./components/SwineProperties.vue'));
+Vue.component('custom-input-select', require('./components/CustomInputSelect.vue'));
+Vue.component('custom-input-date', require('./components/CustomInputDate.vue'));
 Vue.component('upload-photo', require('./components/UploadPhoto.vue'));
+Vue.component('swine-properties', require('./components/SwineProperties.vue'));
 Vue.component('collection', require('./components/Collection.vue'));
-
 
 const app = new Vue({
     el: '#app'

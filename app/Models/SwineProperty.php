@@ -14,14 +14,14 @@ class SwineProperty extends Model
      * @var bool
      */
     public $timestamps = false;
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'value_quantitative', 'value_qualitative',
+        'property_id', 'value'
     ];
 
     /**

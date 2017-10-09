@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row">
-        <collection></collection>
+        <collection :farmoptions="{{ $farmOptions }}" :breeds="{{ $breedOptions }}"></collection>
     </div>
 </div>
 

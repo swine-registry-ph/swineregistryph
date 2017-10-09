@@ -22,12 +22,11 @@ Route::middleware(['auth'])->group(function () {
         return view('users.breeder.manage');
     });
 
-    Route::get('/manage-swine/register', function () {
-        return view('users.breeder.form');
-    });
+    Route::get('/manage-swine/register', 'SwineController@showRegistrationForm')->name('showRegForm');
+    Route::post('/manage-swine/register', 'SwineController@addSwine')->name('addSwine');
 
+    Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
 });
 
-Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sample-admin-view', 'AdminController@viewFarms');

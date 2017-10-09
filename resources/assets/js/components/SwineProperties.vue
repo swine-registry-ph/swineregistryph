@@ -49,7 +49,7 @@
                         <label :for="categoryWithDash + 'gpDam'">GP Dam (optional)</label>
                     </div>
                     <div class="col s12">
-                        <button @click.prevent="getParentsInfo()"
+                        <button @click.prevent="triggerGetParentsEvent()"
                             class="btn waves-effect waves-light right"
                             type="submit"
                             name="action"
@@ -132,15 +132,15 @@
                         <label :for="categoryWithDash + 'litterweight-weaning'">Litter weight at weaning</label>
                     </div>
                     <div class="col s12 input-field">
-                        <input v-model="gpOne.date_weaning"
-                            :id="categoryWithDash + 'age-weaning'"
-                            type="date"
-                            class="validate datepicker"
-                        >
-                        <label :for="categoryWithDash + 'age-weaning'">Date at weaning</label>
+                        <custom-input-date v-model="gpOne.date_weaning" @date-select="val => {gpOne.date_weaning = val}"> </custom-input-date>
+                        <label for=""> Date at weaning </label>
                     </div>
                     <div class="col s12">
-                        <button class="btn waves-effect waves-light right" type="submit" name="action">
+                        <button @click.prevent="triggerSubmitSwineInfoEvent"
+                            class="btn waves-effect waves-light right"
+                            type="submit"
+                            name="action"
+                        >
                             Submit Info <i class="material-icons right">send</i>
                         </button>
                     </div>
@@ -191,10 +191,16 @@
                 return _.isEmpty(obj);
             },
 
-            getParentsInfo() {
-                this.$emit('addParents', {
+            triggerGetParentsEvent() {
+                this.$emit('getParentsEvent', {
                     sireRegNo: this.parents.sireRegNo,
                     damRegNo: this.parents.damRegNo
+                });
+            },
+
+            triggerSubmitSwineInfoEvent() {
+                this.$emit('submitSwineInfoEvent', {
+                    data: this.gpOne
                 });
             }
         },
