@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Breeder;
 use App\Models\Swine;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Collection extends Model
@@ -26,10 +26,10 @@ class Collection extends Model
     }
 
     /**
-     * Get the corresponding use of the collection
+     * Get the corresponding breeder user of the collection
      */
-    public function user()
+    public function breeder()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Breeder::class);
     }
 }

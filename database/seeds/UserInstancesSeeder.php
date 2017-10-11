@@ -11,7 +11,19 @@ class UserInstancesSeeder extends Seeder
      */
     public function run()
     {
+        // For Administrator/s
+        factory(App\Models\User::class, 1)->create()->each(function ($user) {
+            // Create Admin Profile
+            $administrator = factory(App\Models\Admin::class)->create();
+            $administrator->users()->save($user);
+        });
+
+        // For Breeders
         factory(App\Models\User::class, 5)->create()->each(function ($user) {
+
+            // Create Breeder Profile
+            $breeder = factory(App\Models\Breeder::class)->create();
+            $breeder->users()->save($user);
 
             /**
              * 1. Add Farm first to User
@@ -28,8 +40,8 @@ class UserInstancesSeeder extends Seeder
             // Attach farm code to farm
             $farm->farmCode()->save($farmCode);
 
-            // Attach farm to user
-            $user->farms()->save($farm);
+            // Attach farm to breeder
+            $breeder->farms()->save($farm);
 
             /**
              * 2. Add Swine Collection
@@ -38,7 +50,7 @@ class UserInstancesSeeder extends Seeder
             // especially in GP A/Sire (father of pig) and GP B/Dam (mother of pig)
 
             $collection = factory(App\Models\Collection::class)->create([
-                'user_id' => $user->id
+                'breeder_id' => $breeder->id
             ]);
 
             // Insert 5 default swines
@@ -57,7 +69,7 @@ class UserInstancesSeeder extends Seeder
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 1, // sex
-                            'value' => 'Male'
+                            'value' => 'male'
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 2, // birthdate
@@ -122,7 +134,7 @@ class UserInstancesSeeder extends Seeder
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 1, // sex
-                            'value' => 'Male'
+                            'value' => 'male'
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 2, // birthdate
@@ -186,7 +198,7 @@ class UserInstancesSeeder extends Seeder
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 1, // sex
-                            'value' => 'Female'
+                            'value' => 'female'
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 2, // birthdate
@@ -234,7 +246,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 14, // date at weaning
-                            'value' => \Carbon\Carbon::now()->subYear()->toDateString()->toDateString()
+                            'value' => \Carbon\Carbon::now()->subYear()->toDateString()
                         ])
                     ]
                 );

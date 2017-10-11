@@ -14,7 +14,19 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show Admin's homepage view
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $farms = Farm::with('swines')->get();
+
+        return view('users.admin.dashboard', compact('farms'));
     }
 
     /**

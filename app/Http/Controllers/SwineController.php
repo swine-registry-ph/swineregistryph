@@ -15,6 +15,7 @@ use Auth;
 class SwineController extends Controller
 {
     protected $user;
+    protected $breederUser;
 
     /**
      * Create a new controller instance.
@@ -26,6 +27,7 @@ class SwineController extends Controller
         $this->middleware('auth');
         $this->middleware(function($request, $next){
             $this->user = Auth::user();
+            $this->breederUser = Auth::user()->userable()->first();
 
             return $next($request);
         });
@@ -42,7 +44,7 @@ class SwineController extends Controller
         $breedOptions = [];
 
         // Get farm options for farm from input select
-        foreach ($this->user->farms as $farm) {
+        foreach ($this->breederUser->farms as $farm) {
             array_push($farmOptions,
                 [
                     'text' => $farm->name . ' , ' . $farm->province,
@@ -99,7 +101,7 @@ class SwineController extends Controller
 
             // Collection instance
             $collection = new Collection;
-            $collection->user_id = $this->user->id;
+            $collection->user_id = $breederUser->id;
             $collection->date_collected = new Carbon($request->basicInfo['dateCollected']);
             $collection->save();
 

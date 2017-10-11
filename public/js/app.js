@@ -1395,7 +1395,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var vm = this;
 
             // Fetch from server Sire details
-            axios.get('/manage-swine/get/' + sireRegNo).then(function (response) {
+            axios.get('/breeder/manage-swine/get/' + sireRegNo).then(function (response) {
                 vm.gpSireData = response.data;
                 Materialize.toast('Sire added', 2000);
             }).catch(function (error) {
@@ -1407,7 +1407,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var vm = this;
 
             // Fetch from server Dam details
-            axios.get('/manage-swine/get/' + damRegNo).then(function (response) {
+            axios.get('/breeder/manage-swine/get/' + damRegNo).then(function (response) {
                 vm.gpDamData = response.data;
                 Materialize.toast('Dam added', 2000);
             }).catch(function (error) {
@@ -1426,7 +1426,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.gpOneData = gpOneDetails.data;
 
             // Add to server's database
-            axios.post('/manage-swine/register', {
+            axios.post('/breeder/manage-swine/register', {
                 gpSireId: vm.gpSireData ? vm.gpSireData.id : 0,
                 gpDamId: vm.gpDamData ? vm.gpDamData.id : 0,
                 gpOne: vm.gpOneData,

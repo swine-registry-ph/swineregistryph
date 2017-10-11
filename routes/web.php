@@ -18,15 +18,22 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/manage-swine', function () {
-        return view('users.breeder.manage');
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    // Breeder-related
+    Route::group(['prefix' => 'breeder'], function(){
+
+        Route::get('/home', 'BreederController@index')->name('breederHome');
+
+        Route::get('/manage-swine/register', 'SwineController@showRegistrationForm')->name('showRegForm');
+        Route::post('/manage-swine/register', 'SwineController@addSwine')->name('addSwine');
+        Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
     });
 
-    Route::get('/manage-swine/register', 'SwineController@showRegistrationForm')->name('showRegForm');
-    Route::post('/manage-swine/register', 'SwineController@addSwine')->name('addSwine');
 
-    Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
+    // Admin-related
+    Route::group(['prefix' => 'admin'], function(){
+
+        Route::get('/sample-admin-view', 'AdminController@index')->name('adminHome');
+    });
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/sample-admin-view', 'AdminController@viewFarms');

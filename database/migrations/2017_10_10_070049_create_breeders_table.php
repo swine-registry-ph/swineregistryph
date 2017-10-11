@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollectionsTable extends Migration
+class CreateBreedersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCollectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('collections', function (Blueprint $table) {
+        Schema::create('breeders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('breeder_id')->unsigned();
-            $table->date('date_collected');
-            $table->timestamps();
+            $table->string('status_instance')->default('active');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateCollectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collections');
+        Schema::dropIfExists('breeders');
     }
 }

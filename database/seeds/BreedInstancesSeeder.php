@@ -12,7 +12,7 @@ class BreedInstancesSeeder extends Seeder
     public function run()
     {
         $breedTitles = [
-            'Landrace', 'Largewhite', 'Duroc'
+            'Landrace', 'Largewhite', 'Duroc', 'Pietrain'
         ];
 
         foreach ($breedTitles as $breedTitle) {

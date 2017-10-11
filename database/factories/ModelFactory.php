@@ -20,7 +20,17 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret12'),
         'remember_token' => str_random(10),
+        'userable_id' => 0,
+        'userable_type' => ''
     ];
+});
+
+$factory->define(App\Models\Admin::class, function (Faker\Generator $faker){
+    return [];
+});
+
+$factory->define(App\Models\Breeder::class, function (Faker\Generator $faker){
+    return [];
 });
 
 $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
@@ -134,7 +144,7 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
     $rand = random_int(0,sizeof($provinces)-1);
 
     return [
-        'user_id' => 0,
+        'breeder_id' => 0,
         'name' => $faker->company,
         'address_line1' => $faker->streetAddress,
         'address_line2' => $faker->secondaryAddress,
@@ -153,7 +163,7 @@ $factory->define(App\Models\Collection::class, function (Faker\Generator $faker)
 $factory->define(App\Models\Swine::class, function (Faker\Generator $faker) {
 
     return [
-        'breed_id' => random_int(1,3),
+        'breed_id' => random_int(1,4),
         'date_registered' => \Carbon\Carbon::now()
     ];
 });

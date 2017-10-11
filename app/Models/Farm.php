@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Breeder;
 use App\Models\FarmCode;
 use App\Models\Swine;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Farm extends Model
@@ -35,10 +35,10 @@ class Farm extends Model
     }
 
     /**
-     * Get the corresponding user of the farm
+     * Get the corresponding breeder user of the farm
      */
-    public function user()
+    public function breeder()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Breeder::class);
     }
 }

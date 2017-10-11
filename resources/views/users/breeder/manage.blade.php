@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col s6 offset-s3">
             <div class="row">
-                <a href="{{ url('manage-swine/register') }}" class="waves-effect waves-light btn-large indigo col s12">
+                <a href="{{ route('showRegForm') }}" class="waves-effect waves-light btn-large indigo col s12">
                     <i class="material-icons left">add</i>Register New Swine
                 </a>
                 <span class="col s12"> <p></p> </span>

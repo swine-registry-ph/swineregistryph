@@ -21,13 +21,13 @@
                 <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     @if (Auth::guest())
-                        <li><a href="{{ url('login') }}">Login</a></li>
-                        <li><a href="{{ url('register') }}">Register</a></li>
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
                     @else
-                        <li><a href="{{ url('home') }}">{{ Auth::user()->name }}</a></li>
-                        <li><a href="{{ url('manage-swine') }}">Manage Swine</a></li>
+                        <li><a href="{{ route('home') }}">{{ Auth::user()->name }}</a></li>
+                        <li><a href="{{ route('home') }}">Manage Swine</a></li>
                         <li>
-                            <a href="{{ url('manage-swine') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
                             <form id="logout-form" method="POST" action="{{ route('logout') }}">
@@ -42,7 +42,7 @@
         @yield('content')
 
     </div>
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/manifest.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>

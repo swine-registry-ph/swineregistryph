@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Collection;
-use App\Models\Farm;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -17,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'userable_id', 'userable_type'
     ];
 
     /**
@@ -30,18 +28,30 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get farms of user
+     * Get all of the owning userable models
      */
-    public function farms()
+    public function userable()
     {
-        return $this->hasMany(Farm::class);
+        return $this->morphTo();
     }
 
     /**
-     * Get collections (registration of swines) of user
+     * Check if user is of type Breeder
+     *
+     * @return boolean
      */
-    public function collections()
+    public function isBreeder()
     {
-        return $this->hasMany(Collection::class);
+        return str_contains($this->userable_type, 'Breeder');
+    }
+
+    /**
+     * Check if user is of type admin
+     *
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        return str_contains($this->userable_type, 'Admin');
     }
 }

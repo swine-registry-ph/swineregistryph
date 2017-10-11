@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('users.breeder.manage');
+        // Manage homepage viewing depending on user role
+        $user = Auth::user();
+
+        if($user->isAdmin()) return redirect()->action('AdminController@index');
+        else if($user->isBreeder()) return redirect()->action('BreederController@index');
+        else redirect()->route('logout');
     }
 }
