@@ -11,6 +11,14 @@
         <li><a href="#!">View Swine Pedigree</a></li>
         <li><a href="#!">Manage Farms</a></li>
         <li><a href="#!">Reports</a></li>
+        <li class="hide-on-large-only show-on-medium-and-down">
+            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                {{ csrf_field() }}
+            </form>
+        </li>
     </ul>
 @endsection
 

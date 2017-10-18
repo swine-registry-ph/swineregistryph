@@ -146,8 +146,19 @@ Vue.component('upload-photo', __webpack_require__(46));
 Vue.component('swine-properties', __webpack_require__(49));
 Vue.component('collection', __webpack_require__(52));
 
+// For main container
 var app = new Vue({
-  el: '#app'
+    el: '#app'
+});
+
+// For header container
+var nav = new Vue({
+    el: '#custom-nav',
+
+    mounted: function mounted() {
+        // Initialize side navigation
+        $(".button-collapse").sideNav();
+    }
 });
 
 /***/ }),

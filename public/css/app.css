@@ -9904,8 +9904,23 @@ main {
   padding-left: 300px;
 }
 
+@media only screen and (max-width: 992px) {
+  .main-logged-in,
+  .footer-logged-in {
+    padding-left: 0;
+  }
+}
+
+/**
+ * Side Nav
+ */
+
 .side-nav {
   top: 65px;
+}
+
+#sidenav-overlay {
+  margin-left: 300px;
 }
 
 .page-footer {

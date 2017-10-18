@@ -22,6 +22,17 @@ Vue.component('upload-photo', require('./components/UploadPhoto.vue'));
 Vue.component('swine-properties', require('./components/SwineProperties.vue'));
 Vue.component('collection', require('./components/Collection.vue'));
 
+// For main container
 const app = new Vue({
     el: '#app'
+});
+
+// For header container
+const nav = new Vue({
+    el: '#custom-nav',
+
+    mounted() {
+        // Initialize side navigation
+        $(".button-collapse").sideNav();
+    }
 });

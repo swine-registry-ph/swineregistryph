@@ -17,10 +17,13 @@
 <body>
 
     <header>
-        <div class="navbar-fixed">
+        <div id="custom-nav" class="navbar-fixed">
             <nav class="teal lighten-1">
                 <div class="nav-wrapper">
                     <a href="{{ route('home') }}" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
+                    @auth
+                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                    @endauth
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -37,10 +40,10 @@
                             </li>
                         @endif
                     </ul>
+                    @yield('sidebar')
                 </div>
             </nav>
         </div>
-        @yield('sidebar')
     </header>
 
     {{-- Main content for authenticated users --}}
