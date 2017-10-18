@@ -1,0 +1,31 @@
+// Custom styling
+
+/**
+ * For sticky footer using MaterializeCSS
+ * flexbox styling
+ */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/**
+ * Add padding to main and footer containers
+ * for authenticated users
+ */
+.main-logged-in, .footer-logged-in {
+    padding-left: 300px;
+}
+
+.side-nav {
+    top: 65px;
+}
+
+.page-footer {
+    background-color: #80cbc4;
+}

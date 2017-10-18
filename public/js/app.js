@@ -1457,10 +1457,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "basic-information"
     }
   }, [_c('div', {
-    staticClass: "card col s12",
-    staticStyle: {
-      "margin-top": ".2rem"
-    }
+    staticClass: "card col s12"
   }, [_c('div', {
     staticClass: "card-content"
   }, [_c('span', {

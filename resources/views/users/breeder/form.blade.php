@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('users.breeder.home')
 
 @section('title')
     | Register Swine

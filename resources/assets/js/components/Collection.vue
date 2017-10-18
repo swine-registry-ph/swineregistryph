@@ -15,7 +15,7 @@
         </div>
 
         <div id="basic-information" class="row">
-            <div class="card col s12" style="margin-top:.2rem;">
+            <div class="card col s12">
                 <div class="card-content">
                     <span class="card-title center-align">Basic Information</span>
                     <p class="row">

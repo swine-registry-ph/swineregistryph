@@ -23,6 +23,6 @@ class BreederController extends Controller
      */
     public function index()
     {
-        return view('users.breeder.manage');
+        return view('users.breeder.home');
     }
 }

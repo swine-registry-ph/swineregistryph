@@ -15,33 +15,105 @@
 
 </head>
 <body>
-    <div id="app">
-        <nav class="blue-grey">
-            <div class="nav-wrapper container">
-                <a href="#" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                    @else
-                        <li><a href="{{ route('home') }}">{{ Auth::user()->name }}</a></li>
-                        <li><a href="{{ route('home') }}">Manage Swine</a></li>
-                        <li>
-                            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-                            <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                    @endif
-                </ul>
+
+    <header>
+        <div class="navbar-fixed">
+            <nav class="teal lighten-1">
+                <div class="nav-wrapper">
+                    <a href="{{ route('home') }}" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        @if (Auth::guest())
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
+                        @else
+                            <li><a href="{{ route('home') }}">{{ Auth::user()->name }}</a></li>
+                            <li>
+                                <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        @yield('sidebar')
+    </header>
+
+    {{-- Main content for authenticated users --}}
+    @auth
+        <main id="app" class="main-logged-in blue-grey lighten-5">
+            @yield('content')
+        </main>
+    @endauth
+
+    {{-- Main content for guest users --}}
+    @guest
+        <main id="app">
+            @yield('content')
+        </main>
+    @endguest
+
+    {{-- Footer for authenticated users --}}
+    @auth
+        <footer class="page-footer footer-logged-in">
+            <div class="">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </nav>
+          <div class="footer-copyright">
+            <div class="row">
+                © 2017 Purebred Swine Registry PH
+                {{-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> --}}
+            </div>
+          </div>
+        </footer>
+    @endauth
 
-        @yield('content')
-
-    </div>
+    {{-- Footer for guest users --}}
+    @guest
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Footer Content</h5>
+                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Links</h5>
+                        <ul>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2017 Purebred Swine Registry PH
+                    {{-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> --}}
+                </div>
+            </div>
+        </footer>
+    @endguest
 
     <!-- Scripts -->
     <script src="{{ asset('js/manifest.js') }}"></script>
