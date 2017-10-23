@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row">
-        <collection :farmoptions="{{ $farmOptions }}" :breeds="{{ $breedOptions }}"></collection>
+        <collection :farmoptions="{{ $farmOptions }}" :breeds="{{ $breedOptions }}" :uploadurl="'{{ route('uploadPhotos') }}'"></collection>
     </div>
 </div>
 

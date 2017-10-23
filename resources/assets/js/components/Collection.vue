@@ -24,8 +24,8 @@
                             <custom-input-select
                                 v-model="basicInfo.breed"
                                 @select="val => {basicInfo.breed = val}"
+                                labelDescription="Breed"
                                 :options="breeds"
-                                :labelDescription="'Breed'"
                             >
                             </custom-input-select>
                         </div>
@@ -34,8 +34,8 @@
                             <custom-input-select
                                 v-model="basicInfo.sex"
                                 @select="val => {basicInfo.sex = val}"
+                                labelDescription="Sex"
                                 :options="[{text:'Male', value:'male'}, {text:'Female', value:'female'}]"
-                                :labelDescription="'Sex'"
                             >
                             </custom-input-select>
                         </div>
@@ -71,8 +71,8 @@
                             <custom-input-select
                                 v-model="basicInfo.farmFrom"
                                 @select="val => {basicInfo.farmFrom = val}"
+                                labelDescription="Farm From"
                                 :options="farmoptions"
-                                :labelDescription="'Farm From'"
                             >
                             </custom-input-select>
                         </div>
@@ -86,36 +86,32 @@
 
         <!-- GP 1 tab component -->
         <swine-properties
-            :category="'gp-1'"
-            :data="''"
+            category="gp-1"
+            data=""
             v-on:getParentsEvent="getParents"
-            v-on:submitSwineInfoEvent="addSwine"
+            v-on:submitSwineInfoEvent="addSwineInfo"
         >
         </swine-properties>
 
         <!-- GP Sire tab component -->
         <swine-properties
-            :category="'gp-sire'"
+            category="gp-sire"
             :data="gpSireData"
         >
         </swine-properties>
 
         <!-- GP Dam tab component -->
         <swine-properties
-            :category="'gp-dam'"
+            category="gp-dam"
             :data="gpDamData"
         >
         </swine-properties>
 
         <!-- Upload photos tab -->
-        <div id="photos" class="row">
-            <div class="card col s12">
-                <div class="card-content">
-                    <span class="card-title center-align">Upload Photos</span>
-                    <p></p>
-                </div>
-            </div>
-        </div>
+        <upload-photo
+            :uploadurl="uploadurl"
+        >
+        </upload-photo>
 
         <!-- Summary tab -->
         <div id="summary" class="row">
@@ -140,7 +136,7 @@
 
 <script>
     export default {
-        props: ['farmoptions', 'breeds'],
+        props: ['farmoptions', 'breeds', 'uploadurl'],
 
         data() {
             return {
@@ -194,7 +190,7 @@
                 this.getDamInfo(fetchDetails.damRegNo);
             },
 
-            addSwine(gpOneDetails) {
+            addSwineInfo(gpOneDetails) {
                 const vm = this;
 
                 // Update parent component of GP1 details

@@ -13,4 +13,4 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
-   .extract(['vue', 'jquery', 'axios', 'lodash', 'materialize-css', 'dropzone']);
+   .extract(['vue', 'jquery', 'axios', 'lodash', 'materialize-css', 'vue2-dropzone']);
