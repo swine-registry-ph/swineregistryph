@@ -109,6 +109,7 @@
 
         <!-- Upload photos tab -->
         <upload-photo
+            :swine-id="basicInfo.id"
             :uploadurl="uploadurl"
         >
         </upload-photo>
@@ -144,6 +145,7 @@
                 gpDamData: {},
                 gpOneData: {},
                 basicInfo: {
+                    id: 0,
                     breed: '',
                     sex: '',
                     birthDate: '',
@@ -204,7 +206,8 @@
                     basicInfo: vm.basicInfo
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    Materialize.toast('Swine info added', 2000, 'green lighten-1');
+                    this.basicInfo.id = response.data;
                 })
                 .catch((error) => {
                     console.log(error);

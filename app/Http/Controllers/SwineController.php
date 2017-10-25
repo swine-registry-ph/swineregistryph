@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Breed;
 use App\Models\Collection;
+use App\Models\Photo;
 use App\Models\Property;
 use App\Models\Swine;
 use App\Models\SwineProperty;
@@ -17,6 +18,9 @@ class SwineController extends Controller
 {
     protected $user;
     protected $breederUser;
+
+    // Constant variable paths
+    const SWINE_IMG_PATH = '/images/swine/';
 
     /**
      * Create a new controller instance.
@@ -94,7 +98,7 @@ class SwineController extends Controller
      * Add Swine to database
      *
      * @param   Request     $request
-     * @return  string
+     * @return  integer
      */
     public function addSwineInfo(Request $request)
     {
@@ -102,7 +106,7 @@ class SwineController extends Controller
 
             // Collection instance
             $collection = new Collection;
-            $collection->user_id = $breederUser->id;
+            $collection->breeder_id = $this->breederUser->id;
             $collection->date_collected = new Carbon($request->basicInfo['dateCollected']);
             $collection->save();
 
@@ -175,65 +179,8 @@ class SwineController extends Controller
                 ]
             );
 
-            return "Successfully added";
+            return $swine->id;
         }
-    }
-
-    /**
-     * Upload swine photos
-     *
-     * @param   Request     $request
-     * @return  string
-     */
-    public function uploadPhotos(Request $request)
-    {
-        dd($request);
-        // Check if request contains media file input
-        // if($request->hasFile('media')) {
-        //     $files = $request->file('media.*');
-        //     $fileDetails = [];
-        //
-        //     foreach ($files as $file) {
-        //
-        //         // Check if file has no problems in uploading
-        //         if($file->isValid()){
-        //             $fileExtension = $file->getClientOriginalExtension();
-        //             $fileName = $file->getClientOriginalName();
-        //
-        //             // Get media (Image/Video) info according to extension
-        //             if($this->isImage($fileExtension)) $mediaInfo = $this->createMediaInfo($fileName, $fileExtension, $request->productId, $request->type, $request->breed);
-        //             else if($this->isVideo($fileExtension)) $mediaInfo = $this->createMediaInfo($fileName, $fileExtension, $request->productId, $request->type, $request->breed);
-        //             else return response()->json('Invalid file extension', 500);
-        //
-        //             Storage::disk('public')->put($mediaInfo['directoryPath'].$mediaInfo['filename'], file_get_contents($file));
-        //
-        //             // Check if file is successfully moved to desired path
-        //             if($file){
-        //                 $product = Product::find($request->productId);
-        //
-        //                 // Make Image/Video instance
-        //                 $media = $mediaInfo['type'];
-        //                 $media->name = $mediaInfo['filename'];
-        //
-        //                 if($this->isImage($fileExtension)){
-        //                     $product->images()->save($media);
-        //
-        //                     // Resize images
-        //                     dispatch(new ResizeUploadedImage($media->name));
-        //                 }
-        //                 else if($this->isVideo($fileExtension)) $product->videos()->save($media);
-        //
-        //                 array_push($fileDetails, ['id' => $media->id, 'name' => $media->name]);
-        //             }
-        //             else return response()->json('Move file failed', 500);
-        //         }
-        //         else return response()->json('Upload failed', 500);
-        //     }
-        //
-        //     return response()->json(collect($fileDetails)->toJson(), 200);
-        // }
-        // else return response()->json('No files detected', 500);
-        return response()->json('Great!', 200);
     }
 
 }

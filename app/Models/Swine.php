@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Breed;
 use App\Models\Collection;
 use App\Models\Farm;
+use App\Models\Photo;
 use App\Models\SwineProperty;
 use Illuminate\Database\Eloquent\Model;
 
@@ -56,5 +57,13 @@ class Swine extends Model
     public function farm()
     {
         return $this->belongsTo(Farm::class);
+    }
+
+    /**
+     * Get all of the Swine's photoss
+     */
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'photoable');
     }
 }

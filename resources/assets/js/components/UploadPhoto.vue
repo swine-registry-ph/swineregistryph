@@ -8,9 +8,11 @@
                     <dropzone id="uploadDropzone"
                         :url="uploadurl"
                         :headers="csrfHeader"
+                        :dropzone-options="customOptions"
                         v-on:vdropzone-success="showSuccess"
                     >
                         <!-- Optional parameters if any! -->
+                        <input type="hidden" name="swineId" :value="swineId">
                         <input type="hidden" name="token" :value="csrfToken">
                     </dropzone>
                 </div>
@@ -23,13 +25,19 @@
     import Dropzone from 'vue2-dropzone';
 
     export default {
-        props: ['uploadurl'],
+        props: ['swineId', 'uploadurl'],
 
         data() {
             return {
                 csrfToken: document.head.querySelector('meta[name="csrf-token"]').content,
                 csrfHeader: {
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
+                },
+                customOptions:{
+                    parallelUploads: 1,
+                    maxNumberOfFiles: 10,
+                    maxFileSizeInMB: 50,
+                    acceptedFileTypes: 'image/png, image/jpeg, image/jpg, image/tiff, image/heif, image/heic'
                 }
             }
         },
@@ -69,6 +77,7 @@
 </script>
 
 <style lang="css">
+    /* Custom style from vue-dropzone */
     .vue-dropzone {
         border: 2px solid #000000;
         font-family: inherit;
