@@ -200,8 +200,8 @@
 
                 // Add to server's database
                 axios.post('/breeder/manage-swine/register', {
-                    gpSireId: (vm.gpSireData) ? vm.gpSireData.id : 0,
-                    gpDamId: (vm.gpDamData) ? vm.gpDamData.id : 0,
+                    gpSireId: (vm.gpSireData) ? vm.gpSireData.id : null,
+                    gpDamId: (vm.gpDamData) ? vm.gpDamData.id : null,
                     gpOne: vm.gpOneData,
                     basicInfo: vm.basicInfo
                 })

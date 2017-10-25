@@ -9,7 +9,8 @@
                         :url="uploadurl"
                         :headers="csrfHeader"
                         :dropzone-options="customOptions"
-                        v-on:vdropzone-success="showSuccess"
+                        v-on:vdropzone-success="renameFile"
+                        v-on:vdropzone-removed-file="removeFile"
                     >
                         <!-- Optional parameters if any! -->
                         <input type="hidden" name="swineId" :value="swineId">
@@ -47,8 +48,15 @@
         },
 
         methods: {
-            showSuccess() {
-                console.log('Success!');
+            renameFile(file, response) {
+                let previewElement = file.previewElement;
+                let imageDetails = response;
+
+                previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
+            },
+
+            removeFile(file, error, xhr) {
+                console.log('Remove!');
             },
 
             template() {
