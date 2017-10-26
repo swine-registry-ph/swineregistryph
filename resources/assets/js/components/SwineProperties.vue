@@ -59,7 +59,7 @@
                     </div>
 
                     <!-- More info for GP 1 -->
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.adg"
                             :id="categoryWithDash + 'adg'"
                             type="text"
@@ -67,7 +67,7 @@
                         >
                         <label :for="categoryWithDash + 'adg'">Average Daily Gain (g/day)</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.bft"
                             :id="categoryWithDash + 'bft'"
                             type="text"
@@ -75,7 +75,7 @@
                         >
                         <label :for="categoryWithDash + 'bft'">Backfat Thickness (mm)</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.fe"
                             :id="categoryWithDash + 'feed-efficiency'"
                             type="text"
@@ -83,7 +83,7 @@
                         >
                         <label :for="categoryWithDash + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.birth_weight"
                             :id="categoryWithDash + 'birth-weight'"
                             type="text"
@@ -91,7 +91,7 @@
                         >
                         <label :for="categoryWithDash + 'birth-weight'">Birth weight</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.littersizeAlive_male"
                             :id="categoryWithDash + 'total-m'"
                             type="text"
@@ -99,7 +99,7 @@
                         >
                         <label :for="categoryWithDash + 'total-m'">Total (M) born alive</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.littersizeAlive_female"
                             :id="categoryWithDash + 'total-f'"
                             type="text"
@@ -107,7 +107,7 @@
                         >
                         <label :for="categoryWithDash + 'total-f'">Total (F) born alive</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.parity"
                             :id="categoryWithDash + 'parity'"
                             type="text"
@@ -115,7 +115,7 @@
                         >
                         <label :for="categoryWithDash + 'parity'">Parity</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.littersize_weaning"
                             :id="categoryWithDash + 'littersize-weaning'"
                             type="text"
@@ -123,7 +123,7 @@
                         >
                         <label :for="categoryWithDash + 'littersize-weaning'">Littersize at weaning</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <input v-model="gpOne.litterweight_weaning"
                             :id="categoryWithDash + 'litterweight-weaning'"
                             type="text"
@@ -131,7 +131,7 @@
                         >
                         <label :for="categoryWithDash + 'litterweight-weaning'">Litter weight at weaning</label>
                     </div>
-                    <div class="col s12 input-field">
+                    <div class="col s6 input-field">
                         <custom-input-date v-model="gpOne.date_weaning" @date-select="val => {gpOne.date_weaning = val}"> </custom-input-date>
                         <label for=""> Date at weaning </label>
                     </div>

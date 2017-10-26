@@ -68,7 +68,8 @@ class PhotoController extends Controller
                         $swine->photos()->save($photo);
 
                         // Additional metadata
-                        $photo->fullFilePath = $photoInfo['directory'] . $photoInfo['filename'];
+                        $photo->fullFilePath = '/storage\/' . $photoInfo['directory'] . $photoInfo['filename'];
+                        $photo->isPrimaryPhoto = false;
 
                         return response()->json($photo, 200);
 
@@ -82,6 +83,23 @@ class PhotoController extends Controller
         }
         else return response()->json('No files detected.', 500);
 
+    }
+
+    /**
+     * Set the primary photo of a Swine
+     *
+     * @param   Request     $request
+     * @return  string
+     */
+    public function setPrimaryPhoto(Request $request)
+    {
+        if($request->ajax()){
+            $swine = Swine::find($request->swineId);
+            $swine->primaryPhoto_id = $request->photoId;
+            $swine->save();
+
+            return "OK";
+        }
     }
 
     /**

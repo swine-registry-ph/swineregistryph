@@ -60,8 +60,10 @@
                 previewElement.setAttribute('data-photo-id', imageDetails.id);
                 previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
 
-                // Maybe we could send the received imageDetails to parent component
-                // for use in Summary tab
+                // Trigger addedImage event
+                this.$emit('addedPhotoEvent', {
+                    data : imageDetails
+                });
             },
 
             removeFile(file, error, xhr) {
@@ -101,6 +103,7 @@
 <style lang="css">
     /* Custom style from vue-dropzone */
     .vue-dropzone {
+        min-height: 20rem;
         border: 2px solid #000000;
         font-family: inherit;
         letter-spacing: 0.2px;

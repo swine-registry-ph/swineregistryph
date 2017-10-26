@@ -9923,6 +9923,10 @@ main {
   margin-left: 300px;
 }
 
+#add-swine-tabs .tabs {
+  overflow-x: hidden;
+}
+
 .page-footer {
   background-color: #80cbc4;
 }

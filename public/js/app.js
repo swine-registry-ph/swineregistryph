@@ -143,6 +143,7 @@ Vue.component('custom-input-select', __webpack_require__(40));
 Vue.component('custom-input-date', __webpack_require__(43));
 Vue.component('upload-photo', __webpack_require__(46));
 Vue.component('swine-properties', __webpack_require__(54));
+Vue.component('add-swine-summary', __webpack_require__(77));
 Vue.component('collection', __webpack_require__(57));
 
 // For main container
@@ -532,99 +533,18 @@ if(false) {
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(49)(undefined);
+exports = module.exports = __webpack_require__(76)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    min-height: 20rem;\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
+/* 49 */,
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -949,8 +869,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             previewElement.setAttribute('data-photo-id', imageDetails.id);
             previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
 
-            // Maybe we could send the received imageDetails to parent component
-            // for use in Summary tab
+            // Trigger addedImage event
+            this.$emit('addedPhotoEvent', {
+                data: imageDetails
+            });
         },
         removeFile: function removeFile(file, error, xhr) {
             var photoId = file.previewElement.getAttribute('data-photo-id');
@@ -1372,7 +1294,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n                        Add Parents "), _c('i', {
     staticClass: "material-icons right"
   }, [_vm._v("add")])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1399,7 +1321,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'adg'
     }
   }, [_vm._v("Average Daily Gain (g/day)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1426,7 +1348,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'bft'
     }
   }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1453,7 +1375,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'feed-efficiency'
     }
   }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1480,7 +1402,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'birth-weight'
     }
   }, [_vm._v("Birth weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1507,7 +1429,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'total-m'
     }
   }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1534,7 +1456,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'total-f'
     }
   }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1561,7 +1483,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'parity'
     }
   }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1588,7 +1510,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'littersize-weaning'
     }
   }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -1615,7 +1537,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": _vm.categoryWithDash + 'litterweight-weaning'
     }
   }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
+    staticClass: "col s6 input-field"
   }, [_c('custom-input-date', {
     on: {
       "date-select": function (val) {
@@ -1833,17 +1755,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['farmoptions', 'breeds', 'uploadurl'],
@@ -1861,7 +1772,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 dateCollected: '',
                 weight: '',
                 farmFrom: ''
-            }
+            },
+            imageFiles: []
         };
     },
 
@@ -1915,6 +1827,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        addPhotoToImageFiles: function addPhotoToImageFiles(imageDetails) {
+            this.imageFiles.push(imageDetails.data);
         }
     },
 
@@ -2094,8 +2009,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "swine-id": _vm.basicInfo.id,
       "uploadurl": _vm.uploadurl
+    },
+    on: {
+      "addedPhotoEvent": _vm.addPhotoToImageFiles
     }
-  }), _vm._v(" "), _vm._m(2)], 1)
+  }), _vm._v(" "), _c('add-swine-summary', {
+    attrs: {
+      "swine-id": _vm.basicInfo.id,
+      "image-files": _vm.imageFiles
+    }
+  })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "row",
@@ -2107,6 +2030,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "margin-top": "2rem",
       "padding": "0"
+    },
+    attrs: {
+      "id": "add-swine-tabs"
     }
   }, [_c('ul', {
     staticClass: "tabs tabs-fixed-width z-depth-2"
@@ -2117,7 +2043,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#basic-information"
     }
   }, [_vm._v("Basic Information")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2"
+    staticClass: "tab col s1"
   }, [_c('a', {
     attrs: {
       "href": "#gp-1"
@@ -2151,19 +2077,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "summary"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v("Summary")]), _vm._v(" "), _c('p')])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -2178,6 +2091,303 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(78),
+  /* template */
+  __webpack_require__(79),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/AddSwineSummary.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AddSwineSummary.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2b7c16fc", Component.options)
+  } else {
+    hotAPI.reload("data-v-2b7c16fc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['swineId', 'imageFiles'],
+
+    data: function data() {
+        return {
+            summaryImageFiles: this.imageFiles,
+            currentPrimaryPhotoIndex: -1
+        };
+    },
+
+
+    methods: {
+        searchImageIndex: function searchImageIndex(id) {
+            // Return index of imageId to find
+            for (var i = 0; i < this.summaryImageFiles.length; i++) {
+                if (this.summaryImageFiles[i].id === id) return i;
+            }
+        },
+        setAsPrimaryPhoto: function setAsPrimaryPhoto(chosenPhotoId) {
+            var vm = this;
+            var index = this.searchImageIndex(chosenPhotoId);
+            var currentPrimaryPhotoIndex = this.currentPrimaryPhotoIndex;
+
+            axios.post('/breeder/manage-swine/set-primary-photo', {
+                swineId: vm.swineId,
+                photoId: chosenPhotoId
+            }).then(function (response) {
+                // Change current primary photo if there is any
+                if (currentPrimaryPhotoIndex >= 0) vm.summaryImageFiles[currentPrimaryPhotoIndex].isPrimaryPhoto = false;
+
+                vm.summaryImageFiles[index].isPrimaryPhoto = true;
+                vm.currentPrimaryPhotoIndex = index;
+            }).catch(function (error) {
+                console.error(error);
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "summary"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v("Summary")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._l((_vm.summaryImageFiles), function(photo) {
+    return _c('div', {
+      staticClass: "col s6"
+    }, [_c('div', {
+      staticClass: "card"
+    }, [_c('div', {
+      staticClass: "card-image"
+    }, [_c('img', {
+      attrs: {
+        "src": photo.fullFilePath
+      }
+    }), _vm._v(" "), _c('span', {
+      staticClass: "card-title"
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "card-action"
+    }, [(photo.isPrimaryPhoto) ? _c('a', {
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("photo")]), _vm._v(" Primary Photo\n                        ")]) : _c('a', {
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.setAsPrimaryPhoto(photo.id)
+        }
+      }
+    }, [_vm._v("\n                            Set as Primary\n                        ")])])])])
+  })], 2)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('span', [_vm._v("Photos")]), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2b7c16fc", module.exports)
+  }
+}
 
 /***/ })
 ],[16]);

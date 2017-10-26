@@ -1,15 +1,14 @@
 <template lang="html">
     <div class="col s10 offset-s1">
         <div class="row" style="margin-bottom:0;">
-            <div class="col s12" style="margin-top:2rem; padding:0;">
+            <div id="add-swine-tabs" class="col s12" style="margin-top:2rem; padding:0;">
                 <ul class="tabs tabs-fixed-width z-depth-2">
                     <li class="tab col s3"><a href="#basic-information">Basic Information</a></li>
-                    <li class="tab col s2"><a href="#gp-1">GP1</a></li>
+                    <li class="tab col s1"><a href="#gp-1">GP1</a></li>
                     <li class="tab col s2"><a href="#gp-sire">GP Sire</a></li>
                     <li class="tab col s2"><a href="#gp-dam">GP Dam</a></li>
                     <li class="tab col s2"><a href="#photos">Photos</a></li>
                     <li class="tab col s2"><a href="#summary">Summary</a></li>
-                    <!-- <li class="tab col s2"><a href="#swinecart">SwineCart</a></li> -->
                 </ul>
             </div>
         </div>
@@ -111,27 +110,17 @@
         <upload-photo
             :swine-id="basicInfo.id"
             :uploadurl="uploadurl"
+            v-on:addedPhotoEvent="addPhotoToImageFiles"
         >
         </upload-photo>
 
         <!-- Summary tab -->
-        <div id="summary" class="row">
-            <div class="card col s12">
-                <div class="card-content">
-                    <span class="card-title center-align">Summary</span>
-                    <p></p>
-                </div>
-            </div>
-        </div>
+        <add-swine-summary
+            :swine-id="basicInfo.id"
+            :image-files="imageFiles"
+        >
+        </add-swine-summary>
 
-        <!-- <div id="swinecart" class="row">
-            <div class="card col s12">
-                <div class="card-content">
-                    <span class="card-title center-align">Link for SwineCart (E-commerce)</span>
-                    <p></p>
-                </div>
-            </div>
-        </div> -->
     </div>
 </template>
 
@@ -152,7 +141,8 @@
                     dateCollected: '',
                     weight: '',
                     farmFrom: ''
-                }
+                },
+                imageFiles: []
             }
         },
 
@@ -212,6 +202,10 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            addPhotoToImageFiles(imageDetails) {
+                this.imageFiles.push(imageDetails.data);
             }
         },
 
