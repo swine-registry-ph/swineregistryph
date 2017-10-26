@@ -6,8 +6,10 @@
 
                 <div class="">
                     <dropzone id="uploadDropzone"
+                        ref="uploadDropzone"
                         :url="uploadurl"
                         :headers="csrfHeader"
+                        :use-custom-dropzone-options="true"
                         :dropzone-options="customOptions"
                         v-on:vdropzone-success="renameFile"
                         v-on:vdropzone-removed-file="removeFile"
@@ -34,7 +36,7 @@
                 csrfHeader: {
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
                 },
-                customOptions:{
+                customOptions: {
                     parallelUploads: 1,
                     maxNumberOfFiles: 10,
                     maxFileSizeInMB: 50,
@@ -52,11 +54,23 @@
                 let previewElement = file.previewElement;
                 let imageDetails = response;
 
+                // setAttribute is for photo id purposes. Chose not to put it
+                // into vue local data storage for ease of use in
+                // fetching id upon removal of file
+                previewElement.setAttribute('data-photo-id', imageDetails.id);
                 previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
+
+                // Maybe we could send the received imageDetails to parent component
+                // for use in Summary tab
             },
 
             removeFile(file, error, xhr) {
-                console.log('Remove!');
+                const photoId = file.previewElement.getAttribute('data-photo-id');
+
+                axios.delete(`/breeder/manage-swine/upload-photo/${photoId}`)
+                .then((response) => { })
+                .catch((error) => { console.log(error); });
+
             },
 
             template() {

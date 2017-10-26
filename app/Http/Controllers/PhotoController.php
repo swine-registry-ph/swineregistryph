@@ -40,43 +40,68 @@ class PhotoController extends Controller
      * @param   Request     $request
      * @return  string
      */
-    public function uploadPhotos(Request $request)
+    public function uploadPhoto(Request $request)
     {
         // Check if there are uploaded files
         if($request->files->count() > 0){
             foreach ($request->files->all() as $file) {
 
+                $fileExtension = $file->getClientOriginalExtension();
+                $fileName = $file->getClientOriginalName();
+
+                // Check if file is of image file extension
+                if(!$this->isImage($fileExtension)) return response()->json('Invalid file extension', 500);
+
                 // Check if file is successfully uploaded
                 if($file->isValid()){
                     $swine = Swine::find($request->swineId);
 
-                    $fileExtension = $file->getClientOriginalExtension();
-                    $fileName = $file->getClientOriginalName();
-
-                    // Check if file is of image file extension
-                    ($this->isImage($fileExtension))
-                        ? $photoInfo = $this->createImageDetails($swine->id, $fileName, $fileExtension)
-                        : response()->json('Invalid file extension', 500);
+                    $photoInfo = $this->createImageDetails($swine->id, $fileName, $fileExtension);
 
                     // Save image to Storage
-                    Storage::disk('public')->put($photoInfo['directory'].$photoInfo['filename'], file_get_contents($file));
+                    Storage::disk('public')->put($photoInfo['directory'] . $photoInfo['filename'], file_get_contents($file));
 
                     // Save image details to database if successfully moved
                     if($file){
-
                         $photo = new Photo;
                         $photo->name = $photoInfo['filename'];
                         $swine->photos()->save($photo);
 
+                        // Additional metadata
+                        $photo->fullFilePath = $photoInfo['directory'] . $photoInfo['filename'];
+
                         return response()->json($photo, 200);
+
                     }
                     else return response()->json('Move file failed', 500);
+
                 }
                 else return response()->json('Upload failed', 500);
+
             }
         }
         else return response()->json('No files detected.', 500);
 
+    }
+
+    /**
+     * Delete Photo in file storage and database
+     *
+     * @param   Request     $request
+     * @return  JSON
+     */
+    public function deletePhoto(Request $request, $photoId)
+    {
+        if($request->ajax()){
+            $photo = Photo::find($photoId);
+            $fullFilePath = self::SWINE_IMG_PATH . $photo->name;
+
+            if(Storage::disk('public')->exists($fullFilePath)) Storage::disk('public')->delete($fullFilePath);
+
+            $photo->delete();
+
+            return response()->json('Image deleted', 200);
+        }
     }
 
     /**
@@ -105,6 +130,8 @@ class PhotoController extends Controller
      */
     private function isImage($extension)
     {
+        $extension = strtolower($extension);
+
         return (
             $extension == 'jpg'     ||
             $extension == 'jpeg'    ||
@@ -112,7 +139,8 @@ class PhotoController extends Controller
             $extension == 'tiff'    ||
             $extension == 'heif'    ||
             $extension == 'heic'
-            ) ? true : false;
+        );
+
     }
 
 }
