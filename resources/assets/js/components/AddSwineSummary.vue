@@ -4,9 +4,103 @@
             <div class="card-content">
                 <span class="card-title center-align">Summary</span>
 
+                <!-- For General information -->
                 <div class="col s12">
-                    <span>Photos</span>
+                    <h6>Information</h6>
                     <div class="divider"> </div>
+                    <p> <br> </p>
+                </div>
+
+                <div class="col s12">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th> Property </th>
+                                <th> Value </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> Breed </td>
+                                <td> {{ basicInfo.breed }} </td>
+                            </tr>
+                            <tr>
+                                <td> Sex </td>
+                                <td> {{ basicInfo.sex }} </td>
+                            </tr>
+                            <tr>
+                                <td> Birth Date </td>
+                                <td> {{ basicInfo.birthDate }} </td>
+                            </tr>
+                            <tr>
+                                <td> Weight when data was collected </td>
+                                <td> {{ basicInfo.weight }} </td>
+                            </tr>
+                            <tr>
+                                <td> Farm From </td>
+                                <td> {{ basicInfo.farmFrom }} </td>
+                            </tr>
+                            <tr>
+                                <td> Date collected </td>
+                                <td> {{ basicInfo.dateCollected }} </td>
+                            </tr>
+                            <tr>
+                                <td> GP Sire </td>
+                                <td> {{ gpSire }} </td>
+                            </tr>
+                            <tr>
+                                <td> GP Dam </td>
+                                <td> {{ gpDam }} </td>
+                            </tr>
+                            <tr>
+                                <td> Average Daily Gain </td>
+                                <td> {{ gpOneData.adg }} </td>
+                            </tr>
+                            <tr>
+                                <td> Backfat Thickness </td>
+                                <td> {{ gpOneData.bft }} </td>
+                            </tr>
+                            <tr>
+                                <td> Feed Efficiency </td>
+                                <td> {{ gpOneData.fe }} </td>
+                            </tr>
+                            <tr>
+                                <td> Birth Weight </td>
+                                <td> {{ gpOneData.birth_weight }} </td>
+                            </tr>
+                            <tr>
+                                <td> Total (M) born alive </td>
+                                <td> {{ gpOneData.littersizeAlive_male }} </td>
+                            </tr>
+                            <tr>
+                                <td> Total (F) born alive </td>
+                                <td> {{ gpOneData.littersizeAlive_female }} </td>
+                            </tr>
+                            <tr>
+                                <td> Parity </td>
+                                <td> {{ gpOneData.parity }} </td>
+                            </tr>
+                            <tr>
+                                <td> Littersize at Weaning </td>
+                                <td> {{ gpOneData.littersize_weaning }} </td>
+                            </tr>
+                            <tr>
+                                <td> Total litterweight at weaning </td>
+                                <td> {{ gpOneData.litterweight_weaning }} </td>
+                            </tr>
+                            <tr>
+                                <td> Date at Weaning </td>
+                                <td> {{ gpOneData.date_weaning }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- For Photos -->
+                <div class="col s12">
+                    <h6>Photos</h6>
+                    <div class="divider"> </div>
+                    <p> <br> </p>
                 </div>
 
                 <div class="col s6"
@@ -34,6 +128,13 @@
                     </div>
                 </div>
 
+                <!-- For Breed Registry certificate -->
+                <div class="col s12">
+                    <h6>Breed Registry Certificate</h6>
+                    <div class="divider"> </div>
+                    <p> <br> </p>
+                </div>
+
             </div>
         </div>
     </div>
@@ -42,7 +143,7 @@
 <script>
     export default {
         props: [
-            'swineId', 'imageFiles'
+            'swineId', 'spgSire', 'gpDam', 'basicInfo', 'gpOneData', 'imageFiles'
         ],
 
         data() {

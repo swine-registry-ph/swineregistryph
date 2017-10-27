@@ -117,6 +117,10 @@
         <!-- Summary tab -->
         <add-swine-summary
             :swine-id="basicInfo.id"
+            :gp-sire="gpSireData.registration_no"
+            :gp-dam="gpDamData.registration_no"
+            :basic-info="basicInfo"
+            :gp-one-data="gpOneData"
             :image-files="imageFiles"
         >
         </add-swine-summary>
