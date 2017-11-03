@@ -5,10 +5,10 @@
                 <ul class="tabs tabs-fixed-width z-depth-2">
                     <li class="tab col s3"><a href="#basic-information">Basic Information</a></li>
                     <li class="tab col s1"><a href="#gp-1">GP1</a></li>
-                    <li class="tab col s2"><a href="#gp-sire">GP Sire</a></li>
-                    <li class="tab col s2"><a href="#gp-dam">GP Dam</a></li>
-                    <li class="tab col s2"><a href="#photos">Photos</a></li>
-                    <li class="tab col s2"><a href="#summary">Summary</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpSire }"><a href="#gp-sire">GP Sire</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpDam }"><a href="#gp-dam">GP Dam</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.summary }"><a href="#summary">Summary</a></li>
                 </ul>
             </div>
         </div>
@@ -111,16 +111,16 @@
             :swine-id="basicInfo.id"
             :uploadurl="uploadurl"
             v-on:addedPhotoEvent="addPhotoToImageFiles"
+            v-on:removedPhotoEvent="removePhotoFromImageFiles"
         >
         </upload-photo>
 
         <!-- Summary tab -->
         <add-swine-summary
-            :swine-id="basicInfo.id"
-            :gp-sire="gpSireData.registration_no"
-            :gp-dam="gpDamData.registration_no"
             :basic-info="basicInfo"
             :gp-one-data="gpOneData"
+            :gp-sire="gpSireData.registration_no"
+            :gp-dam="gpDamData.registration_no"
             :image-files="imageFiles"
         >
         </add-swine-summary>
@@ -134,6 +134,12 @@
 
         data() {
             return {
+                tabDisables: {
+                    gpSire: true,
+                    gpDam: true,
+                    photos: true,
+                    summary: true
+                },
                 gpSireData: {},
                 gpDamData: {},
                 gpOneData: {},
@@ -151,13 +157,24 @@
         },
 
         methods: {
+            getIndex(id, arrayToBeSearched) {
+                // Return index of object to find
+                for(var i = 0; i < arrayToBeSearched.length; i++) {
+                    if(arrayToBeSearched[i].id === id) return i;
+                }
+            },
+
             getSireInfo(sireRegNo) {
                 const vm = this;
 
                 // Fetch from server Sire details
                 axios.get(`/breeder/manage-swine/get/${sireRegNo}`)
                     .then((response) => {
+                        // Put response in local data storage
+                        // and enable 'GP Sire' tab
                         vm.gpSireData = response.data;
+                        vm.tabDisables.gpSire = false;
+
                         Materialize.toast('Sire added', 2000);
                     })
                     .catch((error) => {
@@ -172,7 +189,11 @@
                 // Fetch from server Dam details
                 axios.get(`/breeder/manage-swine/get/${damRegNo}`)
                     .then((response) => {
+                        // Put response in local data storage
+                        // and enable 'GP Dam' tab
                         vm.gpDamData = response.data;
+                        vm.tabDisables.gpDam = false;
+
                         Materialize.toast('Dam added', 2000);
                     })
                     .catch((error) => {
@@ -200,8 +221,12 @@
                     basicInfo: vm.basicInfo
                 })
                 .then((response) => {
+                    // Put response in local data storage
+                    // and enable 'Photos' tab
+                    vm.basicInfo.id = response.data;
+                    vm.tabDisables.photos = false;
+
                     Materialize.toast('Swine info added', 2000, 'green lighten-1');
-                    this.basicInfo.id = response.data;
                 })
                 .catch((error) => {
                     console.log(error);
@@ -209,7 +234,20 @@
             },
 
             addPhotoToImageFiles(imageDetails) {
+                // Put information of uploaded photos in local data storage
+                // and enable 'Summary' tab
                 this.imageFiles.push(imageDetails.data);
+                this.tabDisables.summary = false;
+            },
+
+            removePhotoFromImageFiles(imageDetails) {
+                // Remove photo from local data storage
+                // and check if 'Summary' tab
+                // should still be enabled
+                const index = this.getIndex(imageDetails.photoId, this.imageFiles);
+
+                this.imageFiles.splice(index,1);
+                this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
             }
         },
 

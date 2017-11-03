@@ -538,7 +538,7 @@ exports = module.exports = __webpack_require__(49)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    min-height: 20rem;\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    min-height: 20rem;\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
 
 // exports
 
@@ -950,7 +950,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             previewElement.setAttribute('data-photo-id', imageDetails.id);
             previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
 
-            // Trigger addedImage event
+            // Trigger addedPhotoEvent
             this.$emit('addedPhotoEvent', {
                 data: imageDetails
             });
@@ -960,6 +960,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.delete('/breeder/manage-swine/upload-photo/' + photoId).then(function (response) {}).catch(function (error) {
                 console.log(error);
+            });
+
+            // Trigger removedPhotoEvent
+            this.$emit('removedPhotoEvent', {
+                photoId: photoId
             });
         },
         template: function template() {
@@ -1854,7 +1859,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['swineId', 'spgSire', 'gpDam', 'basicInfo', 'gpOneData', 'imageFiles'],
+    props: ['basicInfo', 'gpOneData', 'gpSire', 'gpDam', 'imageFiles'],
 
     data: function data() {
         return {
@@ -1865,19 +1870,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        searchImageIndex: function searchImageIndex(id) {
-            // Return index of imageId to find
-            for (var i = 0; i < this.summaryImageFiles.length; i++) {
-                if (this.summaryImageFiles[i].id === id) return i;
+        getIndex: function getIndex(id, arrayToBeSearched) {
+            // Return index of object to find
+            for (var i = 0; i < arrayToBeSearched.length; i++) {
+                if (arrayToBeSearched[i].id === id) return i;
             }
         },
         setAsPrimaryPhoto: function setAsPrimaryPhoto(chosenPhotoId) {
             var vm = this;
-            var index = this.searchImageIndex(chosenPhotoId);
+            var index = this.getIndex(chosenPhotoId, this.summaryImageFiles);
             var currentPrimaryPhotoIndex = this.currentPrimaryPhotoIndex;
 
             axios.post('/breeder/manage-swine/set-primary-photo', {
-                swineId: vm.swineId,
+                swineId: vm.basicInfo.id,
                 photoId: chosenPhotoId
             }).then(function (response) {
                 // Change current primary photo if there is any
@@ -2165,6 +2170,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            tabDisables: {
+                gpSire: true,
+                gpDam: true,
+                photos: true,
+                summary: true
+            },
             gpSireData: {},
             gpDamData: {},
             gpOneData: {},
@@ -2183,12 +2194,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        getIndex: function getIndex(id, arrayToBeSearched) {
+            // Return index of object to find
+            for (var i = 0; i < arrayToBeSearched.length; i++) {
+                if (arrayToBeSearched[i].id === id) return i;
+            }
+        },
         getSireInfo: function getSireInfo(sireRegNo) {
             var vm = this;
 
             // Fetch from server Sire details
             axios.get('/breeder/manage-swine/get/' + sireRegNo).then(function (response) {
+                // Put response in local data storage
+                // and enable 'GP Sire' tab
                 vm.gpSireData = response.data;
+                vm.tabDisables.gpSire = false;
+
                 Materialize.toast('Sire added', 2000);
             }).catch(function (error) {
                 Materialize.toast('Unable to add Sire', 3000, 'amber lighten-3');
@@ -2200,7 +2221,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // Fetch from server Dam details
             axios.get('/breeder/manage-swine/get/' + damRegNo).then(function (response) {
+                // Put response in local data storage
+                // and enable 'GP Dam' tab
                 vm.gpDamData = response.data;
+                vm.tabDisables.gpDam = false;
+
                 Materialize.toast('Dam added', 2000);
             }).catch(function (error) {
                 Materialize.toast('Unable to add Dam', 3000, 'amber lighten-3');
@@ -2212,8 +2237,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.getDamInfo(fetchDetails.damRegNo);
         },
         addSwineInfo: function addSwineInfo(gpOneDetails) {
-            var _this = this;
-
             var vm = this;
 
             // Update parent component of GP1 details
@@ -2226,14 +2249,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 gpOne: vm.gpOneData,
                 basicInfo: vm.basicInfo
             }).then(function (response) {
+                // Put response in local data storage
+                // and enable 'Photos' tab
+                vm.basicInfo.id = response.data;
+                vm.tabDisables.photos = false;
+
                 Materialize.toast('Swine info added', 2000, 'green lighten-1');
-                _this.basicInfo.id = response.data;
             }).catch(function (error) {
                 console.log(error);
             });
         },
         addPhotoToImageFiles: function addPhotoToImageFiles(imageDetails) {
+            // Put information of uploaded photos in local data storage
+            // and enable 'Summary' tab
             this.imageFiles.push(imageDetails.data);
+            this.tabDisables.summary = false;
+        },
+        removePhotoFromImageFiles: function removePhotoFromImageFiles(imageDetails) {
+            // Remove photo from local data storage
+            // and check if 'Summary' tab
+            // should still be enabled
+            var index = this.getIndex(imageDetails.photoId, this.imageFiles);
+
+            this.imageFiles.splice(index, 1);
+            this.tabDisables.summary = this.imageFiles.length < 1 ? true : false;
         }
     },
 
@@ -2249,7 +2288,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s10 offset-s1"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "row",
+    staticStyle: {
+      "margin-bottom": "0"
+    }
+  }, [_c('div', {
+    staticClass: "col s12",
+    staticStyle: {
+      "margin-top": "2rem",
+      "padding": "0"
+    },
+    attrs: {
+      "id": "add-swine-tabs"
+    }
+  }, [_c('ul', {
+    staticClass: "tabs tabs-fixed-width z-depth-2"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('li', {
+    staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.gpSire
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#gp-sire"
+    }
+  }, [_vm._v("GP Sire")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.gpDam
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#gp-dam"
+    }
+  }, [_vm._v("GP Dam")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.photos
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#photos"
+    }
+  }, [_vm._v("Photos")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.summary
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#summary"
+    }
+  }, [_vm._v("Summary")])])])])]), _vm._v(" "), _c('div', {
     staticClass: "row",
     attrs: {
       "id": "basic-information"
@@ -2390,7 +2481,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "basicInfo.farmFrom"
     }
-  })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('p')])])]), _vm._v(" "), _c('swine-properties', {
+  })], 1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('p')])])]), _vm._v(" "), _c('swine-properties', {
     attrs: {
       "category": "gp-1",
       "data": ""
@@ -2415,72 +2506,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "uploadurl": _vm.uploadurl
     },
     on: {
-      "addedPhotoEvent": _vm.addPhotoToImageFiles
+      "addedPhotoEvent": _vm.addPhotoToImageFiles,
+      "removedPhotoEvent": _vm.removePhotoFromImageFiles
     }
   }), _vm._v(" "), _c('add-swine-summary', {
     attrs: {
-      "swine-id": _vm.basicInfo.id,
-      "gp-sire": _vm.gpSireData.registration_no,
-      "gp-dam": _vm.gpDamData.registration_no,
       "basic-info": _vm.basicInfo,
       "gp-one-data": _vm.gpOneData,
+      "gp-sire": _vm.gpSireData.registration_no,
+      "gp-dam": _vm.gpDamData.registration_no,
       "image-files": _vm.imageFiles
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    staticStyle: {
-      "margin-bottom": "0"
-    }
-  }, [_c('div', {
-    staticClass: "col s12",
-    staticStyle: {
-      "margin-top": "2rem",
-      "padding": "0"
-    },
-    attrs: {
-      "id": "add-swine-tabs"
-    }
-  }, [_c('ul', {
-    staticClass: "tabs tabs-fixed-width z-depth-2"
-  }, [_c('li', {
+  return _c('li', {
     staticClass: "tab col s3"
   }, [_c('a', {
     attrs: {
       "href": "#basic-information"
     }
-  }, [_vm._v("Basic Information")])]), _vm._v(" "), _c('li', {
+  }, [_vm._v("Basic Information")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
     staticClass: "tab col s1"
   }, [_c('a', {
     attrs: {
       "href": "#gp-1"
     }
-  }, [_vm._v("GP1")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2"
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-sire"
-    }
-  }, [_vm._v("GP Sire")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2"
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-dam"
-    }
-  }, [_vm._v("GP Dam")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2"
-  }, [_c('a', {
-    attrs: {
-      "href": "#photos"
-    }
-  }, [_vm._v("Photos")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2"
-  }, [_c('a', {
-    attrs: {
-      "href": "#summary"
-    }
-  }, [_vm._v("Summary")])])])])])
+  }, [_vm._v("GP1")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"

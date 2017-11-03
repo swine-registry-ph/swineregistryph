@@ -143,7 +143,7 @@
 <script>
     export default {
         props: [
-            'swineId', 'spgSire', 'gpDam', 'basicInfo', 'gpOneData', 'imageFiles'
+            'basicInfo', 'gpOneData', 'gpSire', 'gpDam', 'imageFiles'
         ],
 
         data() {
@@ -154,20 +154,20 @@
         },
 
         methods: {
-            searchImageIndex(id) {
-                // Return index of imageId to find
-                for(var i = 0; i < this.summaryImageFiles.length; i++) {
-                    if(this.summaryImageFiles[i].id === id) return i;
+            getIndex(id, arrayToBeSearched) {
+                // Return index of object to find
+                for(var i = 0; i < arrayToBeSearched.length; i++) {
+                    if(arrayToBeSearched[i].id === id) return i;
                 }
             },
 
             setAsPrimaryPhoto(chosenPhotoId) {
                 const vm = this;
-                const index = this.searchImageIndex(chosenPhotoId);
+                const index = this.getIndex(chosenPhotoId, this.summaryImageFiles);
                 const currentPrimaryPhotoIndex = this.currentPrimaryPhotoIndex;
 
                 axios.post('/breeder/manage-swine/set-primary-photo', {
-                    swineId: vm.swineId,
+                    swineId: vm.basicInfo.id,
                     photoId: chosenPhotoId
                 })
                 .then((response) => {

@@ -60,7 +60,7 @@
                 previewElement.setAttribute('data-photo-id', imageDetails.id);
                 previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
 
-                // Trigger addedImage event
+                // Trigger addedPhotoEvent
                 this.$emit('addedPhotoEvent', {
                     data : imageDetails
                 });
@@ -72,6 +72,11 @@
                 axios.delete(`/breeder/manage-swine/upload-photo/${photoId}`)
                 .then((response) => { })
                 .catch((error) => { console.log(error); });
+
+                // Trigger removedPhotoEvent
+                this.$emit('removedPhotoEvent', {
+                    photoId : photoId
+                });
 
             },
 
