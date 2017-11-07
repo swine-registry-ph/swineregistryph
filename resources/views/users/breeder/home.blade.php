@@ -7,7 +7,7 @@
 @section('sidebar')
     <ul id="slide-out" class="side-nav fixed">
         <li><a href="{{ route('showRegForm') }}">Register Swine</a></li>
-        <li><a href="#!">View Registered Swine</a></li>
+        <li><a href="{{ route('viewRegdSwine') }}">View Registered Swine</a></li>
         <li><a href="#!">View Swine Pedigree</a></li>
         <li><a href="#!">Manage Farms</a></li>
         <li><a href="#!">Reports</a></li>

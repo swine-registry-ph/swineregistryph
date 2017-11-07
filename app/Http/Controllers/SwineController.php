@@ -75,6 +75,16 @@ class SwineController extends Controller
     }
 
     /**
+     * View already registered swine
+     *
+     * @return  View
+     */
+    public function viewRegisteredSwine()
+    {
+        return view('users.breeder.viewRegisteredSwine');
+    }
+
+    /**
      * Get Swine according to registration number
      *
      * @param   Request     $request

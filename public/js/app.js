@@ -145,6 +145,7 @@ Vue.component('upload-photo', __webpack_require__(46));
 Vue.component('swine-properties', __webpack_require__(54));
 Vue.component('add-swine-summary', __webpack_require__(57));
 Vue.component('collection', __webpack_require__(60));
+Vue.component('registered-swine', __webpack_require__(79));
 
 // For main container
 var app = new Vue({
@@ -2552,6 +2553,206 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(80),
+  /* template */
+  __webpack_require__(81),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisteredSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisteredSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4eff535e", Component.options)
+  } else {
+    hotAPI.reload("data-v-4eff535e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: [],
+
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s4"
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-image"
+  }, [_c('img', {
+    attrs: {
+      "src": "/storage/images/sample-1.jpg"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "card-title"
+  }, [_vm._v("Card Title")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-content"
+  }, [_c('p', [_vm._v("I am a very simple card. I am good at containing small bits of information.\n                I am convenient because I require little markup to use effectively.")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action"
+  }, [_c('a', {
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("This is a link")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4"
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-image"
+  }, [_c('img', {
+    attrs: {
+      "src": "/storage/images/sample-1.jpg"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "card-title"
+  }, [_vm._v("Card Title")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-content"
+  }, [_c('p', [_vm._v("I am a very simple card. I am good at containing small bits of information.\n                I am convenient because I require little markup to use effectively.")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action"
+  }, [_c('a', {
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("This is a link")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4"
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-image"
+  }, [_c('img', {
+    attrs: {
+      "src": "/storage/images/sample-1.jpg"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "card-title"
+  }, [_vm._v("Card Title")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-content"
+  }, [_c('p', [_vm._v("I am a very simple card. I am good at containing small bits of information.\n                I am convenient because I require little markup to use effectively.")])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action"
+  }, [_c('a', {
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("This is a link")])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4eff535e", module.exports)
+  }
+}
 
 /***/ })
 ],[16]);

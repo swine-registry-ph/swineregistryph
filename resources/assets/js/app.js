@@ -21,6 +21,7 @@ Vue.component('upload-photo', require('./components/UploadPhoto.vue'));
 Vue.component('swine-properties', require('./components/SwineProperties.vue'));
 Vue.component('add-swine-summary', require('./components/AddSwineSummary.vue'));
 Vue.component('collection', require('./components/Collection.vue'));
+Vue.component('registered-swine', require('./components/RegisteredSwine.vue'));
 
 // For main container
 const app = new Vue({
