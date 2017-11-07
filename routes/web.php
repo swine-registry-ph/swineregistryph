@@ -37,6 +37,6 @@ Route::middleware(['auth'])->group(function () {
     // Admin-related
     Route::group(['prefix' => 'admin'], function(){
 
-        Route::get('/sample-admin-view', 'AdminController@index')->name('adminHome');
+        Route::get('/home', 'AdminController@index')->name('adminHome');
     });
 });

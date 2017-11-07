@@ -29,7 +29,7 @@ class SwineController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('role:breeder');
         $this->middleware(function($request, $next){
             $this->user = Auth::user();
             $this->breederUser = Auth::user()->userable()->first();

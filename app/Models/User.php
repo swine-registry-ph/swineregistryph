@@ -54,4 +54,19 @@ class User extends Authenticatable
     {
         return str_contains($this->userable_type, 'Admin');
     }
+
+    /**
+     * Check User if it has a certain role
+     *
+     * @param   String  $role
+     * @return  Boolean
+     */
+    public function hasRole($role)
+    {
+        if(is_string($role)){
+            return str_contains(strtolower($this->userable_type), $role);
+        }
+
+        return false;
+    }
 }
