@@ -53,10 +53,25 @@ class UserInstancesSeeder extends Seeder
                 'breeder_id' => $breeder->id
             ]);
 
+            $breeds = [
+                [ 'id' => 1, 'name' => 'landrace' ],
+                [ 'id' => 2, 'name' => 'largewhite' ],
+                [ 'id' => 3, 'name' => 'duroc' ],
+                [ 'id' => 4, 'name' => 'pietrain']
+            ];
+
+            $sexes = ['male', 'female'];
+
             // Insert 5 default swines
             for($i = 0; $i < 5; $i++){
 
+                $swineBreedIndex = random_int(0,3);
+                $swineSexIndex = random_int(0,1);
+                $chosenBreedName = $breeds[$swineBreedIndex]['name'];
+                $chosenBreedId = $breeds[$swineBreedIndex]['id'];
+
                 $swine = factory(App\Models\Swine::class)->create([
+                    'breed_id' => $chosenBreedId,
                     'collection_id' => $collection->id,
                     'farm_id' => $farm->id,
                     'registration_no' => str_random(15)
@@ -69,7 +84,7 @@ class UserInstancesSeeder extends Seeder
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 1, // sex
-                            'value' => 'male'
+                            'value' => $sexes[$swineSexIndex]
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 2, // birthdate
@@ -122,9 +137,9 @@ class UserInstancesSeeder extends Seeder
                     ]
                 );
 
-
                 // Create default GP sire of swine
                 $gpSire = factory(App\Models\Swine::class)->create([
+                    'breed_id' => $chosenBreedId,
                     'collection_id' => $collection->id,
                     'farm_id' => $farm->id,
                     'registration_no' => str_random(15)
@@ -189,6 +204,7 @@ class UserInstancesSeeder extends Seeder
 
                 // Create default GP dam of swine
                 $gpDam = factory(App\Models\Swine::class)->create([
+                    'breed_id' => $chosenBreedId,
                     'collection_id' => $collection->id,
                     'farm_id' => $farm->id,
                     'registration_no' => str_random(15)
@@ -250,6 +266,24 @@ class UserInstancesSeeder extends Seeder
                         ])
                     ]
                 );
+
+                // Attach photos to swine, GP sire, and GP dam
+                $swinePhoto = new App\Models\Photo;
+                $swinePhoto->name = $chosenBreedName . '_' . $sexes[$swineSexIndex] . '.jpg';
+                $swine->photos()->save($swinePhoto);
+                $swine->primaryPhoto_id = $swinePhoto->id;
+
+                $gpSirePhoto = new App\Models\Photo;
+                $gpSirePhoto->name = $chosenBreedName . '_male.jpg';
+                $gpSire->photos()->save($gpSirePhoto);
+                $gpSire->primaryPhoto_id = $gpSirePhoto->id;
+                $gpSire->save();
+
+                $gpDamPhoto = new App\Models\Photo;
+                $gpDamPhoto->name = $chosenBreedName . '_female.jpg';
+                $gpDam->photos()->save($gpDamPhoto);
+                $gpDam->primaryPhoto_id = $gpDamPhoto->id;
+                $gpDam->save();
 
                 // Attach GP sire and GP dam to swine
                 $swine->gpSire_id = $gpSire->id;
