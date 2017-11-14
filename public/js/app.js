@@ -115,7 +115,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
-module.exports = __webpack_require__(63);
+module.exports = __webpack_require__(66);
 
 
 /***/ }),
@@ -145,7 +145,7 @@ Vue.component('upload-photo', __webpack_require__(46));
 Vue.component('swine-properties', __webpack_require__(54));
 Vue.component('add-swine-summary', __webpack_require__(57));
 Vue.component('collection', __webpack_require__(60));
-Vue.component('registered-swine', __webpack_require__(79));
+Vue.component('registered-swine', __webpack_require__(63));
 
 // For main container
 var app = new Vue({
@@ -2550,37 +2550,20 @@ if (false) {
 
 /***/ }),
 /* 63 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(82)
+}
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(80),
+  __webpack_require__(64),
   /* template */
-  __webpack_require__(81),
+  __webpack_require__(65),
   /* styles */
-  null,
+  injectStyle,
   /* scopeId */
   null,
   /* moduleIdentifier (server only) */
@@ -2610,7 +2593,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 80 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2668,83 +2651,166 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: [],
+    props: ['swines'],
 
+    data: function data() {
+        return {
+            viewLayout: 'list'
+        };
+    },
     mounted: function mounted() {}
 });
 
 /***/ }),
-/* 81 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "switch right"
+  }, [_c('label', [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("view_module")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.viewLayout),
+      expression: "viewLayout"
+    }],
+    attrs: {
+      "type": "checkbox",
+      "true-value": 'list',
+      "false-value": 'card'
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.viewLayout) ? _vm._i(_vm.viewLayout, null) > -1 : _vm._q(_vm.viewLayout, 'list')
+    },
+    on: {
+      "__c": function($event) {
+        var $$a = _vm.viewLayout,
+          $$el = $event.target,
+          $$c = $$el.checked ? ('list') : ('card');
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.viewLayout = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.viewLayout = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.viewLayout = $$c
+        }
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "lever"
+  }), _vm._v(" "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("list")])])])]), _vm._v(" "), _vm._l((_vm.swines), function(swine) {
+    return _c('div', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.viewLayout === 'card'),
+        expression: "viewLayout === 'card'"
+      }],
+      staticClass: "col s4"
+    }, [_c('div', {
+      staticClass: "card"
+    }, [_c('div', {
+      staticClass: "card-image"
+    }, [_c('img', {
+      attrs: {
+        "src": '/storage/images/swine/' + swine.photos[0].name
+      }
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "card-content"
+    }, [_c('span', {
+      staticClass: "card-title"
+    }, [_vm._v(_vm._s(swine.registration_no))]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                    " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v(" "), _c('br'), _vm._v("\n                    " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                ")])]), _vm._v(" "), _vm._m(1, true)])])
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.viewLayout === 'list'),
+      expression: "viewLayout === 'list'"
+    }],
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection"
+  }, _vm._l((_vm.swines), function(swine) {
+    return _c('li', {
+      staticClass: "collection-item avatar"
+    }, [_c('img', {
+      staticClass: "circle",
+      attrs: {
+        "src": '/storage/images/swine/' + swine.photos[0].name,
+        "alt": ""
+      }
+    }), _vm._v(" "), _c('span', {
+      staticClass: "title"
+    }, [_vm._v(_vm._s(swine.registration_no))]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                    " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                    " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                ")]), _vm._v(" "), _vm._m(2, true)])
+  }))])], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s4"
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-image"
-  }, [_c('img', {
-    attrs: {
-      "src": "/storage/images/sample-1.jpg"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "card-title"
-  }, [_vm._v("Card Title")])]), _vm._v(" "), _c('div', {
-    staticClass: "card-content"
-  }, [_c('p', [_vm._v("I am a very simple card. I am good at containing small bits of information.\n                I am convenient because I require little markup to use effectively.")])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_c('br')])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "card-action"
   }, [_c('a', {
     attrs: {
       "href": "#"
     }
-  }, [_vm._v("This is a link")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4"
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-image"
-  }, [_c('img', {
-    attrs: {
-      "src": "/storage/images/sample-1.jpg"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "card-title"
-  }, [_vm._v("Card Title")])]), _vm._v(" "), _c('div', {
-    staticClass: "card-content"
-  }, [_c('p', [_vm._v("I am a very simple card. I am good at containing small bits of information.\n                I am convenient because I require little markup to use effectively.")])]), _vm._v(" "), _c('div', {
-    staticClass: "card-action"
-  }, [_c('a', {
+  }, [_vm._v("Certificate")]), _vm._v(" "), _c('a', {
+    staticClass: "right",
     attrs: {
       "href": "#"
     }
-  }, [_vm._v("This is a link")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4"
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-image"
-  }, [_c('img', {
-    attrs: {
-      "src": "/storage/images/sample-1.jpg"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "card-title"
-  }, [_vm._v("Card Title")])]), _vm._v(" "), _c('div', {
-    staticClass: "card-content"
-  }, [_c('p', [_vm._v("I am a very simple card. I am good at containing small bits of information.\n                I am convenient because I require little markup to use effectively.")])]), _vm._v(" "), _c('div', {
-    staticClass: "card-action"
+  }, [_vm._v("Photos")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "secondary-content"
   }, [_c('a', {
+    staticClass: "btn-flat orange-text text-accent-2",
     attrs: {
-      "href": "#"
+      "href": "#!"
     }
-  }, [_vm._v("This is a link")])])])])])
+  }, [_vm._v("Certificate")]), _vm._v(" "), _c('a', {
+    staticClass: "btn-flat orange-text text-accent-2",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Photos")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -2753,6 +2819,67 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-4eff535e", module.exports)
   }
 }
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(83);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(50)("e23056ce", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4eff535e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisteredSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4eff535e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisteredSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(49)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n.card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n.card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n.card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n.card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n.card-image img {\n        height: 270px;\n}\n}\n\n", ""]);
+
+// exports
+
 
 /***/ })
 ],[16]);

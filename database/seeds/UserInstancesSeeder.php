@@ -57,7 +57,7 @@ class UserInstancesSeeder extends Seeder
                 [ 'id' => 1, 'name' => 'landrace' ],
                 [ 'id' => 2, 'name' => 'largewhite' ],
                 [ 'id' => 3, 'name' => 'duroc' ],
-                [ 'id' => 4, 'name' => 'pietrain']
+                [ 'id' => 4, 'name' => 'pietrain' ]
             ];
 
             $sexes = ['male', 'female'];
