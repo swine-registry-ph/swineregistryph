@@ -38,8 +38,18 @@
                     </p>
                 </div>
                 <div class="card-action">
-                    <a href="#" class="">Certificate</a>
-                    <a href="#" class="right">Photos</a>
+                    <a  @click.prevent="viewCertificate()"
+                        href="#"
+                        class=""
+                    >
+                        Certificate
+                    </a>
+                    <a @click.prevent="viewPhotos()"
+                        href="#"
+                        class="right"
+                    >
+                        Photos
+                    </a>
                 </div>
             </div>
         </div>
@@ -59,8 +69,18 @@
                         {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
                     </p>
                     <div class="secondary-content">
-                        <a href="#!" class="btn-flat orange-text text-accent-2">Certificate</a>
-                        <a href="#!" class="btn-flat orange-text text-accent-2">Photos</a>
+                        <a @click.prevent="viewCertificate()"
+                            href="#!"
+                            class="btn-flat orange-text text-accent-2"
+                        >
+                            Certificate
+                        </a>
+                        <a @click.prevent="viewPhotos()"
+                            href="#!"
+                            class="btn-flat orange-text text-accent-2"
+                        >
+                            Photos
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -75,7 +95,17 @@
 
         data() {
             return {
-                viewLayout: 'list'
+                viewLayout: 'card'
+            }
+        },
+
+        methods: {
+            viewCertificate() {
+                console.log('Cert!');
+            },
+
+            viewPhotos() {
+                console.log('Photos!');
             }
         },
 
