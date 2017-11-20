@@ -69,7 +69,7 @@ class Swine extends Model
     }
 
     /**
-     * Get all of the Swine's photoss
+     * Get all of the Swine's photos
      */
     public function photos()
     {

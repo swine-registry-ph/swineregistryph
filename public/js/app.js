@@ -2816,6 +2816,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "card-image"
     }, [_c('img', {
+      staticClass: "materialboxed",
       attrs: {
         "src": '/storage/images/swine/' + swine.photos[0].name
       }
@@ -2863,7 +2864,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       staticClass: "collection-item avatar"
     }, [_c('img', {
-      staticClass: "circle",
+      staticClass: "circle materialboxed",
       attrs: {
         "src": '/storage/images/swine/' + swine.photos[0].name,
         "alt": ""

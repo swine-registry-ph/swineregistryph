@@ -28,7 +28,7 @@
         >
             <div class="card">
                 <div class="card-image">
-                    <img :src="'/storage/images/swine/' + swine.photos[0].name">
+                    <img :src="'/storage/images/swine/' + swine.photos[0].name" class="materialboxed">
                 </div>
                 <div class="card-content">
                     <span class="card-title">{{ swine.registration_no }}</span>
@@ -62,7 +62,7 @@
                 <li v-for="swine in swines"
                     class="collection-item avatar"
                 >
-                    <img :src="'/storage/images/swine/' + swine.photos[0].name" alt="" class="circle">
+                    <img :src="'/storage/images/swine/' + swine.photos[0].name" alt="" class="circle materialboxed">
                     <span class="title">{{ swine.registration_no }}</span>
                     <p class="grey-text">
                         {{ swine.farm.name }}, {{ swine.farm.province }} <br>

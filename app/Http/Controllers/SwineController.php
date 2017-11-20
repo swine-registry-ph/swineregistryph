@@ -81,7 +81,7 @@ class SwineController extends Controller
      */
     public function viewRegisteredSwine()
     {
-        $swines = $this->breederUser->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm'])->get();
+        $swines = $this->breederUser->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm', 'certificate.photos'])->get();
 
         return view('users.breeder.viewRegisteredSwine', compact('swines'));
     }
