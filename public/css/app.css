@@ -9923,6 +9923,10 @@ main {
   margin-left: 300px;
 }
 
+.brand-logo {
+  padding-left: 1rem !important;
+}
+
 #add-swine-tabs .tabs {
   overflow-x: hidden;
 }

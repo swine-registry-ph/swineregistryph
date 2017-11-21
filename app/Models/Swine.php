@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Breed;
+use App\Models\Certificate;
 use App\Models\Collection;
 use App\Models\Farm;
 use App\Models\Photo;
@@ -60,7 +61,15 @@ class Swine extends Model
     }
 
     /**
-     * Get all of the Swine's photoss
+     * Get the certificate of the swine
+     */
+    public function certificate()
+    {
+        return $this->hasOne(Certificate::class);
+    }
+
+    /**
+     * Get all of the Swine's photos
      */
     public function photos()
     {
