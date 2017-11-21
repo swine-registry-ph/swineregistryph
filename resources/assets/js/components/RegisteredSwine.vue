@@ -92,12 +92,11 @@
         <!-- View Certificate Modal -->
         <div id="view-certificate-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>Certificate</h4>
+                <h4>Certificate <i class="material-icons right modal-close">close</i></h4>
                 <div class="col s12">
                     <div class="card">
                         <div class="card-image">
                             <img :src="viewCertificateModal.imageSrc">
-                            <span class="card-title">Card Title</span>
                         </div>
                     </div>
                 </div>
@@ -108,10 +107,20 @@
         </div>
 
         <!-- View Photos Modal -->
-        <div id="view-photos-modal" class="modal">
+        <div id="view-photos-modal" class="modal bottom-sheet">
             <div class="modal-content">
-                <h4>Modal Header</h4>
-                <p>A bunch of text</p>
+                <h4>Photos <i class="material-icons right modal-close">close</i></h4>
+                <div class="row">
+                    <div v-for="photo in viewPhotosModal.photos"
+                        class="col s4"
+                    >
+                        <div class="card">
+                            <div class="card-image">
+                                <img :src="swinePhotosDirectory + photo.name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -152,12 +161,14 @@
 
             viewPhotos(index) {
                 // Prepare needed data for modal
+                this.viewPhotosModal.photos = this.swines[index].photos;
 
-                $('view-photos-modal').modal('open');
+                $('#view-photos-modal').modal('open');
             }
         },
 
         mounted() {
+            // Materialize component initializations
             $('.modal').modal();
         }
     }

@@ -2762,6 +2762,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['swines'],
@@ -2792,12 +2801,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         viewPhotos: function viewPhotos(index) {
             // Prepare needed data for modal
+            this.viewPhotosModal.photos = this.swines[index].photos;
 
-            $('view-photos-modal').modal('open');
+            $('#view-photos-modal').modal('open');
         }
     },
 
     mounted: function mounted() {
+        // Materialize component initializations
         $('.modal').modal();
     }
 });
@@ -2962,7 +2973,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("Certificate")]), _vm._v(" "), _c('div', {
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "card"
@@ -2972,13 +2983,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "src": _vm.viewCertificateModal.imageSrc
     }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "card-title"
-  }, [_vm._v("Card Title")])])])])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2)])
+  })])])])]), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal bottom-sheet",
+    attrs: {
+      "id": "view-photos-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, _vm._l((_vm.viewPhotosModal.photos), function(photo) {
+    return _c('div', {
+      staticClass: "col s4"
+    }, [_c('div', {
+      staticClass: "card"
+    }, [_c('div', {
+      staticClass: "card-image"
+    }, [_c('img', {
+      attrs: {
+        "src": _vm.swinePhotosDirectory + photo.name
+      }
+    })])])])
+  }))]), _vm._v(" "), _vm._m(4)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('p', [_c('br')])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("Certificate "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-footer"
@@ -2989,21 +3023,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("Photos "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "view-photos-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("Modal Header")]), _vm._v(" "), _c('p', [_vm._v("A bunch of text")])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer"
   }, [_c('a', {
     staticClass: "modal-action modal-close waves-effect waves-green btn-flat",
     attrs: {
       "href": "#!"
     }
-  }, [_vm._v("Close")])])])
+  }, [_vm._v("Close")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
