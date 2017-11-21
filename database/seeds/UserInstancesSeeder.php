@@ -278,7 +278,7 @@ class UserInstancesSeeder extends Seeder
                 $swine->certificate()->save($swineCertificate);
 
                 $swineCertficatePhoto = new App\Models\Photo;
-                $swineCertficatePhoto->name = 'certifcate_default.jpg';
+                $swineCertficatePhoto->name = 'certificate_default.jpg';
                 $swineCertificate->photos()->save($swineCertficatePhoto);
 
                 // Sire
@@ -292,7 +292,7 @@ class UserInstancesSeeder extends Seeder
                 $gpSire->certificate()->save($gpSireCertificate);
 
                 $gpSireCertficatePhoto = new App\Models\Photo;
-                $gpSireCertficatePhoto->name = 'certifcate_default.jpg';
+                $gpSireCertficatePhoto->name = 'certificate_default.jpg';
                 $gpSireCertificate->photos()->save($gpSireCertficatePhoto);
 
                 // Dam
@@ -306,7 +306,7 @@ class UserInstancesSeeder extends Seeder
                 $gpDam->certificate()->save($gpDamCertificate);
 
                 $gpDamCertficatePhoto = new App\Models\Photo;
-                $gpDamCertficatePhoto->name = 'certifcate_default.jpg';
+                $gpDamCertficatePhoto->name = 'certificate_default.jpg';
                 $gpDamCertificate->photos()->save($gpDamCertficatePhoto);
 
                 // Attach GP sire and GP dam to swine

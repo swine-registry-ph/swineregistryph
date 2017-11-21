@@ -2627,7 +2627,7 @@ exports = module.exports = __webpack_require__(15)(undefined);
 
 
 // module
-exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n.card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n.card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n.card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n.card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n.card-image img {\n        height: 270px;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -2729,27 +2729,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['swines'],
 
     data: function data() {
         return {
-            viewLayout: 'card'
+            swinePhotosDirectory: '/storage/images/swine/',
+            certificatePhotosDirectory: '/storage/images/certificate/',
+            viewLayout: 'card',
+            viewCertificateModal: {
+                swineName: '',
+                imageSrc: ''
+            },
+            viewPhotosModal: {
+                photos: []
+            }
         };
     },
 
 
     methods: {
-        viewCertificate: function viewCertificate() {
-            console.log('Cert!');
+        viewCertificate: function viewCertificate(index) {
+            // Prepare needed data for modal
+            this.viewCertificateModal.swineName = this.swines[index].registration_no;
+            this.viewCertificateModal.imageSrc = this.certificatePhotosDirectory + this.swines[index].certificate.photos[0].name;
+
+            $('#view-certificate-modal').modal('open');
         },
-        viewPhotos: function viewPhotos() {
-            console.log('Photos!');
+        viewPhotos: function viewPhotos(index) {
+            // Prepare needed data for modal
+
+            $('view-photos-modal').modal('open');
         }
     },
 
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        $('.modal').modal();
+    }
 });
 
 /***/ }),
@@ -2802,7 +2852,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "lever"
   }), _vm._v(" "), _c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("list")])])])]), _vm._v(" "), _vm._l((_vm.swines), function(swine) {
+  }, [_vm._v("list")])])])]), _vm._v(" "), _c('div', {
+    attrs: {
+      "id": "card-layout-container"
+    }
+  }, _vm._l((_vm.swines), function(swine, index) {
     return _c('div', {
       directives: [{
         name: "show",
@@ -2818,7 +2872,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "materialboxed",
       attrs: {
-        "src": '/storage/images/swine/' + swine.photos[0].name
+        "src": _vm.swinePhotosDirectory + swine.photos[0].name
       }
     })]), _vm._v(" "), _c('div', {
       staticClass: "card-content"
@@ -2826,7 +2880,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card-title"
     }, [_vm._v(_vm._s(swine.registration_no))]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                    " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v(" "), _c('br'), _vm._v("\n                    " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                ")])]), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v(" "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                    ")])]), _vm._v(" "), _c('div', {
       staticClass: "card-action"
     }, [_c('a', {
       attrs: {
@@ -2835,10 +2889,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.viewCertificate()
+          _vm.viewCertificate(index)
         }
       }
-    }, [_vm._v("\n                    Certificate\n                ")]), _vm._v(" "), _c('a', {
+    }, [_vm._v("\n                        Certificate\n                    ")]), _vm._v(" "), _c('a', {
       staticClass: "right",
       attrs: {
         "href": "#"
@@ -2846,27 +2900,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.viewPhotos()
+          _vm.viewPhotos(index)
         }
       }
-    }, [_vm._v("\n                    Photos\n                ")])])])])
-  }), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                        Photos\n                    ")])])])])
+  })), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.viewLayout === 'list'),
       expression: "viewLayout === 'list'"
     }],
-    staticClass: "col s12"
+    staticClass: "col s12",
+    attrs: {
+      "id": "list-layout-container"
+    }
   }, [_c('ul', {
     staticClass: "collection"
-  }, _vm._l((_vm.swines), function(swine) {
+  }, _vm._l((_vm.swines), function(swine, index) {
     return _c('li', {
       staticClass: "collection-item avatar"
     }, [_c('img', {
       staticClass: "circle materialboxed",
       attrs: {
-        "src": '/storage/images/swine/' + swine.photos[0].name,
+        "src": _vm.swinePhotosDirectory + swine.photos[0].name,
         "alt": ""
       }
     }), _vm._v(" "), _c('span', {
@@ -2883,7 +2940,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.viewCertificate()
+          _vm.viewCertificate(index)
         }
       }
     }, [_vm._v("\n                        Certificate\n                    ")]), _vm._v(" "), _c('a', {
@@ -2894,15 +2951,59 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.viewPhotos()
+          _vm.viewPhotos(index)
         }
       }
     }, [_vm._v("\n                        Photos\n                    ")])])])
-  }))])], 2)
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "view-certificate-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Certificate")]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-image"
+  }, [_c('img', {
+    attrs: {
+      "src": _vm.viewCertificateModal.imageSrc
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "card-title"
+  }, [_vm._v("Card Title")])])])])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('p', [_c('br')])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "view-photos-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Modal Header")]), _vm._v(" "), _c('p', [_vm._v("A bunch of text")])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
