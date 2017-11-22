@@ -9923,6 +9923,10 @@ main {
   margin-left: 300px;
 }
 
+#slide-out div.user-view {
+  padding-bottom: 16px;
+}
+
 .brand-logo {
   padding-left: 1rem !important;
 }

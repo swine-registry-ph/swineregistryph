@@ -6,11 +6,31 @@
 
 @section('sidebar')
     <ul id="slide-out" class="side-nav fixed">
-        <li><a href="#!">View Registered Swine</a></li>
-        <li><a href="#!">Manage Accredited Farms</a></li>
-        <li><a href="#!">Manage Form fields</a></li>
-        <li><a href="#!">Manage Breeds</a></li>
-        <li><a href="#!">Reports</a></li>
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="{{ asset('storage/images/default/sidenav_bg.jpg') }}">
+                </div>
+                <a href="#!user"><img class="circle" src="{{ asset('storage/images/default/admin.png') }}"></a>
+                <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
+                <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
+            </div>
+        </li>
+        <li>
+            <a href="#!"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
+        </li>
+        <li>
+            <a href="#!"> <i class="material-icons">store</i> Manage Accredited Farms </a>
+        </li>
+        <li>
+            <a href="#!"> <i class="material-icons">list</i> Manage Form fields </a>
+        </li>
+        <li>
+            <a href="#!"> <i class="material-icons">toc</i> Manage Breeds </a>
+        </li>
+        <li>
+            <a href="#!"> <i class="material-icons">description</i> Reports </a>
+        </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
