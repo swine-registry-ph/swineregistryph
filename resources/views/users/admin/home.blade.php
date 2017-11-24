@@ -17,7 +17,7 @@
             </div>
         </li>
         <li>
-            <a href="#!"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
+            <a href="{{ route('adminViewRegdSwine') }}"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
         </li>
         <li>
             <a href="#!"> <i class="material-icons">store</i> Manage Accredited Farms </a>

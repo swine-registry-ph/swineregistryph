@@ -24,17 +24,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $farms = Farm::with('swines')->get();
-
-        return view('users.admin.dashboard', compact('farms'));
+        return view('users.admin.home');
     }
 
     /**
-     * View Farms and its respective swines
+     * View registered swine categorized by farms
      *
      * @return View
      */
-    public function viewFarms()
+    public function viewRegisteredSwine()
     {
         $farms = Farm::with('swines')->get();
 

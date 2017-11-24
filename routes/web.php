@@ -39,5 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin'], function(){
 
         Route::get('/home', 'AdminController@index')->name('adminHome');
+        Route::get('/view-registered-swine', 'AdminController@viewRegisteredSwine')->name('adminViewRegdSwine');
+
     });
 });
