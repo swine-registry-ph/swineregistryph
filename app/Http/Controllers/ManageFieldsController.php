@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breed;
 use Illuminate\Http\Request;
 
 class ManageFieldsController extends Controller
@@ -17,12 +18,14 @@ class ManageFieldsController extends Controller
     }
 
     /**
-     * Show Breeder's homepage view
+     * Show Admin's manage breeds view
      *
      * @return void
      */
-    public function index()
+    public function showManageBreedsView()
     {
-        return view('users.breeder.home');
+        $breeds = Breed::all();
+
+        return view('users.admin.manageBreeds', compact('breeds'));
     }
 }

@@ -26,7 +26,7 @@
             <a href="#!"> <i class="material-icons">list</i> Manage Form fields </a>
         </li>
         <li>
-            <a href="#!"> <i class="material-icons">toc</i> Manage Breeds </a>
+            <a href="{{ route('showManageBreedsView') }}"> <i class="material-icons">toc</i> Manage Breeds </a>
         </li>
         <li>
             <a href="#!"> <i class="material-icons">description</i> Reports </a>

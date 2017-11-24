@@ -3171,7 +3171,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.collection-header {\n    cursor: pointer;\n}\n.edit-breed-button {\n    cursor: pointer;\n}\n\n", ""]);
 
 // exports
 
@@ -3186,16 +3186,117 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['breeds'],
+
+    data: function data() {
+        return {
+            addBreedDetails: {
+                title: ''
+            }
+        };
+    },
+
+
+    methods: {
+        toggleAddBreedContainer: function toggleAddBreedContainer() {
+            console.log('toggle!');
+        },
+        addBreed: function addBreed() {
+            console.log('add!');
+        },
+        editBreed: function editBreed(index) {
+            console.log(index);
+        }
+    },
+
+    mounted: function mounted() {}
+});
 
 /***/ }),
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c("div")
-},staticRenderFns: []}
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header right-align"
+  }, [_c('a', {
+    staticClass: "title-page",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddBreedContainer()
+      }
+    }
+  }, [_vm._v("\n                    Add New\n                    "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _vm._l((_vm.breeds), function(breed, index) {
+    return _c('li', {
+      staticClass: "collection-item"
+    }, [_vm._v("\n                " + _vm._s(breed.title) + "\n                "), _c('span', [_c('a', {
+      staticClass: "secondary-content edit-breed-button",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.editBreed(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons"
+    }, [_vm._v("edit")])])])])
+  })], 2)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Breeds ")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

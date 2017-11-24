@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-    <manage-breeds> </manage-breeds>
+    <manage-breeds :breeds="{{ $breeds }}"> </manage-breeds>
 </div>
 
 @endsection
