@@ -3171,7 +3171,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header {\n    cursor: pointer;\n}\n.edit-breed-button {\n    cursor: pointer;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a, .edit-breed-button, #close-add-breed-container-button {\n    cursor: pointer;\n}\n.collection-item .row{\n    margin-bottom: 0;\n}\n\n", ""]);
 
 // exports
 
@@ -3218,25 +3218,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['breeds'],
+    props: ['initialBreeds'],
 
     data: function data() {
         return {
-            addBreedDetails: {
-                title: ''
-            }
+            breeds: this.initialBreeds,
+            showAddBreedInput: false,
+            breedTitle: ''
         };
     },
 
 
     methods: {
         toggleAddBreedContainer: function toggleAddBreedContainer() {
-            console.log('toggle!');
+            this.showAddBreedInput = !this.showAddBreedInput;
         },
         addBreed: function addBreed() {
-            console.log('add!');
+            var vm = this;
+
+            // Add to server's database
+            axios.post('/admin/manage/breeds', {
+                title: vm.breedTitle
+            }).then(function (response) {
+                // Put response in local data storage
+                vm.breeds.push(response.data);
+                vm.breedTitle = '';
+
+                // Update UI after add
+                vm.$nextTick(function () {
+                    $('#breed-title').removeClass('valid');
+                    Materialize.updateTextFields();
+                    Materialize.toast('Breed added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         editBreed: function editBreed(index) {
             console.log(index);
@@ -3258,11 +3311,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('ul', {
     staticClass: "collection with-header"
   }, [_c('li', {
-    staticClass: "collection-header right-align"
+    staticClass: "collection-header"
   }, [_c('a', {
-    staticClass: "title-page",
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
     attrs: {
-      "href": "#!"
+      "href": "#!",
+      "id": "toggle-add-breed-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new breed"
     },
     on: {
       "click": function($event) {
@@ -3270,9 +3327,74 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.toggleAddBreedContainer()
       }
     }
-  }, [_vm._v("\n                    Add New\n                    "), _c('i', {
+  }, [_c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _vm._l((_vm.breeds), function(breed, index) {
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddBreedInput),
+      expression: "showAddBreedInput"
+    }],
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-breed-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddBreedContainer()
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.breedTitle),
+      expression: "breedTitle"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "breed-title",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.breedTitle)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.breedTitle = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "breed-title"
+    }
+  }, [_vm._v("Breed Title")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addBreed()
+      }
+    }
+  }, [_vm._v("\n                            Submit\n                            "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])])])]), _vm._v(" "), _vm._l((_vm.breeds), function(breed, index) {
     return _c('li', {
       staticClass: "collection-item"
     }, [_vm._v("\n                " + _vm._s(breed.title) + "\n                "), _c('span', [_c('a', {

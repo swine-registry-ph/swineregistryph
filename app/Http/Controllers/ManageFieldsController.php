@@ -28,4 +28,20 @@ class ManageFieldsController extends Controller
 
         return view('users.admin.manageBreeds', compact('breeds'));
     }
+
+    /**
+     * Add Breed
+     *
+     * @param   Request   $request
+     */
+    public function addBreed(Request $request)
+    {
+        if($request->ajax()){
+            $breed = new Breed;
+            $breed->title = $request->title;
+            $breed->save();
+
+            return $breed;
+        }
+    }
 }

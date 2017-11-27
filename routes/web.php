@@ -41,6 +41,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/home', 'AdminController@index')->name('adminHome');
         Route::get('/view-registered-swine', 'AdminController@viewRegisteredSwine')->name('adminViewRegdSwine');
         Route::get('/manage/breeds', 'ManageFieldsController@showManageBreedsView')->name('showManageBreedsView');
-
+        Route::post('/manage/breeds', 'ManageFieldsController@addBreed')->name('addBreed');
     });
 });
