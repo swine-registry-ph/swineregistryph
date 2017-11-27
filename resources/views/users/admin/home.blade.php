@@ -17,16 +17,16 @@
             </div>
         </li>
         <li>
-            <a href="#!"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
+            <a href="{{ route('adminViewRegdSwine') }}"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
         </li>
         <li>
             <a href="#!"> <i class="material-icons">store</i> Manage Accredited Farms </a>
         </li>
         <li>
-            <a href="#!"> <i class="material-icons">list</i> Manage Form fields </a>
+            <a href="{{ route('showManagePropertiesView') }}"> <i class="material-icons">list</i> Manage Properties </a>
         </li>
         <li>
-            <a href="#!"> <i class="material-icons">toc</i> Manage Breeds </a>
+            <a href="{{ route('showManageBreedsView') }}"> <i class="material-icons">toc</i> Manage Breeds </a>
         </li>
         <li>
             <a href="#!"> <i class="material-icons">description</i> Reports </a>

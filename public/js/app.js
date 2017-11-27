@@ -1,4 +1,4 @@
-webpackJsonp([1],[
+webpackJsonp([0],[
 /* 0 */,
 /* 1 */
 /***/ (function(module, exports) {
@@ -98,8 +98,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 /*
@@ -181,7 +180,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -402,6 +401,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
+/* 5 */,
 /* 6 */,
 /* 7 */,
 /* 8 */,
@@ -418,7 +418,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(70);
+module.exports = __webpack_require__(75);
 
 
 /***/ }),
@@ -442,6 +442,7 @@ window.Vue = __webpack_require__(16);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Breeder
 Vue.component('custom-input-select', __webpack_require__(42));
 Vue.component('custom-input-date', __webpack_require__(45));
 Vue.component('upload-photo', __webpack_require__(48));
@@ -449,6 +450,10 @@ Vue.component('swine-properties', __webpack_require__(54));
 Vue.component('add-swine-summary', __webpack_require__(57));
 Vue.component('collection', __webpack_require__(60));
 Vue.component('registered-swine', __webpack_require__(65));
+
+// Admin
+Vue.component('manage-breeds', __webpack_require__(70));
+Vue.component('manage-properties', __webpack_require__(91));
 
 // For main container
 var app = new Vue({
@@ -818,7 +823,7 @@ var content = __webpack_require__(50);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("65934be6", content, false);
+var update = __webpack_require__(4)("65934be6", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -837,7 +842,7 @@ if(false) {
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -2044,7 +2049,7 @@ var content = __webpack_require__(62);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("19c472a0", content, false);
+var update = __webpack_require__(4)("19c472a0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -2063,7 +2068,7 @@ if(false) {
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -2647,7 +2652,7 @@ var content = __webpack_require__(67);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("e23056ce", content, false);
+var update = __webpack_require__(4)("e23056ce", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -2666,7 +2671,7 @@ if(false) {
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -3090,9 +3095,1125 @@ if (false) {
 
 /***/ }),
 /* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(71)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(73),
+  /* template */
+  __webpack_require__(74),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeds.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreeds.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-63d665c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-63d665c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(72);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("1d84065b", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a, .edit-breed-button, #close-add-breed-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n#edit-breed-modal {\n    width: 30rem;\n    height: 20rem;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['initialBreeds'],
+
+    data: function data() {
+        return {
+            breeds: this.initialBreeds,
+            showAddBreedInput: false,
+            addBreedData: {
+                title: ''
+            },
+            editBreedData: {
+                index: -1,
+                id: 0,
+                title: ''
+            }
+        };
+    },
+
+
+    methods: {
+        toggleAddBreedContainer: function toggleAddBreedContainer() {
+            this.showAddBreedInput = !this.showAddBreedInput;
+        },
+        addBreed: function addBreed() {
+            var vm = this;
+
+            // Add to server's database
+            axios.post('/admin/manage/breeds', {
+                title: vm.addBreedData.title
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of breed data
+                vm.breeds.push(response.data);
+                vm.addBreedData.title = '';
+
+                // Update UI after adding breed
+                vm.$nextTick(function () {
+                    $('#breed-title').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Breed added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleEditBreedModal: function toggleEditBreedModal(index) {
+            // Initialize data for editing
+            this.editBreedData.index = index;
+            this.editBreedData.id = this.breeds[index].id;
+            this.editBreedData.title = this.breeds[index].title;
+
+            $('#edit-breed-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateBreed: function updateBreed() {
+            var vm = this;
+            var index = this.editBreedData.index;
+
+            // Update to server's database
+            axios.patch('/admin/manage/breeds', {
+                breedId: vm.editBreedData.id,
+                title: vm.editBreedData.title
+            }).then(function (response) {
+                // Update local data storage and erase editing of breed data
+                if (response.data === 'OK') {
+                    vm.breeds[index].title = vm.editBreedData.title;
+                    vm.editBreedData = {
+                        index: -1,
+                        id: 0,
+                        title: ''
+                    };
+                }
+
+                // Update UI after updating breed
+                vm.$nextTick(function () {
+                    $('#edit-breed-modal').modal('close');
+                    $('#edit-breed-title').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Breed updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-breed-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new breed"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddBreedContainer()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddBreedInput),
+      expression: "showAddBreedInput"
+    }],
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-breed-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddBreedContainer()
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addBreedData.title),
+      expression: "addBreedData.title"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "breed-title",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addBreedData.title)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addBreedData.title = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "breed-title"
+    }
+  }, [_vm._v("Breed Title")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addBreed()
+      }
+    }
+  }, [_vm._v("\n                            Submit\n                            "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])])])]), _vm._v(" "), _vm._l((_vm.breeds), function(breed, index) {
+    return _c('li', {
+      staticClass: "collection-item"
+    }, [_vm._v("\n                " + _vm._s(breed.title) + "\n                "), _c('span', [_c('a', {
+      staticClass: "secondary-content edit-breed-button",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditBreedModal(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons"
+    }, [_vm._v("edit")])])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-breed-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Edit Breed")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreedData.title),
+      expression: "editBreedData.title"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breed-title",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreedData.title)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editBreedData.title = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breed-title"
+    }
+  }, [_vm._v("Breed Title")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateBreed($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Breeds ")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-63d665c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 75 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(92)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(94),
+  /* template */
+  __webpack_require__(95),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageProperties.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageProperties.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0e4e505e", Component.options)
+  } else {
+    hotAPI.reload("data-v-0e4e505e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("54278d57", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-property-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-property-modal {\n    width: 30rem;\n    height: 35rem;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['initialProperties'],
+
+    data: function data() {
+        return {
+            properties: this.initialProperties,
+            showAddPropertyInput: false,
+            addPropertyData: {
+                slug: '',
+                property: '',
+                definition: ''
+            },
+            editPropertyData: {
+                index: -1,
+                id: 0,
+                slug: '',
+                property: '',
+                definition: ''
+            }
+        };
+    },
+
+
+    methods: {
+        toggleAddPropertyContainer: function toggleAddPropertyContainer() {
+            this.showAddPropertyInput = !this.showAddPropertyInput;
+        },
+        addProperty: function addProperty() {
+            var vm = this;
+
+            // Add to server's database
+            axios.post('/admin/manage/properties', {
+                slug: vm.addPropertyData.slug,
+                property: vm.addPropertyData.property,
+                definition: vm.addPropertyData.definition
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of property data
+                vm.properties.push(response.data);
+                vm.addPropertyData = {
+                    slug: '',
+                    property: '',
+                    definition: ''
+                };
+
+                // Update UI after adding breed
+                vm.$nextTick(function () {
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleEditPropertyModal: function toggleEditPropertyModal(index) {
+            // Initialize data for editing
+            this.editPropertyData.index = index;
+            this.editPropertyData.id = this.properties[index].id;
+            this.editPropertyData.slug = this.properties[index].slug;
+            this.editPropertyData.property = this.properties[index].property;
+            this.editPropertyData.definition = this.properties[index].definition;
+
+            $('#edit-property-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateProperty: function updateProperty() {
+            var vm = this;
+            var index = this.editPropertyData.index;
+
+            // Update to server's database
+            axios.patch('/admin/manage/properties', {
+                propertyId: vm.editPropertyData.id,
+                slug: vm.editPropertyData.slug,
+                property: vm.editPropertyData.property,
+                definition: vm.editPropertyData.definition
+            }).then(function (response) {
+                // Update local data storage and erase editing of breed data
+                if (response.data === 'OK') {
+                    vm.properties[index].slug = vm.editPropertyData.slug;
+                    vm.properties[index].property = vm.editPropertyData.property;
+                    vm.properties[index].definition = vm.editPropertyData.definition;
+                    vm.editPropertyData = {
+                        index: -1,
+                        id: 0,
+                        slug: '',
+                        property: '',
+                        definition: ''
+                    };
+                }
+
+                // Update UI after updating breed
+                vm.$nextTick(function () {
+                    $('#edit-property-modal').modal('close');
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-property-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new property"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddPropertyContainer()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddPropertyInput),
+      expression: "showAddPropertyInput"
+    }],
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-property-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddPropertyContainer()
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.property),
+      expression: "addPropertyData.property"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-property",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addPropertyData.property = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.slug),
+      expression: "addPropertyData.slug"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-slug",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addPropertyData.slug = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.definition),
+      expression: "addPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addPropertyData.definition = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-definition"
+    }
+  }, [_vm._v("Definition")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addProperty()
+      }
+    }
+  }, [_vm._v("\n                            Submit\n                            "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])])])]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
+    return _c('li', {
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_vm._v(" " + _vm._s(property.property) + " ")]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('a', {
+      staticClass: "secondary-content edit-property-button",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditPropertyModal(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons"
+    }, [_vm._v("edit")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-property-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Edit Property")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.property),
+      expression: "editPropertyData.property"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-property",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editPropertyData.property = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.slug),
+      expression: "editPropertyData.slug"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-slug",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editPropertyData.slug = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.definition),
+      expression: "editPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editPropertyData.definition = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-definition"
+    }
+  }, [_vm._v("Definition")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateProperty($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Properties ")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
+  }
+}
 
 /***/ })
 ],[18]);

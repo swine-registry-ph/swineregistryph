@@ -39,5 +39,12 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin'], function(){
 
         Route::get('/home', 'AdminController@index')->name('adminHome');
+        Route::get('/view-registered-swine', 'AdminController@viewRegisteredSwine')->name('adminViewRegdSwine');
+        Route::get('/manage/breeds', 'ManageFieldsController@showManageBreedsView')->name('showManageBreedsView');
+        Route::post('/manage/breeds', 'ManageFieldsController@addBreed')->name('addBreed');
+        Route::patch('/manage/breeds', 'ManageFieldsController@updateBreed')->name('updateBreed');
+        Route::get('/manage/properties', 'ManageFieldsController@showManagePropertiesView')->name('showManagePropertiesView');
+        Route::post('/manage/properties', 'ManageFieldsController@addProperty')->name('addProperty');
+        Route::patch('/manage/properties', 'ManageFieldsController@updateProperty')->name('updateProperty');
     });
 });
