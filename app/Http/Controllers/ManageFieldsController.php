@@ -104,6 +104,12 @@ class ManageFieldsController extends Controller
     public function updateProperty(Request $request)
     {
         if($request->ajax()){
+            $property = Property::find($request->propertyId);
+            $property->slug = $request->slug;
+            $property->property = $request->property;
+            $property->definition = $request->definition;
+            $property->save();
+
             return 'OK';
         }
     }

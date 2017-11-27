@@ -3318,6 +3318,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Update UI after adding breed
                 vm.$nextTick(function () {
                     $('#breed-title').removeClass('valid');
+
                     Materialize.updateTextFields();
                     Materialize.toast('Breed added', 2000, 'green lighten-1');
                 });
@@ -3326,6 +3327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         toggleEditBreedModal: function toggleEditBreedModal(index) {
+            // Initialize data for editing
             this.editBreedData.index = index;
             this.editBreedData.id = this.breeds[index].id;
             this.editBreedData.title = this.breeds[index].title;
@@ -3339,6 +3341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var vm = this;
             var index = this.editBreedData.index;
 
+            // Update to server's database
             axios.patch('/admin/manage/breeds', {
                 breedId: vm.editBreedData.id,
                 title: vm.editBreedData.title
@@ -3357,6 +3360,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 vm.$nextTick(function () {
                     $('#edit-breed-modal').modal('close');
                     $('#edit-breed-title').removeClass('valid');
+
                     Materialize.updateTextFields();
                     Materialize.toast('Breed updated', 2000, 'green lighten-1');
                 });
@@ -3654,7 +3658,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-property-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-property-button-modal {\n    width: 30rem;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-property-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-property-modal {\n    width: 30rem;\n    height: 35rem;\n}\n\n", ""]);
 
 // exports
 
@@ -3665,6 +3669,22 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3833,6 +3853,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#add-property').removeClass('valid');
                     $('#add-slug').removeClass('valid');
                     $('#add-definition').removeClass('valid');
+
                     Materialize.updateTextFields();
                     Materialize.toast('Property added', 2000, 'green lighten-1');
                 });
@@ -3841,10 +3862,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         toggleEditPropertyModal: function toggleEditPropertyModal(index) {
-            console.log(index);
+            // Initialize data for editing
+            this.editPropertyData.index = index;
+            this.editPropertyData.id = this.properties[index].id;
+            this.editPropertyData.slug = this.properties[index].slug;
+            this.editPropertyData.property = this.properties[index].property;
+            this.editPropertyData.definition = this.properties[index].definition;
+
+            $('#edit-property-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
         },
         updateProperty: function updateProperty() {
-            console.log('Update!');
+            var vm = this;
+            var index = this.editPropertyData.index;
+
+            // Update to server's database
+            axios.patch('/admin/manage/properties', {
+                propertyId: vm.editPropertyData.id,
+                slug: vm.editPropertyData.slug,
+                property: vm.editPropertyData.property,
+                definition: vm.editPropertyData.definition
+            }).then(function (response) {
+                // Update local data storage and erase editing of breed data
+                if (response.data === 'OK') {
+                    vm.properties[index].slug = vm.editPropertyData.slug;
+                    vm.properties[index].property = vm.editPropertyData.property;
+                    vm.properties[index].definition = vm.editPropertyData.definition;
+                    vm.editPropertyData = {
+                        index: -1,
+                        id: 0,
+                        slug: '',
+                        property: '',
+                        definition: ''
+                    };
+                }
+
+                // Update UI after updating breed
+                vm.$nextTick(function () {
+                    $('#edit-property-modal').modal('close');
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
 
@@ -4029,7 +4096,92 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "edit-property-modal"
     }
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Edit Property")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.property),
+      expression: "editPropertyData.property"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-property",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editPropertyData.property = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.slug),
+      expression: "editPropertyData.slug"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-slug",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editPropertyData.slug = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.definition),
+      expression: "editPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editPropertyData.definition = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-definition"
+    }
+  }, [_vm._v("Definition")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer"
   }, [_c('a', {
     staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
@@ -4054,12 +4206,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Manage Properties ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("Edit Property")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  })])
 }]}
 module.exports.render._withStripped = true
 if (false) {

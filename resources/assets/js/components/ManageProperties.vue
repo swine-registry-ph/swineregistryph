@@ -93,14 +93,30 @@
             <div class="modal-content">
                 <h4>Edit Property</h4>
                 <div class="row">
-                    <!-- <div class="input-field col s12">
-                        <input v-model="editPropertyData.title"
-                            id="edit-breed-title"
+                    <div class="input-field col s12">
+                        <input v-model="editPropertyData.property"
+                            id="edit-property"
                             type="text"
                             class="validate"
                         >
-                        <label for="edit-breed-title">Breed Title</label>
-                    </div> -->
+                        <label for="edit-property">Property</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input v-model="editPropertyData.slug"
+                            id="edit-slug"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-slug">Slug</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input v-model="editPropertyData.definition"
+                            id="edit-definition"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-definition">Definition</label>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -167,6 +183,7 @@ export default {
                     $('#add-property').removeClass('valid');
                     $('#add-slug').removeClass('valid');
                     $('#add-definition').removeClass('valid');
+
                     Materialize.updateTextFields();
                     Materialize.toast('Property added', 2000, 'green lighten-1');
                 });
@@ -177,11 +194,59 @@ export default {
         },
 
         toggleEditPropertyModal(index) {
-            console.log(index);
+            // Initialize data for editing
+            this.editPropertyData.index = index;
+            this.editPropertyData.id = this.properties[index].id;
+            this.editPropertyData.slug = this.properties[index].slug;
+            this.editPropertyData.property = this.properties[index].property;
+            this.editPropertyData.definition = this.properties[index].definition;
+
+            $('#edit-property-modal').modal('open');
+            this.$nextTick(() => {
+                Materialize.updateTextFields();
+            });
         },
 
         updateProperty() {
-            console.log('Update!');
+            const vm = this;
+            const index = this.editPropertyData.index;
+
+            // Update to server's database
+            axios.patch('/admin/manage/properties', {
+                propertyId: vm.editPropertyData.id,
+                slug: vm.editPropertyData.slug,
+                property: vm.editPropertyData.property,
+                definition: vm.editPropertyData.definition,
+            })
+            .then((response) => {
+                // Update local data storage and erase editing of breed data
+                if(response.data === 'OK'){
+                    vm.properties[index].slug = vm.editPropertyData.slug;
+                    vm.properties[index].property = vm.editPropertyData.property;
+                    vm.properties[index].definition = vm.editPropertyData.definition;
+                    vm.editPropertyData = {
+                        index: -1,
+                        id: 0,
+                        slug: '',
+                        property: '',
+                        definition: ''
+                    };
+                }
+
+                // Update UI after updating breed
+                vm.$nextTick(() => {
+                    $('#edit-property-modal').modal('close');
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property updated', 2000, 'green lighten-1');
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
 
     },
@@ -206,8 +271,9 @@ export default {
         padding-left: 20px !important;
     }
 
-    #edit-property-button-modal {
+    #edit-property-modal {
         width: 30rem;
+        height: 35rem;
     }
 
 </style>

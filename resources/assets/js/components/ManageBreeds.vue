@@ -134,6 +134,7 @@ export default {
                 // Update UI after adding breed
                 vm.$nextTick(() => {
                     $('#breed-title').removeClass('valid');
+                    
                     Materialize.updateTextFields();
                     Materialize.toast('Breed added', 2000, 'green lighten-1');
                 });
@@ -144,6 +145,7 @@ export default {
         },
 
         toggleEditBreedModal(index) {
+            // Initialize data for editing
             this.editBreedData.index = index;
             this.editBreedData.id = this.breeds[index].id;
             this.editBreedData.title = this.breeds[index].title;
@@ -158,6 +160,7 @@ export default {
             const vm = this;
             const index = this.editBreedData.index;
 
+            // Update to server's database
             axios.patch('/admin/manage/breeds', {
                 breedId: vm.editBreedData.id,
                 title: vm.editBreedData.title
@@ -177,6 +180,7 @@ export default {
                 vm.$nextTick(() => {
                     $('#edit-breed-modal').modal('close');
                     $('#edit-breed-title').removeClass('valid');
+
                     Materialize.updateTextFields();
                     Materialize.toast('Breed updated', 2000, 'green lighten-1');
                 });
