@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Collection;
 use App\Models\Farm;
 use App\Models\User;
+use App\Models\Swine;
 use Illuminate\Database\Eloquent\Model;
 
 class Breeder extends Model
@@ -21,7 +22,7 @@ class Breeder extends Model
     }
 
     /**
-     * Get farms of user
+     * Get farms of Breeder user
      */
     public function farms()
     {
@@ -29,10 +30,18 @@ class Breeder extends Model
     }
 
     /**
-     * Get collections (registration of swines) of user
+     * Get collections (registration of swines) of Breeder user
      */
     public function collections()
     {
         return $this->hasMany(Collection::class);
+    }
+
+    /**
+     * Get the swines of Breeder user through its Collections
+     */
+    public function swines()
+    {
+        return $this->hasManyThrough(Swine::class, Collection::class);
     }
 }

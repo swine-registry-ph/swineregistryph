@@ -256,3 +256,14 @@
         }
     }
 </script>
+
+<style lang="css">
+    .tab a.active {
+        color: #c62828 !important;
+    }
+
+    .tab.disabled a {
+        color: #9e9e9e !important;
+        cursor: not-allowed !important;
+    }
+</style>

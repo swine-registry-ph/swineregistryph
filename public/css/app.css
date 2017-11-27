@@ -9923,8 +9923,20 @@ main {
   margin-left: 300px;
 }
 
+#slide-out div.user-view {
+  padding-bottom: 16px;
+}
+
+.brand-logo {
+  padding-left: 1rem !important;
+}
+
 #add-swine-tabs .tabs {
   overflow-x: hidden;
+}
+
+.title-page {
+  font-weight: 300;
 }
 
 .page-footer {

@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/home', 'BreederController@index')->name('breederHome');
 
         Route::get('/manage-swine/register', 'SwineController@showRegistrationForm')->name('showRegForm');
+        Route::get('/manage-swine/view', 'SwineController@viewRegisteredSwine')->name('viewRegdSwine');
         Route::post('/manage-swine/register', 'SwineController@addSwineInfo')->name('addSwineInfo');
         Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
         Route::post('/manage-swine/set-primary-photo', 'PhotoController@setPrimaryPhoto')->name('setPrimaryPhoto');
@@ -38,5 +39,12 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin'], function(){
 
         Route::get('/home', 'AdminController@index')->name('adminHome');
+        Route::get('/view-registered-swine', 'AdminController@viewRegisteredSwine')->name('adminViewRegdSwine');
+        Route::get('/manage/breeds', 'ManageFieldsController@showManageBreedsView')->name('showManageBreedsView');
+        Route::post('/manage/breeds', 'ManageFieldsController@addBreed')->name('addBreed');
+        Route::patch('/manage/breeds', 'ManageFieldsController@updateBreed')->name('updateBreed');
+        Route::get('/manage/properties', 'ManageFieldsController@showManagePropertiesView')->name('showManagePropertiesView');
+        Route::post('/manage/properties', 'ManageFieldsController@addProperty')->name('addProperty');
+        Route::patch('/manage/properties', 'ManageFieldsController@updateProperty')->name('updateProperty');
     });
 });
