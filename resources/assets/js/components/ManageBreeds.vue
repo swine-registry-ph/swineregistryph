@@ -67,7 +67,7 @@
             </ul>
         </div>
 
-        <!-- Modal Structure -->
+        <!-- Edit Breed Modal -->
         <div id="edit-breed-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Edit Breed</h4>

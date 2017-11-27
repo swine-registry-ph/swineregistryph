@@ -453,6 +453,7 @@ Vue.component('registered-swine', __webpack_require__(65));
 
 // Admin
 Vue.component('manage-breeds', __webpack_require__(70));
+Vue.component('manage-properties', __webpack_require__(91));
 
 // For main container
 var app = new Vue({
@@ -3558,6 +3559,364 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(92)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(94),
+  /* template */
+  __webpack_require__(95),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageProperties.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageProperties.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0e4e505e", Component.options)
+  } else {
+    hotAPI.reload("data-v-0e4e505e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("54278d57", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-property-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-property-button-modal {\n    width: 30rem;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['initialProperties'],
+
+    data: function data() {
+        return {
+            properties: this.initialProperties,
+            showAddPropertyInput: false,
+            addPropertyData: {
+                slug: '',
+                property: '',
+                definition: ''
+            },
+            editPropertyData: {
+                index: -1,
+                id: 0,
+                slug: '',
+                property: '',
+                definition: ''
+            }
+        };
+    },
+
+
+    methods: {
+        toggleAddPropertyContainer: function toggleAddPropertyContainer() {
+            this.showAddPropertyInput = !this.showAddPropertyInput;
+        },
+        addProperty: function addProperty() {
+            console.log('Add!');
+        },
+        toggleEditPropertyModal: function toggleEditPropertyModal(index) {
+            console.log(index);
+        },
+        updateProperty: function updateProperty() {
+            console.log('Update!');
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-property-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new property"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddPropertyContainer()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddPropertyInput),
+      expression: "showAddPropertyInput"
+    }],
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "row"
+  })]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
+    return _c('li', {
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_vm._v(" " + _vm._s(property.property) + " ")]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('a', {
+      staticClass: "secondary-content edit-property-button",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditPropertyModal(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons"
+    }, [_vm._v("edit")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-property-modal"
+    }
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateProperty($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Properties ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Edit Property")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
+  }
+}
 
 /***/ })
 ],[18]);

@@ -26,6 +26,7 @@ Vue.component('registered-swine', require('./components/RegisteredSwine.vue'));
 
 // Admin
 Vue.component('manage-breeds', require('./components/ManageBreeds.vue'));
+Vue.component('manage-properties', require('./components/ManageProperties.vue'));
 
 // For main container
 const app = new Vue({

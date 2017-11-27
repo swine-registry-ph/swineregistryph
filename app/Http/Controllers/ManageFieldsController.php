@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Breed;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
 class ManageFieldsController extends Controller
@@ -59,6 +60,44 @@ class ManageFieldsController extends Controller
             $breed->title = $request->title;
             $breed->save();
 
+            return 'OK';
+        }
+    }
+
+    /**
+     * Show Admin's manage properties view
+     *
+     * @return void
+     */
+    public function showManagePropertiesView()
+    {
+        $properties = Property::all();
+
+        return view('users.admin.manageProperties', compact('properties'));
+    }
+
+    /**
+     * Add Swine Property
+     *
+     * @param   Request     $request
+     * @return  JSON
+     */
+    public function addProperty(Request $request)
+    {
+        if($request->ajax()){
+            return "OK";
+        }
+    }
+
+    /**
+     * Update Swine Property
+     *
+     * @param   Request     $request
+     * @return  string
+     */
+    public function updateProperty(Request $request)
+    {
+        if($request->ajax()){
             return 'OK';
         }
     }
