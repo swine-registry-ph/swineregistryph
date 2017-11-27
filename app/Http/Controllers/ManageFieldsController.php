@@ -85,7 +85,13 @@ class ManageFieldsController extends Controller
     public function addProperty(Request $request)
     {
         if($request->ajax()){
-            return "OK";
+            $property = new Property;
+            $property->slug = $request->slug;
+            $property->property = $request->property;
+            $property->definition = $request->definition;
+            $property->save();
+
+            return $property;
         }
     }
 

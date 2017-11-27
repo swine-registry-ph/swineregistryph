@@ -3767,6 +3767,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['initialProperties'],
@@ -3796,7 +3812,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.showAddPropertyInput = !this.showAddPropertyInput;
         },
         addProperty: function addProperty() {
-            console.log('Add!');
+            var vm = this;
+
+            // Add to server's database
+            axios.post('/admin/manage/properties', {
+                slug: vm.addPropertyData.slug,
+                property: vm.addPropertyData.property,
+                definition: vm.addPropertyData.definition
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of property data
+                vm.properties.push(response.data);
+                vm.addPropertyData = {
+                    slug: '',
+                    property: '',
+                    definition: ''
+                };
+
+                // Update UI after adding breed
+                vm.$nextTick(function () {
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         toggleEditPropertyModal: function toggleEditPropertyModal(index) {
             console.log(index);
@@ -3852,7 +3894,116 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "collection-item"
   }, [_c('div', {
     staticClass: "row"
-  })]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-property-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddPropertyContainer()
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.property),
+      expression: "addPropertyData.property"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-property",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addPropertyData.property = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.slug),
+      expression: "addPropertyData.slug"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-slug",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addPropertyData.slug = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.definition),
+      expression: "addPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addPropertyData.definition = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-definition"
+    }
+  }, [_vm._v("Definition")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addProperty()
+      }
+    }
+  }, [_vm._v("\n                            Submit\n                            "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])])])]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
     return _c('li', {
       staticClass: "collection-item avatar"
     }, [_c('span', {

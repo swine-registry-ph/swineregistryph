@@ -23,7 +23,7 @@
                 <!-- Add property container -->
                 <li v-show="showAddPropertyInput" class="collection-item">
                     <div class="row">
-                        <!-- <div class="col s12">
+                        <div class="col s12">
                             <i @click.prevent="toggleAddPropertyContainer()"
                                 id="close-add-property-container-button"
                                 class="material-icons right"
@@ -32,12 +32,28 @@
                             </i>
                         </div>
                         <div class="input-field col s4 offset-s4">
-                            <input v-model="addBreedData.title"
-                                id="breed-title"
+                            <input v-model="addPropertyData.property"
+                                id="add-property"
                                 type="text"
                                 class="validate"
                             >
-                            <label for="breed-title">Slug</label>
+                            <label for="add-property">Property</label>
+                        </div>
+                        <div class="input-field col s4 offset-s4">
+                            <input v-model="addPropertyData.slug"
+                                id="add-slug"
+                                type="text"
+                                class="validate"
+                            >
+                            <label for="add-slug">Slug</label>
+                        </div>
+                        <div class="input-field col s4 offset-s4">
+                            <input v-model="addPropertyData.definition"
+                                id="add-definition"
+                                type="text"
+                                class="validate"
+                            >
+                            <label for="add-definition">Definition</label>
                         </div>
                         <div class="col s4 offset-s4">
                             <a @click.prevent="addProperty()"
@@ -47,7 +63,7 @@
                                 Submit
                                 <i class="material-icons right">send</i>
                             </a>
-                        </div> -->
+                        </div>
                     </div>
                 </li>
                 <!-- Exising breeds list -->
@@ -129,7 +145,35 @@ export default {
         },
 
         addProperty() {
-            console.log('Add!');
+            const vm = this;
+
+            // Add to server's database
+            axios.post('/admin/manage/properties', {
+                slug: vm.addPropertyData.slug,
+                property: vm.addPropertyData.property,
+                definition: vm.addPropertyData.definition,
+            })
+            .then((response) => {
+                // Put response in local data storage and erase adding of property data
+                vm.properties.push(response.data);
+                vm.addPropertyData = {
+                    slug: '',
+                    property: '',
+                    definition: ''
+                };
+
+                // Update UI after adding breed
+                vm.$nextTick(() => {
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property added', 2000, 'green lighten-1');
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         },
 
         toggleEditPropertyModal(index) {
