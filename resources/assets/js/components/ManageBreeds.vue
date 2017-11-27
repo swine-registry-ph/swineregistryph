@@ -32,7 +32,7 @@
                             </i>
                         </div>
                         <div class="input-field col s4 offset-s4">
-                            <input v-model="breedTitle"
+                            <input v-model="addBreedData.title"
                                 id="breed-title"
                                 type="text"
                                 class="validate"
@@ -56,7 +56,7 @@
                 >
                     {{ breed.title }}
                     <span >
-                        <a @click.prevent="editBreed(index)"
+                        <a @click.prevent="toggleEditBreedModal(index)"
                             href="#"
                             class="secondary-content edit-breed-button"
                         >
@@ -65,6 +65,32 @@
                     </span>
                 </li>
             </ul>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="edit-breed-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Edit Breed</h4>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input v-model="editBreedData.title"
+                            id="edit-breed-title"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-breed-title">Breed Title</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+                <a @click.prevent="updateBreed"
+                    href="#!"
+                    class="modal-action waves-effect waves-green btn-flat"
+                >
+                    Update
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -77,7 +103,14 @@ export default {
         return {
             breeds: this.initialBreeds,
             showAddBreedInput: false,
-            breedTitle: ''
+            addBreedData: {
+                title: ''
+            },
+            editBreedData: {
+                index: -1,
+                id: 0,
+                title: ''
+            }
         }
     },
 
@@ -91,14 +124,14 @@ export default {
 
             // Add to server's database
             axios.post('/admin/manage/breeds', {
-                title: vm.breedTitle
+                title: vm.addBreedData.title
             })
             .then((response) => {
-                // Put response in local data storage
+                // Put response in local data storage and erase adding of breed data
                 vm.breeds.push(response.data);
-                vm.breedTitle = '';
+                vm.addBreedData.title = '';
 
-                // Update UI after add
+                // Update UI after adding breed
                 vm.$nextTick(() => {
                     $('#breed-title').removeClass('valid');
                     Materialize.updateTextFields();
@@ -110,13 +143,54 @@ export default {
             });
         },
 
-        editBreed(index) {
-            console.log(index);
+        toggleEditBreedModal(index) {
+            this.editBreedData.index = index;
+            this.editBreedData.id = this.breeds[index].id;
+            this.editBreedData.title = this.breeds[index].title;
+
+            $('#edit-breed-modal').modal('open');
+            this.$nextTick(() => {
+                Materialize.updateTextFields();
+            });
+        },
+
+        updateBreed() {
+            const vm = this;
+            const index = this.editBreedData.index;
+
+            axios.patch('/admin/manage/breeds', {
+                breedId: vm.editBreedData.id,
+                title: vm.editBreedData.title
+            })
+            .then((response) => {
+                // Update local data storage and erase editing of breed data
+                if(response.data === 'OK'){
+                    vm.breeds[index].title = vm.editBreedData.title;
+                    vm.editBreedData = {
+                        index: -1,
+                        id: 0,
+                        title: ''
+                    };
+                }
+
+                // Update UI after updating breed
+                vm.$nextTick(() => {
+                    $('#edit-breed-modal').modal('close');
+                    $('#edit-breed-title').removeClass('valid');
+                    Materialize.updateTextFields();
+                    Materialize.toast('Breed updated', 2000, 'green lighten-1');
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
+
     },
 
     mounted() {
-
+        // Materialize component initializations
+        $('.modal').modal();
     }
 }
 </script>
@@ -126,8 +200,13 @@ export default {
         cursor: pointer;
     }
 
-    .collection-item .row{
+    .collection-item .row {
         margin-bottom: 0;
+    }
+
+    #edit-breed-modal {
+        width: 30rem;
+        height: 20rem;
     }
 
 </style>

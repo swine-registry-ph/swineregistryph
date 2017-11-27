@@ -3171,7 +3171,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a, .edit-breed-button, #close-add-breed-container-button {\n    cursor: pointer;\n}\n.collection-item .row{\n    margin-bottom: 0;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a, .edit-breed-button, #close-add-breed-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n#edit-breed-modal {\n    width: 30rem;\n    height: 20rem;\n}\n\n", ""]);
 
 // exports
 
@@ -3253,6 +3253,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['initialBreeds'],
@@ -3261,7 +3287,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             breeds: this.initialBreeds,
             showAddBreedInput: false,
-            breedTitle: ''
+            addBreedData: {
+                title: ''
+            },
+            editBreedData: {
+                index: -1,
+                id: 0,
+                title: ''
+            }
         };
     },
 
@@ -3275,13 +3308,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // Add to server's database
             axios.post('/admin/manage/breeds', {
-                title: vm.breedTitle
+                title: vm.addBreedData.title
             }).then(function (response) {
-                // Put response in local data storage
+                // Put response in local data storage and erase adding of breed data
                 vm.breeds.push(response.data);
-                vm.breedTitle = '';
+                vm.addBreedData.title = '';
 
-                // Update UI after add
+                // Update UI after adding breed
                 vm.$nextTick(function () {
                     $('#breed-title').removeClass('valid');
                     Materialize.updateTextFields();
@@ -3291,12 +3324,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        editBreed: function editBreed(index) {
-            console.log(index);
+        toggleEditBreedModal: function toggleEditBreedModal(index) {
+            this.editBreedData.index = index;
+            this.editBreedData.id = this.breeds[index].id;
+            this.editBreedData.title = this.breeds[index].title;
+
+            $('#edit-breed-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateBreed: function updateBreed() {
+            var vm = this;
+            var index = this.editBreedData.index;
+
+            axios.patch('/admin/manage/breeds', {
+                breedId: vm.editBreedData.id,
+                title: vm.editBreedData.title
+            }).then(function (response) {
+                // Update local data storage and erase editing of breed data
+                if (response.data === 'OK') {
+                    vm.breeds[index].title = vm.editBreedData.title;
+                    vm.editBreedData = {
+                        index: -1,
+                        id: 0,
+                        title: ''
+                    };
+                }
+
+                // Update UI after updating breed
+                vm.$nextTick(function () {
+                    $('#edit-breed-modal').modal('close');
+                    $('#edit-breed-title').removeClass('valid');
+                    Materialize.updateTextFields();
+                    Materialize.toast('Breed updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
 
-    mounted: function mounted() {}
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
 });
 
 /***/ }),
@@ -3358,8 +3430,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.breedTitle),
-      expression: "breedTitle"
+      value: (_vm.addBreedData.title),
+      expression: "addBreedData.title"
     }],
     staticClass: "validate",
     attrs: {
@@ -3367,12 +3439,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.breedTitle)
+      "value": (_vm.addBreedData.title)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.breedTitle = $event.target.value
+        _vm.addBreedData.title = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3405,13 +3477,67 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.editBreed(index)
+          _vm.toggleEditBreedModal(index)
         }
       }
     }, [_c('i', {
       staticClass: "material-icons"
     }, [_vm._v("edit")])])])])
-  })], 2)])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-breed-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Edit Breed")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreedData.title),
+      expression: "editBreedData.title"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breed-title",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreedData.title)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editBreedData.title = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breed-title"
+    }
+  }, [_vm._v("Breed Title")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateBreed($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"

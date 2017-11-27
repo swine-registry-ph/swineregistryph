@@ -32,7 +32,8 @@ class ManageFieldsController extends Controller
     /**
      * Add Breed
      *
-     * @param   Request   $request
+     * @param   Request     $request
+     * @return  JSON
      */
     public function addBreed(Request $request)
     {
@@ -42,6 +43,23 @@ class ManageFieldsController extends Controller
             $breed->save();
 
             return $breed;
+        }
+    }
+
+    /**
+     * Update Breed
+     *
+     * @param   Request     $request
+     * @return  string
+     */
+    public function updateBreed(Request $request)
+    {
+        if($request->ajax()){
+            $breed = Breed::find($request->breedId);
+            $breed->title = $request->title;
+            $breed->save();
+
+            return 'OK';
         }
     }
 }
