@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="">
     <div class="row">
         <collection :farmoptions="{{ $farmOptions }}" :breeds="{{ $breedOptions }}" :uploadurl="'{{ route('uploadPhoto') }}'"></collection>
     </div>

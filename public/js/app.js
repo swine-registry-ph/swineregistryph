@@ -3,6 +3,104 @@ webpackJsonp([0],[
 /* 1 */
 /***/ (function(module, exports) {
 
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 2 */,
+/* 3 */
+/***/ (function(module, exports) {
+
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
@@ -82,8 +180,6 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 2 */,
-/* 3 */,
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -322,7 +418,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(75);
+module.exports = __webpack_require__(80);
 
 
 /***/ }),
@@ -357,7 +453,7 @@ Vue.component('registered-swine', __webpack_require__(65));
 
 // Admin
 Vue.component('manage-breeds', __webpack_require__(70));
-Vue.component('manage-properties', __webpack_require__(91));
+Vue.component('manage-properties', __webpack_require__(75));
 
 // For main container
 var app = new Vue({
@@ -368,9 +464,55 @@ var app = new Vue({
 var nav = new Vue({
     el: '#custom-nav',
 
+    data: {
+        currentRoute: {
+            admin: {
+                adminViewRegdSwine: false,
+                manageAccreditedFarms: false,
+                showManagePropertiesView: false,
+                showManageBreedsView: false,
+                reports: false
+            },
+            breeder: {
+                showRegForm: false,
+                viewRegdSwine: false,
+                viewSwinePedigree: false,
+                manageFarms: false,
+                reports: false
+            }
+        }
+    },
+
     mounted: function mounted() {
         // Initialize side navigation
         $(".button-collapse").sideNav();
+
+        // Initialize side navigation active link
+        switch (location.pathname) {
+            case '/admin/view-registered-swine':
+                this.currentRoute.admin.adminViewRegdSwine = true;
+                break;
+
+            case '/admin/manage/properties':
+                this.currentRoute.admin.showManagePropertiesView = true;
+                break;
+
+            case '/admin/manage/breeds':
+                this.currentRoute.admin.showManageBreedsView = true;
+                break;
+
+            case '/breeder/manage-swine/register':
+                this.currentRoute.breeder.showRegForm = true;
+                break;
+
+            case '/breeder/manage-swine/view':
+                this.currentRoute.breeder.viewRegdSwine = true;
+                break;
+
+            default:
+                break;
+
+        }
     }
 });
 
@@ -746,7 +888,7 @@ if(false) {
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -1972,7 +2114,7 @@ if(false) {
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -2575,7 +2717,7 @@ if(false) {
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -3071,7 +3213,7 @@ if(false) {
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -3464,39 +3606,18 @@ if (false) {
 
 /***/ }),
 /* 75 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(92)
+  __webpack_require__(76)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(94),
+  __webpack_require__(78),
   /* template */
-  __webpack_require__(95),
+  __webpack_require__(79),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3528,13 +3649,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(93);
+var content = __webpack_require__(77);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3554,10 +3675,10 @@ if(false) {
 }
 
 /***/ }),
-/* 93 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -3568,7 +3689,7 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 
 /***/ }),
-/* 94 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3826,7 +3947,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 95 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4118,6 +4239,12 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
   }
 }
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 ],[18]);
