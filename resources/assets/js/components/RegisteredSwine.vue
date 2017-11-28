@@ -2,7 +2,9 @@
     <div class="col s12">
 
         <div class="col s12">
-            <p> <br> </p>
+            <div class="col s12">
+                <h4 class="title-page"> View Registered Swine </h4>
+            </div>
         </div>
 
         <div class="col s12">

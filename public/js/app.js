@@ -2260,6 +2260,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['farmoptions', 'breeds', 'uploadurl'],
@@ -2384,7 +2389,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s10 offset-s1"
-  }, [_c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "row",
     staticStyle: {
       "margin-bottom": "0"
@@ -2400,7 +2405,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('ul', {
     staticClass: "tabs tabs-fixed-width z-depth-2"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('li', {
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('li', {
     staticClass: "tab col s2",
     class: {
       'disabled': _vm.tabDisables.gpSire
@@ -2577,7 +2582,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "basicInfo.farmFrom"
     }
-  })], 1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('p')])])]), _vm._v(" "), _c('swine-properties', {
+  })], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('p')])])]), _vm._v(" "), _c('swine-properties', {
     attrs: {
       "category": "gp-1",
       "data": ""
@@ -2615,6 +2620,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Register Swine ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
     staticClass: "tab col s3"
   }, [_c('a', {
@@ -2733,6 +2744,8 @@ exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -3103,7 +3116,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('p', [_c('br')])])
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" View Registered Swine ")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("Certificate "), _c('i', {
     staticClass: "material-icons right modal-close"

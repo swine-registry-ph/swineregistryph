@@ -1,5 +1,10 @@
 <template lang="html">
     <div class="col s10 offset-s1">
+
+        <div class="col s12">
+            <h4 class="title-page"> Register Swine </h4>
+        </div>
+
         <div class="row" style="margin-bottom:0;">
             <div id="add-swine-tabs" class="col s12" style="margin-top:2rem; padding:0;">
                 <ul class="tabs tabs-fixed-width z-depth-2">
