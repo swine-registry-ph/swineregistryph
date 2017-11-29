@@ -9939,6 +9939,31 @@ main {
   font-weight: 300;
 }
 
+/*
+ * Blockquote styles
+ */
+
+blockquote {
+  padding: 1rem 1rem 1rem;
+  border-left: 5px solid #388e3c;
+  background-color: #e8f5e9;
+}
+
+blockquote.error {
+  border-left: 5px solid #ee6e73;
+  background-color: #fdf0f1;
+}
+
+blockquote.warning {
+  border-left: 5px solid #ef6c00;
+  background-color: #fff3e0;
+}
+
+blockquote.info {
+  border-left: 5px solid #009688;
+  background-color: #e7f5f4;
+}
+
 .page-footer {
   background-color: #80cbc4;
 }
