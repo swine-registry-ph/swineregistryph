@@ -3848,14 +3848,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Update to server's database
             axios.patch('/admin/manage/properties', {
                 propertyId: vm.editPropertyData.id,
-                slug: vm.editPropertyData.slug,
-                property: vm.editPropertyData.property,
                 definition: vm.editPropertyData.definition
             }).then(function (response) {
                 // Update local data storage and erase editing of breed data
                 if (response.data === 'OK') {
-                    vm.properties[index].slug = vm.editPropertyData.slug;
-                    vm.properties[index].property = vm.editPropertyData.property;
                     vm.properties[index].definition = vm.editPropertyData.definition;
                     vm.editPropertyData = {
                         index: -1,
@@ -4086,10 +4082,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.editPropertyData.property),
       expression: "editPropertyData.property"
     }],
-    staticClass: "validate",
     attrs: {
       "id": "edit-property",
-      "type": "text"
+      "type": "text",
+      "disabled": ""
     },
     domProps: {
       "value": (_vm.editPropertyData.property)
@@ -4113,10 +4109,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.editPropertyData.slug),
       expression: "editPropertyData.slug"
     }],
-    staticClass: "validate",
     attrs: {
       "id": "edit-slug",
-      "type": "text"
+      "type": "text",
+      "disabled": ""
     },
     domProps: {
       "value": (_vm.editPropertyData.slug)

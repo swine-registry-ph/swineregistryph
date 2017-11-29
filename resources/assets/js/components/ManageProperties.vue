@@ -103,7 +103,7 @@
                         <input v-model="editPropertyData.property"
                             id="edit-property"
                             type="text"
-                            class="validate"
+                            disabled
                         >
                         <label for="edit-property">Property</label>
                     </div>
@@ -111,7 +111,7 @@
                         <input v-model="editPropertyData.slug"
                             id="edit-slug"
                             type="text"
-                            class="validate"
+                            disabled
                         >
                         <label for="edit-slug">Slug</label>
                     </div>
@@ -220,15 +220,11 @@
                 // Update to server's database
                 axios.patch('/admin/manage/properties', {
                     propertyId: vm.editPropertyData.id,
-                    slug: vm.editPropertyData.slug,
-                    property: vm.editPropertyData.property,
-                    definition: vm.editPropertyData.definition,
+                    definition: vm.editPropertyData.definition
                 })
                 .then((response) => {
                     // Update local data storage and erase editing of breed data
                     if(response.data === 'OK'){
-                        vm.properties[index].slug = vm.editPropertyData.slug;
-                        vm.properties[index].property = vm.editPropertyData.property;
                         vm.properties[index].definition = vm.editPropertyData.definition;
                         vm.editPropertyData = {
                             index: -1,
