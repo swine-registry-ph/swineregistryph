@@ -37,8 +37,53 @@ const app = new Vue({
 const nav = new Vue({
     el: '#custom-nav',
 
+    data: {
+        currentRoute: {
+            admin: {
+                adminViewRegdSwine: false,
+                manageAccreditedFarms: false,
+                showManagePropertiesView: false,
+                showManageBreedsView: false,
+                reports: false
+            },
+            breeder: {
+                showRegForm: false,
+                viewRegdSwine: false,
+                viewSwinePedigree: false,
+                manageFarms: false,
+                reports: false
+            }
+        }
+    },
+
     mounted() {
         // Initialize side navigation
         $(".button-collapse").sideNav();
+
+        // Initialize side navigation active link
+        switch (location.pathname) {
+            case '/admin/view-registered-swine':
+                this.currentRoute.admin.adminViewRegdSwine = true;
+                break;
+
+            case '/admin/manage/properties':
+                this.currentRoute.admin.showManagePropertiesView = true;
+                break;
+
+            case '/admin/manage/breeds':
+                this.currentRoute.admin.showManageBreedsView = true;
+                break;
+
+            case '/breeder/manage-swine/register':
+                this.currentRoute.breeder.showRegForm = true;
+                break;
+
+            case '/breeder/manage-swine/view':
+                this.currentRoute.breeder.viewRegdSwine = true;
+                break;
+
+            default: break;
+
+        }
     }
 });
