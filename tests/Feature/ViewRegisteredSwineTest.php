@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Admin;
 use App\Models\Breeder;
+use App\Models\Farm;
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -65,10 +66,12 @@ class ViewRegisteredSwineTest extends TestCase
      */
     public function testAdminViewRegisteredSwine()
     {
+        $expectedFarms = Farm::with('swines')->get();
         $response = $this->actingAs($this->adminUser)
                          ->get('/admin/view-registered-swine');
 
-        $response->assertStatus(200);
+        $response->assertViewIs('users.admin.dashboard');
+        $response->assertViewHas('farms', $expectedFarms);
     }
 
     /**
@@ -78,9 +81,14 @@ class ViewRegisteredSwineTest extends TestCase
      */
     public function testBreederViewRegisteredSwine()
     {
+        $expectedSwines = $this->breederUser->userable()->first()
+                               ->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm', 'certificate.photos'])
+                               ->get();
+
         $response = $this->actingAs($this->breederUser)
                          ->get('/breeder/manage-swine/view');
 
-        $response->assertStatus(200);
+        $response->assertViewIs('users.breeder.viewRegisteredSwine');
+        $response->assertViewHas('swines', $expectedSwines);
     }
 }
