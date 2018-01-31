@@ -24,7 +24,6 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'breeder'], function(){
 
         Route::get('/home', 'BreederController@index')->name('breederHome');
-
         Route::get('/manage-swine/register', 'SwineController@showRegistrationForm')->name('showRegForm');
         Route::get('/manage-swine/view', 'SwineController@viewRegisteredSwine')->name('viewRegdSwine');
         Route::post('/manage-swine/register', 'SwineController@addSwineInfo')->name('addSwineInfo');

@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'breeders'], function() {
+    Route::get('/', 'BreederResourceController@index');
+    Route::get('/{farm}', 'BreederResourceController@show');
+});
+
+Route::group(['prefix' => 'farms'], function() {
+    Route::get('/', 'FarmResourceController@index');
+    Route::get('/{farm}', 'FarmResourceController@show');
+});
+
+Route::group(['prefix' => 'swines'], function() {
+    Route::get('/', 'SwineResourceController@index');
+    Route::get('/{swine}', 'SwineResourceController@show');
+});
