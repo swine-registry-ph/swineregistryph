@@ -17,6 +17,9 @@ class ViewRegisteredSwineTest extends TestCase
 
     protected $adminUser, $breederUser;
 
+    /**
+     * Initialize data needed for testing
+     */
     protected function setUp()
     {
         parent::setUp();
