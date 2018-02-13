@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Artisan;
 use App\Models\Breeder;
 use Laravel\Passport\ClientRepository;
 use Tests\TestCase;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BreedersApiTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
+    use RefreshDatabase;
 
     /**
      * Initialize data needed for testing
@@ -20,6 +21,8 @@ class BreedersApiTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
+        Artisan::call('db:seed');
 
         $this->breedersEndpoint = '/api/v1/breeders';
         $this->clientRepository = new ClientRepository;

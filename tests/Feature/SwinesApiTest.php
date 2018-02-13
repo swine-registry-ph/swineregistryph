@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Artisan;
 use App\Models\Swine;
 use Laravel\Passport\ClientRepository;
 use Tests\TestCase;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SwinesApiTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
+    use RefreshDatabase;
 
     /**
      * Initialize data needed for testing
@@ -19,6 +20,8 @@ class SwinesApiTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
+        Artisan::call('db:seed');
 
         $this->swinesEndpoint = '/api/v1/swines';
         $this->clientRepository = new ClientRepository;
@@ -79,7 +82,7 @@ class SwinesApiTest extends TestCase
                     'registration_no',
                     'date_registered',
                     'created_at',
-                    'udpated_at'
+                    'updated_at'
                 ]
             ]);
     }
@@ -113,7 +116,7 @@ class SwinesApiTest extends TestCase
                         'registration_no',
                         'date_registered',
                         'created_at',
-                        'udpated_at'
+                        'updated_at'
                     ]
                 ]);
         }

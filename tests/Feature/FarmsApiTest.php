@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Artisan;
 use App\Models\Farm;
 use Laravel\Passport\ClientRepository;
 use Tests\TestCase;
@@ -11,7 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class FarmsApiTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
+    use RefreshDatabase;
 
     /**
      * Initialize data needed for testing
@@ -19,6 +20,8 @@ class FarmsApiTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
+        Artisan::call('db:seed');
 
         $this->farmsEndpoint = '/api/v1/farms';
         $this->clientRepository = new ClientRepository;
