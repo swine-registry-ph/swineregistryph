@@ -4358,7 +4358,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n", ""]);
+exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-credentials-container-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n", ""]);
 
 // exports
 
@@ -4420,26 +4420,107 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            clients: []
+            clients: [],
+            showAddCredentialsContainer: false,
+            addCredentialsData: {
+                name: '',
+                redirect: ''
+            }
         };
     },
 
 
-    methods: {},
+    methods: {
+        getClients: function getClients() {
+            var _this = this;
+
+            axios.get('/oauth/clients').then(function (response) {
+                _this.clients = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addCredentials: function addCredentials() {
+            var vm = this;
+
+            // Add to server's database
+            axios.post('/oauth/clients', {
+                name: vm.addCredentialsData.name,
+                redirect: vm.addCredentialsData.redirect
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of property data
+                vm.clients.push(response.data);
+                vm.addCredentialsData = {
+                    name: '',
+                    redirect: ''
+                };
+
+                // Update UI after adding breed
+                vm.$nextTick(function () {
+                    $('#add-credentials-name').removeClass('valid');
+                    $('#add-credentials-redirect').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Credentials added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
 
     mounted: function mounted() {
-        var _this = this;
-
         // Initialize data
-        axios.get('/oauth/clients').then(function (response) {
-            _this.clients = response.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
+        this.getClients();
     }
 });
 
@@ -4468,11 +4549,104 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
+        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
       }
     }
   }, [_c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), (_vm.clients.length < 1) ? _c('li', {
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddCredentialsContainer),
+      expression: "showAddCredentialsContainer"
+    }],
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-credentials-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addCredentialsData.name),
+      expression: "addCredentialsData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-credentials-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addCredentialsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addCredentialsData.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-credentials-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addCredentialsData.redirect),
+      expression: "addCredentialsData.redirect"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-credentials-redirect",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addCredentialsData.redirect)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addCredentialsData.redirect = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-credentials-redirect"
+    }
+  }, [_vm._v("Redirect")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addCredentials()
+      }
+    }
+  }, [_vm._v("\n                            Submit\n                            "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])])])]), _vm._v(" "), (_vm.clients.length < 1) ? _c('li', {
     staticClass: "collection-item avatar center-align"
   }, [_c('span', {
     staticClass: "title"
@@ -4483,7 +4657,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "title"
     }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                    Client ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                    Client Secret: " + _vm._s(client.secret) + "\n                ")]), _vm._v(" "), _c('a', {
+    }, [_vm._v("\n                    Client ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                    Client Secret: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                    Redirect: " + _vm._s(client.redirect) + "\n                ")]), _vm._v(" "), _c('a', {
       staticClass: "secondary-content edit-property-button",
       attrs: {
         "href": "#"
@@ -4502,7 +4676,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v(" Manage APIs ")])])
+  }, [_vm._v(" Manage API Credentials ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('blockquote', {}, [_vm._v("\n                            Note that the Client ID and Secret will be sent to your email as well.\n                        ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
