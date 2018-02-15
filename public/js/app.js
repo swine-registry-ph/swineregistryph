@@ -3544,7 +3544,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       staticClass: "collection-item"
     }, [_vm._v("\n                " + _vm._s(breed.title) + "\n                "), _c('span', [_c('a', {
-      staticClass: "secondary-content edit-breed-button",
+      staticClass: "secondary-content edit-breed-button light-blue-text text-darken-1",
       attrs: {
         "href": "#"
       },
@@ -4135,7 +4135,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(" " + _vm._s(property.property) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
     }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('a', {
-      staticClass: "secondary-content edit-property-button",
+      staticClass: "secondary-content edit-property-button light-blue-text text-darken-1",
       attrs: {
         "href": "#"
       },
@@ -4355,7 +4355,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-credentials-container-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal {\n    width: 50rem;\n    height: 35rem;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-credentials-container-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal {\n    width: 40rem;\n    height: 23rem;\n}\nblockquote.error{\n\tborder-left: 5px solid #ee6e73;\n\tbackground-color: #fdf0f1;\n}\n\n", ""]);
 
 // exports
 
@@ -4366,6 +4366,37 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4509,6 +4540,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 id: 0,
                 name: '',
                 redirect: ''
+            },
+            deleteCredentialsData: {
+                index: -1,
+                id: 0,
+                name: ''
             }
         };
     },
@@ -4525,22 +4561,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         addCredentials: function addCredentials() {
-            var vm = this;
+            var _this2 = this;
 
             // Add to server's database
             axios.post('/oauth/clients', {
-                name: vm.addCredentialsData.name,
-                redirect: vm.addCredentialsData.redirect
+                name: this.addCredentialsData.name,
+                redirect: this.addCredentialsData.redirect
             }).then(function (response) {
                 // Put response in local data storage and erase adding of property data
-                vm.clients.push(response.data);
-                vm.addCredentialsData = {
+                _this2.clients.unshift(response.data);
+                _this2.addCredentialsData = {
                     name: '',
                     redirect: ''
                 };
 
                 // Update UI after adding credentials
-                vm.$nextTick(function () {
+                _this2.$nextTick(function () {
                     $('#add-credentials-name').removeClass('valid');
                     $('#add-credentials-redirect').removeClass('valid');
 
@@ -4564,7 +4600,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updateCredentials: function updateCredentials() {
-            var _this2 = this;
+            var _this3 = this;
 
             var index = this.editCredentialsData.index;
 
@@ -4575,9 +4611,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 var data = response.data;
 
-                _this2.clients[index].name = data.name;
-                _this2.clients[index].redirect = data.redirect;
-                _this2.editCredentialsData = {
+                _this3.clients[index].name = data.name;
+                _this3.clients[index].redirect = data.redirect;
+                _this3.editCredentialsData = {
                     index: -1,
                     id: 0,
                     name: '',
@@ -4585,13 +4621,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 };
 
                 // Update UI after updating credentials
-                _this2.$nextTick(function () {
+                _this3.$nextTick(function () {
                     $('#edit-credentials-modal').modal('close');
                     $('#add-credentials-name').removeClass('valid');
                     $('#add-credentials-redirect').removeClass('valid');
 
                     Materialize.updateTextFields();
                     Materialize.toast('Credentials updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleDeleteCredentialsModal: function toggleDeleteCredentialsModal(index) {
+            // Initialize data for deleting
+            this.deleteCredentialsData.index = index;
+            this.deleteCredentialsData.id = this.clients[index].id;
+            this.deleteCredentialsData.name = this.clients[index].name;
+
+            $('#delete-credentials-modal').modal('open');
+        },
+        deleteCredentials: function deleteCredentials() {
+            var _this4 = this;
+
+            var index = this.deleteCredentialsData.index;
+
+            // Delete from server's database
+            axios.delete('/oauth/clients/' + this.deleteCredentialsData.id).then(function (response) {
+                // Remove from local storage
+                _this4.clients.splice(index, 1);
+
+                // Update UI after deleting credentials
+                _this4.$nextTick(function () {
+                    $('#delete-credentials-modal').modal('close');
+
+                    Materialize.toast('Credentials deleted', 2000, 'green lighten-1');
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -4741,8 +4805,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "title"
     }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                    Client ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                    Client Secret: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                    Redirect: " + _vm._s(client.redirect) + "\n                ")]), _vm._v(" "), _c('a', {
-      staticClass: "secondary-content edit-property-button",
+    }, [_vm._v("\n                    Client ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                    Client Secret: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                    Redirect: " + _vm._s(client.redirect) + "\n                ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "edit-credentials-button",
       attrs: {
         "href": "#"
       },
@@ -4754,7 +4820,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('i', {
       staticClass: "material-icons"
-    }, [_vm._v("edit")])])])
+    }, [_vm._v("edit")])]), _vm._v(" "), _c('a', {
+      staticClass: "delete-credentials-button red-text text-lighten-2",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleDeleteCredentialsModal(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons"
+    }, [_vm._v("delete")])])])])
   })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "modal modal-fixed-footer",
     attrs: {
@@ -4834,7 +4913,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateCredentials($event)
       }
     }
-  }, [_vm._v("\n                Update\n            ")])])])])
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "delete-credentials-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Delete Credentials")]), _vm._v(" "), _c('p'), _c('blockquote', {
+    staticClass: "error"
+  }, [_vm._v("\n                    THIS ACTION CANNOT BE UNDONE.\n                ")]), _vm._v("\n                Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deleteCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                Delete\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"

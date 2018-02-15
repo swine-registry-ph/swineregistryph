@@ -81,12 +81,21 @@
                     </p>
 
 
-                    <a @click.prevent="toggleEditCredentialsModal(index)"
-                        href="#"
-                        class="secondary-content edit-property-button"
-                    >
-                        <i class="material-icons">edit</i>
-                    </a>
+                    <span class="secondary-content">
+                        <a @click.prevent="toggleEditCredentialsModal(index)"
+                            href="#"
+                            class="edit-credentials-button"
+                        >
+                            <i class="material-icons">edit</i>
+                        </a>
+
+                        <a @click.prevent="toggleDeleteCredentialsModal(index)"
+                            href="#"
+                            class="delete-credentials-button red-text text-lighten-2"
+                        >
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </span>
 
                 </li>
             </ul>
@@ -123,6 +132,28 @@
                 </a>
             </div>
         </div>
+
+        <!-- Delete Credentials Modal -->
+        <div id="delete-credentials-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Delete Credentials</h4>
+                <p>
+                    <blockquote class="error">
+                        THIS ACTION CANNOT BE UNDONE.
+                    </blockquote>
+                    Are you sure you want to delete credentials for <b>{{ deleteCredentialsData.name }}</b>? <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+                <a @click.prevent="deleteCredentials"
+                    href="#!"
+                    class="modal-action waves-effect waves-green btn-flat"
+                >
+                    Delete
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -141,6 +172,11 @@
                     id: 0,
                     name: '',
                     redirect: ''
+                },
+                deleteCredentialsData: {
+                    index: -1,
+                    id: 0,
+                    name: ''
                 }
             }
         },
@@ -157,23 +193,21 @@
             },
 
             addCredentials() {
-                const vm = this;
-
                 // Add to server's database
                 axios.post('/oauth/clients', {
-                    name: vm.addCredentialsData.name,
-                    redirect: vm.addCredentialsData.redirect
+                    name: this.addCredentialsData.name,
+                    redirect: this.addCredentialsData.redirect
                 })
                 .then((response) => {
                     // Put response in local data storage and erase adding of property data
-                    vm.clients.push(response.data);
-                    vm.addCredentialsData = {
+                    this.clients.unshift(response.data);
+                    this.addCredentialsData = {
                         name: '',
                         redirect: ''
                     };
 
                     // Update UI after adding credentials
-                    vm.$nextTick(() => {
+                    this.$nextTick(() => {
                         $('#add-credentials-name').removeClass('valid');
                         $('#add-credentials-redirect').removeClass('valid');
 
@@ -232,6 +266,36 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            toggleDeleteCredentialsModal(index) {
+                // Initialize data for deleting
+                this.deleteCredentialsData.index = index;
+                this.deleteCredentialsData.id = this.clients[index].id;
+                this.deleteCredentialsData.name = this.clients[index].name;
+
+                $('#delete-credentials-modal').modal('open');
+            },
+
+            deleteCredentials() {
+                const index = this.deleteCredentialsData.index;
+
+                // Delete from server's database
+                axios.delete(`/oauth/clients/${this.deleteCredentialsData.id}`)
+                .then((response) => {
+                    // Remove from local storage
+                    this.clients.splice(index,1);
+
+                    // Update UI after deleting credentials
+                    this.$nextTick(() => {
+                        $('#delete-credentials-modal').modal('close');
+
+                        Materialize.toast('Credentials deleted', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             }
         },
 
@@ -256,7 +320,17 @@
 
     #edit-credentials-modal {
         width: 50rem;
-        height: 35rem;
+        height: 25rem;
+    }
+
+    #delete-credentials-modal {
+        width: 40rem;
+        height: 23rem;
+    }
+
+    blockquote.error{
+    	border-left: 5px solid #ee6e73;
+    	background-color: #fdf0f1;
     }
 
 </style>

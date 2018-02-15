@@ -85,7 +85,7 @@
 
                     <a @click.prevent="toggleEditPropertyModal(index)"
                         href="#"
-                        class="secondary-content edit-property-button"
+                        class="secondary-content edit-property-button light-blue-text text-darken-1"
                     >
                         <i class="material-icons">edit</i>
                     </a>
