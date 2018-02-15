@@ -3864,7 +3864,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             properties: this.initialProperties,
-            showAddPropertyInput: false,
+            showAddPropertyContainer: false,
             addPropertyData: {
                 slug: '',
                 property: '',
@@ -3882,9 +3882,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        toggleAddPropertyContainer: function toggleAddPropertyContainer() {
-            this.showAddPropertyInput = !this.showAddPropertyInput;
-        },
         addProperty: function addProperty() {
             var vm = this;
 
@@ -3902,7 +3899,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     definition: ''
                 };
 
-                // Update UI after adding breed
+                // Update UI after adding property
                 vm.$nextTick(function () {
                     $('#add-property').removeClass('valid');
                     $('#add-slug').removeClass('valid');
@@ -3937,7 +3934,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 propertyId: vm.editPropertyData.id,
                 definition: vm.editPropertyData.definition
             }).then(function (response) {
-                // Update local data storage and erase editing of breed data
+                // Update local data storage and erase editing of property data
                 if (response.data === 'OK') {
                     vm.properties[index].definition = vm.editPropertyData.definition;
                     vm.editPropertyData = {
@@ -3949,7 +3946,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     };
                 }
 
-                // Update UI after updating breed
+                // Update UI after updating property
                 vm.$nextTick(function () {
                     $('#edit-property-modal').modal('close');
                     $('#add-property').removeClass('valid');
@@ -4006,7 +4003,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.toggleAddPropertyContainer()
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
       }
     }
   }, [_c('i', {
@@ -4015,8 +4012,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.showAddPropertyInput),
-      expression: "showAddPropertyInput"
+      value: (_vm.showAddPropertyContainer),
+      expression: "showAddPropertyContainer"
     }],
     staticClass: "collection-item"
   }, [_c('div', {
@@ -4031,7 +4028,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.toggleAddPropertyContainer()
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
       }
     }
   }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
@@ -4358,7 +4355,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-credentials-container-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n", ""]);
+exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-credentials-container-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal {\n    width: 50rem;\n    height: 35rem;\n}\n\n", ""]);
 
 // exports
 
@@ -4465,6 +4462,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -4472,6 +4501,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             clients: [],
             showAddCredentialsContainer: false,
             addCredentialsData: {
+                name: '',
+                redirect: ''
+            },
+            editCredentialsData: {
+                index: -1,
+                id: 0,
                 name: '',
                 redirect: ''
             }
@@ -4504,7 +4539,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     redirect: ''
                 };
 
-                // Update UI after adding breed
+                // Update UI after adding credentials
                 vm.$nextTick(function () {
                     $('#add-credentials-name').removeClass('valid');
                     $('#add-credentials-redirect').removeClass('valid');
@@ -4515,10 +4550,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        toggleEditCredentialsModal: function toggleEditCredentialsModal(index) {
+            // Initialize data for editing
+            this.editCredentialsData.index = index;
+            this.editCredentialsData.id = this.clients[index].id;
+            this.editCredentialsData.name = this.clients[index].name;
+            this.editCredentialsData.redirect = this.clients[index].redirect;
+
+            $('#edit-credentials-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateCredentials: function updateCredentials() {
+            var _this2 = this;
+
+            var index = this.editCredentialsData.index;
+
+            // Update to server's database
+            axios.put('/oauth/clients/' + this.editCredentialsData.id, {
+                name: this.editCredentialsData.name,
+                redirect: this.editCredentialsData.redirect
+            }).then(function (response) {
+                var data = response.data;
+
+                _this2.clients[index].name = data.name;
+                _this2.clients[index].redirect = data.redirect;
+                _this2.editCredentialsData = {
+                    index: -1,
+                    id: 0,
+                    name: '',
+                    redirect: ''
+                };
+
+                // Update UI after updating credentials
+                _this2.$nextTick(function () {
+                    $('#edit-credentials-modal').modal('close');
+                    $('#add-credentials-name').removeClass('valid');
+                    $('#add-credentials-redirect').removeClass('valid');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Credentials updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
 
     mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+
         // Initialize data
         this.getClients();
     }
@@ -4665,12 +4749,92 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
+          _vm.toggleEditCredentialsModal(index)
         }
       }
     }, [_c('i', {
       staticClass: "material-icons"
     }, [_vm._v("edit")])])])
-  })], 2)])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-credentials-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Edit Credentials")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editCredentialsData.name),
+      expression: "editCredentialsData.name"
+    }],
+    attrs: {
+      "id": "edit-credentials-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editCredentialsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editCredentialsData.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-credentials-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editCredentialsData.redirect),
+      expression: "editCredentialsData.redirect"
+    }],
+    attrs: {
+      "id": "edit-credentials-redirect",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editCredentialsData.redirect)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editCredentialsData.redirect = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-credentials-redirect"
+    }
+  }, [_vm._v("Redirect")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"

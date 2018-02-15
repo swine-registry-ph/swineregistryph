@@ -81,7 +81,7 @@
                     </p>
 
 
-                    <a @click.prevent=""
+                    <a @click.prevent="toggleEditCredentialsModal(index)"
                         href="#"
                         class="secondary-content edit-property-button"
                     >
@@ -90,6 +90,38 @@
 
                 </li>
             </ul>
+        </div>
+
+        <!-- Edit Credentials Modal -->
+        <div id="edit-credentials-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Edit Credentials</h4>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input v-model="editCredentialsData.name"
+                            id="edit-credentials-name"
+                            type="text"
+                        >
+                        <label for="edit-credentials-name">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input v-model="editCredentialsData.redirect"
+                            id="edit-credentials-redirect"
+                            type="text"
+                        >
+                        <label for="edit-credentials-redirect">Redirect</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+                <a @click.prevent="updateCredentials"
+                    href="#!"
+                    class="modal-action waves-effect waves-green btn-flat"
+                >
+                    Update
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -101,6 +133,12 @@
                 clients: [],
                 showAddCredentialsContainer: false,
                 addCredentialsData: {
+                    name: '',
+                    redirect: ''
+                },
+                editCredentialsData: {
+                    index: -1,
+                    id: 0,
                     name: '',
                     redirect: ''
                 }
@@ -134,7 +172,7 @@
                         redirect: ''
                     };
 
-                    // Update UI after adding breed
+                    // Update UI after adding credentials
                     vm.$nextTick(() => {
                         $('#add-credentials-name').removeClass('valid');
                         $('#add-credentials-redirect').removeClass('valid');
@@ -146,10 +184,61 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            toggleEditCredentialsModal(index) {
+                // Initialize data for editing
+                this.editCredentialsData.index = index;
+                this.editCredentialsData.id = this.clients[index].id;
+                this.editCredentialsData.name = this.clients[index].name;
+                this.editCredentialsData.redirect = this.clients[index].redirect;
+
+                $('#edit-credentials-modal').modal('open');
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                });
+            },
+
+            updateCredentials() {
+                const index = this.editCredentialsData.index;
+
+                // Update to server's database
+                axios.put(`/oauth/clients/${this.editCredentialsData.id}`, {
+                    name: this.editCredentialsData.name,
+                    redirect: this.editCredentialsData.redirect
+                })
+                .then((response) => {
+                    const data = response.data;
+
+                    this.clients[index].name = data.name;
+                    this.clients[index].redirect = data.redirect;
+                    this.editCredentialsData = {
+                        index: -1,
+                        id: 0,
+                        name: '',
+                        redirect: ''
+                    };
+
+                    // Update UI after updating credentials
+                    this.$nextTick(() => {
+                        $('#edit-credentials-modal').modal('close');
+                        $('#add-credentials-name').removeClass('valid');
+                        $('#add-credentials-redirect').removeClass('valid');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Credentials updated', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             }
         },
 
         mounted() {
+            // Materialize component initializations
+            $('.modal').modal();
+
             // Initialize data
             this.getClients();
         }
@@ -164,4 +253,10 @@
     .collection-item.avatar {
         padding-left: 20px !important;
     }
+
+    #edit-credentials-modal {
+        width: 50rem;
+        height: 35rem;
+    }
+
 </style>
