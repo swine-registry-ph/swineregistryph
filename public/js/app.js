@@ -4355,7 +4355,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-credentials-container-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal {\n    width: 40rem;\n    height: 23rem;\n}\nblockquote.error{\n\tborder-left: 5px solid #ee6e73;\n\tbackground-color: #fdf0f1;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a,\n.edit-property-button,\n#close-add-credentials-container-button,\n#show-help-info-button,\n#close-help-info-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal {\n    width: 40rem;\n    height: 23rem;\n}\nblockquote.error{\n\tborder-left: 5px solid #ee6e73;\n\tbackground-color: #fdf0f1;\n}\n\n", ""]);
 
 // exports
 
@@ -4525,11 +4525,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             clients: [],
+            showHelpInfo: false,
             showAddCredentialsContainer: false,
             addCredentialsData: {
                 name: '',
@@ -4679,7 +4727,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v("\n            Manage API Credentials\n            "), _c('i', {
+    staticClass: "material-icons tooltipped",
+    attrs: {
+      "id": "show-help-info-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Click for help"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showHelpInfo = !_vm.showHelpInfo
+      }
+    }
+  }, [_vm._v("\n                info_outline\n            ")])])]), _vm._v(" "), (_vm.showHelpInfo) ? _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-help-info-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showHelpInfo = !_vm.showHelpInfo
+      }
+    }
+  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _vm._m(0)]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('ul', {
     staticClass: "collection with-header"
@@ -4805,7 +4886,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "title"
     }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                    Client ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                    Client Secret: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                    Redirect: " + _vm._s(client.redirect) + "\n                ")]), _vm._v(" "), _c('span', {
+    }, [_vm._v("\n                    CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                    CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                    Redirect: " + _vm._s(client.redirect) + "\n                ")]), _vm._v(" "), _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "edit-credentials-button",
@@ -4944,9 +5025,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Manage API Credentials ")])])
+  }, [_c('pre', [_vm._v("                "), _c('code', [_vm._v("\n                1. After creating the client credentials, get your access token\n                    by making a POST request to 'http://breedregistry.test/oauth/token'\n                    w/ the following body data:\n\n                    {\n                        grant_type: 'client_credentials',\n                        client_id: <client_id>,\n                        client_secret: <client_secret>\n                    }\n\n                2. Now when the access token is acquired, every request in our API should\n                    include and Authorization header with the acquired access token.\n                    For example, GET request to 'http://breedregistry.test/api/v1/swines'\n                    including the Authorization header:\n\n                    {\n                        Authorization: Bearer <access_token>\n                    }\n                ")]), _vm._v("\n            ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s4 offset-s4"

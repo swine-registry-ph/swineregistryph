@@ -1,7 +1,54 @@
 <template lang="html">
     <div class="row">
         <div class="col s12">
-            <h4 class="title-page"> Manage API Credentials </h4>
+            <h4 class="title-page">
+                Manage API Credentials
+                <i @click.prevent="showHelpInfo = !showHelpInfo"
+                    id="show-help-info-button"
+                    class="material-icons tooltipped"
+                    data-position="right"
+                    data-delay="50"
+                    data-tooltip="Click for help"
+                >
+                    info_outline
+                </i>
+            </h4>
+        </div>
+
+        <!-- Help info -->
+        <div v-if="showHelpInfo" class="col s12">
+            <div class="col s12">
+                <i @click.prevent="showHelpInfo = !showHelpInfo"
+                    id="close-help-info-button"
+                    class="material-icons right"
+                >
+                    close
+                </i>
+            </div>
+            <div class="col s12">
+                <pre>
+                    <code>
+                    1. After creating the client credentials, get your access token
+                        by making a POST request to 'http://breedregistry.test/oauth/token'
+                        w/ the following body data:
+
+                        {
+                            grant_type: 'client_credentials',
+                            client_id: &lt;client_id&gt;,
+                            client_secret: &lt;client_secret&gt;
+                        }
+
+                    2. Now when the access token is acquired, every request in our API should
+                        include and Authorization header with the acquired access token.
+                        For example, GET request to 'http://breedregistry.test/api/v1/swines'
+                        including the Authorization header:
+
+                        {
+                            Authorization: Bearer &lt;access_token&gt;
+                        }
+                    </code>
+                </pre>
+            </div>
         </div>
 
         <div class="col s12">
@@ -75,8 +122,8 @@
                 >
                     <span class="title"> {{ client.name }} </span>
                     <p class="grey-text">
-                        Client ID: {{ client.id }} <br>
-                        Client Secret: {{ client.secret }} <br>
+                        CLIENT_ID: {{ client.id }} <br>
+                        CLIENT_SECRET: {{ client.secret }} <br>
                         Redirect: {{ client.redirect }}
                     </p>
 
@@ -162,6 +209,7 @@
         data() {
             return {
                 clients: [],
+                showHelpInfo: false,
                 showAddCredentialsContainer: false,
                 addCredentialsData: {
                     name: '',
@@ -310,7 +358,11 @@
 </script>
 
 <style lang="css">
-    .collection-header a, .edit-property-button, #close-add-credentials-container-button {
+    .collection-header a,
+    .edit-property-button,
+    #close-add-credentials-container-button,
+    #show-help-info-button,
+    #close-help-info-button {
         cursor: pointer;
     }
 
