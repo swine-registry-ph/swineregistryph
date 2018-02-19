@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Admin-related
-    Route::group(['prefix' => 'admin'], function(){
+    Route::group(['prefix' => 'admin'], function() {
 
         Route::get('/home', 'AdminController@index')->name('adminHome');
         Route::get('/view-registered-swine', 'AdminController@viewRegisteredSwine')->name('adminViewRegdSwine');
@@ -46,5 +46,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage/properties', 'ManageFieldsController@showManagePropertiesView')->name('showManagePropertiesView');
         Route::post('/manage/properties', 'ManageFieldsController@addProperty')->name('addProperty');
         Route::patch('/manage/properties', 'ManageFieldsController@updateProperty')->name('updateProperty');
+    });
+
+    // Override Laravel Passport routes
+    Route::group(['prefix' => 'oauth'], function() {
+        Route::post('/clients', 'PassportClientOverrideController@store');
+        Route::put('/clients/{client_id}', 'PassportClientOverrideController@update');
+        Route::delete('/clients/{client_id}', 'PassportClientOverrideController@destroy');
     });
 });
