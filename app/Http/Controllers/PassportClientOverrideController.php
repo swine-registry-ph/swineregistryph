@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\APICredentialsCreated;
+use App\Mail\APICredentialsUpdated;
+use App\Mail\APICredentialsRevoked;
 use Illuminate\Http\Request;
 use Laravel\Passport\Http\Controllers\ClientController;
+
+use Mail;
 
 class PassportClientOverrideController extends ClientController
 {
@@ -21,9 +26,17 @@ class PassportClientOverrideController extends ClientController
             'redirect' => 'required|url',
         ])->validate();
 
-        return $this->clients->create(
+
+        $client = $this->clients->create(
             $request->user()->getKey(), $request->name, $request->redirect
         )->makeVisible('secret');
+
+        // Email admin user
+        if($client) {
+            $this->sendEmail($request, $client, 'store');
+        }
+
+        return $client;
     }
 
     /**
@@ -47,9 +60,16 @@ class PassportClientOverrideController extends ClientController
             'redirect' => 'required|url',
         ])->validate();
 
-        return $this->clients->update(
+        $updatedClient = $this->clients->update(
             $client, $request->name, $request->redirect
         );
+
+        // Email admin user
+        if($updatedClient){
+            $this->sendEmail($request, $updatedClient, 'update');
+        }
+
+        return $updatedClient;
     }
 
     /**
@@ -68,8 +88,48 @@ class PassportClientOverrideController extends ClientController
             return new Response('', 404);
         }
 
+        // Email admin User
+        $this->sendEmail($request, $client, 'destroy');
+
         $this->clients->delete(
             $client
         );
+    }
+
+    /**
+     * Email admin user of actions made in
+     * managing API credentials
+     *
+     * @param  Request $request
+     * @param  array $client
+     * @param  string $process
+     * @return void
+     */
+    private function sendEmail($request, $client, $process)
+    {
+        // Prepare data needed
+        $clientDetails = [];
+        $clientDetails['name'] = $client->name;
+        $clientDetails['id'] = $client->id;
+        $clientDetails['secret'] = $client->secret;
+        $clientDetails['redirect'] = $client->redirect;
+
+        // Send email according to process
+        switch ($process) {
+            case 'store':
+                Mail::to($request->user())->send(new APICredentialsCreated($clientDetails));
+                break;
+
+            case 'update':
+                Mail::to($request->user())->send(new APICredentialsUpdated($clientDetails));
+                break;
+
+            case 'destroy':
+                Mail::to($request->user())->send(new APICredentialsRevoked($clientDetails));
+                break;
+
+            default:
+                break;
+        }
     }
 }

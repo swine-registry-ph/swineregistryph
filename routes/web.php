@@ -14,7 +14,8 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('auth.login');
+    if(Auth::guest()) return view('auth.login');
+    else return redirect('home');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -49,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Override Laravel Passport routes
-    Route::group(['prefix' => 'oauth'], function() {
+    Route::group(['prefix' => 'oauth', 'middleware' => 'role:admin'], function() {
         Route::post('/clients', 'PassportClientOverrideController@store');
         Route::put('/clients/{client_id}', 'PassportClientOverrideController@update');
         Route::delete('/clients/{client_id}', 'PassportClientOverrideController@destroy');

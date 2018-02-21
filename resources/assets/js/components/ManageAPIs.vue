@@ -26,27 +26,32 @@
                 </i>
             </div>
             <div class="col s12">
+                <blockquote class="">
+                    Note that the API credentials are for machine-to-machine communication. <br>
+                    See <a href="https://oauth.net/2/grant-types/client-credentials/">Client Credentials Grant</a>
+                    for more information.
+                </blockquote>
                 <pre>
-                    <code>
-                    1. After creating the client credentials, get your access token
-                        by making a POST request to 'http://breedregistry.test/oauth/token'
-                        w/ the following body data:
+<code>
+1. After the client credentials are created, get your access token
+    by making a POST request to 'http://breedregistry.test/oauth/token'
+    w/ the following body data:
 
-                        {
-                            grant_type: 'client_credentials',
-                            client_id: &lt;client_id&gt;,
-                            client_secret: &lt;client_secret&gt;
-                        }
+    {
+        grant_type: 'client_credentials',
+        client_id: &lt;client_id&gt;,
+        client_secret: &lt;client_secret&gt;
+    }
 
-                    2. Now when the access token is acquired, every request in our API should
-                        include and Authorization header with the acquired access token.
-                        For example, GET request to 'http://breedregistry.test/api/v1/swines'
-                        including the Authorization header:
+2. Now when the access token is acquired, every request in our API should
+    include and Authorization header with the acquired access token.
+    For example, GET request to 'http://breedregistry.test/api/v1/swines'
+    should include the following the Authorization header:
 
-                        {
-                            Authorization: Bearer &lt;access_token&gt;
-                        }
-                    </code>
+    {
+        Authorization: Bearer &lt;access_token&gt;
+    }
+</code>
                 </pre>
             </div>
         </div>
@@ -338,7 +343,7 @@
                     this.$nextTick(() => {
                         $('#delete-credentials-modal').modal('close');
 
-                        Materialize.toast('Credentials deleted', 2000, 'green lighten-1');
+                        Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
                     });
                 })
                 .catch((error) => {

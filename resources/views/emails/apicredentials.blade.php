@@ -21,7 +21,7 @@ $style = [
     /* Layout ------------------------------ */
 
     'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;',
-    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #00695c;',
+    'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #26a69a;',
 
     /* Masthead ----------------------- */
 
@@ -92,11 +92,7 @@ $style = [
                                                 @if ($level == 'error')
                                                     Whoops!
                                                 @else
-                                                    @if ($type == 0)
-                                                        Breeder Credentials
-                                                    @elseif ($type == 1)
-                                                        Spectator Credentials
-                                                    @endif
+
                                                 @endif
                                             @endif
                                         </h1>
@@ -137,12 +133,53 @@ $style = [
                                             </table>
                                         @endif
 
+                                        {{-- Client Credentials --}}
+                                        <p>
+                                            <pre>
+<code>
+CLIENT_NAME = {{ $clientName }}
+CLIENT_ID = {{ $clientId }}
+CLIENT_SECRET = {{ $clientSecret }}
+CLIENT_REDIRECT = {{ $clientRedirect }}
+</code>
+                                            </pre>
+                                        </p>
+
+                                        <!-- Instructions on using the client credentials -->
+                                        @if($process === 'create')
+                                            <p>
+                                                <pre>
+<code>
+1. After the client credentials are created, get your access token
+    by making a POST request to 'http://breedregistry.test/oauth/token'
+    w/ the following body data:
+
+    {
+        grant_type: 'client_credentials',
+        client_id: &lt;client_id&gt;,
+        client_secret: &lt;client_secret&gt;
+    }
+
+2. Now when the access token is acquired, every request in our API should
+    include and Authorization header with the acquired access token.
+    For example, GET request to 'http://breedregistry.test/api/v1/swines'
+    should include the following the Authorization header:
+
+    {
+        Authorization: Bearer &lt;access_token&gt;
+    }
+</code>
+                                                </pre>
+                                            </p>
+                                        @endif
+
                                         <!-- Outro -->
                                         @foreach ($outroLines as $line)
                                             <p style="{{ $style['paragraph'] }}">
                                                 {{ $line }}
                                             </p>
                                         @endforeach
+
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
@@ -181,7 +218,7 @@ $style = [
                                 <tr>
                                     <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">
                                         <p style="{{ $style['paragraph-sub-white'] }}">
-                                            Email: <a style="{{ $style['anchor-white'] }}" href="mailto:swinecommerceph@gmail.com" target="_blank">swinecommerceph@gmail.com</a> <br>
+                                            Email: <a style="{{ $style['anchor-white'] }}" href="mailto:swineregistryph@gmail.com" target="_blank">swineregistryph@gmail.com</a> <br>
                                             Contact: (049)536-2302 | (049)536-2313
                                         </p>
                                         <p style="{{ $style['paragraph-sub-white'] }}">

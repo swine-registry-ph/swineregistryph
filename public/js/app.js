@@ -4572,6 +4572,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -4703,7 +4708,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this4.$nextTick(function () {
                     $('#delete-credentials-modal').modal('close');
 
-                    Materialize.toast('Credentials deleted', 2000, 'green lighten-1');
+                    Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -4731,7 +4736,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v("\n            Manage API Credentials\n            "), _c('i', {
+  }, [_vm._v("\n                Manage API Credentials\n                "), _c('i', {
     staticClass: "material-icons tooltipped",
     attrs: {
       "id": "show-help-info-button",
@@ -4745,7 +4750,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showHelpInfo = !_vm.showHelpInfo
       }
     }
-  }, [_vm._v("\n                info_outline\n            ")])])]), _vm._v(" "), (_vm.showHelpInfo) ? _c('div', {
+  }, [_vm._v("\n                    info_outline\n                ")])])]), _vm._v(" "), (_vm.showHelpInfo) ? _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s12"
@@ -4760,7 +4765,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showHelpInfo = !_vm.showHelpInfo
       }
     }
-  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _vm._m(0)]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                    close\n                ")])]), _vm._v(" "), _vm._m(0)]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('ul', {
     staticClass: "collection with-header"
@@ -4806,7 +4811,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
       }
     }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s4 offset-s4"
   }, [_c('input', {
     directives: [{
@@ -4873,7 +4878,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addCredentials()
       }
     }
-  }, [_vm._v("\n                            Submit\n                            "), _c('i', {
+  }, [_vm._v("\n                                Submit\n                                "), _c('i', {
     staticClass: "material-icons right"
   }, [_vm._v("send")])])])])]), _vm._v(" "), (_vm.clients.length < 1) ? _c('li', {
     staticClass: "collection-item avatar center-align"
@@ -4886,7 +4891,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "title"
     }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                    CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                    CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                    Redirect: " + _vm._s(client.redirect) + "\n                ")]), _vm._v(" "), _c('span', {
+    }, [_vm._v("\n                        CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                        CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                        Redirect: " + _vm._s(client.redirect) + "\n                    ")]), _vm._v(" "), _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "edit-credentials-button",
@@ -4994,7 +4999,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateCredentials($event)
       }
     }
-  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                    Update\n                ")])])]), _vm._v(" "), _c('div', {
     staticClass: "modal modal-fixed-footer",
     attrs: {
       "id": "delete-credentials-modal"
@@ -5003,7 +5008,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-content"
   }, [_c('h4', [_vm._v("Delete Credentials")]), _vm._v(" "), _c('p'), _c('blockquote', {
     staticClass: "error"
-  }, [_vm._v("\n                    THIS ACTION CANNOT BE UNDONE.\n                ")]), _vm._v("\n                Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                        THIS ACTION CANNOT BE UNDONE.\n                    ")]), _vm._v("\n                    Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer"
   }, [_c('a', {
     staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
@@ -5021,15 +5026,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.deleteCredentials($event)
       }
     }
-  }, [_vm._v("\n                Delete\n            ")])])])])
+  }, [_vm._v("\n                    Delete\n                ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('pre', [_vm._v("                "), _c('code', [_vm._v("\n                1. After creating the client credentials, get your access token\n                    by making a POST request to 'http://breedregistry.test/oauth/token'\n                    w/ the following body data:\n\n                    {\n                        grant_type: 'client_credentials',\n                        client_id: <client_id>,\n                        client_secret: <client_secret>\n                    }\n\n                2. Now when the access token is acquired, every request in our API should\n                    include and Authorization header with the acquired access token.\n                    For example, GET request to 'http://breedregistry.test/api/v1/swines'\n                    including the Authorization header:\n\n                    {\n                        Authorization: Bearer <access_token>\n                    }\n                ")]), _vm._v("\n            ")])])
+  }, [_c('blockquote', {}, [_vm._v("\n                    Note that the API credentials are for machine-to-machine communication. "), _c('br'), _vm._v("\n                    See "), _c('a', {
+    attrs: {
+      "href": "https://oauth.net/2/grant-types/client-credentials/"
+    }
+  }, [_vm._v("Client Credentials Grant")]), _vm._v("\n                    for more information.\n                ")]), _vm._v(" "), _c('pre', [_c('code', [_vm._v("\n1. After the client credentials are created, get your access token\n    by making a POST request to 'http://breedregistry.test/oauth/token'\n    w/ the following body data:\n\n    {\n        grant_type: 'client_credentials',\n        client_id: <client_id>,\n        client_secret: <client_secret>\n    }\n\n2. Now when the access token is acquired, every request in our API should\n    include and Authorization header with the acquired access token.\n    For example, GET request to 'http://breedregistry.test/api/v1/swines'\n    should include the following the Authorization header:\n\n    {\n        Authorization: Bearer <access_token>\n    }\n")]), _vm._v("\n                ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s4 offset-s4"
-  }, [_c('blockquote', {}, [_vm._v("\n                            Note that the Client ID and Secret will be sent to your email as well.\n                        ")])])
+  }, [_c('blockquote', {}, [_vm._v("\n                                Note that the Client ID and Secret will be sent to your email as well.\n                            ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

@@ -7,12 +7,12 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class APICredentialsCreated extends Mailable
+class APICredentialsRevoked extends Mailable
 {
     use Queueable, SerializesModels;
 
     protected $client;
-    protected $process = 'create';
+    protected $process = 'revoke';
 
     /**
      * Create a new message instance.
@@ -34,11 +34,14 @@ class APICredentialsCreated extends Mailable
      */
     public function build()
     {
-        $introLines = ['Client API credentials successfully created!'];
-        $outroLines = ['Make sure to store your credentials in a safe location.'];
+        $introLines = [
+            "Client credentals for {$this->client['name']} revoked.",
+            'The following credentials are revoked:'
+        ];
+        $outroLines = [];
 
         return $this->view('emails.apicredentials')
-                    ->subject('Breed Registry API Credentials')
+                    ->subject('Breed Registry API Credentials Revoked')
                     ->with([
                         'level' => 'success',
                         'process' => $this->process,
