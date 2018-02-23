@@ -156,8 +156,8 @@ CLIENT_REDIRECT = {{ $clientRedirect }}
 
     {
         grant_type: 'client_credentials',
-        client_id: &lt;client_id&gt;,
-        client_secret: &lt;client_secret&gt;
+        client_id: {{ $clientId }},
+        client_secret: {{ $clientSecret }}
     }
 
 2. Now when the access token is acquired, every request in our API should

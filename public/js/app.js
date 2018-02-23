@@ -4586,7 +4586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             showAddCredentialsContainer: false,
             addCredentialsData: {
                 name: '',
-                redirect: ''
+                redirect: 'http://localhost/callback'
             },
             editCredentialsData: {
                 index: -1,
@@ -4613,8 +4613,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        addCredentials: function addCredentials() {
+        addCredentials: function addCredentials(event) {
             var _this2 = this;
+
+            var addButtons = $('.add-credentials-button');
+
+            this.disableButtons(addButtons, event.target, 'Adding...');
 
             // Add to server's database
             axios.post('/oauth/clients', {
@@ -4632,6 +4636,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.$nextTick(function () {
                     $('#add-credentials-name').removeClass('valid');
                     $('#add-credentials-redirect').removeClass('valid');
+
+                    _this2.enableButtons(addButtons, event.target, 'Submit <i class="material-icons right">send</i>');
 
                     Materialize.updateTextFields();
                     Materialize.toast('Credentials added', 2000, 'green lighten-1');
@@ -4652,10 +4658,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 Materialize.updateTextFields();
             });
         },
-        updateCredentials: function updateCredentials() {
+        updateCredentials: function updateCredentials(event) {
             var _this3 = this;
 
             var index = this.editCredentialsData.index;
+            var updateButtons = $('.update-credentials-button');
+
+            this.disableButtons(updateButtons, event.target, 'Updating...');
 
             // Update to server's database
             axios.put('/oauth/clients/' + this.editCredentialsData.id, {
@@ -4678,6 +4687,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#edit-credentials-modal').modal('close');
                     $('#add-credentials-name').removeClass('valid');
                     $('#add-credentials-redirect').removeClass('valid');
+                    _this3.enableButtons(updateButtons, event.target, 'Update');
 
                     Materialize.updateTextFields();
                     Materialize.toast('Credentials updated', 2000, 'green lighten-1');
@@ -4694,10 +4704,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             $('#delete-credentials-modal').modal('open');
         },
-        deleteCredentials: function deleteCredentials() {
+        deleteCredentials: function deleteCredentials(event) {
             var _this4 = this;
 
             var index = this.deleteCredentialsData.index;
+            var deleteButtons = $('.delete-credentials-button');
+
+            this.disableButtons(deleteButtons, event.target, 'Deleting...');
 
             // Delete from server's database
             axios.delete('/oauth/clients/' + this.deleteCredentialsData.id).then(function (response) {
@@ -4707,18 +4720,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Update UI after deleting credentials
                 _this4.$nextTick(function () {
                     $('#delete-credentials-modal').modal('close');
+                    _this4.enableButtons(deleteButtons, event.target, 'Delete');
 
                     Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
                 });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
     },
 
     mounted: function mounted() {
         // Materialize component initializations
-        $('.modal').modal();
+        $('.modal').modal({
+            dismissible: false
+        });
 
         // Initialize data
         this.getClients();
@@ -4868,14 +4892,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Redirect")])]), _vm._v(" "), _c('div', {
     staticClass: "col s4 offset-s4"
   }, [_c('a', {
-    staticClass: "right btn",
+    staticClass: "right btn add-credentials-button",
     attrs: {
       "href": "#!"
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.addCredentials()
+        _vm.addCredentials($event)
       }
     }
   }, [_vm._v("\n                                Submit\n                                "), _c('i', {
@@ -4984,12 +5008,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Redirect")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer"
   }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat update-credentials-button",
     attrs: {
       "href": "#!"
     }
   }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action waves-effect waves-green btn-flat",
+    staticClass: "modal-action waves-effect waves-green btn-flat update-credentials-button",
     attrs: {
       "href": "#!"
     },
@@ -5011,12 +5035,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n                        THIS ACTION CANNOT BE UNDONE.\n                    ")]), _vm._v("\n                    Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer"
   }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat delete-credentials-button",
     attrs: {
       "href": "#!"
     }
   }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action waves-effect waves-green btn-flat",
+    staticClass: "modal-action waves-effect waves-green btn-flat delete-credentials-button",
     attrs: {
       "href": "#!"
     },

@@ -104,9 +104,9 @@
                             <label for="add-credentials-redirect">Redirect</label>
                         </div>
                         <div class="col s4 offset-s4">
-                            <a @click.prevent="addCredentials()"
+                            <a @click.prevent="addCredentials($event)"
                                 href="#!"
-                                class="right btn"
+                                class="right btn add-credentials-button"
                             >
                                 Submit
                                 <i class="material-icons right">send</i>
@@ -175,10 +175,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                <a @click.prevent="updateCredentials"
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat update-credentials-button">Close</a>
+                <a @click.prevent="updateCredentials($event)"
                     href="#!"
-                    class="modal-action waves-effect waves-green btn-flat"
+                    class="modal-action waves-effect waves-green btn-flat update-credentials-button"
                 >
                     Update
                 </a>
@@ -197,10 +197,10 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                <a @click.prevent="deleteCredentials"
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat delete-credentials-button">Close</a>
+                <a @click.prevent="deleteCredentials($event)"
                     href="#!"
-                    class="modal-action waves-effect waves-green btn-flat"
+                    class="modal-action waves-effect waves-green btn-flat delete-credentials-button"
                 >
                     Delete
                 </a>
@@ -218,7 +218,7 @@
                 showAddCredentialsContainer: false,
                 addCredentialsData: {
                     name: '',
-                    redirect: ''
+                    redirect: 'http://localhost/callback'
                 },
                 editCredentialsData: {
                     index: -1,
@@ -245,7 +245,11 @@
                 });
             },
 
-            addCredentials() {
+            addCredentials(event) {
+                const addButtons = $('.add-credentials-button');
+
+                this.disableButtons(addButtons, event.target, 'Adding...');
+
                 // Add to server's database
                 axios.post('/oauth/clients', {
                     name: this.addCredentialsData.name,
@@ -263,6 +267,8 @@
                     this.$nextTick(() => {
                         $('#add-credentials-name').removeClass('valid');
                         $('#add-credentials-redirect').removeClass('valid');
+
+                        this.enableButtons(addButtons, event.target, 'Submit <i class="material-icons right">send</i>');
 
                         Materialize.updateTextFields();
                         Materialize.toast('Credentials added', 2000, 'green lighten-1');
@@ -286,8 +292,11 @@
                 });
             },
 
-            updateCredentials() {
+            updateCredentials(event) {
                 const index = this.editCredentialsData.index;
+                const updateButtons = $('.update-credentials-button');
+
+                this.disableButtons(updateButtons, event.target, 'Updating...');
 
                 // Update to server's database
                 axios.put(`/oauth/clients/${this.editCredentialsData.id}`, {
@@ -311,6 +320,7 @@
                         $('#edit-credentials-modal').modal('close');
                         $('#add-credentials-name').removeClass('valid');
                         $('#add-credentials-redirect').removeClass('valid');
+                        this.enableButtons(updateButtons, event.target, 'Update');
 
                         Materialize.updateTextFields();
                         Materialize.toast('Credentials updated', 2000, 'green lighten-1');
@@ -330,8 +340,11 @@
                 $('#delete-credentials-modal').modal('open');
             },
 
-            deleteCredentials() {
+            deleteCredentials(event) {
                 const index = this.deleteCredentialsData.index;
+                const deleteButtons = $('.delete-credentials-button');
+
+                this.disableButtons(deleteButtons, event.target, 'Deleting...');
 
                 // Delete from server's database
                 axios.delete(`/oauth/clients/${this.deleteCredentialsData.id}`)
@@ -342,6 +355,7 @@
                     // Update UI after deleting credentials
                     this.$nextTick(() => {
                         $('#delete-credentials-modal').modal('close');
+                        this.enableButtons(deleteButtons, event.target, 'Delete');
 
                         Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
                     });
@@ -349,12 +363,24 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
             }
         },
 
         mounted() {
             // Materialize component initializations
-            $('.modal').modal();
+            $('.modal').modal({
+                dismissible: false
+            });
 
             // Initialize data
             this.getClients();
