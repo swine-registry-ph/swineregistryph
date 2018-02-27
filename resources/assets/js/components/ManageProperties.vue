@@ -9,7 +9,7 @@
             <ul class="collection with-header">
                 <!-- Toggle add breed container button -->
                 <li class="collection-header">
-                    <a @click.prevent="toggleAddPropertyContainer()"
+                    <a @click.prevent="showAddPropertyContainer = !showAddPropertyContainer"
                         href="#!"
                         id="toggle-add-property-container-button"
                         class="btn-floating waves-effect waves-light tooltipped"
@@ -21,10 +21,10 @@
                     </a>
                 </li>
                 <!-- Add property container -->
-                <li v-show="showAddPropertyInput" class="collection-item">
+                <li v-show="showAddPropertyContainer" class="collection-item">
                     <div class="row">
                         <div class="col s12">
-                            <i @click.prevent="toggleAddPropertyContainer()"
+                            <i @click.prevent="showAddPropertyContainer = !showAddPropertyContainer"
                                 id="close-add-property-container-button"
                                 class="material-icons right"
                             >
@@ -85,7 +85,7 @@
 
                     <a @click.prevent="toggleEditPropertyModal(index)"
                         href="#"
-                        class="secondary-content edit-property-button"
+                        class="secondary-content edit-property-button light-blue-text text-darken-1"
                     >
                         <i class="material-icons">edit</i>
                     </a>
@@ -145,7 +145,7 @@
         data() {
             return {
                 properties: this.initialProperties,
-                showAddPropertyInput: false,
+                showAddPropertyContainer: false,
                 addPropertyData: {
                     slug: '',
                     property: '',
@@ -162,10 +162,6 @@
         },
 
         methods: {
-            toggleAddPropertyContainer() {
-                this.showAddPropertyInput = !this.showAddPropertyInput;
-            },
-
             addProperty() {
                 const vm = this;
 
@@ -184,7 +180,7 @@
                         definition: ''
                     };
 
-                    // Update UI after adding breed
+                    // Update UI after adding property
                     vm.$nextTick(() => {
                         $('#add-property').removeClass('valid');
                         $('#add-slug').removeClass('valid');
@@ -223,7 +219,7 @@
                     definition: vm.editPropertyData.definition
                 })
                 .then((response) => {
-                    // Update local data storage and erase editing of breed data
+                    // Update local data storage and erase editing of property data
                     if(response.data === 'OK'){
                         vm.properties[index].definition = vm.editPropertyData.definition;
                         vm.editPropertyData = {
@@ -235,7 +231,7 @@
                         };
                     }
 
-                    // Update UI after updating breed
+                    // Update UI after updating property
                     vm.$nextTick(() => {
                         $('#edit-property-modal').modal('close');
                         $('#add-property').removeClass('valid');

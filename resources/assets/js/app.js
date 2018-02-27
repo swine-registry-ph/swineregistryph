@@ -27,6 +27,7 @@ Vue.component('registered-swine', require('./components/RegisteredSwine.vue'));
 // Admin
 Vue.component('manage-breeds', require('./components/ManageBreeds.vue'));
 Vue.component('manage-properties', require('./components/ManageProperties.vue'));
+Vue.component('manage-apis', require('./components/ManageAPIs.vue'));
 
 // For main container
 const app = new Vue({
@@ -44,6 +45,7 @@ const nav = new Vue({
                 manageAccreditedFarms: false,
                 showManagePropertiesView: false,
                 showManageBreedsView: false,
+                manageAPIsView: false,
                 reports: false
             },
             breeder: {
@@ -64,6 +66,10 @@ const nav = new Vue({
         switch (location.pathname) {
             case '/admin/view-registered-swine':
                 this.currentRoute.admin.adminViewRegdSwine = true;
+                break;
+
+            case '/admin/manage/apis':
+                this.currentRoute.admin.manageAPIsView = true;
                 break;
 
             case '/admin/manage/properties':
