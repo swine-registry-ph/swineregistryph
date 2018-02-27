@@ -16,20 +16,26 @@
                 <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
             </div>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.admin.adminViewRegdSwine }">
             <a href="{{ route('adminViewRegdSwine') }}"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.admin.manageAccreditedFarms }">
             <a href="#!"> <i class="material-icons">store</i> Manage Accredited Farms </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.admin.showManagePropertiesView }">
             <a href="{{ route('showManagePropertiesView') }}"> <i class="material-icons">list</i> Manage Properties </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.admin.showManageBreedsView }">
             <a href="{{ route('showManageBreedsView') }}"> <i class="material-icons">toc</i> Manage Breeds </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.admin.manageAPIsView }">
+            <a href="{{ route('manageAPIsView') }}"> <i class="material-icons">build</i> Manage API Credentials </a>
+        </li>
+        <li :class="{ active : currentRoute.admin.reports }">
             <a href="#!"> <i class="material-icons">description</i> Reports </a>
+        </li>
+        <li class="hide-on-large-only show-on-medium-and-down">
+            <div class="divider"></div>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

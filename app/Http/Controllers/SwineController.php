@@ -87,6 +87,16 @@ class SwineController extends Controller
     }
 
     /**
+     * View Registry Certicate
+     *
+     * @return  View
+     */
+    public function viewRegistryCertificate()
+    {
+        return view('users.breeder.registryCertificate');
+    }
+
+    /**
      * Get Swine according to registration number
      *
      * @param   Request     $request

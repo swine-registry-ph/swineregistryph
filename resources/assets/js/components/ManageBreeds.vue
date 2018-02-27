@@ -58,7 +58,7 @@
                     <span >
                         <a @click.prevent="toggleEditBreedModal(index)"
                             href="#"
-                            class="secondary-content edit-breed-button"
+                            class="secondary-content edit-breed-button light-blue-text text-darken-1"
                         >
                             <i class="material-icons">edit</i>
                         </a>
@@ -134,7 +134,7 @@ export default {
                 // Update UI after adding breed
                 vm.$nextTick(() => {
                     $('#breed-title').removeClass('valid');
-                    
+
                     Materialize.updateTextFields();
                     Materialize.toast('Breed added', 2000, 'green lighten-1');
                 });

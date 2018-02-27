@@ -39,4 +39,14 @@ class AdminController extends Controller
         return view('users.admin.dashboard', compact('farms'));
     }
 
+    /**
+     * View and manage client ids and secrets
+     *
+     * @return View
+     */
+    public function viewManageAPIs()
+    {
+        return view('users.admin.manageAPIs');
+    }
+
 }

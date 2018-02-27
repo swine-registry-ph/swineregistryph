@@ -9,7 +9,7 @@
             <ul class="collection with-header">
                 <!-- Toggle add breed container button -->
                 <li class="collection-header">
-                    <a @click.prevent="toggleAddPropertyContainer()"
+                    <a @click.prevent="showAddPropertyContainer = !showAddPropertyContainer"
                         href="#!"
                         id="toggle-add-property-container-button"
                         class="btn-floating waves-effect waves-light tooltipped"
@@ -21,15 +21,21 @@
                     </a>
                 </li>
                 <!-- Add property container -->
-                <li v-show="showAddPropertyInput" class="collection-item">
+                <li v-show="showAddPropertyContainer" class="collection-item">
                     <div class="row">
                         <div class="col s12">
-                            <i @click.prevent="toggleAddPropertyContainer()"
+                            <i @click.prevent="showAddPropertyContainer = !showAddPropertyContainer"
                                 id="close-add-property-container-button"
                                 class="material-icons right"
                             >
                                 close
                             </i>
+                        </div>
+                        <div class="col s4 offset-s4">
+                            <blockquote class="">
+                                Note that Property and Slug fields cannot be edited once
+                                it has been submitted already.
+                            </blockquote>
                         </div>
                         <div class="input-field col s4 offset-s4">
                             <input v-model="addPropertyData.property"
@@ -79,7 +85,7 @@
 
                     <a @click.prevent="toggleEditPropertyModal(index)"
                         href="#"
-                        class="secondary-content edit-property-button"
+                        class="secondary-content edit-property-button light-blue-text text-darken-1"
                     >
                         <i class="material-icons">edit</i>
                     </a>
@@ -97,7 +103,7 @@
                         <input v-model="editPropertyData.property"
                             id="edit-property"
                             type="text"
-                            class="validate"
+                            disabled
                         >
                         <label for="edit-property">Property</label>
                     </div>
@@ -105,7 +111,7 @@
                         <input v-model="editPropertyData.slug"
                             id="edit-slug"
                             type="text"
-                            class="validate"
+                            disabled
                         >
                         <label for="edit-slug">Slug</label>
                     </div>
@@ -133,129 +139,129 @@
 </template>
 
 <script>
-export default {
-    props: ['initialProperties'],
+    export default {
+        props: ['initialProperties'],
 
-    data() {
-        return {
-            properties: this.initialProperties,
-            showAddPropertyInput: false,
-            addPropertyData: {
-                slug: '',
-                property: '',
-                definition: ''
-            },
-            editPropertyData: {
-                index: -1,
-                id: 0,
-                slug: '',
-                property: '',
-                definition: ''
-            }
-        }
-    },
-
-    methods: {
-        toggleAddPropertyContainer() {
-            this.showAddPropertyInput = !this.showAddPropertyInput;
-        },
-
-        addProperty() {
-            const vm = this;
-
-            // Add to server's database
-            axios.post('/admin/manage/properties', {
-                slug: vm.addPropertyData.slug,
-                property: vm.addPropertyData.property,
-                definition: vm.addPropertyData.definition,
-            })
-            .then((response) => {
-                // Put response in local data storage and erase adding of property data
-                vm.properties.push(response.data);
-                vm.addPropertyData = {
+        data() {
+            return {
+                properties: this.initialProperties,
+                showAddPropertyContainer: false,
+                addPropertyData: {
                     slug: '',
                     property: '',
                     definition: ''
-                };
-
-                // Update UI after adding breed
-                vm.$nextTick(() => {
-                    $('#add-property').removeClass('valid');
-                    $('#add-slug').removeClass('valid');
-                    $('#add-definition').removeClass('valid');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Property added', 2000, 'green lighten-1');
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                },
+                editPropertyData: {
+                    index: -1,
+                    id: 0,
+                    slug: '',
+                    property: '',
+                    definition: ''
+                }
+            }
         },
 
-        toggleEditPropertyModal(index) {
-            // Initialize data for editing
-            this.editPropertyData.index = index;
-            this.editPropertyData.id = this.properties[index].id;
-            this.editPropertyData.slug = this.properties[index].slug;
-            this.editPropertyData.property = this.properties[index].property;
-            this.editPropertyData.definition = this.properties[index].definition;
+        methods: {
+            addProperty() {
+                const vm = this;
 
-            $('#edit-property-modal').modal('open');
-            this.$nextTick(() => {
-                Materialize.updateTextFields();
-            });
-        },
-
-        updateProperty() {
-            const vm = this;
-            const index = this.editPropertyData.index;
-
-            // Update to server's database
-            axios.patch('/admin/manage/properties', {
-                propertyId: vm.editPropertyData.id,
-                slug: vm.editPropertyData.slug,
-                property: vm.editPropertyData.property,
-                definition: vm.editPropertyData.definition,
-            })
-            .then((response) => {
-                // Update local data storage and erase editing of breed data
-                if(response.data === 'OK'){
-                    vm.properties[index].slug = vm.editPropertyData.slug;
-                    vm.properties[index].property = vm.editPropertyData.property;
-                    vm.properties[index].definition = vm.editPropertyData.definition;
-                    vm.editPropertyData = {
-                        index: -1,
-                        id: 0,
+                // Add to server's database
+                axios.post('/admin/manage/properties', {
+                    slug: vm.addPropertyData.slug,
+                    property: vm.addPropertyData.property,
+                    definition: vm.addPropertyData.definition,
+                })
+                .then((response) => {
+                    // Put response in local data storage and erase adding of property data
+                    vm.properties.push(response.data);
+                    vm.addPropertyData = {
                         slug: '',
                         property: '',
                         definition: ''
                     };
-                }
 
-                // Update UI after updating breed
-                vm.$nextTick(() => {
-                    $('#edit-property-modal').modal('close');
-                    $('#add-property').removeClass('valid');
-                    $('#add-slug').removeClass('valid');
-                    $('#add-definition').removeClass('valid');
+                    // Update UI after adding property
+                    vm.$nextTick(() => {
+                        $('#add-property').removeClass('valid');
+                        $('#add-slug').removeClass('valid');
+                        $('#add-definition').removeClass('valid');
 
-                    Materialize.updateTextFields();
-                    Materialize.toast('Property updated', 2000, 'green lighten-1');
+                        Materialize.updateTextFields();
+                        Materialize.toast('Property added', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
-            })
-            .catch((error) => {
-                console.log(error);
+            },
+
+            toggleEditPropertyModal(index) {
+                // Initialize data for editing
+                this.editPropertyData.index = index;
+                this.editPropertyData.id = this.properties[index].id;
+                this.editPropertyData.slug = this.properties[index].slug;
+                this.editPropertyData.property = this.properties[index].property;
+                this.editPropertyData.definition = this.properties[index].definition;
+
+                $('#edit-property-modal').modal('open');
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                });
+            },
+
+            updateProperty() {
+                const vm = this;
+                const index = this.editPropertyData.index;
+
+                // Update to server's database
+                axios.patch('/admin/manage/properties', {
+                    propertyId: vm.editPropertyData.id,
+                    definition: vm.editPropertyData.definition
+                })
+                .then((response) => {
+                    // Update local data storage and erase editing of property data
+                    if(response.data === 'OK'){
+                        vm.properties[index].definition = vm.editPropertyData.definition;
+                        vm.editPropertyData = {
+                            index: -1,
+                            id: 0,
+                            slug: '',
+                            property: '',
+                            definition: ''
+                        };
+                    }
+
+                    // Update UI after updating property
+                    vm.$nextTick(() => {
+                        $('#edit-property-modal').modal('close');
+                        $('#add-property').removeClass('valid');
+                        $('#add-slug').removeClass('valid');
+                        $('#add-definition').removeClass('valid');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Property updated', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+
+        },
+
+        mounted() {
+            // Materialize component initializations
+            $('.modal').modal();
+
+            // Watch the respective property to produce a default slug
+            this.$watch('addPropertyData.property', (newValue) => {
+                this.addPropertyData.slug = _.snakeCase(newValue);
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                });
             });
         }
-
-    },
-
-    mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
     }
-}
 </script>
 
 <style lang="css">

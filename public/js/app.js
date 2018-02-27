@@ -3,6 +3,103 @@ webpackJsonp([0],[
 /* 1 */
 /***/ (function(module, exports) {
 
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
@@ -82,9 +179,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -305,6 +400,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
+/* 4 */,
 /* 5 */,
 /* 6 */,
 /* 7 */,
@@ -322,7 +418,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(75);
+module.exports = __webpack_require__(85);
 
 
 /***/ }),
@@ -357,7 +453,8 @@ Vue.component('registered-swine', __webpack_require__(65));
 
 // Admin
 Vue.component('manage-breeds', __webpack_require__(70));
-Vue.component('manage-properties', __webpack_require__(91));
+Vue.component('manage-properties', __webpack_require__(75));
+Vue.component('manage-apis', __webpack_require__(80));
 
 // For main container
 var app = new Vue({
@@ -368,9 +465,60 @@ var app = new Vue({
 var nav = new Vue({
     el: '#custom-nav',
 
+    data: {
+        currentRoute: {
+            admin: {
+                adminViewRegdSwine: false,
+                manageAccreditedFarms: false,
+                showManagePropertiesView: false,
+                showManageBreedsView: false,
+                manageAPIsView: false,
+                reports: false
+            },
+            breeder: {
+                showRegForm: false,
+                viewRegdSwine: false,
+                viewSwinePedigree: false,
+                manageFarms: false,
+                reports: false
+            }
+        }
+    },
+
     mounted: function mounted() {
         // Initialize side navigation
         $(".button-collapse").sideNav();
+
+        // Initialize side navigation active link
+        switch (location.pathname) {
+            case '/admin/view-registered-swine':
+                this.currentRoute.admin.adminViewRegdSwine = true;
+                break;
+
+            case '/admin/manage/apis':
+                this.currentRoute.admin.manageAPIsView = true;
+                break;
+
+            case '/admin/manage/properties':
+                this.currentRoute.admin.showManagePropertiesView = true;
+                break;
+
+            case '/admin/manage/breeds':
+                this.currentRoute.admin.showManageBreedsView = true;
+                break;
+
+            case '/breeder/manage-swine/register':
+                this.currentRoute.breeder.showRegForm = true;
+                break;
+
+            case '/breeder/manage-swine/view':
+                this.currentRoute.breeder.viewRegdSwine = true;
+                break;
+
+            default:
+                break;
+
+        }
     }
 });
 
@@ -387,7 +535,7 @@ window._ = __webpack_require__(6);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(2);
+  window.$ = window.jQuery = __webpack_require__(4);
 
   __webpack_require__(9);
 } catch (e) {}
@@ -727,7 +875,7 @@ var content = __webpack_require__(50);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("65934be6", content, false);
+var update = __webpack_require__(3)("65934be6", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -746,7 +894,7 @@ if(false) {
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
@@ -1953,7 +2101,7 @@ var content = __webpack_require__(62);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("19c472a0", content, false);
+var update = __webpack_require__(3)("19c472a0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -1972,7 +2120,7 @@ if(false) {
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
@@ -1988,6 +2136,11 @@ exports.push([module.i, "\n.tab a.active {\n    color: #c62828 !important;\n}\n.
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2242,7 +2395,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s10 offset-s1"
-  }, [_c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "row",
     staticStyle: {
       "margin-bottom": "0"
@@ -2258,7 +2411,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('ul', {
     staticClass: "tabs tabs-fixed-width z-depth-2"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('li', {
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('li', {
     staticClass: "tab col s2",
     class: {
       'disabled': _vm.tabDisables.gpSire
@@ -2435,7 +2588,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "basicInfo.farmFrom"
     }
-  })], 1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('p')])])]), _vm._v(" "), _c('swine-properties', {
+  })], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('p')])])]), _vm._v(" "), _c('swine-properties', {
     attrs: {
       "category": "gp-1",
       "data": ""
@@ -2473,6 +2626,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Register Swine ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
     staticClass: "tab col s3"
   }, [_c('a', {
@@ -2556,7 +2715,7 @@ var content = __webpack_require__(67);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("e23056ce", content, false);
+var update = __webpack_require__(3)("e23056ce", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -2575,7 +2734,7 @@ if(false) {
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
@@ -2591,6 +2750,8 @@ exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -2961,7 +3122,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('p', [_c('br')])])
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" View Registered Swine ")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("Certificate "), _c('i', {
     staticClass: "material-icons right modal-close"
@@ -3052,7 +3217,7 @@ var content = __webpack_require__(72);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("1d84065b", content, false);
+var update = __webpack_require__(3)("1d84065b", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -3071,7 +3236,7 @@ if(false) {
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
@@ -3379,7 +3544,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       staticClass: "collection-item"
     }, [_vm._v("\n                " + _vm._s(breed.title) + "\n                "), _c('span', [_c('a', {
-      staticClass: "secondary-content edit-breed-button",
+      staticClass: "secondary-content edit-breed-button light-blue-text text-darken-1",
       attrs: {
         "href": "#"
       },
@@ -3464,39 +3629,18 @@ if (false) {
 
 /***/ }),
 /* 75 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(92)
+  __webpack_require__(76)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(94),
+  __webpack_require__(78),
   /* template */
-  __webpack_require__(95),
+  __webpack_require__(79),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3528,17 +3672,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(93);
+var content = __webpack_require__(77);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("54278d57", content, false);
+var update = __webpack_require__(3)("54278d57", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -3554,10 +3698,10 @@ if(false) {
 }
 
 /***/ }),
-/* 93 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
@@ -3568,11 +3712,17 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 
 /***/ }),
-/* 94 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3714,7 +3864,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             properties: this.initialProperties,
-            showAddPropertyInput: false,
+            showAddPropertyContainer: false,
             addPropertyData: {
                 slug: '',
                 property: '',
@@ -3732,9 +3882,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        toggleAddPropertyContainer: function toggleAddPropertyContainer() {
-            this.showAddPropertyInput = !this.showAddPropertyInput;
-        },
         addProperty: function addProperty() {
             var vm = this;
 
@@ -3752,7 +3899,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     definition: ''
                 };
 
-                // Update UI after adding breed
+                // Update UI after adding property
                 vm.$nextTick(function () {
                     $('#add-property').removeClass('valid');
                     $('#add-slug').removeClass('valid');
@@ -3785,14 +3932,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Update to server's database
             axios.patch('/admin/manage/properties', {
                 propertyId: vm.editPropertyData.id,
-                slug: vm.editPropertyData.slug,
-                property: vm.editPropertyData.property,
                 definition: vm.editPropertyData.definition
             }).then(function (response) {
-                // Update local data storage and erase editing of breed data
+                // Update local data storage and erase editing of property data
                 if (response.data === 'OK') {
-                    vm.properties[index].slug = vm.editPropertyData.slug;
-                    vm.properties[index].property = vm.editPropertyData.property;
                     vm.properties[index].definition = vm.editPropertyData.definition;
                     vm.editPropertyData = {
                         index: -1,
@@ -3803,7 +3946,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     };
                 }
 
-                // Update UI after updating breed
+                // Update UI after updating property
                 vm.$nextTick(function () {
                     $('#edit-property-modal').modal('close');
                     $('#add-property').removeClass('valid');
@@ -3820,13 +3963,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     mounted: function mounted() {
+        var _this = this;
+
         // Materialize component initializations
         $('.modal').modal();
+
+        // Watch the respective property to produce a default slug
+        this.$watch('addPropertyData.property', function (newValue) {
+            _this.addPropertyData.slug = _.snakeCase(newValue);
+            _this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        });
     }
 });
 
 /***/ }),
-/* 95 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3850,7 +4003,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.toggleAddPropertyContainer()
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
       }
     }
   }, [_c('i', {
@@ -3859,8 +4012,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.showAddPropertyInput),
-      expression: "showAddPropertyInput"
+      value: (_vm.showAddPropertyContainer),
+      expression: "showAddPropertyContainer"
     }],
     staticClass: "collection-item"
   }, [_c('div', {
@@ -3875,10 +4028,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.toggleAddPropertyContainer()
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
       }
     }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s4 offset-s4"
   }, [_c('input', {
     directives: [{
@@ -3982,7 +4135,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(" " + _vm._s(property.property) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
     }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('a', {
-      staticClass: "secondary-content edit-property-button",
+      staticClass: "secondary-content edit-property-button light-blue-text text-darken-1",
       attrs: {
         "href": "#"
       },
@@ -4013,10 +4166,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.editPropertyData.property),
       expression: "editPropertyData.property"
     }],
-    staticClass: "validate",
     attrs: {
       "id": "edit-property",
-      "type": "text"
+      "type": "text",
+      "disabled": ""
     },
     domProps: {
       "value": (_vm.editPropertyData.property)
@@ -4040,10 +4193,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.editPropertyData.slug),
       expression: "editPropertyData.slug"
     }],
-    staticClass: "validate",
     attrs: {
       "id": "edit-slug",
-      "type": "text"
+      "type": "text",
+      "disabled": ""
     },
     domProps: {
       "value": (_vm.editPropertyData.slug)
@@ -4110,6 +4263,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Manage Properties ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('blockquote', {}, [_vm._v("\n                            Note that Property and Slug fields cannot be edited once\n                            it has been submitted already.\n                        ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -4118,6 +4275,808 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
   }
 }
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(81)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(83),
+  /* template */
+  __webpack_require__(84),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageAPIs.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageAPIs.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-13cd11b7", Component.options)
+  } else {
+    hotAPI.reload("data-v-13cd11b7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(82);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("2090536a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a,\n.edit-property-button,\n#close-add-credentials-container-button,\n#show-help-info-button,\n#close-help-info-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal {\n    width: 40rem;\n    height: 23rem;\n}\nblockquote.error{\n\tborder-left: 5px solid #ee6e73;\n\tbackground-color: #fdf0f1;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            clients: [],
+            showHelpInfo: false,
+            showAddCredentialsContainer: false,
+            addCredentialsData: {
+                name: '',
+                redirect: 'http://localhost/callback'
+            },
+            editCredentialsData: {
+                index: -1,
+                id: 0,
+                name: '',
+                redirect: ''
+            },
+            deleteCredentialsData: {
+                index: -1,
+                id: 0,
+                name: ''
+            }
+        };
+    },
+
+
+    methods: {
+        getClients: function getClients() {
+            var _this = this;
+
+            axios.get('/oauth/clients').then(function (response) {
+                _this.clients = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addCredentials: function addCredentials(event) {
+            var _this2 = this;
+
+            var addButtons = $('.add-credentials-button');
+
+            this.disableButtons(addButtons, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/oauth/clients', {
+                name: this.addCredentialsData.name,
+                redirect: this.addCredentialsData.redirect
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of property data
+                _this2.clients.unshift(response.data);
+                _this2.addCredentialsData = {
+                    name: '',
+                    redirect: ''
+                };
+
+                // Update UI after adding credentials
+                _this2.$nextTick(function () {
+                    $('#add-credentials-name').removeClass('valid');
+                    $('#add-credentials-redirect').removeClass('valid');
+
+                    _this2.enableButtons(addButtons, event.target, 'Submit <i class="material-icons right">send</i>');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Credentials added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleEditCredentialsModal: function toggleEditCredentialsModal(index) {
+            // Initialize data for editing
+            this.editCredentialsData.index = index;
+            this.editCredentialsData.id = this.clients[index].id;
+            this.editCredentialsData.name = this.clients[index].name;
+            this.editCredentialsData.redirect = this.clients[index].redirect;
+
+            $('#edit-credentials-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateCredentials: function updateCredentials(event) {
+            var _this3 = this;
+
+            var index = this.editCredentialsData.index;
+            var updateButtons = $('.update-credentials-button');
+
+            this.disableButtons(updateButtons, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.put('/oauth/clients/' + this.editCredentialsData.id, {
+                name: this.editCredentialsData.name,
+                redirect: this.editCredentialsData.redirect
+            }).then(function (response) {
+                var data = response.data;
+
+                _this3.clients[index].name = data.name;
+                _this3.clients[index].redirect = data.redirect;
+                _this3.editCredentialsData = {
+                    index: -1,
+                    id: 0,
+                    name: '',
+                    redirect: ''
+                };
+
+                // Update UI after updating credentials
+                _this3.$nextTick(function () {
+                    $('#edit-credentials-modal').modal('close');
+                    $('#add-credentials-name').removeClass('valid');
+                    $('#add-credentials-redirect').removeClass('valid');
+                    _this3.enableButtons(updateButtons, event.target, 'Update');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Credentials updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleDeleteCredentialsModal: function toggleDeleteCredentialsModal(index) {
+            // Initialize data for deleting
+            this.deleteCredentialsData.index = index;
+            this.deleteCredentialsData.id = this.clients[index].id;
+            this.deleteCredentialsData.name = this.clients[index].name;
+
+            $('#delete-credentials-modal').modal('open');
+        },
+        deleteCredentials: function deleteCredentials(event) {
+            var _this4 = this;
+
+            var index = this.deleteCredentialsData.index;
+            var deleteButtons = $('.delete-credentials-button');
+
+            this.disableButtons(deleteButtons, event.target, 'Deleting...');
+
+            // Delete from server's database
+            axios.delete('/oauth/clients/' + this.deleteCredentialsData.id).then(function (response) {
+                // Remove from local storage
+                _this4.clients.splice(index, 1);
+
+                // Update UI after deleting credentials
+                _this4.$nextTick(function () {
+                    $('#delete-credentials-modal').modal('close');
+                    _this4.enableButtons(deleteButtons, event.target, 'Delete');
+
+                    Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal({
+            dismissible: false
+        });
+
+        // Initialize data
+        this.getClients();
+    }
+});
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v("\n                Manage API Credentials\n                "), _c('i', {
+    staticClass: "material-icons tooltipped",
+    attrs: {
+      "id": "show-help-info-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Click for help"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showHelpInfo = !_vm.showHelpInfo
+      }
+    }
+  }, [_vm._v("\n                    info_outline\n                ")])])]), _vm._v(" "), (_vm.showHelpInfo) ? _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-help-info-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showHelpInfo = !_vm.showHelpInfo
+      }
+    }
+  }, [_vm._v("\n                    close\n                ")])]), _vm._v(" "), _vm._m(0)]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-credentials-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new Credentials"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddCredentialsContainer),
+      expression: "showAddCredentialsContainer"
+    }],
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-credentials-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
+      }
+    }
+  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addCredentialsData.name),
+      expression: "addCredentialsData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-credentials-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addCredentialsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addCredentialsData.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-credentials-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addCredentialsData.redirect),
+      expression: "addCredentialsData.redirect"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-credentials-redirect",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addCredentialsData.redirect)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addCredentialsData.redirect = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-credentials-redirect"
+    }
+  }, [_vm._v("Redirect")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn add-credentials-button",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                                Submit\n                                "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])])])]), _vm._v(" "), (_vm.clients.length < 1) ? _c('li', {
+    staticClass: "collection-item avatar center-align"
+  }, [_c('span', {
+    staticClass: "title"
+  }, [_vm._v(" No clients yet.")])]) : _vm._l((_vm.clients), function(client, index) {
+    return _c('li', {
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                        CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                        CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                        Redirect: " + _vm._s(client.redirect) + "\n                    ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "edit-credentials-button",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditCredentialsModal(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons"
+    }, [_vm._v("edit")])]), _vm._v(" "), _c('a', {
+      staticClass: "delete-credentials-button red-text text-lighten-2",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleDeleteCredentialsModal(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons"
+    }, [_vm._v("delete")])])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-credentials-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Edit Credentials")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editCredentialsData.name),
+      expression: "editCredentialsData.name"
+    }],
+    attrs: {
+      "id": "edit-credentials-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editCredentialsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editCredentialsData.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-credentials-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editCredentialsData.redirect),
+      expression: "editCredentialsData.redirect"
+    }],
+    attrs: {
+      "id": "edit-credentials-redirect",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editCredentialsData.redirect)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editCredentialsData.redirect = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-credentials-redirect"
+    }
+  }, [_vm._v("Redirect")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat update-credentials-button",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat update-credentials-button",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                    Update\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "delete-credentials-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Delete Credentials")]), _vm._v(" "), _c('p'), _c('blockquote', {
+    staticClass: "error"
+  }, [_vm._v("\n                        THIS ACTION CANNOT BE UNDONE.\n                    ")]), _vm._v("\n                    Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect waves-green btn-flat delete-credentials-button",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect waves-green btn-flat delete-credentials-button",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deleteCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                    Delete\n                ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('blockquote', {}, [_vm._v("\n                    Note that the API credentials are for machine-to-machine communication. "), _c('br'), _vm._v("\n                    See "), _c('a', {
+    attrs: {
+      "href": "https://oauth.net/2/grant-types/client-credentials/"
+    }
+  }, [_vm._v("Client Credentials Grant")]), _vm._v("\n                    for more information.\n                ")]), _vm._v(" "), _c('pre', [_c('code', [_vm._v("\n1. After the client credentials are created, get your access token\n    by making a POST request to 'http://breedregistry.test/oauth/token'\n    w/ the following body data:\n\n    {\n        grant_type: 'client_credentials',\n        client_id: <client_id>,\n        client_secret: <client_secret>\n    }\n\n2. Now when the access token is acquired, every request in our API should\n    include and Authorization header with the acquired access token.\n    For example, GET request to 'http://breedregistry.test/api/v1/swines'\n    should include the following the Authorization header:\n\n    {\n        Authorization: Bearer <access_token>\n    }\n")]), _vm._v("\n                ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('blockquote', {}, [_vm._v("\n                                Note that the Client ID and Secret will be sent to your email as well.\n                            ")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-13cd11b7", module.exports)
+  }
+}
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 ],[18]);

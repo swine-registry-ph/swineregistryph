@@ -16,20 +16,23 @@
                 <a href="#!email"><span class="white-text email">{{ Auth::user()->email }}</span></a>
             </div>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.breeder.showRegForm }">
             <a href="{{ route('showRegForm') }}"> <i class="material-icons">add_box</i> Register Swine </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.breeder.viewRegdSwine }">
             <a href="{{ route('viewRegdSwine') }}"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.breeder.viewSwinePedigree }">
             <a href="#!"> <i class="material-icons">line_style</i> View Swine Pedigree </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.breeder.manageFarms }">
             <a href="#!"> <i class="material-icons">store</i> Manage Farms </a>
         </li>
-        <li>
+        <li :class="{ active : currentRoute.breeder.reports }">
             <a href="#!"> <i class="material-icons">description</i> Reports </a>
+        </li>
+        <li class="hide-on-large-only show-on-medium-and-down">
+            <div class="divider"></div>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
