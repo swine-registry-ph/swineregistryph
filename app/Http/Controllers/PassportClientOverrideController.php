@@ -117,15 +117,15 @@ class PassportClientOverrideController extends ClientController
         // Send email according to process
         switch ($process) {
             case 'store':
-                Mail::to($request->user())->send(new APICredentialsCreated($clientDetails));
+                Mail::to($request->user())->queue(new APICredentialsCreated($clientDetails));
                 break;
 
             case 'update':
-                Mail::to($request->user())->send(new APICredentialsUpdated($clientDetails));
+                Mail::to($request->user())->queue(new APICredentialsUpdated($clientDetails));
                 break;
 
             case 'destroy':
-                Mail::to($request->user())->send(new APICredentialsRevoked($clientDetails));
+                Mail::to($request->user())->queue(new APICredentialsRevoked($clientDetails));
                 break;
 
             default:
