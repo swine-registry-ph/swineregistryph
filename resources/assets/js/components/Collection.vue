@@ -8,11 +8,13 @@
         <div class="row" style="margin-bottom:0;">
             <div id="add-swine-tabs" class="col s12" style="margin-top:2rem; padding:0;">
                 <ul class="tabs tabs-fixed-width z-depth-2">
-                    <li class="tab col s3"><a href="#basic-information">Basic Information</a></li>
+                    <li class="tab col s2"><a href="#basic-information">Basic Info</a></li>
                     <li class="tab col s1"><a href="#gp-1">GP1</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpSire }"><a href="#gp-sire">GP Sire</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpDam }"><a href="#gp-dam">GP Dam</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
+                    <li class="tab col s1" :class="{ 'disabled' : tabDisables.gpSire }"><a href="#gp-sire">GP Sire</a></li>
+                    <li class="tab col s1" :class="{ 'disabled' : tabDisables.gpDam }"><a href="#gp-dam">GP Dam</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.swinecart }"><a href="#photos">SwineCart</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.geneticInfo }"><a href="#photos">Genetic Info</a></li>
+                    <li class="tab col s1" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
                     <li class="tab col s2" :class="{ 'disabled' : tabDisables.summary }"><a href="#summary">Summary</a></li>
                 </ul>
             </div>
@@ -22,68 +24,70 @@
             <div class="card col s12">
                 <div class="card-content">
                     <span class="card-title center-align">Basic Information</span>
-                    <p class="row">
-                        <!-- Breed -->
-                        <div class="input-field col s6">
-                            <custom-input-select
-                                v-model="basicInfo.breed"
-                                @select="val => {basicInfo.breed = val}"
-                                labelDescription="Breed"
-                                :options="breeds"
-                            >
-                            </custom-input-select>
+                    <div class="row">
+                        <div class="col s12 m6 l4 offset-m3 offset-l4">
+                            <!-- Breed -->
+                            <div class="input-field col s12">
+                                <custom-input-select
+                                    v-model="basicInfo.breed"
+                                    @select="val => {basicInfo.breed = val}"
+                                    labelDescription="Breed"
+                                    :options="breeds"
+                                >
+                                </custom-input-select>
+                            </div>
+                            <!-- Sex -->
+                            <div class="input-field col s12">
+                                <custom-input-select
+                                    v-model="basicInfo.sex"
+                                    @select="val => {basicInfo.sex = val}"
+                                    labelDescription="Sex"
+                                    :options="[{text:'Male', value:'male'}, {text:'Female', value:'female'}]"
+                                >
+                                </custom-input-select>
+                            </div>
+                            <!-- Weight -->
+                            <div class="input-field col s12">
+                                <input v-model="basicInfo.weight"
+                                    id="weight"
+                                    type="text"
+                                    class="validate"
+                                >
+                                <label for="weight">Weight when data was collected</label>
+                            </div>
+                            <!-- Birthdate -->
+                            <div class="input-field col s12">
+                                <custom-input-date
+                                    v-model="basicInfo.birthDate"
+                                    @date-select="val => {basicInfo.birthDate = val}"
+                                >
+                                </custom-input-date>
+                                <label for=""> Birth Date </label>
+                            </div>
+                            <div class="input-field col s12">
+                            <!-- Date Collected -->
+                                <custom-input-date
+                                    v-model="basicInfo.dateCollected"
+                                    @date-select="val => {basicInfo.dateCollected = val}"
+                                >
+                                </custom-input-date>
+                                <label for=""> Date when data was collected </label>
+                            </div>
+                            <!-- Farm From -->
+                            <div class="input-field col s12">
+                                <custom-input-select
+                                    v-model="basicInfo.farmFrom"
+                                    @select="val => {basicInfo.farmFrom = val}"
+                                    labelDescription="Farm From"
+                                    :options="farmoptions"
+                                >
+                                </custom-input-select>
+                            </div>
+                            <div class="col s12">
+                                <br>
+                            </div>
                         </div>
-                        <!-- Sex -->
-                        <div class="input-field col s6">
-                            <custom-input-select
-                                v-model="basicInfo.sex"
-                                @select="val => {basicInfo.sex = val}"
-                                labelDescription="Sex"
-                                :options="[{text:'Male', value:'male'}, {text:'Female', value:'female'}]"
-                            >
-                            </custom-input-select>
-                        </div>
-                        <!-- Birthdate -->
-                        <div class="input-field col s6">
-                            <custom-input-date
-                                v-model="basicInfo.birthDate"
-                                @date-select="val => {basicInfo.birthDate = val}"
-                            >
-                            </custom-input-date>
-                            <label for=""> Birth Date </label>
-                        </div>
-                        <div class="input-field col s6">
-                        <!-- Date Collected -->
-                            <custom-input-date
-                                v-model="basicInfo.dateCollected"
-                                @date-select="val => {basicInfo.dateCollected = val}"
-                            >
-                            </custom-input-date>
-                            <label for=""> Date when data was collected </label>
-                        </div>
-                        <!-- Weight -->
-                        <div class="input-field col s6">
-                            <input v-model="basicInfo.weight"
-                                id="weight"
-                                type="text"
-                                class="validate"
-                            >
-                            <label for="weight">Weight when data was collected</label>
-                        </div>
-                        <!-- Farm From -->
-                        <div class="input-field col s6">
-                            <custom-input-select
-                                v-model="basicInfo.farmFrom"
-                                @select="val => {basicInfo.farmFrom = val}"
-                                labelDescription="Farm From"
-                                :options="farmoptions"
-                            >
-                            </custom-input-select>
-                        </div>
-                        <div class="col s12">
-                            <br>
-                        </div>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,6 +147,8 @@
                     gpSire: true,
                     gpDam: true,
                     photos: true,
+                    swinecart: true,
+                    geneticInfo: true,
                     summary: true
                 },
                 gpSireData: {},
@@ -230,6 +236,8 @@
                     // and enable 'Photos' tab
                     vm.basicInfo.id = response.data;
                     vm.tabDisables.photos = false;
+                    vm.tabDisables.swinecart = false;
+                    vm.tabDisables.geneticInfo = false;
 
                     Materialize.toast('Swine info added', 2000, 'green lighten-1');
                 })

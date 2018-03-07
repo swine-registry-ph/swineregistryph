@@ -1288,6 +1288,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category', 'data'],
@@ -1361,12 +1369,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title center-align"
-  }, [_vm._v(_vm._s(_vm.titleCategory))]), _vm._v(" "), (_vm.data) ? _c('div', [(_vm.objectIsEmpty(_vm.data)) ? _c('div', {}, [_c('p', [_vm._v(" No data available. ")])]) : _c('div', {}, [_c('table', {
+  }, [_vm._v(_vm._s(_vm.titleCategory))]), _vm._v(" "), (_vm.data) ? _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m10 l6 offset-m1 offset-l3"
+  }, [(_vm.objectIsEmpty(_vm.data)) ? _c('div', {}, [_c('p', [_vm._v(" No data available. ")])]) : _c('div', {}, [_c('table', {
     staticClass: "striped"
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.data.swine_properties), function(property) {
     return _c('tr', [_c('td', [_vm._v(" " + _vm._s(property.title) + " ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(property.value) + " ")])])
-  }))])])]) : _c('div', {
+  }))])])])]) : _c('div', {
     staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m10 l6 offset-m1 offset-l3"
   }, [_c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
@@ -1394,7 +1408,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.categoryWithDash + 'gpSire'
     }
-  }, [_vm._v("GP Sire (optional)")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("GP Sire Registration # (optional)")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
@@ -1421,7 +1435,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.categoryWithDash + 'gpDam'
     }
-  }, [_vm._v("GP Dam (optional)")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("GP Dam Registration # (optional)")])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('button', {
     staticClass: "btn waves-effect waves-light right",
@@ -1435,9 +1449,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.triggerGetParentsEvent()
       }
     }
-  }, [_vm._v("\n                        Add Parents "), _c('i', {
+  }, [_vm._v("\n                            Add Parents "), _c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("add")])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
@@ -1713,11 +1727,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.triggerSubmitSwineInfoEvent($event)
       }
     }
-  }, [_vm._v("\n                        Submit Info "), _c('i', {
+  }, [_vm._v("\n                            Submit Info "), _c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("send")])])])])])])])
+  }, [_vm._v("send")])])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v(" Property ")]), _vm._v(" "), _c('th', [_vm._v(" Value ")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -2271,6 +2289,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['farmoptions', 'breeds', 'uploadurl'],
@@ -2281,6 +2303,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 gpSire: true,
                 gpDam: true,
                 photos: true,
+                swinecart: true,
+                geneticInfo: true,
                 summary: true
             },
             gpSireData: {},
@@ -2360,6 +2384,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // and enable 'Photos' tab
                 vm.basicInfo.id = response.data;
                 vm.tabDisables.photos = false;
+                vm.tabDisables.swinecart = false;
+                vm.tabDisables.geneticInfo = false;
 
                 Materialize.toast('Swine info added', 2000, 'green lighten-1');
             }).catch(function (error) {
@@ -2412,7 +2438,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('ul', {
     staticClass: "tabs tabs-fixed-width z-depth-2"
   }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
+    staticClass: "tab col s1",
     class: {
       'disabled': _vm.tabDisables.gpSire
     }
@@ -2421,7 +2447,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#gp-sire"
     }
   }, [_vm._v("GP Sire")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
+    staticClass: "tab col s1",
     class: {
       'disabled': _vm.tabDisables.gpDam
     }
@@ -2431,6 +2457,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("GP Dam")])]), _vm._v(" "), _c('li', {
     staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.swinecart
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#photos"
+    }
+  }, [_vm._v("SwineCart")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.geneticInfo
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#photos"
+    }
+  }, [_vm._v("Genetic Info")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s1",
     class: {
       'disabled': _vm.tabDisables.photos
     }
@@ -2458,10 +2502,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title center-align"
-  }, [_vm._v("Basic Information")]), _vm._v(" "), _c('p', {
+  }, [_vm._v("Basic Information")]), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }), _c('div', {
-    staticClass: "input-field col s6"
+  }, [_c('div', {
+    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
   }, [_c('custom-input-select', {
     attrs: {
       "labelDescription": "Breed",
@@ -2480,7 +2526,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "basicInfo.breed"
     }
   })], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
+    staticClass: "input-field col s12"
   }, [_c('custom-input-select', {
     attrs: {
       "labelDescription": "Sex",
@@ -2505,45 +2551,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "basicInfo.sex"
     }
   })], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
-  }, [_c('custom-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.basicInfo.birthDate = val
-      }
-    },
-    model: {
-      value: (_vm.basicInfo.birthDate),
-      callback: function($$v) {
-        _vm.basicInfo.birthDate = $$v
-      },
-      expression: "basicInfo.birthDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
-  }, [_c('custom-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.basicInfo.dateCollected = val
-      }
-    },
-    model: {
-      value: (_vm.basicInfo.dateCollected),
-      callback: function($$v) {
-        _vm.basicInfo.dateCollected = $$v
-      },
-      expression: "basicInfo.dateCollected"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date when data was collected ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
+    staticClass: "input-field col s12"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -2570,7 +2578,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": "weight"
     }
   }, [_vm._v("Weight when data was collected")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
+    staticClass: "input-field col s12"
+  }, [_c('custom-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.basicInfo.birthDate = val
+      }
+    },
+    model: {
+      value: (_vm.basicInfo.birthDate),
+      callback: function($$v) {
+        _vm.basicInfo.birthDate = $$v
+      },
+      expression: "basicInfo.birthDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('custom-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.basicInfo.dateCollected = val
+      }
+    },
+    model: {
+      value: (_vm.basicInfo.dateCollected),
+      callback: function($$v) {
+        _vm.basicInfo.dateCollected = $$v
+      },
+      expression: "basicInfo.dateCollected"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date when data was collected ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
   }, [_c('custom-input-select', {
     attrs: {
       "labelDescription": "Farm From",
@@ -2588,7 +2634,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "basicInfo.farmFrom"
     }
-  })], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('p')])])]), _vm._v(" "), _c('swine-properties', {
+  })], 1), _vm._v(" "), _vm._m(3)])])])])]), _vm._v(" "), _c('swine-properties', {
     attrs: {
       "category": "gp-1",
       "data": ""
@@ -2633,12 +2679,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" Register Swine ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
-    staticClass: "tab col s3"
+    staticClass: "tab col s2"
   }, [_c('a', {
     attrs: {
       "href": "#basic-information"
     }
-  }, [_vm._v("Basic Information")])])
+  }, [_vm._v("Basic Info")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
     staticClass: "tab col s1"
