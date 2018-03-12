@@ -480,7 +480,8 @@ var nav = new Vue({
                 viewRegdSwine: false,
                 viewSwinePedigree: false,
                 manageFarms: false,
-                reports: false
+                reports: false,
+                swineCart: false
             }
         }
     },
@@ -513,6 +514,10 @@ var nav = new Vue({
 
             case '/breeder/manage-swine/view':
                 this.currentRoute.breeder.viewRegdSwine = true;
+                break;
+
+            case '/breeder/swinecart':
+                this.currentRoute.breeder.swineCart = true;
                 break;
 
             default:
@@ -1750,13 +1755,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(101)
+}
 var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(58),
   /* template */
   __webpack_require__(59),
   /* styles */
-  null,
+  injectStyle,
   /* scopeId */
   null,
   /* moduleIdentifier (server only) */
@@ -1933,9 +1942,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['basicInfo', 'gpOneData', 'gpSire', 'gpDam', 'imageFiles'],
+    props: ['basicInfo', 'gpOneData', 'gpSire', 'gpDam', 'imageFiles', 'breeds', 'farmoptions'],
 
     data: function data() {
         return {
@@ -1944,6 +1998,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+
+    computed: {
+        generateCertificateLink: function generateCertificateLink() {
+            var certificateLink = '/breeder/registry-certificate';
+            return certificateLink + '/' + this.basicInfo.id;
+        }
+    },
 
     methods: {
         getIndex: function getIndex(id, arrayToBeSearched) {
@@ -1993,13 +2054,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title center-align"
-  }, [_vm._v("Summary")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('table', {
-    staticClass: "striped"
-  }, [_vm._m(1), _vm._v(" "), _c('tbody', [_c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Sire ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSire) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Dam ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDam) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.adg) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.fe) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birth_weight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_male) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_female) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersize_weaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweight_weaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.date_weaning) + " ")])])])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._l((_vm.summaryImageFiles), function(photo) {
+  }, [_vm._v("Summary")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m12 l6",
+    attrs: {
+      "id": "swineinfo-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(0), _vm._v(" "), _c('table', {}, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" GP Sire ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSire))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Dam ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDam))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.adg))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.fe))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birth_weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_male))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_female))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersize_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweight_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.date_weaning))])])])])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "photos-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, _vm._l((_vm.summaryImageFiles), function(photo) {
     return _c('div', {
-      staticClass: "col s6"
+      staticClass: "col s12 m6"
     }, [_c('div', {
       staticClass: "card"
     }, [_c('div', {
@@ -2023,7 +2102,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('i', {
       staticClass: "material-icons left"
-    }, [_vm._v("photo")]), _vm._v(" Primary Photo\n                        ")]) : _c('a', {
+    }, [_vm._v("photo")]), _vm._v(" Primary Photo\n                                            ")]) : _c('a', {
       attrs: {
         "href": "#!"
       },
@@ -2033,28 +2112,79 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.setAsPrimaryPhoto(photo.id)
         }
       }
-    }, [_vm._v("\n                            Set as Primary\n                        ")])])])])
-  }), _vm._v(" "), _vm._m(3)], 2)])])
+    }, [_vm._v("\n                                                Set as Primary\n                                            ")])])])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_c('a', {
+    staticClass: "btn waves-effect waves-light",
+    attrs: {
+      "href": _vm.generateCertificateLink,
+      "type": "submit",
+      "name": "action"
+    }
+  }, [_vm._v("\n                        Submit and Generate Certificate\n                    ")])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h6', [_vm._v("Information")]), _vm._v(" "), _c('div', {
-    staticClass: "divider"
-  }), _vm._v(" "), _c('p', [_c('br')])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v(" Property ")]), _vm._v(" "), _c('th', [_vm._v(" Value ")])])])
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Swine Information")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    staticClass: "col s12 m12 l6"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "swinecart-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("SwineCart")])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
     staticClass: "col s12"
-  }, [_c('h6', [_vm._v("Photos")]), _vm._v(" "), _c('div', {
-    staticClass: "divider"
-  }), _vm._v(" "), _c('p', [_c('br')])])
+  }, [_c('input', {
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "check-swinecart"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "check-swinecart"
+    }
+  }, [_vm._v("Include this swine in SwineCart?")])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "geneticinfo-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Genetic Information")])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    staticClass: "validate",
+    attrs: {
+      "type": "text",
+      "id": "geneticinfo-id"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "geneticinfo-id"
+    }
+  }, [_vm._v("Genetic Information ID # (optional)")])])])])])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h6', [_vm._v("Breed Registry Certificate")]), _vm._v(" "), _c('div', {
-    staticClass: "divider"
-  }), _vm._v(" "), _c('p', [_c('br')])])
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Photos")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -2293,6 +2423,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['farmoptions', 'breeds', 'uploadurl'],
@@ -2303,8 +2434,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 gpSire: true,
                 gpDam: true,
                 photos: true,
-                swinecart: true,
-                geneticInfo: true,
                 summary: true
             },
             gpSireData: {},
@@ -2438,7 +2567,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('ul', {
     staticClass: "tabs tabs-fixed-width z-depth-2"
   }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('li', {
-    staticClass: "tab col s1",
+    staticClass: "tab col s2",
     class: {
       'disabled': _vm.tabDisables.gpSire
     }
@@ -2447,7 +2576,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#gp-sire"
     }
   }, [_vm._v("GP Sire")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s1",
+    staticClass: "tab col s2",
     class: {
       'disabled': _vm.tabDisables.gpDam
     }
@@ -2457,24 +2586,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("GP Dam")])]), _vm._v(" "), _c('li', {
     staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.swinecart
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#photos"
-    }
-  }, [_vm._v("SwineCart")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.geneticInfo
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#photos"
-    }
-  }, [_vm._v("Genetic Info")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s1",
     class: {
       'disabled': _vm.tabDisables.photos
     }
@@ -2668,7 +2779,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "gp-one-data": _vm.gpOneData,
       "gp-sire": _vm.gpSireData.registration_no,
       "gp-dam": _vm.gpDamData.registration_no,
-      "image-files": _vm.imageFiles
+      "image-files": _vm.imageFiles,
+      "breeds": _vm.breeds,
+      "farmoptions": _vm.farmoptions
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2687,7 +2800,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Basic Info")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
-    staticClass: "tab col s1"
+    staticClass: "tab col s2"
   }, [_c('a', {
     attrs: {
       "href": "#gp-1"
@@ -5123,6 +5236,61 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(102);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("c3ab22f2", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b7c16fc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddSwineSummary.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b7c16fc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddSwineSummary.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\ntable td {\n    padding: 0;\n}\ntr td:first-child {\n    color: #757575;\n}\ntr td:last-child {\n    color: black;\n}\n#swinecart-container div.row,\n#geneticinfo-container div.row {\n    margin-bottom: 0px;\n}\n#swinecart-container div.row {\n    padding-top: 1rem;\n}\n#swineinfo-container > .card {\n    border-top: 4px solid #2672a6;\n}\n#swinecart-container > .card {\n    border-top: 4px solid #26a69a;\n}\n#geneticinfo-container > .card {\n    border-top: 4px solid #26a65a;\n}\n#photos-container > .card {\n    border-top: 4px solid #a62632;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 ],[18]);

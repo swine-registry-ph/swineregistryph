@@ -89,11 +89,14 @@ class SwineController extends Controller
     /**
      * View Registry Certicate
      *
+     * @param   integer     $swineId
      * @return  View
      */
-    public function viewRegistryCertificate()
+    public function viewRegistryCertificate($swineId)
     {
-        return view('users.breeder.registryCertificate');
+        $swine = Swine::where('id', $swineId)->with('swineProperties')->first();
+
+        return view('users.breeder.registryCertificate', compact('swine'));
     }
 
     /**

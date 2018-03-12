@@ -9,17 +9,16 @@
             <div id="add-swine-tabs" class="col s12" style="margin-top:2rem; padding:0;">
                 <ul class="tabs tabs-fixed-width z-depth-2">
                     <li class="tab col s2"><a href="#basic-information">Basic Info</a></li>
-                    <li class="tab col s1"><a href="#gp-1">GP1</a></li>
-                    <li class="tab col s1" :class="{ 'disabled' : tabDisables.gpSire }"><a href="#gp-sire">GP Sire</a></li>
-                    <li class="tab col s1" :class="{ 'disabled' : tabDisables.gpDam }"><a href="#gp-dam">GP Dam</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.swinecart }"><a href="#photos">SwineCart</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.geneticInfo }"><a href="#photos">Genetic Info</a></li>
-                    <li class="tab col s1" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
+                    <li class="tab col s2"><a href="#gp-1">GP1</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpSire }"><a href="#gp-sire">GP Sire</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpDam }"><a href="#gp-dam">GP Dam</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
                     <li class="tab col s2" :class="{ 'disabled' : tabDisables.summary }"><a href="#summary">Summary</a></li>
                 </ul>
             </div>
         </div>
 
+        <!-- Basic Info tab -->
         <div id="basic-information" class="row">
             <div class="card col s12">
                 <div class="card-content">
@@ -131,6 +130,8 @@
             :gp-sire="gpSireData.registration_no"
             :gp-dam="gpDamData.registration_no"
             :image-files="imageFiles"
+            :breeds="breeds"
+            :farmoptions="farmoptions"
         >
         </add-swine-summary>
 
@@ -139,7 +140,9 @@
 
 <script>
     export default {
-        props: ['farmoptions', 'breeds', 'uploadurl'],
+        props: [
+            'farmoptions', 'breeds', 'uploadurl'
+        ],
 
         data() {
             return {
@@ -147,8 +150,6 @@
                     gpSire: true,
                     gpDam: true,
                     photos: true,
-                    swinecart: true,
-                    geneticInfo: true,
                     summary: true
                 },
                 gpSireData: {},

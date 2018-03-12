@@ -53,7 +53,8 @@ const nav = new Vue({
                 viewRegdSwine: false,
                 viewSwinePedigree: false,
                 manageFarms: false,
-                reports: false
+                reports: false,
+                swineCart: false
             }
         }
     },
@@ -86,6 +87,10 @@ const nav = new Vue({
 
             case '/breeder/manage-swine/view':
                 this.currentRoute.breeder.viewRegdSwine = true;
+                break;
+
+            case '/breeder/swinecart':
+                this.currentRoute.breeder.swineCart = true;
                 break;
 
             default: break;
