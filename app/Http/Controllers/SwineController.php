@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Breed;
-use App\Models\Collection;
 use App\Models\Photo;
 use App\Models\Property;
 use App\Models\Swine;
@@ -129,15 +128,9 @@ class SwineController extends Controller
     {
         if($request->ajax()){
 
-            // Collection instance
-            $collection = new Collection;
-            $collection->breeder_id = $this->breederUser->id;
-            $collection->date_collected = new Carbon($request->basicInfo['dateCollected']);
-            $collection->save();
-
             // Swine Instance
             $swine = new Swine;
-            $swine->collection_id = $collection->id;
+            $swine->breeder_id = $breederUser->id;
             $swine->registration_no = str_random(15);
             $swine->farm_id = $request->basicInfo['farmFrom'];
             $swine->breed_id = $request->basicInfo['breed'];
