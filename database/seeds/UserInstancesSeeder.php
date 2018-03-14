@@ -49,10 +49,6 @@ class UserInstancesSeeder extends Seeder
             // Need to contextualize properties like age/weight when data was collected
             // especially in GP A/Sire (father of pig) and GP B/Dam (mother of pig)
 
-            $collection = factory(App\Models\Collection::class)->create([
-                'breeder_id' => $breeder->id
-            ]);
-
             $breeds = [
                 [ 'id' => 1, 'name' => 'landrace' ],
                 [ 'id' => 2, 'name' => 'largewhite' ],
@@ -72,7 +68,7 @@ class UserInstancesSeeder extends Seeder
 
                 $swine = factory(App\Models\Swine::class)->create([
                     'breed_id' => $chosenBreedId,
-                    'collection_id' => $collection->id,
+                    'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
                     'registration_no' => str_random(15)
                 ]);
@@ -140,7 +136,7 @@ class UserInstancesSeeder extends Seeder
                 // Create default GP sire of swine
                 $gpSire = factory(App\Models\Swine::class)->create([
                     'breed_id' => $chosenBreedId,
-                    'collection_id' => $collection->id,
+                    'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
                     'registration_no' => str_random(15)
                 ]);
@@ -205,7 +201,7 @@ class UserInstancesSeeder extends Seeder
                 // Create default GP dam of swine
                 $gpDam = factory(App\Models\Swine::class)->create([
                     'breed_id' => $chosenBreedId,
-                    'collection_id' => $collection->id,
+                    'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
                     'registration_no' => str_random(15)
                 ]);
