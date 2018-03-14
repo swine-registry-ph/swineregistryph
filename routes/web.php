@@ -32,7 +32,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/manage-swine/set-primary-photo', 'PhotoController@setPrimaryPhoto')->name('setPrimaryPhoto');
         Route::post('/manage-swine/upload-photo', 'PhotoController@uploadPhoto')->name('uploadPhoto');
         Route::delete('/manage-swine/upload-photo/{photoId}', 'PhotoController@deletePhoto')->name('deletePhoto');
-        Route::get('/registry-certificate', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
+        Route::get('/registry-certificate/{swineId}', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
+        Route::get('/swinecart', 'BreederController@viewSwineCartPage')->name('viewSwineCartPage');
     });
 
     // Admin-related

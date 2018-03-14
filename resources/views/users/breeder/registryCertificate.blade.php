@@ -10,6 +10,7 @@
     <div class="col s12">
         <br>
     </div>
+
     <div id="registry-certificate-container" class="col s10 offset-s1 white">
         <div class="row">
 
@@ -25,7 +26,7 @@
                         <tbody>
                             <tr>
                                 <td> Registration: </td>
-                                <td> <b>12345678</b> </td>
+                                <td> <b>{{$swine->registration_no}}</b> </td>
                             </tr>
                             <tr>
                                 <td> Trait: </td>
@@ -109,7 +110,8 @@
             <div id="logo-container" class="col s4">
                 <p>
                     Logo <br>
-                    Swine Breed <br>
+                    Dr. Juan Loo <br>
+                    Chair <br>
                     Swine Breed Registry PH <br>
                     Address
                 </p>
@@ -126,6 +128,16 @@
                 </p>
             </div>
         </div>
+    </div>
+
+    <div class="col s12">
+        <br>
+    </div>
+
+    <div class="col s10 offset-s1 center-align">
+        <a href="#!" class="btn">
+            Download Certificate (PDF)
+        </a>
     </div>
 </div>
 

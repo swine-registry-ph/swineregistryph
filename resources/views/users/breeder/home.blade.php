@@ -31,6 +31,9 @@
         <li :class="{ active : currentRoute.breeder.reports }">
             <a href="#!"> <i class="material-icons">description</i> Reports </a>
         </li>
+        <li :class="{ active : currentRoute.breeder.swineCart }">
+            <a href="{{ route('viewSwineCartPage') }}"> <i class="material-icons">shopping_cart</i> SwineCart </a>
+        </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <div class="divider"></div>
         </li>
