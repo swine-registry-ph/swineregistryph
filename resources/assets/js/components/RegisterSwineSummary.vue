@@ -242,7 +242,7 @@
     }
 </script>
 
-<style lang="css">
+<style scoped lang="css">
     table td {
         padding: 0;
     }

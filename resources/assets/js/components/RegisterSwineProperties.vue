@@ -139,7 +139,11 @@
                             <label :for="categoryWithDash + 'litterweight-weaning'">Litter weight at weaning</label>
                         </div>
                         <div class="col s6 input-field">
-                            <custom-input-date v-model="gpOne.date_weaning" @date-select="val => {gpOne.date_weaning = val}"> </custom-input-date>
+                            <app-input-date
+                                v-model="gpOne.date_weaning"
+                                @date-select="val => {gpOne.date_weaning = val}"
+                            >
+                            </app-input-date>
                             <label for=""> Date at weaning </label>
                         </div>
                         <div class="col s12">

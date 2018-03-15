@@ -15,14 +15,16 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// App
+Vue.component('app-input-date', require('./components/AppInputDate.vue'));
+Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
+
 // Breeder
-Vue.component('custom-input-select', require('./components/CustomInputSelect.vue'));
-Vue.component('custom-input-date', require('./components/CustomInputDate.vue'));
-Vue.component('upload-photo', require('./components/UploadPhoto.vue'));
-Vue.component('swine-properties', require('./components/SwineProperties.vue'));
-Vue.component('add-swine-summary', require('./components/AddSwineSummary.vue'));
-Vue.component('collection', require('./components/Collection.vue'));
-Vue.component('registered-swine', require('./components/RegisteredSwine.vue'));
+Vue.component('register-swine-properties', require('./components/RegisterSwineProperties.vue'));
+Vue.component('register-swine-summary', require('./components/RegisterSwineSummary.vue'));
+Vue.component('register-swine-upload-photo', require('./components/RegisterSwineUploadPhoto.vue'));
+Vue.component('register-swine', require('./components/RegisterSwine.vue'));
+Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
 
 // Admin
 Vue.component('manage-breeds', require('./components/ManageBreeds.vue'));

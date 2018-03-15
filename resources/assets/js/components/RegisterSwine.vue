@@ -27,23 +27,23 @@
                         <div class="col s12 m6 l4 offset-m3 offset-l4">
                             <!-- Breed -->
                             <div class="input-field col s12">
-                                <custom-input-select
-                                    v-model="basicInfo.breed"
-                                    @select="val => {basicInfo.breed = val}"
+                                <app-input-select
                                     labelDescription="Breed"
+                                    v-model="basicInfo.breed"
                                     :options="breeds"
+                                    @select="val => {basicInfo.breed = val}"
                                 >
-                                </custom-input-select>
+                                </app-input-select>
                             </div>
                             <!-- Sex -->
                             <div class="input-field col s12">
-                                <custom-input-select
-                                    v-model="basicInfo.sex"
-                                    @select="val => {basicInfo.sex = val}"
+                                <app-input-select
                                     labelDescription="Sex"
+                                    v-model="basicInfo.sex"
                                     :options="[{text:'Male', value:'male'}, {text:'Female', value:'female'}]"
+                                    @select="val => {basicInfo.sex = val}"
                                 >
-                                </custom-input-select>
+                                </app-input-select>
                             </div>
                             <!-- Weight -->
                             <div class="input-field col s12">
@@ -56,31 +56,31 @@
                             </div>
                             <!-- Birthdate -->
                             <div class="input-field col s12">
-                                <custom-input-date
+                                <app-input-date
                                     v-model="basicInfo.birthDate"
                                     @date-select="val => {basicInfo.birthDate = val}"
                                 >
-                                </custom-input-date>
+                                </app-input-date>
                                 <label for=""> Birth Date </label>
                             </div>
                             <div class="input-field col s12">
                             <!-- Date Collected -->
-                                <custom-input-date
+                                <app-input-date
                                     v-model="basicInfo.dateCollected"
                                     @date-select="val => {basicInfo.dateCollected = val}"
                                 >
-                                </custom-input-date>
+                                </app-input-date>
                                 <label for=""> Date when data was collected </label>
                             </div>
                             <!-- Farm From -->
                             <div class="input-field col s12">
-                                <custom-input-select
-                                    v-model="basicInfo.farmFrom"
-                                    @select="val => {basicInfo.farmFrom = val}"
+                                <app-input-select
                                     labelDescription="Farm From"
+                                    v-model="basicInfo.farmFrom"
                                     :options="farmoptions"
+                                    @select="val => {basicInfo.farmFrom = val}"
                                 >
-                                </custom-input-select>
+                                </app-input-select>
                             </div>
                             <div class="col s12">
                                 <br>
@@ -92,39 +92,39 @@
         </div>
 
         <!-- GP 1 tab component -->
-        <swine-properties
+        <register-swine-properties
             category="gp-1"
             data=""
             v-on:getParentsEvent="getParents"
             v-on:submitSwineInfoEvent="addSwineInfo"
         >
-        </swine-properties>
+        </register-swine-properties>
 
         <!-- GP Sire tab component -->
-        <swine-properties
+        <register-swine-properties
             category="gp-sire"
             :data="gpSireData"
         >
-        </swine-properties>
+        </register-swine-properties>
 
         <!-- GP Dam tab component -->
-        <swine-properties
+        <register-swine-properties
             category="gp-dam"
             :data="gpDamData"
         >
-        </swine-properties>
+        </register-swine-properties>
 
         <!-- Upload photos tab -->
-        <upload-photo
+        <register-swine-upload-photo
             :swine-id="basicInfo.id"
             :uploadurl="uploadurl"
             v-on:addedPhotoEvent="addPhotoToImageFiles"
             v-on:removedPhotoEvent="removePhotoFromImageFiles"
         >
-        </upload-photo>
+        </register-swine-upload-photo>
 
         <!-- Summary tab -->
-        <add-swine-summary
+        <register-swine-summary
             :basic-info="basicInfo"
             :gp-one-data="gpOneData"
             :gp-sire="gpSireData.registration_no"
@@ -133,7 +133,7 @@
             :breeds="breeds"
             :farmoptions="farmoptions"
         >
-        </add-swine-summary>
+        </register-swine-summary>
 
     </div>
 </template>
@@ -271,7 +271,7 @@
     }
 </script>
 
-<style lang="css">
+<style scoped lang="css">
     .tab a.active {
         color: #c62828 !important;
     }
