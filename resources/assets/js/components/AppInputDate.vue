@@ -4,7 +4,9 @@
 
 <script>
     export default {
-        props:['value'],
+        props: {
+            value: String
+        },
 
         mounted() {
             // Initialize datepicker
@@ -17,7 +19,7 @@
 
             // Bind change event to emit new value
             var self = this;
-            
+
             $(this.$refs.dateSelect).on('change', function(){
                 self.$emit('date-select',self.$refs.dateSelect.value);
             });

@@ -140,9 +140,11 @@
 
 <script>
     export default {
-        props: [
-            'farmoptions', 'breeds', 'uploadurl'
-        ],
+        props: {
+            farmoptions: Array,
+            breeds: Array,
+            uploadurl: String
+        },
 
         data() {
             return {

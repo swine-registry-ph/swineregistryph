@@ -164,9 +164,10 @@
 
 <script>
     export default {
-        props: [
-            'category', 'data'
-        ],
+        props: {
+            category: String,
+            data: [String, Object]
+        },
 
         data() {
             return {
@@ -193,6 +194,7 @@
             categoryWithDash() {
                 return this.category + '-';
             },
+
             titleCategory() {
                 return _.toUpper(this.category);
             }

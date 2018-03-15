@@ -97,7 +97,9 @@
 
 <script>
 export default {
-    props: ['initialBreeds'],
+    props: {
+        initialBreeds: Array
+    },
 
     data() {
         return {

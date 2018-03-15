@@ -10,7 +10,11 @@
 
 <script>
     export default {
-        props:['value', 'options', 'labelDescription'],
+        props: {
+            labelDescription: String,
+            value: String,
+            options: Array
+        },
 
         data() {
             return {

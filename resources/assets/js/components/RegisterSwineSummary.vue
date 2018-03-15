@@ -187,10 +187,15 @@
 
 <script>
     export default {
-        props: [
-            'basicInfo', 'gpOneData', 'gpSire', 'gpDam', 'imageFiles',
-            'breeds', 'farmoptions'
-        ],
+        props: {
+            basicInfo: Object,
+            gpOneData: Object,
+            gpSire: String,
+            gpDam: String,
+            imageFiles: Array,
+            breeds: Array,
+            farmoptions: Array
+        },
 
         data() {
             return {

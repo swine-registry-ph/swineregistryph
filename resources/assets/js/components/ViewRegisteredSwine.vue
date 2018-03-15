@@ -135,7 +135,9 @@
 
 <script>
     export default {
-        props: ['swines'],
+        props: {
+            swines: Array
+        },
 
         data() {
             return {

@@ -28,7 +28,10 @@
     import Dropzone from 'vue2-dropzone';
 
     export default {
-        props: ['swineId', 'uploadurl'],
+        props: {
+            swineId: Number,
+            uploadurl: String
+        },
 
         data() {
             return {
