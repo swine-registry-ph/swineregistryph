@@ -14,7 +14,7 @@
                                     <b>Swine Information</b>
                                 </h6>
 
-                                <table class="">
+                                <table id="swine-summary-table" class="">
                                     <tbody>
                                         <tr>
                                             <td> GP Sire </td>
@@ -140,6 +140,7 @@
                                 <div class="row">
                                     <div class="col s12 m6"
                                         v-for="photo in summaryImageFiles"
+                                        :key="photo.id"
                                     >
                                         <div class="card">
                                             <div class="card-image">
@@ -248,15 +249,15 @@
 </script>
 
 <style scoped lang="css">
-    table td {
+    #swine-summary-table td {
         padding: 0;
     }
 
-    tr td:first-child {
+    #swine-summary-table tr td:first-child {
         color: #757575;
     }
 
-    tr td:last-child {
+    #swine-summary-table tr td:last-child {
         color: black;
     }
 
@@ -269,6 +270,7 @@
         padding-top: 1rem;
     }
 
+    /* Accent highlights on cards */
     #swineinfo-container > .card {
         border-top: 4px solid #2672a6;
     }

@@ -19,7 +19,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="property in data.swine_properties">
+                                    <tr v-for="property in data.swine_properties"
+                                        :key="property.id"
+                                    >
                                         <td> {{ property.title }} </td>
                                         <td> {{ property.value }} </td>
                                     </tr>

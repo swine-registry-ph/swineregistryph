@@ -114,42 +114,43 @@
                         </div>
                     </div>
                 </li>
+
                 <!-- Show this list if there are not listed clients -->
-                <li v-if="clients.length < 1"
-                    class="collection-item avatar center-align"
-                >
-                    <span class="title"> No clients yet.</span>
-                </li>
+                <template v-if="clients.length < 1">
+                    <li class="collection-item avatar center-align">
+                        <span class="title"> No clients yet.</span>
+                    </li>
+                </template>
+
                 <!-- Exising credentials list -->
-                <li v-for="(client, index) in clients"
-                    v-else
-                    class="collection-item avatar"
-                >
-                    <span class="title"> {{ client.name }} </span>
-                    <p class="grey-text">
-                        CLIENT_ID: {{ client.id }} <br>
-                        CLIENT_SECRET: {{ client.secret }} <br>
-                        Redirect: {{ client.redirect }}
-                    </p>
+                <template v-else>
+                    <li v-for="(client, index) in clients"
+                        class="collection-item avatar"
+                    >
+                        <span class="title"> {{ client.name }} </span>
+                        <p class="grey-text">
+                            CLIENT_ID: {{ client.id }} <br>
+                            CLIENT_SECRET: {{ client.secret }} <br>
+                            Redirect: {{ client.redirect }}
+                        </p>
 
+                        <span class="secondary-content">
+                            <a @click.prevent="toggleEditCredentialsModal(index)"
+                                href="#"
+                                class="edit-credentials-button"
+                            >
+                                <i class="material-icons">edit</i>
+                            </a>
 
-                    <span class="secondary-content">
-                        <a @click.prevent="toggleEditCredentialsModal(index)"
-                            href="#"
-                            class="edit-credentials-button"
-                        >
-                            <i class="material-icons">edit</i>
-                        </a>
-
-                        <a @click.prevent="toggleDeleteCredentialsModal(index)"
-                            href="#"
-                            class="delete-credentials-button red-text text-lighten-2"
-                        >
-                            <i class="material-icons">delete</i>
-                        </a>
-                    </span>
-
-                </li>
+                            <a @click.prevent="toggleDeleteCredentialsModal(index)"
+                                href="#"
+                                class="delete-credentials-button red-text text-lighten-2"
+                            >
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </span>
+                    </li>
+                </template>
             </ul>
         </div>
 
@@ -388,7 +389,7 @@
     }
 </script>
 
-<style lang="css">
+<style scoped lang="css">
     .collection-header a,
     .edit-property-button,
     #close-add-credentials-container-button,

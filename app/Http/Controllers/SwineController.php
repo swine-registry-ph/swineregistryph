@@ -130,7 +130,7 @@ class SwineController extends Controller
 
             // Swine Instance
             $swine = new Swine;
-            $swine->breeder_id = $breederUser->id;
+            $swine->breeder_id = $this->breederUser->id;
             $swine->registration_no = str_random(15);
             $swine->farm_id = $request->basicInfo['farmFrom'];
             $swine->breed_id = $request->basicInfo['breed'];
