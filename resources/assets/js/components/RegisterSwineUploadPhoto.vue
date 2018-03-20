@@ -111,6 +111,7 @@
 <style lang="css">
     /* Custom style from vue-dropzone */
     .vue-dropzone {
+        margin-top: 3rem;
         min-height: 20rem;
         border: 2px solid #000000;
         font-family: inherit;

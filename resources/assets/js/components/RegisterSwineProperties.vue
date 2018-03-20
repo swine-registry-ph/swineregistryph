@@ -1,68 +1,12 @@
 <template lang="html">
-    <div :id="category" class="row">
+    <div id="gp-1" class="row">
         <div class="card col s12">
             <div class="card-content">
-                <span class="card-title center-align">{{ titleCategory }}</span>
-
-                <!-- For GP Sire or GP Dam -->
-                <div class="row" v-if="data">
-                    <div class="col s12 m10 l6 offset-m1 offset-l3">
-                        <div v-if="objectIsEmpty(data)" class="">
-                            <p> No data available. </p>
-                        </div>
-                        <div v-else class="">
-                            <table class="striped">
-                                <thead>
-                                    <tr>
-                                        <th> Property </th>
-                                        <th> Value </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="property in data.swine_properties"
-                                        :key="property.id"
-                                    >
-                                        <td> {{ property.title }} </td>
-                                        <td> {{ property.value }} </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                <span class="card-title center-align">GP 1</span>
 
                 <!-- For GP 1 -->
-                <div v-else
-                    class="row"
-                >
+                <div class="row">
                     <div class="col s12 m10 l6 offset-m1 offset-l3">
-                        <!-- Parents -->
-                        <div class="col s6 input-field">
-                            <input v-model="parents.sireRegNo"
-                                :id="categoryWithDash + 'gpSire'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="categoryWithDash + 'gpSire'">GP Sire Registration # (optional)</label>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input v-model="parents.damRegNo"
-                                :id="categoryWithDash + 'gpDam'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="categoryWithDash + 'gpDam'">GP Dam Registration # (optional)</label>
-                        </div>
-                        <div class="col s12">
-                            <button @click.prevent="triggerGetParentsEvent()"
-                                class="btn waves-effect waves-light right"
-                                type="submit"
-                                name="action"
-                            >
-                                Add Parents <i class="material-icons right">add</i>
-                            </button>
-                        </div>
-
                         <div class="col s12">
                             <br>
                         </div>
@@ -70,75 +14,75 @@
                         <!-- More info for GP 1 -->
                         <div class="col s6 input-field">
                             <input v-model="gpOne.adg"
-                                :id="categoryWithDash + 'adg'"
+                                :id="gpOneIdPrefix + 'adg'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'adg'">Average Daily Gain (g/day)</label>
+                            <label :for="gpOneIdPrefix + 'adg'">Average Daily Gain (g/day)</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.bft"
-                                :id="categoryWithDash + 'bft'"
+                                :id="gpOneIdPrefix + 'bft'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'bft'">Backfat Thickness (mm)</label>
+                            <label :for="gpOneIdPrefix + 'bft'">Backfat Thickness (mm)</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.fe"
-                                :id="categoryWithDash + 'feed-efficiency'"
+                                :id="gpOneIdPrefix + 'feed-efficiency'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
+                            <label :for="gpOneIdPrefix + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.birth_weight"
-                                :id="categoryWithDash + 'birth-weight'"
+                                :id="gpOneIdPrefix + 'birth-weight'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'birth-weight'">Birth weight</label>
+                            <label :for="gpOneIdPrefix + 'birth-weight'">Birth weight</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.littersizeAlive_male"
-                                :id="categoryWithDash + 'total-m'"
+                                :id="gpOneIdPrefix + 'total-m'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'total-m'">Total (M) born alive</label>
+                            <label :for="gpOneIdPrefix + 'total-m'">Total (M) born alive</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.littersizeAlive_female"
-                                :id="categoryWithDash + 'total-f'"
+                                :id="gpOneIdPrefix + 'total-f'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'total-f'">Total (F) born alive</label>
+                            <label :for="gpOneIdPrefix + 'total-f'">Total (F) born alive</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.parity"
-                                :id="categoryWithDash + 'parity'"
+                                :id="gpOneIdPrefix + 'parity'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'parity'">Parity</label>
+                            <label :for="gpOneIdPrefix + 'parity'">Parity</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.littersize_weaning"
-                                :id="categoryWithDash + 'littersize-weaning'"
+                                :id="gpOneIdPrefix + 'littersize-weaning'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'littersize-weaning'">Littersize at weaning</label>
+                            <label :for="gpOneIdPrefix + 'littersize-weaning'">Littersize at weaning</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.litterweight_weaning"
-                                :id="categoryWithDash + 'litterweight-weaning'"
+                                :id="gpOneIdPrefix + 'litterweight-weaning'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="categoryWithDash + 'litterweight-weaning'">Litter weight at weaning</label>
+                            <label :for="gpOneIdPrefix + 'litterweight-weaning'">Litter weight at weaning</label>
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
@@ -166,17 +110,9 @@
 
 <script>
     export default {
-        props: {
-            category: String,
-            data: [String, Object]
-        },
-
         data() {
             return {
-                parents: {
-                    sireRegNo: '',
-                    damRegNo: ''
-                },
+                gpOneIdPrefix: 'gp-one-',
                 gpOne: {
                     adg: '',
                     bft: '',
@@ -192,26 +128,9 @@
             }
         },
 
-        computed: {
-            categoryWithDash() {
-                return this.category + '-';
-            },
-
-            titleCategory() {
-                return _.toUpper(this.category);
-            }
-        },
-
         methods: {
             objectIsEmpty(obj) {
                 return _.isEmpty(obj);
-            },
-
-            triggerGetParentsEvent() {
-                this.$emit('getParentsEvent', {
-                    sireRegNo: this.parents.sireRegNo,
-                    damRegNo: this.parents.damRegNo
-                });
             },
 
             triggerSubmitSwineInfoEvent() {

@@ -5,7 +5,10 @@
                 <span class="card-title center-align">Summary</span>
 
                 <div class="row">
-
+                    <div class="col s12">
+                        <br>
+                    </div>
+                    
                     <!-- Swine Information -->
                     <div id="swineinfo-container" class="col s12 m12 l6">
                         <div class="card">

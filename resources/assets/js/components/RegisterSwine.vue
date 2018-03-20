@@ -8,10 +8,9 @@
         <div class="row" style="margin-bottom:0;">
             <div id="add-swine-tabs" class="col s12" style="margin-top:2rem; padding:0;">
                 <ul class="tabs tabs-fixed-width z-depth-2">
-                    <li class="tab col s2"><a href="#basic-information">Basic Info</a></li>
+                    <li class="tab col s3"><a href="#basic-information">Basic Information</a></li>
                     <li class="tab col s2"><a href="#gp-1">GP1</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpSire }"><a href="#gp-sire">GP Sire</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.gpDam }"><a href="#gp-dam">GP Dam</a></li>
+                    <li class="tab col s3"><a href="#gp-parents">GP Parents</a></li>
                     <li class="tab col s2" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
                     <li class="tab col s2" :class="{ 'disabled' : tabDisables.summary }"><a href="#summary">Summary</a></li>
                 </ul>
@@ -25,6 +24,10 @@
                     <span class="card-title center-align">Basic Information</span>
                     <div class="row">
                         <div class="col s12 m6 l4 offset-m3 offset-l4">
+                            <div class="col s12">
+                                <br>
+                            </div>
+
                             <!-- Breed -->
                             <div class="input-field col s12">
                                 <app-input-select
@@ -93,26 +96,15 @@
 
         <!-- GP 1 tab component -->
         <register-swine-properties
-            category="gp-1"
-            data=""
-            v-on:getParentsEvent="getParents"
             v-on:submitSwineInfoEvent="addSwineInfo"
         >
         </register-swine-properties>
 
-        <!-- GP Sire tab component -->
-        <register-swine-properties
-            category="gp-sire"
-            :data="gpSireData"
+        <!-- GP Parents tab component -->
+        <register-swine-parents-properties
+            v-on:getParentsEvent="getParents"
         >
-        </register-swine-properties>
-
-        <!-- GP Dam tab component -->
-        <register-swine-properties
-            category="gp-dam"
-            :data="gpDamData"
-        >
-        </register-swine-properties>
+        </register-swine-parents-properties>
 
         <!-- Upload photos tab -->
         <register-swine-upload-photo
@@ -149,8 +141,6 @@
         data() {
             return {
                 tabDisables: {
-                    gpSire: true,
-                    gpDam: true,
                     photos: true,
                     summary: true
                 },

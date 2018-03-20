@@ -447,6 +447,7 @@ Vue.component('app-input-date', __webpack_require__(109));
 Vue.component('app-input-select', __webpack_require__(112));
 
 // Breeder
+Vue.component('register-swine-parents-properties', __webpack_require__(147));
 Vue.component('register-swine-properties', __webpack_require__(120));
 Vue.component('register-swine-summary', __webpack_require__(123));
 Vue.component('register-swine-upload-photo', __webpack_require__(128));
@@ -2481,14 +2482,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -2500,8 +2493,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             tabDisables: {
-                gpSire: true,
-                gpDam: true,
                 photos: true,
                 summary: true
             },
@@ -2635,25 +2626,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('ul', {
     staticClass: "tabs tabs-fixed-width z-depth-2"
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.gpSire
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-sire"
-    }
-  }, [_vm._v("GP Sire")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.gpDam
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-dam"
-    }
-  }, [_vm._v("GP Dam")])]), _vm._v(" "), _c('li', {
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('li', {
     staticClass: "tab col s2",
     class: {
       'disabled': _vm.tabDisables.photos
@@ -2686,7 +2659,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s12 m6 l4 offset-m3 offset-l4"
-  }, [_c('div', {
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('app-input-select', {
     attrs: {
@@ -2814,24 +2787,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "basicInfo.farmFrom"
     }
-  })], 1), _vm._v(" "), _vm._m(3)])])])])]), _vm._v(" "), _c('register-swine-properties', {
-    attrs: {
-      "category": "gp-1",
-      "data": ""
-    },
+  })], 1), _vm._v(" "), _vm._m(5)])])])])]), _vm._v(" "), _c('register-swine-properties', {
     on: {
-      "getParentsEvent": _vm.getParents,
       "submitSwineInfoEvent": _vm.addSwineInfo
     }
-  }), _vm._v(" "), _c('register-swine-properties', {
-    attrs: {
-      "category": "gp-sire",
-      "data": _vm.gpSireData
-    }
-  }), _vm._v(" "), _c('register-swine-properties', {
-    attrs: {
-      "category": "gp-dam",
-      "data": _vm.gpDamData
+  }), _vm._v(" "), _c('register-swine-parents-properties', {
+    on: {
+      "getParentsEvent": _vm.getParents
     }
   }), _vm._v(" "), _c('register-swine-upload-photo', {
     attrs: {
@@ -2861,12 +2823,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" Register Swine ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
-    staticClass: "tab col s2"
+    staticClass: "tab col s3"
   }, [_c('a', {
     attrs: {
       "href": "#basic-information"
     }
-  }, [_vm._v("Basic Info")])])
+  }, [_vm._v("Basic Information")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
     staticClass: "tab col s2"
@@ -2875,6 +2837,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#gp-1"
     }
   }, [_vm._v("GP1")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    staticClass: "tab col s3"
+  }, [_c('a', {
+    attrs: {
+      "href": "#gp-parents"
+    }
+  }, [_vm._v("GP Parents")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -3044,75 +3018,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        category: String,
-        data: [String, Object]
-    },
-
     data: function data() {
         return {
-            parents: {
-                sireRegNo: '',
-                damRegNo: ''
-            },
+            gpOneIdPrefix: 'gp-one-',
             gpOne: {
                 adg: '',
                 bft: '',
@@ -3129,24 +3039,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    computed: {
-        categoryWithDash: function categoryWithDash() {
-            return this.category + '-';
-        },
-        titleCategory: function titleCategory() {
-            return _.toUpper(this.category);
-        }
-    },
-
     methods: {
         objectIsEmpty: function objectIsEmpty(obj) {
             return _.isEmpty(obj);
-        },
-        triggerGetParentsEvent: function triggerGetParentsEvent() {
-            this.$emit('getParentsEvent', {
-                sireRegNo: this.parents.sireRegNo,
-                damRegNo: this.parents.damRegNo
-            });
         },
         triggerSubmitSwineInfoEvent: function triggerSubmitSwineInfoEvent() {
             this.$emit('submitSwineInfoEvent', {
@@ -3168,7 +3063,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "row",
     attrs: {
-      "id": _vm.category
+      "id": "gp-1"
     }
   }, [_c('div', {
     staticClass: "card col s12"
@@ -3176,91 +3071,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title center-align"
-  }, [_vm._v(_vm._s(_vm.titleCategory))]), _vm._v(" "), (_vm.data) ? _c('div', {
+  }, [_vm._v("GP 1")]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s12 m10 l6 offset-m1 offset-l3"
-  }, [(_vm.objectIsEmpty(_vm.data)) ? _c('div', {}, [_c('p', [_vm._v(" No data available. ")])]) : _c('div', {}, [_c('table', {
-    staticClass: "striped"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.data.swine_properties), function(property) {
-    return _c('tr', {
-      key: property.id
-    }, [_c('td', [_vm._v(" " + _vm._s(property.title) + " ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(property.value) + " ")])])
-  }))])])])]) : _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m10 l6 offset-m1 offset-l3"
-  }, [_c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.parents.sireRegNo),
-      expression: "parents.sireRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'gpSire',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.parents.sireRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.parents.sireRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'gpSire'
-    }
-  }, [_vm._v("GP Sire Registration # (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.parents.damRegNo),
-      expression: "parents.damRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'gpDam',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.parents.damRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.parents.damRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'gpDam'
-    }
-  }, [_vm._v("GP Dam Registration # (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('button', {
-    staticClass: "btn waves-effect waves-light right",
-    attrs: {
-      "type": "submit",
-      "name": "action"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.triggerGetParentsEvent()
-      }
-    }
-  }, [_vm._v("\n                            Add Parents "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
@@ -3271,7 +3086,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'adg',
+      "id": _vm.gpOneIdPrefix + 'adg',
       "type": "text"
     },
     domProps: {
@@ -3285,7 +3100,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'adg'
+      "for": _vm.gpOneIdPrefix + 'adg'
     }
   }, [_vm._v("Average Daily Gain (g/day)")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3298,7 +3113,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'bft',
+      "id": _vm.gpOneIdPrefix + 'bft',
       "type": "text"
     },
     domProps: {
@@ -3312,7 +3127,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'bft'
+      "for": _vm.gpOneIdPrefix + 'bft'
     }
   }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3325,7 +3140,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'feed-efficiency',
+      "id": _vm.gpOneIdPrefix + 'feed-efficiency',
       "type": "text"
     },
     domProps: {
@@ -3339,7 +3154,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'feed-efficiency'
+      "for": _vm.gpOneIdPrefix + 'feed-efficiency'
     }
   }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3352,7 +3167,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'birth-weight',
+      "id": _vm.gpOneIdPrefix + 'birth-weight',
       "type": "text"
     },
     domProps: {
@@ -3366,7 +3181,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'birth-weight'
+      "for": _vm.gpOneIdPrefix + 'birth-weight'
     }
   }, [_vm._v("Birth weight")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3379,7 +3194,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'total-m',
+      "id": _vm.gpOneIdPrefix + 'total-m',
       "type": "text"
     },
     domProps: {
@@ -3393,7 +3208,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'total-m'
+      "for": _vm.gpOneIdPrefix + 'total-m'
     }
   }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3406,7 +3221,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'total-f',
+      "id": _vm.gpOneIdPrefix + 'total-f',
       "type": "text"
     },
     domProps: {
@@ -3420,7 +3235,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'total-f'
+      "for": _vm.gpOneIdPrefix + 'total-f'
     }
   }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3433,7 +3248,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'parity',
+      "id": _vm.gpOneIdPrefix + 'parity',
       "type": "text"
     },
     domProps: {
@@ -3447,7 +3262,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'parity'
+      "for": _vm.gpOneIdPrefix + 'parity'
     }
   }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3460,7 +3275,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'littersize-weaning',
+      "id": _vm.gpOneIdPrefix + 'littersize-weaning',
       "type": "text"
     },
     domProps: {
@@ -3474,7 +3289,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'littersize-weaning'
+      "for": _vm.gpOneIdPrefix + 'littersize-weaning'
     }
   }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3487,7 +3302,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.categoryWithDash + 'litterweight-weaning',
+      "id": _vm.gpOneIdPrefix + 'litterweight-weaning',
       "type": "text"
     },
     domProps: {
@@ -3501,7 +3316,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.categoryWithDash + 'litterweight-weaning'
+      "for": _vm.gpOneIdPrefix + 'litterweight-weaning'
     }
   }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -3540,8 +3355,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons right"
   }, [_vm._v("send")])])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v(" Property ")]), _vm._v(" "), _c('th', [_vm._v(" Value ")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
@@ -3832,6 +3645,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -3909,7 +3725,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-title center-align"
   }, [_vm._v("Summary")]), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }, [_c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6",
     attrs: {
       "id": "swineinfo-container"
@@ -3918,11 +3734,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card"
   }, [_c('div', {
     staticClass: "card-content"
-  }, [_vm._m(0), _vm._v(" "), _c('table', {
+  }, [_vm._m(1), _vm._v(" "), _c('table', {
     attrs: {
       "id": "swine-summary-table"
     }
-  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" GP Sire ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSire))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Dam ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDam))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.adg))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.fe))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birth_weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_male))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_female))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersize_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweight_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.date_weaning))])])])])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" GP Sire ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSire))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Dam ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDam))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.adg))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.fe))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birth_weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_male))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_female))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersize_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweight_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.date_weaning))])])])])])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "col s12",
     attrs: {
       "id": "photos-container"
@@ -3931,7 +3747,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card"
   }, [_c('div', {
     staticClass: "card-content"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, _vm._l((_vm.summaryImageFiles), function(photo) {
     return _c('div', {
@@ -3982,6 +3798,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n                        Submit and Generate Certificate\n                    ")])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', {
     staticClass: "center-align"
   }, [_c('b', [_vm._v("Swine Information")])])
@@ -4131,7 +3951,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    min-height: 20rem;\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    margin-top: 3rem;\n    min-height: 20rem;\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
 
 // exports
 
@@ -5390,6 +5210,1218 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-181327ec", module.exports)
+  }
+}
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(148)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(150),
+  /* template */
+  __webpack_require__(151),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-17cbae1c",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineParentsProperties.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwineParentsProperties.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-17cbae1c", Component.options)
+  } else {
+    hotAPI.reload("data-v-17cbae1c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(149);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("2dc705b9", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17cbae1c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsProperties.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17cbae1c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsProperties.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 150 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            gpSireIdPrefix: 'gp-sire-',
+            gpDamIdPrefix: 'gp-dam-',
+            status: {
+                sire: '',
+                dam: ''
+            },
+            existingParents: {
+                sireRegNo: '',
+                damRegNo: ''
+            },
+            gpSire: {
+                adg: '',
+                bft: '',
+                fe: '',
+                birth_weight: '',
+                littersizeAlive_male: '',
+                littersizeAlive_female: '',
+                parity: '',
+                littersize_weaning: '',
+                litterweight_weaning: '',
+                date_weaning: ''
+            },
+            gpDam: {
+                adg: '',
+                bft: '',
+                fe: '',
+                birth_weight: '',
+                littersizeAlive_male: '',
+                littersizeAlive_female: '',
+                parity: '',
+                littersize_weaning: '',
+                litterweight_weaning: '',
+                date_weaning: ''
+            }
+        };
+    },
+
+
+    watch: {
+        'status.sire': function statusSire() {
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+
+        'status.dam': function statusDam() {
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        }
+    },
+
+    methods: {
+        triggerGetParentsEvent: function triggerGetParentsEvent() {
+            this.$emit('getParentsEvent', {
+                sireRegNo: this.existingParents.sireRegNo,
+                damRegNo: this.existingParents.damRegNo
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "gp-parents"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v("GP Parents")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m12 l6"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_vm._v("\n                                Choose an option:\n                            ")]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status.sire),
+      expression: "status.sire"
+    }],
+    attrs: {
+      "name": "sire-status",
+      "type": "radio",
+      "id": "sire-new",
+      "value": "new"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status.sire, "new")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.status.sire = "new"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "sire-new"
+    }
+  }, [_vm._v("Sire is not yet registered in the system")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status.sire),
+      expression: "status.sire"
+    }],
+    attrs: {
+      "name": "sire-status",
+      "type": "radio",
+      "id": "sire-existing",
+      "value": "existing"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status.sire, "existing")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.status.sire = "existing"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "sire-existing"
+    }
+  }, [_vm._v("Sire is currently registered in the system")])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), (_vm.status.sire === 'existing') ? [_c('div', {
+    staticClass: "col s8 offset-s2 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.existingParents.sireRegNo),
+      expression: "existingParents.sireRegNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'existing',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.existingParents.sireRegNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.existingParents.sireRegNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'gpSire'
+    }
+  }, [_vm._v("GP Sire Registration #")])])] : (_vm.status.sire === 'new') ? [_c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.adg),
+      expression: "gpSire.adg"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'adg',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.adg)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.adg = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'adg'
+    }
+  }, [_vm._v("Average Daily Gain (g/day)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.bft),
+      expression: "gpSire.bft"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'bft',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.bft)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.bft = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'bft'
+    }
+  }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.fe),
+      expression: "gpSire.fe"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'feed-efficiency',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.fe)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.fe = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'feed-efficiency'
+    }
+  }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.birth_weight),
+      expression: "gpSire.birth_weight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'birth-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.birth_weight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.birth_weight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'birth-weight'
+    }
+  }, [_vm._v("Birth weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.littersizeAlive_male),
+      expression: "gpSire.littersizeAlive_male"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'total-m',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.littersizeAlive_male)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.littersizeAlive_male = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'total-m'
+    }
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.littersizeAlive_female),
+      expression: "gpSire.littersizeAlive_female"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.littersizeAlive_female)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.littersizeAlive_female = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.parity),
+      expression: "gpSire.parity"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'parity',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.parity)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.parity = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'parity'
+    }
+  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.littersize_weaning),
+      expression: "gpSire.littersize_weaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.littersize_weaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.littersize_weaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.litterweight_weaning),
+      expression: "gpSire.litterweight_weaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.litterweight_weaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.litterweight_weaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpSire.date_weaning = val
+      }
+    },
+    model: {
+      value: (_vm.gpSire.date_weaning),
+      callback: function($$v) {
+        _vm.gpSire.date_weaning = $$v
+      },
+      expression: "gpSire.date_weaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1)] : _vm._e()], 2), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m12 l6"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_vm._v("\n                                Choose an option:\n                            ")]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status.dam),
+      expression: "status.dam"
+    }],
+    attrs: {
+      "name": "dam-status",
+      "type": "radio",
+      "id": "dam-new",
+      "value": "new"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status.dam, "new")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.status.dam = "new"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "dam-new"
+    }
+  }, [_vm._v("Dam is not yet registered in the system")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status.dam),
+      expression: "status.dam"
+    }],
+    attrs: {
+      "name": "dam-status",
+      "type": "radio",
+      "id": "dam-existing",
+      "value": "existing"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status.dam, "existing")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.status.dam = "existing"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "dam-existing"
+    }
+  }, [_vm._v("Dam is currently registered in the system")])])]), _vm._v(" "), _vm._m(4), _vm._v(" "), (_vm.status.dam === 'existing') ? [_c('div', {
+    staticClass: "col s8 offset-s2 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.existingParents.damRegNo),
+      expression: "existingParents.damRegNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'existing',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.existingParents.damRegNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.existingParents.damRegNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'gpDam'
+    }
+  }, [_vm._v("GP Dam Registration #")])])] : (_vm.status.dam === 'new') ? [_c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.adg),
+      expression: "gpDam.adg"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'adg',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.adg)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.adg = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'adg'
+    }
+  }, [_vm._v("Average Daily Gain (g/day)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.bft),
+      expression: "gpDam.bft"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'bft',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.bft)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.bft = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'bft'
+    }
+  }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.fe),
+      expression: "gpDam.fe"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'feed-efficiency',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.fe)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.fe = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'feed-efficiency'
+    }
+  }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.birth_weight),
+      expression: "gpDam.birth_weight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'birth-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.birth_weight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.birth_weight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'birth-weight'
+    }
+  }, [_vm._v("Birth weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.littersizeAlive_male),
+      expression: "gpDam.littersizeAlive_male"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'total-m',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.littersizeAlive_male)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.littersizeAlive_male = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'total-m'
+    }
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.littersizeAlive_female),
+      expression: "gpDam.littersizeAlive_female"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.littersizeAlive_female)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.littersizeAlive_female = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.parity),
+      expression: "gpDam.parity"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'parity',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.parity)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.parity = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'parity'
+    }
+  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.littersize_weaning),
+      expression: "gpDam.littersize_weaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.littersize_weaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.littersize_weaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.litterweight_weaning),
+      expression: "gpDam.litterweight_weaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.litterweight_weaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.litterweight_weaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpDam.date_weaning = val
+      }
+    },
+    model: {
+      value: (_vm.gpDam.date_weaning),
+      callback: function($$v) {
+        _vm.gpDam.date_weaning = $$v
+      },
+      expression: "gpDam.date_weaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1)] : _vm._e()], 2), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_c('button', {
+    staticClass: "btn waves-effect waves-light",
+    attrs: {
+      "type": "submit",
+      "name": "action"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerSubmitSwineInfoEvent($event)
+      }
+    }
+  }, [_vm._v("\n                            Link Parents "), _c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("send")])])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("GP Sire")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("GP Dam")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-17cbae1c", module.exports)
   }
 }
 
