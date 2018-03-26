@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="">
+    <div class="app-input-select">
         <select ref="select" :value="value">
             <option value="" disabled selected> Choose {{ labelDescription }} </option>
             <option v-for="option in options" :value="option.value"> {{ option.text }} </option>
@@ -26,14 +26,19 @@
             // Initialize Material select
             $(this.$refs.select).material_select();
 
-            // Bind change event to emit new value
-            var self = this;
+            // Temporary way to make initial value
+            // on select have gray text color
+            $(this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').addClass('grey-text');
 
-            $(this.$refs.select).on('change', function(){
-                self.$emit('select',self.$refs.select.value);
+            $(this.$refs.select).on('change', () => {
+                this.$emit('select',this.$refs.select.value);
 
                 // Show label upon value change
-                self.hideLabel = true;
+                this.hideLabel = true;
+
+                // Make value on select have
+                // black text color
+                $(this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').removeClass('grey-text');
             });
         }
     }

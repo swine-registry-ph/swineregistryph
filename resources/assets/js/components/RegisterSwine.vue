@@ -48,15 +48,6 @@
                                 >
                                 </app-input-select>
                             </div>
-                            <!-- Weight -->
-                            <div class="input-field col s12">
-                                <input v-model="basicInfo.weight"
-                                    id="weight"
-                                    type="text"
-                                    class="validate"
-                                >
-                                <label for="weight">Weight when data was collected</label>
-                            </div>
                             <!-- Birthdate -->
                             <div class="input-field col s12">
                                 <app-input-date
@@ -102,6 +93,7 @@
 
         <!-- GP Parents tab component -->
         <register-swine-parents-properties
+            :farmoptions="farmoptions"
             v-on:getParentsEvent="getParents"
         >
         </register-swine-parents-properties>
@@ -153,8 +145,7 @@
                     sex: '',
                     birthDate: '',
                     dateCollected: '',
-                    weight: '',
-                    farmFrom: ''
+                    farmFrom: '',
                 },
                 imageFiles: []
             }

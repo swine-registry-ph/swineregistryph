@@ -76,6 +76,7 @@ class UserInstancesSeeder extends Seeder
                 // breed, sex, birth date, age when data, weight when data
                 // [DAO][JJ][LW][16][M][T]-earmark
                 // [Location][Farm][Breed][BirthYear][Gender][Tunnel/Open]-earmark/farmID
+                // houseType, teatNo, adg_birth, adg_test should be included in properties
                 $swine->swineProperties()->saveMany(
                     [
                         new App\Models\SwineProperty([
