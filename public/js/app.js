@@ -1567,6 +1567,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1654,11 +1658,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        triggerGetParentsEvent: function triggerGetParentsEvent() {
-            this.$emit('getParentsEvent', {
-                sireRegNo: this.existingParents.sireRegNo,
-                damRegNo: this.existingParents.damRegNo
-            });
+        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
+            this.$emit('goToTabEvent', tabId);
         }
     },
 
@@ -3049,22 +3050,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": "dam-house-type-open"
     }
   }, [_vm._v("Open sided")])])])] : _vm._e()], 2)])])])]), _vm._v(" "), _vm._m(19), _vm._v(" "), _vm._m(20), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_c('button', {
-    staticClass: "btn waves-effect waves-light",
-    attrs: {
-      "type": "submit",
-      "name": "action"
-    },
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.triggerSubmitSwineInfoEvent($event)
+        _vm.triggerGoToTabEvent('gp-1')
       }
     }
-  }, [_vm._v("\n                            Link Parents "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("send")])])])])])])])])
+  }, [_c('i', {
+    staticClass: "material-icons black-text"
+  }, [_vm._v("arrow_back")])]), _vm._v(" "), _c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light green lighten-1 right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerGoToTabEvent('summary')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -3426,6 +3433,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -3459,10 +3470,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         objectIsEmpty: function objectIsEmpty(obj) {
             return _.isEmpty(obj);
         },
-        triggerSubmitSwineInfoEvent: function triggerSubmitSwineInfoEvent() {
-            this.$emit('submitSwineInfoEvent', {
-                data: this.gpOne
-            });
+        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
+            this.$emit('goToTabEvent', tabId);
         }
     },
 
@@ -4431,6 +4440,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -4467,6 +4485,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var i = 0; i < arrayToBeSearched.length; i++) {
                 if (arrayToBeSearched[i].id === id) return i;
             }
+        },
+        goToTab: function goToTab(tabId) {
+            // Function used in tab navigation links
+            tabId === 'summary' ? this.tabDisables.summary = false : this.tabDisables.summary = true;
+
+            this.$nextTick(function () {
+                $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
+            });
         },
         getSireInfo: function getSireInfo(sireRegNo) {
             var vm = this;
@@ -4521,8 +4547,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // and enable 'Photos' tab
                 vm.basicInfo.id = response.data;
                 vm.tabDisables.photos = false;
-                vm.tabDisables.swinecart = false;
-                vm.tabDisables.geneticInfo = false;
 
                 Materialize.toast('Swine info added', 2000, 'green lighten-1');
             }).catch(function (error) {
@@ -4577,22 +4601,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('li', {
     staticClass: "tab col s2",
     class: {
-      'disabled': _vm.tabDisables.photos
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#photos"
-    }
-  }, [_vm._v("Photos")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
       'disabled': _vm.tabDisables.summary
     }
   }, [_c('a', {
     attrs: {
       "href": "#summary"
     }
-  }, [_vm._v("Summary")])])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Summary")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.photos
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#photos"
+    }
+  }, [_vm._v("Photos")])])])])]), _vm._v(" "), _c('div', {
     staticClass: "row",
     attrs: {
       "id": "basic-information"
@@ -4708,25 +4732,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "basicInfo.farmFrom"
     }
-  })], 1), _vm._v(" "), _vm._m(5)])])])])]), _vm._v(" "), _c('register-swine-properties', {
+  })], 1), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light green lighten-1 right",
     on: {
-      "submitSwineInfoEvent": _vm.addSwineInfo
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.goToTab('gp-1')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('register-swine-properties', {
+    on: {
+      "goToTabEvent": _vm.goToTab
     }
   }), _vm._v(" "), _c('register-swine-parents-properties', {
     attrs: {
       "farmoptions": _vm.farmoptions
     },
     on: {
-      "getParentsEvent": _vm.getParents
-    }
-  }), _vm._v(" "), _c('register-swine-upload-photo', {
-    attrs: {
-      "swine-id": _vm.basicInfo.id,
-      "uploadurl": _vm.uploadurl
-    },
-    on: {
-      "addedPhotoEvent": _vm.addPhotoToImageFiles,
-      "removedPhotoEvent": _vm.removePhotoFromImageFiles
+      "goToTabEvent": _vm.goToTab
     }
   }), _vm._v(" "), _c('register-swine-summary', {
     attrs: {
@@ -4737,6 +4764,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "image-files": _vm.imageFiles,
       "breeds": _vm.breeds,
       "farmoptions": _vm.farmoptions
+    }
+  }), _vm._v(" "), _c('register-swine-upload-photo', {
+    attrs: {
+      "swine-id": _vm.basicInfo.id,
+      "uploadurl": _vm.uploadurl
+    },
+    on: {
+      "addedPhotoEvent": _vm.addPhotoToImageFiles,
+      "removedPhotoEvent": _vm.removePhotoFromImageFiles
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7271,7 +7307,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -7775,23 +7811,29 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "house-type-open"
     }
-  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_c('button', {
-    staticClass: "btn waves-effect waves-light",
-    attrs: {
-      "type": "submit",
-      "name": "action"
-    },
+  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(7)]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.triggerSubmitSwineInfoEvent($event)
+        _vm.triggerGoToTabEvent('basic-information')
       }
     }
-  }, [_vm._v("\n                            Submit Info "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("send")])])])])])])])])
+  }, [_c('i', {
+    staticClass: "material-icons black-text"
+  }, [_vm._v("arrow_back")])]), _vm._v(" "), _c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light green lighten-1 right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerGoToTabEvent('gp-parents')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"

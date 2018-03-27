@@ -203,16 +203,20 @@
                         <div class="col s12">
                             <br>
                         </div>
+                    </div>
 
-                        <div class="col s12 center-align">
-                            <button @click.prevent="triggerSubmitSwineInfoEvent"
-                                class="btn waves-effect waves-light"
-                                type="submit"
-                                name="action"
-                            >
-                                Submit Info <i class="material-icons right">send</i>
-                            </button>
-                        </div>
+                    <!-- Tab navigation links -->
+                    <div class="col s12">
+                        <a class="btn-floating btn-large waves-effect waves-light grey lighten-4 left"
+                            @click.prevent="triggerGoToTabEvent('basic-information')"
+                        >
+                            <i class="material-icons black-text">arrow_back</i>
+                        </a>
+                        <a class="btn-floating btn-large waves-effect waves-light green lighten-1 right"
+                            @click.prevent="triggerGoToTabEvent('gp-parents')"
+                        >
+                            <i class="material-icons">arrow_forward</i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -253,10 +257,8 @@
                 return _.isEmpty(obj);
             },
 
-            triggerSubmitSwineInfoEvent() {
-                this.$emit('submitSwineInfoEvent', {
-                    data: this.gpOne
-                });
+            triggerGoToTabEvent(tabId) {
+                this.$emit('goToTabEvent', tabId);
             }
         },
 

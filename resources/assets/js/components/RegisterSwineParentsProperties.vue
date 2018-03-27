@@ -584,14 +584,18 @@
                             <br>
                         </div>
 
-                        <div class="col s12 center-align">
-                            <button @click.prevent="triggerSubmitSwineInfoEvent"
-                                class="btn waves-effect waves-light"
-                                type="submit"
-                                name="action"
+                        <!-- Tab navigation links -->
+                        <div class="col s12">
+                            <a class="btn-floating btn-large waves-effect waves-light grey lighten-4 left"
+                                @click.prevent="triggerGoToTabEvent('gp-1')"
                             >
-                                Link Parents <i class="material-icons right">send</i>
-                            </button>
+                                <i class="material-icons black-text">arrow_back</i>
+                            </a>
+                            <a class="btn-floating btn-large waves-effect waves-light green lighten-1 right"
+                                @click.prevent="triggerGoToTabEvent('summary')"
+                            >
+                                <i class="material-icons">arrow_forward</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -686,12 +690,9 @@
         },
 
         methods: {
-            triggerGetParentsEvent() {
-                this.$emit('getParentsEvent', {
-                    sireRegNo: this.existingParents.sireRegNo,
-                    damRegNo: this.existingParents.damRegNo
-                });
-            },
+            triggerGoToTabEvent(tabId) {
+                this.$emit('goToTabEvent', tabId);
+            }
         },
 
         mounted() {

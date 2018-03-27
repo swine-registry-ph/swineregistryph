@@ -11,8 +11,8 @@
                     <li class="tab col s3"><a href="#basic-information">Basic Information</a></li>
                     <li class="tab col s2"><a href="#gp-1">GP1</a></li>
                     <li class="tab col s3"><a href="#gp-parents">GP Parents</a></li>
-                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
                     <li class="tab col s2" :class="{ 'disabled' : tabDisables.summary }"><a href="#summary">Summary</a></li>
+                    <li class="tab col s2" :class="{ 'disabled' : tabDisables.photos }"><a href="#photos">Photos</a></li>
                 </ul>
             </div>
         </div>
@@ -80,6 +80,15 @@
                                 <br>
                             </div>
                         </div>
+
+                        <!-- Tab navigatoin links -->
+                        <div class="col s12">
+                            <a class="btn-floating btn-large waves-effect waves-light green lighten-1 right"
+                                @click.prevent="goToTab('gp-1')"
+                            >
+                                <i class="material-icons">arrow_forward</i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,25 +96,16 @@
 
         <!-- GP 1 tab component -->
         <register-swine-properties
-            v-on:submitSwineInfoEvent="addSwineInfo"
+            v-on:goToTabEvent="goToTab"
         >
         </register-swine-properties>
 
         <!-- GP Parents tab component -->
         <register-swine-parents-properties
             :farmoptions="farmoptions"
-            v-on:getParentsEvent="getParents"
+            v-on:goToTabEvent="goToTab"
         >
         </register-swine-parents-properties>
-
-        <!-- Upload photos tab -->
-        <register-swine-upload-photo
-            :swine-id="basicInfo.id"
-            :uploadurl="uploadurl"
-            v-on:addedPhotoEvent="addPhotoToImageFiles"
-            v-on:removedPhotoEvent="removePhotoFromImageFiles"
-        >
-        </register-swine-upload-photo>
 
         <!-- Summary tab -->
         <register-swine-summary
@@ -118,6 +118,15 @@
             :farmoptions="farmoptions"
         >
         </register-swine-summary>
+
+        <!-- Upload photos tab -->
+        <register-swine-upload-photo
+            :swine-id="basicInfo.id"
+            :uploadurl="uploadurl"
+            v-on:addedPhotoEvent="addPhotoToImageFiles"
+            v-on:removedPhotoEvent="removePhotoFromImageFiles"
+        >
+        </register-swine-upload-photo>
 
     </div>
 </template>
@@ -157,6 +166,16 @@
                 for(var i = 0; i < arrayToBeSearched.length; i++) {
                     if(arrayToBeSearched[i].id === id) return i;
                 }
+            },
+
+            goToTab(tabId) {
+                // Function used in tab navigation links
+                (tabId === 'summary') ? this.tabDisables.summary = false : this.tabDisables.summary = true;
+                
+                this.$nextTick(() => {
+                    $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
+                });
+
             },
 
             getSireInfo(sireRegNo) {
@@ -220,8 +239,6 @@
                     // and enable 'Photos' tab
                     vm.basicInfo.id = response.data;
                     vm.tabDisables.photos = false;
-                    vm.tabDisables.swinecart = false;
-                    vm.tabDisables.geneticInfo = false;
 
                     Materialize.toast('Swine info added', 2000, 'green lighten-1');
                 })
