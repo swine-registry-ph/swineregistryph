@@ -1571,6 +1571,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1581,9 +1605,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             gpSireIdPrefix: 'gp-sire-',
             gpDamIdPrefix: 'gp-dam-',
+            collapsibleStatus: {
+                sire: true,
+                dam: true
+            },
             status: {
-                sire: '',
-                dam: ''
+                sire: 'existing',
+                dam: 'existing'
             },
             existingParents: {
                 sireRegNo: '',
@@ -1697,7 +1725,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "data-collapsible": "expandable"
     }
-  }, [_c('li', [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_c('li', [_c('div', {
+    staticClass: "collapsible-header",
+    on: {
+      "click": function($event) {
+        _vm.collapsibleStatus.sire = !_vm.collapsibleStatus.sire
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [(_vm.collapsibleStatus.sire) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Sire\n                                ")]), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('div', {
     staticClass: "col s12 m12 l6 offset-l3",
@@ -1706,7 +1743,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "col s12"
-  }, [_vm._m(2), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._m(1), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -1756,7 +1793,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "sire-existing"
     }
-  }, [_vm._v("Sire is currently registered in the system")])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), (_vm.status.sire === 'existing') ? [_c('div', {
+  }, [_vm._v("Sire is currently registered in the system")])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), (_vm.status.sire === 'existing') ? [_c('div', {
     staticClass: "col s8 offset-s2 input-field"
   }, [_c('input', {
     directives: [{
@@ -2183,7 +2220,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": ""
     }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
@@ -2229,7 +2266,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpSireIdPrefix + 'adg-birth-end-weight'
     }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
@@ -2321,9 +2358,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpSireIdPrefix + 'adg-test-end-weight'
     }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
     staticClass: "col s12"
-  }, [_vm._m(9), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._m(8), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2373,7 +2410,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "sire-house-type-open"
     }
-  }, [_vm._v("Open sided")])])])] : _vm._e()], 2)])]), _vm._v(" "), _c('li', [_vm._m(10), _vm._v(" "), _c('div', {
+  }, [_vm._v("Open sided")])])])] : _vm._e()], 2)])]), _vm._v(" "), _c('li', [_c('div', {
+    staticClass: "collapsible-header",
+    on: {
+      "click": function($event) {
+        _vm.collapsibleStatus.dam = !_vm.collapsibleStatus.dam
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [(_vm.collapsibleStatus.dam) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Dam\n                                ")]), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('div', {
     staticClass: "col s12 m12 l6 offset-l3",
@@ -2382,7 +2428,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "col s12"
-  }, [_vm._m(11), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._m(9), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2432,7 +2478,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "dam-existing"
     }
-  }, [_vm._v("Dam is currently registered in the system")])])]), _vm._v(" "), _vm._m(12), _vm._v(" "), (_vm.status.dam === 'existing') ? [_c('div', {
+  }, [_vm._v("Dam is currently registered in the system")])])]), _vm._v(" "), _vm._m(10), _vm._v(" "), (_vm.status.dam === 'existing') ? [_c('div', {
     staticClass: "col s8 offset-s2 input-field"
   }, [_c('input', {
     directives: [{
@@ -2859,7 +2905,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": ""
     }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(13), _vm._v(" "), _vm._m(14), _vm._v(" "), _c('div', {
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(11), _vm._v(" "), _vm._m(12), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
@@ -2905,7 +2951,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpDamIdPrefix + 'adg-birth-end-weight'
     }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(15), _vm._v(" "), _vm._m(16), _vm._v(" "), _c('div', {
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(13), _vm._v(" "), _vm._m(14), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
@@ -2997,9 +3043,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpDamIdPrefix + 'adg-test-end-weight'
     }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(17), _vm._v(" "), _c('div', {
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(15), _vm._v(" "), _c('div', {
     staticClass: "col s12"
-  }, [_vm._m(18), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._m(16), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -3049,7 +3095,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "dam-house-type-open"
     }
-  }, [_vm._v("Open sided")])])])] : _vm._e()], 2)])])])]), _vm._v(" "), _vm._m(19), _vm._v(" "), _vm._m(20), _vm._v(" "), _c('div', {
+  }, [_vm._v("Open sided")])])])] : _vm._e()], 2)])])])]), _vm._v(" "), _vm._m(17), _vm._v(" "), _vm._m(18), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('a', {
     staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
@@ -3076,12 +3122,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "collapsible-header"
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("label")]), _vm._v("GP Sire")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', [_c('b', [_vm._v("Choose an option")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3110,12 +3150,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', [_c('b', [_vm._v("House Type")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "collapsible-header"
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("label")]), _vm._v("GP Dam")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', [_c('b', [_vm._v("Choose an option")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

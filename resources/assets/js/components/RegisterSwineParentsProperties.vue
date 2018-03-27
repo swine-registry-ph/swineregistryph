@@ -13,7 +13,19 @@
                         <div class="col s12">
                             <ul class="collapsible" data-collapsible="expandable">
                                 <li>
-                                    <div class="collapsible-header"><i class="material-icons">label</i>GP Sire</div>
+                                    <div class="collapsible-header"
+                                        @click="collapsibleStatus.sire = !collapsibleStatus.sire"
+                                    >
+                                        <i class="material-icons">
+                                            <template v-if="collapsibleStatus.sire">
+                                                label_outline
+                                            </template>
+                                            <template v-else>
+                                                label
+                                            </template>
+                                        </i>
+                                        GP Sire
+                                    </div>
                                     <div class="collapsible-body">
                                         <!-- GP Sire -->
                                         <div id="sire-container" class="col s12 m12 l6 offset-l3">
@@ -294,7 +306,19 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="collapsible-header"><i class="material-icons">label</i>GP Dam</div>
+                                    <div class="collapsible-header"
+                                        @click="collapsibleStatus.dam = !collapsibleStatus.dam"
+                                    >
+                                        <i class="material-icons">
+                                            <template v-if="collapsibleStatus.dam">
+                                                label_outline
+                                            </template>
+                                            <template v-else>
+                                                label
+                                            </template>
+                                        </i>
+                                        GP Dam
+                                    </div>
                                     <div class="collapsible-body">
                                         <!-- GP Dam -->
                                         <div id="dam-container" class="col s12 m12 l6 offset-l3">
@@ -614,9 +638,13 @@
             return {
                 gpSireIdPrefix: 'gp-sire-',
                 gpDamIdPrefix: 'gp-dam-',
+                collapsibleStatus: {
+                    sire: true,
+                    dam: true
+                },
                 status: {
-                    sire: '',
-                    dam: ''
+                    sire: 'existing',
+                    dam: 'existing'
                 },
                 existingParents: {
                     sireRegNo: '',
