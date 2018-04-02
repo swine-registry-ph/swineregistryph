@@ -3108,7 +3108,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "material-icons black-text"
   }, [_vm._v("arrow_back")])]), _vm._v(" "), _c('a', {
-    staticClass: "btn-floating btn-large waves-effect waves-light green lighten-1 right",
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
     on: {
       "click": function($event) {
         $event.preventDefault();
@@ -4066,7 +4066,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "material-icons black-text"
   }, [_vm._v("arrow_back")])]), _vm._v(" "), _c('a', {
-    staticClass: "btn-floating btn-large waves-effect waves-light green lighten-1 right",
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
     on: {
       "click": function($event) {
         $event.preventDefault();
@@ -5369,7 +5369,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('a', {
-    staticClass: "btn-floating btn-large waves-effect waves-light green lighten-1 right",
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
     on: {
       "click": function($event) {
         $event.preventDefault();

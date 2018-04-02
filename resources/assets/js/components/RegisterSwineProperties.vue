@@ -212,7 +212,7 @@
                         >
                             <i class="material-icons black-text">arrow_back</i>
                         </a>
-                        <a class="btn-floating btn-large waves-effect waves-light green lighten-1 right"
+                        <a class="btn-floating btn-large waves-effect waves-light blue right"
                             @click.prevent="triggerGoToTabEvent('gp-parents')"
                         >
                             <i class="material-icons">arrow_forward</i>
