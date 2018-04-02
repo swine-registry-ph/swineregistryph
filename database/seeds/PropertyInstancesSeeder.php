@@ -24,9 +24,9 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'birth_date'
             ],
             [
-                'property' => 'Date when data was collected',
-                'definition' => 'Date when data was collected',
-                'slug' => 'date_collected'
+                'property' => 'Birth Weight',
+                'definition' => 'Birth Weight',
+                'slug' => 'birth_weight'
             ],
             [
                 'property' => 'Weight when data was collected',
@@ -34,9 +34,49 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'collected_weight'
             ],
             [
-                'property' => 'Average Daily Gain',
-                'definition' => 'Average Daily Gain, g/day',
-                'slug' => 'adg'
+                'property' => 'Average Daily Gain from Birth',
+                'definition' => 'Average Daily Gain from Birth, g/day',
+                'slug' => 'adgBirth'
+            ],
+            [
+                'property' => 'End Date (ADG from Birth)',
+                'definition' => 'Average Daily Gain from Birth End Date',
+                'slug' => 'adgBirth_endDate'
+            ],
+            [
+                'property' => 'End Weight (ADG from Birth)',
+                'definition' => 'Average Daily Gain from Birth End Weight',
+                'slug' => 'adgBirth_endWeight'
+            ],
+            [
+                'property' => 'Average Daily Gain on Test',
+                'definition' => 'Average Daily Gain on Test, g/day',
+                'slug' => 'adgTest'
+            ],
+            [
+                'property' => 'Start Date (ADG on Test)',
+                'definition' => 'Average Daily Gain on Test Start Date',
+                'slug' => 'adgTest_startDate'
+            ],
+            [
+                'property' => 'Start Weight (ADG on Test)',
+                'definition' => 'Average Daily Gain on Test Start Weight',
+                'slug' => 'adgTest_startWeight'
+            ],
+            [
+                'property' => 'End Date (ADG on Test)',
+                'definition' => 'Average Daily Gain on Test End Date',
+                'slug' => 'adgTest_endDate'
+            ],
+            [
+                'property' => 'End Weight (ADG on Test)',
+                'definition' => 'Average Daily Gain on Test End Weight',
+                'slug' => 'adgTest_endWeight'
+            ],
+            [
+                'property' => 'House Type',
+                'definition' => 'House Type where swine lives',
+                'slug' => 'house_type'
             ],
             [
                 'property' => 'Backfat Thickness',
@@ -49,9 +89,14 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'fe'
             ],
             [
-                'property' => 'Birth Weight',
-                'definition' => 'Birth Weight',
-                'slug' => 'birth_weight'
+                'property' => 'Teat number',
+                'definition' => 'No. of teats a swine has',
+                'slug' => 'teat_number'
+            ],
+            [
+                'property' => 'Parity',
+                'definition' => 'The number of litters a sow has carried (including current pregnancy)',
+                'slug' => 'parity'
             ],
             [
                 'property' => 'Total (M) born alive',
@@ -62,11 +107,6 @@ class PropertyInstancesSeeder extends Seeder
                 'property' => 'Total (F) born alive',
                 'definition' => 'Total female born alive',
                 'slug' => 'littersize_female'
-            ],
-            [
-                'property' => 'Parity',
-                'definition' => 'The number of litters a sow has carried (including current pregnancy)',
-                'slug' => 'parity'
             ],
             [
                 'property' => 'Littersize at weaning',

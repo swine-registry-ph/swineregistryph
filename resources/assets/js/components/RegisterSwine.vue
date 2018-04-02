@@ -171,7 +171,7 @@
             goToTab(tabId) {
                 // Function used in tab navigation links
                 (tabId === 'summary') ? this.tabDisables.summary = false : this.tabDisables.summary = true;
-                
+
                 this.$nextTick(() => {
                     $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
                 });

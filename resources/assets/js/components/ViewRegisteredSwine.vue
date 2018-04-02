@@ -181,7 +181,7 @@
     }
 </script>
 
-<style scoped lang="css">
+<style lang="css">
 
     .switch label i {
         margin: 0;

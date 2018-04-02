@@ -20,7 +20,7 @@ class CreateFarmsTable extends Migration
             $table->text('address_line1');
             $table->text('address_line2');
             $table->text('province');
-            $table->enum('type', ['tunnel', 'open'])->default('open');
+            $table->text('province_code');
             $table->timestamps();
         });
     }
