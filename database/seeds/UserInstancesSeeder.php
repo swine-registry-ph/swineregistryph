@@ -30,10 +30,12 @@ class UserInstancesSeeder extends Seeder
              */
             $farm = factory(App\Models\Farm::class)->create();
 
-            // (?) How do we even create a farm code? NOT SURE YET.
+            // How do we even create a farm code? Current implementation
+            // is getting the first three characters of $user->name
+            // then making it all uppercase letters
             $farmCode = new App\Models\FarmCode;
             $farmCode->farm_id = 0;
-            $farmCode->farm_code = crypt($farm->name, md5($farm->name));
+            $farmCode->farm_code = strtoupper(substr($user->name, 0, 3));
             $farmCode->farm_accreditation_no = random_int(1000, 2000);
             $farmCode->save();
 
@@ -126,7 +128,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 13, // house type
-                            'value' => $houseTypes[$swineHouseTypeIndex];
+                            'value' => $houseTypes[$swineHouseTypeIndex]
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 14, // bft
@@ -219,7 +221,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 13, // house type
-                            'value' => $houseTypes[$swineHouseTypeIndex];
+                            'value' => $houseTypes[$swineHouseTypeIndex]
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 14, // bft
@@ -312,7 +314,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 13, // house type
-                            'value' => $houseTypes[$swineHouseTypeIndex];
+                            'value' => $houseTypes[$swineHouseTypeIndex]
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 14, // bft

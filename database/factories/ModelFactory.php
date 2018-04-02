@@ -129,10 +129,10 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
         ['Surigao del Sur', 'SUR'],
         // ARMM
         ['Basilan', 'BAS'],
-        ['Lanao del Sur', 'LAS']
+        ['Lanao del Sur', 'LAS'],
         ['Maguindanao', 'MAG'],
         ['Sulu', 'SLU'],
-        ['Tawi-tawi', 'TAW'],
+        ['Tawi-tawi', 'TAW']
     ];
 
     // Generate random integer
@@ -145,8 +145,7 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
         'address_line1' => $faker->streetAddress,
         'address_line2' => $faker->secondaryAddress,
         'province' => $provinces[$rand][0],
-        'province_code' => $provinces[$rand][1],
-        'type' => $typeArray[random_int(0,1)]
+        'province_code' => $provinces[$rand][1]
     ];
 });
 
