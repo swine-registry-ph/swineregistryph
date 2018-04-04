@@ -31,19 +31,14 @@ class UserInstancesSeeder extends Seeder
             /**
              * 1. Add Farm first to User
              */
-            $farm = factory(App\Models\Farm::class)->create();
 
             // How do we even create a farm code? Current implementation
             // is getting the first three characters of $user->name
             // then making it all uppercase letters
-            $farmCode = new App\Models\FarmCode;
-            $farmCode->farm_id = 0;
-            $farmCode->farm_code = strtoupper(substr($user->name, 0, 3));
-            $farmCode->farm_accreditation_no = random_int(1000, 2000);
-            $farmCode->save();
-
-            // Attach farm code to farm
-            $farm->farmCode()->save($farmCode);
+            $farm = factory(App\Models\Farm::class)->create([
+                'farm_code' => strtoupper(substr($user->name, 0, 3)),
+                'farm_accreditation_no' => random_int(1000, 3000)
+            ]);
 
             // Attach farm to breeder
             $breeder->farms()->save($farm);
@@ -77,7 +72,7 @@ class UserInstancesSeeder extends Seeder
                     'farm_id' => $farm->id,
                     'registration_no' => $this->generateRegistrationNumber(
                                             $farm->province_code,
-                                            $farmCode->farm_code,
+                                            $farm->farm_code,
                                             $breeds[$swineBreedIndex]['code'],
                                             \Carbon\Carbon::now()->subYear()->year,
                                             strtoupper(substr($sexes[$swineSexIndex], 0, 1)),
@@ -185,7 +180,7 @@ class UserInstancesSeeder extends Seeder
                     'farm_id' => $farm->id,
                     'registration_no' => $this->generateRegistrationNumber(
                                             $farm->province_code,
-                                            $farmCode->farm_code,
+                                            $farm->farm_code,
                                             $breeds[$swineBreedIndex]['code'],
                                             \Carbon\Carbon::now()->subYear()->year,
                                             'M',
@@ -286,7 +281,7 @@ class UserInstancesSeeder extends Seeder
                     'farm_id' => $farm->id,
                     'registration_no' => $this->generateRegistrationNumber(
                                             $farm->province_code,
-                                            $farmCode->farm_code,
+                                            $farm->farm_code,
                                             $breeds[$swineBreedIndex]['code'],
                                             \Carbon\Carbon::now()->subYear()->year,
                                             'F',
