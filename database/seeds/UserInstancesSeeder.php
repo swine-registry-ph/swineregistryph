@@ -1,9 +1,12 @@
 <?php
 
+use App\Repositories\CustomHelpers;
 use Illuminate\Database\Seeder;
 
 class UserInstancesSeeder extends Seeder
 {
+    use CustomHelpers;
+
     /**
      * Run the database seeds.
      *
@@ -54,10 +57,10 @@ class UserInstancesSeeder extends Seeder
             $sexes = ['male', 'female'];
             $houseTypes = ['open', 'tunnel'];
             $breeds = [
-                [ 'id' => 1, 'name' => 'landrace' ],
-                [ 'id' => 2, 'name' => 'largewhite' ],
-                [ 'id' => 3, 'name' => 'duroc' ],
-                [ 'id' => 4, 'name' => 'pietrain' ]
+                [ 'id' => 1, 'name' => 'landrace', 'code' => 'LD' ],
+                [ 'id' => 2, 'name' => 'largewhite', 'code' => 'LW' ],
+                [ 'id' => 3, 'name' => 'duroc', 'code' => 'DR' ],
+                [ 'id' => 4, 'name' => 'pietrain', 'code' => 'PT' ]
             ];
 
             // Insert 5 default swines
@@ -72,13 +75,19 @@ class UserInstancesSeeder extends Seeder
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => str_random(15)
+                    'registration_no' => $this->generateRegistrationNumber(
+                                            $farm->province_code,
+                                            $farmCode->farm_code,
+                                            $breeds[$swineBreedIndex]['code'],
+                                            \Carbon\Carbon::now()->subYear()->year,
+                                            strtoupper(substr($sexes[$swineSexIndex], 0, 1)),
+                                            strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
+                                            random_int(1000, 2000)
+                                        )
                 ]);
 
-                // [DAO][JJ][LW][16][M][T]-earmark
-                // [Location][Farm][Breed][BirthYear][Gender][Tunnel/Open]-earmark/farmID
-                // sex, birth_date, birth_weight, collected_weight, adgBirth
-                // adgBirth_endDate, adgBirth_endWeight, adgTest,
+                // Properties are as follows: sex, birth_date, birth_weight, collected_weight,
+                // adgBirth, adgBirth_endDate, adgBirth_endWeight, adgTest,
                 // adgTest_startDate, adgTest_startWeight, adgTest_endDate,
                 // adgTest_endWeight, house_type, bft, fe, teat_number,
                 // parity, littersize_male, littersize_female,
@@ -174,14 +183,22 @@ class UserInstancesSeeder extends Seeder
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => str_random(15)
+                    'registration_no' => $this->generateRegistrationNumber(
+                                            $farm->province_code,
+                                            $farmCode->farm_code,
+                                            $breeds[$swineBreedIndex]['code'],
+                                            \Carbon\Carbon::now()->subYear()->year,
+                                            'M',
+                                            strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
+                                            random_int(1000, 2000)
+                                        )
                 ]);
 
                 $gpSire->swineProperties()->saveMany(
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 1, // sex
-                            'value' => $sexes[$swineSexIndex]
+                            'value' => 'male'
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 2, // birthdate
@@ -267,14 +284,22 @@ class UserInstancesSeeder extends Seeder
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => str_random(15)
+                    'registration_no' => $this->generateRegistrationNumber(
+                                            $farm->province_code,
+                                            $farmCode->farm_code,
+                                            $breeds[$swineBreedIndex]['code'],
+                                            \Carbon\Carbon::now()->subYear()->year,
+                                            'F',
+                                            strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
+                                            random_int(1000, 2000)
+                                        )
                 ]);
 
                 $gpDam->swineProperties()->saveMany(
                     [
                         new App\Models\SwineProperty([
                             'property_id' => 1, // sex
-                            'value' => $sexes[$swineSexIndex]
+                            'value' => 'female'
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 2, // birthdate
