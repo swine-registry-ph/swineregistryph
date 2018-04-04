@@ -1595,6 +1595,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1619,6 +1635,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             gpSire: {
                 importedRegNo: '',
+                farmSwineId: '',
                 geneticInfoId: '',
                 farmFrom: '',
                 birthDate: '',
@@ -1626,24 +1643,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 houseType: '',
                 teatNo: '',
                 weight: '',
-                adgBirth_endDate: '',
-                adgBirth_endWeight: '',
-                adgTest_startDate: '',
-                adgTest_endDate: '',
-                adgTest_startWeight: '',
-                adgTest_endWeight: '',
+                adgBirthEndDate: '',
+                adgBirthEndWeight: '',
+                adgTestStartDate: '',
+                adgTestEndDate: '',
+                adgTestStartWeight: '',
+                adgTestEndWeight: '',
                 bft: '',
                 fe: '',
-                birth_weight: '',
-                littersizeAlive_male: '',
-                littersizeAlive_female: '',
+                birthWeight: '',
+                littersizeAliveMale: '',
+                littersizeAliveFemale: '',
                 parity: '',
-                littersize_weaning: '',
-                litterweight_weaning: '',
-                date_weaning: ''
+                littersizeWeaning: '',
+                litterweightWeaning: '',
+                dateWeaning: ''
             },
             gpDam: {
                 importedRegNo: '',
+                farmSwineId: '',
                 geneticInfoId: '',
                 farmFrom: '',
                 birthDate: '',
@@ -1651,21 +1669,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 houseType: '',
                 teatNo: '',
                 weight: '',
-                adgBirth_endDate: '',
-                adgBirth_endWeight: '',
-                adgTest_startDate: '',
-                adgTest_endDate: '',
-                adgTest_startWeight: '',
-                adgTest_endWeight: '',
+                adgBirthEndDate: '',
+                adgBirthEndWeight: '',
+                adgTestStartDate: '',
+                adgTestEndDate: '',
+                adgTestStartWeight: '',
+                adgTestEndWeight: '',
                 bft: '',
                 fe: '',
-                birth_weight: '',
-                littersizeAlive_male: '',
-                littersizeAlive_female: '',
+                birthWeight: '',
+                littersizeAliveMale: '',
+                littersizeAliveFemale: '',
                 parity: '',
-                littersize_weaning: '',
-                litterweight_weaning: '',
-                date_weaning: ''
+                littersizeWeaning: '',
+                litterweightWeaning: '',
+                dateWeaning: ''
             }
         };
     },
@@ -1895,6 +1913,60 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.farmSwineId),
+      expression: "gpSire.farmSwineId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'farm-swine-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.farmSwineId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.farmSwineId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'farm-swine-id'
+    }
+  }, [_vm._v("Farm Swine ID / Ear Mark")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.teatNo),
+      expression: "gpSire.teatNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'teatno',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.teatNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.teatNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'teatno'
+    }
+  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
@@ -1918,8 +1990,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpSire.birth_weight),
-      expression: "gpSire.birth_weight"
+      value: (_vm.gpSire.birthWeight),
+      expression: "gpSire.birthWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -1927,12 +1999,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpSire.birth_weight)
+      "value": (_vm.gpSire.birthWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpSire.birth_weight = $event.target.value
+        _vm.gpSire.birthWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2045,28 +2117,128 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpSire.teatNo),
-      expression: "gpSire.teatNo"
+      value: (_vm.gpSire.littersizeAliveMale),
+      expression: "gpSire.littersizeAliveMale"
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.gpSireIdPrefix + 'teatno',
+      "id": _vm.gpSireIdPrefix + 'total-m',
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpSire.teatNo)
+      "value": (_vm.gpSire.littersizeAliveMale)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpSire.teatNo = $event.target.value
+        _vm.gpSire.littersizeAliveMale = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.gpSireIdPrefix + 'teatno'
+      "for": _vm.gpSireIdPrefix + 'total-m'
     }
-  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.littersizeAliveFemale),
+      expression: "gpSire.littersizeAliveFemale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.littersizeAliveFemale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.littersizeAliveFemale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.littersizeWeaning),
+      expression: "gpSire.littersizeWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.littersizeWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.littersizeWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.litterweightWeaning),
+      expression: "gpSire.litterweightWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.litterweightWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.litterweightWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpSire.dateWeaning = val
+      }
+    },
+    model: {
+      value: (_vm.gpSire.dateWeaning),
+      callback: function($$v) {
+        _vm.gpSire.dateWeaning = $$v
+      },
+      expression: "gpSire.dateWeaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
@@ -2093,147 +2265,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpSireIdPrefix + 'parity'
     }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.littersizeAlive_male),
-      expression: "gpSire.littersizeAlive_male"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.littersizeAlive_male)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.littersizeAlive_male = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.littersizeAlive_female),
-      expression: "gpSire.littersizeAlive_female"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.littersizeAlive_female)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.littersizeAlive_female = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'total-f'
-    }
-  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.littersize_weaning),
-      expression: "gpSire.littersize_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'littersize-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.littersize_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.littersize_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'littersize-weaning'
-    }
-  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.litterweight_weaning),
-      expression: "gpSire.litterweight_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'litterweight-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.litterweight_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.litterweight_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'litterweight-weaning'
-    }
-  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpSire.date_weaning = val
+        _vm.gpSire.adgBirthEndDate = val
       }
     },
     model: {
-      value: (_vm.gpSire.date_weaning),
+      value: (_vm.gpSire.adgBirthEndDate),
       callback: function($$v) {
-        _vm.gpSire.date_weaning = $$v
+        _vm.gpSire.adgBirthEndDate = $$v
       },
-      expression: "gpSire.date_weaning"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.adgBirth_endDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.adgBirth_endDate),
-      callback: function($$v) {
-        _vm.gpSire.adgBirth_endDate = $$v
-      },
-      expression: "gpSire.adgBirth_endDate"
+      expression: "gpSire.adgBirthEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2245,8 +2290,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpSire.adgBirth_endWeight),
-      expression: "gpSire.adgBirth_endWeight"
+      value: (_vm.gpSire.adgBirthEndWeight),
+      expression: "gpSire.adgBirthEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2254,12 +2299,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpSire.adgBirth_endWeight)
+      "value": (_vm.gpSire.adgBirthEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpSire.adgBirth_endWeight = $event.target.value
+        _vm.gpSire.adgBirthEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2271,15 +2316,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpSire.adgTest_startDate = val
+        _vm.gpSire.adgTestStartDate = val
       }
     },
     model: {
-      value: (_vm.gpSire.adgTest_startDate),
+      value: (_vm.gpSire.adgTestStartDate),
       callback: function($$v) {
-        _vm.gpSire.adgTest_startDate = $$v
+        _vm.gpSire.adgTestStartDate = $$v
       },
-      expression: "gpSire.adgTest_startDate"
+      expression: "gpSire.adgTestStartDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2291,8 +2336,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpSire.adgTest_startWeight),
-      expression: "gpSire.adgTest_startWeight"
+      value: (_vm.gpSire.adgTestStartWeight),
+      expression: "gpSire.adgTestStartWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2300,12 +2345,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpSire.adgTest_startWeight)
+      "value": (_vm.gpSire.adgTestStartWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpSire.adgTest_startWeight = $event.target.value
+        _vm.gpSire.adgTestStartWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2317,15 +2362,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpSire.adgTest_endDate = val
+        _vm.gpSire.adgTestEndDate = val
       }
     },
     model: {
-      value: (_vm.gpSire.adgTest_endDate),
+      value: (_vm.gpSire.adgTestEndDate),
       callback: function($$v) {
-        _vm.gpSire.adgTest_endDate = $$v
+        _vm.gpSire.adgTestEndDate = $$v
       },
-      expression: "gpSire.adgTest_endDate"
+      expression: "gpSire.adgTestEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2337,8 +2382,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpSire.adgTest_endWeight),
-      expression: "gpSire.adgTest_endWeight"
+      value: (_vm.gpSire.adgTestEndWeight),
+      expression: "gpSire.adgTestEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2346,12 +2391,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpSire.adgTest_endWeight)
+      "value": (_vm.gpSire.adgTestEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpSire.adgTest_endWeight = $event.target.value
+        _vm.gpSire.adgTestEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2580,6 +2625,60 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.farmSwineId),
+      expression: "gpDam.farmSwineId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'farm-swine-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.farmSwineId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.farmSwineId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'farm-swine-id'
+    }
+  }, [_vm._v("Farm Swine ID / Ear Mark")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.teatNo),
+      expression: "gpDam.teatNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'teatno',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.teatNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.teatNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'teatno'
+    }
+  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
@@ -2603,8 +2702,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpDam.birth_weight),
-      expression: "gpDam.birth_weight"
+      value: (_vm.gpDam.birthWeight),
+      expression: "gpDam.birthWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2612,12 +2711,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpDam.birth_weight)
+      "value": (_vm.gpDam.birthWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpDam.birth_weight = $event.target.value
+        _vm.gpDam.birthWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2629,15 +2728,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpSire.date_weaning = val
+        _vm.gpSire.dateWeaning = val
       }
     },
     model: {
-      value: (_vm.gpSire.date_weaning),
+      value: (_vm.gpSire.dateWeaning),
       callback: function($$v) {
-        _vm.gpSire.date_weaning = $$v
+        _vm.gpSire.dateWeaning = $$v
       },
-      expression: "gpSire.date_weaning"
+      expression: "gpSire.dateWeaning"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2730,28 +2829,128 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpDam.teatNo),
-      expression: "gpDam.teatNo"
+      value: (_vm.gpDam.littersizeAliveMale),
+      expression: "gpDam.littersizeAliveMale"
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.gpDamIdPrefix + 'teatno',
+      "id": _vm.gpDamIdPrefix + 'total-m',
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpDam.teatNo)
+      "value": (_vm.gpDam.littersizeAliveMale)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpDam.teatNo = $event.target.value
+        _vm.gpDam.littersizeAliveMale = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.gpDamIdPrefix + 'teatno'
+      "for": _vm.gpDamIdPrefix + 'total-m'
     }
-  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.littersizeAliveFemale),
+      expression: "gpDam.littersizeAliveFemale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.littersizeAliveFemale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.littersizeAliveFemale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.littersizeWeaning),
+      expression: "gpDam.littersizeWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.littersizeWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.littersizeWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.litterweightWeaning),
+      expression: "gpDam.litterweightWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpDamIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpDam.litterweightWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.litterweightWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpDamIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpDam.dateWeaning = val
+      }
+    },
+    model: {
+      value: (_vm.gpDam.dateWeaning),
+      callback: function($$v) {
+        _vm.gpDam.dateWeaning = $$v
+      },
+      expression: "gpDam.dateWeaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
@@ -2778,147 +2977,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpDamIdPrefix + 'parity'
     }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.littersizeAlive_male),
-      expression: "gpDam.littersizeAlive_male"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.littersizeAlive_male)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.littersizeAlive_male = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.littersizeAlive_female),
-      expression: "gpDam.littersizeAlive_female"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.littersizeAlive_female)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.littersizeAlive_female = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'total-f'
-    }
-  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.littersize_weaning),
-      expression: "gpDam.littersize_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'littersize-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.littersize_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.littersize_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'littersize-weaning'
-    }
-  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.litterweight_weaning),
-      expression: "gpDam.litterweight_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'litterweight-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.litterweight_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.litterweight_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'litterweight-weaning'
-    }
-  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(11), _vm._v(" "), _vm._m(12), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpDam.date_weaning = val
+        _vm.gpDam.adgBirthEndDate = val
       }
     },
     model: {
-      value: (_vm.gpDam.date_weaning),
+      value: (_vm.gpDam.adgBirthEndDate),
       callback: function($$v) {
-        _vm.gpDam.date_weaning = $$v
+        _vm.gpDam.adgBirthEndDate = $$v
       },
-      expression: "gpDam.date_weaning"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(11), _vm._v(" "), _vm._m(12), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpDam.adgBirth_endDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.adgBirth_endDate),
-      callback: function($$v) {
-        _vm.gpDam.adgBirth_endDate = $$v
-      },
-      expression: "gpDam.adgBirth_endDate"
+      expression: "gpDam.adgBirthEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2930,8 +3002,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpDam.adgBirth_endWeight),
-      expression: "gpDam.adgBirth_endWeight"
+      value: (_vm.gpDam.adgBirthEndWeight),
+      expression: "gpDam.adgBirthEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2939,12 +3011,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpDam.adgBirth_endWeight)
+      "value": (_vm.gpDam.adgBirthEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpDam.adgBirth_endWeight = $event.target.value
+        _vm.gpDam.adgBirthEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2956,15 +3028,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpDam.adgTest_startDate = val
+        _vm.gpDam.adgTestStartDate = val
       }
     },
     model: {
-      value: (_vm.gpDam.adgTest_startDate),
+      value: (_vm.gpDam.adgTestStartDate),
       callback: function($$v) {
-        _vm.gpDam.adgTest_startDate = $$v
+        _vm.gpDam.adgTestStartDate = $$v
       },
-      expression: "gpDam.adgTest_startDate"
+      expression: "gpDam.adgTestStartDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2976,8 +3048,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpDam.adgTest_startWeight),
-      expression: "gpDam.adgTest_startWeight"
+      value: (_vm.gpDam.adgTestStartWeight),
+      expression: "gpDam.adgTestStartWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2985,12 +3057,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpDam.adgTest_startWeight)
+      "value": (_vm.gpDam.adgTestStartWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpDam.adgTest_startWeight = $event.target.value
+        _vm.gpDam.adgTestStartWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3002,15 +3074,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpDam.adgTest_endDate = val
+        _vm.gpDam.adgTestEndDate = val
       }
     },
     model: {
-      value: (_vm.gpDam.adgTest_endDate),
+      value: (_vm.gpDam.adgTestEndDate),
       callback: function($$v) {
-        _vm.gpDam.adgTest_endDate = $$v
+        _vm.gpDam.adgTestEndDate = $$v
       },
-      expression: "gpDam.adgTest_endDate"
+      expression: "gpDam.adgTestEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -3022,8 +3094,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpDam.adgTest_endWeight),
-      expression: "gpDam.adgTest_endWeight"
+      value: (_vm.gpDam.adgTestEndWeight),
+      expression: "gpDam.adgTestEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -3031,12 +3103,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpDam.adgTest_endWeight)
+      "value": (_vm.gpDam.adgTestEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpDam.adgTest_endWeight = $event.target.value
+        _vm.gpDam.adgTestEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3274,7 +3346,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -3511,30 +3583,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             gpOneIdPrefix: 'gp-one-',
             gpOne: {
+                farmSwineId: '',
                 houseType: '',
                 teatNo: '',
                 weight: '',
-                adgBirth_endDate: '',
-                adgBirth_endWeight: '',
-                adgTest_startDate: '',
-                adgTest_endDate: '',
-                adgTest_startWeight: '',
-                adgTest_endWeight: '',
+                adgBirthEndDate: '',
+                adgBirthEndWeight: '',
+                adgTestStartDate: '',
+                adgTestEndDate: '',
+                adgTestStartWeight: '',
+                adgTestEndWeight: '',
                 bft: '',
                 fe: '',
-                birth_weight: '',
-                littersizeAlive_male: '',
-                littersizeAlive_female: '',
+                birthWeight: '',
+                littersizeAliveMale: '',
+                littersizeAliveFemale: '',
                 parity: '',
-                littersize_weaning: '',
-                litterweight_weaning: '',
-                date_weaning: ''
+                littersizeWeaning: '',
+                litterweightWeaning: '',
+                dateWeaning: ''
             }
         };
     },
@@ -3580,8 +3661,62 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.birth_weight),
-      expression: "gpOne.birth_weight"
+      value: (_vm.gpOne.farmSwineId),
+      expression: "gpOne.farmSwineId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'farm-swine-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.farmSwineId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.farmSwineId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'farm-swine-id'
+    }
+  }, [_vm._v("Farm Swine ID / Ear Mark")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.teatNo),
+      expression: "gpOne.teatNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'teatno',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.teatNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.teatNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'teatno'
+    }
+  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.birthWeight),
+      expression: "gpOne.birthWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -3589,12 +3724,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.birth_weight)
+      "value": (_vm.gpOne.birthWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpOne.birth_weight = $event.target.value
+        _vm.gpOne.birthWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3688,28 +3823,128 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.teatNo),
-      expression: "gpOne.teatNo"
+      value: (_vm.gpOne.littersizeAliveMale),
+      expression: "gpOne.littersizeAliveMale"
     }],
     staticClass: "validate",
     attrs: {
-      "id": _vm.gpOneIdPrefix + 'teatno',
+      "id": _vm.gpOneIdPrefix + 'total-m',
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.teatNo)
+      "value": (_vm.gpOne.littersizeAliveMale)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpOne.teatNo = $event.target.value
+        _vm.gpOne.littersizeAliveMale = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.gpOneIdPrefix + 'teatno'
+      "for": _vm.gpOneIdPrefix + 'total-m'
     }
-  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.littersizeAliveFemale),
+      expression: "gpOne.littersizeAliveFemale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.littersizeAliveFemale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.littersizeAliveFemale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.littersizeWeaning),
+      expression: "gpOne.littersizeWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.littersizeWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.littersizeWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.litterweightWeaning),
+      expression: "gpOne.litterweightWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.litterweightWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.litterweightWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOne.dateWeaning = val
+      }
+    },
+    model: {
+      value: (_vm.gpOne.dateWeaning),
+      callback: function($$v) {
+        _vm.gpOne.dateWeaning = $$v
+      },
+      expression: "gpOne.dateWeaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
@@ -3736,147 +3971,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpOneIdPrefix + 'parity'
     }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.littersizeAlive_male),
-      expression: "gpOne.littersizeAlive_male"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.littersizeAlive_male)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.littersizeAlive_male = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.littersizeAlive_female),
-      expression: "gpOne.littersizeAlive_female"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.littersizeAlive_female)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.littersizeAlive_female = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'total-f'
-    }
-  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.littersize_weaning),
-      expression: "gpOne.littersize_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'littersize-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.littersize_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.littersize_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'littersize-weaning'
-    }
-  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.litterweight_weaning),
-      expression: "gpOne.litterweight_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'litterweight-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.litterweight_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.litterweight_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'litterweight-weaning'
-    }
-  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.date_weaning = val
+        _vm.gpOne.adgBirthEndDate = val
       }
     },
     model: {
-      value: (_vm.gpOne.date_weaning),
+      value: (_vm.gpOne.adgBirthEndDate),
       callback: function($$v) {
-        _vm.gpOne.date_weaning = $$v
+        _vm.gpOne.adgBirthEndDate = $$v
       },
-      expression: "gpOne.date_weaning"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpOne.adgBirth_endDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOne.adgBirth_endDate),
-      callback: function($$v) {
-        _vm.gpOne.adgBirth_endDate = $$v
-      },
-      expression: "gpOne.adgBirth_endDate"
+      expression: "gpOne.adgBirthEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -3888,8 +3996,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.adgBirth_endWeight),
-      expression: "gpOne.adgBirth_endWeight"
+      value: (_vm.gpOne.adgBirthEndWeight),
+      expression: "gpOne.adgBirthEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -3897,12 +4005,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.adgBirth_endWeight)
+      "value": (_vm.gpOne.adgBirthEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpOne.adgBirth_endWeight = $event.target.value
+        _vm.gpOne.adgBirthEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3914,15 +4022,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.adgTest_startDate = val
+        _vm.gpOne.adgTestStartDate = val
       }
     },
     model: {
-      value: (_vm.gpOne.adgTest_startDate),
+      value: (_vm.gpOne.adgTestStartDate),
       callback: function($$v) {
-        _vm.gpOne.adgTest_startDate = $$v
+        _vm.gpOne.adgTestStartDate = $$v
       },
-      expression: "gpOne.adgTest_startDate"
+      expression: "gpOne.adgTestStartDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -3934,8 +4042,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.adgTest_startWeight),
-      expression: "gpOne.adgTest_startWeight"
+      value: (_vm.gpOne.adgTestStartWeight),
+      expression: "gpOne.adgTestStartWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -3943,12 +4051,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.adgTest_startWeight)
+      "value": (_vm.gpOne.adgTestStartWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpOne.adgTest_startWeight = $event.target.value
+        _vm.gpOne.adgTestStartWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3960,15 +4068,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.adgTest_endDate = val
+        _vm.gpOne.adgTestEndDate = val
       }
     },
     model: {
-      value: (_vm.gpOne.adgTest_endDate),
+      value: (_vm.gpOne.adgTestEndDate),
       callback: function($$v) {
-        _vm.gpOne.adgTest_endDate = $$v
+        _vm.gpOne.adgTestEndDate = $$v
       },
-      expression: "gpOne.adgTest_endDate"
+      expression: "gpOne.adgTestEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -3980,8 +4088,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.adgTest_endWeight),
-      expression: "gpOne.adgTest_endWeight"
+      value: (_vm.gpOne.adgTestEndWeight),
+      expression: "gpOne.adgTestEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -3989,12 +4097,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.adgTest_endWeight)
+      "value": (_vm.gpOne.adgTestEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.gpOne.adgTest_endWeight = $event.target.value
+        _vm.gpOne.adgTestEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {

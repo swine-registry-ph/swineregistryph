@@ -99,6 +99,22 @@
                                                     </app-input-select>
                                                 </div>
                                                 <div class="col s6 input-field">
+                                                    <input v-model="gpSire.farmSwineId"
+                                                        :id="gpSireIdPrefix + 'farm-swine-id'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpSireIdPrefix + 'farm-swine-id'">Farm Swine ID / Ear Mark</label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpSire.teatNo"
+                                                        :id="gpSireIdPrefix + 'teatno'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpSireIdPrefix + 'teatno'">Teat number</label>
+                                                </div>
+                                                <div class="col s6 input-field">
                                                     <app-input-date
                                                         v-model="gpSire.birthDate"
                                                         @date-select="val => {gpSire.birthDate = val}"
@@ -107,7 +123,7 @@
                                                     <label for=""> Birth Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.birth_weight"
+                                                    <input v-model="gpSire.birthWeight"
                                                         :id="gpSireIdPrefix + 'birth-weight'"
                                                         type="text"
                                                         class="validate"
@@ -147,23 +163,7 @@
                                                     <label :for="gpSireIdPrefix + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.teatNo"
-                                                        :id="gpSireIdPrefix + 'teatno'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpSireIdPrefix + 'teatno'">Teat number</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpSire.parity"
-                                                        :id="gpSireIdPrefix + 'parity'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpSireIdPrefix + 'parity'">Parity</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpSire.littersizeAlive_male"
+                                                    <input v-model="gpSire.littersizeAliveMale"
                                                         :id="gpSireIdPrefix + 'total-m'"
                                                         type="text"
                                                         class="validate"
@@ -171,7 +171,7 @@
                                                     <label :for="gpSireIdPrefix + 'total-m'">Total (M) born alive</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.littersizeAlive_female"
+                                                    <input v-model="gpSire.littersizeAliveFemale"
                                                         :id="gpSireIdPrefix + 'total-f'"
                                                         type="text"
                                                         class="validate"
@@ -179,7 +179,7 @@
                                                     <label :for="gpSireIdPrefix + 'total-f'">Total (F) born alive</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.littersize_weaning"
+                                                    <input v-model="gpSire.littersizeWeaning"
                                                         :id="gpSireIdPrefix + 'littersize-weaning'"
                                                         type="text"
                                                         class="validate"
@@ -187,7 +187,7 @@
                                                     <label :for="gpSireIdPrefix + 'littersize-weaning'">Littersize at weaning</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.litterweight_weaning"
+                                                    <input v-model="gpSire.litterweightWeaning"
                                                         :id="gpSireIdPrefix + 'litterweight-weaning'"
                                                         type="text"
                                                         class="validate"
@@ -196,11 +196,19 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpSire.date_weaning"
-                                                        @date-select="val => {gpSire.date_weaning = val}"
+                                                        v-model="gpSire.dateWeaning"
+                                                        @date-select="val => {gpSire.dateWeaning = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> Date at weaning </label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpSire.parity"
+                                                        :id="gpSireIdPrefix + 'parity'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpSireIdPrefix + 'parity'">Parity</label>
                                                 </div>
 
                                                 <div class="col s12">
@@ -215,14 +223,14 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpSire.adgBirth_endDate"
-                                                        @date-select="val => {gpSire.adgBirth_endDate = val}"
+                                                        v-model="gpSire.adgBirthEndDate"
+                                                        @date-select="val => {gpSire.adgBirthEndDate = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> End Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.adgBirth_endWeight"
+                                                    <input v-model="gpSire.adgBirthEndWeight"
                                                         :id="gpSireIdPrefix + 'adg-birth-end-weight'"
                                                         type="text"
                                                         class="validate"
@@ -242,14 +250,14 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpSire.adgTest_startDate"
-                                                        @date-select="val => {gpSire.adgTest_startDate = val}"
+                                                        v-model="gpSire.adgTestStartDate"
+                                                        @date-select="val => {gpSire.adgTestStartDate = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> Start Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.adgTest_startWeight"
+                                                    <input v-model="gpSire.adgTestStartWeight"
                                                         :id="gpSireIdPrefix + 'adg-test-start-weight'"
                                                         type="text"
                                                         class="validate"
@@ -258,14 +266,14 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpSire.adgTest_endDate"
-                                                        @date-select="val => {gpSire.adgTest_endDate = val}"
+                                                        v-model="gpSire.adgTestEndDate"
+                                                        @date-select="val => {gpSire.adgTestEndDate = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> End Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpSire.adgTest_endWeight"
+                                                    <input v-model="gpSire.adgTestEndWeight"
                                                         :id="gpSireIdPrefix + 'adg-test-end-weight'"
                                                         type="text"
                                                         class="validate"
@@ -392,6 +400,22 @@
                                                     </app-input-select>
                                                 </div>
                                                 <div class="col s6 input-field">
+                                                    <input v-model="gpDam.farmSwineId"
+                                                        :id="gpDamIdPrefix + 'farm-swine-id'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpDamIdPrefix + 'farm-swine-id'">Farm Swine ID / Ear Mark</label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpDam.teatNo"
+                                                        :id="gpDamIdPrefix + 'teatno'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpDamIdPrefix + 'teatno'">Teat number</label>
+                                                </div>
+                                                <div class="col s6 input-field">
                                                     <app-input-date
                                                         v-model="gpDam.birthDate"
                                                         @date-select="val => {gpDam.birthDate = val}"
@@ -400,7 +424,7 @@
                                                     <label for=""> Birth Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.birth_weight"
+                                                    <input v-model="gpDam.birthWeight"
                                                         :id="gpDamIdPrefix + 'birth-weight'"
                                                         type="text"
                                                         class="validate"
@@ -409,8 +433,8 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpSire.date_weaning"
-                                                        @date-select="val => {gpSire.date_weaning = val}"
+                                                        v-model="gpSire.dateWeaning"
+                                                        @date-select="val => {gpSire.dateWeaning = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> Date when data was collected </label>
@@ -440,23 +464,7 @@
                                                     <label :for="gpDamIdPrefix + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.teatNo"
-                                                        :id="gpDamIdPrefix + 'teatno'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpDamIdPrefix + 'teatno'">Teat number</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpDam.parity"
-                                                        :id="gpDamIdPrefix + 'parity'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpDamIdPrefix + 'parity'">Parity</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpDam.littersizeAlive_male"
+                                                    <input v-model="gpDam.littersizeAliveMale"
                                                         :id="gpDamIdPrefix + 'total-m'"
                                                         type="text"
                                                         class="validate"
@@ -464,7 +472,7 @@
                                                     <label :for="gpDamIdPrefix + 'total-m'">Total (M) born alive</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.littersizeAlive_female"
+                                                    <input v-model="gpDam.littersizeAliveFemale"
                                                         :id="gpDamIdPrefix + 'total-f'"
                                                         type="text"
                                                         class="validate"
@@ -472,7 +480,7 @@
                                                     <label :for="gpDamIdPrefix + 'total-f'">Total (F) born alive</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.littersize_weaning"
+                                                    <input v-model="gpDam.littersizeWeaning"
                                                         :id="gpDamIdPrefix + 'littersize-weaning'"
                                                         type="text"
                                                         class="validate"
@@ -480,7 +488,7 @@
                                                     <label :for="gpDamIdPrefix + 'littersize-weaning'">Littersize at weaning</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.litterweight_weaning"
+                                                    <input v-model="gpDam.litterweightWeaning"
                                                         :id="gpDamIdPrefix + 'litterweight-weaning'"
                                                         type="text"
                                                         class="validate"
@@ -489,11 +497,19 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpDam.date_weaning"
-                                                        @date-select="val => {gpDam.date_weaning = val}"
+                                                        v-model="gpDam.dateWeaning"
+                                                        @date-select="val => {gpDam.dateWeaning = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> Date at weaning </label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpDam.parity"
+                                                        :id="gpDamIdPrefix + 'parity'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpDamIdPrefix + 'parity'">Parity</label>
                                                 </div>
 
                                                 <div class="col s12">
@@ -508,14 +524,14 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpDam.adgBirth_endDate"
-                                                        @date-select="val => {gpDam.adgBirth_endDate = val}"
+                                                        v-model="gpDam.adgBirthEndDate"
+                                                        @date-select="val => {gpDam.adgBirthEndDate = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> End Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.adgBirth_endWeight"
+                                                    <input v-model="gpDam.adgBirthEndWeight"
                                                         :id="gpDamIdPrefix + 'adg-birth-end-weight'"
                                                         type="text"
                                                         class="validate"
@@ -535,14 +551,14 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpDam.adgTest_startDate"
-                                                        @date-select="val => {gpDam.adgTest_startDate = val}"
+                                                        v-model="gpDam.adgTestStartDate"
+                                                        @date-select="val => {gpDam.adgTestStartDate = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> Start Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.adgTest_startWeight"
+                                                    <input v-model="gpDam.adgTestStartWeight"
                                                         :id="gpDamIdPrefix + 'adg-test-start-weight'"
                                                         type="text"
                                                         class="validate"
@@ -551,14 +567,14 @@
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
-                                                        v-model="gpDam.adgTest_endDate"
-                                                        @date-select="val => {gpDam.adgTest_endDate = val}"
+                                                        v-model="gpDam.adgTestEndDate"
+                                                        @date-select="val => {gpDam.adgTestEndDate = val}"
                                                     >
                                                     </app-input-date>
                                                     <label for=""> End Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <input v-model="gpDam.adgTest_endWeight"
+                                                    <input v-model="gpDam.adgTestEndWeight"
                                                         :id="gpDamIdPrefix + 'adg-test-end-weight'"
                                                         type="text"
                                                         class="validate"
@@ -652,6 +668,7 @@
                 },
                 gpSire: {
                     importedRegNo: '',
+                    farmSwineId: '',
                     geneticInfoId: '',
                     farmFrom: '',
                     birthDate: '',
@@ -659,24 +676,25 @@
                     houseType: '',
                     teatNo: '',
                     weight: '',
-                    adgBirth_endDate: '',
-                    adgBirth_endWeight: '',
-                    adgTest_startDate: '',
-                    adgTest_endDate: '',
-                    adgTest_startWeight: '',
-                    adgTest_endWeight: '',
+                    adgBirthEndDate: '',
+                    adgBirthEndWeight: '',
+                    adgTestStartDate: '',
+                    adgTestEndDate: '',
+                    adgTestStartWeight: '',
+                    adgTestEndWeight: '',
                     bft: '',
                     fe: '',
-                    birth_weight: '',
-                    littersizeAlive_male: '',
-                    littersizeAlive_female: '',
+                    birthWeight: '',
+                    littersizeAliveMale: '',
+                    littersizeAliveFemale: '',
                     parity: '',
-                    littersize_weaning: '',
-                    litterweight_weaning: '',
-                    date_weaning: ''
+                    littersizeWeaning: '',
+                    litterweightWeaning: '',
+                    dateWeaning: ''
                 },
                 gpDam: {
                     importedRegNo: '',
+                    farmSwineId: '',
                     geneticInfoId: '',
                     farmFrom: '',
                     birthDate: '',
@@ -684,21 +702,21 @@
                     houseType: '',
                     teatNo: '',
                     weight: '',
-                    adgBirth_endDate: '',
-                    adgBirth_endWeight: '',
-                    adgTest_startDate: '',
-                    adgTest_endDate: '',
-                    adgTest_startWeight: '',
-                    adgTest_endWeight: '',
+                    adgBirthEndDate: '',
+                    adgBirthEndWeight: '',
+                    adgTestStartDate: '',
+                    adgTestEndDate: '',
+                    adgTestStartWeight: '',
+                    adgTestEndWeight: '',
                     bft: '',
                     fe: '',
-                    birth_weight: '',
-                    littersizeAlive_male: '',
-                    littersizeAlive_female: '',
+                    birthWeight: '',
+                    littersizeAliveMale: '',
+                    littersizeAliveFemale: '',
                     parity: '',
-                    littersize_weaning: '',
-                    litterweight_weaning: '',
-                    date_weaning: ''
+                    littersizeWeaning: '',
+                    litterweightWeaning: '',
+                    dateWeaning: ''
                 }
             }
         },

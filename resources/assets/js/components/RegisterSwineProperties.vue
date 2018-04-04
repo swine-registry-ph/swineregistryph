@@ -13,7 +13,23 @@
 
                         <!-- More info for GP 1 -->
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.birth_weight"
+                            <input v-model="gpOne.farmSwineId"
+                                :id="gpOneIdPrefix + 'farm-swine-id'"
+                                type="text"
+                                class="validate"
+                            >
+                            <label :for="gpOneIdPrefix + 'farm-swine-id'">Farm Swine ID / Ear Mark</label>
+                        </div>
+                        <div class="col s6 input-field">
+                            <input v-model="gpOne.teatNo"
+                                :id="gpOneIdPrefix + 'teatno'"
+                                type="text"
+                                class="validate"
+                            >
+                            <label :for="gpOneIdPrefix + 'teatno'">Teat number</label>
+                        </div>
+                        <div class="col s6 input-field">
+                            <input v-model="gpOne.birthWeight"
                                 :id="gpOneIdPrefix + 'birth-weight'"
                                 type="text"
                                 class="validate"
@@ -45,23 +61,7 @@
                             <label :for="gpOneIdPrefix + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.teatNo"
-                                :id="gpOneIdPrefix + 'teatno'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="gpOneIdPrefix + 'teatno'">Teat number</label>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input v-model="gpOne.parity"
-                                :id="gpOneIdPrefix + 'parity'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="gpOneIdPrefix + 'parity'">Parity</label>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input v-model="gpOne.littersizeAlive_male"
+                            <input v-model="gpOne.littersizeAliveMale"
                                 :id="gpOneIdPrefix + 'total-m'"
                                 type="text"
                                 class="validate"
@@ -69,7 +69,7 @@
                             <label :for="gpOneIdPrefix + 'total-m'">Total (M) born alive</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.littersizeAlive_female"
+                            <input v-model="gpOne.littersizeAliveFemale"
                                 :id="gpOneIdPrefix + 'total-f'"
                                 type="text"
                                 class="validate"
@@ -77,7 +77,7 @@
                             <label :for="gpOneIdPrefix + 'total-f'">Total (F) born alive</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.littersize_weaning"
+                            <input v-model="gpOne.littersizeWeaning"
                                 :id="gpOneIdPrefix + 'littersize-weaning'"
                                 type="text"
                                 class="validate"
@@ -85,7 +85,7 @@
                             <label :for="gpOneIdPrefix + 'littersize-weaning'">Littersize at weaning</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.litterweight_weaning"
+                            <input v-model="gpOne.litterweightWeaning"
                                 :id="gpOneIdPrefix + 'litterweight-weaning'"
                                 type="text"
                                 class="validate"
@@ -94,11 +94,19 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.date_weaning"
-                                @date-select="val => {gpOne.date_weaning = val}"
+                                v-model="gpOne.dateWeaning"
+                                @date-select="val => {gpOne.dateWeaning = val}"
                             >
                             </app-input-date>
                             <label for=""> Date at weaning </label>
+                        </div>
+                        <div class="col s6 input-field">
+                            <input v-model="gpOne.parity"
+                                :id="gpOneIdPrefix + 'parity'"
+                                type="text"
+                                class="validate"
+                            >
+                            <label :for="gpOneIdPrefix + 'parity'">Parity</label>
                         </div>
 
                         <div class="col s12">
@@ -113,14 +121,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.adgBirth_endDate"
-                                @date-select="val => {gpOne.adgBirth_endDate = val}"
+                                v-model="gpOne.adgBirthEndDate"
+                                @date-select="val => {gpOne.adgBirthEndDate = val}"
                             >
                             </app-input-date>
                             <label for=""> End Date </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.adgBirth_endWeight"
+                            <input v-model="gpOne.adgBirthEndWeight"
                                 :id="gpOneIdPrefix + 'adg-birth-end-weight'"
                                 type="text"
                                 class="validate"
@@ -140,14 +148,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.adgTest_startDate"
-                                @date-select="val => {gpOne.adgTest_startDate = val}"
+                                v-model="gpOne.adgTestStartDate"
+                                @date-select="val => {gpOne.adgTestStartDate = val}"
                             >
                             </app-input-date>
                             <label for=""> Start Date </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.adgTest_startWeight"
+                            <input v-model="gpOne.adgTestStartWeight"
                                 :id="gpOneIdPrefix + 'adg-test-start-weight'"
                                 type="text"
                                 class="validate"
@@ -156,14 +164,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.adgTest_endDate"
-                                @date-select="val => {gpOne.adgTest_endDate = val}"
+                                v-model="gpOne.adgTestEndDate"
+                                @date-select="val => {gpOne.adgTestEndDate = val}"
                             >
                             </app-input-date>
                             <label for=""> End Date </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.adgTest_endWeight"
+                            <input v-model="gpOne.adgTestEndWeight"
                                 :id="gpOneIdPrefix + 'adg-test-end-weight'"
                                 type="text"
                                 class="validate"
@@ -230,24 +238,25 @@
             return {
                 gpOneIdPrefix: 'gp-one-',
                 gpOne: {
+                    farmSwineId: '',
                     houseType: '',
                     teatNo: '',
                     weight: '',
-                    adgBirth_endDate: '',
-                    adgBirth_endWeight: '',
-                    adgTest_startDate: '',
-                    adgTest_endDate: '',
-                    adgTest_startWeight: '',
-                    adgTest_endWeight: '',
+                    adgBirthEndDate: '',
+                    adgBirthEndWeight: '',
+                    adgTestStartDate: '',
+                    adgTestEndDate: '',
+                    adgTestStartWeight: '',
+                    adgTestEndWeight: '',
                     bft: '',
                     fe: '',
-                    birth_weight: '',
-                    littersizeAlive_male: '',
-                    littersizeAlive_female: '',
+                    birthWeight: '',
+                    littersizeAliveMale: '',
+                    littersizeAliveFemale: '',
                     parity: '',
-                    littersize_weaning: '',
-                    litterweight_weaning: '',
-                    date_weaning: ''
+                    littersizeWeaning: '',
+                    litterweightWeaning: '',
+                    dateWeaning: ''
                 }
             }
         },

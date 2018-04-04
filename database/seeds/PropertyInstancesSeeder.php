@@ -122,6 +122,11 @@ class PropertyInstancesSeeder extends Seeder
                 'property' => 'Date at weaning',
                 'definition' => 'Date at weaning',
                 'slug' => 'date_weaning'
+            ],
+            [
+                'property' => 'Farm Swine ID / Ear Mark',
+                'definition' => 'Farm swine identification / Ear mark of swine in the farm',
+                'slug' => 'farmSwine_id'
             ]
         ];
 

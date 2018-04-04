@@ -37,7 +37,7 @@ class UserInstancesSeeder extends Seeder
             // then making it all uppercase letters
             $farm = factory(App\Models\Farm::class)->create([
                 'farm_code' => strtoupper(substr($user->name, 0, 3)),
-                'farm_accreditation_no' => random_int(1000, 3000)
+                'farm_accreditation_no' => random_int(1000, 2000)
             ]);
 
             // Attach farm to breeder
@@ -60,6 +60,9 @@ class UserInstancesSeeder extends Seeder
 
             // Insert 5 default swines
             for($i = 0; $i < 5; $i++){
+                $farmSwineId = random_int(1000,3000);
+                $farmGpSireId = random_int(1000,3000);
+                $farmGpDamId = random_int(1000,3000);
                 $swineBreedIndex = random_int(0,3);
                 $swineSexIndex = random_int(0,1);
                 $swineHouseTypeIndex = random_int(0,1);
@@ -77,7 +80,7 @@ class UserInstancesSeeder extends Seeder
                                             \Carbon\Carbon::now()->subYear()->year,
                                             strtoupper(substr($sexes[$swineSexIndex], 0, 1)),
                                             strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
-                                            random_int(1000, 2000)
+                                            $farmSwineId
                                         )
                 ]);
 
@@ -169,6 +172,10 @@ class UserInstancesSeeder extends Seeder
                         new App\Models\SwineProperty([
                             'property_id' => 22, // date at weaning
                             'value' => \Carbon\Carbon::now()->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 23, // farm swine id / ear mark
+                            'value' => $farmSwineId
                         ])
                     ]
                 );
@@ -185,7 +192,7 @@ class UserInstancesSeeder extends Seeder
                                             \Carbon\Carbon::now()->subYear()->year,
                                             'M',
                                             strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
-                                            random_int(1000, 2000)
+                                            $farmGpSireId
                                         )
                 ]);
 
@@ -270,6 +277,10 @@ class UserInstancesSeeder extends Seeder
                         new App\Models\SwineProperty([
                             'property_id' => 22, // date at weaning
                             'value' => \Carbon\Carbon::now()->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 23, // farm swine id / ear mark
+                            'value' => $farmGpSireId
                         ])
                     ]
                 );
@@ -286,7 +297,7 @@ class UserInstancesSeeder extends Seeder
                                             \Carbon\Carbon::now()->subYear()->year,
                                             'F',
                                             strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
-                                            random_int(1000, 2000)
+                                            random_int(1000, 3000)
                                         )
                 ]);
 
@@ -371,6 +382,10 @@ class UserInstancesSeeder extends Seeder
                         new App\Models\SwineProperty([
                             'property_id' => 22, // date at weaning
                             'value' => \Carbon\Carbon::now()->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 23, // farm swine id / ear mark
+                            'value' => $farmGpDamId
                         ])
                     ]
                 );

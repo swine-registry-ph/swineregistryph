@@ -99,7 +99,7 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
         ['Leyte', 'LEY'],
         ['Northern Samar', 'NSA'],
         ['Southern Leyte', 'SLE'],
-        ['Western Samar', ',WSA)'],
+        ['Western Samar', 'WSA'],
         // Region IX
         ['Zamboanga del Norte', 'ZAN'],
         ['Zamboanga del Sur', 'ZAS'],
