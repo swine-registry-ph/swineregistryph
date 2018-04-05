@@ -142,8 +142,8 @@
         data() {
             return {
                 tabDisables: {
-                    photos: true,
-                    summary: true
+                    summary: true,
+                    photos: true
                 },
                 gpSireData: {},
                 gpDamData: {},

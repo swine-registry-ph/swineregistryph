@@ -141,7 +141,6 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
 
     return [
         'breeder_id' => 0,
-        'name' => $faker->company,
         'address_line1' => $faker->streetAddress,
         'address_line2' => $faker->secondaryAddress,
         'province' => $provinces[$rand][0],

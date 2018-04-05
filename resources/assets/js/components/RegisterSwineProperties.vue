@@ -12,13 +12,21 @@
                         </div>
 
                         <!-- More info for GP 1 -->
+                        <div class="col s12 input-field">
+                            <input v-model="gpOne.geneticInfoId"
+                                :id="gpOneIdPrefix + 'genetic-info-id'"
+                                type="text"
+                                class="validate"
+                            >
+                            <label :for="gpOneIdPrefix + 'genetic-info-id'">Genetic Information ID (optional)</label>
+                        </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.farmSwineId"
                                 :id="gpOneIdPrefix + 'farm-swine-id'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'farm-swine-id'">Farm Swine ID / Ear Mark</label>
+                            <label :for="gpOneIdPrefix + 'farm-swine-id'">Farm Swine ID / Earmark</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.teatNo"
@@ -238,6 +246,7 @@
             return {
                 gpOneIdPrefix: 'gp-one-',
                 gpOne: {
+                    geneticInfoId: '',
                     farmSwineId: '',
                     houseType: '',
                     teatNo: '',

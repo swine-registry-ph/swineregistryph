@@ -35,8 +35,11 @@ class UserInstancesSeeder extends Seeder
             // How do we even create a farm code? Current implementation
             // is getting the first three characters of $user->name
             // then making it all uppercase letters
+            $faker = Faker\Factory::create();
+            $fakerCompany = $faker->company;
             $farm = factory(App\Models\Farm::class)->create([
-                'farm_code' => strtoupper(substr($user->name, 0, 3)),
+                'name' => $fakerCompany,
+                'farm_code' => strtoupper(substr($fakerCompany, 0, 3)),
                 'farm_accreditation_no' => random_int(1000, 2000)
             ]);
 

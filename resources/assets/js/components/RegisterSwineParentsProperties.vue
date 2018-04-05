@@ -104,7 +104,7 @@
                                                         type="text"
                                                         class="validate"
                                                     >
-                                                    <label :for="gpSireIdPrefix + 'farm-swine-id'">Farm Swine ID / Ear Mark</label>
+                                                    <label :for="gpSireIdPrefix + 'farm-swine-id'">Farm Swine ID / Earmark</label>
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <input v-model="gpSire.teatNo"
