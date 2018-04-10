@@ -447,6 +447,7 @@ Vue.component('app-input-date', __webpack_require__(42));
 Vue.component('app-input-select', __webpack_require__(45));
 
 // Breeder
+Vue.component('register-swine-parents-properties-inputs', __webpack_require__(110));
 Vue.component('register-swine-parents-properties', __webpack_require__(48));
 Vue.component('register-swine-properties', __webpack_require__(54));
 Vue.component('register-swine-summary', __webpack_require__(59));
@@ -1057,550 +1058,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1614,82 +1071,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             collapsibleStatus: {
                 sire: true,
                 dam: true
-            },
-            status: {
-                sire: 'existing',
-                dam: 'existing'
-            },
-            existingParents: {
-                sireRegNo: '',
-                damRegNo: ''
-            },
-            gpSire: {
-                importedRegNo: '',
-                farmSwineId: '',
-                geneticInfoId: '',
-                farmFrom: '',
-                birthDate: '',
-                houseType: '',
-                teatNo: '',
-                adgBirthEndDate: '',
-                adgBirthEndWeight: '',
-                adgTestStartDate: '',
-                adgTestEndDate: '',
-                adgTestStartWeight: '',
-                adgTestEndWeight: '',
-                bft: '',
-                bftCollected: '',
-                feedIntake: '',
-                birthWeight: '',
-                littersizeAliveMale: '',
-                littersizeAliveFemale: '',
-                parity: '',
-                littersizeWeaning: '',
-                litterweightWeaning: '',
-                dateWeaning: ''
-            },
-            gpDam: {
-                importedRegNo: '',
-                farmSwineId: '',
-                geneticInfoId: '',
-                farmFrom: '',
-                birthDate: '',
-                houseType: '',
-                teatNo: '',
-                adgBirthEndDate: '',
-                adgBirthEndWeight: '',
-                adgTestStartDate: '',
-                adgTestEndDate: '',
-                adgTestStartWeight: '',
-                adgTestEndWeight: '',
-                bft: '',
-                bftCollected: '',
-                feedIntake: '',
-                birthWeight: '',
-                littersizeAliveMale: '',
-                littersizeAliveFemale: '',
-                parity: '',
-                littersizeWeaning: '',
-                litterweightWeaning: '',
-                dateWeaning: ''
             }
         };
     },
 
-
-    watch: {
-        'status.sire': function statusSire() {
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-
-        'status.dam': function statusDam() {
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        }
-    },
 
     methods: {
         triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
@@ -1742,681 +1127,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons"
   }, [(_vm.collapsibleStatus.sire) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Sire\n                                ")]), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
-  }, [_c('div', {
-    staticClass: "col s12 m12 l6 offset-l3",
+  }, [_c('register-swine-parents-properties-inputs', {
     attrs: {
-      "id": "sire-container"
+      "farmoptions": _vm.farmoptions,
+      "parent-gender": 'Sire',
+      "parent-id-prefix": _vm.gpSireIdPrefix
     }
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(1), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.status.sire),
-      expression: "status.sire"
-    }],
-    attrs: {
-      "name": "sire-status",
-      "type": "radio",
-      "id": "sire-new",
-      "value": "new"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.status.sire, "new")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.status.sire = "new"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "sire-new"
-    }
-  }, [_vm._v("Sire is not yet registered in the system")])]), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.status.sire),
-      expression: "status.sire"
-    }],
-    attrs: {
-      "name": "sire-status",
-      "type": "radio",
-      "id": "sire-existing",
-      "value": "existing"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.status.sire, "existing")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.status.sire = "existing"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "sire-existing"
-    }
-  }, [_vm._v("Sire is currently registered in the system")])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), (_vm.status.sire === 'existing') ? [_c('div', {
-    staticClass: "col s8 offset-s2 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.existingParents.sireRegNo),
-      expression: "existingParents.sireRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'existing',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.existingParents.sireRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.existingParents.sireRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'gpSire'
-    }
-  }, [_vm._v("GP Sire Registration #")])])] : (_vm.status.sire === 'new') ? [_c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.importedRegNo),
-      expression: "gpSire.importedRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'imported-reg-no',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.importedRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.importedRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'imported-reg-no'
-    }
-  }, [_vm._v("Imported Animal/Semen Registration # (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.geneticInfoId),
-      expression: "gpSire.geneticInfoId"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'genetic-info-id',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.geneticInfoId)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.geneticInfoId = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'genetic-info-id'
-    }
-  }, [_vm._v("Genetic Information ID (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Farm From",
-      "options": _vm.farmoptions
-    },
-    on: {
-      "select": function (val) {
-        _vm.gpSire.farmFrom = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.farmFrom),
-      callback: function($$v) {
-        _vm.gpSire.farmFrom = $$v
-      },
-      expression: "gpSire.farmFrom"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.farmSwineId),
-      expression: "gpSire.farmSwineId"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'farm-swine-id',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.farmSwineId)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.farmSwineId = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'farm-swine-id'
-    }
-  }, [_vm._v("Farm Swine ID / Earmark")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.teatNo),
-      expression: "gpSire.teatNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'teatno',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.teatNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.teatNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'teatno'
-    }
-  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.birthDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.birthDate),
-      callback: function($$v) {
-        _vm.gpSire.birthDate = $$v
-      },
-      expression: "gpSire.birthDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.birthWeight),
-      expression: "gpSire.birthWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'birth-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.birthWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.birthWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'birth-weight'
-    }
-  }, [_vm._v("Birth Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.littersizeAliveMale),
-      expression: "gpSire.littersizeAliveMale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.littersizeAliveMale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.littersizeAliveMale = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.littersizeAliveFemale),
-      expression: "gpSire.littersizeAliveFemale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.littersizeAliveFemale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.littersizeAliveFemale = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'total-f'
-    }
-  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.littersizeWeaning),
-      expression: "gpSire.littersizeWeaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'littersize-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.littersizeWeaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.littersizeWeaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'littersize-weaning'
-    }
-  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.litterweightWeaning),
-      expression: "gpSire.litterweightWeaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'litterweight-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.litterweightWeaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.litterweightWeaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'litterweight-weaning'
-    }
-  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.dateWeaning = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.dateWeaning),
-      callback: function($$v) {
-        _vm.gpSire.dateWeaning = $$v
-      },
-      expression: "gpSire.dateWeaning"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.parity),
-      expression: "gpSire.parity"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'parity',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.parity)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.parity = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'parity'
-    }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.houseType),
-      expression: "gpSire.houseType"
-    }],
-    attrs: {
-      "name": "sire-house-type",
-      "type": "radio",
-      "id": "sire-house-type-tunnel",
-      "value": "tunnel"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.gpSire.houseType, "tunnel")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.gpSire.houseType = "tunnel"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "sire-house-type-tunnel"
-    }
-  }, [_vm._v("Tunnel ventilated")])]), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.houseType),
-      expression: "gpSire.houseType"
-    }],
-    attrs: {
-      "name": "sire-house-type",
-      "type": "radio",
-      "id": "sire-house-type-open",
-      "value": "open"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.gpSire.houseType, "open")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.gpSire.houseType = "open"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "sire-house-type-open"
-    }
-  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.adgBirthEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.adgBirthEndDate),
-      callback: function($$v) {
-        _vm.gpSire.adgBirthEndDate = $$v
-      },
-      expression: "gpSire.adgBirthEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.adgBirthEndWeight),
-      expression: "gpSire.adgBirthEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'adg-birth-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.adgBirthEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.adgBirthEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'adg-birth-end-weight'
-    }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.adgTestStartDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.adgTestStartDate),
-      callback: function($$v) {
-        _vm.gpSire.adgTestStartDate = $$v
-      },
-      expression: "gpSire.adgTestStartDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Start Test Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.adgTestStartWeight),
-      expression: "gpSire.adgTestStartWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'adg-test-start-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.adgTestStartWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.adgTestStartWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'adg-test-start-weight'
-    }
-  }, [_vm._v("Start Test Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.adgTestEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.adgTestEndDate),
-      callback: function($$v) {
-        _vm.gpSire.adgTestEndDate = $$v
-      },
-      expression: "gpSire.adgTestEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Test Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.adgTestEndWeight),
-      expression: "gpSire.adgTestEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'adg-test-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.adgTestEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.adgTestEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'adg-test-end-weight'
-    }
-  }, [_vm._v("End Test Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.bft),
-      expression: "gpSire.bft"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'bft',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.bft)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.bft = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'bft'
-    }
-  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.bftCollected = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.bftCollected),
-      callback: function($$v) {
-        _vm.gpSire.bftCollected = $$v
-      },
-      expression: "gpSire.bftCollected"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.feedIntake),
-      expression: "gpSire.feedIntake"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'feed-intake',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.feedIntake)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.feedIntake = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'feed-intake'
-    }
-  }, [_vm._v("Total Feed Intake on Test")])]), _vm._v(" "), _vm._m(9)] : _vm._e()], 2)])]), _vm._v(" "), _c('li', [_c('div', {
+  })], 1)]), _vm._v(" "), _c('li', [_c('div', {
     staticClass: "collapsible-header",
     on: {
       "click": function($event) {
@@ -2427,681 +1144,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons"
   }, [(_vm.collapsibleStatus.dam) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Dam\n                                ")]), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
-  }, [_c('div', {
-    staticClass: "col s12 m12 l6 offset-l3",
+  }, [_c('register-swine-parents-properties-inputs', {
     attrs: {
-      "id": "dam-container"
+      "farmoptions": _vm.farmoptions,
+      "parent-gender": 'Dam',
+      "parent-id-prefix": _vm.gpDamIdPrefix
     }
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(10), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.status.dam),
-      expression: "status.dam"
-    }],
-    attrs: {
-      "name": "dam-status",
-      "type": "radio",
-      "id": "dam-new",
-      "value": "new"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.status.dam, "new")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.status.dam = "new"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "dam-new"
-    }
-  }, [_vm._v("Dam is not yet registered in the system")])]), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.status.dam),
-      expression: "status.dam"
-    }],
-    attrs: {
-      "name": "dam-status",
-      "type": "radio",
-      "id": "dam-existing",
-      "value": "existing"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.status.dam, "existing")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.status.dam = "existing"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "dam-existing"
-    }
-  }, [_vm._v("Dam is currently registered in the system")])])]), _vm._v(" "), _vm._m(11), _vm._v(" "), (_vm.status.dam === 'existing') ? [_c('div', {
-    staticClass: "col s8 offset-s2 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.existingParents.damRegNo),
-      expression: "existingParents.damRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'existing',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.existingParents.damRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.existingParents.damRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'gpDam'
-    }
-  }, [_vm._v("GP Dam Registration #")])])] : (_vm.status.dam === 'new') ? [_c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.importedRegNo),
-      expression: "gpDam.importedRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'imported-reg-no',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.importedRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.importedRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'imported-reg-no'
-    }
-  }, [_vm._v("Imported Animal Registration # (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.geneticInfoId),
-      expression: "gpDam.geneticInfoId"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'genetic-info-id',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.geneticInfoId)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.geneticInfoId = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'genetic-info-id'
-    }
-  }, [_vm._v("Genetic Information ID (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Farm From",
-      "options": _vm.farmoptions
-    },
-    on: {
-      "select": function (val) {
-        _vm.gpDam.farmFrom = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.farmFrom),
-      callback: function($$v) {
-        _vm.gpDam.farmFrom = $$v
-      },
-      expression: "gpDam.farmFrom"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.farmSwineId),
-      expression: "gpDam.farmSwineId"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'farm-swine-id',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.farmSwineId)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.farmSwineId = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'farm-swine-id'
-    }
-  }, [_vm._v("Farm Swine ID / Ear Mark")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.teatNo),
-      expression: "gpDam.teatNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'teatno',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.teatNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.teatNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'teatno'
-    }
-  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpDam.birthDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.birthDate),
-      callback: function($$v) {
-        _vm.gpDam.birthDate = $$v
-      },
-      expression: "gpDam.birthDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.birthWeight),
-      expression: "gpDam.birthWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'birth-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.birthWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.birthWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'birth-weight'
-    }
-  }, [_vm._v("Birth Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.littersizeAliveMale),
-      expression: "gpDam.littersizeAliveMale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.littersizeAliveMale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.littersizeAliveMale = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.littersizeAliveFemale),
-      expression: "gpDam.littersizeAliveFemale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.littersizeAliveFemale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.littersizeAliveFemale = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'total-f'
-    }
-  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.littersizeWeaning),
-      expression: "gpDam.littersizeWeaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'littersize-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.littersizeWeaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.littersizeWeaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'littersize-weaning'
-    }
-  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.litterweightWeaning),
-      expression: "gpDam.litterweightWeaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'litterweight-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.litterweightWeaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.litterweightWeaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'litterweight-weaning'
-    }
-  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpDam.dateWeaning = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.dateWeaning),
-      callback: function($$v) {
-        _vm.gpDam.dateWeaning = $$v
-      },
-      expression: "gpDam.dateWeaning"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.parity),
-      expression: "gpDam.parity"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'parity',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.parity)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.parity = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'parity'
-    }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(12), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(13), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.houseType),
-      expression: "gpDam.houseType"
-    }],
-    attrs: {
-      "name": "dam-house-type",
-      "type": "radio",
-      "id": "dam-house-type-tunnel",
-      "value": "tunnel"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.gpDam.houseType, "tunnel")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.gpDam.houseType = "tunnel"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "dam-house-type-tunnel"
-    }
-  }, [_vm._v("Tunnel ventilated")])]), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.houseType),
-      expression: "gpSire.houseType"
-    }],
-    attrs: {
-      "name": "dam-house-type",
-      "type": "radio",
-      "id": "dam-house-type-open",
-      "value": "open"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.gpSire.houseType, "open")
-    },
-    on: {
-      "__c": function($event) {
-        _vm.gpSire.houseType = "open"
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "dam-house-type-open"
-    }
-  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(14), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpDam.adgBirthEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.adgBirthEndDate),
-      callback: function($$v) {
-        _vm.gpDam.adgBirthEndDate = $$v
-      },
-      expression: "gpDam.adgBirthEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.adgBirthEndWeight),
-      expression: "gpDam.adgBirthEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'adg-birth-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.adgBirthEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.adgBirthEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'adg-birth-end-weight'
-    }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(15), _vm._v(" "), _vm._m(16), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpDam.adgTestStartDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.adgTestStartDate),
-      callback: function($$v) {
-        _vm.gpDam.adgTestStartDate = $$v
-      },
-      expression: "gpDam.adgTestStartDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Start Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.adgTestStartWeight),
-      expression: "gpDam.adgTestStartWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'adg-test-start-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.adgTestStartWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.adgTestStartWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'adg-test-start-weight'
-    }
-  }, [_vm._v("Start Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpDam.adgTestEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.adgTestEndDate),
-      callback: function($$v) {
-        _vm.gpDam.adgTestEndDate = $$v
-      },
-      expression: "gpDam.adgTestEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.adgTestEndWeight),
-      expression: "gpDam.adgTestEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'adg-test-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.adgTestEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.adgTestEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'adg-test-end-weight'
-    }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.bft),
-      expression: "gpDam.bft"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'bft',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.bft)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.bft = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'bft'
-    }
-  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpDam.bftCollected = val
-      }
-    },
-    model: {
-      value: (_vm.gpDam.bftCollected),
-      callback: function($$v) {
-        _vm.gpDam.bftCollected = $$v
-      },
-      expression: "gpDam.bftCollected"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.feedIntake),
-      expression: "gpDam.feedIntake"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'feed-intake',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.feedIntake)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.feedIntake = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'feed-intake'
-    }
-  }, [_vm._v("Total Feed Intake on Test")])]), _vm._v(" "), _vm._m(17)] : _vm._e()], 2)])])])]), _vm._v(" "), _vm._m(18), _vm._v(" "), _vm._m(19), _vm._v(" "), _c('div', {
+  })], 1)])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('a', {
     staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
@@ -3125,66 +1174,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons"
   }, [_vm._v("arrow_forward")])])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Choose an option")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("House Type")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation from Birth")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Choose an option")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("House Type")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation from Birth")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
@@ -8049,6 +6038,1303 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(111)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(113),
+  /* template */
+  __webpack_require__(114),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-4df65ca5",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineParentsPropertiesInputs.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwineParentsPropertiesInputs.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4df65ca5", Component.options)
+  } else {
+    hotAPI.reload("data-v-4df65ca5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(112);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("66331897", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4df65ca5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsPropertiesInputs.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4df65ca5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsPropertiesInputs.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        farmoptions: Array,
+        parentGender: String,
+        parentIdPrefix: String
+    },
+
+    data: function data() {
+        return {
+            status: 'existing',
+            imported: 'no',
+            existingParentRegNo: '',
+            gpImported: {
+                regNo: '',
+                farmFromName: ''
+            },
+            gp: {
+                farmSwineId: '',
+                geneticInfoId: '',
+                farmFrom: '',
+                birthDate: '',
+                houseType: '',
+                teatNo: '',
+                adgBirthEndDate: '',
+                adgBirthEndWeight: '',
+                adgTestStartDate: '',
+                adgTestEndDate: '',
+                adgTestStartWeight: '',
+                adgTestEndWeight: '',
+                bft: '',
+                bftCollected: '',
+                feedIntake: '',
+                birthWeight: '',
+                littersizeAliveMale: '',
+                littersizeAliveFemale: '',
+                parity: '',
+                littersizeWeaning: '',
+                litterweightWeaning: '',
+                dateWeaning: ''
+            }
+        };
+    },
+
+
+    watch: {
+        'status': function status() {
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+
+        'imported': function imported() {
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12 m12 l6 offset-l3 parent-container",
+    attrs: {
+      "id": ""
+    }
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status),
+      expression: "status"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'status',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'new',
+      "value": "new"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status, "new")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.status = "new"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'new'
+    }
+  }, [_vm._v(_vm._s(_vm.parentGender) + " is not yet registered in the system")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status),
+      expression: "status"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'status',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'existing',
+      "value": "existing"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status, "existing")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.status = "existing"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'existing'
+    }
+  }, [_vm._v(_vm._s(_vm.parentGender) + " is currently registered in the system")])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), (_vm.status === 'existing') ? [_c('div', {
+    staticClass: "col s8 offset-s2 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.existingParentRegNo),
+      expression: "existingParentRegNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'reg-no',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.existingParentRegNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.existingParentRegNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'reg-no'
+    }
+  }, [_vm._v("GP " + _vm._s(_vm.parentGender) + " Registration #")])])] : (_vm.status === 'new') ? [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Is GP " + _vm._s(_vm.parentGender) + " imported?")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.imported),
+      expression: "imported"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'imported',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'imported-yes',
+      "value": "yes"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.imported, "yes")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.imported = "yes"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-yes'
+    }
+  }, [_vm._v("Yes")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.imported),
+      expression: "imported"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'imported',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'imported-no',
+      "value": "no"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.imported, "no")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.imported = "no"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-no'
+    }
+  }, [_vm._v("No")])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), (_vm.imported === 'yes') ? [_c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpImported.regNo),
+      expression: "gpImported.regNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'imported-reg-no',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpImported.regNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpImported.regNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-reg-no'
+    }
+  }, [_vm._v("Imported Animal Registration #")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpImported.farmFromName),
+      expression: "gpImported.farmFromName"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'imported-reg-no',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpImported.farmFromName)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpImported.farmFromName = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-reg-no'
+    }
+  }, [_vm._v("Farm From Name")])])] : (_vm.imported === 'no') ? [_c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.geneticInfoId),
+      expression: "gp.geneticInfoId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'genetic-info-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.geneticInfoId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.geneticInfoId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'genetic-info-id'
+    }
+  }, [_vm._v("Genetic Information ID (optional)")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Farm From",
+      "options": _vm.farmoptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.gp.farmFrom = val
+      }
+    },
+    model: {
+      value: (_vm.gp.farmFrom),
+      callback: function($$v) {
+        _vm.gp.farmFrom = $$v
+      },
+      expression: "gp.farmFrom"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.farmSwineId),
+      expression: "gp.farmSwineId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'farm-swine-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.farmSwineId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.farmSwineId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'farm-swine-id'
+    }
+  }, [_vm._v("Farm Swine ID / Earmark")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.teatNo),
+      expression: "gp.teatNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'teatno',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.teatNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.teatNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'teatno'
+    }
+  }, [_vm._v("Teat number")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gp.birthDate = val
+      }
+    },
+    model: {
+      value: (_vm.gp.birthDate),
+      callback: function($$v) {
+        _vm.gp.birthDate = $$v
+      },
+      expression: "gp.birthDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.birthWeight),
+      expression: "gp.birthWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'birth-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.birthWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.birthWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'birth-weight'
+    }
+  }, [_vm._v("Birth Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.littersizeAliveMale),
+      expression: "gp.littersizeAliveMale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'total-m',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.littersizeAliveMale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.littersizeAliveMale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'total-m'
+    }
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.littersizeAliveFemale),
+      expression: "gp.littersizeAliveFemale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.littersizeAliveFemale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.littersizeAliveFemale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.littersizeWeaning),
+      expression: "gp.littersizeWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.littersizeWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.littersizeWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.litterweightWeaning),
+      expression: "gp.litterweightWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.litterweightWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.litterweightWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gp.dateWeaning = val
+      }
+    },
+    model: {
+      value: (_vm.gp.dateWeaning),
+      callback: function($$v) {
+        _vm.gp.dateWeaning = $$v
+      },
+      expression: "gp.dateWeaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.parity),
+      expression: "gp.parity"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'parity',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.parity)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.parity = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'parity'
+    }
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.houseType),
+      expression: "gp.houseType"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'house-type',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'house-type-tunnel',
+      "value": "tunnel"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gp.houseType, "tunnel")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.gp.houseType = "tunnel"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'house-type-tunnel'
+    }
+  }, [_vm._v("Tunnel ventilated")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.houseType),
+      expression: "gp.houseType"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'house-type',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'house-type-open',
+      "value": "open"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gp.houseType, "open")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.gp.houseType = "open"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'house-type-open'
+    }
+  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gp.adgBirthEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gp.adgBirthEndDate),
+      callback: function($$v) {
+        _vm.gp.adgBirthEndDate = $$v
+      },
+      expression: "gp.adgBirthEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.adgBirthEndWeight),
+      expression: "gp.adgBirthEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'adg-birth-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.adgBirthEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.adgBirthEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'adg-birth-end-weight'
+    }
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gp.adgTestStartDate = val
+      }
+    },
+    model: {
+      value: (_vm.gp.adgTestStartDate),
+      callback: function($$v) {
+        _vm.gp.adgTestStartDate = $$v
+      },
+      expression: "gp.adgTestStartDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Start Test Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.adgTestStartWeight),
+      expression: "gp.adgTestStartWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'adg-test-start-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.adgTestStartWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.adgTestStartWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'adg-test-start-weight'
+    }
+  }, [_vm._v("Start Test Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gp.adgTestEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gp.adgTestEndDate),
+      callback: function($$v) {
+        _vm.gp.adgTestEndDate = $$v
+      },
+      expression: "gp.adgTestEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Test Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.adgTestEndWeight),
+      expression: "gp.adgTestEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'adg-test-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.adgTestEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.adgTestEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'adg-test-end-weight'
+    }
+  }, [_vm._v("End Test Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.bft),
+      expression: "gp.bft"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'bft',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.bft)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.bft = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'bft'
+    }
+  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gp.bftCollected = val
+      }
+    },
+    model: {
+      value: (_vm.gp.bftCollected),
+      callback: function($$v) {
+        _vm.gp.bftCollected = $$v
+      },
+      expression: "gp.bftCollected"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gp.feedIntake),
+      expression: "gp.feedIntake"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'feed-intake',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gp.feedIntake)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gp.feedIntake = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'feed-intake'
+    }
+  }, [_vm._v("Total Feed Intake on Test")])])] : _vm._e(), _vm._v(" "), _vm._m(9)] : _vm._e()], 2)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Choose an option")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("House Type")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation from Birth")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4df65ca5", module.exports)
+  }
+}
 
 /***/ })
 ],[18]);
