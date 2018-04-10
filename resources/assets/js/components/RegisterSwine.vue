@@ -57,15 +57,6 @@
                                 </app-input-date>
                                 <label for=""> Birth Date </label>
                             </div>
-                            <div class="input-field col s12">
-                            <!-- Date Collected -->
-                                <app-input-date
-                                    v-model="basicInfo.dateCollected"
-                                    @date-select="val => {basicInfo.dateCollected = val}"
-                                >
-                                </app-input-date>
-                                <label for=""> Date when data was collected </label>
-                            </div>
                             <!-- Farm From -->
                             <div class="input-field col s12">
                                 <app-input-select
@@ -153,7 +144,6 @@
                     breed: '',
                     sex: '',
                     birthDate: '',
-                    dateCollected: '',
                     farmFrom: '',
                 },
                 imageFiles: []

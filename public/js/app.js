@@ -1601,16 +1601,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1639,10 +1629,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 geneticInfoId: '',
                 farmFrom: '',
                 birthDate: '',
-                dateCollected: '',
                 houseType: '',
                 teatNo: '',
-                weight: '',
                 adgBirthEndDate: '',
                 adgBirthEndWeight: '',
                 adgTestStartDate: '',
@@ -1650,7 +1638,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 adgTestStartWeight: '',
                 adgTestEndWeight: '',
                 bft: '',
-                fe: '',
+                bftCollected: '',
+                feedIntake: '',
                 birthWeight: '',
                 littersizeAliveMale: '',
                 littersizeAliveFemale: '',
@@ -1665,10 +1654,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 geneticInfoId: '',
                 farmFrom: '',
                 birthDate: '',
-                dateCollected: '',
                 houseType: '',
                 teatNo: '',
-                weight: '',
                 adgBirthEndDate: '',
                 adgBirthEndWeight: '',
                 adgTestStartDate: '',
@@ -1676,7 +1663,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 adgTestStartWeight: '',
                 adgTestEndWeight: '',
                 bft: '',
-                fe: '',
+                bftCollected: '',
+                feedIntake: '',
                 birthWeight: '',
                 littersizeAliveMale: '',
                 littersizeAliveFemale: '',
@@ -2013,106 +2001,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Birth Weight")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.dateCollected = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.dateCollected),
-      callback: function($$v) {
-        _vm.gpSire.dateCollected = $$v
-      },
-      expression: "gpSire.dateCollected"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date when data was collected ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.weight),
-      expression: "gpSire.weight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.weight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.weight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'weight'
-    }
-  }, [_vm._v("Weight when data was collected")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.bft),
-      expression: "gpSire.bft"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'bft',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.bft)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.bft = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'bft'
-    }
-  }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.fe),
-      expression: "gpSire.fe"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'feed-efficiency',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.fe)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.fe = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'feed-efficiency'
-    }
-  }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -2265,147 +2153,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpSireIdPrefix + 'parity'
     }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.adgBirthEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.adgBirthEndDate),
-      callback: function($$v) {
-        _vm.gpSire.adgBirthEndDate = $$v
-      },
-      expression: "gpSire.adgBirthEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.adgBirthEndWeight),
-      expression: "gpSire.adgBirthEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'adg-birth-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.adgBirthEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.adgBirthEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'adg-birth-end-weight'
-    }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.adgTestStartDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.adgTestStartDate),
-      callback: function($$v) {
-        _vm.gpSire.adgTestStartDate = $$v
-      },
-      expression: "gpSire.adgTestStartDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Start Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.adgTestStartWeight),
-      expression: "gpSire.adgTestStartWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'adg-test-start-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.adgTestStartWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.adgTestStartWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'adg-test-start-weight'
-    }
-  }, [_vm._v("Start Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.adgTestEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.adgTestEndDate),
-      callback: function($$v) {
-        _vm.gpSire.adgTestEndDate = $$v
-      },
-      expression: "gpSire.adgTestEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpSire.adgTestEndWeight),
-      expression: "gpSire.adgTestEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpSireIdPrefix + 'adg-test-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpSire.adgTestEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpSire.adgTestEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpSireIdPrefix + 'adg-test-end-weight'
-    }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "col s12"
-  }, [_vm._m(8), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2455,7 +2205,218 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "sire-house-type-open"
     }
-  }, [_vm._v("Open sided")])])])] : _vm._e()], 2)])]), _vm._v(" "), _c('li', [_c('div', {
+  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpSire.adgBirthEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpSire.adgBirthEndDate),
+      callback: function($$v) {
+        _vm.gpSire.adgBirthEndDate = $$v
+      },
+      expression: "gpSire.adgBirthEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.adgBirthEndWeight),
+      expression: "gpSire.adgBirthEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'adg-birth-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.adgBirthEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.adgBirthEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'adg-birth-end-weight'
+    }
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpSire.adgTestStartDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpSire.adgTestStartDate),
+      callback: function($$v) {
+        _vm.gpSire.adgTestStartDate = $$v
+      },
+      expression: "gpSire.adgTestStartDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Start Test Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.adgTestStartWeight),
+      expression: "gpSire.adgTestStartWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'adg-test-start-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.adgTestStartWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.adgTestStartWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'adg-test-start-weight'
+    }
+  }, [_vm._v("Start Test Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpSire.adgTestEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpSire.adgTestEndDate),
+      callback: function($$v) {
+        _vm.gpSire.adgTestEndDate = $$v
+      },
+      expression: "gpSire.adgTestEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Test Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.adgTestEndWeight),
+      expression: "gpSire.adgTestEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'adg-test-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.adgTestEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.adgTestEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'adg-test-end-weight'
+    }
+  }, [_vm._v("End Test Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.bft),
+      expression: "gpSire.bft"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'bft',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.bft)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.bft = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'bft'
+    }
+  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpSire.bftCollected = val
+      }
+    },
+    model: {
+      value: (_vm.gpSire.bftCollected),
+      callback: function($$v) {
+        _vm.gpSire.bftCollected = $$v
+      },
+      expression: "gpSire.bftCollected"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.feedIntake),
+      expression: "gpSire.feedIntake"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpSireIdPrefix + 'feed-intake',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpSire.feedIntake)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpSire.feedIntake = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpSireIdPrefix + 'feed-intake'
+    }
+  }, [_vm._v("Total Feed Intake on Test")])]), _vm._v(" "), _vm._m(9)] : _vm._e()], 2)])]), _vm._v(" "), _c('li', [_c('div', {
     staticClass: "collapsible-header",
     on: {
       "click": function($event) {
@@ -2473,7 +2434,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "col s12"
-  }, [_vm._m(9), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._m(10), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2523,7 +2484,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "dam-existing"
     }
-  }, [_vm._v("Dam is currently registered in the system")])])]), _vm._v(" "), _vm._m(10), _vm._v(" "), (_vm.status.dam === 'existing') ? [_c('div', {
+  }, [_vm._v("Dam is currently registered in the system")])])]), _vm._v(" "), _vm._m(11), _vm._v(" "), (_vm.status.dam === 'existing') ? [_c('div', {
     staticClass: "col s8 offset-s2 input-field"
   }, [_c('input', {
     directives: [{
@@ -2725,106 +2686,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Birth Weight")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpSire.dateWeaning = val
-      }
-    },
-    model: {
-      value: (_vm.gpSire.dateWeaning),
-      callback: function($$v) {
-        _vm.gpSire.dateWeaning = $$v
-      },
-      expression: "gpSire.dateWeaning"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date when data was collected ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.weight),
-      expression: "gpDam.weight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.weight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.weight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'weight'
-    }
-  }, [_vm._v("Weight when data was collected")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.bft),
-      expression: "gpDam.bft"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'bft',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.bft)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.bft = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'bft'
-    }
-  }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpDam.fe),
-      expression: "gpDam.fe"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpDamIdPrefix + 'feed-efficiency',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpDam.fe)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpDam.fe = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpDamIdPrefix + 'feed-efficiency'
-    }
-  }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -2977,7 +2838,59 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpDamIdPrefix + 'parity'
     }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(11), _vm._v(" "), _vm._m(12), _vm._v(" "), _c('div', {
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(12), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(13), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpDam.houseType),
+      expression: "gpDam.houseType"
+    }],
+    attrs: {
+      "name": "dam-house-type",
+      "type": "radio",
+      "id": "dam-house-type-tunnel",
+      "value": "tunnel"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gpDam.houseType, "tunnel")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.gpDam.houseType = "tunnel"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "dam-house-type-tunnel"
+    }
+  }, [_vm._v("Tunnel ventilated")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpSire.houseType),
+      expression: "gpSire.houseType"
+    }],
+    attrs: {
+      "name": "dam-house-type",
+      "type": "radio",
+      "id": "dam-house-type-open",
+      "value": "open"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gpSire.houseType, "open")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.gpSire.houseType = "open"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "dam-house-type-open"
+    }
+  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(14), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
@@ -3023,7 +2936,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpDamIdPrefix + 'adg-birth-end-weight'
     }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(13), _vm._v(" "), _vm._m(14), _vm._v(" "), _c('div', {
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(15), _vm._v(" "), _vm._m(16), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
@@ -3115,59 +3028,80 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpDamIdPrefix + 'adg-test-end-weight'
     }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(15), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(16), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpDam.houseType),
-      expression: "gpDam.houseType"
+      value: (_vm.gpDam.bft),
+      expression: "gpDam.bft"
     }],
+    staticClass: "validate",
     attrs: {
-      "name": "dam-house-type",
-      "type": "radio",
-      "id": "dam-house-type-tunnel",
-      "value": "tunnel"
+      "id": _vm.gpDamIdPrefix + 'bft',
+      "type": "text"
     },
     domProps: {
-      "checked": _vm._q(_vm.gpDam.houseType, "tunnel")
+      "value": (_vm.gpDam.bft)
     },
     on: {
-      "__c": function($event) {
-        _vm.gpDam.houseType = "tunnel"
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.bft = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "dam-house-type-tunnel"
+      "for": _vm.gpDamIdPrefix + 'bft'
     }
-  }, [_vm._v("Tunnel ventilated")])]), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpDam.bftCollected = val
+      }
+    },
+    model: {
+      value: (_vm.gpDam.bftCollected),
+      callback: function($$v) {
+        _vm.gpDam.bftCollected = $$v
+      },
+      expression: "gpDam.bftCollected"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpSire.houseType),
-      expression: "gpSire.houseType"
+      value: (_vm.gpDam.feedIntake),
+      expression: "gpDam.feedIntake"
     }],
+    staticClass: "validate",
     attrs: {
-      "name": "dam-house-type",
-      "type": "radio",
-      "id": "dam-house-type-open",
-      "value": "open"
+      "id": _vm.gpDamIdPrefix + 'feed-intake',
+      "type": "text"
     },
     domProps: {
-      "checked": _vm._q(_vm.gpSire.houseType, "open")
+      "value": (_vm.gpDam.feedIntake)
     },
     on: {
-      "__c": function($event) {
-        _vm.gpSire.houseType = "open"
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpDam.feedIntake = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "dam-house-type-open"
+      "for": _vm.gpDamIdPrefix + 'feed-intake'
     }
-  }, [_vm._v("Open sided")])])])] : _vm._e()], 2)])])])]), _vm._v(" "), _vm._m(17), _vm._v(" "), _vm._m(18), _vm._v(" "), _c('div', {
+  }, [_vm._v("Total Feed Intake on Test")])]), _vm._v(" "), _vm._m(17)] : _vm._e()], 2)])])])]), _vm._v(" "), _vm._m(18), _vm._v(" "), _vm._m(19), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('a', {
     staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
@@ -3205,6 +3139,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("House Type")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation from Birth")])])])
@@ -3215,13 +3155,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation on Test")])])])
+  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("House Type")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', [_c('b', [_vm._v("Choose an option")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3233,6 +3171,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("House Type")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation from Birth")])])])
@@ -3243,13 +3183,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation on Test")])])])
+  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("House Type")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -3609,7 +3547,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 farmSwineId: '',
                 houseType: '',
                 teatNo: '',
-                weight: '',
                 adgBirthEndDate: '',
                 adgBirthEndWeight: '',
                 adgTestStartDate: '',
@@ -3617,7 +3554,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 adgTestStartWeight: '',
                 adgTestEndWeight: '',
                 bft: '',
-                fe: '',
+                bftCollected: '',
+                feedIntake: '',
                 birthWeight: '',
                 littersizeAliveMale: '',
                 littersizeAliveFemale: '',
@@ -3778,87 +3716,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.weight),
-      expression: "gpOne.weight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.weight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.weight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'weight'
-    }
-  }, [_vm._v("Weight when data was collected")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.bft),
-      expression: "gpOne.bft"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'bft',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.bft)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.bft = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'bft'
-    }
-  }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.fe),
-      expression: "gpOne.fe"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'feed-efficiency',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.fe)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.fe = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'feed-efficiency'
-    }
-  }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
       value: (_vm.gpOne.littersizeAliveMale),
       expression: "gpOne.littersizeAliveMale"
     }],
@@ -4007,147 +3864,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": _vm.gpOneIdPrefix + 'parity'
     }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpOne.adgBirthEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOne.adgBirthEndDate),
-      callback: function($$v) {
-        _vm.gpOne.adgBirthEndDate = $$v
-      },
-      expression: "gpOne.adgBirthEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.adgBirthEndWeight),
-      expression: "gpOne.adgBirthEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'adg-birth-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.adgBirthEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.adgBirthEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'adg-birth-end-weight'
-    }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpOne.adgTestStartDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOne.adgTestStartDate),
-      callback: function($$v) {
-        _vm.gpOne.adgTestStartDate = $$v
-      },
-      expression: "gpOne.adgTestStartDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Start Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.adgTestStartWeight),
-      expression: "gpOne.adgTestStartWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'adg-test-start-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.adgTestStartWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.adgTestStartWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'adg-test-start-weight'
-    }
-  }, [_vm._v("Start Weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpOne.adgTestEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOne.adgTestEndDate),
-      callback: function($$v) {
-        _vm.gpOne.adgTestEndDate = $$v
-      },
-      expression: "gpOne.adgTestEndDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.adgTestEndWeight),
-      expression: "gpOne.adgTestEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'adg-test-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.adgTestEndWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.adgTestEndWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'adg-test-end-weight'
-    }
-  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "col s12"
-  }, [_vm._m(6), _vm._v(" "), _c('p', [_c('input', {
+  }, [_vm._m(2), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -4197,7 +3916,218 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "house-type-open"
     }
-  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(7)]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOne.adgBirthEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpOne.adgBirthEndDate),
+      callback: function($$v) {
+        _vm.gpOne.adgBirthEndDate = $$v
+      },
+      expression: "gpOne.adgBirthEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.adgBirthEndWeight),
+      expression: "gpOne.adgBirthEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'adg-birth-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.adgBirthEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.adgBirthEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'adg-birth-end-weight'
+    }
+  }, [_vm._v("End Weight")])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOne.adgTestStartDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpOne.adgTestStartDate),
+      callback: function($$v) {
+        _vm.gpOne.adgTestStartDate = $$v
+      },
+      expression: "gpOne.adgTestStartDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Start Test Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.adgTestStartWeight),
+      expression: "gpOne.adgTestStartWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'adg-test-start-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.adgTestStartWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.adgTestStartWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'adg-test-start-weight'
+    }
+  }, [_vm._v("Start Test Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOne.adgTestEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpOne.adgTestEndDate),
+      callback: function($$v) {
+        _vm.gpOne.adgTestEndDate = $$v
+      },
+      expression: "gpOne.adgTestEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Test Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.adgTestEndWeight),
+      expression: "gpOne.adgTestEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'adg-test-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.adgTestEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.adgTestEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'adg-test-end-weight'
+    }
+  }, [_vm._v("End Test Weight")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.bft),
+      expression: "gpOne.bft"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'bft',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.bft)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.bft = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'bft'
+    }
+  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOne.bftCollected = val
+      }
+    },
+    model: {
+      value: (_vm.gpOne.bftCollected),
+      callback: function($$v) {
+        _vm.gpOne.bftCollected = $$v
+      },
+      expression: "gpOne.bftCollected"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOne.feedIntake),
+      expression: "gpOne.feedIntake"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'feed-intake',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOne.feedIntake)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOne.feedIntake = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'feed-intake'
+    }
+  }, [_vm._v("Total Feed Intake on Test")])]), _vm._v(" "), _vm._m(7)]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('a', {
     staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
@@ -4229,6 +4159,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("House Type")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation from Birth")])])])
@@ -4239,13 +4175,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain computation on Test")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("House Type")])])
+  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -5332,15 +5262,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -5363,7 +5284,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 breed: '',
                 sex: '',
                 birthDate: '',
-                dateCollected: '',
                 farmFrom: ''
             },
             imageFiles: []
@@ -5587,25 +5507,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": ""
     }
   }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.basicInfo.dateCollected = val
-      }
-    },
-    model: {
-      value: (_vm.basicInfo.dateCollected),
-      callback: function($$v) {
-        _vm.basicInfo.dateCollected = $$v
-      },
-      expression: "basicInfo.dateCollected"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date when data was collected ")])], 1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('app-input-select', {
     attrs: {

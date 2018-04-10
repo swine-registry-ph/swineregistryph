@@ -23,7 +23,6 @@ class CreateSwinesTable extends Migration
             $table->integer('primaryPhoto_id')->unsigned()->default(0);
             $table->text('registration_no')->nullable();
             $table->date('date_registered');
-            $table->date('date_collected');
             $table->timestamps();
         });
     }

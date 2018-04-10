@@ -131,38 +131,6 @@
                                                     <label :for="gpSireIdPrefix + 'birth-weight'">Birth Weight</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <app-input-date
-                                                        v-model="gpSire.dateCollected"
-                                                        @date-select="val => {gpSire.dateCollected = val}"
-                                                    >
-                                                    </app-input-date>
-                                                    <label for=""> Date when data was collected </label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpSire.weight"
-                                                        :id="gpSireIdPrefix + 'weight'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpSireIdPrefix + 'weight'">Weight when data was collected</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpSire.bft"
-                                                        :id="gpSireIdPrefix + 'bft'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpSireIdPrefix + 'bft'">Backfat Thickness (mm)</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpSire.fe"
-                                                        :id="gpSireIdPrefix + 'feed-efficiency'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpSireIdPrefix + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
-                                                </div>
-                                                <div class="col s6 input-field">
                                                     <input v-model="gpSire.littersizeAliveMale"
                                                         :id="gpSireIdPrefix + 'total-m'"
                                                         type="text"
@@ -215,6 +183,35 @@
                                                     <br>
                                                 </div>
 
+                                                <!-- GP Sire: House Type -->
+                                                <div class="col s12">
+                                                    <h6>
+                                                        <b>House Type</b>
+                                                    </h6>
+                                                    <p>
+                                                        <input v-model="gpSire.houseType"
+                                                            name="sire-house-type"
+                                                            type="radio"
+                                                            id="sire-house-type-tunnel"
+                                                            value="tunnel"
+                                                        >
+                                                        <label for="sire-house-type-tunnel">Tunnel ventilated</label>
+                                                    </p>
+                                                    <p>
+                                                        <input v-model="gpSire.houseType"
+                                                            name="sire-house-type"
+                                                            type="radio"
+                                                            id="sire-house-type-open"
+                                                            value="open"
+                                                        >
+                                                        <label for="sire-house-type-open">Open sided</label>
+                                                    </p>
+                                                </div>
+
+                                                <div class="col s12">
+                                                    <br>
+                                                </div>
+
                                                 <!-- GP Sire: ADG computation from Birth -->
                                                 <div class="col s12">
                                                     <h6>
@@ -242,10 +239,10 @@
                                                     <br>
                                                 </div>
 
-                                                <!-- GP Sire: ADG computation on Test -->
+                                                <!-- GP Sire: Swine Testing Information -->
                                                 <div class="col s12">
                                                     <h6>
-                                                        <b>Average Daily Gain computation on Test</b>
+                                                        <b>Swine Testing Information</b>
                                                     </h6>
                                                 </div>
                                                 <div class="col s6 input-field">
@@ -254,7 +251,7 @@
                                                         @date-select="val => {gpSire.adgTestStartDate = val}"
                                                     >
                                                     </app-input-date>
-                                                    <label for=""> Start Date </label>
+                                                    <label for=""> Start Test Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <input v-model="gpSire.adgTestStartWeight"
@@ -262,7 +259,7 @@
                                                         type="text"
                                                         class="validate"
                                                     >
-                                                    <label :for="gpSireIdPrefix + 'adg-test-start-weight'">Start Weight</label>
+                                                    <label :for="gpSireIdPrefix + 'adg-test-start-weight'">Start Test Weight</label>
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <app-input-date
@@ -270,7 +267,7 @@
                                                         @date-select="val => {gpSire.adgTestEndDate = val}"
                                                     >
                                                     </app-input-date>
-                                                    <label for=""> End Date </label>
+                                                    <label for=""> End Test Date </label>
                                                 </div>
                                                 <div class="col s6 input-field">
                                                     <input v-model="gpSire.adgTestEndWeight"
@@ -278,37 +275,37 @@
                                                         type="text"
                                                         class="validate"
                                                     >
-                                                    <label :for="gpSireIdPrefix + 'adg-test-end-weight'">End Weight</label>
+                                                    <label :for="gpSireIdPrefix + 'adg-test-end-weight'">End Test Weight</label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpSire.bft"
+                                                        :id="gpSireIdPrefix + 'bft'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpSireIdPrefix + 'bft'">Backfat Thickness [BFT] (mm)</label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <app-input-date
+                                                        v-model="gpSire.bftCollected"
+                                                        @date-select="val => {gpSire.bftCollected = val}"
+                                                    >
+                                                    </app-input-date>
+                                                    <label for=""> Date when BFT was collected </label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpSire.feedIntake"
+                                                        :id="gpSireIdPrefix + 'feed-intake'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpSireIdPrefix + 'feed-intake'">Total Feed Intake on Test</label>
                                                 </div>
 
                                                 <div class="col s12">
                                                     <br>
                                                 </div>
 
-                                                <!-- GP Sire: House Type -->
-                                                <div class="col s12">
-                                                    <h6>
-                                                        <b>House Type</b>
-                                                    </h6>
-                                                    <p>
-                                                        <input v-model="gpSire.houseType"
-                                                            name="sire-house-type"
-                                                            type="radio"
-                                                            id="sire-house-type-tunnel"
-                                                            value="tunnel"
-                                                        >
-                                                        <label for="sire-house-type-tunnel">Tunnel ventilated</label>
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="gpSire.houseType"
-                                                            name="sire-house-type"
-                                                            type="radio"
-                                                            id="sire-house-type-open"
-                                                            value="open"
-                                                        >
-                                                        <label for="sire-house-type-open">Open sided</label>
-                                                    </p>
-                                                </div>
                                             </template>
                                         </div>
                                     </div>
@@ -432,38 +429,6 @@
                                                     <label :for="gpDamIdPrefix + 'birth-weight'">Birth Weight</label>
                                                 </div>
                                                 <div class="col s6 input-field">
-                                                    <app-input-date
-                                                        v-model="gpSire.dateWeaning"
-                                                        @date-select="val => {gpSire.dateWeaning = val}"
-                                                    >
-                                                    </app-input-date>
-                                                    <label for=""> Date when data was collected </label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpDam.weight"
-                                                        :id="gpDamIdPrefix + 'weight'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpDamIdPrefix + 'weight'">Weight when data was collected</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpDam.bft"
-                                                        :id="gpDamIdPrefix + 'bft'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpDamIdPrefix + 'bft'">Backfat Thickness (mm)</label>
-                                                </div>
-                                                <div class="col s6 input-field">
-                                                    <input v-model="gpDam.fe"
-                                                        :id="gpDamIdPrefix + 'feed-efficiency'"
-                                                        type="text"
-                                                        class="validate"
-                                                    >
-                                                    <label :for="gpDamIdPrefix + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
-                                                </div>
-                                                <div class="col s6 input-field">
                                                     <input v-model="gpDam.littersizeAliveMale"
                                                         :id="gpDamIdPrefix + 'total-m'"
                                                         type="text"
@@ -516,6 +481,31 @@
                                                     <br>
                                                 </div>
 
+                                                <!-- GP Dam: House Type -->
+                                                <div class="col s12">
+                                                    <h6>
+                                                        <b>House Type</b>
+                                                    </h6>
+                                                    <p>
+                                                        <input v-model="gpDam.houseType"
+                                                            name="dam-house-type"
+                                                            type="radio"
+                                                            id="dam-house-type-tunnel"
+                                                            value="tunnel"
+                                                        >
+                                                        <label for="dam-house-type-tunnel">Tunnel ventilated</label>
+                                                    </p>
+                                                    <p>
+                                                        <input v-model="gpSire.houseType"
+                                                            name="dam-house-type"
+                                                            type="radio"
+                                                            id="dam-house-type-open"
+                                                            value="open"
+                                                        >
+                                                        <label for="dam-house-type-open">Open sided</label>
+                                                    </p>
+                                                </div>
+
                                                 <!-- GP Dam: ADG computation from Birth -->
                                                 <div class="col s12">
                                                     <h6>
@@ -543,10 +533,10 @@
                                                     <br>
                                                 </div>
 
-                                                <!-- GP Dam: ADG computation from Birth -->
+                                                <!-- GP Dam: Swine Testing Information -->
                                                 <div class="col s12">
                                                     <h6>
-                                                        <b>Average Daily Gain computation on Test</b>
+                                                        <b>Swine Testing Information</b>
                                                     </h6>
                                                 </div>
                                                 <div class="col s6 input-field">
@@ -581,35 +571,35 @@
                                                     >
                                                     <label :for="gpDamIdPrefix + 'adg-test-end-weight'">End Weight</label>
                                                 </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpDam.bft"
+                                                        :id="gpDamIdPrefix + 'bft'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpDamIdPrefix + 'bft'">Backfat Thickness [BFT] (mm)</label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <app-input-date
+                                                        v-model="gpDam.bftCollected"
+                                                        @date-select="val => {gpDam.bftCollected = val}"
+                                                    >
+                                                    </app-input-date>
+                                                    <label for=""> Date when BFT was collected </label>
+                                                </div>
+                                                <div class="col s6 input-field">
+                                                    <input v-model="gpDam.feedIntake"
+                                                        :id="gpDamIdPrefix + 'feed-intake'"
+                                                        type="text"
+                                                        class="validate"
+                                                    >
+                                                    <label :for="gpDamIdPrefix + 'feed-intake'">Total Feed Intake on Test</label>
+                                                </div>
 
                                                 <div class="col s12">
                                                     <br>
                                                 </div>
 
-                                                <!-- GP Dam: House Type -->
-                                                <div class="col s12">
-                                                    <h6>
-                                                        <b>House Type</b>
-                                                    </h6>
-                                                    <p>
-                                                        <input v-model="gpDam.houseType"
-                                                            name="dam-house-type"
-                                                            type="radio"
-                                                            id="dam-house-type-tunnel"
-                                                            value="tunnel"
-                                                        >
-                                                        <label for="dam-house-type-tunnel">Tunnel ventilated</label>
-                                                    </p>
-                                                    <p>
-                                                        <input v-model="gpSire.houseType"
-                                                            name="dam-house-type"
-                                                            type="radio"
-                                                            id="dam-house-type-open"
-                                                            value="open"
-                                                        >
-                                                        <label for="dam-house-type-open">Open sided</label>
-                                                    </p>
-                                                </div>
                                             </template>
                                         </div>
                                     </div>
@@ -672,10 +662,8 @@
                     geneticInfoId: '',
                     farmFrom: '',
                     birthDate: '',
-                    dateCollected: '',
                     houseType: '',
                     teatNo: '',
-                    weight: '',
                     adgBirthEndDate: '',
                     adgBirthEndWeight: '',
                     adgTestStartDate: '',
@@ -683,7 +671,8 @@
                     adgTestStartWeight: '',
                     adgTestEndWeight: '',
                     bft: '',
-                    fe: '',
+                    bftCollected: '',
+                    feedIntake: '',
                     birthWeight: '',
                     littersizeAliveMale: '',
                     littersizeAliveFemale: '',
@@ -698,10 +687,8 @@
                     geneticInfoId: '',
                     farmFrom: '',
                     birthDate: '',
-                    dateCollected: '',
                     houseType: '',
                     teatNo: '',
-                    weight: '',
                     adgBirthEndDate: '',
                     adgBirthEndWeight: '',
                     adgTestStartDate: '',
@@ -709,7 +696,8 @@
                     adgTestStartWeight: '',
                     adgTestEndWeight: '',
                     bft: '',
-                    fe: '',
+                    bftCollected: '',
+                    feedIntake: '',
                     birthWeight: '',
                     littersizeAliveMale: '',
                     littersizeAliveFemale: '',

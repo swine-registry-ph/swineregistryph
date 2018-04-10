@@ -29,11 +29,6 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'birth_weight'
             ],
             [
-                'property' => 'Weight when data was collected',
-                'definition' => 'Weight when data was collected',
-                'slug' => 'collected_weight'
-            ],
-            [
                 'property' => 'Average Daily Gain from Birth',
                 'definition' => 'Average Daily Gain from Birth, g/day',
                 'slug' => 'adgBirth'

@@ -33,13 +33,13 @@ class UserInstancesSeeder extends Seeder
              */
 
             // How do we even create a farm code? Current implementation
-            // is getting the first three characters of $user->name
+            // is getting the first three characters of farm name
             // then making it all uppercase letters
             $faker = Faker\Factory::create();
-            $fakerCompany = $faker->company;
+            $fakerFarmName = $faker->company;
             $farm = factory(App\Models\Farm::class)->create([
-                'name' => $fakerCompany,
-                'farm_code' => strtoupper(substr($fakerCompany, 0, 3)),
+                'name' => $fakerFarmName,
+                'farm_code' => strtoupper(substr($fakerFarmName, 0, 3)),
                 'farm_accreditation_no' => random_int(1000, 2000)
             ]);
 
@@ -49,8 +49,8 @@ class UserInstancesSeeder extends Seeder
             /**
              * 2. Add Swine Collection
              */
-            // Need to contextualize properties like age/weight when data was collected
-            // especially in GP A/Sire (father of pig) and GP B/Dam (mother of pig)
+            // Need to contextualize properties especially in GP A/Sire
+            // (father of pig) and GP B/Dam (mother of pig)
 
             $sexes = ['male', 'female'];
             $houseTypes = ['open', 'tunnel'];
@@ -87,7 +87,7 @@ class UserInstancesSeeder extends Seeder
                                         )
                 ]);
 
-                // Properties are as follows: sex, birth_date, birth_weight, collected_weight,
+                // Properties are as follows: sex, birth_date, birth_weight,
                 // adgBirth, adgBirth_endDate, adgBirth_endWeight, adgTest,
                 // adgTest_startDate, adgTest_startWeight, adgTest_endDate,
                 // adgTest_endWeight, house_type, bft, fe, teat_number,
@@ -109,75 +109,71 @@ class UserInstancesSeeder extends Seeder
                             'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
-                            'property_id' => 4, // weight when data was collected
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 6, // end date (adg from birth)
-                            'value' => \Carbon\Carbon::now()
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 7, // end weight (adg from birth)
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 9, // start date (adg on test)
-                            'value' => \Carbon\Carbon::now()->subMonths(9)->toDateString()
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 10, // start weight (adg on test)
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 11, // end date (adg on test)
-                            'value' => random_int(70,110)/100.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 12, // end weight (adg on test)
-                            'value' => random_int(70,110)/100.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 13, // house type
-                            'value' => $houseTypes[$swineHouseTypeIndex]
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 14, // bft
-                            'value' => random_int(90,130)/10.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 15, // feed efficiency
-                            'value' => random_int(10,30)/10.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 16, // teat number
-                            'value' => random_int(6,8)*2
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 17, // parity
-                            'value' => random_int(1,5)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 18, // total male born alive
-                            'value' => random_int(3,9)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 19, // total female born alive
-                            'value' => random_int(3,9)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 20, // littersize at weaning
-                            'value' => random_int(6,16)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 21, // litterweight at weaning
-                            'value' => random_int(36,96)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 22, // date at weaning
+                            'property_id' => 5, // end date (adg from birth)
                             'value' => \Carbon\Carbon::now()->toDateString()
                         ]),
                         new App\Models\SwineProperty([
-                            'property_id' => 23, // farm swine id / ear mark
+                            'property_id' => 6, // end weight (adg from birth)
+                            'value' => random_int(70,130)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 8, // start date (adg on test)
+                            'value' => \Carbon\Carbon::now()->subMonths(9)->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 9, // start weight (adg on test)
+                            'value' => random_int(70,130)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 10, // end date (adg on test)
+                            'value' => \Carbon\Carbon::now()->subMonths(7)->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 11, // end weight (adg on test)
+                            'value' => random_int(70,110)/100.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 12, // house type
+                            'value' => $houseTypes[$swineHouseTypeIndex]
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 13, // bft
+                            'value' => random_int(90,130)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 14, // feed efficiency
+                            'value' => random_int(10,30)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 15, // teat number
+                            'value' => random_int(6,8)*2
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 16, // parity
+                            'value' => random_int(1,5)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 17, // total male born alive
+                            'value' => random_int(3,9)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 18, // total female born alive
+                            'value' => random_int(3,9)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 19, // littersize at weaning
+                            'value' => random_int(6,16)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 20, // litterweight at weaning
+                            'value' => random_int(36,96)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 21, // date at weaning
+                            'value' => \Carbon\Carbon::now()->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 22, // farm swine id / ear mark
                             'value' => $farmSwineId
                         ])
                     ]
@@ -214,75 +210,71 @@ class UserInstancesSeeder extends Seeder
                             'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
-                            'property_id' => 4, // weight when data was collected
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 6, // end date (adg from birth)
-                            'value' => \Carbon\Carbon::now()
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 7, // end weight (adg from birth)
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 9, // start date (adg on test)
-                            'value' => \Carbon\Carbon::now()->subMonths(9)->toDateString()
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 10, // start weight (adg on test)
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 11, // end date (adg on test)
-                            'value' => random_int(70,110)/100.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 12, // end weight (adg on test)
-                            'value' => random_int(70,110)/100.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 13, // house type
-                            'value' => $houseTypes[$swineHouseTypeIndex]
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 14, // bft
-                            'value' => random_int(90,130)/10.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 15, // feed efficiency
-                            'value' => random_int(10,30)/10.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 16, // teat number
-                            'value' => random_int(6,8)*2
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 17, // parity
-                            'value' => random_int(1,5)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 18, // total male born alive
-                            'value' => random_int(3,9)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 19, // total female born alive
-                            'value' => random_int(3,9)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 20, // littersize at weaning
-                            'value' => random_int(6,16)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 21, // litterweight at weaning
-                            'value' => random_int(36,96)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 22, // date at weaning
+                            'property_id' => 5, // end date (adg from birth)
                             'value' => \Carbon\Carbon::now()->toDateString()
                         ]),
                         new App\Models\SwineProperty([
-                            'property_id' => 23, // farm swine id / ear mark
+                            'property_id' => 6, // end weight (adg from birth)
+                            'value' => random_int(70,130)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 8, // start date (adg on test)
+                            'value' => \Carbon\Carbon::now()->subMonths(9)->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 9, // start weight (adg on test)
+                            'value' => random_int(70,130)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 10, // end date (adg on test)
+                            'value' => \Carbon\Carbon::now()->subMonths(7)->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 11, // end weight (adg on test)
+                            'value' => random_int(70,110)/100.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 12, // house type
+                            'value' => $houseTypes[$swineHouseTypeIndex]
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 13, // bft
+                            'value' => random_int(90,130)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 14, // feed efficiency
+                            'value' => random_int(10,30)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 15, // teat number
+                            'value' => random_int(6,8)*2
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 16, // parity
+                            'value' => random_int(1,5)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 17, // total male born alive
+                            'value' => random_int(3,9)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 18, // total female born alive
+                            'value' => random_int(3,9)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 19, // littersize at weaning
+                            'value' => random_int(6,16)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 20, // litterweight at weaning
+                            'value' => random_int(36,96)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 21, // date at weaning
+                            'value' => \Carbon\Carbon::now()->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 22, // farm swine id / ear mark
                             'value' => $farmGpSireId
                         ])
                     ]
@@ -319,75 +311,71 @@ class UserInstancesSeeder extends Seeder
                             'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
-                            'property_id' => 4, // weight when data was collected
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 6, // end date (adg from birth)
-                            'value' => \Carbon\Carbon::now()
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 7, // end weight (adg from birth)
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 9, // start date (adg on test)
-                            'value' => \Carbon\Carbon::now()->subMonths(9)->toDateString()
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 10, // start weight (adg on test)
-                            'value' => random_int(70,130)/1.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 11, // end date (adg on test)
-                            'value' => random_int(70,110)/100.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 12, // end weight (adg on test)
-                            'value' => random_int(70,110)/100.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 13, // house type
-                            'value' => $houseTypes[$swineHouseTypeIndex]
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 14, // bft
-                            'value' => random_int(90,130)/10.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 15, // feed efficiency
-                            'value' => random_int(10,30)/10.0
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 16, // teat number
-                            'value' => random_int(6,8)*2
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 17, // parity
-                            'value' => random_int(1,5)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 18, // total male born alive
-                            'value' => random_int(3,9)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 19, // total female born alive
-                            'value' => random_int(3,9)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 20, // littersize at weaning
-                            'value' => random_int(6,16)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 21, // litterweight at weaning
-                            'value' => random_int(36,96)
-                        ]),
-                        new App\Models\SwineProperty([
-                            'property_id' => 22, // date at weaning
+                            'property_id' => 5, // end date (adg from birth)
                             'value' => \Carbon\Carbon::now()->toDateString()
                         ]),
                         new App\Models\SwineProperty([
-                            'property_id' => 23, // farm swine id / ear mark
+                            'property_id' => 6, // end weight (adg from birth)
+                            'value' => random_int(70,130)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 8, // start date (adg on test)
+                            'value' => \Carbon\Carbon::now()->subMonths(9)->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 9, // start weight (adg on test)
+                            'value' => random_int(70,130)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 10, // end date (adg on test)
+                            'value' => \Carbon\Carbon::now()->subMonths(7)->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 11, // end weight (adg on test)
+                            'value' => random_int(70,110)/100.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 12, // house type
+                            'value' => $houseTypes[$swineHouseTypeIndex]
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 13, // bft
+                            'value' => random_int(90,130)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 14, // feed efficiency
+                            'value' => random_int(10,30)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 15, // teat number
+                            'value' => random_int(6,8)*2
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 16, // parity
+                            'value' => random_int(1,5)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 17, // total male born alive
+                            'value' => random_int(3,9)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 18, // total female born alive
+                            'value' => random_int(3,9)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 19, // littersize at weaning
+                            'value' => random_int(6,16)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 20, // litterweight at weaning
+                            'value' => random_int(36,96)
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 21, // date at weaning
+                            'value' => \Carbon\Carbon::now()->toDateString()
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 22, // farm swine id / ear mark
                             'value' => $farmGpDamId
                         ])
                     ]

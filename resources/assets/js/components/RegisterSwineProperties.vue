@@ -45,30 +45,6 @@
                             <label :for="gpOneIdPrefix + 'birth-weight'">Birth weight</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.weight"
-                                :id="gpOneIdPrefix + 'weight'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="gpOneIdPrefix + 'weight'">Weight when data was collected</label>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input v-model="gpOne.bft"
-                                :id="gpOneIdPrefix + 'bft'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="gpOneIdPrefix + 'bft'">Backfat Thickness (mm)</label>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input v-model="gpOne.fe"
-                                :id="gpOneIdPrefix + 'feed-efficiency'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="gpOneIdPrefix + 'feed-efficiency'">Feed Efficiency (gain/feed)</label>
-                        </div>
-                        <div class="col s6 input-field">
                             <input v-model="gpOne.littersizeAliveMale"
                                 :id="gpOneIdPrefix + 'total-m'"
                                 type="text"
@@ -121,6 +97,35 @@
                             <br>
                         </div>
 
+                        <!-- House Type -->
+                        <div class="col s12">
+                            <h6>
+                                <b>House Type</b>
+                            </h6>
+                            <p>
+                                <input v-model="gpOne.houseType"
+                                    name="house-type"
+                                    type="radio"
+                                    id="house-type-tunnel"
+                                    value="tunnel"
+                                >
+                                <label for="house-type-tunnel">Tunnel ventilated</label>
+                            </p>
+                            <p>
+                                <input v-model="gpOne.houseType"
+                                    name="house-type"
+                                    type="radio"
+                                    id="house-type-open"
+                                    value="open"
+                                >
+                                <label for="house-type-open">Open sided</label>
+                            </p>
+                        </div>
+
+                        <div class="col s12">
+                            <br>
+                        </div>
+
                         <!-- ADG computation from Birth-->
                         <div class="col s12">
                             <h6>
@@ -148,10 +153,10 @@
                             <br>
                         </div>
 
-                        <!-- ADG computation on Test-->
+                        <!-- Swine Testing Information -->
                         <div class="col s12">
                             <h6>
-                                <b>Average Daily Gain computation on Test</b>
+                                <b>Swine Testing Information</b>
                             </h6>
                         </div>
                         <div class="col s6 input-field">
@@ -160,7 +165,7 @@
                                 @date-select="val => {gpOne.adgTestStartDate = val}"
                             >
                             </app-input-date>
-                            <label for=""> Start Date </label>
+                            <label for=""> Start Test Date </label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.adgTestStartWeight"
@@ -168,7 +173,7 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'adg-test-start-weight'">Start Weight</label>
+                            <label :for="gpOneIdPrefix + 'adg-test-start-weight'">Start Test Weight</label>
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
@@ -176,7 +181,7 @@
                                 @date-select="val => {gpOne.adgTestEndDate = val}"
                             >
                             </app-input-date>
-                            <label for=""> End Date </label>
+                            <label for=""> End Test Date </label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOne.adgTestEndWeight"
@@ -184,36 +189,31 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'adg-test-end-weight'">End Weight</label>
+                            <label :for="gpOneIdPrefix + 'adg-test-end-weight'">End Test Weight</label>
                         </div>
-
-                        <div class="col s12">
-                            <br>
+                        <div class="col s6 input-field">
+                            <input v-model="gpOne.bft"
+                                :id="gpOneIdPrefix + 'bft'"
+                                type="text"
+                                class="validate"
+                            >
+                            <label :for="gpOneIdPrefix + 'bft'">Backfat Thickness [BFT] (mm)</label>
                         </div>
-
-                        <!-- House Type -->
-                        <div class="col s12">
-                            <h6>
-                                <b>House Type</b>
-                            </h6>
-                            <p>
-                                <input v-model="gpOne.houseType"
-                                    name="house-type"
-                                    type="radio"
-                                    id="house-type-tunnel"
-                                    value="tunnel"
-                                >
-                                <label for="house-type-tunnel">Tunnel ventilated</label>
-                            </p>
-                            <p>
-                                <input v-model="gpOne.houseType"
-                                    name="house-type"
-                                    type="radio"
-                                    id="house-type-open"
-                                    value="open"
-                                >
-                                <label for="house-type-open">Open sided</label>
-                            </p>
+                        <div class="col s6 input-field">
+                            <app-input-date
+                                v-model="gpOne.bftCollected"
+                                @date-select="val => {gpOne.bftCollected = val}"
+                            >
+                            </app-input-date>
+                            <label for=""> Date when BFT was collected </label>
+                        </div>
+                        <div class="col s6 input-field">
+                            <input v-model="gpOne.feedIntake"
+                                :id="gpOneIdPrefix + 'feed-intake'"
+                                type="text"
+                                class="validate"
+                            >
+                            <label :for="gpOneIdPrefix + 'feed-intake'">Total Feed Intake on Test</label>
                         </div>
 
                         <div class="col s12">
@@ -250,7 +250,6 @@
                     farmSwineId: '',
                     houseType: '',
                     teatNo: '',
-                    weight: '',
                     adgBirthEndDate: '',
                     adgBirthEndWeight: '',
                     adgTestStartDate: '',
@@ -258,7 +257,8 @@
                     adgTestStartWeight: '',
                     adgTestEndWeight: '',
                     bft: '',
-                    fe: '',
+                    bftCollected: '',
+                    feedIntake: '',
                     birthWeight: '',
                     littersizeAliveMale: '',
                     littersizeAliveFemale: '',
