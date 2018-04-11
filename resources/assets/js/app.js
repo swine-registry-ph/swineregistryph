@@ -15,6 +15,9 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Import store file for vuex
+import store from './store';
+
 // App
 Vue.component('app-input-date', require('./components/AppInputDate.vue'));
 Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
@@ -35,7 +38,8 @@ Vue.component('manage-apis', require('./components/ManageAPIs.vue'));
 
 // For main container
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });
 
 // For header container

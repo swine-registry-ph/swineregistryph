@@ -57,7 +57,7 @@
                                         </tr>
                                         <tr>
                                             <td> Birth Weight </td>
-                                            <td> {{ gpOneData.birth_weight }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Date collected </td>
@@ -69,43 +69,43 @@
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> {{ gpOneData.adg }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> {{ gpOneData.adg }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness </td>
-                                            <td> {{ gpOneData.bft }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
-                                            <td> {{ gpOneData.fe }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total (M) born alive </td>
-                                            <td> {{ gpOneData.littersizeAlive_male }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total (F) born alive </td>
-                                            <td> {{ gpOneData.littersizeAlive_female }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Parity </td>
-                                            <td> {{ gpOneData.parity }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Littersize at Weaning </td>
-                                            <td> {{ gpOneData.littersize_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total litterweight at weaning </td>
-                                            <td> {{ gpOneData.litterweight_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Date at Weaning </td>
-                                            <td> {{ gpOneData.date_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -172,7 +172,7 @@
                                         </tr>
                                         <tr>
                                             <td> Birth Weight </td>
-                                            <td> {{ gpOneData.birth_weight }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Date collected </td>
@@ -184,43 +184,43 @@
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> {{ gpOneData.adg }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> {{ gpOneData.adg }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness </td>
-                                            <td> {{ gpOneData.bft }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
-                                            <td> {{ gpOneData.fe }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total (M) born alive </td>
-                                            <td> {{ gpOneData.littersizeAlive_male }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total (F) born alive </td>
-                                            <td> {{ gpOneData.littersizeAlive_female }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Parity </td>
-                                            <td> {{ gpOneData.parity }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Littersize at Weaning </td>
-                                            <td> {{ gpOneData.littersize_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total litterweight at weaning </td>
-                                            <td> {{ gpOneData.litterweight_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Date at Weaning </td>
-                                            <td> {{ gpOneData.date_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -268,7 +268,7 @@
                                         </tr>
                                         <tr>
                                             <td> Birth Weight </td>
-                                            <td> {{ gpOneData.birth_weight }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Date collected </td>
@@ -280,43 +280,43 @@
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> {{ gpOneData.adg }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> {{ gpOneData.adg }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness </td>
-                                            <td> {{ gpOneData.bft }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
-                                            <td> {{ gpOneData.fe }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total (M) born alive </td>
-                                            <td> {{ gpOneData.littersizeAlive_male }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total (F) born alive </td>
-                                            <td> {{ gpOneData.littersizeAlive_female }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Parity </td>
-                                            <td> {{ gpOneData.parity }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Littersize at Weaning </td>
-                                            <td> {{ gpOneData.littersize_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Total litterweight at weaning </td>
-                                            <td> {{ gpOneData.litterweight_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                         <tr>
                                             <td> Date at Weaning </td>
-                                            <td> {{ gpOneData.date_weaning }}</td>
+                                            <td> </td>
                                         </tr>
                                     </tbody>
                                 </table>

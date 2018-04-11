@@ -101,10 +101,6 @@
         <!-- Summary tab -->
         <register-swine-summary
             :basic-info="basicInfo"
-            :gp-one-data="gpOneData"
-            :gp-sire="gpSireData.registration_no"
-            :gp-dam="gpDamData.registration_no"
-            :image-files="imageFiles"
             :breeds="breeds"
             :farmoptions="farmoptions"
         >
@@ -136,17 +132,13 @@
                     summary: true,
                     photos: true
                 },
-                gpSireData: {},
-                gpDamData: {},
-                gpOneData: {},
                 basicInfo: {
                     id: 0,
                     breed: '',
                     sex: '',
                     birthDate: '',
                     farmFrom: '',
-                },
-                imageFiles: []
+                }
             }
         },
 
@@ -169,41 +161,41 @@
             },
 
             getSireInfo(sireRegNo) {
-                const vm = this;
-
-                // Fetch from server Sire details
-                axios.get(`/breeder/manage-swine/get/${sireRegNo}`)
-                    .then((response) => {
-                        // Put response in local data storage
-                        // and enable 'GP Sire' tab
-                        vm.gpSireData = response.data;
-                        vm.tabDisables.gpSire = false;
-
-                        Materialize.toast('Sire added', 2000);
-                    })
-                    .catch((error) => {
-                        Materialize.toast('Unable to add Sire', 3000, 'amber lighten-3');
-                        console.log(error);
-                    });
+                // const vm = this;
+                //
+                // // Fetch from server Sire details
+                // axios.get(`/breeder/manage-swine/get/${sireRegNo}`)
+                //     .then((response) => {
+                //         // Put response in local data storage
+                //         // and enable 'GP Sire' tab
+                //         vm.gpSireData = response.data;
+                //         vm.tabDisables.gpSire = false;
+                //
+                //         Materialize.toast('Sire added', 2000);
+                //     })
+                //     .catch((error) => {
+                //         Materialize.toast('Unable to add Sire', 3000, 'amber lighten-3');
+                //         console.log(error);
+                //     });
             },
 
             getDamInfo(damRegNo) {
-                const vm = this;
-
-                // Fetch from server Dam details
-                axios.get(`/breeder/manage-swine/get/${damRegNo}`)
-                    .then((response) => {
-                        // Put response in local data storage
-                        // and enable 'GP Dam' tab
-                        vm.gpDamData = response.data;
-                        vm.tabDisables.gpDam = false;
-
-                        Materialize.toast('Dam added', 2000);
-                    })
-                    .catch((error) => {
-                        Materialize.toast('Unable to add Dam', 3000, 'amber lighten-3');
-                        console.log(error);
-                    });
+                // const vm = this;
+                //
+                // // Fetch from server Dam details
+                // axios.get(`/breeder/manage-swine/get/${damRegNo}`)
+                //     .then((response) => {
+                //         // Put response in local data storage
+                //         // and enable 'GP Dam' tab
+                //         vm.gpDamData = response.data;
+                //         vm.tabDisables.gpDam = false;
+                //
+                //         Materialize.toast('Dam added', 2000);
+                //     })
+                //     .catch((error) => {
+                //         Materialize.toast('Unable to add Dam', 3000, 'amber lighten-3');
+                //         console.log(error);
+                //     });
             },
 
             getParents(fetchDetails) {
@@ -212,46 +204,46 @@
             },
 
             addSwineInfo(gpOneDetails) {
-                const vm = this;
-
-                // Update parent component of GP1 details
-                this.gpOneData = gpOneDetails.data;
-
-                // Add to server's database
-                axios.post('/breeder/manage-swine/register', {
-                    gpSireId: (vm.gpSireData) ? vm.gpSireData.id : null,
-                    gpDamId: (vm.gpDamData) ? vm.gpDamData.id : null,
-                    gpOne: vm.gpOneData,
-                    basicInfo: vm.basicInfo
-                })
-                .then((response) => {
-                    // Put response in local data storage
-                    // and enable 'Photos' tab
-                    vm.basicInfo.id = response.data;
-                    vm.tabDisables.photos = false;
-
-                    Materialize.toast('Swine info added', 2000, 'green lighten-1');
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                // const vm = this;
+                //
+                // // Update parent component of GP1 details
+                // this.gpOneData = gpOneDetails.data;
+                //
+                // // Add to server's database
+                // axios.post('/breeder/manage-swine/register', {
+                //     gpSireId: (vm.gpSireData) ? vm.gpSireData.id : null,
+                //     gpDamId: (vm.gpDamData) ? vm.gpDamData.id : null,
+                //     gpOne: vm.gpOneData,
+                //     basicInfo: vm.basicInfo
+                // })
+                // .then((response) => {
+                //     // Put response in local data storage
+                //     // and enable 'Photos' tab
+                //     vm.basicInfo.id = response.data;
+                //     vm.tabDisables.photos = false;
+                //
+                //     Materialize.toast('Swine info added', 2000, 'green lighten-1');
+                // })
+                // .catch((error) => {
+                //     console.log(error);
+                // });
             },
 
             addPhotoToImageFiles(imageDetails) {
                 // Put information of uploaded photos in local data storage
                 // and enable 'Summary' tab
-                this.imageFiles.push(imageDetails.data);
-                this.tabDisables.summary = false;
+                // this.imageFiles.push(imageDetails.data);
+                // this.tabDisables.summary = false;
             },
 
             removePhotoFromImageFiles(imageDetails) {
                 // Remove photo from local data storage
                 // and check if 'Summary' tab
                 // should still be enabled
-                const index = this.getIndex(imageDetails.photoId, this.imageFiles);
-
-                this.imageFiles.splice(index,1);
-                this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
+                // const index = this.getIndex(imageDetails.photoId, this.imageFiles);
+                //
+                // this.imageFiles.splice(index,1);
+                // this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
             }
         },
 
