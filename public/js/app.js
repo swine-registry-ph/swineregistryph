@@ -198,7 +198,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(55)
+var listToStyles = __webpack_require__(56)
 
 /*
 type StyleObject = {
@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(103);
+module.exports = __webpack_require__(104);
 
 
 /***/ }),
@@ -450,22 +450,22 @@ window.Vue = __webpack_require__(7);
 
 
 // App
-Vue.component('app-input-date', __webpack_require__(46));
-Vue.component('app-input-select', __webpack_require__(49));
+Vue.component('app-input-date', __webpack_require__(47));
+Vue.component('app-input-select', __webpack_require__(50));
 
 // Breeder
-Vue.component('register-swine-parents-properties-inputs', __webpack_require__(52));
-Vue.component('register-swine-parents-properties', __webpack_require__(58));
-Vue.component('register-swine-properties', __webpack_require__(63));
-Vue.component('register-swine-summary', __webpack_require__(68));
-Vue.component('register-swine-upload-photo', __webpack_require__(73));
-Vue.component('register-swine', __webpack_require__(78));
-Vue.component('view-registered-swine', __webpack_require__(83));
+Vue.component('register-swine-parents-properties-inputs', __webpack_require__(53));
+Vue.component('register-swine-parents-properties', __webpack_require__(59));
+Vue.component('register-swine-properties', __webpack_require__(64));
+Vue.component('register-swine-summary', __webpack_require__(69));
+Vue.component('register-swine-upload-photo', __webpack_require__(74));
+Vue.component('register-swine', __webpack_require__(79));
+Vue.component('view-registered-swine', __webpack_require__(84));
 
 // Admin
-Vue.component('manage-breeds', __webpack_require__(88));
-Vue.component('manage-properties', __webpack_require__(93));
-Vue.component('manage-apis', __webpack_require__(98));
+Vue.component('manage-breeds', __webpack_require__(89));
+Vue.component('manage-properties', __webpack_require__(94));
+Vue.component('manage-apis', __webpack_require__(99));
 
 // For main container
 var app = new Vue({
@@ -626,7 +626,7 @@ if (token) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_registerSwine__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_registerSwine__ = __webpack_require__(46);
 
 
 
@@ -1586,14 +1586,150 @@ var index_esm = {
 
 /***/ }),
 /* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// Initial state
+var state = {
+    gpOne: {
+        id: 0,
+        breed: '',
+        sex: '',
+        birthDate: '',
+        farmFrom: '',
+        geneticInfoId: '',
+        farmSwineId: '',
+        houseType: '',
+        teatNo: '',
+        adgBirthEndDate: '',
+        adgBirthEndWeight: '',
+        adgTestStartDate: '',
+        adgTestEndDate: '',
+        adgTestStartWeight: '',
+        adgTestEndWeight: '',
+        bft: '',
+        bftCollected: '',
+        feedIntake: '',
+        birthWeight: '',
+        littersizeAliveMale: '',
+        littersizeAliveFemale: '',
+        parity: '',
+        littersizeWeaning: '',
+        litterweightWeaning: '',
+        dateWeaning: ''
+    },
+    gpSire: {
+        existingRegNo: '',
+        imported: {
+            regNo: '',
+            farmFromName: ''
+        },
+        geneticInfoId: '',
+        farmSwineId: '',
+        farmFrom: '',
+        birthDate: '',
+        houseType: '',
+        teatNo: '',
+        adgBirthEndDate: '',
+        adgBirthEndWeight: '',
+        adgTestStartDate: '',
+        adgTestEndDate: '',
+        adgTestStartWeight: '',
+        adgTestEndWeight: '',
+        bft: '',
+        bftCollected: '',
+        feedIntake: '',
+        birthWeight: '',
+        littersizeAliveMale: '',
+        littersizeAliveFemale: '',
+        parity: '',
+        littersizeWeaning: '',
+        litterweightWeaning: '',
+        dateWeaning: ''
+    },
+    gpDam: {
+        existingRegNo: '',
+        imported: {
+            regNo: '',
+            farmFromName: ''
+        },
+        geneticInfoId: '',
+        farmSwineId: '',
+        farmFrom: '',
+        birthDate: '',
+        houseType: '',
+        teatNo: '',
+        adgBirthEndDate: '',
+        adgBirthEndWeight: '',
+        adgTestStartDate: '',
+        adgTestEndDate: '',
+        adgTestStartWeight: '',
+        adgTestEndWeight: '',
+        bft: '',
+        bftCollected: '',
+        feedIntake: '',
+        birthWeight: '',
+        littersizeAliveMale: '',
+        littersizeAliveFemale: '',
+        parity: '',
+        littersizeWeaning: '',
+        litterweightWeaning: '',
+        dateWeaning: ''
+    },
+    imageFiles: []
+};
+
+// getters
+var getters = {
+    gpOneData: function gpOneData(state) {
+        return state.gpOne;
+    },
+
+    gpSireData: function gpSireData(state) {
+        return state.gpSire;
+    },
+
+    gpDamData: function gpDamData(state) {
+        return state.gpDam;
+    },
+
+    imageFiles: function imageFiles(state) {
+        return state.imageFiles;
+    }
+
+    // mutations
+};var mutations = {
+    updateValue: function updateValue(state, payload) {
+        // Check if property includes period for access
+        // to nested object property such as
+        // gpSire.imported.regNo
+        if (payload.property.includes('.')) {
+            var nestedProperty = payload.property.split('.');
+            state[payload.instance][nestedProperty[0]][nestedProperty[1]] = payload.value;
+        } else state[payload.instance][payload.property] = payload.value;
+    }
+};
+
+// actions
+var actions = {};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: state,
+    getters: getters,
+    actions: actions,
+    mutations: mutations
+});
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(47),
-  /* template */
   __webpack_require__(48),
+  /* template */
+  __webpack_require__(49),
   /* styles */
   null,
   /* scopeId */
@@ -1625,7 +1761,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1658,7 +1794,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1683,15 +1819,15 @@ if (false) {
 }
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(50),
-  /* template */
   __webpack_require__(51),
+  /* template */
+  __webpack_require__(52),
   /* styles */
   null,
   /* scopeId */
@@ -1723,7 +1859,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1775,7 +1911,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1819,19 +1955,19 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(53)
+  __webpack_require__(54)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(56),
-  /* template */
   __webpack_require__(57),
+  /* template */
+  __webpack_require__(58),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -1863,13 +1999,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(54);
+var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -1889,7 +2025,7 @@ if(false) {
 }
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -1897,13 +2033,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports) {
 
 /**
@@ -1936,7 +2072,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2280,39 +2416,343 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             status: 'existing',
-            imported: 'no',
-            existingParentRegNo: '',
-            gpImported: {
-                regNo: '',
-                farmFromName: ''
-            },
-            gp: {
-                farmSwineId: '',
-                geneticInfoId: '',
-                farmFrom: '',
-                birthDate: '',
-                houseType: '',
-                teatNo: '',
-                adgBirthEndDate: '',
-                adgBirthEndWeight: '',
-                adgTestStartDate: '',
-                adgTestEndDate: '',
-                adgTestStartWeight: '',
-                adgTestEndWeight: '',
-                bft: '',
-                bftCollected: '',
-                feedIntake: '',
-                birthWeight: '',
-                littersizeAliveMale: '',
-                littersizeAliveFemale: '',
-                parity: '',
-                littersizeWeaning: '',
-                litterweightWeaning: '',
-                dateWeaning: ''
-            }
+            imported: 'no'
         };
     },
 
+
+    computed: {
+        prefixedGender: function prefixedGender() {
+            // add gp prefix to parentGender
+            return 'gp' + this.parentGender;
+        },
+
+        gpParentExistingRegNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].existingRegNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'existingRegNo',
+                    value: value
+                });
+            }
+        },
+        gpParentImportedRegNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].imported.regNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'imported.regNo',
+                    value: value
+                });
+            }
+        },
+        gpParentImportedFarmFromName: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].imported.farmFromName;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'imported.farmFromName',
+                    value: value
+                });
+            }
+        },
+        gpParentGeneticInfoId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].geneticInfoId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'geneticInfoId',
+                    value: value
+                });
+            }
+        },
+        gpParentFarmSwineId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].farmSwineId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'farmSwineId',
+                    value: value
+                });
+            }
+        },
+        gpParentFarmFrom: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].farmFrom;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'farmFrom',
+                    value: value
+                });
+            }
+        },
+        gpParentBirthDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].birthDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'birthDate',
+                    value: value
+                });
+            }
+        },
+        gpParentHouseType: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].houseType;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'houseType',
+                    value: value
+                });
+            }
+        },
+        gpParentTeatNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].teatNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'teatNo',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgBirthEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgBirthEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'adgBirthEndDate',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgBirthEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgBirthEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'adgBirthEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestStartDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestStartDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'adgTestStartDate',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'adgTestEndDate',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestStartWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestStartWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'adgTestStartWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'adgTestEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentBft: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].bft;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'bft',
+                    value: value
+                });
+            }
+        },
+        gpParentBftCollected: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].bftCollected;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'bftCollected',
+                    value: value
+                });
+            }
+        },
+        gpParentFeedIntake: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].feedIntake;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'feedIntake',
+                    value: value
+                });
+            }
+        },
+        gpParentBirthWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].birthWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'birthWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentLittersizeAliveMale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].littersizeAliveMale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'littersizeAliveMale',
+                    value: value
+                });
+            }
+        },
+        gpParentLittersizeAliveFemale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].littersizeAliveFemale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'littersizeAliveFemale',
+                    value: value
+                });
+            }
+        },
+        gpParentParity: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].parity;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'parity',
+                    value: value
+                });
+            }
+        },
+        // get and set value from vuex store
+        gpParentLittersizeWeaning: {
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].littersizeWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'littersizeWeaning',
+                    value: value
+                });
+            }
+        },
+        gpParentLitterweightWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].litterweightWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'litterweightWeaning',
+                    value: value
+                });
+            }
+        },
+        gpParentDateWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].dateWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: '' + this.prefixedGender,
+                    property: 'dateWeaning',
+                    value: value
+                });
+            }
+        }
+    },
 
     watch: {
         'status': function status() {
@@ -2330,7 +2770,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2397,8 +2837,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.existingParentRegNo),
-      expression: "existingParentRegNo"
+      value: (_vm.gpParentExistingRegNo),
+      expression: "gpParentExistingRegNo"
     }],
     staticClass: "validate",
     attrs: {
@@ -2406,12 +2846,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.existingParentRegNo)
+      "value": (_vm.gpParentExistingRegNo)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.existingParentRegNo = $event.target.value
+        _vm.gpParentExistingRegNo = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2476,8 +2916,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpImported.regNo),
-      expression: "gpImported.regNo"
+      value: (_vm.gpParentImportedRegNo),
+      expression: "gpParentImportedRegNo"
     }],
     staticClass: "validate",
     attrs: {
@@ -2485,12 +2925,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpImported.regNo)
+      "value": (_vm.gpParentImportedRegNo)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpImported, "regNo", $event.target.value)
+        _vm.gpParentImportedRegNo = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2503,8 +2943,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpImported.farmFromName),
-      expression: "gpImported.farmFromName"
+      value: (_vm.gpParentImportedFarmFromName),
+      expression: "gpParentImportedFarmFromName"
     }],
     staticClass: "validate",
     attrs: {
@@ -2512,12 +2952,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpImported.farmFromName)
+      "value": (_vm.gpParentImportedFarmFromName)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpImported, "farmFromName", $event.target.value)
+        _vm.gpParentImportedFarmFromName = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2530,8 +2970,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.geneticInfoId),
-      expression: "gp.geneticInfoId"
+      value: (_vm.gpParentGeneticInfoId),
+      expression: "gpParentGeneticInfoId"
     }],
     staticClass: "validate",
     attrs: {
@@ -2539,12 +2979,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.geneticInfoId)
+      "value": (_vm.gpParentGeneticInfoId)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "geneticInfoId", $event.target.value)
+        _vm.gpParentGeneticInfoId = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2560,15 +3000,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": function (val) {
-        _vm.gp.farmFrom = val
+        _vm.gpParentFarmFrom = val
       }
     },
     model: {
-      value: (_vm.gp.farmFrom),
+      value: (_vm.gpParentFarmFrom),
       callback: function($$v) {
-        _vm.$set(_vm.gp, "farmFrom", $$v)
+        _vm.gpParentFarmFrom = $$v
       },
-      expression: "gp.farmFrom"
+      expression: "gpParentFarmFrom"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
@@ -2576,8 +3016,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.farmSwineId),
-      expression: "gp.farmSwineId"
+      value: (_vm.gpParentFarmSwineId),
+      expression: "gpParentFarmSwineId"
     }],
     staticClass: "validate",
     attrs: {
@@ -2585,12 +3025,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.farmSwineId)
+      "value": (_vm.gpParentFarmSwineId)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "farmSwineId", $event.target.value)
+        _vm.gpParentFarmSwineId = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2603,8 +3043,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.teatNo),
-      expression: "gp.teatNo"
+      value: (_vm.gpParentTeatNo),
+      expression: "gpParentTeatNo"
     }],
     staticClass: "validate",
     attrs: {
@@ -2612,12 +3052,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.teatNo)
+      "value": (_vm.gpParentTeatNo)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "teatNo", $event.target.value)
+        _vm.gpParentTeatNo = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2629,15 +3069,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gp.birthDate = val
+        _vm.gpParentBirthDate = val
       }
     },
     model: {
-      value: (_vm.gp.birthDate),
+      value: (_vm.gpParentBirthDate),
       callback: function($$v) {
-        _vm.$set(_vm.gp, "birthDate", $$v)
+        _vm.gpParentBirthDate = $$v
       },
-      expression: "gp.birthDate"
+      expression: "gpParentBirthDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2649,8 +3089,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.birthWeight),
-      expression: "gp.birthWeight"
+      value: (_vm.gpParentBirthWeight),
+      expression: "gpParentBirthWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2658,12 +3098,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.birthWeight)
+      "value": (_vm.gpParentBirthWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "birthWeight", $event.target.value)
+        _vm.gpParentBirthWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2676,8 +3116,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.littersizeAliveMale),
-      expression: "gp.littersizeAliveMale"
+      value: (_vm.gpParentLittersizeAliveMale),
+      expression: "gpParentLittersizeAliveMale"
     }],
     staticClass: "validate",
     attrs: {
@@ -2685,12 +3125,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.littersizeAliveMale)
+      "value": (_vm.gpParentLittersizeAliveMale)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "littersizeAliveMale", $event.target.value)
+        _vm.gpParentLittersizeAliveMale = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2703,8 +3143,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.littersizeAliveFemale),
-      expression: "gp.littersizeAliveFemale"
+      value: (_vm.gpParentLittersizeAliveFemale),
+      expression: "gpParentLittersizeAliveFemale"
     }],
     staticClass: "validate",
     attrs: {
@@ -2712,12 +3152,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.littersizeAliveFemale)
+      "value": (_vm.gpParentLittersizeAliveFemale)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "littersizeAliveFemale", $event.target.value)
+        _vm.gpParentLittersizeAliveFemale = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2730,8 +3170,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.littersizeWeaning),
-      expression: "gp.littersizeWeaning"
+      value: (_vm.gpParentLittersizeWeaning),
+      expression: "gpParentLittersizeWeaning"
     }],
     staticClass: "validate",
     attrs: {
@@ -2739,12 +3179,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.littersizeWeaning)
+      "value": (_vm.gpParentLittersizeWeaning)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "littersizeWeaning", $event.target.value)
+        _vm.gpParentLittersizeWeaning = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2757,8 +3197,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.litterweightWeaning),
-      expression: "gp.litterweightWeaning"
+      value: (_vm.gpParentLitterweightWeaning),
+      expression: "gpParentLitterweightWeaning"
     }],
     staticClass: "validate",
     attrs: {
@@ -2766,12 +3206,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.litterweightWeaning)
+      "value": (_vm.gpParentLitterweightWeaning)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "litterweightWeaning", $event.target.value)
+        _vm.gpParentLitterweightWeaning = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2783,15 +3223,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gp.dateWeaning = val
+        _vm.gpParentDateWeaning = val
       }
     },
     model: {
-      value: (_vm.gp.dateWeaning),
+      value: (_vm.gpParentDateWeaning),
       callback: function($$v) {
-        _vm.$set(_vm.gp, "dateWeaning", $$v)
+        _vm.gpParentDateWeaning = $$v
       },
-      expression: "gp.dateWeaning"
+      expression: "gpParentDateWeaning"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2803,8 +3243,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.parity),
-      expression: "gp.parity"
+      value: (_vm.gpParentParity),
+      expression: "gpParentParity"
     }],
     staticClass: "validate",
     attrs: {
@@ -2812,12 +3252,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.parity)
+      "value": (_vm.gpParentParity)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "parity", $event.target.value)
+        _vm.gpParentParity = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2830,8 +3270,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.houseType),
-      expression: "gp.houseType"
+      value: (_vm.gpParentHouseType),
+      expression: "gpParentHouseType"
     }],
     attrs: {
       "name": _vm.parentIdPrefix + 'house-type',
@@ -2840,11 +3280,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "tunnel"
     },
     domProps: {
-      "checked": _vm._q(_vm.gp.houseType, "tunnel")
+      "checked": _vm._q(_vm.gpParentHouseType, "tunnel")
     },
     on: {
       "change": function($event) {
-        _vm.$set(_vm.gp, "houseType", "tunnel")
+        _vm.gpParentHouseType = "tunnel"
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2855,8 +3295,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.houseType),
-      expression: "gp.houseType"
+      value: (_vm.gpParentHouseType),
+      expression: "gpParentHouseType"
     }],
     attrs: {
       "name": _vm.parentIdPrefix + 'house-type',
@@ -2865,11 +3305,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "open"
     },
     domProps: {
-      "checked": _vm._q(_vm.gp.houseType, "open")
+      "checked": _vm._q(_vm.gpParentHouseType, "open")
     },
     on: {
       "change": function($event) {
-        _vm.$set(_vm.gp, "houseType", "open")
+        _vm.gpParentHouseType = "open"
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2881,15 +3321,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gp.adgBirthEndDate = val
+        _vm.gpParentAdgBirthEndDate = val
       }
     },
     model: {
-      value: (_vm.gp.adgBirthEndDate),
+      value: (_vm.gpParentAdgBirthEndDate),
       callback: function($$v) {
-        _vm.$set(_vm.gp, "adgBirthEndDate", $$v)
+        _vm.gpParentAdgBirthEndDate = $$v
       },
-      expression: "gp.adgBirthEndDate"
+      expression: "gpParentAdgBirthEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2901,8 +3341,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.adgBirthEndWeight),
-      expression: "gp.adgBirthEndWeight"
+      value: (_vm.gpParentAdgBirthEndWeight),
+      expression: "gpParentAdgBirthEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2910,12 +3350,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.adgBirthEndWeight)
+      "value": (_vm.gpParentAdgBirthEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "adgBirthEndWeight", $event.target.value)
+        _vm.gpParentAdgBirthEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2927,15 +3367,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gp.adgTestStartDate = val
+        _vm.gpParentAdgTestStartDate = val
       }
     },
     model: {
-      value: (_vm.gp.adgTestStartDate),
+      value: (_vm.gpParentAdgTestStartDate),
       callback: function($$v) {
-        _vm.$set(_vm.gp, "adgTestStartDate", $$v)
+        _vm.gpParentAdgTestStartDate = $$v
       },
-      expression: "gp.adgTestStartDate"
+      expression: "gpParentAdgTestStartDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2947,8 +3387,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.adgTestStartWeight),
-      expression: "gp.adgTestStartWeight"
+      value: (_vm.gpParentAdgTestStartWeight),
+      expression: "gpParentAdgTestStartWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -2956,12 +3396,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.adgTestStartWeight)
+      "value": (_vm.gpParentAdgTestStartWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "adgTestStartWeight", $event.target.value)
+        _vm.gpParentAdgTestStartWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -2973,15 +3413,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gp.adgTestEndDate = val
+        _vm.gpParentAdgTestEndDate = val
       }
     },
     model: {
-      value: (_vm.gp.adgTestEndDate),
+      value: (_vm.gpParentAdgTestEndDate),
       callback: function($$v) {
-        _vm.$set(_vm.gp, "adgTestEndDate", $$v)
+        _vm.gpParentAdgTestEndDate = $$v
       },
-      expression: "gp.adgTestEndDate"
+      expression: "gpParentAdgTestEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2993,8 +3433,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.adgTestEndWeight),
-      expression: "gp.adgTestEndWeight"
+      value: (_vm.gpParentAdgTestEndWeight),
+      expression: "gpParentAdgTestEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -3002,12 +3442,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.adgTestEndWeight)
+      "value": (_vm.gpParentAdgTestEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "adgTestEndWeight", $event.target.value)
+        _vm.gpParentAdgTestEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3020,8 +3460,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.bft),
-      expression: "gp.bft"
+      value: (_vm.gpParentBft),
+      expression: "gpParentBft"
     }],
     staticClass: "validate",
     attrs: {
@@ -3029,12 +3469,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.bft)
+      "value": (_vm.gpParentBft)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "bft", $event.target.value)
+        _vm.gpParentBft = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3046,15 +3486,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gp.bftCollected = val
+        _vm.gpParentBftCollected = val
       }
     },
     model: {
-      value: (_vm.gp.bftCollected),
+      value: (_vm.gpParentBftCollected),
       callback: function($$v) {
-        _vm.$set(_vm.gp, "bftCollected", $$v)
+        _vm.gpParentBftCollected = $$v
       },
-      expression: "gp.bftCollected"
+      expression: "gpParentBftCollected"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -3066,8 +3506,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gp.feedIntake),
-      expression: "gp.feedIntake"
+      value: (_vm.gpParentFeedIntake),
+      expression: "gpParentFeedIntake"
     }],
     staticClass: "validate",
     attrs: {
@@ -3075,12 +3515,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gp.feedIntake)
+      "value": (_vm.gpParentFeedIntake)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gp, "feedIntake", $event.target.value)
+        _vm.gpParentFeedIntake = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3134,19 +3574,19 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(59)
+  __webpack_require__(60)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(61),
-  /* template */
   __webpack_require__(62),
+  /* template */
+  __webpack_require__(63),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3178,13 +3618,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3204,7 +3644,7 @@ if(false) {
 }
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -3218,7 +3658,7 @@ exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3347,7 +3787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3452,19 +3892,19 @@ if (false) {
 }
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(64)
+  __webpack_require__(65)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(66),
-  /* template */
   __webpack_require__(67),
+  /* template */
+  __webpack_require__(68),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3496,13 +3936,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(65);
+var content = __webpack_require__(66);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3522,7 +3962,7 @@ if(false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -3530,13 +3970,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3787,37 +4227,275 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            gpOneIdPrefix: 'gp-one-',
-            gpOne: {
-                geneticInfoId: '',
-                farmSwineId: '',
-                houseType: '',
-                teatNo: '',
-                adgBirthEndDate: '',
-                adgBirthEndWeight: '',
-                adgTestStartDate: '',
-                adgTestEndDate: '',
-                adgTestStartWeight: '',
-                adgTestEndWeight: '',
-                bft: '',
-                bftCollected: '',
-                feedIntake: '',
-                birthWeight: '',
-                littersizeAliveMale: '',
-                littersizeAliveFemale: '',
-                parity: '',
-                littersizeWeaning: '',
-                litterweightWeaning: '',
-                dateWeaning: ''
-            }
+            gpOneIdPrefix: 'gp-one-'
         };
     },
 
 
-    methods: {
-        objectIsEmpty: function objectIsEmpty(obj) {
-            return _.isEmpty(obj);
+    computed: {
+        gpOneGeneticInfoId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.geneticInfoId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'geneticInfoId',
+                    value: value
+                });
+            }
         },
+        gpOneFarmSwineId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.farmSwineId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'farmSwineId',
+                    value: value
+                });
+            }
+        },
+        gpOneHouseType: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.houseType;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'houseType',
+                    value: value
+                });
+            }
+        },
+        gpOneTeatNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.teatNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'teatNo',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgBirthEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgBirthEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgBirthEndDate',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgBirthEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgBirthEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgBirthEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestStartDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestStartDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestStartDate',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestEndDate',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestStartWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestStartWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestStartWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneBft: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.bft;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'bft',
+                    value: value
+                });
+            }
+        },
+        gpOneBftCollected: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.bftCollected;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'bftCollected',
+                    value: value
+                });
+            }
+        },
+        gpOneFeedIntake: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.feedIntake;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'feedIntake',
+                    value: value
+                });
+            }
+        },
+        gpOneBirthWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.birthWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'birthWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneLittersizeAliveMale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.littersizeAliveMale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'littersizeAliveMale',
+                    value: value
+                });
+            }
+        },
+        gpOneLittersizeAliveFemale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.littersizeAliveFemale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'littersizeAliveFemale',
+                    value: value
+                });
+            }
+        },
+        gpOneParity: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.parity;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'parity',
+                    value: value
+                });
+            }
+        },
+        gpOneLittersizeWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.littersizeWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'littersizeWeaning',
+                    value: value
+                });
+            }
+        },
+        gpOneLitterweightWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.litterweightWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'litterweightWeaning',
+                    value: value
+                });
+            }
+        },
+        gpOneDateWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.dateWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'dateWeaning',
+                    value: value
+                });
+            }
+        }
+    },
+
+    methods: {
         triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
             this.$emit('goToTabEvent', tabId);
         }
@@ -3829,7 +4507,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3854,8 +4532,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.geneticInfoId),
-      expression: "gpOne.geneticInfoId"
+      value: (_vm.gpOneGeneticInfoId),
+      expression: "gpOneGeneticInfoId"
     }],
     staticClass: "validate",
     attrs: {
@@ -3863,12 +4541,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.geneticInfoId)
+      "value": (_vm.gpOneGeneticInfoId)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "geneticInfoId", $event.target.value)
+        _vm.gpOneGeneticInfoId = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3881,8 +4559,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.farmSwineId),
-      expression: "gpOne.farmSwineId"
+      value: (_vm.gpOneFarmSwineId),
+      expression: "gpOneFarmSwineId"
     }],
     staticClass: "validate",
     attrs: {
@@ -3890,12 +4568,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.farmSwineId)
+      "value": (_vm.gpOneFarmSwineId)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "farmSwineId", $event.target.value)
+        _vm.gpOneFarmSwineId = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3908,8 +4586,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.teatNo),
-      expression: "gpOne.teatNo"
+      value: (_vm.gpOneTeatNo),
+      expression: "gpOneTeatNo"
     }],
     staticClass: "validate",
     attrs: {
@@ -3917,12 +4595,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.teatNo)
+      "value": (_vm.gpOneTeatNo)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "teatNo", $event.target.value)
+        _vm.gpOneTeatNo = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3935,8 +4613,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.birthWeight),
-      expression: "gpOne.birthWeight"
+      value: (_vm.gpOneBirthWeight),
+      expression: "gpOneBirthWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -3944,12 +4622,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.birthWeight)
+      "value": (_vm.gpOneBirthWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "birthWeight", $event.target.value)
+        _vm.gpOneBirthWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3962,8 +4640,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.littersizeAliveMale),
-      expression: "gpOne.littersizeAliveMale"
+      value: (_vm.gpOneLittersizeAliveMale),
+      expression: "gpOneLittersizeAliveMale"
     }],
     staticClass: "validate",
     attrs: {
@@ -3971,12 +4649,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.littersizeAliveMale)
+      "value": (_vm.gpOneLittersizeAliveMale)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "littersizeAliveMale", $event.target.value)
+        _vm.gpOneLittersizeAliveMale = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3989,8 +4667,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.littersizeAliveFemale),
-      expression: "gpOne.littersizeAliveFemale"
+      value: (_vm.gpOneLittersizeAliveFemale),
+      expression: "gpOneLittersizeAliveFemale"
     }],
     staticClass: "validate",
     attrs: {
@@ -3998,12 +4676,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.littersizeAliveFemale)
+      "value": (_vm.gpOneLittersizeAliveFemale)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "littersizeAliveFemale", $event.target.value)
+        _vm.gpOneLittersizeAliveFemale = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4016,8 +4694,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.littersizeWeaning),
-      expression: "gpOne.littersizeWeaning"
+      value: (_vm.gpOneLittersizeWeaning),
+      expression: "gpOneLittersizeWeaning"
     }],
     staticClass: "validate",
     attrs: {
@@ -4025,12 +4703,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.littersizeWeaning)
+      "value": (_vm.gpOneLittersizeWeaning)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "littersizeWeaning", $event.target.value)
+        _vm.gpOneLittersizeWeaning = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4043,8 +4721,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.litterweightWeaning),
-      expression: "gpOne.litterweightWeaning"
+      value: (_vm.gpOneLitterweightWeaning),
+      expression: "gpOneLitterweightWeaning"
     }],
     staticClass: "validate",
     attrs: {
@@ -4052,12 +4730,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.litterweightWeaning)
+      "value": (_vm.gpOneLitterweightWeaning)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "litterweightWeaning", $event.target.value)
+        _vm.gpOneLitterweightWeaning = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4069,15 +4747,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.dateWeaning = val
+        _vm.gpOneDateWeaning = val
       }
     },
     model: {
-      value: (_vm.gpOne.dateWeaning),
+      value: (_vm.gpOneDateWeaning),
       callback: function($$v) {
-        _vm.$set(_vm.gpOne, "dateWeaning", $$v)
+        _vm.gpOneDateWeaning = $$v
       },
-      expression: "gpOne.dateWeaning"
+      expression: "gpOneDateWeaning"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -4089,8 +4767,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.parity),
-      expression: "gpOne.parity"
+      value: (_vm.gpOneParity),
+      expression: "gpOneParity"
     }],
     staticClass: "validate",
     attrs: {
@@ -4098,12 +4776,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.parity)
+      "value": (_vm.gpOneParity)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "parity", $event.target.value)
+        _vm.gpOneParity = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4116,8 +4794,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.houseType),
-      expression: "gpOne.houseType"
+      value: (_vm.gpOneHouseType),
+      expression: "gpOneHouseType"
     }],
     attrs: {
       "name": "house-type",
@@ -4126,11 +4804,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "tunnel"
     },
     domProps: {
-      "checked": _vm._q(_vm.gpOne.houseType, "tunnel")
+      "checked": _vm._q(_vm.gpOneHouseType, "tunnel")
     },
     on: {
       "change": function($event) {
-        _vm.$set(_vm.gpOne, "houseType", "tunnel")
+        _vm.gpOneHouseType = "tunnel"
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4141,8 +4819,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.houseType),
-      expression: "gpOne.houseType"
+      value: (_vm.gpOneHouseType),
+      expression: "gpOneHouseType"
     }],
     attrs: {
       "name": "house-type",
@@ -4151,11 +4829,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": "open"
     },
     domProps: {
-      "checked": _vm._q(_vm.gpOne.houseType, "open")
+      "checked": _vm._q(_vm.gpOneHouseType, "open")
     },
     on: {
       "change": function($event) {
-        _vm.$set(_vm.gpOne, "houseType", "open")
+        _vm.gpOneHouseType = "open"
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4167,15 +4845,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.adgBirthEndDate = val
+        _vm.gpOneAdgBirthEndDate = val
       }
     },
     model: {
-      value: (_vm.gpOne.adgBirthEndDate),
+      value: (_vm.gpOneAdgBirthEndDate),
       callback: function($$v) {
-        _vm.$set(_vm.gpOne, "adgBirthEndDate", $$v)
+        _vm.gpOneAdgBirthEndDate = $$v
       },
-      expression: "gpOne.adgBirthEndDate"
+      expression: "gpOneAdgBirthEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -4187,8 +4865,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.adgBirthEndWeight),
-      expression: "gpOne.adgBirthEndWeight"
+      value: (_vm.gpOneAdgBirthEndWeight),
+      expression: "gpOneAdgBirthEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -4196,12 +4874,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.adgBirthEndWeight)
+      "value": (_vm.gpOneAdgBirthEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "adgBirthEndWeight", $event.target.value)
+        _vm.gpOneAdgBirthEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4213,15 +4891,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.adgTestStartDate = val
+        _vm.gpOneAdgTestStartDate = val
       }
     },
     model: {
-      value: (_vm.gpOne.adgTestStartDate),
+      value: (_vm.gpOneAdgTestStartDate),
       callback: function($$v) {
-        _vm.$set(_vm.gpOne, "adgTestStartDate", $$v)
+        _vm.gpOneAdgTestStartDate = $$v
       },
-      expression: "gpOne.adgTestStartDate"
+      expression: "gpOneAdgTestStartDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -4233,8 +4911,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.adgTestStartWeight),
-      expression: "gpOne.adgTestStartWeight"
+      value: (_vm.gpOneAdgTestStartWeight),
+      expression: "gpOneAdgTestStartWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -4242,12 +4920,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.adgTestStartWeight)
+      "value": (_vm.gpOneAdgTestStartWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "adgTestStartWeight", $event.target.value)
+        _vm.gpOneAdgTestStartWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4259,15 +4937,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.adgTestEndDate = val
+        _vm.gpOneAdgTestEndDate = val
       }
     },
     model: {
-      value: (_vm.gpOne.adgTestEndDate),
+      value: (_vm.gpOneAdgTestEndDate),
       callback: function($$v) {
-        _vm.$set(_vm.gpOne, "adgTestEndDate", $$v)
+        _vm.gpOneAdgTestEndDate = $$v
       },
-      expression: "gpOne.adgTestEndDate"
+      expression: "gpOneAdgTestEndDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -4279,8 +4957,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.adgTestEndWeight),
-      expression: "gpOne.adgTestEndWeight"
+      value: (_vm.gpOneAdgTestEndWeight),
+      expression: "gpOneAdgTestEndWeight"
     }],
     staticClass: "validate",
     attrs: {
@@ -4288,12 +4966,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.adgTestEndWeight)
+      "value": (_vm.gpOneAdgTestEndWeight)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "adgTestEndWeight", $event.target.value)
+        _vm.gpOneAdgTestEndWeight = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4306,8 +4984,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.bft),
-      expression: "gpOne.bft"
+      value: (_vm.gpOneBft),
+      expression: "gpOneBft"
     }],
     staticClass: "validate",
     attrs: {
@@ -4315,12 +4993,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.bft)
+      "value": (_vm.gpOneBft)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "bft", $event.target.value)
+        _vm.gpOneBft = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4332,15 +5010,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.gpOne.bftCollected = val
+        _vm.gpOneBftCollected = val
       }
     },
     model: {
-      value: (_vm.gpOne.bftCollected),
+      value: (_vm.gpOneBftCollected),
       callback: function($$v) {
-        _vm.$set(_vm.gpOne, "bftCollected", $$v)
+        _vm.gpOneBftCollected = $$v
       },
-      expression: "gpOne.bftCollected"
+      expression: "gpOneBftCollected"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -4352,8 +5030,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.gpOne.feedIntake),
-      expression: "gpOne.feedIntake"
+      value: (_vm.gpOneFeedIntake),
+      expression: "gpOneFeedIntake"
     }],
     staticClass: "validate",
     attrs: {
@@ -4361,12 +5039,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": (_vm.gpOne.feedIntake)
+      "value": (_vm.gpOneFeedIntake)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.gpOne, "feedIntake", $event.target.value)
+        _vm.gpOneFeedIntake = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4436,19 +5114,19 @@ if (false) {
 }
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(69)
+  __webpack_require__(70)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(71),
-  /* template */
   __webpack_require__(72),
+  /* template */
+  __webpack_require__(73),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -4480,13 +5158,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(70);
+var content = __webpack_require__(71);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -4506,7 +5184,7 @@ if(false) {
 }
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -4520,7 +5198,7 @@ exports.push([module.i, "\n#swine-summary-table td[data-v-4aec38b4] {\n    paddi
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4875,18 +5553,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        basicInfo: Object,
-        gpOneData: Object,
-        gpSire: String,
-        gpDam: String,
-        imageFiles: Array,
         breeds: Array,
         farmoptions: Array
     },
 
     data: function data() {
         return {
-            summaryImageFiles: this.imageFiles,
             currentPrimaryPhotoIndex: -1
         };
     },
@@ -4894,8 +5566,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         generateCertificateLink: function generateCertificateLink() {
-            var certificateLink = '/breeder/registry-certificate';
-            return certificateLink + '/' + this.basicInfo.id;
+            // const certificateLink = '/breeder/registry-certificate';
+            // return `${certificateLink}/${this.basicInfo.id}`;
         }
     },
 
@@ -4932,7 +5604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4962,7 +5634,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "swine-summary-table"
     }
-  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" GP Sire ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSire))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Dam ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDam))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate))])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight))])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _vm._m(9), _vm._v(" "), _vm._m(10), _vm._v(" "), _vm._m(11), _vm._v(" "), _vm._m(12)])])])])]), _vm._v(" "), _vm._m(13)]), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" GP Sire ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Dam ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])])])])])])]), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s12 m12 l6",
@@ -4973,11 +5645,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card"
   }, [_c('div', {
     staticClass: "card-content"
-  }, [_vm._m(14), _vm._v(" "), _c('table', {
+  }, [_vm._m(3), _vm._v(" "), _c('table', {
     attrs: {
       "id": "swine-summary-table"
     }
-  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate))])]), _vm._v(" "), _vm._m(15), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight))])]), _vm._v(" "), _vm._m(16), _vm._v(" "), _vm._m(17), _vm._v(" "), _vm._m(18), _vm._v(" "), _vm._m(19), _vm._v(" "), _vm._m(20), _vm._v(" "), _vm._m(21), _vm._v(" "), _vm._m(22), _vm._v(" "), _vm._m(23), _vm._v(" "), _vm._m(24), _vm._v(" "), _vm._m(25)])])])])]), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6",
     attrs: {
       "id": "gp-dam-container"
@@ -4986,13 +5658,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card"
   }, [_c('div', {
     staticClass: "card-content"
-  }, [_vm._m(26), _vm._v(" "), _c('table', {
+  }, [_vm._m(4), _vm._v(" "), _c('table', {
     attrs: {
       "id": "swine-summary-table"
     }
-  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate))])]), _vm._v(" "), _vm._m(27), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight))])]), _vm._v(" "), _vm._m(28), _vm._v(" "), _vm._m(29), _vm._v(" "), _vm._m(30), _vm._v(" "), _vm._m(31), _vm._v(" "), _vm._m(32), _vm._v(" "), _vm._m(33), _vm._v(" "), _vm._m(34), _vm._v(" "), _vm._m(35), _vm._v(" "), _vm._m(36), _vm._v(" "), _vm._m(37)])])])])]), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align"
-  }, [_vm._m(38), _vm._v(" "), _c('a', {
+  }, [_vm._m(5), _vm._v(" "), _c('a', {
     staticClass: "btn waves-effect waves-light",
     attrs: {
       "href": _vm.generateCertificateLink,
@@ -5008,28 +5680,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('h6', {
     staticClass: "center-align"
   }, [_c('b', [_vm._v("Swine Information")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12 m12 l6",
@@ -5062,53 +5712,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "center-align"
   }, [_c('b', [_vm._v("GP Sire Information")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', {
     staticClass: "center-align"
   }, [_c('b', [_vm._v("GP Dam Information")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('br')])
 }]}
@@ -5121,19 +5727,19 @@ if (false) {
 }
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(74)
+  __webpack_require__(75)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(76),
-  /* template */
   __webpack_require__(77),
+  /* template */
+  __webpack_require__(78),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -5165,13 +5771,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(75);
+var content = __webpack_require__(76);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -5191,7 +5797,7 @@ if(false) {
 }
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -5205,7 +5811,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5306,7 +5912,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -5361,19 +5967,19 @@ if (false) {
 }
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(79)
+  __webpack_require__(80)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(81),
-  /* template */
   __webpack_require__(82),
+  /* template */
+  __webpack_require__(83),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -5405,13 +6011,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(80);
+var content = __webpack_require__(81);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -5431,7 +6037,7 @@ if(false) {
 }
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -5445,13 +6051,11 @@ exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -5583,17 +6187,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tabDisables: {
                 summary: true,
                 photos: true
-            },
-            basicInfo: {
-                id: 0,
-                breed: '',
-                sex: '',
-                birthDate: '',
-                farmFrom: ''
             }
         };
     },
 
+
+    computed: {
+        gpOneBreed: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.breed;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'breed',
+                    value: value
+                });
+            }
+        },
+        gpOneSex: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.sex;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'sex',
+                    value: value
+                });
+            }
+        },
+        gpOneBirthDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.birthDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'birthDate',
+                    value: value
+                });
+            }
+        },
+        gpOneFarmFrom: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.farmFrom;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'farmFrom',
+                    value: value
+                });
+            }
+        }
+    },
 
     methods: {
         getIndex: function getIndex(id, arrayToBeSearched) {
@@ -5698,7 +6350,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -5762,15 +6414,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": function (val) {
-        _vm.basicInfo.breed = val
+        _vm.gpOneBreed = val
       }
     },
     model: {
-      value: (_vm.basicInfo.breed),
+      value: (_vm.gpOneBreed),
       callback: function($$v) {
-        _vm.$set(_vm.basicInfo, "breed", $$v)
+        _vm.gpOneBreed = $$v
       },
-      expression: "basicInfo.breed"
+      expression: "gpOneBreed"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
@@ -5787,30 +6439,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": function (val) {
-        _vm.basicInfo.sex = val
+        _vm.gpOneSex = val
       }
     },
     model: {
-      value: (_vm.basicInfo.sex),
+      value: (_vm.gpOneSex),
       callback: function($$v) {
-        _vm.$set(_vm.basicInfo, "sex", $$v)
+        _vm.gpOneSex = $$v
       },
-      expression: "basicInfo.sex"
+      expression: "gpOneSex"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.basicInfo.birthDate = val
+        _vm.gpOneBirthDate = val
       }
     },
     model: {
-      value: (_vm.basicInfo.birthDate),
+      value: (_vm.gpOneBirthDate),
       callback: function($$v) {
-        _vm.$set(_vm.basicInfo, "birthDate", $$v)
+        _vm.gpOneBirthDate = $$v
       },
-      expression: "basicInfo.birthDate"
+      expression: "gpOneBirthDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -5825,15 +6477,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": function (val) {
-        _vm.basicInfo.farmFrom = val
+        _vm.gpOneFarmFrom = val
       }
     },
     model: {
-      value: (_vm.basicInfo.farmFrom),
+      value: (_vm.gpOneFarmFrom),
       callback: function($$v) {
-        _vm.$set(_vm.basicInfo, "farmFrom", $$v)
+        _vm.gpOneFarmFrom = $$v
       },
-      expression: "basicInfo.farmFrom"
+      expression: "gpOneFarmFrom"
     }
   })], 1), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
@@ -5860,13 +6512,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('register-swine-summary', {
     attrs: {
-      "basic-info": _vm.basicInfo,
       "breeds": _vm.breeds,
       "farmoptions": _vm.farmoptions
     }
   }), _vm._v(" "), _c('register-swine-upload-photo', {
     attrs: {
-      "swine-id": _vm.basicInfo.id,
       "uploadurl": _vm.uploadurl
     },
     on: {
@@ -5922,19 +6572,19 @@ if (false) {
 }
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(84)
+  __webpack_require__(85)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(86),
-  /* template */
   __webpack_require__(87),
+  /* template */
+  __webpack_require__(88),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -5966,13 +6616,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(85);
+var content = __webpack_require__(86);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -5992,7 +6642,7 @@ if(false) {
 }
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -6006,7 +6656,7 @@ exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6194,7 +6844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6432,19 +7082,19 @@ if (false) {
 }
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(89)
+  __webpack_require__(90)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(91),
-  /* template */
   __webpack_require__(92),
+  /* template */
+  __webpack_require__(93),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -6476,13 +7126,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(90);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6502,7 +7152,7 @@ if(false) {
 }
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -6516,7 +7166,7 @@ exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-bu
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6718,7 +7368,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6901,19 +7551,19 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(94)
+  __webpack_require__(95)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(96),
-  /* template */
   __webpack_require__(97),
+  /* template */
+  __webpack_require__(98),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -6945,13 +7595,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(95);
+var content = __webpack_require__(96);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6971,7 +7621,7 @@ if(false) {
 }
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -6985,7 +7635,7 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7254,7 +7904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7552,19 +8202,19 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(99)
+  __webpack_require__(100)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(101),
-  /* template */
   __webpack_require__(102),
+  /* template */
+  __webpack_require__(103),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7596,13 +8246,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(100);
+var content = __webpack_require__(101);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7622,7 +8272,7 @@ if(false) {
 }
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -7636,7 +8286,7 @@ exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-propert
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8026,7 +8676,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8351,55 +9001,10 @@ if (false) {
 }
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-// Initial state
-var state = {
-    basicInfo: {},
-    gpOneData: {},
-    gpSireData: {},
-    gpDamData: {},
-    imageFiles: []
-};
-
-// getters
-var getters = {};
-
-// mutations
-var mutations = {};
-
-// actions
-var actions = {};
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    state: state,
-    getters: getters,
-    actions: actions,
-    mutations: mutations
-});
 
 /***/ })
 ],[19]);

@@ -21,91 +21,91 @@
                                     <tbody>
                                         <tr>
                                             <td> GP Sire </td>
-                                            <td> {{ gpSire }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> GP Dam </td>
-                                            <td> {{ gpDam }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Farm From </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Farm Swine ID / Earmark </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Genetic Information ID (optional) </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Breed </td>
-                                            <td> {{ basicInfo.breed }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Sex </td>
-                                            <td> {{ basicInfo.sex }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Teat Number </td>
-                                            <td> {{ basicInfo.sex }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Birth Date </td>
-                                            <td> {{ basicInfo.birthDate }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Birth Weight </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Date collected </td>
-                                            <td> {{ basicInfo.dateCollected }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Weight when data was collected </td>
-                                            <td> {{ basicInfo.weight }}</td>
+                                            <td> {{  }} </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total (M) born alive </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total (F) born alive </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Parity </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Littersize at Weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total litterweight at weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Date at Weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -144,83 +144,83 @@
                                     <tbody>
                                         <tr>
                                             <td> Farm From </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Farm Swine ID / Earmark </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Genetic Information ID (optional) </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Breed </td>
-                                            <td> {{ basicInfo.breed }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Sex </td>
-                                            <td> {{ basicInfo.sex }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Teat Number </td>
-                                            <td> {{ basicInfo.sex }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Birth Date </td>
-                                            <td> {{ basicInfo.birthDate }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Birth Weight </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Date collected </td>
-                                            <td> {{ basicInfo.dateCollected }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Weight when data was collected </td>
-                                            <td> {{ basicInfo.weight }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total (M) born alive </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total (F) born alive </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Parity </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Littersize at Weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total litterweight at weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Date at Weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -240,83 +240,83 @@
                                     <tbody>
                                         <tr>
                                             <td> Farm From </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Farm Swine ID / Earmark </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Genetic Information ID (optional) </td>
-                                            <td> {{ basicInfo.farmFrom }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Breed </td>
-                                            <td> {{ basicInfo.breed }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Sex </td>
-                                            <td> {{ basicInfo.sex }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Teat Number </td>
-                                            <td> {{ basicInfo.sex }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Birth Date </td>
-                                            <td> {{ basicInfo.birthDate }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Birth Weight </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Date collected </td>
-                                            <td> {{ basicInfo.dateCollected }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Weight when data was collected </td>
-                                            <td> {{ basicInfo.weight }}</td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total (M) born alive </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total (F) born alive </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Parity </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Littersize at Weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Total litterweight at weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                         <tr>
                                             <td> Date at Weaning </td>
-                                            <td> </td>
+                                            <td> {{ }} </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -348,26 +348,20 @@
 <script>
     export default {
         props: {
-            basicInfo: Object,
-            gpOneData: Object,
-            gpSire: String,
-            gpDam: String,
-            imageFiles: Array,
             breeds: Array,
             farmoptions: Array
         },
 
         data() {
             return {
-                summaryImageFiles: this.imageFiles,
                 currentPrimaryPhotoIndex: -1
             }
         },
 
         computed: {
             generateCertificateLink() {
-                const certificateLink = '/breeder/registry-certificate';
-                return `${certificateLink}/${this.basicInfo.id}`;
+                // const certificateLink = '/breeder/registry-certificate';
+                // return `${certificateLink}/${this.basicInfo.id}`;
             }
         },
 

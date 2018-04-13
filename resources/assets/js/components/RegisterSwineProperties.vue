@@ -13,7 +13,7 @@
 
                         <!-- More info for GP 1 -->
                         <div class="col s12 input-field">
-                            <input v-model="gpOne.geneticInfoId"
+                            <input v-model="gpOneGeneticInfoId"
                                 :id="gpOneIdPrefix + 'genetic-info-id'"
                                 type="text"
                                 class="validate"
@@ -21,7 +21,7 @@
                             <label :for="gpOneIdPrefix + 'genetic-info-id'">Genetic Information ID (optional)</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.farmSwineId"
+                            <input v-model="gpOneFarmSwineId"
                                 :id="gpOneIdPrefix + 'farm-swine-id'"
                                 type="text"
                                 class="validate"
@@ -29,7 +29,7 @@
                             <label :for="gpOneIdPrefix + 'farm-swine-id'">Farm Swine ID / Earmark</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.teatNo"
+                            <input v-model="gpOneTeatNo"
                                 :id="gpOneIdPrefix + 'teatno'"
                                 type="text"
                                 class="validate"
@@ -37,7 +37,7 @@
                             <label :for="gpOneIdPrefix + 'teatno'">Teat number</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.birthWeight"
+                            <input v-model="gpOneBirthWeight"
                                 :id="gpOneIdPrefix + 'birth-weight'"
                                 type="text"
                                 class="validate"
@@ -45,7 +45,7 @@
                             <label :for="gpOneIdPrefix + 'birth-weight'">Birth weight</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.littersizeAliveMale"
+                            <input v-model="gpOneLittersizeAliveMale"
                                 :id="gpOneIdPrefix + 'total-m'"
                                 type="text"
                                 class="validate"
@@ -53,7 +53,7 @@
                             <label :for="gpOneIdPrefix + 'total-m'">Total (M) born alive</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.littersizeAliveFemale"
+                            <input v-model="gpOneLittersizeAliveFemale"
                                 :id="gpOneIdPrefix + 'total-f'"
                                 type="text"
                                 class="validate"
@@ -61,7 +61,7 @@
                             <label :for="gpOneIdPrefix + 'total-f'">Total (F) born alive</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.littersizeWeaning"
+                            <input v-model="gpOneLittersizeWeaning"
                                 :id="gpOneIdPrefix + 'littersize-weaning'"
                                 type="text"
                                 class="validate"
@@ -69,7 +69,7 @@
                             <label :for="gpOneIdPrefix + 'littersize-weaning'">Littersize at weaning</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.litterweightWeaning"
+                            <input v-model="gpOneLitterweightWeaning"
                                 :id="gpOneIdPrefix + 'litterweight-weaning'"
                                 type="text"
                                 class="validate"
@@ -78,14 +78,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.dateWeaning"
-                                @date-select="val => {gpOne.dateWeaning = val}"
+                                v-model="gpOneDateWeaning"
+                                @date-select="val => {gpOneDateWeaning = val}"
                             >
                             </app-input-date>
                             <label for=""> Date at weaning </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.parity"
+                            <input v-model="gpOneParity"
                                 :id="gpOneIdPrefix + 'parity'"
                                 type="text"
                                 class="validate"
@@ -103,7 +103,7 @@
                                 <b>House Type</b>
                             </h6>
                             <p>
-                                <input v-model="gpOne.houseType"
+                                <input v-model="gpOneHouseType"
                                     name="house-type"
                                     type="radio"
                                     id="house-type-tunnel"
@@ -112,7 +112,7 @@
                                 <label for="house-type-tunnel">Tunnel ventilated</label>
                             </p>
                             <p>
-                                <input v-model="gpOne.houseType"
+                                <input v-model="gpOneHouseType"
                                     name="house-type"
                                     type="radio"
                                     id="house-type-open"
@@ -134,14 +134,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.adgBirthEndDate"
-                                @date-select="val => {gpOne.adgBirthEndDate = val}"
+                                v-model="gpOneAdgBirthEndDate"
+                                @date-select="val => {gpOneAdgBirthEndDate = val}"
                             >
                             </app-input-date>
                             <label for=""> End Date </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.adgBirthEndWeight"
+                            <input v-model="gpOneAdgBirthEndWeight"
                                 :id="gpOneIdPrefix + 'adg-birth-end-weight'"
                                 type="text"
                                 class="validate"
@@ -161,14 +161,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.adgTestStartDate"
-                                @date-select="val => {gpOne.adgTestStartDate = val}"
+                                v-model="gpOneAdgTestStartDate"
+                                @date-select="val => {gpOneAdgTestStartDate = val}"
                             >
                             </app-input-date>
                             <label for=""> Start Test Date </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.adgTestStartWeight"
+                            <input v-model="gpOneAdgTestStartWeight"
                                 :id="gpOneIdPrefix + 'adg-test-start-weight'"
                                 type="text"
                                 class="validate"
@@ -177,14 +177,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.adgTestEndDate"
-                                @date-select="val => {gpOne.adgTestEndDate = val}"
+                                v-model="gpOneAdgTestEndDate"
+                                @date-select="val => {gpOneAdgTestEndDate = val}"
                             >
                             </app-input-date>
                             <label for=""> End Test Date </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.adgTestEndWeight"
+                            <input v-model="gpOneAdgTestEndWeight"
                                 :id="gpOneIdPrefix + 'adg-test-end-weight'"
                                 type="text"
                                 class="validate"
@@ -192,7 +192,7 @@
                             <label :for="gpOneIdPrefix + 'adg-test-end-weight'">End Test Weight</label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.bft"
+                            <input v-model="gpOneBft"
                                 :id="gpOneIdPrefix + 'bft'"
                                 type="text"
                                 class="validate"
@@ -201,14 +201,14 @@
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
-                                v-model="gpOne.bftCollected"
-                                @date-select="val => {gpOne.bftCollected = val}"
+                                v-model="gpOneBftCollected"
+                                @date-select="val => {gpOneBftCollected = val}"
                             >
                             </app-input-date>
                             <label for=""> Date when BFT was collected </label>
                         </div>
                         <div class="col s6 input-field">
-                            <input v-model="gpOne.feedIntake"
+                            <input v-model="gpOneFeedIntake"
                                 :id="gpOneIdPrefix + 'feed-intake'"
                                 type="text"
                                 class="validate"
@@ -244,37 +244,234 @@
     export default {
         data() {
             return {
-                gpOneIdPrefix: 'gp-one-',
-                gpOne: {
-                    geneticInfoId: '',
-                    farmSwineId: '',
-                    houseType: '',
-                    teatNo: '',
-                    adgBirthEndDate: '',
-                    adgBirthEndWeight: '',
-                    adgTestStartDate: '',
-                    adgTestEndDate: '',
-                    adgTestStartWeight: '',
-                    adgTestEndWeight: '',
-                    bft: '',
-                    bftCollected: '',
-                    feedIntake: '',
-                    birthWeight: '',
-                    littersizeAliveMale: '',
-                    littersizeAliveFemale: '',
-                    parity: '',
-                    littersizeWeaning: '',
-                    litterweightWeaning: '',
-                    dateWeaning: ''
+                gpOneIdPrefix: 'gp-one-'
+            }
+        },
+
+        computed: {
+            gpOneGeneticInfoId: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.geneticInfoId; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'geneticInfoId',
+                        value: value
+                    });
+                }
+            },
+            gpOneFarmSwineId: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.farmSwineId; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'farmSwineId',
+                        value: value
+                    });
+                }
+            },
+            gpOneHouseType: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.houseType; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'houseType',
+                        value: value
+                    });
+                }
+            },
+            gpOneTeatNo: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.teatNo; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'teatNo',
+                        value: value
+                    });
+                }
+            },
+            gpOneAdgBirthEndDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.adgBirthEndDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'adgBirthEndDate',
+                        value: value
+                    });
+                }
+            },
+            gpOneAdgBirthEndWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.adgBirthEndWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'adgBirthEndWeight',
+                        value: value
+                    });
+                }
+            },
+            gpOneAdgTestStartDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.adgTestStartDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'adgTestStartDate',
+                        value: value
+                    });
+                }
+            },
+            gpOneAdgTestEndDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.adgTestEndDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'adgTestEndDate',
+                        value: value
+                    });
+                }
+            },
+            gpOneAdgTestStartWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.adgTestStartWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'adgTestStartWeight',
+                        value: value
+                    });
+                }
+            },
+            gpOneAdgTestEndWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.adgTestEndWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'adgTestEndWeight',
+                        value: value
+                    });
+                }
+            },
+            gpOneBft: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.bft; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'bft',
+                        value: value
+                    });
+                }
+            },
+            gpOneBftCollected: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.bftCollected; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'bftCollected',
+                        value: value
+                    });
+                }
+            },
+            gpOneFeedIntake: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.feedIntake; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'feedIntake',
+                        value: value
+                    });
+                }
+            },
+            gpOneBirthWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.birthWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'birthWeight',
+                        value: value
+                    });
+                }
+            },
+            gpOneLittersizeAliveMale: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.littersizeAliveMale; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'littersizeAliveMale',
+                        value: value
+                    });
+                }
+            },
+            gpOneLittersizeAliveFemale: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.littersizeAliveFemale; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'littersizeAliveFemale',
+                        value: value
+                    });
+                }
+            },
+            gpOneParity: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.parity; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'parity',
+                        value: value
+                    });
+                }
+            },
+            gpOneLittersizeWeaning: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.littersizeWeaning; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'littersizeWeaning',
+                        value: value
+                    });
+                }
+            },
+            gpOneLitterweightWeaning: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.litterweightWeaning; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'litterweightWeaning',
+                        value: value
+                    });
+                }
+            },
+            gpOneDateWeaning: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.dateWeaning; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'dateWeaning',
+                        value: value
+                    });
                 }
             }
         },
 
         methods: {
-            objectIsEmpty(obj) {
-                return _.isEmpty(obj);
-            },
-
             triggerGoToTabEvent(tabId) {
                 this.$emit('goToTabEvent', tabId);
             }

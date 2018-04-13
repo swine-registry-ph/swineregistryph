@@ -32,9 +32,9 @@
                             <div class="input-field col s12">
                                 <app-input-select
                                     labelDescription="Breed"
-                                    v-model="basicInfo.breed"
+                                    v-model="gpOneBreed"
                                     :options="breeds"
-                                    @select="val => {basicInfo.breed = val}"
+                                    @select="val => {gpOneBreed = val}"
                                 >
                                 </app-input-select>
                             </div>
@@ -42,17 +42,17 @@
                             <div class="input-field col s12">
                                 <app-input-select
                                     labelDescription="Sex"
-                                    v-model="basicInfo.sex"
+                                    v-model="gpOneSex"
                                     :options="[{text:'Male', value:'male'}, {text:'Female', value:'female'}]"
-                                    @select="val => {basicInfo.sex = val}"
+                                    @select="val => {gpOneSex = val}"
                                 >
                                 </app-input-select>
                             </div>
                             <!-- Birthdate -->
                             <div class="input-field col s12">
                                 <app-input-date
-                                    v-model="basicInfo.birthDate"
-                                    @date-select="val => {basicInfo.birthDate = val}"
+                                    v-model="gpOneBirthDate"
+                                    @date-select="val => {gpOneBirthDate = val}"
                                 >
                                 </app-input-date>
                                 <label for=""> Birth Date </label>
@@ -61,9 +61,9 @@
                             <div class="input-field col s12">
                                 <app-input-select
                                     labelDescription="Farm From"
-                                    v-model="basicInfo.farmFrom"
+                                    v-model="gpOneFarmFrom"
                                     :options="farmoptions"
-                                    @select="val => {basicInfo.farmFrom = val}"
+                                    @select="val => {gpOneFarmFrom = val}"
                                 >
                                 </app-input-select>
                             </div>
@@ -100,7 +100,6 @@
 
         <!-- Summary tab -->
         <register-swine-summary
-            :basic-info="basicInfo"
             :breeds="breeds"
             :farmoptions="farmoptions"
         >
@@ -108,7 +107,6 @@
 
         <!-- Upload photos tab -->
         <register-swine-upload-photo
-            :swine-id="basicInfo.id"
             :uploadurl="uploadurl"
             v-on:addedPhotoEvent="addPhotoToImageFiles"
             v-on:removedPhotoEvent="removePhotoFromImageFiles"
@@ -131,13 +129,53 @@
                 tabDisables: {
                     summary: true,
                     photos: true
-                },
-                basicInfo: {
-                    id: 0,
-                    breed: '',
-                    sex: '',
-                    birthDate: '',
-                    farmFrom: '',
+                }
+            }
+        },
+
+        computed: {
+            gpOneBreed: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.breed; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'breed',
+                        value: value
+                    });
+                }
+            },
+            gpOneSex: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.sex; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'sex',
+                        value: value
+                    });
+                }
+            },
+            gpOneBirthDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.birthDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'birthDate',
+                        value: value
+                    });
+                }
+            },
+            gpOneFarmFrom: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.farmFrom; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'farmFrom',
+                        value: value
+                    });
                 }
             }
         },

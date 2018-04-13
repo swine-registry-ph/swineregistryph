@@ -1,7 +1,7 @@
 <template lang="html">
-    <!-- GP -->
+    <!-- GP Parent -->
     <div id="" class="col s12 m12 l6 offset-l3 parent-container">
-        <!-- GP: radio if existing or new -->
+        <!-- GP Parent: radio if existing or new -->
         <div class="col s12">
             <h6>
                 <b>Choose an option</b>
@@ -30,10 +30,10 @@
             <br>
         </div>
 
-        <!-- GP: existing -->
+        <!-- GP Parent: existing -->
         <template v-if="status === 'existing'">
             <div class="col s8 offset-s2 input-field">
-                <input v-model="existingParentRegNo"
+                <input v-model="gpParentExistingRegNo"
                     :id="parentIdPrefix + 'reg-no'"
                     type="text"
                     class="validate"
@@ -42,9 +42,9 @@
             </div>
         </template>
 
-        <!-- GP: new -->
+        <!-- GP Parent: new -->
         <template v-else-if="status === 'new'">
-            <!-- GP: imported or not -->
+            <!-- GP Parent: imported or not -->
             <div class="col s12">
                 <h6>
                     <b>Is GP {{ parentGender }} imported?</b>
@@ -74,9 +74,9 @@
             </div>
 
             <template v-if="imported === 'yes'">
-                <!-- GP: properties for imported -->
+                <!-- GP Parent: properties for imported -->
                 <div class="col s12 input-field">
-                    <input v-model="gpImported.regNo"
+                    <input v-model="gpParentImportedRegNo"
                         :id="parentIdPrefix + 'imported-reg-no'"
                         type="text"
                         class="validate"
@@ -84,7 +84,7 @@
                     <label :for="parentIdPrefix + 'imported-reg-no'">Imported Animal Registration #</label>
                 </div>
                 <div class="col s12 input-field">
-                    <input v-model="gpImported.farmFromName"
+                    <input v-model="gpParentImportedFarmFromName"
                         :id="parentIdPrefix + 'imported-reg-no'"
                         type="text"
                         class="validate"
@@ -95,9 +95,9 @@
 
             <template v-else-if="imported === 'no'">
 
-                <!-- GP: properties for not imported -->
+                <!-- GP Parent: properties for not imported -->
                 <div class="col s12 input-field">
-                    <input v-model="gp.geneticInfoId"
+                    <input v-model="gpParentGeneticInfoId"
                         :id="parentIdPrefix + 'genetic-info-id'"
                         type="text"
                         class="validate"
@@ -107,14 +107,14 @@
                 <div class="input-field col s12">
                     <app-input-select
                         labelDescription="Farm From"
-                        v-model="gp.farmFrom"
+                        v-model="gpParentFarmFrom"
                         :options="farmoptions"
-                        @select="val => {gp.farmFrom = val}"
+                        @select="val => {gpParentFarmFrom = val}"
                     >
                     </app-input-select>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.farmSwineId"
+                    <input v-model="gpParentFarmSwineId"
                         :id="parentIdPrefix + 'farm-swine-id'"
                         type="text"
                         class="validate"
@@ -122,7 +122,7 @@
                     <label :for="parentIdPrefix + 'farm-swine-id'">Farm Swine ID / Earmark</label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.teatNo"
+                    <input v-model="gpParentTeatNo"
                         :id="parentIdPrefix + 'teatno'"
                         type="text"
                         class="validate"
@@ -131,14 +131,14 @@
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
-                        v-model="gp.birthDate"
-                        @date-select="val => {gp.birthDate = val}"
+                        v-model="gpParentBirthDate"
+                        @date-select="val => {gpParentBirthDate = val}"
                     >
                     </app-input-date>
                     <label for=""> Birth Date </label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.birthWeight"
+                    <input v-model="gpParentBirthWeight"
                         :id="parentIdPrefix + 'birth-weight'"
                         type="text"
                         class="validate"
@@ -146,7 +146,7 @@
                     <label :for="parentIdPrefix + 'birth-weight'">Birth Weight</label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.littersizeAliveMale"
+                    <input v-model="gpParentLittersizeAliveMale"
                         :id="parentIdPrefix + 'total-m'"
                         type="text"
                         class="validate"
@@ -154,7 +154,7 @@
                     <label :for="parentIdPrefix + 'total-m'">Total (M) born alive</label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.littersizeAliveFemale"
+                    <input v-model="gpParentLittersizeAliveFemale"
                         :id="parentIdPrefix + 'total-f'"
                         type="text"
                         class="validate"
@@ -162,7 +162,7 @@
                     <label :for="parentIdPrefix + 'total-f'">Total (F) born alive</label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.littersizeWeaning"
+                    <input v-model="gpParentLittersizeWeaning"
                         :id="parentIdPrefix + 'littersize-weaning'"
                         type="text"
                         class="validate"
@@ -170,7 +170,7 @@
                     <label :for="parentIdPrefix + 'littersize-weaning'">Littersize at weaning</label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.litterweightWeaning"
+                    <input v-model="gpParentLitterweightWeaning"
                         :id="parentIdPrefix + 'litterweight-weaning'"
                         type="text"
                         class="validate"
@@ -179,14 +179,14 @@
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
-                        v-model="gp.dateWeaning"
-                        @date-select="val => {gp.dateWeaning = val}"
+                        v-model="gpParentDateWeaning"
+                        @date-select="val => {gpParentDateWeaning = val}"
                     >
                     </app-input-date>
                     <label for=""> Date at weaning </label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.parity"
+                    <input v-model="gpParentParity"
                         :id="parentIdPrefix + 'parity'"
                         type="text"
                         class="validate"
@@ -198,13 +198,13 @@
                     <br>
                 </div>
 
-                <!-- GP: House Type -->
+                <!-- GP Parent: House Type -->
                 <div class="col s12">
                     <h6>
                         <b>House Type</b>
                     </h6>
                     <p>
-                        <input v-model="gp.houseType"
+                        <input v-model="gpParentHouseType"
                             :name="parentIdPrefix + 'house-type'"
                             type="radio"
                             :id="parentIdPrefix + 'house-type-tunnel'"
@@ -213,7 +213,7 @@
                         <label :for="parentIdPrefix + 'house-type-tunnel'">Tunnel ventilated</label>
                     </p>
                     <p>
-                        <input v-model="gp.houseType"
+                        <input v-model="gpParentHouseType"
                             :name="parentIdPrefix + 'house-type'"
                             type="radio"
                             :id="parentIdPrefix + 'house-type-open'"
@@ -227,7 +227,7 @@
                     <br>
                 </div>
 
-                <!-- GP: ADG computation from Birth -->
+                <!-- GP Parent: ADG computation from Birth -->
                 <div class="col s12">
                     <h6>
                         <b>Average Daily Gain computation from Birth</b>
@@ -235,14 +235,14 @@
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
-                        v-model="gp.adgBirthEndDate"
-                        @date-select="val => {gp.adgBirthEndDate = val}"
+                        v-model="gpParentAdgBirthEndDate"
+                        @date-select="val => {gpParentAdgBirthEndDate = val}"
                     >
                     </app-input-date>
                     <label for=""> End Date </label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.adgBirthEndWeight"
+                    <input v-model="gpParentAdgBirthEndWeight"
                         :id="parentIdPrefix + 'adg-birth-end-weight'"
                         type="text"
                         class="validate"
@@ -254,7 +254,7 @@
                     <br>
                 </div>
 
-                <!-- GP: Swine Testing Information -->
+                <!-- GP Parent: Swine Testing Information -->
                 <div class="col s12">
                     <h6>
                         <b>Swine Testing Information</b>
@@ -262,14 +262,14 @@
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
-                        v-model="gp.adgTestStartDate"
-                        @date-select="val => {gp.adgTestStartDate = val}"
+                        v-model="gpParentAdgTestStartDate"
+                        @date-select="val => {gpParentAdgTestStartDate = val}"
                     >
                     </app-input-date>
                     <label for=""> Start Test Date </label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.adgTestStartWeight"
+                    <input v-model="gpParentAdgTestStartWeight"
                         :id="parentIdPrefix + 'adg-test-start-weight'"
                         type="text"
                         class="validate"
@@ -278,14 +278,14 @@
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
-                        v-model="gp.adgTestEndDate"
-                        @date-select="val => {gp.adgTestEndDate = val}"
+                        v-model="gpParentAdgTestEndDate"
+                        @date-select="val => {gpParentAdgTestEndDate = val}"
                     >
                     </app-input-date>
                     <label for=""> End Test Date </label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.adgTestEndWeight"
+                    <input v-model="gpParentAdgTestEndWeight"
                         :id="parentIdPrefix + 'adg-test-end-weight'"
                         type="text"
                         class="validate"
@@ -293,7 +293,7 @@
                     <label :for="parentIdPrefix + 'adg-test-end-weight'">End Test Weight</label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.bft"
+                    <input v-model="gpParentBft"
                         :id="parentIdPrefix + 'bft'"
                         type="text"
                         class="validate"
@@ -302,14 +302,14 @@
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
-                        v-model="gp.bftCollected"
-                        @date-select="val => {gp.bftCollected = val}"
+                        v-model="gpParentBftCollected"
+                        @date-select="val => {gpParentBftCollected = val}"
                     >
                     </app-input-date>
                     <label for=""> Date when BFT was collected </label>
                 </div>
                 <div class="col s6 input-field">
-                    <input v-model="gp.feedIntake"
+                    <input v-model="gpParentFeedIntake"
                         :id="parentIdPrefix + 'feed-intake'"
                         type="text"
                         class="validate"
@@ -337,35 +337,288 @@
         data() {
             return {
                 status: 'existing',
-                imported: 'no',
-                existingParentRegNo: '',
-                gpImported: {
-                    regNo: '',
-                    farmFromName: ''
-                },
-                gp: {
-                    farmSwineId: '',
-                    geneticInfoId: '',
-                    farmFrom: '',
-                    birthDate: '',
-                    houseType: '',
-                    teatNo: '',
-                    adgBirthEndDate: '',
-                    adgBirthEndWeight: '',
-                    adgTestStartDate: '',
-                    adgTestEndDate: '',
-                    adgTestStartWeight: '',
-                    adgTestEndWeight: '',
-                    bft: '',
-                    bftCollected: '',
-                    feedIntake: '',
-                    birthWeight: '',
-                    littersizeAliveMale: '',
-                    littersizeAliveFemale: '',
-                    parity: '',
-                    littersizeWeaning: '',
-                    litterweightWeaning: '',
-                    dateWeaning: ''
+                imported: 'no'
+            }
+        },
+
+        computed: {
+            prefixedGender() {
+                // add gp prefix to parentGender
+                return `gp${this.parentGender}`;
+            },
+            gpParentExistingRegNo: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].existingRegNo; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'existingRegNo',
+                        value: value
+                    });
+                }
+            },
+            gpParentImportedRegNo: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.regNo; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'imported.regNo',
+                        value: value
+                    });
+                }
+            },
+            gpParentImportedFarmFromName: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.farmFromName; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'imported.farmFromName',
+                        value: value
+                    });
+                }
+            },
+            gpParentGeneticInfoId: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].geneticInfoId; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'geneticInfoId',
+                        value: value
+                    });
+                }
+            },
+            gpParentFarmSwineId: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].farmSwineId; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'farmSwineId',
+                        value: value
+                    });
+                }
+            },
+            gpParentFarmFrom: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].farmFrom; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'farmFrom',
+                        value: value
+                    });
+                }
+            },
+            gpParentBirthDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].birthDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'birthDate',
+                        value: value
+                    });
+                }
+            },
+            gpParentHouseType: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].houseType; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'houseType',
+                        value: value
+                    });
+                }
+            },
+            gpParentTeatNo: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].teatNo; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'teatNo',
+                        value: value
+                    });
+                }
+            },
+            gpParentAdgBirthEndDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgBirthEndDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'adgBirthEndDate',
+                        value: value
+                    });
+                }
+            },
+            gpParentAdgBirthEndWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgBirthEndWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'adgBirthEndWeight',
+                        value: value
+                    });
+                }
+            },
+            gpParentAdgTestStartDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestStartDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'adgTestStartDate',
+                        value: value
+                    });
+                }
+            },
+            gpParentAdgTestEndDate: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestEndDate; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'adgTestEndDate',
+                        value: value
+                    });
+                }
+            },
+            gpParentAdgTestStartWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestStartWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'adgTestStartWeight',
+                        value: value
+                    });
+                }
+            },
+            gpParentAdgTestEndWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestEndWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'adgTestEndWeight',
+                        value: value
+                    });
+                }
+            },
+            gpParentBft: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].bft; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'bft',
+                        value: value
+                    });
+                }
+            },
+            gpParentBftCollected: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].bftCollected; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'bftCollected',
+                        value: value
+                    });
+                }
+            },
+            gpParentFeedIntake: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].feedIntake; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'feedIntake',
+                        value: value
+                    });
+                }
+            },
+            gpParentBirthWeight: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].birthWeight; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'birthWeight',
+                        value: value
+                    });
+                }
+            },
+            gpParentLittersizeAliveMale: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].littersizeAliveMale; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'littersizeAliveMale',
+                        value: value
+                    });
+                }
+            },
+            gpParentLittersizeAliveFemale: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].littersizeAliveFemale; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'littersizeAliveFemale',
+                        value: value
+                    });
+                }
+            },
+            gpParentParity: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].parity; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'parity',
+                        value: value
+                    });
+                }
+            },
+                // get and set value from vuex store
+            gpParentLittersizeWeaning: {
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].littersizeWeaning; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'littersizeWeaning',
+                        value: value
+                    });
+                }
+            },
+            gpParentLitterweightWeaning: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].litterweightWeaning; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'litterweightWeaning',
+                        value: value
+                    });
+                }
+            },
+            gpParentDateWeaning: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].dateWeaning; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'dateWeaning',
+                        value: value
+                    });
                 }
             }
         },
