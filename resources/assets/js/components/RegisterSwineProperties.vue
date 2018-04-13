@@ -45,6 +45,14 @@
                             <label :for="gpOneIdPrefix + 'birth-weight'">Birth weight</label>
                         </div>
                         <div class="col s6 input-field">
+                            <input v-model="gpOneParity"
+                                :id="gpOneIdPrefix + 'parity'"
+                                type="text"
+                                class="validate"
+                            >
+                            <label :for="gpOneIdPrefix + 'parity'">Parity</label>
+                        </div>
+                        <div class="col s6 input-field">
                             <input v-model="gpOneLittersizeAliveMale"
                                 :id="gpOneIdPrefix + 'total-m'"
                                 type="text"
@@ -83,14 +91,6 @@
                             >
                             </app-input-date>
                             <label for=""> Date at weaning </label>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input v-model="gpOneParity"
-                                :id="gpOneIdPrefix + 'parity'"
-                                type="text"
-                                class="validate"
-                            >
-                            <label :for="gpOneIdPrefix + 'parity'">Parity</label>
                         </div>
 
                         <div class="col s12">

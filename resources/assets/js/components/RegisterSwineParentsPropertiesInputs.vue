@@ -107,9 +107,9 @@
                 <div class="input-field col s12">
                     <app-input-select
                         labelDescription="Farm From"
-                        v-model="gpParentFarmFrom"
+                        v-model="gpParentFarmFromId"
                         :options="farmoptions"
-                        @select="val => {gpParentFarmFrom = val}"
+                        @select="val => {gpParentFarmFromId = val}"
                     >
                     </app-input-select>
                 </div>
@@ -401,13 +401,13 @@
                     });
                 }
             },
-            gpParentFarmFrom: {
+            gpParentFarmFromId: {
                 // get and set value from vuex store
-                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].farmFrom; },
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].farmFromId; },
                 set(value) {
                     this.$store.commit('updateValue', {
                         instance: `${this.prefixedGender}`,
-                        property: 'farmFrom',
+                        property: 'farmFromId',
                         value: value
                     });
                 }

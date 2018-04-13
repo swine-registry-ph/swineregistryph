@@ -32,9 +32,9 @@
                             <div class="input-field col s12">
                                 <app-input-select
                                     labelDescription="Breed"
-                                    v-model="gpOneBreed"
+                                    v-model="gpOneBreedId"
                                     :options="breeds"
-                                    @select="val => {gpOneBreed = val}"
+                                    @select="val => {gpOneBreedId = val}"
                                 >
                                 </app-input-select>
                             </div>
@@ -61,9 +61,9 @@
                             <div class="input-field col s12">
                                 <app-input-select
                                     labelDescription="Farm From"
-                                    v-model="gpOneFarmFrom"
+                                    v-model="gpOneFarmFromId"
                                     :options="farmoptions"
-                                    @select="val => {gpOneFarmFrom = val}"
+                                    @select="val => {gpOneFarmFromId = val}"
                                 >
                                 </app-input-select>
                             </div>
@@ -127,20 +127,20 @@
         data() {
             return {
                 tabDisables: {
-                    summary: true,
+                    summary: false,
                     photos: true
                 }
             }
         },
 
         computed: {
-            gpOneBreed: {
+            gpOneBreedId: {
                 // get and set value from vuex store
-                get() { return this.$store.state.registerSwine.gpOne.breed; },
+                get() { return this.$store.state.registerSwine.gpOne.breedId; },
                 set(value) {
                     this.$store.commit('updateValue', {
                         instance: 'gpOne',
-                        property: 'breed',
+                        property: 'breedId',
                         value: value
                     });
                 }
@@ -167,13 +167,13 @@
                     });
                 }
             },
-            gpOneFarmFrom: {
+            gpOneFarmFromId: {
                 // get and set value from vuex store
-                get() { return this.$store.state.registerSwine.gpOne.farmFrom; },
+                get() { return this.$store.state.registerSwine.gpOne.farmFromId; },
                 set(value) {
                     this.$store.commit('updateValue', {
                         instance: 'gpOne',
-                        property: 'farmFrom',
+                        property: 'farmFromId',
                         value: value
                     });
                 }
