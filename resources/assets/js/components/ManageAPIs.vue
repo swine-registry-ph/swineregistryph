@@ -412,9 +412,4 @@
         height: 23rem;
     }
 
-    blockquote.error{
-    	border-left: 5px solid #ee6e73;
-    	background-color: #fdf0f1;
-    }
-
 </style>

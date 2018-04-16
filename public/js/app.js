@@ -1695,6 +1695,59 @@ var getters = {
 
     imageFiles: function imageFiles(state) {
         return state.imageFiles;
+    },
+
+    computedAdgFromBirth: function computedAdgFromBirth(state, getters) {
+        return function (instance) {
+            // ADG from birth is computed as (endWeight - birthWeight) / (endDay - birthDay)
+            var endDateInDays = getters.msToDays(new Date(state[instance].adgBirthEndDate).valueOf());
+            var birthDateInDays = getters.msToDays(new Date(state[instance].birthDate).valueOf());
+            var dividend = parseInt(state[instance].adgBirthEndWeight) - parseInt(state[instance].birthWeight);
+            var divisor = endDateInDays - birthDateInDays;
+
+            return divisor > 0 ? getters.precisionRound(dividend / divisor, 2) : 0;
+        };
+    },
+
+    computedAdgOnTest: function computedAdgOnTest(state, getters) {
+        return function (instance) {
+            // ADG on test is computed as (endWeight - startWeight) / (endDay - startDay)
+            var endDateInDays = getters.msToDays(new Date(state[instance].adgTestEndDate).valueOf());
+            var startDateInDays = getters.msToDays(new Date(state[instance].adgTestStartDate).valueOf());
+            var dividend = parseInt(state[instance].adgTestEndWeight) - parseInt(state[instance].adgTestStartWeight);
+            var divisor = endDateInDays - startDateInDays;
+
+            return divisor > 0 ? getters.precisionRound(dividend / divisor, 2) : 0;
+        };
+    },
+
+    computedFeedEfficiency: function computedFeedEfficiency(state, getters) {
+        return function (instance) {
+            // Feed efficiency is computed as feedIntake / adgOnTest
+            var feedIntake = state[instance].feedIntake;
+            var adgOnTest = getters.computedAdgOnTest(instance);
+
+            return adgOnTest > 0 ? getters.precisionRound(feedIntake / adgOnTest, 2) : 0;
+        };
+    },
+
+    msToDays: function msToDays(state) {
+        return function (milliseconds) {
+            // Convert milliseconds to days
+            return milliseconds / 1000 / 86400;
+        };
+    },
+
+    precisionRound: function precisionRound(state) {
+        return function (number) {
+            var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+            // Rounds number to 'precision' number of places
+            // Default number of places is 2
+            var factor = Math.pow(10, precision);
+
+            return !isNaN(Math.round(number * factor) / factor) ? Math.round(number * factor) / factor : 0;
+        };
     }
 
     // mutations
@@ -5608,11 +5661,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         gpOneData: function gpOneData() {
             return this.$store.getters.gpOneData;
         },
+        gpOneComputedAdgFromBirth: function gpOneComputedAdgFromBirth() {
+            return this.$store.getters.computedAdgFromBirth('gpOne');
+        },
+        gpOneComputedAdgOnTest: function gpOneComputedAdgOnTest() {
+            return this.$store.getters.computedAdgOnTest('gpOne');
+        },
+        gpOneComputedFeedEfficiency: function gpOneComputedFeedEfficiency() {
+            return this.$store.getters.computedFeedEfficiency('gpOne');
+        },
         gpSireData: function gpSireData() {
             return this.$store.getters.gpSireData;
         },
+        gpSireComputedAdgFromBirth: function gpSireComputedAdgFromBirth() {
+            return this.$store.getters.computedAdgFromBirth('gpSire');
+        },
+        gpSireComputedAdgOnTest: function gpSireComputedAdgOnTest() {
+            return this.$store.getters.computedAdgOnTest('gpSire');
+        },
+        gpSireComputedFeedEfficiency: function gpSireComputedFeedEfficiency() {
+            return this.$store.getters.computedFeedEfficiency('gpSire');
+        },
         gpDamData: function gpDamData() {
             return this.$store.getters.gpDamData;
+        },
+        gpDamComputedAdgFromBirth: function gpDamComputedAdgFromBirth() {
+            return this.$store.getters.computedAdgFromBirth('gpDam');
+        },
+        gpDamComputedAdgOnTest: function gpDamComputedAdgOnTest() {
+            return this.$store.getters.computedAdgOnTest('gpDam');
+        },
+        gpDamComputedFeedEfficiency: function gpDamComputedFeedEfficiency() {
+            return this.$store.getters.computedFeedEfficiency('gpDam');
         }
     },
 
@@ -5661,7 +5741,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "swine-summary-table"
     }
-  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpOneData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformBreedId(_vm.gpOneData.breedId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.sex) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthWeight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bftCollected) + " ")])])])])])])])]), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpOneData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformBreedId(_vm.gpOneData.breedId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.sex) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthWeight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgFromBirth) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgOnTest) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bftCollected) + " ")])])])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s12 m12 l6",
@@ -5678,7 +5758,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "swine-summary-table"
     }
-  }, [_c('tbody', [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : (_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From Name ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmFromName) + " ")])])] : [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : (_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From Name ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmFromName) + " ")])])] : [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgFromBirth) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgOnTest) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6",
     attrs: {
       "id": "gp-dam-container"
@@ -5693,7 +5773,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "swine-summary-table"
     }
-  }, [_c('tbody', [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : (_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From Name ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmFromName) + " ")])])] : [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s() + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : (_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From Name ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmFromName) + " ")])])] : [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Teat Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align"
   }, [_vm._m(6), _vm._v(" "), _c('a', {
     staticClass: "btn waves-effect waves-light",
@@ -8335,7 +8415,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\nblockquote.error[data-v-13cd11b7]{\n\tborder-left: 5px solid #ee6e73;\n\tbackground-color: #fdf0f1;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n\n", ""]);
 
 // exports
 

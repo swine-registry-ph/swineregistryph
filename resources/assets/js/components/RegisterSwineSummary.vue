@@ -79,15 +79,15 @@
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> {{ }} </td>
+                                            <td> {{ gpOneComputedAdgFromBirth }} </td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> {{ }} </td>
+                                            <td> {{ gpOneComputedAdgOnTest }} </td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
-                                            <td> {{ }} </td>
+                                            <td> {{ gpOneComputedFeedEfficiency }} </td>
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness (BFT) </td>
@@ -199,15 +199,15 @@
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain from Birth </td>
-                                                <td> {{ }} </td>
+                                                <td> {{ gpSireComputedAdgFromBirth }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain on Test </td>
-                                                <td> {{ }} </td>
+                                                <td> {{ gpSireComputedAdgOnTest }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Feed Efficiency </td>
-                                                <td> {{ }} </td>
+                                                <td> {{ gpSireComputedFeedEfficiency }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Backfat Thickness (BFT) </td>
@@ -318,15 +318,15 @@
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain from Birth </td>
-                                                <td> {{ }} </td>
+                                                <td> {{ gpDamComputedAdgFromBirth }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain on Test </td>
-                                                <td> {{ }} </td>
+                                                <td> {{ gpDamComputedAdgOnTest }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Feed Efficiency </td>
-                                                <td> {{ }} </td>
+                                                <td> {{ gpDamComputedFeedEfficiency}} </td>
                                             </tr>
                                             <tr>
                                                 <td> Backfat Thickness (BFT) </td>
@@ -402,11 +402,38 @@
             gpOneData() {
                 return this.$store.getters.gpOneData;
             },
+            gpOneComputedAdgFromBirth() {
+                return this.$store.getters.computedAdgFromBirth('gpOne');
+            },
+            gpOneComputedAdgOnTest() {
+                return this.$store.getters.computedAdgOnTest('gpOne');
+            },
+            gpOneComputedFeedEfficiency() {
+                return this.$store.getters.computedFeedEfficiency('gpOne');
+            },
             gpSireData() {
                 return this.$store.getters.gpSireData;
             },
+            gpSireComputedAdgFromBirth() {
+                return this.$store.getters.computedAdgFromBirth('gpSire');
+            },
+            gpSireComputedAdgOnTest() {
+                return this.$store.getters.computedAdgOnTest('gpSire');
+            },
+            gpSireComputedFeedEfficiency() {
+                return this.$store.getters.computedFeedEfficiency('gpSire');
+            },
             gpDamData() {
                 return this.$store.getters.gpDamData;
+            },
+            gpDamComputedAdgFromBirth() {
+                return this.$store.getters.computedAdgFromBirth('gpDam');
+            },
+            gpDamComputedAdgOnTest() {
+                return this.$store.getters.computedAdgOnTest('gpDam');
+            },
+            gpDamComputedFeedEfficiency() {
+                return this.$store.getters.computedFeedEfficiency('gpDam');
             }
         },
 
