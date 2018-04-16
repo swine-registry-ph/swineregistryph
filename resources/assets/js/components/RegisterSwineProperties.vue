@@ -34,7 +34,7 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'teatno'">Teat number</label>
+                            <label :for="gpOneIdPrefix + 'teatno'">Number of Teats</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOneBirthWeight"
@@ -42,7 +42,7 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'birth-weight'">Birth weight</label>
+                            <label :for="gpOneIdPrefix + 'birth-weight'">Birth weight (kg)</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOneParity"
@@ -146,7 +146,7 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'adg-birth-end-weight'">End Weight</label>
+                            <label :for="gpOneIdPrefix + 'adg-birth-end-weight'">End Weight (kg)</label>
                         </div>
 
                         <div class="col s12">
@@ -165,7 +165,7 @@
                                 @date-select="val => {gpOneAdgTestStartDate = val}"
                             >
                             </app-input-date>
-                            <label for=""> Start Test Date </label>
+                            <label for=""> Start Date of Testing </label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOneAdgTestStartWeight"
@@ -173,7 +173,7 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'adg-test-start-weight'">Start Test Weight</label>
+                            <label :for="gpOneIdPrefix + 'adg-test-start-weight'">Weight at Start of Testing (kg)</label>
                         </div>
                         <div class="col s6 input-field">
                             <app-input-date
@@ -181,7 +181,7 @@
                                 @date-select="val => {gpOneAdgTestEndDate = val}"
                             >
                             </app-input-date>
-                            <label for=""> End Test Date </label>
+                            <label for=""> End Date  of Testing </label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOneAdgTestEndWeight"
@@ -189,7 +189,7 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'adg-test-end-weight'">End Test Weight</label>
+                            <label :for="gpOneIdPrefix + 'adg-test-end-weight'">Weight at End of Testing (kg)</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOneBft"
@@ -213,7 +213,7 @@
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'feed-intake'">Total Feed Intake on Test</label>
+                            <label :for="gpOneIdPrefix + 'feed-intake'">Total Feed Intake during Test (kg)</label>
                         </div>
 
                         <div class="col s12">

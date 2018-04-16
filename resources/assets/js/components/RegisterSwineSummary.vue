@@ -42,7 +42,7 @@
                                             <td> {{ gpOneData.sex }} </td>
                                         </tr>
                                         <tr>
-                                            <td> Teat Number </td>
+                                            <td> Number of Teats </td>
                                             <td> {{ gpOneData.teatNo }} </td>
                                         </tr>
                                         <tr>
@@ -51,7 +51,7 @@
                                         </tr>
                                         <tr>
                                             <td> Birth Weight </td>
-                                            <td> {{ gpOneData.birthWeight }} </td>
+                                            <td> {{ gpOneData.birthWeight }} kg</td>
                                         </tr>
                                         <tr>
                                             <td> Parity </td>
@@ -79,11 +79,11 @@
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain from Birth </td>
-                                            <td> {{ gpOneComputedAdgFromBirth }} </td>
+                                            <td> {{ gpOneComputedAdgFromBirth }} kg/day</td>
                                         </tr>
                                         <tr>
                                             <td> Average Daily Gain on Test </td>
-                                            <td> {{ gpOneComputedAdgOnTest }} </td>
+                                            <td> {{ gpOneComputedAdgOnTest }} kg/day</td>
                                         </tr>
                                         <tr>
                                             <td> Feed Efficiency </td>
@@ -91,7 +91,7 @@
                                         </tr>
                                         <tr>
                                             <td> Backfat Thickness (BFT) </td>
-                                            <td> {{ gpOneData.bft }} </td>
+                                            <td> {{ gpOneData.bft }} mm</td>
                                         </tr>
                                         <tr>
                                             <td> Date of BFT Collection </td>
@@ -114,7 +114,7 @@
                                     <b>
                                         GP Sire Information
                                         <template v-if="gpSireData.existingRegNo">
-                                            (Existing)
+                                            (Registered)
                                         </template>
                                         <template v-else-if="gpSireData.imported.regNo">
                                             (Imported)
@@ -143,8 +143,12 @@
                                                 <td> {{ gpSireData.imported.regNo }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Farm From Name </td>
-                                                <td> {{ gpSireData.imported.farmFromName }} </td>
+                                                <td> Farm Of Origin </td>
+                                                <td> {{ gpSireData.imported.farmOfOrigin }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Country of Origin </td>
+                                                <td> {{ gpSireData.imported.countryOfOrigin }} </td>
                                             </tr>
                                         </template>
                                         <template v-else>
@@ -162,7 +166,7 @@
                                                 <td> {{ gpSireData.farmSwineId }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Teat Number </td>
+                                                <td> Number of Teats </td>
                                                 <td> {{ gpSireData.teatNo }} </td>
                                             </tr>
                                             <tr>
@@ -171,7 +175,7 @@
                                             </tr>
                                             <tr>
                                                 <td> Birth Weight </td>
-                                                <td> {{ gpSireData.birthWeight }} </td>
+                                                <td> {{ gpSireData.birthWeight }} kg</td>
                                             </tr>
                                             <tr>
                                                 <td> Parity </td>
@@ -199,11 +203,11 @@
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain from Birth </td>
-                                                <td> {{ gpSireComputedAdgFromBirth }} </td>
+                                                <td> {{ gpSireComputedAdgFromBirth }} kg/day</td>
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain on Test </td>
-                                                <td> {{ gpSireComputedAdgOnTest }} </td>
+                                                <td> {{ gpSireComputedAdgOnTest }} kg/day</td>
                                             </tr>
                                             <tr>
                                                 <td> Feed Efficiency </td>
@@ -211,7 +215,7 @@
                                             </tr>
                                             <tr>
                                                 <td> Backfat Thickness (BFT) </td>
-                                                <td> {{ gpSireData.bft }} </td>
+                                                <td> {{ gpSireData.bft }} mm</td>
                                             </tr>
                                             <tr>
                                                 <td> Date of BFT Collection </td>
@@ -232,7 +236,7 @@
                                     <b>
                                         GP Dam Information
                                         <template v-if="gpDamData.existingRegNo">
-                                            (Existing)
+                                            (Registered)
                                         </template>
                                         <template v-else-if="gpDamData.imported.regNo">
                                             (Imported)
@@ -261,13 +265,16 @@
                                                 <td> {{ gpDamData.imported.regNo }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Farm From Name </td>
-                                                <td> {{ gpDamData.imported.farmFromName }} </td>
+                                                <td> Farm of Origin </td>
+                                                <td> {{ gpDamData.imported.farmOfOrigin }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Country of Origin </td>
+                                                <td> {{ gpDamData.imported.countryOfOrigin }} </td>
                                             </tr>
                                         </template>
                                         <template v-else>
                                             <!-- For new GP Dam -->
-
                                             <tr>
                                                 <td> Genetic Information ID (optional) </td>
                                                 <td> {{ gpDamData.geneticInfoId }} </td>
@@ -281,7 +288,7 @@
                                                 <td> {{ gpDamData.farmSwineId }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Teat Number </td>
+                                                <td> Number of Teats </td>
                                                 <td> {{ gpDamData.teatNo }} </td>
                                             </tr>
                                             <tr>
@@ -290,7 +297,7 @@
                                             </tr>
                                             <tr>
                                                 <td> Birth Weight </td>
-                                                <td> {{ gpDamData.birthWeight }} </td>
+                                                <td> {{ gpDamData.birthWeight }} kg</td>
                                             </tr>
                                             <tr>
                                                 <td> Parity </td>
@@ -318,11 +325,11 @@
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain from Birth </td>
-                                                <td> {{ gpDamComputedAdgFromBirth }} </td>
+                                                <td> {{ gpDamComputedAdgFromBirth }} kg/day</td>
                                             </tr>
                                             <tr>
                                                 <td> Average Daily Gain on Test </td>
-                                                <td> {{ gpDamComputedAdgOnTest }} </td>
+                                                <td> {{ gpDamComputedAdgOnTest }} kg/day</td>
                                             </tr>
                                             <tr>
                                                 <td> Feed Efficiency </td>
@@ -330,7 +337,7 @@
                                             </tr>
                                             <tr>
                                                 <td> Backfat Thickness (BFT) </td>
-                                                <td> {{ gpDamData.bft }} </td>
+                                                <td> {{ gpDamData.bft }} mm</td>
                                             </tr>
                                             <tr>
                                                 <td> Date of BFT Collection </td>

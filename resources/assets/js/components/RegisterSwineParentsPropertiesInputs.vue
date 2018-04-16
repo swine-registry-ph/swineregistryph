@@ -84,12 +84,20 @@
                     <label :for="parentIdPrefix + 'imported-reg-no'">Imported Animal Registration #</label>
                 </div>
                 <div class="col s12 input-field">
-                    <input v-model="gpParentImportedFarmFromName"
-                        :id="parentIdPrefix + 'imported-reg-no'"
+                    <input v-model="gpParentImportedFarmOfOrigin"
+                        :id="parentIdPrefix + 'imported-farm-origin'"
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'imported-reg-no'">Farm From Name</label>
+                    <label :for="parentIdPrefix + 'imported-farm-origin'">Farm Of Origin</label>
+                </div>
+                <div class="col s12 input-field">
+                    <input v-model="gpParentImportedCountryOfOrigin"
+                        :id="parentIdPrefix + 'imported-country-origin'"
+                        type="text"
+                        class="validate"
+                    >
+                    <label :for="parentIdPrefix + 'imported-country-origin'">Country of Origin</label>
                 </div>
             </template>
 
@@ -127,7 +135,7 @@
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'teatno'">Teat number</label>
+                    <label :for="parentIdPrefix + 'teatno'">Number of Teats</label>
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
@@ -143,7 +151,7 @@
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'birth-weight'">Birth Weight</label>
+                    <label :for="parentIdPrefix + 'birth-weight'">Birth Weight (kg)</label>
                 </div>
                 <div class="col s6 input-field">
                     <input v-model="gpParentLittersizeAliveMale"
@@ -247,7 +255,7 @@
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'adg-birth-end-weight'">End Weight</label>
+                    <label :for="parentIdPrefix + 'adg-birth-end-weight'">End Weight (kg)</label>
                 </div>
 
                 <div class="col s12">
@@ -266,7 +274,7 @@
                         @date-select="val => {gpParentAdgTestStartDate = val}"
                     >
                     </app-input-date>
-                    <label for=""> Start Test Date </label>
+                    <label for=""> Start Date of Testing </label>
                 </div>
                 <div class="col s6 input-field">
                     <input v-model="gpParentAdgTestStartWeight"
@@ -274,7 +282,7 @@
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'adg-test-start-weight'">Start Test Weight</label>
+                    <label :for="parentIdPrefix + 'adg-test-start-weight'">Weight at Start of Testing (kg)</label>
                 </div>
                 <div class="col s6 input-field">
                     <app-input-date
@@ -282,7 +290,7 @@
                         @date-select="val => {gpParentAdgTestEndDate = val}"
                     >
                     </app-input-date>
-                    <label for=""> End Test Date </label>
+                    <label for=""> End Date of Testing </label>
                 </div>
                 <div class="col s6 input-field">
                     <input v-model="gpParentAdgTestEndWeight"
@@ -290,7 +298,7 @@
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'adg-test-end-weight'">End Test Weight</label>
+                    <label :for="parentIdPrefix + 'adg-test-end-weight'">Weight at End of Testing (kg)</label>
                 </div>
                 <div class="col s6 input-field">
                     <input v-model="gpParentBft"
@@ -314,7 +322,7 @@
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'feed-intake'">Total Feed Intake on Test</label>
+                    <label :for="parentIdPrefix + 'feed-intake'">Total Feed Intake during Test (kg)</label>
                 </div>
             </template>
 
@@ -368,13 +376,24 @@
                     });
                 }
             },
-            gpParentImportedFarmFromName: {
+            gpParentImportedFarmOfOrigin: {
                 // get and set value from vuex store
-                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.farmFromName; },
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.farmOfOrigin; },
                 set(value) {
                     this.$store.commit('updateValue', {
                         instance: `${this.prefixedGender}`,
-                        property: 'imported.farmFromName',
+                        property: 'imported.farmOfOrigin',
+                        value: value
+                    });
+                }
+            },
+            gpParentImportedCountryOfOrigin: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.countryOfOrigin; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: `${this.prefixedGender}`,
+                        property: 'imported.countryOfOrigin',
                         value: value
                     });
                 }

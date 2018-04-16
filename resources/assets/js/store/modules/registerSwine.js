@@ -31,7 +31,8 @@ const state = {
         existingRegNo: '',
         imported: {
             regNo: '',
-            farmFromName: ''
+            farmOfOrigin: '',
+            countryOfOrigin: ''
         },
         geneticInfoId: '',
         farmSwineId: '',
@@ -60,7 +61,8 @@ const state = {
         existingRegNo: '',
         imported: {
             regNo: '',
-            farmFromName: ''
+            farmOfOrigin: '',
+            countryOfOrigin: ''
         },
         geneticInfoId: '',
         farmSwineId: '',
