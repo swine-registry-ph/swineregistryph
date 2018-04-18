@@ -372,10 +372,11 @@
                         <p>
                             <br>
                         </p>
-                        <a :href="generateCertificateLink"
-                            class="btn waves-effect waves-light"
+                        <a href="#!"
+                            class="btn waves-effect waves-light submit-and-generate-cert"
                             type="submit"
                             name="action"
+                            @click.prevent="submitInfo($event)"
                         >
                             Submit and Generate Certificate
                         </a>
@@ -451,7 +452,57 @@
 
             transformBreedId(id) {
                 return (id > 0) ? this.breeds[id-1].text : '';
+            },
+
+            submitInfo(event) {
+                const gpOneData = this.gpOneData;
+                const gpSireData = this.gpSireData;
+                const gpDamData = this.gpDamData;
+                const submitButton = $('.submit-and-generate-cert');
+
+                this.disableButtons(submitButton, event.target, 'Submitting Info...')
+
+                // Attach derived values such as ADG, FE, and breedId
+                // for parents to original object before submit
+                gpOneData.adgBirth = this.gpOneComputedAdgFromBirth;
+                gpOneData.adgTest = this.gpOneComputedAdgOnTest;
+                gpOneData.feedEfficiency = this.gpOneComputedFeedEfficiency;
+                gpSireData.adgBirth = this.gpSireComputedAdgFromBirth;
+                gpSireData.adgTest = this.gpSireComputedAdgOnTest;
+                gpSireData.feedEfficiency = this.gpSireComputedFeedEfficiency;
+                gpSireData.breedId = gpOneData.breedId;
+                gpDamData.adgBirth = this.gpDamComputedAdgFromBirth;
+                gpDamData.adgTest = this.gpDamComputedAdgOnTest;
+                gpDamData.feedEfficiency = this.gpDamComputedFeedEfficiency;
+                gpDamData.breedId = this.gpOneData.breedId;
+
+                // Add to server's database
+                axios.post('/breeder/manage-swine/register', {
+                    gpOne: gpOneData,
+                    gpSire: gpSireData,
+                    gpDam: gpDamData
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    
+                    this.enableButtons(submitButton, event.target, 'Submit and Generate Certificate');
+                    Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
             }
+
         },
 
         mounted() {

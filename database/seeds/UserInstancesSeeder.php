@@ -71,20 +71,21 @@ class UserInstancesSeeder extends Seeder
                 $swineHouseTypeIndex = random_int(0,1);
                 $chosenBreedName = $breeds[$swineBreedIndex]['name'];
                 $chosenBreedId = $breeds[$swineBreedIndex]['id'];
+                $swineData = [
+                    'farmProvinceCode' => $farm->province_code,
+                    'farmCode' => $farm->farm_code,
+                    'breedCode' => $breeds[$swineBreedIndex]['code'],
+                    'birthYear' => \Carbon\Carbon::now()->subYear()->year,
+                    'sex' => $sexes[$swineSexIndex],
+                    'houseType' => $houseTypes[$swineHouseTypeIndex],
+                    'farmSwineId' => $farmSwineId
+                ];
 
                 $swine = factory(App\Models\Swine::class)->create([
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => $this->generateRegistrationNumber(
-                                            $farm->province_code,
-                                            $farm->farm_code,
-                                            $breeds[$swineBreedIndex]['code'],
-                                            \Carbon\Carbon::now()->subYear()->year,
-                                            strtoupper(substr($sexes[$swineSexIndex], 0, 1)),
-                                            strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
-                                            $farmSwineId
-                                        )
+                    'registration_no' => $this->generateRegistrationNumber($swineData)
                 ]);
 
                 // Properties are as follows: sex, birth_date, birth_weight,
@@ -180,19 +181,21 @@ class UserInstancesSeeder extends Seeder
                 );
 
                 // Create default GP sire of swine
+                $sireData = [
+                    'farmProvinceCode' => $farm->province_code,
+                    'farmCode' => $farm->farm_code,
+                    'breedCode' => $breeds[$swineBreedIndex]['code'],
+                    'birthYear' => \Carbon\Carbon::now()->subYear()->year,
+                    'sex' => 'M',
+                    'houseType' => $houseTypes[$swineHouseTypeIndex],
+                    'farmSwineId' => $farmGpSireId
+                ];
+
                 $gpSire = factory(App\Models\Swine::class)->create([
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => $this->generateRegistrationNumber(
-                                            $farm->province_code,
-                                            $farm->farm_code,
-                                            $breeds[$swineBreedIndex]['code'],
-                                            \Carbon\Carbon::now()->subYear()->year,
-                                            'M',
-                                            strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
-                                            $farmGpSireId
-                                        )
+                    'registration_no' => $this->generateRegistrationNumber($sireData)
                 ]);
 
                 $gpSire->swineProperties()->saveMany(
@@ -281,19 +284,21 @@ class UserInstancesSeeder extends Seeder
                 );
 
                 // Create default GP dam of swine
+                $damData = [
+                    'farmProvinceCode' => $farm->province_code,
+                    'farmCode' => $farm->farm_code,
+                    'breedCode' => $breeds[$swineBreedIndex]['code'],
+                    'birthYear' => \Carbon\Carbon::now()->subYear()->year,
+                    'sex' => 'F',
+                    'houseType' => $houseTypes[$swineHouseTypeIndex],
+                    'farmSwineId' => random_int(1000, 3000)
+                ];
+
                 $gpDam = factory(App\Models\Swine::class)->create([
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => $this->generateRegistrationNumber(
-                                            $farm->province_code,
-                                            $farm->farm_code,
-                                            $breeds[$swineBreedIndex]['code'],
-                                            \Carbon\Carbon::now()->subYear()->year,
-                                            'F',
-                                            strtoupper(substr($houseTypes[$swineHouseTypeIndex], 0, 1)),
-                                            random_int(1000, 3000)
-                                        )
+                    'registration_no' => $this->generateRegistrationNumber($damData)
                 ]);
 
                 $gpDam->swineProperties()->saveMany(

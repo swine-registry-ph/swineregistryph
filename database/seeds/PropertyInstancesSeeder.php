@@ -122,6 +122,21 @@ class PropertyInstancesSeeder extends Seeder
                 'property' => 'Farm Swine ID / Ear Mark',
                 'definition' => 'Farm swine identification / Ear mark of swine in the farm',
                 'slug' => 'farmSwine_id'
+            ],
+            [
+                'property' => 'Genetic Information ID',
+                'definition' => 'Genetic information ID of swine',
+                'slug' => 'geneticInfo_id'
+            ],
+            [
+                'property' => 'Farm of Origin (Imported Swine)',
+                'definition' => 'Farm of origin of imported swine',
+                'slug' => 'imported_farmOfOrigin'
+            ],
+            [
+                'property' => 'Country of Origin (Imported Swine)',
+                'definition' => 'Country of origin of imported swine',
+                'slug' => 'imported_countryOfOrigin'
             ]
         ];
 

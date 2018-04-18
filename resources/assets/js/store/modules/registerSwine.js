@@ -34,6 +34,7 @@ const state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
+        sex: 'M',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',
@@ -64,6 +65,7 @@ const state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
+        sex: 'F',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',

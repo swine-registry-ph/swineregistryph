@@ -9,17 +9,31 @@ trait CustomHelpers
      * [Location][Farm][Breed][BirthYear][Gender][Tunnel/Open]-earmark/farmID
      * Ex. DAOJJLW16MT-1896
      *
-     * @param
-     * @return string
+     * @param   array   $requiredData
+     * @return  string
      */
-    function generateRegistrationNumber($farmProvinceCode,
-                                        $farmCode,
-                                        $breedCode,
-                                        $birthYear,
-                                        $gender,
-                                        $houseType,
-                                        $earMark)
+    public function generateRegistrationNumber($requiredData)
     {
-        return "{$farmProvinceCode}{$farmCode}{$breedCode}{$birthYear}{$gender}{$houseType}-{$earMark}";
+        return "{$requiredData['farmProvinceCode']}"
+                . "{$requiredData['farmCode']}"
+                . "{$requiredData['breedCode']}"
+                . "{$requiredData['birthYear']}"
+                . "{$this->firstLetterUpper($requiredData['sex'])}"
+                . "{$this->firstLetterUpper($requiredData['houseType'])}"
+                . "-"
+                . "{$requiredData['farmSwineId']}";
     }
+
+    /**
+     * Turns first letter of string to uppercase
+     * and return 1st letter
+     *
+     * @param   string  $string
+     * @return  string
+     */
+    private function firstLetterUpper($string)
+    {
+        return strtoupper(substr($string, 0, 1));
+    }
+
 }

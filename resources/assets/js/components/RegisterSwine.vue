@@ -241,32 +241,6 @@
                 this.getDamInfo(fetchDetails.damRegNo);
             },
 
-            addSwineInfo(gpOneDetails) {
-                // const vm = this;
-                //
-                // // Update parent component of GP1 details
-                // this.gpOneData = gpOneDetails.data;
-                //
-                // // Add to server's database
-                // axios.post('/breeder/manage-swine/register', {
-                //     gpSireId: (vm.gpSireData) ? vm.gpSireData.id : null,
-                //     gpDamId: (vm.gpDamData) ? vm.gpDamData.id : null,
-                //     gpOne: vm.gpOneData,
-                //     basicInfo: vm.basicInfo
-                // })
-                // .then((response) => {
-                //     // Put response in local data storage
-                //     // and enable 'Photos' tab
-                //     vm.basicInfo.id = response.data;
-                //     vm.tabDisables.photos = false;
-                //
-                //     Materialize.toast('Swine info added', 2000, 'green lighten-1');
-                // })
-                // .catch((error) => {
-                //     console.log(error);
-                // });
-            },
-
             addPhotoToImageFiles(imageDetails) {
                 // Put information of uploaded photos in local data storage
                 // and enable 'Summary' tab

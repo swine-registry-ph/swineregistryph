@@ -1625,6 +1625,7 @@ var state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
+        sex: 'M',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',
@@ -1655,6 +1656,7 @@ var state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
+        sex: 'F',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',
@@ -5696,6 +5698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -5759,6 +5762,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         transformBreedId: function transformBreedId(id) {
             return id > 0 ? this.breeds[id - 1].text : '';
+        },
+        submitInfo: function submitInfo(event) {
+            var _this = this;
+
+            var gpOneData = this.gpOneData;
+            var gpSireData = this.gpSireData;
+            var gpDamData = this.gpDamData;
+            var submitButton = $('.submit-and-generate-cert');
+
+            this.disableButtons(submitButton, event.target, 'Submitting Info...');
+
+            // Attach derived values such as ADG, FE, and breedId
+            // for parents to original object before submit
+            gpOneData.adgBirth = this.gpOneComputedAdgFromBirth;
+            gpOneData.adgTest = this.gpOneComputedAdgOnTest;
+            gpOneData.feedEfficiency = this.gpOneComputedFeedEfficiency;
+            gpSireData.adgBirth = this.gpSireComputedAdgFromBirth;
+            gpSireData.adgTest = this.gpSireComputedAdgOnTest;
+            gpSireData.feedEfficiency = this.gpSireComputedFeedEfficiency;
+            gpSireData.breedId = gpOneData.breedId;
+            gpDamData.adgBirth = this.gpDamComputedAdgFromBirth;
+            gpDamData.adgTest = this.gpDamComputedAdgOnTest;
+            gpDamData.feedEfficiency = this.gpDamComputedFeedEfficiency;
+            gpDamData.breedId = this.gpOneData.breedId;
+
+            // Add to server's database
+            axios.post('/breeder/manage-swine/register', {
+                gpOne: gpOneData,
+                gpSire: gpSireData,
+                gpDam: gpDamData
+            }).then(function (response) {
+                console.log(response.data);
+
+                _this.enableButtons(submitButton, event.target, 'Submit and Generate Certificate');
+                Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
     },
 
@@ -5833,11 +5882,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('tbody', [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : (_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align"
   }, [_vm._m(6), _vm._v(" "), _c('a', {
-    staticClass: "btn waves-effect waves-light",
+    staticClass: "btn waves-effect waves-light submit-and-generate-cert",
     attrs: {
-      "href": _vm.generateCertificateLink,
+      "href": "#!",
       "type": "submit",
       "name": "action"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.submitInfo($event)
+      }
     }
   }, [_vm._v("\n                        Submit and Generate Certificate\n                    ")])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6493,31 +6548,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getParents: function getParents(fetchDetails) {
             this.getSireInfo(fetchDetails.sireRegNo);
             this.getDamInfo(fetchDetails.damRegNo);
-        },
-        addSwineInfo: function addSwineInfo(gpOneDetails) {
-            // const vm = this;
-            //
-            // // Update parent component of GP1 details
-            // this.gpOneData = gpOneDetails.data;
-            //
-            // // Add to server's database
-            // axios.post('/breeder/manage-swine/register', {
-            //     gpSireId: (vm.gpSireData) ? vm.gpSireData.id : null,
-            //     gpDamId: (vm.gpDamData) ? vm.gpDamData.id : null,
-            //     gpOne: vm.gpOneData,
-            //     basicInfo: vm.basicInfo
-            // })
-            // .then((response) => {
-            //     // Put response in local data storage
-            //     // and enable 'Photos' tab
-            //     vm.basicInfo.id = response.data;
-            //     vm.tabDisables.photos = false;
-            //
-            //     Materialize.toast('Swine info added', 2000, 'green lighten-1');
-            // })
-            // .catch((error) => {
-            //     console.log(error);
-            // });
         },
         addPhotoToImageFiles: function addPhotoToImageFiles(imageDetails) {
             // Put information of uploaded photos in local data storage
