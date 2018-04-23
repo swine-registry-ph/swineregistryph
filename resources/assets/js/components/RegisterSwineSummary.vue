@@ -26,7 +26,7 @@
                                             <td> {{ gpOneData.geneticInfoId }} </td>
                                         </tr>
                                         <tr>
-                                            <td> Farm From </td>
+                                            <td> Farm Of Origin </td>
                                             <td> {{ transformFarmId(gpOneData.farmFromId) }} </td>
                                         </tr>
                                         <tr>
@@ -39,7 +39,7 @@
                                         </tr>
                                         <tr>
                                             <td> Sex </td>
-                                            <td> {{ gpOneData.sex }} </td>
+                                            <td> {{ capitalize(gpOneData.sex) }} </td>
                                         </tr>
                                         <tr>
                                             <td> Number of Teats </td>
@@ -158,7 +158,7 @@
                                                 <td> {{ gpSireData.geneticInfoId }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Farm From </td>
+                                                <td> Farm Of Origin </td>
                                                 <td> {{ transformFarmId(gpSireData.farmFromId) }} </td>
                                             </tr>
                                             <tr>
@@ -280,7 +280,7 @@
                                                 <td> {{ gpDamData.geneticInfoId }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Farm From </td>
+                                                <td> Farm Of Origin </td>
                                                 <td> {{ transformFarmId(gpDamData.farmFromId) }} </td>
                                             </tr>
                                             <tr>
@@ -452,6 +452,10 @@
 
             transformBreedId(id) {
                 return (id > 0) ? this.breeds[id-1].text : '';
+            },
+
+            capitalize(string) {
+                return _.capitalize(string);
             },
 
             submitInfo(event) {

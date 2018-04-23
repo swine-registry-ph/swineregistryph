@@ -57,10 +57,10 @@
                                 </app-input-date>
                                 <label for=""> Birth Date </label>
                             </div>
-                            <!-- Farm From -->
+                            <!-- Farm of Origin / Farm From -->
                             <div class="input-field col s12">
                                 <app-input-select
-                                    labelDescription="Farm From"
+                                    labelDescription="Farm Of Origin"
                                     v-model="gpOneFarmFromId"
                                     :options="farmoptions"
                                     @select="val => {gpOneFarmFromId = val}"
@@ -127,7 +127,7 @@
         data() {
             return {
                 tabDisables: {
-                    summary: true,
+                    summary: false,
                     photos: true
                 }
             }

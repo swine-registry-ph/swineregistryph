@@ -134,7 +134,7 @@
                 </div>
                 <div class="input-field col s12">
                     <app-input-select
-                        labelDescription="Farm From"
+                        labelDescription="Farm Of Origin"
                         v-model="gpParentFarmFromId"
                         :options="farmoptions"
                         @select="val => {gpParentFarmFromId = val}"
