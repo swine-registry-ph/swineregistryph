@@ -224,6 +224,7 @@ class SwineRepository
         $swineInstance->date_registered = Carbon::now();
         $swineInstance->gpSire_id = $sireId;
         $swineInstance->gpDam_id = $damId;
+        $swineInstance->swinecart = ($swine['swinecart']) ? 1 : 0;
         $swineInstance->save();
 
         // Swine Properties

@@ -151,6 +151,7 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Swine::class, function (Faker\Generator $faker) {
 
     return [
-        'date_registered' => \Carbon\Carbon::now()
+        'date_registered' => \Carbon\Carbon::now(),
+        'swinecart' => true
     ];
 });

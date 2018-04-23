@@ -359,7 +359,11 @@
                                 </h6>
                                 <div class="row">
                                     <div class="col s12">
-                                        <input type="checkbox" id="check-swinecart" class="filled-in"/>
+                                        <input v-model="gpOneSwinecart"
+                                            type="checkbox"
+                                            id="check-swinecart"
+                                            class="filled-in"
+                                        />
                                         <label for="check-swinecart">Include this swine in SwineCart?</label>
                                     </div>
                                 </div>
@@ -442,6 +446,17 @@
             },
             gpDamComputedFeedEfficiency() {
                 return this.$store.getters.computedFeedEfficiency('gpDam');
+            },
+            gpOneSwinecart: {
+                // get and set value from vuex store
+                get() { return this.$store.state.registerSwine.gpOne.swinecart; },
+                set(value) {
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'swinecart',
+                        value: value
+                    });
+                }
             }
         },
 

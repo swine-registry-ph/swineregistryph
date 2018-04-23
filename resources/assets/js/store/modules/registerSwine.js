@@ -25,7 +25,8 @@ const state = {
         parity: '',
         littersizeWeaning: '',
         litterweightWeaning: '',
-        dateWeaning: ''
+        dateWeaning: '',
+        swinecart: false
     },
     gpSire: {
         existingRegNo: '',

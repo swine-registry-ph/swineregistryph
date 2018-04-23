@@ -395,7 +395,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].existingRegNo; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'existingRegNo',
                         value: value
                     });
@@ -406,7 +406,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.regNo; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'imported.regNo',
                         value: value
                     });
@@ -417,7 +417,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.farmOfOrigin; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'imported.farmOfOrigin',
                         value: value
                     });
@@ -428,7 +428,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].imported.countryOfOrigin; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'imported.countryOfOrigin',
                         value: value
                     });
@@ -439,7 +439,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].geneticInfoId; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'geneticInfoId',
                         value: value
                     });
@@ -450,7 +450,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].farmSwineId; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'farmSwineId',
                         value: value
                     });
@@ -461,7 +461,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].farmFromId; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'farmFromId',
                         value: value
                     });
@@ -472,7 +472,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].birthDate; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'birthDate',
                         value: value
                     });
@@ -483,7 +483,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].houseType; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'houseType',
                         value: value
                     });
@@ -494,7 +494,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].teatNo; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'teatNo',
                         value: value
                     });
@@ -505,7 +505,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgBirthEndDate; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'adgBirthEndDate',
                         value: value
                     });
@@ -516,7 +516,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgBirthEndWeight; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'adgBirthEndWeight',
                         value: value
                     });
@@ -527,7 +527,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestStartDate; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'adgTestStartDate',
                         value: value
                     });
@@ -538,7 +538,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestEndDate; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'adgTestEndDate',
                         value: value
                     });
@@ -549,7 +549,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestStartWeight; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'adgTestStartWeight',
                         value: value
                     });
@@ -560,7 +560,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].adgTestEndWeight; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'adgTestEndWeight',
                         value: value
                     });
@@ -571,7 +571,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].bft; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'bft',
                         value: value
                     });
@@ -582,7 +582,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].bftCollected; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'bftCollected',
                         value: value
                     });
@@ -593,7 +593,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].feedIntake; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'feedIntake',
                         value: value
                     });
@@ -604,7 +604,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].birthWeight; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'birthWeight',
                         value: value
                     });
@@ -615,7 +615,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].littersizeAliveMale; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'littersizeAliveMale',
                         value: value
                     });
@@ -626,7 +626,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].littersizeAliveFemale; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'littersizeAliveFemale',
                         value: value
                     });
@@ -637,7 +637,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].parity; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'parity',
                         value: value
                     });
@@ -648,7 +648,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].littersizeWeaning; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'littersizeWeaning',
                         value: value
                     });
@@ -659,7 +659,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].litterweightWeaning; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'litterweightWeaning',
                         value: value
                     });
@@ -670,7 +670,7 @@
                 get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].dateWeaning; },
                 set(value) {
                     this.$store.commit('updateValue', {
-                        instance: `${this.prefixedGender}`,
+                        instance: this.prefixedGender,
                         property: 'dateWeaning',
                         value: value
                     });

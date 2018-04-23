@@ -1616,7 +1616,8 @@ var state = {
         parity: '',
         littersizeWeaning: '',
         litterweightWeaning: '',
-        dateWeaning: ''
+        dateWeaning: '',
+        swinecart: false
     },
     gpSire: {
         existingRegNo: '',
@@ -2561,7 +2562,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'existingRegNo',
                     value: value
                 });
@@ -2574,7 +2575,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'imported.regNo',
                     value: value
                 });
@@ -2587,7 +2588,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'imported.farmOfOrigin',
                     value: value
                 });
@@ -2600,7 +2601,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'imported.countryOfOrigin',
                     value: value
                 });
@@ -2613,7 +2614,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'geneticInfoId',
                     value: value
                 });
@@ -2626,7 +2627,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'farmSwineId',
                     value: value
                 });
@@ -2639,7 +2640,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'farmFromId',
                     value: value
                 });
@@ -2652,7 +2653,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'birthDate',
                     value: value
                 });
@@ -2665,7 +2666,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'houseType',
                     value: value
                 });
@@ -2678,7 +2679,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'teatNo',
                     value: value
                 });
@@ -2691,7 +2692,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'adgBirthEndDate',
                     value: value
                 });
@@ -2704,7 +2705,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'adgBirthEndWeight',
                     value: value
                 });
@@ -2717,7 +2718,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'adgTestStartDate',
                     value: value
                 });
@@ -2730,7 +2731,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'adgTestEndDate',
                     value: value
                 });
@@ -2743,7 +2744,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'adgTestStartWeight',
                     value: value
                 });
@@ -2756,7 +2757,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'adgTestEndWeight',
                     value: value
                 });
@@ -2769,7 +2770,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'bft',
                     value: value
                 });
@@ -2782,7 +2783,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'bftCollected',
                     value: value
                 });
@@ -2795,7 +2796,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'feedIntake',
                     value: value
                 });
@@ -2808,7 +2809,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'birthWeight',
                     value: value
                 });
@@ -2821,7 +2822,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'littersizeAliveMale',
                     value: value
                 });
@@ -2834,7 +2835,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'littersizeAliveFemale',
                     value: value
                 });
@@ -2847,7 +2848,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'parity',
                     value: value
                 });
@@ -2860,7 +2861,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'littersizeWeaning',
                     value: value
                 });
@@ -2873,7 +2874,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'litterweightWeaning',
                     value: value
                 });
@@ -2886,7 +2887,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             },
             set: function set(value) {
                 this.$store.commit('updateValue', {
-                    instance: '' + this.prefixedGender,
+                    instance: this.prefixedGender,
                     property: 'dateWeaning',
                     value: value
                 });
@@ -5866,6 +5867,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -5920,6 +5925,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         gpDamComputedFeedEfficiency: function gpDamComputedFeedEfficiency() {
             return this.$store.getters.computedFeedEfficiency('gpDam');
+        },
+
+        gpOneSwinecart: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.swinecart;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'swinecart',
+                    value: value
+                });
+            }
         }
     },
 
@@ -6043,7 +6062,57 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "center-align"
   }, [_c('b', [_vm._v("\n                                    GP Dam Information\n                                    "), (_vm.gpDamData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpDamData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
     staticClass: "striped summary-table"
-  }, [_c('tbody', [(_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [(_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m12 l6 offset-l3",
+    attrs: {
+      "id": "swinecart-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneSwinecart),
+      expression: "gpOneSwinecart"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "check-swinecart"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.gpOneSwinecart) ? _vm._i(_vm.gpOneSwinecart, null) > -1 : (_vm.gpOneSwinecart)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.gpOneSwinecart,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.gpOneSwinecart = $$a.concat([$$v]))
+          } else {
+            $$i > -1 && (_vm.gpOneSwinecart = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.gpOneSwinecart = $$c
+        }
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "check-swinecart"
+    }
+  }, [_vm._v("Include this swine in SwineCart?")])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align"
   }, [_vm._m(6), _vm._v(" "), _c('a', {
     staticClass: "btn waves-effect waves-light submit-and-generate-cert",
@@ -6074,32 +6143,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12 m12 l6 offset-l3",
-    attrs: {
-      "id": "swinecart-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('h6', {
+  return _c('h6', {
     staticClass: "center-align"
-  }, [_c('b', [_vm._v("SwineCart")])]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('input', {
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "check-swinecart"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "check-swinecart"
-    }
-  }, [_vm._v("Include this swine in SwineCart?")])])])])])])
+  }, [_c('b', [_vm._v("SwineCart")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('br')])
 }]}
