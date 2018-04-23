@@ -74,9 +74,19 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'house_type'
             ],
             [
-                'property' => 'Backfat Thickness',
+                'property' => 'Backfat Thickness (BFT)',
                 'definition' => 'Backfat Thickness (mm)',
                 'slug' => 'bft'
+            ],
+            [
+                'property' => 'BFT Collected',
+                'definition' => 'Date when BFT was collected',
+                'slug' => 'bft_collected'
+            ],
+            [
+                'property' => 'Feed Intake',
+                'definition' => 'Feed Intake during Test',
+                'slug' => 'feed_intake'
             ],
             [
                 'property' => 'Feed Efficiency',

@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
+
 trait CustomHelpers
 {
     /**
@@ -22,6 +24,20 @@ trait CustomHelpers
                 . "{$this->firstLetterUpper($requiredData['houseType'])}"
                 . "-"
                 . "{$requiredData['farmSwineId']}";
+    }
+
+    /**
+     * Changes "Y-m-d" date format to "F d, Y"
+     * Ex. "2018-04-18" -> "April 18, 2018"
+     *
+     * @param   string
+     * @return  string
+     */
+    public function changeDateFormat($originalFormat)
+    {
+        return ($originalFormat)
+            ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('F d, Y')
+            : '';
     }
 
     /**

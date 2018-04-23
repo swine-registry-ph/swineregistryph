@@ -198,49 +198,6 @@
 
             },
 
-            getSireInfo(sireRegNo) {
-                // const vm = this;
-                //
-                // // Fetch from server Sire details
-                // axios.get(`/breeder/manage-swine/get/${sireRegNo}`)
-                //     .then((response) => {
-                //         // Put response in local data storage
-                //         // and enable 'GP Sire' tab
-                //         vm.gpSireData = response.data;
-                //         vm.tabDisables.gpSire = false;
-                //
-                //         Materialize.toast('Sire added', 2000);
-                //     })
-                //     .catch((error) => {
-                //         Materialize.toast('Unable to add Sire', 3000, 'amber lighten-3');
-                //         console.log(error);
-                //     });
-            },
-
-            getDamInfo(damRegNo) {
-                // const vm = this;
-                //
-                // // Fetch from server Dam details
-                // axios.get(`/breeder/manage-swine/get/${damRegNo}`)
-                //     .then((response) => {
-                //         // Put response in local data storage
-                //         // and enable 'GP Dam' tab
-                //         vm.gpDamData = response.data;
-                //         vm.tabDisables.gpDam = false;
-                //
-                //         Materialize.toast('Dam added', 2000);
-                //     })
-                //     .catch((error) => {
-                //         Materialize.toast('Unable to add Dam', 3000, 'amber lighten-3');
-                //         console.log(error);
-                //     });
-            },
-
-            getParents(fetchDetails) {
-                this.getSireInfo(fetchDetails.sireRegNo);
-                this.getDamInfo(fetchDetails.damRegNo);
-            },
-
             addPhotoToImageFiles(imageDetails) {
                 // Put information of uploaded photos in local data storage
                 // and enable 'Summary' tab

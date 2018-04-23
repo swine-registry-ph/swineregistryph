@@ -33,12 +33,32 @@
         <!-- GP Parent: existing -->
         <template v-if="status === 'existing'">
             <div class="col s8 offset-s2 input-field">
-                <input v-model="gpParentExistingRegNo"
+                <input @focusout.stop.prevent="simpleCatch"
+                    v-model="gpParentExistingRegNo"
                     :id="parentIdPrefix + 'reg-no'"
-                    type="text"
                     class="validate"
+                    :class="existingInputClass"
+                    type="text"
                 >
-                <label :for="parentIdPrefix + 'reg-no'">GP {{ parentGender }} Registration #</label>
+                <label :for="parentIdPrefix + 'reg-no'"
+                    :data-error="existingInputDataError"
+                    :data-success="existingInputDataSuccess"
+                >
+                    GP {{ parentGender }} Registration #
+                </label>
+            </div>
+
+            <div class="col s8 offset-s2 center-align">
+                <br>
+                <a href="#!"
+                    :id="parentIdPrefix + 'check'"
+                    class="btn waves-effect waves-light "
+                    type="submit"
+                    name="action"
+                    @click.prevent="checkParent($event)"
+                >
+                    Check {{ parentGender }} if existing
+                </a>
             </div>
         </template>
 
@@ -345,11 +365,27 @@
         data() {
             return {
                 status: 'existing',
-                imported: 'no'
+                imported: 'no',
+                existingButtonPressed: false,
+                existingInputIsValid: true,
+                existingInputDataError: '',
+                existingInputDataSuccess: ''
             }
         },
 
         computed: {
+            existingInputClass() {
+                // determine returning 'valid' or 'invalid' class
+                // depending on the response from the server
+                if(this.gpParentExistingRegNo && this.existingButtonPressed){
+                    return (this.existingInputIsValid) ? 'valid' : 'invalid';
+                }
+                else return '';
+            },
+            parentSex() {
+                // get sex (male/female) of parent from its gender (sire/dam)
+                return (this.parentGender === 'Sire') ? 'male' : 'female';
+            },
             prefixedGender() {
                 // add gp prefix to parentGender
                 return `gp${this.parentGender}`;
@@ -642,14 +678,97 @@
             }
         },
 
+        methods: {
+            simpleCatch(){
+                // simple catch from stop and prevent event default from
+                // gpParentExistingRegNo input text
+                setTimeout(() => {
+                    this.existingButtonPressed = false;
+                }, 0);
+            },
+            checkParent(event) {
+                const vm = this;
+                const checkButton = $(`#${vm.parentIdPrefix}check`);
+
+                if(!this.gpParentExistingRegNo){
+                    this.existingButtonPressed = false;
+                    return;
+                }
+
+                this.disableButtons(checkButton, event.target, `Checking ${vm.parentGender}...`);
+                this.existingButtonPressed = true;
+
+                // Fetch from server parent details
+                axios.get(`/breeder/manage-swine/get/${vm.parentSex}/${vm.gpParentExistingRegNo}`)
+                    .then((response) => {
+                        // Check if object or string is returned
+                        // If object is returned then it is
+                        // a success else if it is a
+                        // string, it's a fail
+                        if(typeof response.data === 'object'){
+                            // Put response to vuex store
+                            this.$store.commit('updateParent', {
+                                instance: this.prefixedGender,
+                                data: response.data
+                            });
+
+                            setTimeout(() => {
+                                this.existingInputIsValid = true;
+                                this.existingInputDataSuccess = `${vm.parentGender} exists.`;
+                                this.existingInputDataError = '';
+                                Materialize.toast(`${vm.parentGender} exists.`, 2500, 'green lighten-1');
+                            }, 0);
+                        }
+                        else if(typeof response.data === 'string'){
+                            setTimeout(() => {
+                                this.existingInputIsValid = false;
+                                this.existingInputDataError = response.data;
+                                this.existingInputDataSuccess = '';
+                                Materialize.toast(response.data, 3000, 'amber darken-2');
+                            }, 0);
+                        }
+
+                        this.enableButtons(checkButton, event.target, `Check ${vm.parentGender} if existing`);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            },
+
+            updateParentPropertiesToDefault() {
+                // Update vuex store
+                this.$store.commit('updateParent', {
+                    instance: this.prefixedGender,
+                    sex: this.parentSex,
+                    data: null,
+                });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            }
+        },
+
         watch: {
             'status': function() {
+                // update parent's properties to default
+                this.updateParentPropertiesToDefault();
+
                 this.$nextTick(() => {
                     Materialize.updateTextFields();
                 });
             },
 
             'imported': function() {
+                // update parent's properties to default
+                this.updateParentPropertiesToDefault();
+
                 this.$nextTick(() => {
                     Materialize.updateTextFields();
                 });

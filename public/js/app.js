@@ -1625,7 +1625,7 @@ var state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
-        sex: 'M',
+        sex: 'male',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',
@@ -1656,7 +1656,7 @@ var state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
-        sex: 'F',
+        sex: 'female',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',
@@ -1764,6 +1764,31 @@ var getters = {
             var nestedProperty = payload.property.split('.');
             state[payload.instance][nestedProperty[0]][nestedProperty[1]] = payload.value;
         } else state[payload.instance][payload.property] = payload.value;
+    },
+    updateParent: function updateParent(state, _ref) {
+        var instance = _ref.instance,
+            sex = _ref.sex,
+            data = _ref.data;
+
+        if (data) {
+            // Replace entire object given that the new
+            // object has the same properties
+            // as the old one
+            state[instance] = data;
+        } else {
+            // Or make values of object set to default
+            var defaultObject = Object.keys(state[instance]).map(function (key) {
+                if (key === 'sex') {
+                    state[instance][key] = sex;
+                } else if (key === 'imported') {
+                    Object.keys(state[instance]['imported']).map(function (importedKey) {
+                        state[instance]['imported'][importedKey] = '';
+                    });
+                } else {
+                    state[instance][key] = '';
+                }
+            });
+        }
     }
 };
 
@@ -2090,7 +2115,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -2134,6 +2159,28 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2481,12 +2528,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             status: 'existing',
-            imported: 'no'
+            imported: 'no',
+            existingButtonPressed: false,
+            existingInputIsValid: true,
+            existingInputDataError: '',
+            existingInputDataSuccess: ''
         };
     },
 
 
     computed: {
+        existingInputClass: function existingInputClass() {
+            // determine returning 'valid' or 'invalid' class
+            // depending on the response from the server
+            if (this.gpParentExistingRegNo && this.existingButtonPressed) {
+                return this.existingInputIsValid ? 'valid' : 'invalid';
+            } else return '';
+        },
+        parentSex: function parentSex() {
+            // get sex (male/female) of parent from its gender (sire/dam)
+            return this.parentGender === 'Sire' ? 'male' : 'female';
+        },
         prefixedGender: function prefixedGender() {
             // add gp prefix to parentGender
             return 'gp' + this.parentGender;
@@ -2832,14 +2894,95 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
 
+    methods: {
+        simpleCatch: function simpleCatch() {
+            var _this = this;
+
+            // simple catch from stop and prevent event default from
+            // gpParentExistingRegNo input text
+            setTimeout(function () {
+                _this.existingButtonPressed = false;
+            }, 0);
+        },
+        checkParent: function checkParent(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var checkButton = $('#' + vm.parentIdPrefix + 'check');
+
+            if (!this.gpParentExistingRegNo) {
+                this.existingButtonPressed = false;
+                return;
+            }
+
+            this.disableButtons(checkButton, event.target, 'Checking ' + vm.parentGender + '...');
+            this.existingButtonPressed = true;
+
+            // Fetch from server parent details
+            axios.get('/breeder/manage-swine/get/' + vm.parentSex + '/' + vm.gpParentExistingRegNo).then(function (response) {
+                // Check if object or string is returned
+                // If object is returned then it is
+                // a success else if it is a
+                // string, it's a fail
+                if (_typeof(response.data) === 'object') {
+                    // Put response to vuex store
+                    _this2.$store.commit('updateParent', {
+                        instance: _this2.prefixedGender,
+                        data: response.data
+                    });
+
+                    setTimeout(function () {
+                        _this2.existingInputIsValid = true;
+                        _this2.existingInputDataSuccess = vm.parentGender + ' exists.';
+                        _this2.existingInputDataError = '';
+                        Materialize.toast(vm.parentGender + ' exists.', 2500, 'green lighten-1');
+                    }, 0);
+                } else if (typeof response.data === 'string') {
+                    setTimeout(function () {
+                        _this2.existingInputIsValid = false;
+                        _this2.existingInputDataError = response.data;
+                        _this2.existingInputDataSuccess = '';
+                        Materialize.toast(response.data, 3000, 'amber darken-2');
+                    }, 0);
+                }
+
+                _this2.enableButtons(checkButton, event.target, 'Check ' + vm.parentGender + ' if existing');
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        updateParentPropertiesToDefault: function updateParentPropertiesToDefault() {
+            // Update vuex store
+            this.$store.commit('updateParent', {
+                instance: this.prefixedGender,
+                sex: this.parentSex,
+                data: null
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
     watch: {
         'status': function status() {
+            // update parent's properties to default
+            this.updateParentPropertiesToDefault();
+
             this.$nextTick(function () {
                 Materialize.updateTextFields();
             });
         },
 
         'imported': function imported() {
+            // update parent's properties to default
+            this.updateParentPropertiesToDefault();
+
             this.$nextTick(function () {
                 Materialize.updateTextFields();
             });
@@ -2919,6 +3062,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "gpParentExistingRegNo"
     }],
     staticClass: "validate",
+    class: _vm.existingInputClass,
     attrs: {
       "id": _vm.parentIdPrefix + 'reg-no',
       "type": "text"
@@ -2927,6 +3071,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.gpParentExistingRegNo)
     },
     on: {
+      "focusout": function($event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        return _vm.simpleCatch($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.gpParentExistingRegNo = $event.target.value
@@ -2934,9 +3083,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.parentIdPrefix + 'reg-no'
+      "for": _vm.parentIdPrefix + 'reg-no',
+      "data-error": _vm.existingInputDataError,
+      "data-success": _vm.existingInputDataSuccess
     }
-  }, [_vm._v("GP " + _vm._s(_vm.parentGender) + " Registration #")])])] : (_vm.status === 'new') ? [_c('div', {
+  }, [_vm._v("\n                GP " + _vm._s(_vm.parentGender) + " Registration #\n            ")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s8 offset-s2 center-align"
+  }, [_c('br'), _vm._v(" "), _c('a', {
+    staticClass: "btn waves-effect waves-light ",
+    attrs: {
+      "href": "#!",
+      "id": _vm.parentIdPrefix + 'check',
+      "type": "submit",
+      "name": "action"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.checkParent($event)
+      }
+    }
+  }, [_vm._v("\n                Check " + _vm._s(_vm.parentGender) + " if existing\n            ")])])] : (_vm.status === 'new') ? [_c('div', {
     staticClass: "col s12"
   }, [_c('h6', [_c('b', [_vm._v("Is GP " + _vm._s(_vm.parentGender) + " imported?")])]), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
@@ -5297,7 +5464,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n#swine-summary-table td[data-v-4aec38b4] {\n    padding: 0;\n}\n#swine-summary-table tr td[data-v-4aec38b4]:first-child {\n    color: #757575;\n}\n#swine-summary-table tr td[data-v-4aec38b4]:last-child {\n    color: black;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    margin-bottom: 0px;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    padding-top: 1rem;\n}\n\n/* Accent highlights on cards */\n#swineinfo-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #2672a6;\n}\n#swinecart-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #26a69a;\n}\n#gp-sire-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #9a26a6;\n}\n#gp-dam-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #a69a26;\n}\n", ""]);
+exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;\n}\n.summary-table tr td[data-v-4aec38b4]:first-child {\n    color: #757575;\n}\n.summary-table tr td[data-v-4aec38b4]:last-child {\n    color: black;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    margin-bottom: 0px;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    padding-top: 1rem;\n}\n\n/* Accent highlights on cards */\n#swineinfo-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #2672a6;\n}\n#swinecart-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #26a69a;\n}\n#gp-sire-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #9a26a6;\n}\n#gp-dam-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #a69a26;\n}\n", ""]);
 
 // exports
 
@@ -5796,7 +5963,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response.data);
 
                 _this.enableButtons(submitButton, event.target, 'Submit and Generate Certificate');
-                Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
+                Materialize.toast('Info Submitted!', 2000, 'green lighten-1');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -5844,9 +6011,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "card-content"
   }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('table', {
-    attrs: {
-      "id": "swine-summary-table"
-    }
+    staticClass: "striped summary-table"
   }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpOneData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformBreedId(_vm.gpOneData.breedId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.sex) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bftCollected) + " ")])])])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
@@ -5861,10 +6026,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h6', {
     staticClass: "center-align"
   }, [_c('b', [_vm._v("\n                                    GP Sire Information\n                                    "), (_vm.gpSireData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpSireData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
-    attrs: {
-      "id": "swine-summary-table"
-    }
-  }, [_c('tbody', [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : (_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.countryOfOrigin) + " ")])])] : [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "striped summary-table"
+  }, [_c('tbody', [(_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6",
     attrs: {
       "id": "gp-dam-container"
@@ -5876,10 +6039,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h6', {
     staticClass: "center-align"
   }, [_c('b', [_vm._v("\n                                    GP Dam Information\n                                    "), (_vm.gpDamData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpDamData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
-    attrs: {
-      "id": "swine-summary-table"
-    }
-  }, [_c('tbody', [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : (_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "striped summary-table"
+  }, [_c('tbody', [(_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain from Birth ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain on Test ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align"
   }, [_vm._m(6), _vm._v(" "), _c('a', {
     staticClass: "btn waves-effect waves-light submit-and-generate-cert",
@@ -6508,46 +6669,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$nextTick(function () {
                 $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
             });
-        },
-        getSireInfo: function getSireInfo(sireRegNo) {
-            // const vm = this;
-            //
-            // // Fetch from server Sire details
-            // axios.get(`/breeder/manage-swine/get/${sireRegNo}`)
-            //     .then((response) => {
-            //         // Put response in local data storage
-            //         // and enable 'GP Sire' tab
-            //         vm.gpSireData = response.data;
-            //         vm.tabDisables.gpSire = false;
-            //
-            //         Materialize.toast('Sire added', 2000);
-            //     })
-            //     .catch((error) => {
-            //         Materialize.toast('Unable to add Sire', 3000, 'amber lighten-3');
-            //         console.log(error);
-            //     });
-        },
-        getDamInfo: function getDamInfo(damRegNo) {
-            // const vm = this;
-            //
-            // // Fetch from server Dam details
-            // axios.get(`/breeder/manage-swine/get/${damRegNo}`)
-            //     .then((response) => {
-            //         // Put response in local data storage
-            //         // and enable 'GP Dam' tab
-            //         vm.gpDamData = response.data;
-            //         vm.tabDisables.gpDam = false;
-            //
-            //         Materialize.toast('Dam added', 2000);
-            //     })
-            //     .catch((error) => {
-            //         Materialize.toast('Unable to add Dam', 3000, 'amber lighten-3');
-            //         console.log(error);
-            //     });
-        },
-        getParents: function getParents(fetchDetails) {
-            this.getSireInfo(fetchDetails.sireRegNo);
-            this.getDamInfo(fetchDetails.damRegNo);
         },
         addPhotoToImageFiles: function addPhotoToImageFiles(imageDetails) {
             // Put information of uploaded photos in local data storage

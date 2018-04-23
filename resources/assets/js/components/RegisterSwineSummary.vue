@@ -19,7 +19,7 @@
 
                                 <p> <br> </p>
 
-                                <table id="swine-summary-table" class="">
+                                <table class="striped summary-table">
                                     <tbody>
                                         <tr>
                                             <td> Genetic Information ID (optional) </td>
@@ -127,16 +127,9 @@
 
                                 <p> <br> </p>
 
-                                <table id="swine-summary-table" class="">
+                                <table class="striped summary-table">
                                     <tbody>
-                                        <template v-if="gpSireData.existingRegNo">
-                                            <!-- For existing GP Sire -->
-                                            <tr>
-                                                <td> Registration Number </td>
-                                                <td> {{ gpSireData.existingRegNo }} </td>
-                                            </tr>
-                                        </template>
-                                        <template v-else-if="gpSireData.imported.regNo">
+                                        <template v-if="gpSireData.imported.regNo">
                                             <!-- For imported GP Sire -->
                                             <tr>
                                                 <td> Registration Number </td>
@@ -152,6 +145,13 @@
                                             </tr>
                                         </template>
                                         <template v-else>
+                                            <template v-if="gpSireData.existingRegNo">
+                                                <!-- For existing GP Sire -->
+                                                <tr>
+                                                    <td> Registration Number </td>
+                                                    <td> {{ gpSireData.existingRegNo }} </td>
+                                                </tr>
+                                            </template>
                                             <!-- For new GP Sire -->
                                             <tr>
                                                 <td> Genetic Information ID (optional) </td>
@@ -249,16 +249,9 @@
 
                                 <p> <br> </p>
 
-                                <table id="swine-summary-table" class="">
+                                <table class="striped summary-table">
                                     <tbody>
-                                        <template v-if="gpDamData.existingRegNo">
-                                            <!-- For existing GP Dam -->
-                                            <tr>
-                                                <td> Registration Number </td>
-                                                <td> {{ gpDamData.existingRegNo }} </td>
-                                            </tr>
-                                        </template>
-                                        <template v-else-if="gpDamData.imported.regNo">
+                                        <template v-if="gpDamData.imported.regNo">
                                             <!-- For imported GP Dam -->
                                             <tr>
                                                 <td> Registration Number </td>
@@ -274,6 +267,13 @@
                                             </tr>
                                         </template>
                                         <template v-else>
+                                            <template v-if="gpDamData.existingRegNo">
+                                                <!-- For existing GP Dam -->
+                                                <tr>
+                                                    <td> Registration Number </td>
+                                                    <td> {{ gpDamData.existingRegNo }} </td>
+                                                </tr>
+                                            </template>
                                             <!-- For new GP Dam -->
                                             <tr>
                                                 <td> Genetic Information ID (optional) </td>
@@ -484,9 +484,9 @@
                 })
                 .then((response) => {
                     console.log(response.data);
-                    
+
                     this.enableButtons(submitButton, event.target, 'Submit and Generate Certificate');
-                    Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
+                    Materialize.toast('Info Submitted!', 2000, 'green lighten-1');
                 })
                 .catch((error) => {
                     console.log(error);
@@ -502,7 +502,6 @@
                 buttons.removeClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
             }
-
         },
 
         mounted() {
@@ -512,15 +511,15 @@
 </script>
 
 <style scoped lang="css">
-    #swine-summary-table td {
+    .summary-table td {
         padding: 0;
     }
 
-    #swine-summary-table tr td:first-child {
+    .summary-table tr td:first-child {
         color: #757575;
     }
 
-    #swine-summary-table tr td:last-child {
+    .summary-table tr td:last-child {
         color: black;
     }
 

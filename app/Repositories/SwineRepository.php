@@ -48,11 +48,11 @@ class SwineRepository
             $swineInstance->swineProperties()->saveMany(
                 [
                     new SwineProperty([
-                        'property_id' => 24, // farm of origin
+                        'property_id' => 26, // farm of origin
                         'value'       => $swine['imported']['farmOfOrigin']
                     ]),
                     new SwineProperty([
-                        'property_id' => 25, // country of origin
+                        'property_id' => 27, // country of origin
                         'value'       => $swine['imported']['countryOfOrigin']
                     ])
                 ]
@@ -139,43 +139,51 @@ class SwineRepository
                         'value'       => $swine['bft']
                     ]),
                     new SwineProperty([
-                        'property_id' => 14, // feed efficiency
+                        'property_id' => 14, // bft collected
+                        'value'       => $swine['bftCollected']
+                    ]),
+                    new SwineProperty([
+                        'property_id' => 15, // feed intake
+                        'value'       => $swine['feedIntake']
+                    ]),
+                    new SwineProperty([
+                        'property_id' => 16, // feed efficiency
                         'value'       => $swine['feedEfficiency']
                     ]),
                     new SwineProperty([
-                        'property_id' => 15, // teat number
+                        'property_id' => 17, // teat number
                         'value'       => $swine['teatNo']
                     ]),
                     new SwineProperty([
-                        'property_id' => 16, // parity
+                        'property_id' => 18, // parity
                         'value'       => $swine['parity']
                     ]),
                     new SwineProperty([
-                        'property_id' => 17, // total male born alive
+                        'property_id' => 19, // total male born alive
                         'value'       => $swine['littersizeAliveMale']
                     ]),
                     new SwineProperty([
-                        'property_id' => 18, // total female born alive
+                        'property_id' => 20, // total female born alive
                         'value'       => $swine['littersizeAliveFemale']
                     ]),
                     new SwineProperty([
-                        'property_id' => 19, // littersize at weaning
+                        'property_id' => 21, // littersize at weaning
                         'value'       => $swine['littersizeWeaning']
                     ]),
                     new SwineProperty([
-                        'property_id' => 20, // litterweight at weaning
+                        'property_id' => 22, // litterweight at weaning
                         'value'       => $swine['litterweightWeaning']
                     ]),
                     new SwineProperty([
-                        'property_id' => 21, // date at weaning
+                        'property_id' => 23, // date at weaning
                         'value'       => $swine['dateWeaning']
                     ]),
                     new SwineProperty([
-                        'property_id' => 22, // farm swine id / ear mark
+                        'property_id' => 24, // farm swine id / ear mark
                         'value'       => $swine['farmSwineId']
                     ]),
                     new SwineProperty([
-                        'property_id' => 23, // genetic info id
+                        'property_id' => 25, // genetic info id
                         'value'       => $swine['geneticInfoId']
                     ])
                 ]
@@ -274,49 +282,70 @@ class SwineRepository
                     'value'       => $swine['bft']
                 ]),
                 new SwineProperty([
-                    'property_id' => 14, // feed efficiency
+                    'property_id' => 14, // bft collected
+                    'value'       => $swine['bftCollected']
+                ]),
+                new SwineProperty([
+                    'property_id' => 15, // feed intake
+                    'value'       => $swine['feedIntake']
+                ]),
+                new SwineProperty([
+                    'property_id' => 16, // feed efficiency
                     'value'       => $swine['feedEfficiency']
                 ]),
                 new SwineProperty([
-                    'property_id' => 15, // teat number
+                    'property_id' => 17, // teat number
                     'value'       => $swine['teatNo']
                 ]),
                 new SwineProperty([
-                    'property_id' => 16, // parity
+                    'property_id' => 18, // parity
                     'value'       => $swine['parity']
                 ]),
                 new SwineProperty([
-                    'property_id' => 17, // total male born alive
+                    'property_id' => 19, // total male born alive
                     'value'       => $swine['littersizeAliveMale']
                 ]),
                 new SwineProperty([
-                    'property_id' => 18, // total female born alive
+                    'property_id' => 20, // total female born alive
                     'value'       => $swine['littersizeAliveFemale']
                 ]),
                 new SwineProperty([
-                    'property_id' => 19, // littersize at weaning
+                    'property_id' => 21, // littersize at weaning
                     'value'       => $swine['littersizeWeaning']
                 ]),
                 new SwineProperty([
-                    'property_id' => 20, // litterweight at weaning
+                    'property_id' => 22, // litterweight at weaning
                     'value'       => $swine['litterweightWeaning']
                 ]),
                 new SwineProperty([
-                    'property_id' => 21, // date at weaning
+                    'property_id' => 23, // date at weaning
                     'value'       => $swine['dateWeaning']
                 ]),
                 new SwineProperty([
-                    'property_id' => 22, // farm swine id / ear mark
+                    'property_id' => 24, // farm swine id / ear mark
                     'value'       => $swine['farmSwineId']
                 ]),
                 new SwineProperty([
-                    'property_id' => 23, // genetic info id
+                    'property_id' => 25, // genetic info id
                     'value'       => $swine['geneticInfoId']
                 ])
             ]
         );
 
         return $swineInstance;
+    }
+
+    /**
+     * Wrapper for getting a specific property of swine
+     *
+     * @param   Swine    $swine
+     * @param   integer  $propertyId
+     * @return  string
+     */
+    public function getSwinePropValue($swine, $propertyId)
+    {
+        return $swine->swineProperties->where('property_id', $propertyId)->first()->value
+            ?? '';
     }
 
 }

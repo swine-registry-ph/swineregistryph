@@ -34,7 +34,7 @@ const state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
-        sex: 'M',
+        sex: 'male',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',
@@ -65,7 +65,7 @@ const state = {
             farmOfOrigin: '',
             countryOfOrigin: ''
         },
-        sex: 'F',
+        sex: 'female',
         geneticInfoId: '',
         farmSwineId: '',
         farmFromId: '',
@@ -164,6 +164,33 @@ const mutations = {
             state[payload.instance][nestedProperty[0]][nestedProperty[1]] = payload.value;
         }
         else state[payload.instance][payload.property] = payload.value;
+    },
+
+    updateParent(state, {instance, sex, data}) {
+        if(data) {
+            // Replace entire object given that the new
+            // object has the same properties
+            // as the old one
+            state[instance] = data;
+        }
+        else {
+            // Or make values of object set to default
+            const defaultObject = Object.keys(state[instance]).map((key) => {
+                if(key === 'sex') {
+                    state[instance][key] = sex;
+                }
+                else if(key === 'imported') {
+                    Object.keys(state[instance]['imported']).map((importedKey) => {
+                        state[instance]['imported'][importedKey] = '';
+                    });
+                }
+                else {
+                    state[instance][key] = '';
+                }
+            });
+
+
+        }
     }
 }
 

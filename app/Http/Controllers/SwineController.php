@@ -7,6 +7,7 @@ use App\Models\Photo;
 use App\Models\Property;
 use App\Models\Swine;
 use App\Models\SwineProperty;
+use App\Repositories\CustomHelpers;
 use App\Repositories\SwineRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,9 +17,11 @@ use Storage;
 
 class SwineController extends Controller
 {
+    use CustomHelpers;
+
     protected $user;
     protected $breederUser;
-    protected $swineRepository;
+    protected $swineRepo;
 
     // Constant variable paths
     const SWINE_IMG_PATH = '/images/swine/';
@@ -37,7 +40,7 @@ class SwineController extends Controller
 
             return $next($request);
         });
-        $this->swineRepository = $swineRepository;
+        $this->swineRepo = $swineRepository;
     }
 
     /**
@@ -108,16 +111,50 @@ class SwineController extends Controller
      * @param   integer     $regNo
      * @return  JSON
      */
-    public function getSwine(Request $request, $regNo)
+    public function getSwine(Request $request, $sex, $regNo)
     {
         if($request->ajax()){
-            $swine = Swine::where('registration_no', $regNo)->with('swineProperties')->first();
+            $swine = Swine::where('registration_no', $regNo)->first();
 
-            foreach ($swine->swineProperties as $swineProperty) {
-                $swineProperty->title = Property::find($swineProperty->property_id)->property;
+            if($swine){
+                $swineSex = $this->swineRepo->getSwinePropValue($swine,1);
+
+                if($swineSex === $sex){
+                    return $data = [
+                        'existingRegNo' =>         $swine->registration_no,
+                        'imported' => [
+                            'regNo' =>             ($swine->farm_id == 0) ? $swine->registration_no : '',
+                            'farmOfOrigin' =>      ($swine->farm_id == 0) ? $this->swineRepo->getSwinePropValue($swine, 26) : '',
+                            'countryOfOrigin' =>   ($swine->farm_id == 0) ? $this->swineRepo->getSwinePropValue($swine, 27) : ''
+                        ],
+                        'farmFromId' =>            $swine->farm_id,
+                        'sex' =>                   $this->swineRepo->getSwinePropValue($swine, 1),
+                        'birthDate' =>             $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 2)),
+                        'birthWeight' =>           $this->swineRepo->getSwinePropValue($swine, 3),
+                        'adgBirthEndDate' =>       $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 5)),
+                        'adgBirthEndWeight' =>     $this->swineRepo->getSwinePropValue($swine, 6),
+                        'adgTestStartDate' =>      $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 8)),
+                        'adgTestStartWeight' =>    $this->swineRepo->getSwinePropValue($swine, 9),
+                        'adgTestEndDate' =>        $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 10)),
+                        'adgTestEndWeight' =>      $this->swineRepo->getSwinePropValue($swine, 11),
+                        'houseType' =>             $this->swineRepo->getSwinePropValue($swine, 12),
+                        'bft' =>                   $this->swineRepo->getSwinePropValue($swine, 13),
+                        'bftCollected' =>          $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 14)),
+                        'feedIntake' =>            $this->swineRepo->getSwinePropValue($swine, 15),
+                        'teatNo' =>                $this->swineRepo->getSwinePropValue($swine, 17),
+                        'parity' =>                $this->swineRepo->getSwinePropValue($swine, 18),
+                        'littersizeAliveMale' =>   $this->swineRepo->getSwinePropValue($swine, 19),
+                        'littersizeAliveFemale' => $this->swineRepo->getSwinePropValue($swine, 20),
+                        'littersizeWeaning' =>     $this->swineRepo->getSwinePropValue($swine, 21),
+                        'litterweightWeaning' =>   $this->swineRepo->getSwinePropValue($swine, 22),
+                        'dateWeaning' =>           $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 23)),
+                        'farmSwineId' =>           $this->swineRepo->getSwinePropValue($swine, 24),
+                        'geneticInfoId' =>         $this->swineRepo->getSwinePropValue($swine, 25)
+                    ];
+                }
+                else return 'Swine with registration no. ' . $regNo . ' is not '. $sex . '.';
             }
-
-            return ($swine) ? $swine : 'Swine with registration no. ' . $regNo . ' cannot be found.';
+            else return 'Swine with registration no. ' . $regNo . ' cannot be found.';
         }
     }
 
@@ -130,9 +167,9 @@ class SwineController extends Controller
     public function addSwineInfo(Request $request)
     {
         if($request->ajax()){
-            $gpSireInstance = $this->swineRepository->addParent($request->gpSire);
-            $gpDamInstance = $this->swineRepository->addParent($request->gpDam);
-            $gpOneInstance = $this->swineRepository->addSwine($request->gpOne, $gpSireInstance->id, $gpDamInstance->id);
+            $gpSireInstance = $this->swineRepo->addParent($request->gpSire);
+            $gpDamInstance = $this->swineRepo->addParent($request->gpDam);
+            $gpOneInstance = $this->swineRepo->addSwine($request->gpOne, $gpSireInstance->id, $gpDamInstance->id);
 
             return $gpOneInstance;
         }
