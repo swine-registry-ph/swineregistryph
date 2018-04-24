@@ -78,11 +78,11 @@
                                             <td> {{ gpOneData.dateWeaning }} </td>
                                         </tr>
                                         <tr>
-                                            <td> Average Daily Gain from Birth </td>
+                                            <td> Adjusted ADG from Birth (180 days) </td>
                                             <td> {{ gpOneComputedAdgFromBirth }} kg/day</td>
                                         </tr>
                                         <tr>
-                                            <td> Average Daily Gain on Test </td>
+                                            <td> Adjusted ADG on Test (90-150 days) </td>
                                             <td> {{ gpOneComputedAdgOnTest }} kg/day</td>
                                         </tr>
                                         <tr>
@@ -202,11 +202,11 @@
                                                 <td> {{ gpSireData.dateWeaning }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Average Daily Gain from Birth </td>
+                                                <td> Adjusted ADG from Birth (180 days) </td>
                                                 <td> {{ gpSireComputedAdgFromBirth }} kg/day</td>
                                             </tr>
                                             <tr>
-                                                <td> Average Daily Gain on Test </td>
+                                                <td> Adjusted ADG on Test (90-150 days) </td>
                                                 <td> {{ gpSireComputedAdgOnTest }} kg/day</td>
                                             </tr>
                                             <tr>
@@ -324,11 +324,11 @@
                                                 <td> {{ gpDamData.dateWeaning }} </td>
                                             </tr>
                                             <tr>
-                                                <td> Average Daily Gain from Birth </td>
+                                                <td> Adjusted ADG from Birth (180 days) </td>
                                                 <td> {{ gpDamComputedAdgFromBirth }} kg/day</td>
                                             </tr>
                                             <tr>
-                                                <td> Average Daily Gain on Test </td>
+                                                <td> Adjusted ADG on Test (90-150 days) </td>
                                                 <td> {{ gpDamComputedAdgOnTest }} kg/day</td>
                                             </tr>
                                             <tr>

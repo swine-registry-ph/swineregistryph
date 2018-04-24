@@ -258,7 +258,7 @@
                 <!-- GP Parent: ADG computation from Birth -->
                 <div class="col s12">
                     <h6>
-                        <b>Average Daily Gain computation from Birth</b>
+                        <b>Average Daily Gain (ADG) computation from Birth</b>
                     </h6>
                 </div>
                 <div class="col s6 input-field">

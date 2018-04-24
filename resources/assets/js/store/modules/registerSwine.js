@@ -112,23 +112,30 @@ const getters = {
     },
 
     computedAdgFromBirth: (state, getters) => (instance) => {
-        // ADG from birth is computed as (endWeight - birthWeight) / (endDay - birthDay)
-        const endDateInDays = getters.msToDays(new Date(state[instance].adgBirthEndDate).valueOf());
-        const birthDateInDays = getters.msToDays(new Date(state[instance].birthDate).valueOf());
-        const dividend = parseInt(state[instance].adgBirthEndWeight) - parseInt(state[instance].birthWeight);
-        const divisor =  endDateInDays - birthDateInDays;
+        // ADG from birth is computed as (endWeight - birthWeight) / 180
+        // adjusted 180-day weight
+        const endDateInDays = getters.msToDays(state[instance].adgBirthEndDate);
+        const birthDateInDays = getters.msToDays(state[instance].birthDate);
+        const days = endDateInDays - birthDateInDays;
+        const adjWeightAt180 = getters.adjustedWeight(state[instance].adgBirthEndWeight, days, 180);
+        const dividend = adjWeightAt180 - parseInt(state[instance].birthWeight);
 
-        return (divisor > 0) ? getters.precisionRound(dividend/divisor, 2) : 0;
+        return (dividend > 0) ? getters.customRound(dividend/180, 2) : 0;
     },
 
     computedAdgOnTest: (state, getters) => (instance) => {
-        // ADG on test is computed as (endWeight - startWeight) / (endDay - startDay)
-        const endDateInDays = getters.msToDays(new Date(state[instance].adgTestEndDate).valueOf());
-        const startDateInDays = getters.msToDays(new Date(state[instance].adgTestStartDate).valueOf());
-        const dividend = parseInt(state[instance].adgTestEndWeight) - parseInt(state[instance].adgTestStartWeight);
-        const divisor =  endDateInDays - startDateInDays;
+        // ADG on test is computed as (endWeight - startWeight) / 60
+        // adjusted 150-day weight to 90-day weight
+        const endDateInDays = getters.msToDays(state[instance].adgTestEndDate);
+        const startDateInDays = getters.msToDays(state[instance].adgTestStartDate);
+        const birthDateInDays = getters.msToDays(state[instance].birthDate);
+        const endToBirthDays = endDateInDays - birthDateInDays;
+        const startToBirthDays = startDateInDays - birthDateInDays;
+        const adjWeightAt150 = getters.adjustedWeight(state[instance].adgTestEndWeight, endToBirthDays, 150);
+        const adjWeightAt90 = getters.adjustedWeight(state[instance].adgTestStartWeight, startToBirthDays, 90);
+        const dividend = adjWeightAt150 - adjWeightAt90;
 
-        return (divisor > 0) ? getters.precisionRound(dividend/divisor, 2) : 0;
+        return (dividend > 0) ? getters.customRound(dividend/60, 2) : 0;
     },
 
     computedFeedEfficiency: (state, getters) => (instance) => {
@@ -136,15 +143,25 @@ const getters = {
         const feedIntake = state[instance].feedIntake;
         const adgOnTest = getters.computedAdgOnTest(instance);
 
-        return (adgOnTest > 0) ? getters.precisionRound(feedIntake/adgOnTest, 2) : 0;
+        return (adgOnTest > 0) ? getters.customRound(feedIntake/adgOnTest, 2) : 0;
     },
 
-    msToDays: (state) => (milliseconds) => {
-        // Convert milliseconds to days
-        return (milliseconds/1000)/86400;
+    adjustedWeight: (state, getters) => (weight, days, toDays) => {
+        // Compute adjusted weight according to 'toDays' variable
+        // Ex. the adjusted 180-day weight should have the
+        // equation (weight * 180) / days
+        return (days === toDays)
+            ? parseInt(weight)
+            : (parseInt(weight) * toDays) / days;
     },
 
-    precisionRound: (state) => (number, precision = 2) => {
+    msToDays: (state) => (date) => {
+        // Convert date to milliseconds then
+        // convert milliseconds to days
+        return (new Date(date).valueOf()/1000)/86400;
+    },
+
+    customRound: (state) => (number, precision = 2) => {
         // Rounds number to 'precision' number of places
         // Default number of places is 2
         const factor = Math.pow(10, precision);
