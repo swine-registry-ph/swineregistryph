@@ -194,6 +194,10 @@
 
                 this.$nextTick(() => {
                     $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
+                    // Scroll animation
+                    $('html, body').animate({
+                        scrollTop: $(`#add-swine-tabs`).offset().top - 70 + "px"
+                    }, 500);
                 });
 
             },
