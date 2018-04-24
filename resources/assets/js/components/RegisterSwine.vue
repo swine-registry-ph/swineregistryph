@@ -127,7 +127,7 @@
         data() {
             return {
                 tabDisables: {
-                    summary: false,
+                    summary: true,
                     photos: true
                 }
             }

@@ -55,7 +55,7 @@ class UserInstancesSeeder extends Seeder
             $sexes = ['male', 'female'];
             $houseTypes = ['open', 'tunnel'];
             $breeds = [
-                [ 'id' => 1, 'name' => 'landrace', 'code' => 'LD' ],
+                [ 'id' => 1, 'name' => 'landrace', 'code' => 'LR' ],
                 [ 'id' => 2, 'name' => 'largewhite', 'code' => 'LW' ],
                 [ 'id' => 3, 'name' => 'duroc', 'code' => 'DR' ],
                 [ 'id' => 4, 'name' => 'pietrain', 'code' => 'PT' ]
