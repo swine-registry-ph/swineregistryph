@@ -27,6 +27,19 @@ trait CustomHelpers
     }
 
     /**
+     * Wrapper for getting a specific property of swine
+     *
+     * @param   Swine    $swine
+     * @param   integer  $propertyId
+     * @return  string
+     */
+    public function getSwinePropValue($swine, $propertyId)
+    {
+        return $swine->swineProperties->where('property_id', $propertyId)->first()->value
+            ?? '';
+    }
+
+    /**
      * Changes "Y-m-d" date format to "F d, Y"
      * Ex. "2018-04-18" -> "April 18, 2018"
      *

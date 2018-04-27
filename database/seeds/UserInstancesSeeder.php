@@ -85,7 +85,8 @@ class UserInstancesSeeder extends Seeder
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => $this->generateRegistrationNumber($swineData)
+                    'registration_no' => $this->generateRegistrationNumber($swineData),
+                    'swinecart' => true
                 ]);
 
                 // Properties are as follows: sex, birth_date, birth_weight,
@@ -115,7 +116,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // end weight (adg from birth)
-                            'value' => random_int(70,130)/1.0
+                            'value' => random_int(90,150)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // start date (adg on test)
@@ -123,7 +124,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 9, // start weight (adg on test)
-                            'value' => random_int(70,130)/1.0
+                            'value' => random_int(50,80)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 10, // end date (adg on test)
@@ -131,7 +132,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 11, // end weight (adg on test)
-                            'value' => random_int(70,110)/100.0
+                            'value' => random_int(110,160)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 12, // house type
@@ -151,7 +152,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 16, // feed efficiency
-                            'value' => random_int(10,30)/10.0
+                            'value' => random_int(10,60)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 17, // teat number
@@ -203,7 +204,8 @@ class UserInstancesSeeder extends Seeder
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => $this->generateRegistrationNumber($sireData)
+                    'registration_no' => $this->generateRegistrationNumber($sireData),
+                    'swinecart' => false
                 ]);
 
                 $gpSire->swineProperties()->saveMany(
@@ -226,7 +228,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // end weight (adg from birth)
-                            'value' => random_int(70,130)/1.0
+                            'value' => random_int(90,160)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // start date (adg on test)
@@ -234,7 +236,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 9, // start weight (adg on test)
-                            'value' => random_int(70,130)/1.0
+                            'value' => random_int(50,80)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 10, // end date (adg on test)
@@ -242,7 +244,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 11, // end weight (adg on test)
-                            'value' => random_int(70,110)/100.0
+                            'value' => random_int(110,160)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 12, // house type
@@ -262,7 +264,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 16, // feed efficiency
-                            'value' => random_int(10,30)/10.0
+                            'value' => random_int(10,60)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 17, // teat number
@@ -314,7 +316,8 @@ class UserInstancesSeeder extends Seeder
                     'breed_id' => $chosenBreedId,
                     'breeder_id' => $breeder->id,
                     'farm_id' => $farm->id,
-                    'registration_no' => $this->generateRegistrationNumber($damData)
+                    'registration_no' => $this->generateRegistrationNumber($damData),
+                    'swinecart' => false
                 ]);
 
                 $gpDam->swineProperties()->saveMany(
@@ -337,7 +340,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // end weight (adg from birth)
-                            'value' => random_int(70,130)/1.0
+                            'value' => random_int(90,160)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // start date (adg on test)
@@ -345,7 +348,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 9, // start weight (adg on test)
-                            'value' => random_int(70,130)/1.0
+                            'value' => random_int(50,80)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 10, // end date (adg on test)
@@ -353,7 +356,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 11, // end weight (adg on test)
-                            'value' => random_int(70,110)/100.0
+                            'value' => random_int(110,160)/1.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 12, // house type
@@ -373,7 +376,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 16, // feed efficiency
-                            'value' => random_int(10,30)/10.0
+                            'value' => random_int(10,60)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 17, // teat number

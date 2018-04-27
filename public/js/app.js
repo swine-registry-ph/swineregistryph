@@ -1816,8 +1816,8 @@ var actions = {};
 /* harmony default export */ __webpack_exports__["a"] = ({
     state: state,
     getters: getters,
-    actions: actions,
-    mutations: mutations
+    mutations: mutations,
+    actions: actions
 });
 
 /***/ }),
@@ -2960,7 +2960,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         _this2.existingInputIsValid = false;
                         _this2.existingInputDataError = response.data;
                         _this2.existingInputDataSuccess = '';
-                        Materialize.toast(response.data, 3000, 'amber darken-2');
+                        Materialize.toast(response.data, 3000, 'red darken-1');
                     }, 0);
                 }
 
@@ -5988,10 +5988,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             gpSireData.adgTest = this.gpSireComputedAdgOnTest;
             gpSireData.feedEfficiency = this.gpSireComputedFeedEfficiency;
             gpSireData.breedId = gpOneData.breedId;
+            gpSireData.status = this.determineStatus(gpSireData);
             gpDamData.adgBirth = this.gpDamComputedAdgFromBirth;
             gpDamData.adgTest = this.gpDamComputedAdgOnTest;
             gpDamData.feedEfficiency = this.gpDamComputedFeedEfficiency;
             gpDamData.breedId = this.gpOneData.breedId;
+            gpDamData.status = this.determineStatus(gpDamData);
 
             // Add to server's database
             axios.post('/breeder/manage-swine/register', {
@@ -6006,6 +6008,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        determineStatus: function determineStatus(parentData) {
+            // Help determine if parent to be added is
+            // registered, imported, or new
+            var status = '';
+
+            if (parentData.existingRegNo) status = 'registered';else if (parentData.imported.regNo) status = 'imported';else status = 'new';
+
+            return status;
         },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');

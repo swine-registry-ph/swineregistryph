@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterSwineRequest;
 use App\Models\Breed;
 use App\Models\Photo;
 use App\Models\Property;
@@ -117,39 +118,39 @@ class SwineController extends Controller
             $swine = Swine::where('registration_no', $regNo)->first();
 
             if($swine){
-                $swineSex = $this->swineRepo->getSwinePropValue($swine,1);
+                $swineSex = $this->getSwinePropValue($swine,1);
 
                 if($swineSex === $sex){
                     return $data = [
                         'existingRegNo' =>         $swine->registration_no,
                         'imported' => [
                             'regNo' =>             ($swine->farm_id == 0) ? $swine->registration_no : '',
-                            'farmOfOrigin' =>      ($swine->farm_id == 0) ? $this->swineRepo->getSwinePropValue($swine, 26) : '',
-                            'countryOfOrigin' =>   ($swine->farm_id == 0) ? $this->swineRepo->getSwinePropValue($swine, 27) : ''
+                            'farmOfOrigin' =>      ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 26) : '',
+                            'countryOfOrigin' =>   ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 27) : ''
                         ],
                         'farmFromId' =>            $swine->farm_id,
-                        'sex' =>                   $this->swineRepo->getSwinePropValue($swine, 1),
-                        'birthDate' =>             $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 2)),
-                        'birthWeight' =>           $this->swineRepo->getSwinePropValue($swine, 3),
-                        'adgBirthEndDate' =>       $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 5)),
-                        'adgBirthEndWeight' =>     $this->swineRepo->getSwinePropValue($swine, 6),
-                        'adgTestStartDate' =>      $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 8)),
-                        'adgTestStartWeight' =>    $this->swineRepo->getSwinePropValue($swine, 9),
-                        'adgTestEndDate' =>        $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 10)),
-                        'adgTestEndWeight' =>      $this->swineRepo->getSwinePropValue($swine, 11),
-                        'houseType' =>             $this->swineRepo->getSwinePropValue($swine, 12),
-                        'bft' =>                   $this->swineRepo->getSwinePropValue($swine, 13),
-                        'bftCollected' =>          $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 14)),
-                        'feedIntake' =>            $this->swineRepo->getSwinePropValue($swine, 15),
-                        'teatNo' =>                $this->swineRepo->getSwinePropValue($swine, 17),
-                        'parity' =>                $this->swineRepo->getSwinePropValue($swine, 18),
-                        'littersizeAliveMale' =>   $this->swineRepo->getSwinePropValue($swine, 19),
-                        'littersizeAliveFemale' => $this->swineRepo->getSwinePropValue($swine, 20),
-                        'littersizeWeaning' =>     $this->swineRepo->getSwinePropValue($swine, 21),
-                        'litterweightWeaning' =>   $this->swineRepo->getSwinePropValue($swine, 22),
-                        'dateWeaning' =>           $this->changeDateFormat($this->swineRepo->getSwinePropValue($swine, 23)),
-                        'farmSwineId' =>           $this->swineRepo->getSwinePropValue($swine, 24),
-                        'geneticInfoId' =>         $this->swineRepo->getSwinePropValue($swine, 25)
+                        'sex' =>                   $this->getSwinePropValue($swine, 1),
+                        'birthDate' =>             $this->changeDateFormat($this->getSwinePropValue($swine, 2)),
+                        'birthWeight' =>           $this->getSwinePropValue($swine, 3),
+                        'adgBirthEndDate' =>       $this->changeDateFormat($this->getSwinePropValue($swine, 5)),
+                        'adgBirthEndWeight' =>     $this->getSwinePropValue($swine, 6),
+                        'adgTestStartDate' =>      $this->changeDateFormat($this->getSwinePropValue($swine, 8)),
+                        'adgTestStartWeight' =>    $this->getSwinePropValue($swine, 9),
+                        'adgTestEndDate' =>        $this->changeDateFormat($this->getSwinePropValue($swine, 10)),
+                        'adgTestEndWeight' =>      $this->getSwinePropValue($swine, 11),
+                        'houseType' =>             $this->getSwinePropValue($swine, 12),
+                        'bft' =>                   $this->getSwinePropValue($swine, 13),
+                        'bftCollected' =>          $this->changeDateFormat($this->getSwinePropValue($swine, 14)),
+                        'feedIntake' =>            $this->getSwinePropValue($swine, 15),
+                        'teatNo' =>                $this->getSwinePropValue($swine, 17),
+                        'parity' =>                $this->getSwinePropValue($swine, 18),
+                        'littersizeAliveMale' =>   $this->getSwinePropValue($swine, 19),
+                        'littersizeAliveFemale' => $this->getSwinePropValue($swine, 20),
+                        'littersizeWeaning' =>     $this->getSwinePropValue($swine, 21),
+                        'litterweightWeaning' =>   $this->getSwinePropValue($swine, 22),
+                        'dateWeaning' =>           $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
+                        'farmSwineId' =>           $this->getSwinePropValue($swine, 24),
+                        'geneticInfoId' =>         $this->getSwinePropValue($swine, 25)
                     ];
                 }
                 else return 'Swine with registration no. ' . $regNo . ' is not '. $sex . '.';
@@ -164,7 +165,7 @@ class SwineController extends Controller
      * @param   Request     $request
      * @return  integer
      */
-    public function addSwineInfo(Request $request)
+    public function addSwineInfo(RegisterSwineRequest $request)
     {
         if($request->ajax()){
             $gpSireInstance = $this->swineRepo->addParent($request->gpSire);

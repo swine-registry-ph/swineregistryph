@@ -73,7 +73,7 @@ class SwinesApiTest extends TestCase
             ->assertJsonStructure([
                 '*' => [
                     'id',
-                    'collection_id',
+                    'breeder_id',
                     'breed_id',
                     'farm_id',
                     'gpSire_id',
@@ -107,7 +107,7 @@ class SwinesApiTest extends TestCase
                 ->assertJsonStructure([
                     '*' => [
                         'id',
-                        'collection_id',
+                        'breeder_id',
                         'breed_id',
                         'farm_id',
                         'gpSire_id',

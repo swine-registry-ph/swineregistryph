@@ -78,7 +78,9 @@ class FarmsApiTest extends TestCase
                     'address_line1',
                     'address_line2',
                     'province',
-                    'type',
+                    'province_code',
+                    'farm_code',
+                    'farm_accreditation_no',
                     'created_at',
                     'updated_at',
                     'swines'
@@ -111,7 +113,9 @@ class FarmsApiTest extends TestCase
                         'address_line1',
                         'address_line2',
                         'province',
-                        'type',
+                        'province_code',
+                        'farm_code',
+                        'farm_accreditation_no',
                         'created_at',
                         'updated_at',
                         'swines'

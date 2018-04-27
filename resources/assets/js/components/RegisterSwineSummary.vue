@@ -490,10 +490,12 @@
                 gpSireData.adgTest = this.gpSireComputedAdgOnTest;
                 gpSireData.feedEfficiency = this.gpSireComputedFeedEfficiency;
                 gpSireData.breedId = gpOneData.breedId;
+                gpSireData.status = this.determineStatus(gpSireData);
                 gpDamData.adgBirth = this.gpDamComputedAdgFromBirth;
                 gpDamData.adgTest = this.gpDamComputedAdgOnTest;
                 gpDamData.feedEfficiency = this.gpDamComputedFeedEfficiency;
                 gpDamData.breedId = this.gpOneData.breedId;
+                gpDamData.status = this.determineStatus(gpDamData);
 
                 // Add to server's database
                 axios.post('/breeder/manage-swine/register', {
@@ -510,6 +512,18 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            determineStatus(parentData) {
+                // Help determine if parent to be added is
+                // registered, imported, or new
+                let status = '';
+
+                if(parentData.existingRegNo) status = 'registered';
+                else if (parentData.imported.regNo) status = 'imported';
+                else status = 'new';
+
+                return status;
             },
 
             disableButtons(buttons, actionBtnElement, textToShow) {

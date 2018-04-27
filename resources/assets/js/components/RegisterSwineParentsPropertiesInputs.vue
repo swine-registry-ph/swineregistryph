@@ -724,7 +724,7 @@
                                 this.existingInputIsValid = false;
                                 this.existingInputDataError = response.data;
                                 this.existingInputDataSuccess = '';
-                                Materialize.toast(response.data, 3000, 'amber darken-2');
+                                Materialize.toast(response.data, 3000, 'red darken-1');
                             }, 0);
                         }
 

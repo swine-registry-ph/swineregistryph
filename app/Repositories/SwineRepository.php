@@ -336,17 +336,4 @@ class SwineRepository
         return $swineInstance;
     }
 
-    /**
-     * Wrapper for getting a specific property of swine
-     *
-     * @param   Swine    $swine
-     * @param   integer  $propertyId
-     * @return  string
-     */
-    public function getSwinePropValue($swine, $propertyId)
-    {
-        return $swine->swineProperties->where('property_id', $propertyId)->first()->value
-            ?? '';
-    }
-
 }
