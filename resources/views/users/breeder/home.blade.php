@@ -23,7 +23,7 @@
             <a href="{{ route('viewRegdSwine') }}"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
         </li>
         <li :class="{ active : currentRoute.breeder.viewSwinePedigree }">
-            <a href="#!"> <i class="material-icons">line_style</i> View Swine Pedigree </a>
+            <a href="{{ route('viewSwinePedigreePage') }}"> <i class="material-icons">line_style</i> View Swine Pedigree </a>
         </li>
         <li :class="{ active : currentRoute.breeder.manageFarms }">
             <a href="#!"> <i class="material-icons">store</i> Manage Farms </a>

@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/manage-swine/upload-photo', 'PhotoController@uploadPhoto')->name('uploadPhoto');
         Route::delete('/manage-swine/upload-photo/{photoId}', 'PhotoController@deletePhoto')->name('deletePhoto');
         Route::get('/registry-certificate/{swineId}', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
+        Route::get('/pedigree', 'BreederController@viewSwinePedigreePage')->name('viewSwinePedigreePage');
         Route::get('/swinecart', 'BreederController@viewSwineCartPage')->name('viewSwineCartPage');
     });
 

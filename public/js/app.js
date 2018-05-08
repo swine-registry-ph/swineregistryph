@@ -528,6 +528,10 @@ var nav = new Vue({
                 this.currentRoute.breeder.viewRegdSwine = true;
                 break;
 
+            case '/breeder/pedigree':
+                this.currentRoute.breeder.viewSwinePedigree = true;
+                break;
+
             case '/breeder/swinecart':
                 this.currentRoute.breeder.swineCart = true;
                 break;
