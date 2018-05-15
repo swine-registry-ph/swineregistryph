@@ -52,6 +52,7 @@
                 </li>
                 <!-- Exising breeds list -->
                 <li v-for="(breed, index) in breeds"
+                    :key="breed.id"
                     class="collection-item"
                 >
                     {{ breed.title }}
@@ -97,7 +98,9 @@
 
 <script>
 export default {
-    props: ['initialBreeds'],
+    props: {
+        initialBreeds: Array
+    },
 
     data() {
         return {
@@ -199,7 +202,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style scoped lang="css">
     .collection-header a, .edit-breed-button, #close-add-breed-container-button {
         cursor: pointer;
     }

@@ -198,7 +198,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(51)
+var listToStyles = __webpack_require__(56)
 
 /*
 type StyleObject = {
@@ -414,17 +414,21 @@ function applyToTag (styleElement, obj) {
 /* 15 */,
 /* 16 */,
 /* 17 */,
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(19);
-module.exports = __webpack_require__(85);
-
-
-/***/ }),
+/* 18 */,
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(20);
+module.exports = __webpack_require__(104);
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(44);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -432,9 +436,9 @@ module.exports = __webpack_require__(85);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(20);
+__webpack_require__(21);
 
-window.Vue = __webpack_require__(16);
+window.Vue = __webpack_require__(7);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -442,23 +446,31 @@ window.Vue = __webpack_require__(16);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Import store file for vuex
+
+
+// App
+Vue.component('app-input-date', __webpack_require__(47));
+Vue.component('app-input-select', __webpack_require__(50));
+
 // Breeder
-Vue.component('custom-input-select', __webpack_require__(42));
-Vue.component('custom-input-date', __webpack_require__(45));
-Vue.component('upload-photo', __webpack_require__(48));
-Vue.component('swine-properties', __webpack_require__(54));
-Vue.component('add-swine-summary', __webpack_require__(57));
-Vue.component('collection', __webpack_require__(60));
-Vue.component('registered-swine', __webpack_require__(65));
+Vue.component('register-swine-parents-properties-inputs', __webpack_require__(53));
+Vue.component('register-swine-parents-properties', __webpack_require__(59));
+Vue.component('register-swine-properties', __webpack_require__(64));
+Vue.component('register-swine-summary', __webpack_require__(69));
+Vue.component('register-swine-upload-photo', __webpack_require__(74));
+Vue.component('register-swine', __webpack_require__(79));
+Vue.component('view-registered-swine', __webpack_require__(84));
 
 // Admin
-Vue.component('manage-breeds', __webpack_require__(70));
-Vue.component('manage-properties', __webpack_require__(75));
-Vue.component('manage-apis', __webpack_require__(80));
+Vue.component('manage-breeds', __webpack_require__(89));
+Vue.component('manage-properties', __webpack_require__(94));
+Vue.component('manage-apis', __webpack_require__(99));
 
 // For main container
 var app = new Vue({
-    el: '#app'
+    el: '#app',
+    store: __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */]
 });
 
 // For header container
@@ -516,6 +528,10 @@ var nav = new Vue({
                 this.currentRoute.breeder.viewRegdSwine = true;
                 break;
 
+            case '/breeder/pedigree':
+                this.currentRoute.breeder.viewSwinePedigree = true;
+                break;
+
             case '/breeder/swinecart':
                 this.currentRoute.breeder.swineCart = true;
                 break;
@@ -528,10 +544,10 @@ var nav = new Vue({
 });
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(6);
+window._ = __webpack_require__(8);
 
 /**
  * We'll load jQuery and the MaterializeCSS jQuery plugin which provides support
@@ -542,7 +558,7 @@ window._ = __webpack_require__(6);
 try {
   window.$ = window.jQuery = __webpack_require__(4);
 
-  __webpack_require__(9);
+  __webpack_require__(10);
 } catch (e) {}
 
 /**
@@ -551,7 +567,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(10);
+window.axios = __webpack_require__(11);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -585,7 +601,6 @@ if (token) {
 // });
 
 /***/ }),
-/* 21 */,
 /* 22 */,
 /* 23 */,
 /* 24 */,
@@ -606,15 +621,1219 @@ if (token) {
 /* 39 */,
 /* 40 */,
 /* 41 */,
-/* 42 */
+/* 42 */,
+/* 43 */,
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_registerSwine__ = __webpack_require__(46);
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+    modules: {
+        registerSwine: __WEBPACK_IMPORTED_MODULE_2__modules_registerSwine__["a" /* default */]
+    }
+}));
+
+/***/ }),
+/* 45 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export Store */
+/* unused harmony export install */
+/* unused harmony export mapState */
+/* unused harmony export mapMutations */
+/* unused harmony export mapGetters */
+/* unused harmony export mapActions */
+/* unused harmony export createNamespacedHelpers */
+/**
+ * vuex v3.0.1
+ * (c) 2017 Evan You
+ * @license MIT
+ */
+var applyMixin = function (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+};
+
+var devtoolHook =
+  typeof window !== 'undefined' &&
+  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  this._children = Object.create(null);
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors$1 = { namespaced: { configurable: true } };
+
+prototypeAccessors$1.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors$1 );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "Store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  var state = options.state; if ( state === void 0 ) state = {};
+  if (typeof state === 'function') {
+    state = state() || {};
+  }
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  if (Vue.config.devtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors = { state: { configurable: true } };
+
+prototypeAccessors.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors.state.set = function (v) {
+  if (true) {
+    assert(false, "Use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+    "development" !== 'production' &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
+
+  return entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload)
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  return genericSubscribe(fn, this._subscribers)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn) {
+  return genericSubscribe(fn, this._actionSubscribers)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors );
+
+function genericSubscribe (fn, subs) {
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    computed[key] = function () { return fn(store); };
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ("development" !== 'production' && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ("development" !== 'production' && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  var gettersProxy = {};
+
+  var splitPos = namespace.length;
+  Object.keys(store.getters).forEach(function (type) {
+    // skip if the target getter is not match this namespace
+    if (type.slice(0, splitPos) !== namespace) { return }
+
+    // extract local getter type
+    var localType = type.slice(splitPos);
+
+    // Add a port to the getters proxy.
+    // Define as getter property because
+    // we do not want to evaluate the getters in this time.
+    Object.defineProperty(gettersProxy, localType, {
+      get: function () { return store.getters[type]; },
+      enumerable: true
+    });
+  });
+
+  return gettersProxy
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload, cb) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload, cb);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ("development" !== 'production' && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+function normalizeMap (map) {
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ("development" !== 'production' && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.0.1',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+
+/* harmony default export */ __webpack_exports__["a"] = (index_esm);
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// Initial state
+var state = {
+    gpOne: {
+        id: 0,
+        breedId: '',
+        sex: '',
+        birthDate: '',
+        farmFromId: '',
+        geneticInfoId: '',
+        farmSwineId: '',
+        houseType: '',
+        teatNo: '',
+        adgBirthEndDate: '',
+        adgBirthEndWeight: '',
+        adgTestStartDate: '',
+        adgTestEndDate: '',
+        adgTestStartWeight: '',
+        adgTestEndWeight: '',
+        bft: '',
+        bftCollected: '',
+        feedIntake: '',
+        birthWeight: '',
+        littersizeAliveMale: '',
+        littersizeAliveFemale: '',
+        parity: '',
+        littersizeWeaning: '',
+        litterweightWeaning: '',
+        dateWeaning: '',
+        swinecart: false
+    },
+    gpSire: {
+        existingRegNo: '',
+        imported: {
+            regNo: '',
+            farmOfOrigin: '',
+            countryOfOrigin: ''
+        },
+        sex: 'male',
+        geneticInfoId: '',
+        farmSwineId: '',
+        farmFromId: '',
+        birthDate: '',
+        houseType: '',
+        teatNo: '',
+        adgBirthEndDate: '',
+        adgBirthEndWeight: '',
+        adgTestStartDate: '',
+        adgTestEndDate: '',
+        adgTestStartWeight: '',
+        adgTestEndWeight: '',
+        bft: '',
+        bftCollected: '',
+        feedIntake: '',
+        birthWeight: '',
+        littersizeAliveMale: '',
+        littersizeAliveFemale: '',
+        parity: '',
+        littersizeWeaning: '',
+        litterweightWeaning: '',
+        dateWeaning: ''
+    },
+    gpDam: {
+        existingRegNo: '',
+        imported: {
+            regNo: '',
+            farmOfOrigin: '',
+            countryOfOrigin: ''
+        },
+        sex: 'female',
+        geneticInfoId: '',
+        farmSwineId: '',
+        farmFromId: '',
+        birthDate: '',
+        houseType: '',
+        teatNo: '',
+        adgBirthEndDate: '',
+        adgBirthEndWeight: '',
+        adgTestStartDate: '',
+        adgTestEndDate: '',
+        adgTestStartWeight: '',
+        adgTestEndWeight: '',
+        bft: '',
+        bftCollected: '',
+        feedIntake: '',
+        birthWeight: '',
+        littersizeAliveMale: '',
+        littersizeAliveFemale: '',
+        parity: '',
+        littersizeWeaning: '',
+        litterweightWeaning: '',
+        dateWeaning: ''
+    },
+    imageFiles: []
+};
+
+// getters
+var getters = {
+    gpOneData: function gpOneData(state) {
+        return state.gpOne;
+    },
+
+    gpSireData: function gpSireData(state) {
+        return state.gpSire;
+    },
+
+    gpDamData: function gpDamData(state) {
+        return state.gpDam;
+    },
+
+    imageFiles: function imageFiles(state) {
+        return state.imageFiles;
+    },
+
+    computedAdgFromBirth: function computedAdgFromBirth(state, getters) {
+        return function (instance) {
+            // ADG from birth is computed as (endWeight - birthWeight) / 180
+            // adjusted 180-day weight
+            var endDateInDays = getters.msToDays(state[instance].adgBirthEndDate);
+            var birthDateInDays = getters.msToDays(state[instance].birthDate);
+            var days = endDateInDays - birthDateInDays;
+            var adjWeightAt180 = getters.adjustedWeight(state[instance].adgBirthEndWeight, days, 180);
+            var dividend = adjWeightAt180 - parseInt(state[instance].birthWeight);
+
+            return dividend > 0 ? getters.customRound(dividend / 180, 2) : 0;
+        };
+    },
+
+    computedAdgOnTest: function computedAdgOnTest(state, getters) {
+        return function (instance) {
+            // ADG on test is computed as (endWeight - startWeight) / 60
+            // adjusted 150-day weight to 90-day weight
+            var endDateInDays = getters.msToDays(state[instance].adgTestEndDate);
+            var startDateInDays = getters.msToDays(state[instance].adgTestStartDate);
+            var birthDateInDays = getters.msToDays(state[instance].birthDate);
+            var endToBirthDays = endDateInDays - birthDateInDays;
+            var startToBirthDays = startDateInDays - birthDateInDays;
+            var adjWeightAt150 = getters.adjustedWeight(state[instance].adgTestEndWeight, endToBirthDays, 150);
+            var adjWeightAt90 = getters.adjustedWeight(state[instance].adgTestStartWeight, startToBirthDays, 90);
+            var dividend = adjWeightAt150 - adjWeightAt90;
+
+            return dividend > 0 ? getters.customRound(dividend / 60, 2) : 0;
+        };
+    },
+
+    computedFeedEfficiency: function computedFeedEfficiency(state, getters) {
+        return function (instance) {
+            // Feed efficiency is computed as feedIntake / adgOnTest
+            var feedIntake = state[instance].feedIntake;
+            var adgOnTest = getters.computedAdgOnTest(instance);
+
+            return adgOnTest > 0 ? getters.customRound(feedIntake / adgOnTest, 2) : 0;
+        };
+    },
+
+    adjustedWeight: function adjustedWeight(state, getters) {
+        return function (weight, days, toDays) {
+            // Compute adjusted weight according to 'toDays' variable
+            // Ex. the adjusted 180-day weight should have the
+            // equation (weight * 180) / days
+            return days === toDays ? parseInt(weight) : parseInt(weight) * toDays / days;
+        };
+    },
+
+    msToDays: function msToDays(state) {
+        return function (date) {
+            // Convert date to milliseconds then
+            // convert milliseconds to days
+            return new Date(date).valueOf() / 1000 / 86400;
+        };
+    },
+
+    customRound: function customRound(state) {
+        return function (number) {
+            var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+            // Rounds number to 'precision' number of places
+            // Default number of places is 2
+            var factor = Math.pow(10, precision);
+
+            return !isNaN(Math.round(number * factor) / factor) ? Math.round(number * factor) / factor : 0;
+        };
+    }
+
+    // mutations
+};var mutations = {
+    updateValue: function updateValue(state, payload) {
+        // Check if property includes period for access
+        // to nested object property such as
+        // gpSire.imported.regNo
+        if (payload.property.includes('.')) {
+            var nestedProperty = payload.property.split('.');
+            state[payload.instance][nestedProperty[0]][nestedProperty[1]] = payload.value;
+        } else state[payload.instance][payload.property] = payload.value;
+    },
+    updateParent: function updateParent(state, _ref) {
+        var instance = _ref.instance,
+            sex = _ref.sex,
+            data = _ref.data;
+
+        if (data) {
+            // Replace entire object given that the new
+            // object has the same properties
+            // as the old one
+            state[instance] = data;
+        } else {
+            // Or make values of object set to default
+            var defaultObject = Object.keys(state[instance]).map(function (key) {
+                if (key === 'sex') {
+                    state[instance][key] = sex;
+                } else if (key === 'imported') {
+                    Object.keys(state[instance]['imported']).map(function (importedKey) {
+                        state[instance]['imported'][importedKey] = '';
+                    });
+                } else {
+                    state[instance][key] = '';
+                }
+            });
+        }
+    }
+};
+
+// actions
+var actions = {};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: state,
+    getters: getters,
+    mutations: mutations,
+    actions: actions
+});
+
+/***/ }),
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(43),
+  __webpack_require__(48),
   /* template */
-  __webpack_require__(44),
+  __webpack_require__(49),
   /* styles */
   null,
   /* scopeId */
@@ -622,9 +1841,9 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CustomInputSelect.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/AppInputDate.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] CustomInputSelect.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] AppInputDate.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -633,9 +1852,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d1f3eea8", Component.options)
+    hotAPI.createRecord("data-v-384ebdd0", Component.options)
   } else {
-    hotAPI.reload("data-v-d1f3eea8", Component.options)
+    hotAPI.reload("data-v-384ebdd0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -646,7 +1865,105 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        value: String
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        // Initialize datepicker
+        $(this.$refs.dateSelect).pickadate({
+            max: true,
+            selectMonths: true,
+            selectYears: 3,
+            format: 'mmmm d, yyyy'
+        });
+
+        $(this.$refs.dateSelect).on('change', function () {
+            _this.$emit('date-select', _this.$refs.dateSelect.value);
+        });
+    }
+});
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('input', {
+    ref: "dateSelect",
+    staticClass: "datepicker",
+    attrs: {
+      "type": "date",
+      "name": "date"
+    },
+    domProps: {
+      "value": _vm.value
+    }
+  })
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-384ebdd0", module.exports)
+  }
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(51),
+  /* template */
+  __webpack_require__(52),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/AppInputSelect.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AppInputSelect.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1c21319e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1c21319e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -663,7 +1980,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value', 'options', 'labelDescription'],
+    props: {
+        labelDescription: String,
+        value: String,
+        options: Array
+    },
 
     data: function data() {
         return {
@@ -671,27 +1992,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
         // Initialize Material select
         $(this.$refs.select).material_select();
 
-        // Bind change event to emit new value
-        var self = this;
+        // Temporary way to make initial value
+        // on select have gray text color
+        $(this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').addClass('grey-text');
 
         $(this.$refs.select).on('change', function () {
-            self.$emit('select', self.$refs.select.value);
+            _this.$emit('select', _this.$refs.select.value);
 
             // Show label upon value change
-            self.hideLabel = true;
+            _this.hideLabel = true;
+
+            // Make value on select have
+            // black text color
+            $(_this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').removeClass('grey-text');
         });
     }
 });
 
 /***/ }),
-/* 44 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {}, [_c('select', {
+  return _c('div', {
+    staticClass: "app-input-select"
+  }, [_c('select', {
     ref: "select",
     domProps: {
       "value": _vm.value
@@ -724,131 +2054,34 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-d1f3eea8", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-1c21319e", module.exports)
   }
 }
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(1)(
-  /* script */
-  __webpack_require__(46),
-  /* template */
-  __webpack_require__(47),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CustomInputDate.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] CustomInputDate.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-30fa005e", Component.options)
-  } else {
-    hotAPI.reload("data-v-30fa005e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-
-    mounted: function mounted() {
-        // Initialize datepicker
-        $(this.$refs.dateSelect).pickadate({
-            max: true,
-            selectMonths: true,
-            selectYears: 3,
-            format: 'mmmm d, yyyy'
-        });
-
-        // Bind change event to emit new value
-        var self = this;
-
-        $(this.$refs.dateSelect).on('change', function () {
-            self.$emit('date-select', self.$refs.dateSelect.value);
-        });
-    }
-});
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('input', {
-    ref: "dateSelect",
-    staticClass: "datepicker",
-    attrs: {
-      "type": "date",
-      "name": "date"
-    },
-    domProps: {
-      "value": _vm.value
-    }
-  })
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-30fa005e", module.exports)
-  }
-}
-
-/***/ }),
-/* 48 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(49)
+  __webpack_require__(54)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(52),
+  __webpack_require__(57),
   /* template */
-  __webpack_require__(53),
+  __webpack_require__(58),
   /* styles */
   injectStyle,
   /* scopeId */
-  null,
+  "data-v-4df65ca5",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/UploadPhoto.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineParentsPropertiesInputs.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] UploadPhoto.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwineParentsPropertiesInputs.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -857,9 +2090,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4ba37d30", Component.options)
+    hotAPI.createRecord("data-v-4df65ca5", Component.options)
   } else {
-    hotAPI.reload("data-v-4ba37d30", Component.options)
+    hotAPI.reload("data-v-4df65ca5", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -870,23 +2103,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(50);
+var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("65934be6", content, false);
+var update = __webpack_require__(3)("66331897", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4ba37d30\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadPhoto.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4ba37d30\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadPhoto.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4df65ca5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsPropertiesInputs.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4df65ca5\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsPropertiesInputs.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -896,7 +2129,7 @@ if(false) {
 }
 
 /***/ }),
-/* 50 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -904,13 +2137,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    min-height: 20rem;\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 51 */
+/* 56 */
 /***/ (function(module, exports) {
 
 /**
@@ -943,12 +2176,4110 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 52 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__(17);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        farmoptions: Array,
+        parentGender: String,
+        parentIdPrefix: String
+    },
+
+    data: function data() {
+        return {
+            status: 'existing',
+            imported: 'no',
+            existingButtonPressed: false,
+            existingInputIsValid: true,
+            existingInputDataError: '',
+            existingInputDataSuccess: ''
+        };
+    },
+
+
+    computed: {
+        existingInputClass: function existingInputClass() {
+            // determine returning 'valid' or 'invalid' class
+            // depending on the response from the server
+            if (this.gpParentExistingRegNo && this.existingButtonPressed) {
+                return this.existingInputIsValid ? 'valid' : 'invalid';
+            } else return '';
+        },
+        parentSex: function parentSex() {
+            // get sex (male/female) of parent from its gender (sire/dam)
+            return this.parentGender === 'Sire' ? 'male' : 'female';
+        },
+        prefixedGender: function prefixedGender() {
+            // add gp prefix to parentGender
+            return 'gp' + this.parentGender;
+        },
+
+        gpParentExistingRegNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].existingRegNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'existingRegNo',
+                    value: value
+                });
+            }
+        },
+        gpParentImportedRegNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].imported.regNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'imported.regNo',
+                    value: value
+                });
+            }
+        },
+        gpParentImportedFarmOfOrigin: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].imported.farmOfOrigin;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'imported.farmOfOrigin',
+                    value: value
+                });
+            }
+        },
+        gpParentImportedCountryOfOrigin: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].imported.countryOfOrigin;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'imported.countryOfOrigin',
+                    value: value
+                });
+            }
+        },
+        gpParentGeneticInfoId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].geneticInfoId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'geneticInfoId',
+                    value: value
+                });
+            }
+        },
+        gpParentFarmSwineId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].farmSwineId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'farmSwineId',
+                    value: value
+                });
+            }
+        },
+        gpParentFarmFromId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].farmFromId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'farmFromId',
+                    value: value
+                });
+            }
+        },
+        gpParentBirthDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].birthDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'birthDate',
+                    value: value
+                });
+            }
+        },
+        gpParentHouseType: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].houseType;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'houseType',
+                    value: value
+                });
+            }
+        },
+        gpParentTeatNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].teatNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'teatNo',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgBirthEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgBirthEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'adgBirthEndDate',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgBirthEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgBirthEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'adgBirthEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestStartDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestStartDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'adgTestStartDate',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'adgTestEndDate',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestStartWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestStartWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'adgTestStartWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentAdgTestEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].adgTestEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'adgTestEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentBft: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].bft;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'bft',
+                    value: value
+                });
+            }
+        },
+        gpParentBftCollected: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].bftCollected;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'bftCollected',
+                    value: value
+                });
+            }
+        },
+        gpParentFeedIntake: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].feedIntake;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'feedIntake',
+                    value: value
+                });
+            }
+        },
+        gpParentBirthWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].birthWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'birthWeight',
+                    value: value
+                });
+            }
+        },
+        gpParentLittersizeAliveMale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].littersizeAliveMale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'littersizeAliveMale',
+                    value: value
+                });
+            }
+        },
+        gpParentLittersizeAliveFemale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].littersizeAliveFemale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'littersizeAliveFemale',
+                    value: value
+                });
+            }
+        },
+        gpParentParity: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].parity;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'parity',
+                    value: value
+                });
+            }
+        },
+        // get and set value from vuex store
+        gpParentLittersizeWeaning: {
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].littersizeWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'littersizeWeaning',
+                    value: value
+                });
+            }
+        },
+        gpParentLitterweightWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].litterweightWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'litterweightWeaning',
+                    value: value
+                });
+            }
+        },
+        gpParentDateWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine['' + this.prefixedGender].dateWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: this.prefixedGender,
+                    property: 'dateWeaning',
+                    value: value
+                });
+            }
+        }
+    },
+
+    methods: {
+        simpleCatch: function simpleCatch() {
+            var _this = this;
+
+            // simple catch from stop and prevent event default from
+            // gpParentExistingRegNo input text
+            setTimeout(function () {
+                _this.existingButtonPressed = false;
+            }, 0);
+        },
+        checkParent: function checkParent(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var checkButton = $('#' + vm.parentIdPrefix + 'check');
+
+            if (!this.gpParentExistingRegNo) {
+                this.existingButtonPressed = false;
+                return;
+            }
+
+            this.disableButtons(checkButton, event.target, 'Checking ' + vm.parentGender + '...');
+            this.existingButtonPressed = true;
+
+            // Fetch from server parent details
+            axios.get('/breeder/manage-swine/get/' + vm.parentSex + '/' + vm.gpParentExistingRegNo).then(function (response) {
+                // Check if object or string is returned
+                // If object is returned then it is
+                // a success else if it is a
+                // string, it's a fail
+                if (_typeof(response.data) === 'object') {
+                    // Put response to vuex store
+                    _this2.$store.commit('updateParent', {
+                        instance: _this2.prefixedGender,
+                        data: response.data
+                    });
+
+                    setTimeout(function () {
+                        _this2.existingInputIsValid = true;
+                        _this2.existingInputDataSuccess = vm.parentGender + ' exists.';
+                        _this2.existingInputDataError = '';
+                        Materialize.toast(vm.parentGender + ' exists.', 2500, 'green lighten-1');
+                    }, 0);
+                } else if (typeof response.data === 'string') {
+                    setTimeout(function () {
+                        _this2.existingInputIsValid = false;
+                        _this2.existingInputDataError = response.data;
+                        _this2.existingInputDataSuccess = '';
+                        Materialize.toast(response.data, 3000, 'red darken-1');
+                    }, 0);
+                }
+
+                _this2.enableButtons(checkButton, event.target, 'Check ' + vm.parentGender + ' if existing');
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        updateParentPropertiesToDefault: function updateParentPropertiesToDefault() {
+            // Update vuex store
+            this.$store.commit('updateParent', {
+                instance: this.prefixedGender,
+                sex: this.parentSex,
+                data: null
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    watch: {
+        'status': function status() {
+            // update parent's properties to default
+            this.updateParentPropertiesToDefault();
+
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+
+        'imported': function imported() {
+            // update parent's properties to default
+            this.updateParentPropertiesToDefault();
+
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12 m12 l6 offset-l3 parent-container",
+    attrs: {
+      "id": ""
+    }
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status),
+      expression: "status"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'status',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'new',
+      "value": "new"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status, "new")
+    },
+    on: {
+      "change": function($event) {
+        _vm.status = "new"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'new'
+    }
+  }, [_vm._v(_vm._s(_vm.parentGender) + " is not yet registered in the system")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.status),
+      expression: "status"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'status',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'existing',
+      "value": "existing"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.status, "existing")
+    },
+    on: {
+      "change": function($event) {
+        _vm.status = "existing"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'existing'
+    }
+  }, [_vm._v(_vm._s(_vm.parentGender) + " is currently registered in the system")])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), (_vm.status === 'existing') ? [_c('div', {
+    staticClass: "col s8 offset-s2 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentExistingRegNo),
+      expression: "gpParentExistingRegNo"
+    }],
+    staticClass: "validate",
+    class: _vm.existingInputClass,
+    attrs: {
+      "id": _vm.parentIdPrefix + 'reg-no',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentExistingRegNo)
+    },
+    on: {
+      "focusout": function($event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        return _vm.simpleCatch($event)
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentExistingRegNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'reg-no',
+      "data-error": _vm.existingInputDataError,
+      "data-success": _vm.existingInputDataSuccess
+    }
+  }, [_vm._v("\n                GP " + _vm._s(_vm.parentGender) + " Registration #\n            ")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s8 offset-s2 center-align"
+  }, [_c('br'), _vm._v(" "), _c('a', {
+    staticClass: "btn waves-effect waves-light ",
+    attrs: {
+      "href": "#!",
+      "id": _vm.parentIdPrefix + 'check',
+      "type": "submit",
+      "name": "action"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.checkParent($event)
+      }
+    }
+  }, [_vm._v("\n                Check " + _vm._s(_vm.parentGender) + " if existing\n            ")])])] : (_vm.status === 'new') ? [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Is GP " + _vm._s(_vm.parentGender) + " imported?")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.imported),
+      expression: "imported"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'imported',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'imported-yes',
+      "value": "yes"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.imported, "yes")
+    },
+    on: {
+      "change": function($event) {
+        _vm.imported = "yes"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-yes'
+    }
+  }, [_vm._v("Yes")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.imported),
+      expression: "imported"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'imported',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'imported-no',
+      "value": "no"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.imported, "no")
+    },
+    on: {
+      "change": function($event) {
+        _vm.imported = "no"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-no'
+    }
+  }, [_vm._v("No")])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), (_vm.imported === 'yes') ? [_c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentImportedRegNo),
+      expression: "gpParentImportedRegNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'imported-reg-no',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentImportedRegNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentImportedRegNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-reg-no'
+    }
+  }, [_vm._v("Imported Animal Registration #")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentImportedFarmOfOrigin),
+      expression: "gpParentImportedFarmOfOrigin"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'imported-farm-origin',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentImportedFarmOfOrigin)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentImportedFarmOfOrigin = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-farm-origin'
+    }
+  }, [_vm._v("Farm Of Origin")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentImportedCountryOfOrigin),
+      expression: "gpParentImportedCountryOfOrigin"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'imported-country-origin',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentImportedCountryOfOrigin)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentImportedCountryOfOrigin = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'imported-country-origin'
+    }
+  }, [_vm._v("Country of Origin")])])] : (_vm.imported === 'no') ? [_c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentGeneticInfoId),
+      expression: "gpParentGeneticInfoId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'genetic-info-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentGeneticInfoId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentGeneticInfoId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'genetic-info-id'
+    }
+  }, [_vm._v("Genetic Information ID (optional)")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Farm Of Origin",
+      "options": _vm.farmoptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.gpParentFarmFromId = val
+      }
+    },
+    model: {
+      value: (_vm.gpParentFarmFromId),
+      callback: function($$v) {
+        _vm.gpParentFarmFromId = $$v
+      },
+      expression: "gpParentFarmFromId"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentFarmSwineId),
+      expression: "gpParentFarmSwineId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'farm-swine-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentFarmSwineId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentFarmSwineId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'farm-swine-id'
+    }
+  }, [_vm._v("Farm Swine ID / Earmark")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentTeatNo),
+      expression: "gpParentTeatNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'teatno',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentTeatNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentTeatNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'teatno'
+    }
+  }, [_vm._v("Number of Teats")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpParentBirthDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpParentBirthDate),
+      callback: function($$v) {
+        _vm.gpParentBirthDate = $$v
+      },
+      expression: "gpParentBirthDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentBirthWeight),
+      expression: "gpParentBirthWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'birth-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentBirthWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentBirthWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'birth-weight'
+    }
+  }, [_vm._v("Birth Weight (kg)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentLittersizeAliveMale),
+      expression: "gpParentLittersizeAliveMale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'total-m',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentLittersizeAliveMale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentLittersizeAliveMale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'total-m'
+    }
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentLittersizeAliveFemale),
+      expression: "gpParentLittersizeAliveFemale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentLittersizeAliveFemale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentLittersizeAliveFemale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentLittersizeWeaning),
+      expression: "gpParentLittersizeWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentLittersizeWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentLittersizeWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentLitterweightWeaning),
+      expression: "gpParentLitterweightWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentLitterweightWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentLitterweightWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpParentDateWeaning = val
+      }
+    },
+    model: {
+      value: (_vm.gpParentDateWeaning),
+      callback: function($$v) {
+        _vm.gpParentDateWeaning = $$v
+      },
+      expression: "gpParentDateWeaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentParity),
+      expression: "gpParentParity"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'parity',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentParity)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentParity = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'parity'
+    }
+  }, [_vm._v("Parity")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentHouseType),
+      expression: "gpParentHouseType"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'house-type',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'house-type-tunnel',
+      "value": "tunnel"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gpParentHouseType, "tunnel")
+    },
+    on: {
+      "change": function($event) {
+        _vm.gpParentHouseType = "tunnel"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'house-type-tunnel'
+    }
+  }, [_vm._v("Tunnel ventilated")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentHouseType),
+      expression: "gpParentHouseType"
+    }],
+    attrs: {
+      "name": _vm.parentIdPrefix + 'house-type',
+      "type": "radio",
+      "id": _vm.parentIdPrefix + 'house-type-open',
+      "value": "open"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gpParentHouseType, "open")
+    },
+    on: {
+      "change": function($event) {
+        _vm.gpParentHouseType = "open"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'house-type-open'
+    }
+  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpParentAdgBirthEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpParentAdgBirthEndDate),
+      callback: function($$v) {
+        _vm.gpParentAdgBirthEndDate = $$v
+      },
+      expression: "gpParentAdgBirthEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentAdgBirthEndWeight),
+      expression: "gpParentAdgBirthEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'adg-birth-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentAdgBirthEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentAdgBirthEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'adg-birth-end-weight'
+    }
+  }, [_vm._v("End Weight (kg)")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpParentAdgTestStartDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpParentAdgTestStartDate),
+      callback: function($$v) {
+        _vm.gpParentAdgTestStartDate = $$v
+      },
+      expression: "gpParentAdgTestStartDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Start Date of Testing ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentAdgTestStartWeight),
+      expression: "gpParentAdgTestStartWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'adg-test-start-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentAdgTestStartWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentAdgTestStartWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'adg-test-start-weight'
+    }
+  }, [_vm._v("Weight at Start of Testing (kg)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpParentAdgTestEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpParentAdgTestEndDate),
+      callback: function($$v) {
+        _vm.gpParentAdgTestEndDate = $$v
+      },
+      expression: "gpParentAdgTestEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Date of Testing ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentAdgTestEndWeight),
+      expression: "gpParentAdgTestEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'adg-test-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentAdgTestEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentAdgTestEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'adg-test-end-weight'
+    }
+  }, [_vm._v("Weight at End of Testing (kg)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentBft),
+      expression: "gpParentBft"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'bft',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentBft)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentBft = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'bft'
+    }
+  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpParentBftCollected = val
+      }
+    },
+    model: {
+      value: (_vm.gpParentBftCollected),
+      callback: function($$v) {
+        _vm.gpParentBftCollected = $$v
+      },
+      expression: "gpParentBftCollected"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpParentFeedIntake),
+      expression: "gpParentFeedIntake"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.parentIdPrefix + 'feed-intake',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpParentFeedIntake)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpParentFeedIntake = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.parentIdPrefix + 'feed-intake'
+    }
+  }, [_vm._v("Total Feed Intake during Test (kg)")])])] : _vm._e(), _vm._v(" "), _vm._m(9)] : _vm._e()], 2)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Choose an option")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("House Type")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain (ADG) computation from Birth")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4df65ca5", module.exports)
+  }
+}
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(60)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(62),
+  /* template */
+  __webpack_require__(63),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-17cbae1c",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineParentsProperties.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwineParentsProperties.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-17cbae1c", Component.options)
+  } else {
+    hotAPI.reload("data-v-17cbae1c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(61);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("2dc705b9", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17cbae1c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsProperties.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17cbae1c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsProperties.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow: auto;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        farmoptions: Array
+    },
+
+    data: function data() {
+        return {
+            gpSireIdPrefix: 'gp-sire-',
+            gpDamIdPrefix: 'gp-dam-',
+            collapsibleStatus: {
+                sire: true,
+                dam: true
+            }
+        };
+    },
+
+
+    methods: {
+        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
+            this.$emit('goToTabEvent', tabId);
+        }
+    },
+
+    mounted: function mounted() {
+        // Open GP Sire and GP Dam collapsible by default
+        $('.collapsible').collapsible('open', 0);
+        $('.collapsible').collapsible('open', 1);
+    }
+});
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "gp-parents"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v("GP Parents")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collapsible",
+    attrs: {
+      "data-collapsible": "expandable"
+    }
+  }, [_c('li', [_c('div', {
+    staticClass: "collapsible-header",
+    on: {
+      "click": function($event) {
+        _vm.collapsibleStatus.sire = !_vm.collapsibleStatus.sire
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [(_vm.collapsibleStatus.sire) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Sire\n                                ")]), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('register-swine-parents-properties-inputs', {
+    attrs: {
+      "farmoptions": _vm.farmoptions,
+      "parent-gender": 'Sire',
+      "parent-id-prefix": _vm.gpSireIdPrefix
+    }
+  })], 1)]), _vm._v(" "), _c('li', [_c('div', {
+    staticClass: "collapsible-header",
+    on: {
+      "click": function($event) {
+        _vm.collapsibleStatus.dam = !_vm.collapsibleStatus.dam
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [(_vm.collapsibleStatus.dam) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Dam\n                                ")]), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('register-swine-parents-properties-inputs', {
+    attrs: {
+      "farmoptions": _vm.farmoptions,
+      "parent-gender": 'Dam',
+      "parent-id-prefix": _vm.gpDamIdPrefix
+    }
+  })], 1)])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerGoToTabEvent('gp-1')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons black-text"
+  }, [_vm._v("arrow_back")])]), _vm._v(" "), _c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerGoToTabEvent('summary')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-17cbae1c", module.exports)
+  }
+}
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(65)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(67),
+  /* template */
+  __webpack_require__(68),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-62492e3a",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineProperties.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwineProperties.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-62492e3a", Component.options)
+  } else {
+    hotAPI.reload("data-v-62492e3a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(66);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("cc50fd36", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62492e3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineProperties.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62492e3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineProperties.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            gpOneIdPrefix: 'gp-one-'
+        };
+    },
+
+
+    computed: {
+        gpOneGeneticInfoId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.geneticInfoId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'geneticInfoId',
+                    value: value
+                });
+            }
+        },
+        gpOneFarmSwineId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.farmSwineId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'farmSwineId',
+                    value: value
+                });
+            }
+        },
+        gpOneHouseType: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.houseType;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'houseType',
+                    value: value
+                });
+            }
+        },
+        gpOneTeatNo: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.teatNo;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'teatNo',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgBirthEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgBirthEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgBirthEndDate',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgBirthEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgBirthEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgBirthEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestStartDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestStartDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestStartDate',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestEndDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestEndDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestEndDate',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestStartWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestStartWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestStartWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneAdgTestEndWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.adgTestEndWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'adgTestEndWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneBft: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.bft;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'bft',
+                    value: value
+                });
+            }
+        },
+        gpOneBftCollected: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.bftCollected;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'bftCollected',
+                    value: value
+                });
+            }
+        },
+        gpOneFeedIntake: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.feedIntake;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'feedIntake',
+                    value: value
+                });
+            }
+        },
+        gpOneBirthWeight: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.birthWeight;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'birthWeight',
+                    value: value
+                });
+            }
+        },
+        gpOneLittersizeAliveMale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.littersizeAliveMale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'littersizeAliveMale',
+                    value: value
+                });
+            }
+        },
+        gpOneLittersizeAliveFemale: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.littersizeAliveFemale;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'littersizeAliveFemale',
+                    value: value
+                });
+            }
+        },
+        gpOneParity: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.parity;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'parity',
+                    value: value
+                });
+            }
+        },
+        gpOneLittersizeWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.littersizeWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'littersizeWeaning',
+                    value: value
+                });
+            }
+        },
+        gpOneLitterweightWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.litterweightWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'litterweightWeaning',
+                    value: value
+                });
+            }
+        },
+        gpOneDateWeaning: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.dateWeaning;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'dateWeaning',
+                    value: value
+                });
+            }
+        }
+    },
+
+    methods: {
+        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
+            this.$emit('goToTabEvent', tabId);
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "gp-1"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v("GP 1")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m10 l6 offset-m1 offset-l3"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneGeneticInfoId),
+      expression: "gpOneGeneticInfoId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'genetic-info-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneGeneticInfoId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneGeneticInfoId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'genetic-info-id'
+    }
+  }, [_vm._v("Genetic Information ID (optional)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneFarmSwineId),
+      expression: "gpOneFarmSwineId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'farm-swine-id',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneFarmSwineId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneFarmSwineId = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'farm-swine-id'
+    }
+  }, [_vm._v("Farm Swine ID / Earmark")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneTeatNo),
+      expression: "gpOneTeatNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'teatno',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneTeatNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneTeatNo = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'teatno'
+    }
+  }, [_vm._v("Number of Teats")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneBirthWeight),
+      expression: "gpOneBirthWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'birth-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneBirthWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneBirthWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'birth-weight'
+    }
+  }, [_vm._v("Birth weight (kg)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneParity),
+      expression: "gpOneParity"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'parity',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneParity)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneParity = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'parity'
+    }
+  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneLittersizeAliveMale),
+      expression: "gpOneLittersizeAliveMale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'total-m',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneLittersizeAliveMale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneLittersizeAliveMale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'total-m'
+    }
+  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneLittersizeAliveFemale),
+      expression: "gpOneLittersizeAliveFemale"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'total-f',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneLittersizeAliveFemale)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneLittersizeAliveFemale = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'total-f'
+    }
+  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneLittersizeWeaning),
+      expression: "gpOneLittersizeWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'littersize-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneLittersizeWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneLittersizeWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'littersize-weaning'
+    }
+  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneLitterweightWeaning),
+      expression: "gpOneLitterweightWeaning"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'litterweight-weaning',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneLitterweightWeaning)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneLitterweightWeaning = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'litterweight-weaning'
+    }
+  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOneDateWeaning = val
+      }
+    },
+    model: {
+      value: (_vm.gpOneDateWeaning),
+      callback: function($$v) {
+        _vm.gpOneDateWeaning = $$v
+      },
+      expression: "gpOneDateWeaning"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(2), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneHouseType),
+      expression: "gpOneHouseType"
+    }],
+    attrs: {
+      "name": "house-type",
+      "type": "radio",
+      "id": "house-type-tunnel",
+      "value": "tunnel"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gpOneHouseType, "tunnel")
+    },
+    on: {
+      "change": function($event) {
+        _vm.gpOneHouseType = "tunnel"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "house-type-tunnel"
+    }
+  }, [_vm._v("Tunnel ventilated")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneHouseType),
+      expression: "gpOneHouseType"
+    }],
+    attrs: {
+      "name": "house-type",
+      "type": "radio",
+      "id": "house-type-open",
+      "value": "open"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.gpOneHouseType, "open")
+    },
+    on: {
+      "change": function($event) {
+        _vm.gpOneHouseType = "open"
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "house-type-open"
+    }
+  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOneAdgBirthEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpOneAdgBirthEndDate),
+      callback: function($$v) {
+        _vm.gpOneAdgBirthEndDate = $$v
+      },
+      expression: "gpOneAdgBirthEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneAdgBirthEndWeight),
+      expression: "gpOneAdgBirthEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'adg-birth-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneAdgBirthEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneAdgBirthEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'adg-birth-end-weight'
+    }
+  }, [_vm._v("End Weight (kg)")])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOneAdgTestStartDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpOneAdgTestStartDate),
+      callback: function($$v) {
+        _vm.gpOneAdgTestStartDate = $$v
+      },
+      expression: "gpOneAdgTestStartDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Start Date of Testing ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneAdgTestStartWeight),
+      expression: "gpOneAdgTestStartWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'adg-test-start-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneAdgTestStartWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneAdgTestStartWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'adg-test-start-weight'
+    }
+  }, [_vm._v("Weight at Start of Testing (kg)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOneAdgTestEndDate = val
+      }
+    },
+    model: {
+      value: (_vm.gpOneAdgTestEndDate),
+      callback: function($$v) {
+        _vm.gpOneAdgTestEndDate = $$v
+      },
+      expression: "gpOneAdgTestEndDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" End Date  of Testing ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneAdgTestEndWeight),
+      expression: "gpOneAdgTestEndWeight"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'adg-test-end-weight',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneAdgTestEndWeight)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneAdgTestEndWeight = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'adg-test-end-weight'
+    }
+  }, [_vm._v("Weight at End of Testing (kg)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneBft),
+      expression: "gpOneBft"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'bft',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneBft)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneBft = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'bft'
+    }
+  }, [_vm._v("Backfat Thickness [BFT] (mm)")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.gpOneBftCollected = val
+      }
+    },
+    model: {
+      value: (_vm.gpOneBftCollected),
+      callback: function($$v) {
+        _vm.gpOneBftCollected = $$v
+      },
+      expression: "gpOneBftCollected"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date when BFT was collected ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s6 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneFeedIntake),
+      expression: "gpOneFeedIntake"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": _vm.gpOneIdPrefix + 'feed-intake',
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.gpOneFeedIntake)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.gpOneFeedIntake = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": _vm.gpOneIdPrefix + 'feed-intake'
+    }
+  }, [_vm._v("Total Feed Intake during Test (kg)")])]), _vm._v(" "), _vm._m(7)]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light grey lighten-4 left",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerGoToTabEvent('basic-information')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons black-text"
+  }, [_vm._v("arrow_back")])]), _vm._v(" "), _c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerGoToTabEvent('gp-parents')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("House Type")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Average Daily Gain (ADG) computation from Birth")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h6', [_c('b', [_vm._v("Swine Testing Information")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-62492e3a", module.exports)
+  }
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(70)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(72),
+  /* template */
+  __webpack_require__(73),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-4aec38b4",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineSummary.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwineSummary.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4aec38b4", Component.options)
+  } else {
+    hotAPI.reload("data-v-4aec38b4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(71);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("3e7f32f6", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4aec38b4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineSummary.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4aec38b4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineSummary.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;\n}\n.summary-table tr td[data-v-4aec38b4]:first-child {\n    color: #757575;\n}\n.summary-table tr td[data-v-4aec38b4]:last-child {\n    color: black;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    margin-bottom: 0px;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    padding-top: 1rem;\n}\n\n/* Accent highlights on cards */\n#swineinfo-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #2672a6;\n}\n#swinecart-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #26a69a;\n}\n#gp-sire-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #9a26a6;\n}\n#gp-dam-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #a69a26;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        breeds: Array,
+        farmoptions: Array
+    },
+
+    data: function data() {
+        return {
+            currentPrimaryPhotoIndex: -1
+        };
+    },
+
+
+    computed: {
+        generateCertificateLink: function generateCertificateLink() {
+            // const certificateLink = '/breeder/registry-certificate';
+            // return `${certificateLink}/${this.basicInfo.id}`;
+        },
+        gpOneData: function gpOneData() {
+            return this.$store.getters.gpOneData;
+        },
+        gpOneComputedAdgFromBirth: function gpOneComputedAdgFromBirth() {
+            return this.$store.getters.computedAdgFromBirth('gpOne');
+        },
+        gpOneComputedAdgOnTest: function gpOneComputedAdgOnTest() {
+            return this.$store.getters.computedAdgOnTest('gpOne');
+        },
+        gpOneComputedFeedEfficiency: function gpOneComputedFeedEfficiency() {
+            return this.$store.getters.computedFeedEfficiency('gpOne');
+        },
+        gpSireData: function gpSireData() {
+            return this.$store.getters.gpSireData;
+        },
+        gpSireComputedAdgFromBirth: function gpSireComputedAdgFromBirth() {
+            return this.$store.getters.computedAdgFromBirth('gpSire');
+        },
+        gpSireComputedAdgOnTest: function gpSireComputedAdgOnTest() {
+            return this.$store.getters.computedAdgOnTest('gpSire');
+        },
+        gpSireComputedFeedEfficiency: function gpSireComputedFeedEfficiency() {
+            return this.$store.getters.computedFeedEfficiency('gpSire');
+        },
+        gpDamData: function gpDamData() {
+            return this.$store.getters.gpDamData;
+        },
+        gpDamComputedAdgFromBirth: function gpDamComputedAdgFromBirth() {
+            return this.$store.getters.computedAdgFromBirth('gpDam');
+        },
+        gpDamComputedAdgOnTest: function gpDamComputedAdgOnTest() {
+            return this.$store.getters.computedAdgOnTest('gpDam');
+        },
+        gpDamComputedFeedEfficiency: function gpDamComputedFeedEfficiency() {
+            return this.$store.getters.computedFeedEfficiency('gpDam');
+        },
+
+        gpOneSwinecart: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.swinecart;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'swinecart',
+                    value: value
+                });
+            }
+        }
+    },
+
+    methods: {
+        transformFarmId: function transformFarmId(id) {
+            return id > 0 ? this.farmoptions[id - 1].text : '';
+        },
+        transformBreedId: function transformBreedId(id) {
+            return id > 0 ? this.breeds[id - 1].text : '';
+        },
+        capitalize: function capitalize(string) {
+            return _.capitalize(string);
+        },
+        submitInfo: function submitInfo(event) {
+            var _this = this;
+
+            var gpOneData = this.gpOneData;
+            var gpSireData = this.gpSireData;
+            var gpDamData = this.gpDamData;
+            var submitButton = $('.submit-and-generate-cert');
+
+            this.disableButtons(submitButton, event.target, 'Submitting Info...');
+
+            // Attach derived values such as ADG, FE, and breedId
+            // for parents to original object before submit
+            gpOneData.adgBirth = this.gpOneComputedAdgFromBirth;
+            gpOneData.adgTest = this.gpOneComputedAdgOnTest;
+            gpOneData.feedEfficiency = this.gpOneComputedFeedEfficiency;
+            gpSireData.adgBirth = this.gpSireComputedAdgFromBirth;
+            gpSireData.adgTest = this.gpSireComputedAdgOnTest;
+            gpSireData.feedEfficiency = this.gpSireComputedFeedEfficiency;
+            gpSireData.breedId = gpOneData.breedId;
+            gpSireData.status = this.determineStatus(gpSireData);
+            gpDamData.adgBirth = this.gpDamComputedAdgFromBirth;
+            gpDamData.adgTest = this.gpDamComputedAdgOnTest;
+            gpDamData.feedEfficiency = this.gpDamComputedFeedEfficiency;
+            gpDamData.breedId = this.gpOneData.breedId;
+            gpDamData.status = this.determineStatus(gpDamData);
+
+            // Add to server's database
+            axios.post('/breeder/manage-swine/register', {
+                gpOne: gpOneData,
+                gpSire: gpSireData,
+                gpDam: gpDamData
+            }).then(function (response) {
+                console.log(response.data);
+
+                _this.enableButtons(submitButton, event.target, 'Submit and Generate Certificate');
+                Materialize.toast('Info Submitted!', 2000, 'green lighten-1');
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        determineStatus: function determineStatus(parentData) {
+            // Help determine if parent to be added is
+            // registered, imported, or new
+            var status = '';
+
+            if (parentData.existingRegNo) status = 'registered';else if (parentData.imported.regNo) status = 'imported';else status = 'new';
+
+            return status;
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "summary"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v("Summary")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m12 l6 offset-l3",
+    attrs: {
+      "id": "swineinfo-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('table', {
+    staticClass: "striped summary-table"
+  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpOneData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformBreedId(_vm.gpOneData.breedId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.capitalize(_vm.gpOneData.sex)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bftCollected) + " ")])])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m12 l6",
+    attrs: {
+      "id": "gp-sire-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("\n                                    GP Sire Information\n                                    "), (_vm.gpSireData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpSireData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
+    staticClass: "striped summary-table"
+  }, [_c('tbody', [(_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m12 l6",
+    attrs: {
+      "id": "gp-dam-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("\n                                    GP Dam Information\n                                    "), (_vm.gpDamData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpDamData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
+    staticClass: "striped summary-table"
+  }, [_c('tbody', [(_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m12 l6 offset-l3",
+    attrs: {
+      "id": "swinecart-container"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.gpOneSwinecart),
+      expression: "gpOneSwinecart"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "check-swinecart"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.gpOneSwinecart) ? _vm._i(_vm.gpOneSwinecart, null) > -1 : (_vm.gpOneSwinecart)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.gpOneSwinecart,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.gpOneSwinecart = $$a.concat([$$v]))
+          } else {
+            $$i > -1 && (_vm.gpOneSwinecart = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.gpOneSwinecart = $$c
+        }
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "check-swinecart"
+    }
+  }, [_vm._v("Include this swine in SwineCart?")])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(6), _vm._v(" "), _c('a', {
+    staticClass: "btn waves-effect waves-light submit-and-generate-cert",
+    attrs: {
+      "href": "#!",
+      "type": "submit",
+      "name": "action"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.submitInfo($event)
+      }
+    }
+  }, [_vm._v("\n                        Submit and Generate Certificate\n                    ")])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v(" Swine Information ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("SwineCart")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4aec38b4", module.exports)
+  }
+}
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(75)
+}
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(77),
+  /* template */
+  __webpack_require__(78),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineUploadPhoto.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwineUploadPhoto.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5bf32331", Component.options)
+  } else {
+    hotAPI.reload("data-v-5bf32331", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(76);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("3008fccf", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Custom style from vue-dropzone */\n.vue-dropzone {\n    margin-top: 3rem;\n    min-height: 20rem;\n    border: 2px solid #000000;\n    font-family: inherit;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n&:hover {\n        background-color: #F6F6F6;\n}\ni {\n        color: #CCC;\n}\n.dz-preview {\n.dz-image {\n            border-radius: 1;\n&:hover {\nimg {\n                    transform: none;\n                    -webkit-filter: none;\n}\n}\n}\n.dz-details {\n            bottom: 0;\n            top: 0;\n            color: white;\n            background-color: rgba(33, 150, 243, 0.8);\n            transition: opacity .2s linear;\n            text-align: left;\n.dz-filename span, .dz-size span {\n                background-color: transparent;\n}\n.dz-filename:not(:hover) span {\n                border: none;\n}\n.dz-filename:hover span {\n                background-color: transparent;\n                border: none;\n}\n}\n.dz-progress .dz-upload {\n            background: #cccccc;\n}\n.dz-remove {\n            position: absolute;\n            z-index: 30;\n            color: white;\n            margin-left: 15px;\n            padding: 10px;\n            top: inherit;\n            bottom: 15px;\n            border: 2px white solid;\n            text-decoration: none;\n            text-transform: uppercase;\n            font-size: 0.8rem;\n            font-weight: 800;\n            letter-spacing: 1.1px;\n            opacity: 0;\n}\n&:hover {\n.dz-remove {\n                opacity: 1;\n}\n}\n.dz-success-mark, .dz-error-mark {\n            margin-left: auto !important;\n            margin-top: auto !important;\n            width: 100% !important;\n            top: 35% !important;\n            left: 0;\ni {\n                color: white !important;\n                font-size: 5rem !important;\n}\n}\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
 //
 //
@@ -980,7 +6311,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['swineId', 'uploadurl'],
+    props: {
+        swineId: Number,
+        uploadurl: String
+    },
 
     data: function data() {
         return {
@@ -1032,6 +6366,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         template: function template() {
             return '\n                <div class="dz-preview dz-file-preview">\n                    <div class="dz-image" style="width: 200px;height: 200px">\n                        <img data-dz-thumbnail />\n                    </div>\n                    <div class="dz-details">\n                        <div class="dz-size"><span data-dz-size></span></div>\n                        <div class="dz-filename"><span data-dz-name></span></div>\n                    </div>\n                    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>\n                    <div class="dz-error-message"><span data-dz-errormessage></span></div>\n                    <div class="dz-success-mark"><i class="fa fa-check"></i></div>\n                    <div class="dz-error-mark"><i class="fa fa-close"></i></div>\n                </div>\n            ';
+        },
+        getIndex: function getIndex(id, arrayToBeSearched) {
+            // // Return index of object to find
+            // for(var i = 0; i < arrayToBeSearched.length; i++) {
+            //     if(arrayToBeSearched[i].id === id) return i;
+            // }
+        },
+        setAsPrimaryPhoto: function setAsPrimaryPhoto(chosenPhotoId) {
+            // const vm = this;
+            // const index = this.getIndex(chosenPhotoId, this.summaryImageFiles);
+            // const currentPrimaryPhotoIndex = this.currentPrimaryPhotoIndex;
+            //
+            // axios.post('/breeder/manage-swine/set-primary-photo', {
+            //     swineId: vm.basicInfo.id,
+            //     photoId: chosenPhotoId
+            // })
+            // .then((response) => {
+            //     // Change current primary photo if there is any
+            //     if(currentPrimaryPhotoIndex >= 0) vm.summaryImageFiles[currentPrimaryPhotoIndex].isPrimaryPhoto = false;
+            //
+            //     vm.summaryImageFiles[index].isPrimaryPhoto = true;
+            //     vm.currentPrimaryPhotoIndex = index;
+            // })
+            // .catch((error) => {
+            //     console.error(error);
+            // });
         }
     },
 
@@ -1041,7 +6401,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 53 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1091,689 +6451,34 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4ba37d30", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5bf32331", module.exports)
   }
 }
 
 /***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(1)(
-  /* script */
-  __webpack_require__(55),
-  /* template */
-  __webpack_require__(56),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/SwineProperties.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] SwineProperties.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3baec0f4", Component.options)
-  } else {
-    hotAPI.reload("data-v-3baec0f4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 55 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['category', 'data'],
-
-    data: function data() {
-        return {
-            parents: {
-                sireRegNo: '',
-                damRegNo: ''
-            },
-            gpOne: {
-                adg: '',
-                bft: '',
-                fe: '',
-                birth_weight: '',
-                littersizeAlive_male: '',
-                littersizeAlive_female: '',
-                parity: '',
-                littersize_weaning: '',
-                litterweight_weaning: '',
-                date_weaning: ''
-            }
-        };
-    },
-
-
-    computed: {
-        categoryWithDash: function categoryWithDash() {
-            return this.category + '-';
-        },
-        titleCategory: function titleCategory() {
-            return _.toUpper(this.category);
-        }
-    },
-
-    methods: {
-        objectIsEmpty: function objectIsEmpty(obj) {
-            return _.isEmpty(obj);
-        },
-        triggerGetParentsEvent: function triggerGetParentsEvent() {
-            this.$emit('getParentsEvent', {
-                sireRegNo: this.parents.sireRegNo,
-                damRegNo: this.parents.damRegNo
-            });
-        },
-        triggerSubmitSwineInfoEvent: function triggerSubmitSwineInfoEvent() {
-            this.$emit('submitSwineInfoEvent', {
-                data: this.gpOne
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": _vm.category
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v(_vm._s(_vm.titleCategory))]), _vm._v(" "), (_vm.data) ? _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m10 l6 offset-m1 offset-l3"
-  }, [(_vm.objectIsEmpty(_vm.data)) ? _c('div', {}, [_c('p', [_vm._v(" No data available. ")])]) : _c('div', {}, [_c('table', {
-    staticClass: "striped"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.data.swine_properties), function(property) {
-    return _c('tr', [_c('td', [_vm._v(" " + _vm._s(property.title) + " ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(property.value) + " ")])])
-  }))])])])]) : _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m10 l6 offset-m1 offset-l3"
-  }, [_c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.parents.sireRegNo),
-      expression: "parents.sireRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'gpSire',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.parents.sireRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.parents.sireRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'gpSire'
-    }
-  }, [_vm._v("GP Sire Registration # (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.parents.damRegNo),
-      expression: "parents.damRegNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'gpDam',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.parents.damRegNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.parents.damRegNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'gpDam'
-    }
-  }, [_vm._v("GP Dam Registration # (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('button', {
-    staticClass: "btn waves-effect waves-light right",
-    attrs: {
-      "type": "submit",
-      "name": "action"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.triggerGetParentsEvent()
-      }
-    }
-  }, [_vm._v("\n                            Add Parents "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.adg),
-      expression: "gpOne.adg"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'adg',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.adg)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.adg = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'adg'
-    }
-  }, [_vm._v("Average Daily Gain (g/day)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.bft),
-      expression: "gpOne.bft"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'bft',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.bft)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.bft = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'bft'
-    }
-  }, [_vm._v("Backfat Thickness (mm)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.fe),
-      expression: "gpOne.fe"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'feed-efficiency',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.fe)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.fe = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'feed-efficiency'
-    }
-  }, [_vm._v("Feed Efficiency (gain/feed)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.birth_weight),
-      expression: "gpOne.birth_weight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'birth-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.birth_weight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.birth_weight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'birth-weight'
-    }
-  }, [_vm._v("Birth weight")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.littersizeAlive_male),
-      expression: "gpOne.littersizeAlive_male"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.littersizeAlive_male)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.littersizeAlive_male = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.littersizeAlive_female),
-      expression: "gpOne.littersizeAlive_female"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.littersizeAlive_female)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.littersizeAlive_female = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'total-f'
-    }
-  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.parity),
-      expression: "gpOne.parity"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'parity',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.parity)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.parity = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'parity'
-    }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.littersize_weaning),
-      expression: "gpOne.littersize_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'littersize-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.littersize_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.littersize_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'littersize-weaning'
-    }
-  }, [_vm._v("Littersize at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOne.litterweight_weaning),
-      expression: "gpOne.litterweight_weaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.categoryWithDash + 'litterweight-weaning',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOne.litterweight_weaning)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOne.litterweight_weaning = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.categoryWithDash + 'litterweight-weaning'
-    }
-  }, [_vm._v("Litter weight at weaning")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('custom-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpOne.date_weaning = val
-      }
-    },
-    model: {
-      value: (_vm.gpOne.date_weaning),
-      callback: function($$v) {
-        _vm.gpOne.date_weaning = $$v
-      },
-      expression: "gpOne.date_weaning"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date at weaning ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('button', {
-    staticClass: "btn waves-effect waves-light right",
-    attrs: {
-      "type": "submit",
-      "name": "action"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.triggerSubmitSwineInfoEvent($event)
-      }
-    }
-  }, [_vm._v("\n                            Submit Info "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("send")])])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v(" Property ")]), _vm._v(" "), _c('th', [_vm._v(" Value ")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3baec0f4", module.exports)
-  }
-}
-
-/***/ }),
-/* 57 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(101)
+  __webpack_require__(80)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(58),
+  __webpack_require__(82),
   /* template */
-  __webpack_require__(59),
+  __webpack_require__(83),
   /* styles */
   injectStyle,
   /* scopeId */
-  null,
+  "data-v-ee7fd1e0",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/AddSwineSummary.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwine.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] AddSwineSummary.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwine.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -1782,9 +6487,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2b7c16fc", Component.options)
+    hotAPI.createRecord("data-v-ee7fd1e0", Component.options)
   } else {
-    hotAPI.reload("data-v-2b7c16fc", Component.options)
+    hotAPI.reload("data-v-ee7fd1e0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1795,467 +6500,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 58 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['basicInfo', 'gpOneData', 'gpSire', 'gpDam', 'imageFiles', 'breeds', 'farmoptions'],
-
-    data: function data() {
-        return {
-            summaryImageFiles: this.imageFiles,
-            currentPrimaryPhotoIndex: -1
-        };
-    },
-
-
-    computed: {
-        generateCertificateLink: function generateCertificateLink() {
-            var certificateLink = '/breeder/registry-certificate';
-            return certificateLink + '/' + this.basicInfo.id;
-        }
-    },
-
-    methods: {
-        getIndex: function getIndex(id, arrayToBeSearched) {
-            // Return index of object to find
-            for (var i = 0; i < arrayToBeSearched.length; i++) {
-                if (arrayToBeSearched[i].id === id) return i;
-            }
-        },
-        setAsPrimaryPhoto: function setAsPrimaryPhoto(chosenPhotoId) {
-            var vm = this;
-            var index = this.getIndex(chosenPhotoId, this.summaryImageFiles);
-            var currentPrimaryPhotoIndex = this.currentPrimaryPhotoIndex;
-
-            axios.post('/breeder/manage-swine/set-primary-photo', {
-                swineId: vm.basicInfo.id,
-                photoId: chosenPhotoId
-            }).then(function (response) {
-                // Change current primary photo if there is any
-                if (currentPrimaryPhotoIndex >= 0) vm.summaryImageFiles[currentPrimaryPhotoIndex].isPrimaryPhoto = false;
-
-                vm.summaryImageFiles[index].isPrimaryPhoto = true;
-                vm.currentPrimaryPhotoIndex = index;
-            }).catch(function (error) {
-                console.error(error);
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "summary"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v("Summary")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m12 l6",
-    attrs: {
-      "id": "swineinfo-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(0), _vm._v(" "), _c('table', {}, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" GP Sire ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSire))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" GP Dam ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDam))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.breed))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.sex))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.birthDate))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Weight when data was collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm From ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.farmFrom))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date collected ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.basicInfo.dateCollected))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Average Daily Gain ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.adg))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.fe))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birth_weight))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_male))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAlive_female))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersize_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweight_weaning))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.date_weaning))])])])])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "photos-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, _vm._l((_vm.summaryImageFiles), function(photo) {
-    return _c('div', {
-      staticClass: "col s12 m6"
-    }, [_c('div', {
-      staticClass: "card"
-    }, [_c('div', {
-      staticClass: "card-image"
-    }, [_c('img', {
-      attrs: {
-        "src": photo.fullFilePath
-      }
-    }), _vm._v(" "), _c('span', {
-      staticClass: "card-title"
-    })]), _vm._v(" "), _c('div', {
-      staticClass: "card-action"
-    }, [(photo.isPrimaryPhoto) ? _c('a', {
-      attrs: {
-        "href": "#!"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-        }
-      }
-    }, [_c('i', {
-      staticClass: "material-icons left"
-    }, [_vm._v("photo")]), _vm._v(" Primary Photo\n                                            ")]) : _c('a', {
-      attrs: {
-        "href": "#!"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.setAsPrimaryPhoto(photo.id)
-        }
-      }
-    }, [_vm._v("\n                                                Set as Primary\n                                            ")])])])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_c('a', {
-    staticClass: "btn waves-effect waves-light",
-    attrs: {
-      "href": _vm.generateCertificateLink,
-      "type": "submit",
-      "name": "action"
-    }
-  }, [_vm._v("\n                        Submit and Generate Certificate\n                    ")])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("Swine Information")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12 m12 l6"
-  }, [_c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "swinecart-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("SwineCart")])]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('input', {
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "check-swinecart"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "check-swinecart"
-    }
-  }, [_vm._v("Include this swine in SwineCart?")])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "geneticinfo-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("Genetic Information")])]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    staticClass: "validate",
-    attrs: {
-      "type": "text",
-      "id": "geneticinfo-id"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "geneticinfo-id"
-    }
-  }, [_vm._v("Genetic Information ID # (optional)")])])])])])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("Photos")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2b7c16fc", module.exports)
-  }
-}
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(61)
-}
-var Component = __webpack_require__(1)(
-  /* script */
-  __webpack_require__(63),
-  /* template */
-  __webpack_require__(64),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/Collection.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Collection.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a2e8c892", Component.options)
-  } else {
-    hotAPI.reload("data-v-a2e8c892", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 61 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(81);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("19c472a0", content, false);
+var update = __webpack_require__(3)("eab6435a", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a2e8c892\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Collection.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a2e8c892\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Collection.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -2265,7 +6526,7 @@ if(false) {
 }
 
 /***/ }),
-/* 62 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -2273,13 +6534,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.tab a.active {\n    color: #c62828 !important;\n}\n.tab.disabled a {\n    color: #9e9e9e !important;\n    cursor: not-allowed !important;\n}\n", ""]);
+exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 !important;\n}\n.tab.disabled a[data-v-ee7fd1e0] {\n    color: #9e9e9e !important;\n    cursor: not-allowed !important;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 63 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2402,56 +6663,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['farmoptions', 'breeds', 'uploadurl'],
+    props: {
+        farmoptions: Array,
+        breeds: Array,
+        uploadurl: String
+    },
 
     data: function data() {
         return {
             tabDisables: {
-                gpSire: true,
-                gpDam: true,
-                photos: true,
-                summary: true
-            },
-            gpSireData: {},
-            gpDamData: {},
-            gpOneData: {},
-            basicInfo: {
-                id: 0,
-                breed: '',
-                sex: '',
-                birthDate: '',
-                dateCollected: '',
-                weight: '',
-                farmFrom: ''
-            },
-            imageFiles: []
+                summary: true,
+                photos: true
+            }
         };
     },
 
+
+    computed: {
+        gpOneBreedId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.breedId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'breedId',
+                    value: value
+                });
+            }
+        },
+        gpOneSex: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.sex;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'sex',
+                    value: value
+                });
+            }
+        },
+        gpOneBirthDate: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.birthDate;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'birthDate',
+                    value: value
+                });
+            }
+        },
+        gpOneFarmFromId: {
+            // get and set value from vuex store
+            get: function get() {
+                return this.$store.state.registerSwine.gpOne.farmFromId;
+            },
+            set: function set(value) {
+                this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'farmFromId',
+                    value: value
+                });
+            }
+        }
+    },
 
     methods: {
         getIndex: function getIndex(id, arrayToBeSearched) {
@@ -2460,81 +6743,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (arrayToBeSearched[i].id === id) return i;
             }
         },
-        getSireInfo: function getSireInfo(sireRegNo) {
-            var vm = this;
+        goToTab: function goToTab(tabId) {
+            // Function used in tab navigation links
+            tabId === 'summary' ? this.tabDisables.summary = false : this.tabDisables.summary = true;
 
-            // Fetch from server Sire details
-            axios.get('/breeder/manage-swine/get/' + sireRegNo).then(function (response) {
-                // Put response in local data storage
-                // and enable 'GP Sire' tab
-                vm.gpSireData = response.data;
-                vm.tabDisables.gpSire = false;
-
-                Materialize.toast('Sire added', 2000);
-            }).catch(function (error) {
-                Materialize.toast('Unable to add Sire', 3000, 'amber lighten-3');
-                console.log(error);
-            });
-        },
-        getDamInfo: function getDamInfo(damRegNo) {
-            var vm = this;
-
-            // Fetch from server Dam details
-            axios.get('/breeder/manage-swine/get/' + damRegNo).then(function (response) {
-                // Put response in local data storage
-                // and enable 'GP Dam' tab
-                vm.gpDamData = response.data;
-                vm.tabDisables.gpDam = false;
-
-                Materialize.toast('Dam added', 2000);
-            }).catch(function (error) {
-                Materialize.toast('Unable to add Dam', 3000, 'amber lighten-3');
-                console.log(error);
-            });
-        },
-        getParents: function getParents(fetchDetails) {
-            this.getSireInfo(fetchDetails.sireRegNo);
-            this.getDamInfo(fetchDetails.damRegNo);
-        },
-        addSwineInfo: function addSwineInfo(gpOneDetails) {
-            var vm = this;
-
-            // Update parent component of GP1 details
-            this.gpOneData = gpOneDetails.data;
-
-            // Add to server's database
-            axios.post('/breeder/manage-swine/register', {
-                gpSireId: vm.gpSireData ? vm.gpSireData.id : null,
-                gpDamId: vm.gpDamData ? vm.gpDamData.id : null,
-                gpOne: vm.gpOneData,
-                basicInfo: vm.basicInfo
-            }).then(function (response) {
-                // Put response in local data storage
-                // and enable 'Photos' tab
-                vm.basicInfo.id = response.data;
-                vm.tabDisables.photos = false;
-                vm.tabDisables.swinecart = false;
-                vm.tabDisables.geneticInfo = false;
-
-                Materialize.toast('Swine info added', 2000, 'green lighten-1');
-            }).catch(function (error) {
-                console.log(error);
+            this.$nextTick(function () {
+                $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
+                // Scroll animation
+                $('html, body').animate({
+                    scrollTop: $('#add-swine-tabs').offset().top - 70 + "px"
+                }, 500);
             });
         },
         addPhotoToImageFiles: function addPhotoToImageFiles(imageDetails) {
             // Put information of uploaded photos in local data storage
             // and enable 'Summary' tab
-            this.imageFiles.push(imageDetails.data);
-            this.tabDisables.summary = false;
+            // this.imageFiles.push(imageDetails.data);
+            // this.tabDisables.summary = false;
         },
         removePhotoFromImageFiles: function removePhotoFromImageFiles(imageDetails) {
             // Remove photo from local data storage
             // and check if 'Summary' tab
             // should still be enabled
-            var index = this.getIndex(imageDetails.photoId, this.imageFiles);
-
-            this.imageFiles.splice(index, 1);
-            this.tabDisables.summary = this.imageFiles.length < 1 ? true : false;
+            // const index = this.getIndex(imageDetails.photoId, this.imageFiles);
+            //
+            // this.imageFiles.splice(index,1);
+            // this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
         }
     },
 
@@ -2544,7 +6778,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 64 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2566,34 +6800,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('ul', {
     staticClass: "tabs tabs-fixed-width z-depth-2"
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.gpSire
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-sire"
-    }
-  }, [_vm._v("GP Sire")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.gpDam
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-dam"
-    }
-  }, [_vm._v("GP Dam")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.photos
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#photos"
-    }
-  }, [_vm._v("Photos")])]), _vm._v(" "), _c('li', {
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('li', {
     staticClass: "tab col s2",
     class: {
       'disabled': _vm.tabDisables.summary
@@ -2602,7 +6809,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "#summary"
     }
-  }, [_vm._v("Summary")])])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Summary")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s2",
+    class: {
+      'disabled': _vm.tabDisables.photos
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#photos"
+    }
+  }, [_vm._v("Photos")])])])])]), _vm._v(" "), _c('div', {
     staticClass: "row",
     attrs: {
       "id": "basic-information"
@@ -2617,28 +6833,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s12 m6 l4 offset-m3 offset-l4"
-  }, [_c('div', {
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('custom-input-select', {
+  }, [_c('app-input-select', {
     attrs: {
       "labelDescription": "Breed",
       "options": _vm.breeds
     },
     on: {
       "select": function (val) {
-        _vm.basicInfo.breed = val
+        _vm.gpOneBreedId = val
       }
     },
     model: {
-      value: (_vm.basicInfo.breed),
+      value: (_vm.gpOneBreedId),
       callback: function($$v) {
-        _vm.basicInfo.breed = $$v
+        _vm.gpOneBreedId = $$v
       },
-      expression: "basicInfo.breed"
+      expression: "gpOneBreedId"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('custom-input-select', {
+  }, [_c('app-input-select', {
     attrs: {
       "labelDescription": "Sex",
       "options": [{
@@ -2651,57 +6867,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": function (val) {
-        _vm.basicInfo.sex = val
+        _vm.gpOneSex = val
       }
     },
     model: {
-      value: (_vm.basicInfo.sex),
+      value: (_vm.gpOneSex),
       callback: function($$v) {
-        _vm.basicInfo.sex = $$v
+        _vm.gpOneSex = $$v
       },
-      expression: "basicInfo.sex"
+      expression: "gpOneSex"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.basicInfo.weight),
-      expression: "basicInfo.weight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "weight",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.basicInfo.weight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.basicInfo.weight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "weight"
-    }
-  }, [_vm._v("Weight when data was collected")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('custom-input-date', {
+  }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.basicInfo.birthDate = val
+        _vm.gpOneBirthDate = val
       }
     },
     model: {
-      value: (_vm.basicInfo.birthDate),
+      value: (_vm.gpOneBirthDate),
       callback: function($$v) {
-        _vm.basicInfo.birthDate = $$v
+        _vm.gpOneBirthDate = $$v
       },
-      expression: "basicInfo.birthDate"
+      expression: "gpOneBirthDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -2709,79 +6898,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('custom-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.basicInfo.dateCollected = val
-      }
-    },
-    model: {
-      value: (_vm.basicInfo.dateCollected),
-      callback: function($$v) {
-        _vm.basicInfo.dateCollected = $$v
-      },
-      expression: "basicInfo.dateCollected"
-    }
-  }), _vm._v(" "), _c('label', {
+  }, [_c('app-input-select', {
     attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date when data was collected ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('custom-input-select', {
-    attrs: {
-      "labelDescription": "Farm From",
+      "labelDescription": "Farm Of Origin",
       "options": _vm.farmoptions
     },
     on: {
       "select": function (val) {
-        _vm.basicInfo.farmFrom = val
+        _vm.gpOneFarmFromId = val
       }
     },
     model: {
-      value: (_vm.basicInfo.farmFrom),
+      value: (_vm.gpOneFarmFromId),
       callback: function($$v) {
-        _vm.basicInfo.farmFrom = $$v
+        _vm.gpOneFarmFromId = $$v
       },
-      expression: "basicInfo.farmFrom"
+      expression: "gpOneFarmFromId"
     }
-  })], 1), _vm._v(" "), _vm._m(3)])])])])]), _vm._v(" "), _c('swine-properties', {
+  })], 1), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.goToTab('gp-1')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('register-swine-properties', {
+    on: {
+      "goToTabEvent": _vm.goToTab
+    }
+  }), _vm._v(" "), _c('register-swine-parents-properties', {
     attrs: {
-      "category": "gp-1",
-      "data": ""
+      "farmoptions": _vm.farmoptions
     },
     on: {
-      "getParentsEvent": _vm.getParents,
-      "submitSwineInfoEvent": _vm.addSwineInfo
+      "goToTabEvent": _vm.goToTab
     }
-  }), _vm._v(" "), _c('swine-properties', {
+  }), _vm._v(" "), _c('register-swine-summary', {
     attrs: {
-      "category": "gp-sire",
-      "data": _vm.gpSireData
+      "breeds": _vm.breeds,
+      "farmoptions": _vm.farmoptions
     }
-  }), _vm._v(" "), _c('swine-properties', {
+  }), _vm._v(" "), _c('register-swine-upload-photo', {
     attrs: {
-      "category": "gp-dam",
-      "data": _vm.gpDamData
-    }
-  }), _vm._v(" "), _c('upload-photo', {
-    attrs: {
-      "swine-id": _vm.basicInfo.id,
       "uploadurl": _vm.uploadurl
     },
     on: {
       "addedPhotoEvent": _vm.addPhotoToImageFiles,
       "removedPhotoEvent": _vm.removePhotoFromImageFiles
-    }
-  }), _vm._v(" "), _c('add-swine-summary', {
-    attrs: {
-      "basic-info": _vm.basicInfo,
-      "gp-one-data": _vm.gpOneData,
-      "gp-sire": _vm.gpSireData.registration_no,
-      "gp-dam": _vm.gpDamData.registration_no,
-      "image-files": _vm.imageFiles,
-      "breeds": _vm.breeds,
-      "farmoptions": _vm.farmoptions
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2792,12 +6960,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" Register Swine ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
-    staticClass: "tab col s2"
+    staticClass: "tab col s3"
   }, [_c('a', {
     attrs: {
       "href": "#basic-information"
     }
-  }, [_vm._v("Basic Info")])])
+  }, [_vm._v("Basic Information")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', {
     staticClass: "tab col s2"
@@ -2807,6 +6975,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("GP1")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    staticClass: "tab col s3"
+  }, [_c('a', {
+    attrs: {
+      "href": "#gp-parents"
+    }
+  }, [_vm._v("GP Parents")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
@@ -2815,24 +6995,24 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a2e8c892", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-ee7fd1e0", module.exports)
   }
 }
 
 /***/ }),
-/* 65 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(66)
+  __webpack_require__(85)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(68),
+  __webpack_require__(87),
   /* template */
-  __webpack_require__(69),
+  __webpack_require__(88),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2840,9 +7020,9 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisteredSwine.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewRegisteredSwine.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegisteredSwine.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ViewRegisteredSwine.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -2851,9 +7031,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4eff535e", Component.options)
+    hotAPI.createRecord("data-v-181327ec", Component.options)
   } else {
-    hotAPI.reload("data-v-4eff535e", Component.options)
+    hotAPI.reload("data-v-181327ec", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -2864,23 +7044,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 66 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(67);
+var content = __webpack_require__(86);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("e23056ce", content, false);
+var update = __webpack_require__(3)("6f86576b", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4eff535e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisteredSwine.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4eff535e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisteredSwine.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-181327ec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewRegisteredSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-181327ec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewRegisteredSwine.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -2890,7 +7070,7 @@ if(false) {
 }
 
 /***/ }),
-/* 67 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -2904,7 +7084,7 @@ exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n
 
 
 /***/ }),
-/* 68 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3044,9 +7224,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['swines'],
+    props: {
+        swines: Array
+    },
 
     data: function data() {
         return {
@@ -3087,7 +7272,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 69 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3115,7 +7300,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "checked": Array.isArray(_vm.viewLayout) ? _vm._i(_vm.viewLayout, null) > -1 : _vm._q(_vm.viewLayout, 'list')
     },
     on: {
-      "__c": function($event) {
+      "change": function($event) {
         var $$a = _vm.viewLayout,
           $$el = $event.target,
           $$c = $$el.checked ? ('list') : ('card');
@@ -3123,7 +7308,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var $$v = null,
             $$i = _vm._i($$a, $$v);
           if ($$el.checked) {
-            $$i < 0 && (_vm.viewLayout = $$a.concat($$v))
+            $$i < 0 && (_vm.viewLayout = $$a.concat([$$v]))
           } else {
             $$i > -1 && (_vm.viewLayout = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
           }
@@ -3148,6 +7333,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.viewLayout === 'card'),
         expression: "viewLayout === 'card'"
       }],
+      key: swine.id,
       staticClass: "col s4"
     }, [_c('div', {
       staticClass: "card"
@@ -3203,6 +7389,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "collection"
   }, _vm._l((_vm.swines), function(swine, index) {
     return _c('li', {
+      key: swine.id,
       staticClass: "collection-item avatar"
     }, [_c('img', {
       staticClass: "circle materialboxed",
@@ -3267,6 +7454,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, _vm._l((_vm.viewPhotosModal.photos), function(photo) {
     return _c('div', {
+      key: photo.id,
       staticClass: "col s4"
     }, [_c('div', {
       staticClass: "card"
@@ -3317,28 +7505,28 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4eff535e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-181327ec", module.exports)
   }
 }
 
 /***/ }),
-/* 70 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(71)
+  __webpack_require__(90)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(73),
+  __webpack_require__(92),
   /* template */
-  __webpack_require__(74),
+  __webpack_require__(93),
   /* styles */
   injectStyle,
   /* scopeId */
-  null,
+  "data-v-63d665c6",
   /* moduleIdentifier (server only) */
   null
 )
@@ -3366,23 +7554,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 71 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(72);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("1d84065b", content, false);
+var update = __webpack_require__(3)("84fa81c4", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -3392,7 +7580,7 @@ if(false) {
 }
 
 /***/ }),
-/* 72 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -3400,13 +7588,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a, .edit-breed-button, #close-add-breed-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n#edit-breed-modal {\n    width: 30rem;\n    height: 20rem;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-button[data-v-63d665c6], #close-add-breed-container-button[data-v-63d665c6] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-63d665c6] {\n    margin-bottom: 0;\n}\n#edit-breed-modal[data-v-63d665c6] {\n    width: 30rem;\n    height: 20rem;\n}\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 73 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3508,9 +7696,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['initialBreeds'],
+    props: {
+        initialBreeds: Array
+    },
 
     data: function data() {
         return {
@@ -3605,7 +7796,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 74 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3677,7 +7868,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.addBreedData.title = $event.target.value
+        _vm.$set(_vm.addBreedData, "title", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3701,6 +7892,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons right"
   }, [_vm._v("send")])])])])]), _vm._v(" "), _vm._l((_vm.breeds), function(breed, index) {
     return _c('li', {
+      key: breed.id,
       staticClass: "collection-item"
     }, [_vm._v("\n                " + _vm._s(breed.title) + "\n                "), _c('span', [_c('a', {
       staticClass: "secondary-content edit-breed-button light-blue-text text-darken-1",
@@ -3745,7 +7937,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editBreedData.title = $event.target.value
+        _vm.$set(_vm.editBreedData, "title", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -3767,7 +7959,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.updateBreed($event)
+        return _vm.updateBreed($event)
       }
     }
   }, [_vm._v("\n                Update\n            ")])])])])
@@ -3787,19 +7979,19 @@ if (false) {
 }
 
 /***/ }),
-/* 75 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(76)
+  __webpack_require__(95)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(78),
+  __webpack_require__(97),
   /* template */
-  __webpack_require__(79),
+  __webpack_require__(98),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3831,13 +8023,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 76 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(77);
+var content = __webpack_require__(96);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3857,7 +8049,7 @@ if(false) {
 }
 
 /***/ }),
-/* 77 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -3871,7 +8063,7 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 
 /***/ }),
-/* 78 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4018,7 +8210,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['initialProperties'],
+    props: {
+        initialProperties: Array
+    },
 
     data: function data() {
         return {
@@ -4138,7 +8332,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 79 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4210,7 +8404,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.addPropertyData.property = $event.target.value
+        _vm.$set(_vm.addPropertyData, "property", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4237,7 +8431,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.addPropertyData.slug = $event.target.value
+        _vm.$set(_vm.addPropertyData, "slug", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4264,7 +8458,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.addPropertyData.definition = $event.target.value
+        _vm.$set(_vm.addPropertyData, "definition", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4336,7 +8530,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editPropertyData.property = $event.target.value
+        _vm.$set(_vm.editPropertyData, "property", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4363,7 +8557,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editPropertyData.slug = $event.target.value
+        _vm.$set(_vm.editPropertyData, "slug", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4390,7 +8584,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editPropertyData.definition = $event.target.value
+        _vm.$set(_vm.editPropertyData, "definition", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -4412,7 +8606,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.updateProperty($event)
+        return _vm.updateProperty($event)
       }
     }
   }, [_vm._v("\n                Update\n            ")])])])])
@@ -4436,23 +8630,23 @@ if (false) {
 }
 
 /***/ }),
-/* 80 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(81)
+  __webpack_require__(100)
 }
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(83),
+  __webpack_require__(102),
   /* template */
-  __webpack_require__(84),
+  __webpack_require__(103),
   /* styles */
   injectStyle,
   /* scopeId */
-  null,
+  "data-v-13cd11b7",
   /* moduleIdentifier (server only) */
   null
 )
@@ -4480,23 +8674,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 81 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(82);
+var content = __webpack_require__(101);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("2090536a", content, false);
+var update = __webpack_require__(3)("8717e40a", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -4506,7 +8700,7 @@ if(false) {
 }
 
 /***/ }),
-/* 82 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -4514,17 +8708,18 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a,\n.edit-property-button,\n#close-add-credentials-container-button,\n#show-help-info-button,\n#close-help-info-button {\n    cursor: pointer;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal {\n    width: 40rem;\n    height: 23rem;\n}\nblockquote.error{\n\tborder-left: 5px solid #ee6e73;\n\tbackground-color: #fdf0f1;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 83 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -4909,7 +9104,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 84 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -5014,7 +9209,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.addCredentialsData.name = $event.target.value
+        _vm.$set(_vm.addCredentialsData, "name", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -5041,7 +9236,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.addCredentialsData.redirect = $event.target.value
+        _vm.$set(_vm.addCredentialsData, "redirect", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -5063,18 +9258,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n                                Submit\n                                "), _c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("send")])])])])]), _vm._v(" "), (_vm.clients.length < 1) ? _c('li', {
-    staticClass: "collection-item avatar center-align"
-  }, [_c('span', {
-    staticClass: "title"
-  }, [_vm._v(" No clients yet.")])]) : _vm._l((_vm.clients), function(client, index) {
+  }, [_vm._v("send")])])])])]), _vm._v(" "), (_vm.clients.length < 1) ? [_vm._m(2)] : _vm._l((_vm.clients), function(client, index) {
     return _c('li', {
       staticClass: "collection-item avatar"
     }, [_c('span', {
       staticClass: "title"
     }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                        CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                        CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                        Redirect: " + _vm._s(client.redirect) + "\n                    ")]), _vm._v(" "), _c('span', {
+    }, [_vm._v("\n                            CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                            CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                            Redirect: " + _vm._s(client.redirect) + "\n                        ")]), _vm._v(" "), _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "edit-credentials-button",
@@ -5131,7 +9322,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editCredentialsData.name = $event.target.value
+        _vm.$set(_vm.editCredentialsData, "name", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -5157,7 +9348,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editCredentialsData.redirect = $event.target.value
+        _vm.$set(_vm.editCredentialsData, "redirect", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -5222,6 +9413,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "col s4 offset-s4"
   }, [_c('blockquote', {}, [_vm._v("\n                                Note that the Client ID and Secret will be sent to your email as well.\n                            ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    staticClass: "collection-item avatar center-align"
+  }, [_c('span', {
+    staticClass: "title"
+  }, [_vm._v(" No clients yet.")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -5232,65 +9429,10 @@ if (false) {
 }
 
 /***/ }),
-/* 85 */
+/* 104 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ }),
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(102);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("c3ab22f2", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b7c16fc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddSwineSummary.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b7c16fc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AddSwineSummary.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\ntable td {\n    padding: 0;\n}\ntr td:first-child {\n    color: #757575;\n}\ntr td:last-child {\n    color: black;\n}\n#swinecart-container div.row,\n#geneticinfo-container div.row {\n    margin-bottom: 0px;\n}\n#swinecart-container div.row {\n    padding-top: 1rem;\n}\n#swineinfo-container > .card {\n    border-top: 4px solid #2672a6;\n}\n#swinecart-container > .card {\n    border-top: 4px solid #26a69a;\n}\n#geneticinfo-container > .card {\n    border-top: 4px solid #26a65a;\n}\n#photos-container > .card {\n    border-top: 4px solid #a62632;\n}\n", ""]);
-
-// exports
-
-
 /***/ })
-],[18]);
+],[19]);

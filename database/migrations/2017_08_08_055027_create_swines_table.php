@@ -15,7 +15,7 @@ class CreateSwinesTable extends Migration
     {
         Schema::create('swines', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('collection_id')->unsigned();
+            $table->integer('breeder_id')->unsigned();
             $table->integer('breed_id')->unsigned();
             $table->integer('farm_id')->unsigned();
             $table->integer('gpSire_id')->unsigned()->nullable();
@@ -23,6 +23,7 @@ class CreateSwinesTable extends Migration
             $table->integer('primaryPhoto_id')->unsigned()->default(0);
             $table->text('registration_no')->nullable();
             $table->date('date_registered');
+            $table->boolean('swinecart')->default(0);
             $table->timestamps();
         });
     }

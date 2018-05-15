@@ -15,7 +15,7 @@ class Farm extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'type',
+        'name', 'address', 'type', 'farm_code', 'farm_accreditation_no'
     ];
 
     /**
@@ -24,14 +24,6 @@ class Farm extends Model
     public function swines()
     {
         return $this->hasMany(Swine::class);
-    }
-
-    /**
-     * Get the corresponding farm code of the farm
-     */
-    public function farmCode()
-    {
-        return $this->hasOne(FarmCode::class);
     }
 
     /**

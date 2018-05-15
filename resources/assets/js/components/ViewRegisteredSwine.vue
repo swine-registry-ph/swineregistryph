@@ -27,6 +27,7 @@
         <div id="card-layout-container">
             <div v-show="viewLayout === 'card'"
                 v-for="(swine, index) in swines"
+                :key="swine.id"
                 class="col s4"
             >
                 <div class="card">
@@ -65,6 +66,7 @@
         >
             <ul class="collection">
                 <li v-for="(swine, index) in swines"
+                    :key="swine.id"
                     class="collection-item avatar"
                 >
                     <img :src="swinePhotosDirectory + swine.photos[0].name" alt="" class="circle materialboxed">
@@ -114,6 +116,7 @@
                 <h4>Photos <i class="material-icons right modal-close">close</i></h4>
                 <div class="row">
                     <div v-for="photo in viewPhotosModal.photos"
+                        :key="photo.id"
                         class="col s4"
                     >
                         <div class="card">
@@ -135,7 +138,9 @@
 
 <script>
     export default {
-        props: ['swines'],
+        props: {
+            swines: Array
+        },
 
         data() {
             return {

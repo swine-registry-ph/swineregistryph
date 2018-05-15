@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Swine;
 use Illuminate\Http\Request;
+
+use Auth;
 
 class BreederController extends Controller
 {

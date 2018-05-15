@@ -140,7 +140,9 @@
 
 <script>
     export default {
-        props: ['initialProperties'],
+        props: {
+            initialProperties: Array
+        },
 
         data() {
             return {

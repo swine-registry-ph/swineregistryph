@@ -15,14 +15,21 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Import store file for vuex
+import store from './store';
+
+// App
+Vue.component('app-input-date', require('./components/AppInputDate.vue'));
+Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
+
 // Breeder
-Vue.component('custom-input-select', require('./components/CustomInputSelect.vue'));
-Vue.component('custom-input-date', require('./components/CustomInputDate.vue'));
-Vue.component('upload-photo', require('./components/UploadPhoto.vue'));
-Vue.component('swine-properties', require('./components/SwineProperties.vue'));
-Vue.component('add-swine-summary', require('./components/AddSwineSummary.vue'));
-Vue.component('collection', require('./components/Collection.vue'));
-Vue.component('registered-swine', require('./components/RegisteredSwine.vue'));
+Vue.component('register-swine-parents-properties-inputs', require('./components/RegisterSwineParentsPropertiesInputs.vue'));
+Vue.component('register-swine-parents-properties', require('./components/RegisterSwineParentsProperties.vue'));
+Vue.component('register-swine-properties', require('./components/RegisterSwineProperties.vue'));
+Vue.component('register-swine-summary', require('./components/RegisterSwineSummary.vue'));
+Vue.component('register-swine-upload-photo', require('./components/RegisterSwineUploadPhoto.vue'));
+Vue.component('register-swine', require('./components/RegisterSwine.vue'));
+Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
 
 // Admin
 Vue.component('manage-breeds', require('./components/ManageBreeds.vue'));
@@ -31,7 +38,8 @@ Vue.component('manage-apis', require('./components/ManageAPIs.vue'));
 
 // For main container
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });
 
 // For header container
@@ -87,6 +95,10 @@ const nav = new Vue({
 
             case '/breeder/manage-swine/view':
                 this.currentRoute.breeder.viewRegdSwine = true;
+                break;
+
+            case '/breeder/pedigree':
+                this.currentRoute.breeder.viewSwinePedigree = true;
                 break;
 
             case '/breeder/swinecart':

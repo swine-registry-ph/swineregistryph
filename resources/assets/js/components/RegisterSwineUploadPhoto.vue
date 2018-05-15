@@ -28,7 +28,10 @@
     import Dropzone from 'vue2-dropzone';
 
     export default {
-        props: ['swineId', 'uploadurl'],
+        props: {
+            swineId: Number,
+            uploadurl: String
+        },
 
         data() {
             return {
@@ -70,8 +73,8 @@
                 const photoId = file.previewElement.getAttribute('data-photo-id');
 
                 axios.delete(`/breeder/manage-swine/upload-photo/${photoId}`)
-                .then((response) => { })
-                .catch((error) => { console.log(error); });
+                    .then((response) => { })
+                    .catch((error) => { console.log(error); });
 
                 // Trigger removedPhotoEvent
                 this.$emit('removedPhotoEvent', {
@@ -96,6 +99,34 @@
                         <div class="dz-error-mark"><i class="fa fa-close"></i></div>
                     </div>
                 `;
+            },
+
+            getIndex(id, arrayToBeSearched) {
+                // // Return index of object to find
+                // for(var i = 0; i < arrayToBeSearched.length; i++) {
+                //     if(arrayToBeSearched[i].id === id) return i;
+                // }
+            },
+
+            setAsPrimaryPhoto(chosenPhotoId) {
+                // const vm = this;
+                // const index = this.getIndex(chosenPhotoId, this.summaryImageFiles);
+                // const currentPrimaryPhotoIndex = this.currentPrimaryPhotoIndex;
+                //
+                // axios.post('/breeder/manage-swine/set-primary-photo', {
+                //     swineId: vm.basicInfo.id,
+                //     photoId: chosenPhotoId
+                // })
+                // .then((response) => {
+                //     // Change current primary photo if there is any
+                //     if(currentPrimaryPhotoIndex >= 0) vm.summaryImageFiles[currentPrimaryPhotoIndex].isPrimaryPhoto = false;
+                //
+                //     vm.summaryImageFiles[index].isPrimaryPhoto = true;
+                //     vm.currentPrimaryPhotoIndex = index;
+                // })
+                // .catch((error) => {
+                //     console.error(error);
+                // });
             }
         },
 
@@ -108,6 +139,7 @@
 <style lang="css">
     /* Custom style from vue-dropzone */
     .vue-dropzone {
+        margin-top: 3rem;
         min-height: 20rem;
         border: 2px solid #000000;
         font-family: inherit;
