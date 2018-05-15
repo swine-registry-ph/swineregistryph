@@ -17,6 +17,7 @@
         }
 
         .node--internal text {
+
             text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
             background: white;
         }
@@ -28,15 +29,15 @@
         }
 
         div.tooltip {
-            position: absolute;
-            text-align: center;
-            padding: 2px;
-            font: 12px sans-serif;
-            background: #E5FCC2;
-            border: 0px;
-            border-radius: 8px;
-            pointer-events: none;
-            text-align: justify;
+            position: absolute !important;
+            text-align: center !important;
+            padding: 2px !important;
+            font: 12px sans-serif !important;
+            background: #E5FCC2 !important;
+            border: 0px !important;
+            border-radius: 8px !important;
+            pointer-events: none !important;
+            text-align: justify !important;
         }
 
         svg {
@@ -154,34 +155,34 @@
                         Number of Generations
                     </h6>
                     <p>
-                        <input name="generation" type="radio" id="value-one" />
+                        <input name="generation" type="radio" id="value-one" value="1" checked/>
                         <label for="value-one">1</label>
                     </p>
                     <p>
-                        <input name="generation" type="radio" id="value-two" />
+                        <input name="generation" type="radio" id="value-two" value="2" />
                         <label for="value-two">2</label>
                     </p>
                     <p>
-                        <input name="generation" type="radio" id="value-three" />
+                        <input name="generation" type="radio" id="value-three" value="3" />
                         <label for="value-three">3</label>
                     </p>
                     <p>
-                        <input name="generation" type="radio" id="value-four" />
+                        <input name="generation" type="radio" id="value-four" value="4" />
                         <label for="value-four">4</label>
                     </p>
                     <p>
-                        <input name="generation" type="radio" id="value-five" />
+                        <input name="generation" type="radio" id="value-five" value="5" />
                         <label for="value-five">5</label>
                     </p>
                 </div>
                 <div id="generate-button-container" class="col s12 center-align">
-                    <a class="waves-effect waves-light btn">Generate Pedigree</a>
+                    <a id="generate-button" class="waves-effect waves-light btn">Generate Pedigree</a>
                 </div>
             </div>
         </div>
 
-        <div class="card col s12">
-            <div id="mainDiv" class=""></div>
+        <div id="pedigree-diagram-container" class="card col s12">
+            <div id="mainDiv"></div>
         </div>
 
         <div class="col s12">
@@ -194,7 +195,7 @@
 
 @section('customScript')
     <script src="/js/d3.min.js" charset="utf-8"></script>
-    <script src="/js/visualizer.js" charset="utf-8"></script>
+    <script src="/js/pediview.js" charset="utf-8"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             // Initialize autocomplete data
@@ -205,9 +206,28 @@
             });
         });
 
+        const generatePedigreeButton = document.getElementById('generate-button');
+
+        // Bind click event listener to button
+        generatePedigreeButton.addEventListener('click', function(){
+            const regNo = document.querySelector('#autocomplete-input').value;
+            const generation = document.querySelector('input[name="generation"]:checked').value;
+
+            if(regNo){
+                // Do a GET request to server to get swine's pedigree
+                axios.get(`/breeder/pedigree/reg/${regNo}/gen/${generation}`)
+                    .then(function(response){
+                        // Call visualize function from pediview.js
+                        visualize(response.data);
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+            }
+        });
 
         let json = {
-            "registrationnumber":"G",
+            "registrationnumber":"MASKERPT2017FO-2793",
             "qualitative_info": {
                 "farm_name":"Mapusagafou",
                 "breed":"Duroc",
@@ -230,7 +250,7 @@
             },
             "parents": [
                 {
-                    "registrationnumber":"D",
+                    "registrationnumber":"MASKERPT2017MO-2795",
                     "qualitative_info": {
                         "farm_name":"Mapusagafou",
                         "breed":"Yorkshire",
@@ -253,7 +273,7 @@
                     },
                     "parents":[
                         {
-                            "registrationnumber":"A",
+                            "registrationnumber":"MASKERPT2017MO-2793",
                             "qualitative_info": {
                                 "farm_name":"Mapusagafou",
                                 "breed":"Yorkshire",
@@ -276,7 +296,7 @@
                             }
                         },
                         {
-                            "registrationnumber":"B",
+                            "registrationnumber":"MASKERPT2017FO-2791",
                             "qualitative_info": {
                                 "farm_name":"Mapusagafou",
                                 "breed":"Yorkshire",
@@ -301,7 +321,7 @@
                     ]
                 },
                 {
-                    "registrationnumber":"E",
+                    "registrationnumber":"MASKERPT2017FO-2796",
                     "qualitative_info": {
                         "farm_name":"Mapusagafou",
                         "breed":"Yorkshire",
@@ -324,7 +344,7 @@
                     },
                     "parents":[
                         {
-                            "registrationnumber":"C",
+                            "registrationnumber":"MASKERPT2017MO-2797",
                             "qualitative_info": {
                                 "farm_name":"Mapusagafou",
                                 "breed":"Yorkshire",
@@ -347,7 +367,7 @@
                             }
                         },
                         {
-                            "registrationnumber":"B",
+                            "registrationnumber":"MASKERPT2017FO-2798",
                             "qualitative_info": {
                                 "farm_name":"Mapusagafou",
                                 "breed":"Yorkshire",

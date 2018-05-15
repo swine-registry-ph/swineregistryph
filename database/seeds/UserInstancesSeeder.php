@@ -111,12 +111,20 @@ class UserInstancesSeeder extends Seeder
                             'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
+                            'property_id' => 4, // adg from birth
+                            'value' => random_int(4,15)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
                             'property_id' => 5, // end date (adg from birth)
                             'value' => \Carbon\Carbon::now()->toDateString()
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // end weight (adg from birth)
                             'value' => random_int(90,150)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 7, // adg on test
+                            'value' => random_int(4,15)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // start date (adg on test)
@@ -223,12 +231,20 @@ class UserInstancesSeeder extends Seeder
                             'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
+                            'property_id' => 4, // adg from birth
+                            'value' => random_int(4,15)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
                             'property_id' => 5, // end date (adg from birth)
                             'value' => \Carbon\Carbon::now()->toDateString()
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // end weight (adg from birth)
                             'value' => random_int(90,160)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 7, // adg on test
+                            'value' => random_int(4,15)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // start date (adg on test)
@@ -335,12 +351,20 @@ class UserInstancesSeeder extends Seeder
                             'value' => random_int(10,20)/10.0
                         ]),
                         new App\Models\SwineProperty([
+                            'property_id' => 4, // adg from birth
+                            'value' => random_int(4,15)/10.0
+                        ]),
+                        new App\Models\SwineProperty([
                             'property_id' => 5, // end date (adg from birth)
                             'value' => \Carbon\Carbon::now()->toDateString()
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 6, // end weight (adg from birth)
                             'value' => random_int(90,160)/1.0
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 7, // adg on test
+                            'value' => random_int(4,15)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 8, // start date (adg on test)

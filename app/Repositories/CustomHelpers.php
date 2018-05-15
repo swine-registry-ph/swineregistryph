@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Models\Breed;
+use App\Models\Farm;
 use Carbon\Carbon;
 
 trait CustomHelpers
@@ -40,17 +42,51 @@ trait CustomHelpers
     }
 
     /**
-     * Changes "Y-m-d" date format to "F d, Y"
+     * Changes "Y-m-d" date format to  readable format "F d, Y"
      * Ex. "2018-04-18" -> "April 18, 2018"
+     *
+     * Or just get the year of "Y-m-d" format
      *
      * @param   string
      * @return  string
      */
-    public function changeDateFormat($originalFormat)
+    public function changeDateFormat($originalFormat, $toFormat = '')
     {
-        return ($originalFormat)
-            ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('F d, Y')
-            : '';
+        switch ($toFormat) {
+            case 'year':
+                return ($originalFormat)
+                    ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('Y')
+                    : '';
+
+            default:
+                return ($originalFormat)
+                    ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('F d, Y')
+                    : '';
+        }
+    }
+
+    /**
+     * Append Farm name with Province
+     *
+     * @param   integer     $farm
+     * @return  string
+     */
+    public function getFarmNameWithProvince($farmId)
+    {
+        $farm = Farm::find($farmId);
+
+        return "{$farm->name}" . ", " . "{$farm->province}";
+    }
+
+    /**
+     * Get breed title
+     *
+     * @param   integer     $breedId
+     * @return  string
+     */
+    public function getBreedTitle($breedId)
+    {
+        return Breed::find($breedId)->title;
     }
 
     /**
