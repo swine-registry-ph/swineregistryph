@@ -133,6 +133,34 @@
         #generate-button-container {
             margin-top: 1rem;
         }
+
+        #pedigree-diagram-container {
+            padding: 2rem 1rem 2rem 1rem;
+        }
+
+        /* Accent highlights on cards */
+        #swine-pedigree-filter.card {
+            border-top: 4px solid #2672a6;
+        }
+
+        #pedigree-diagram-container.card {
+            border-top: 4px solid #2692a6;
+        }
+
+        /* Some container styles */
+        #no-pedigree-text-container {
+            padding: 5rem;
+        }
+
+        #error-pedigree-text-container {
+            padding: 5rem;
+            display: none;
+        }
+
+        #pedigree-preloader-container {
+            padding: 5rem;
+            display: none;
+        }
     </style>
 @endsection
 
@@ -143,17 +171,16 @@
         <div class="col s12">
             <h4 class="title-page"> Swine Pedigree </h4>
         </div>
+        {{-- Swine Pedigree Filter container --}}
         <div id="swine-pedigree-filter" class="card col s6 m6 l4 offset-s3 offset-m3 offset-l4">
             <div class="card-content">
                 <span class="card-title center-align">Filter</span>
                 <div class="input-field col s12">
-                    <input type="text" id="autocomplete-input" class="autocomplete">
+                    <input type="text" id="autocomplete-input" class="autocomplete validate">
                     <label for="autocomplete-input">Swine Registration Number</label>
                 </div>
                 <div class="col s12">
-                    <h6>
-                        Number of Generations
-                    </h6>
+                    <h6> Number of Generations </h6>
                     <p>
                         <input name="generation" type="radio" id="value-one" value="1" checked/>
                         <label for="value-one">1</label>
@@ -182,6 +209,40 @@
         </div>
 
         <div id="pedigree-diagram-container" class="card col s12">
+            {{-- No Swine chosen text container --}}
+            <div id="no-pedigree-text-container" class="col s12">
+                <p class="center-align">
+                    <b>No chosen swine yet. Please enter Swine Registration Number.</b>
+                </p>
+            </div>
+
+            <div id="error-pedigree-text-container" class="col s12">
+                <p class="center-align">
+                    <b>Error in finding Swine. Please make sure to enter correct Swine Registration Number.</b>
+                </p>
+            </div>
+
+            {{-- Preloader container --}}
+            <div id="pedigree-preloader-container" class="col s12 center-align">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    Loading Pedigree...
+                </p>
+            </div>
+
+            {{-- Container for SVG of Pedigree produced from pediview.js --}}
             <div id="mainDiv"></div>
         </div>
 
@@ -208,192 +269,75 @@
 
         const generatePedigreeButton = document.getElementById('generate-button');
 
+        const disableButtons = (actionBtnElement, textToShow) => {
+            actionBtnElement.classList.add('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        };
+
+        const enableButtons = (actionBtnElement, textToShow) => {
+            actionBtnElement.classList.remove('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        };
+
         // Bind click event listener to button
-        generatePedigreeButton.addEventListener('click', function(){
-            const regNo = document.querySelector('#autocomplete-input').value;
+        generatePedigreeButton.addEventListener('click', function(event){
+            const mainDivContainer = document.getElementById('mainDiv');
+            const pedigreePreloaderContainer = document.getElementById('pedigree-preloader-container');
+            const noPedigreeTextContainer = document.getElementById('no-pedigree-text-container');
+            const errorPedigreeTextContainer = document.getElementById('error-pedigree-text-container');
+            const autocompleteInput = document.querySelector('#autocomplete-input');
             const generation = document.querySelector('input[name="generation"]:checked').value;
+            const regNo = autocompleteInput.value;
+            const generateButtonEl = event.target;
+
+            disableButtons(generateButtonEl, 'Generating...');
+
+            // Hide text displaying there is no chosen swine and display preloader.
+            // Also, show main div container if hidden and hide error
+            // pedigree text container if displayed
+            noPedigreeTextContainer.style.display = 'none';
+            pedigreePreloaderContainer.style.display = 'block';
+            if(mainDivContainer.style.display === 'none'){
+                mainDivContainer.style.display = 'block';
+            }
+            if(errorPedigreeTextContainer.style.display === 'block'){
+                errorPedigreeTextContainer.style.display = 'none';
+            }
 
             if(regNo){
                 // Do a GET request to server to get swine's pedigree
                 axios.get(`/breeder/pedigree/reg/${regNo}/gen/${generation}`)
                     .then(function(response){
+                        // Hide preloader
+                        pedigreePreloaderContainer.style.display = 'none';
+
+                        // Remove 'invalid' class add 'valid' class
+                        // to autocomplete input
+                        autocompleteInput.classList.remove('invalid');
+                        autocompleteInput.classList.add('valid');
+
                         // Call visualize function from pediview.js
                         visualize(response.data);
+
+                        enableButtons(generateButtonEl, 'Generate Pedigree');
                     })
                     .catch(function(error){
+                        // Hide preloader and SVG pedigree container then display
+                        // error pedigree text container
+                        mainDivContainer.style.display = 'none';
+                        pedigreePreloaderContainer.style.display = 'none';
+                        errorPedigreeTextContainer.style.display = 'block';
+
+                        // Remove 'valid' and add 'invalid' class
+                        // to autocomplete input
+                        autocompleteInput.classList.remove('valid');
+                        autocompleteInput.classList.add('invalid');
+
+                        enableButtons(generateButtonEl, 'Generate Pedigree');
+                        
                         console.log(error);
                     });
             }
         });
-
-        let json = {
-            "registrationnumber":"MASKERPT2017FO-2793",
-            "qualitative_info": {
-                "farm_name":"Mapusagafou",
-                "breed":"Duroc",
-                "sex":"Male",
-                "birthyear":"1994",
-                "date_registered": "2014-02-10",
-                "registered_by":"Wendy"
-            },
-            "quantitative_info": {
-                "weight_at_data_collection": 57,
-                "age_at_data_collection": 4,
-                "average_daily_gain":7,
-                "backfat_thickness": 3,
-                "feed_efficiency": 3,
-                "birth_weight":8,
-                "total_when_born_male": 7,
-                "total_when_born_female": 6,
-                "littersize_born_alive": 5,
-                "parity": 1
-            },
-            "parents": [
-                {
-                    "registrationnumber":"MASKERPT2017MO-2795",
-                    "qualitative_info": {
-                        "farm_name":"Mapusagafou",
-                        "breed":"Yorkshire",
-                        "sex":"Male",
-                        "birthyear":"2005",
-                        "date_registered": "2008-07-20",
-                        "registered_by":"Netty"
-                    },
-                    "quantitative_info": {
-                        "weight_at_data_collection": 59,
-                        "age_at_data_collection": 6,
-                        "average_daily_gain":9,
-                        "backfat_thickness": 5,
-                        "feed_efficiency": 5,
-                        "birth_weight":10,
-                        "total_when_born_male": 9,
-                        "total_when_born_female": 8,
-                        "littersize_born_alive": 7,
-                        "parity": 3
-                    },
-                    "parents":[
-                        {
-                            "registrationnumber":"MASKERPT2017MO-2793",
-                            "qualitative_info": {
-                                "farm_name":"Mapusagafou",
-                                "breed":"Yorkshire",
-                                "sex":"Male",
-                                "birthyear":"2005",
-                                "date_registered": "2008-07-20",
-                                "registered_by":"Netty"
-                            },
-                            "quantitative_info": {
-                                "weight_at_data_collection": 59,
-                                "age_at_data_collection": 6,
-                                "average_daily_gain":9,
-                                "backfat_thickness": 5,
-                                "feed_efficiency": 5,
-                                "birth_weight":10,
-                                "total_when_born_male": 9,
-                                "total_when_born_female": 8,
-                                "littersize_born_alive": 7,
-                                "parity": 3
-                            }
-                        },
-                        {
-                            "registrationnumber":"MASKERPT2017FO-2791",
-                            "qualitative_info": {
-                                "farm_name":"Mapusagafou",
-                                "breed":"Yorkshire",
-                                "sex":"Female",
-                                "birthyear":"2005",
-                                "date_registered": "2008-07-20",
-                                "registered_by":"Netty"
-                            },
-                            "quantitative_info": {
-                                "weight_at_data_collection": 59,
-                                "age_at_data_collection": 6,
-                                "average_daily_gain":9,
-                                "backfat_thickness": 5,
-                                "feed_efficiency": 5,
-                                "birth_weight":10,
-                                "total_when_born_male": 9,
-                                "total_when_born_female": 8,
-                                "littersize_born_alive": 7,
-                                "parity": 3
-                            }
-                        }
-                    ]
-                },
-                {
-                    "registrationnumber":"MASKERPT2017FO-2796",
-                    "qualitative_info": {
-                        "farm_name":"Mapusagafou",
-                        "breed":"Yorkshire",
-                        "sex":"Female",
-                        "birthyear":"2005",
-                        "date_registered": "2008-07-20",
-                        "registered_by":"Netty"
-                    },
-                    "quantitative_info": {
-                        "weight_at_data_collection": 59,
-                        "age_at_data_collection": 6,
-                        "average_daily_gain":9,
-                        "backfat_thickness": 5,
-                        "feed_efficiency": 5,
-                        "birth_weight":10,
-                        "total_when_born_male": 9,
-                        "total_when_born_female": 8,
-                        "littersize_born_alive": 7,
-                        "parity": 3
-                    },
-                    "parents":[
-                        {
-                            "registrationnumber":"MASKERPT2017MO-2797",
-                            "qualitative_info": {
-                                "farm_name":"Mapusagafou",
-                                "breed":"Yorkshire",
-                                "sex":"Male",
-                                "birthyear":"2005",
-                                "date_registered": "2008-07-20",
-                                "registered_by":"Netty"
-                            },
-                            "quantitative_info": {
-                                "weight_at_data_collection": 59,
-                                "age_at_data_collection": 6,
-                                "average_daily_gain":9,
-                                "backfat_thickness": 5,
-                                "feed_efficiency": 5,
-                                "birth_weight":10,
-                                "total_when_born_male": 9,
-                                "total_when_born_female": 8,
-                                "littersize_born_alive": 7,
-                                "parity": 3
-                            }
-                        },
-                        {
-                            "registrationnumber":"MASKERPT2017FO-2798",
-                            "qualitative_info": {
-                                "farm_name":"Mapusagafou",
-                                "breed":"Yorkshire",
-                                "sex":"Female",
-                                "birthyear":"2005",
-                                "date_registered": "2008-07-20",
-                                "registered_by":"Netty"
-                            },
-                            "quantitative_info": {
-                                "weight_at_data_collection": 59,
-                                "age_at_data_collection": 6,
-                                "average_daily_gain":9,
-                                "backfat_thickness": 5,
-                                "feed_efficiency": 5,
-                                "birth_weight":10,
-                                "total_when_born_male": 9,
-                                "total_when_born_female": 8,
-                                "littersize_born_alive": 7,
-                                "parity": 3
-                            }
-                        }
-                    ]
-                }
-            ]
-        };
-
-        visualize(json);
     </script>
 @endsection
