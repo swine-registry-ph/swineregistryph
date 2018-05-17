@@ -28,11 +28,12 @@ class PedigreeRepository
         // utilizes the properties and functionalities of a queue data structure.
         // An array of references (similar to queue algorithm) is used
         // to build the JSON structure of the pedigree
+        $data = [];
         $pedigree = [];
         $queue = [$swine->id];
         $parentPointers = [];
         $noOfNodes = 1;
-        $noOfNodesAtGeneration = $this->getNofOfNodesAtGeneration($generation);
+        $noOfParentNodesAtGeneration = $this->getNoOfParentNodesAtGeneration($generation);
 
         // Build properties of root node which is the swine requested
         // Then put its reference to parentPointers
@@ -71,10 +72,16 @@ class PedigreeRepository
             $queue = array_merge($queue, $parentIds);
 
             $noOfNodes++;
-            if($noOfNodes > $noOfNodesAtGeneration) break;
+            if($noOfNodes > $noOfParentNodesAtGeneration) break;
         }
 
-        return collect($pedigree);
+        $maxDepthOfTree = $this->getMaxDepthOfTree($pedigree);
+        $data['pedigree'] = $pedigree;
+        $data['message'] = ($generation > $maxDepthOfTree)
+                            ? 'The maximum number of generation for this swine\'s pedigree is ' . $maxDepthOfTree
+                            : '';
+
+        return collect($data);
     }
 
     /**
@@ -119,13 +126,13 @@ class PedigreeRepository
      * @param   integer     $generation
      * @return  integer
      */
-    private function getNofOfNodesAtGeneration($generation)
+    private function getNoOfParentNodesAtGeneration($generation)
     {
-        $noOfExpectedNodes = 0;
+        $noOfExpectedParentNodes = 0;
 
-        for ($i=0; $i < $generation; $i++) $noOfExpectedNodes = $noOfExpectedNodes + pow(2, $i);
+        for ($i=0; $i < $generation; $i++) $noOfExpectedParentNodes = $noOfExpectedParentNodes + pow(2, $i);
 
-        return $noOfExpectedNodes;
+        return $noOfExpectedParentNodes;
     }
 
     /**
@@ -145,4 +152,21 @@ class PedigreeRepository
         return $ids;
     }
 
+    /**
+     * Get depth of binary tree (array)
+     *
+     * @param   array       $tree
+     * @return  integer
+     */
+    private function getMaxDepthOfTree($tree)
+    {
+        if(isset($tree['parents'])){
+            $leftDepth = $this->getMaxDepthOfTree($tree['parents'][0]);
+            $rightDepth = $this->getMaxDepthOfTree($tree['parents'][1]);
+
+            return $max = ($rightDepth > $leftDepth) ? $rightDepth + 1 : $leftDepth + 1;
+        }
+        else return 0;
+
+    }
 }

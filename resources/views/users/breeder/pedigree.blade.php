@@ -157,6 +157,10 @@
             display: none;
         }
 
+        #message-blockquote-container {
+            display: none;
+        }
+
         #pedigree-preloader-container {
             padding: 5rem;
             display: none;
@@ -216,10 +220,18 @@
                 </p>
             </div>
 
+            {{-- Error on Finding Pedigree text container --}}
             <div id="error-pedigree-text-container" class="col s12">
                 <p class="center-align">
                     <b>Error in finding Swine. Please make sure to enter correct Swine Registration Number.</b>
                 </p>
+            </div>
+
+            {{-- Message from server text container --}}
+            <div id="message-blockquote-container" class="col s12">
+                <blockquote id="message-blockquote" class="info">
+
+                </blockquote>
             </div>
 
             {{-- Preloader container --}}
@@ -285,6 +297,8 @@
             const pedigreePreloaderContainer = document.getElementById('pedigree-preloader-container');
             const noPedigreeTextContainer = document.getElementById('no-pedigree-text-container');
             const errorPedigreeTextContainer = document.getElementById('error-pedigree-text-container');
+            const messageBlockquoteContainer = document.getElementById('message-blockquote-container');
+            const messageBlockquote = document.getElementById('message-blockquote');
             const autocompleteInput = document.querySelector('#autocomplete-input');
             const generation = document.querySelector('input[name="generation"]:checked').value;
             const regNo = autocompleteInput.value;
@@ -293,15 +307,21 @@
             disableButtons(generateButtonEl, 'Generating...');
 
             // Hide text displaying there is no chosen swine and display preloader.
-            // Also, show main div container if hidden and hide error
-            // pedigree text container if displayed
+            // Also, show main div container if hidden, hide error
+            // pedigree text container if displayed, and hide
+            // message blockquote container if displayed
             noPedigreeTextContainer.style.display = 'none';
             pedigreePreloaderContainer.style.display = 'block';
+            mainDivContainer.style.display = 'block';
+
             if(mainDivContainer.style.display === 'none'){
                 mainDivContainer.style.display = 'block';
             }
             if(errorPedigreeTextContainer.style.display === 'block'){
                 errorPedigreeTextContainer.style.display = 'none';
+            }
+            if(messageBlockquoteContainer.style.display === 'block'){
+                messageBlockquoteContainer.style.display = 'none';
             }
 
             if(regNo){
@@ -317,7 +337,13 @@
                         autocompleteInput.classList.add('valid');
 
                         // Call visualize function from pediview.js
-                        visualize(response.data);
+                        visualize(response.data.pedigree);
+
+                        // Display message from server if it exists
+                        if(response.data.message.length > 0){
+                            messageBlockquoteContainer.style.display = 'block';
+                            messageBlockquote.innerHTML = response.data.message;
+                        }
 
                         enableButtons(generateButtonEl, 'Generate Pedigree');
                     })
@@ -334,7 +360,7 @@
                         autocompleteInput.classList.add('invalid');
 
                         enableButtons(generateButtonEl, 'Generate Pedigree');
-                        
+
                         console.log(error);
                     });
             }
