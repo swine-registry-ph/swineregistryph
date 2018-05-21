@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use Storage;
+use PDF;
 
 class SwineController extends Controller
 {
@@ -99,6 +100,20 @@ class SwineController extends Controller
      * @return  View
      */
     public function viewRegistryCertificate($swineId)
+    {
+        $swine = Swine::where('id', $swineId)->with('swineProperties')->first();
+
+        $view = \View::make('users.breeder._certificate', compact('swine'));
+        $html = $view->render();
+
+        PDF::setPageOrientation('L');
+        PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
+        PDF::AddPage();
+        PDF::WriteHTML($html);
+        PDF::Output("{$swine->registration_no}.pdf");
+    }
+
+    public function viewCertificate($swineId)
     {
         $swine = Swine::where('id', $swineId)->with('swineProperties')->first();
 
