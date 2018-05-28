@@ -101,15 +101,17 @@ class SwineController extends Controller
      */
     public function viewRegistryCertificate($swineId)
     {
-        $swine = Swine::where('id', $swineId)->with('swineProperties')->first();
+        $swine = Swine::where('id', $swineId)->with('swineProperties', 'farm')->first();
 
         $view = \View::make('users.breeder._certificate', compact('swine'));
         $html = $view->render();
 
+        // Set configuration and show pdf
         PDF::setPageOrientation('L');
+        PDF::setCellPadding(0);
         PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
         PDF::AddPage();
-        PDF::WriteHTML($html);
+        PDF::WriteHTML($html, true, false, true, false, '');
         PDF::Output("{$swine->registration_no}.pdf");
     }
 

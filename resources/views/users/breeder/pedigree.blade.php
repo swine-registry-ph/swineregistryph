@@ -125,6 +125,8 @@
             background-color: #e2e2e2
         }
 
+        .bar { fill: steelblue; }
+
         /* swine pedigree filter */
         #swine-pedigree-filter {
             padding-bottom: 3rem;

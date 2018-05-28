@@ -3,7 +3,7 @@
 PediView.JS
 
 A Javascript library for displaying the following data:
-
+	
 	1. pedigree SVG of the data in the JSON input,
 	2. covariance table of the entities in the pedigree, and
 	3. inbred entities in the tree
@@ -29,7 +29,7 @@ Created by:
 **/
 
 const visualize = (json) => {
-
+	
 	// assign the mainDiv to main_container variable for DOM manipulation
 	const main_container = document.getElementById("mainDiv");
 
@@ -43,7 +43,7 @@ const visualize = (json) => {
 
 	// mapping of each qualitative keys to each possible values
 	const qualitative_value_map = {};
-
+	
 	// storage of each entities in the pedigree (traversed from rootnode to last leaf node, top lefto to bottom right)
 	const entities_tree = [];
 
@@ -65,7 +65,7 @@ const visualize = (json) => {
 					},
 
 		width =		700,
-		height =	700;
+		height =	700; 
 
 	// Set SVG size
 	const svg =	d3.select("#mainDiv").append("svg")
@@ -73,7 +73,7 @@ const visualize = (json) => {
 					.attr("height", screen.height - 120),
 		g	=	svg.append("g")
 					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+	
 	// Set tree dimensions
 	const treemap = d3.tree().size([height, width]);
 
@@ -96,22 +96,22 @@ const visualize = (json) => {
 					.attr("class", "link")
 					.attr("d", (d) => {
 
-						// keys in the qualitative info are pushed to qualitative_value_keys array
+						// keys in the qualitative info are pushed to qualitative_value_keys array 
 						// for tooltip and filter purposes
-						for(let key in d.data.qualitative_info)
+						for(let key in d.data.qualitative_info) 
 							if(!qualitative_value_keys.includes(key)) qualitative_value_keys.push(key);
-
+						
 						// keys in the quantitative info are pushed to quantitative_value_keys array
 						// for tooltip and filter purposes
-						for(let key in d.data.quantitative_info)
+						for(let key in d.data.quantitative_info) 
 							if(!quantitative_value_keys.includes(key)) quantitative_value_keys.push(key);
 
 						// creates map keys for each keys in the qualitative traits of entities (for filter)
-						for(let i = 0; i < qualitative_value_keys.length; i++)
+						for(let i = 0; i < qualitative_value_keys.length; i++) 
 							qualitative_value_map[qualitative_value_keys[i]] = [];
 
 						// generate straight line links to connect child entities to parent entities
-						return "M" + d.y + "," + d.x + "H" + (d.y + (d.parent.y-d.y)/2)
+						return "M" + d.y + "," + d.x + "H" + (d.y + (d.parent.y-d.y)/2) 
 						+ "V" + d.parent.x + "H" + d.parent.y;
 				});
 
@@ -134,10 +134,10 @@ const visualize = (json) => {
 						for(let i = 0; i < qualitative_value_keys.length; i++) {
 
 							for(let value in d.data.qualitative_info) {
-
+								
 								if(qualitative_value_keys[i] == value) {
-
-									if(!qualitative_value_map[qualitative_value_keys[i]].includes(d.data.qualitative_info[value]))
+					
+									if(!qualitative_value_map[qualitative_value_keys[i]].includes(d.data.qualitative_info[value])) 
 										qualitative_value_map[qualitative_value_keys[i]].push(d.data.qualitative_info[value]);
 								}
 							}
@@ -148,8 +148,8 @@ const visualize = (json) => {
 					});
 
 	// function drawNodes() adds nodes to the tree with its corresponding tooltip containing node data
-	const drawNodes = () => {
-
+	const drawNodes = () => {	
+	
 		// Add circle to node
 		node.append("circle")
 			.attr("r", 7)
@@ -184,7 +184,7 @@ const visualize = (json) => {
 				// adds each pairs of quantitative trait and its value to the table
 				for(let key in d.data.quantitative_info) {
 
-					animal_info = animal_info + "<tr style='line-height: 1'><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + key + "</td><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + d.data.quantitative_info[key] + "</td></tr>";
+					animal_info = animal_info + "<tr style='line-height: 1'><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + key + "</td><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + d.data.quantitative_info[key] + "</td></tr>";	
 				}
 
 				animal_info = animal_info + "</table>"
@@ -214,7 +214,7 @@ const visualize = (json) => {
 		.style("font-weight", "bold")
 		.text(function(d) {return d.data.name;});
 
-
+	
 	/** FEATURE #2. Covariance Table **/
 
 	// div for displaying the required fields (Covariance Table and Inbreeding Table)
@@ -222,11 +222,11 @@ const visualize = (json) => {
 	required_data_div.style.marginBottom = '2px';
 
 	main_container.appendChild(required_data_div);
-
+	
 	// div for the covariance table
 	const covariance_table_div = document.createElement("div");
 	covariance_table_div.style.cssText = "border:1px solid #c6b89e; border-radius: 5px; margin-bottom: 5px; width: 100%;overflow:auto;";
-
+	
 	required_data_div.appendChild(covariance_table_div);
 
 	const covariance_table_text = document.createElement("h4");
@@ -241,7 +241,7 @@ const visualize = (json) => {
 										" of each individual.";
 
 	covariance_table_desc.style.cssText = "font-family: Arial, Helvetica, sans-serif; margin-left: 5%";
-
+	
 	covariance_table_div.appendChild(covariance_table_desc);
 
 	const covariance_table_container = document.createElement("div");
@@ -258,7 +258,7 @@ const visualize = (json) => {
 
 	// function getCovarianceTableData() returns a 2D array of id names and their corresponding covariance value
 	const getCovarianceTableData = () => {
-
+		
 		// store entities with unique names for determining covariance
 		const unique_entities_array = [];
 
@@ -266,7 +266,7 @@ const visualize = (json) => {
 		const unique_names_array = [];
 
 		// push unique entities and names to unique_entities_array and unique_entity_names
-		for(let i = entities_tree.length - 1; i >= 0; i--)
+		for(let i = entities_tree.length - 1; i >= 0; i--) 
 			if(!unique_entities_array.some(e => e.name === entities_tree[i].name)) {
 
 			unique_entities_array.push(entities_tree[i]);
@@ -300,17 +300,17 @@ const visualize = (json) => {
 
 				// gets the entity name of the current column
 				const curr_individual_name = covariance_table[i][0];
-
-				// gets the entity object of the current column
-				const curr_individual_object = unique_entities_array.filter((obj) => { return obj.name == curr_individual_name});
+				
+				// gets the entity object of the current column 
+				const curr_individual_object = unique_entities_array.filter((obj) => { return obj.name == curr_individual_name});	
 
 				// checks if entity names of the current row and column are the same
-				// the covariance value in covariance_table[current_row][current_column] will be the covariance value
+				// the covariance value in covariance_table[current_row][current_column] will be the covariance value 
 				// of parents of the current entity object
 				if(i == j) {
 
 					//one or two unkonwn parent
-					if(curr_individual_object[0].children == undefined || curr_individual_object[0].children[0] == undefined ||
+					if(curr_individual_object[0].children == undefined || curr_individual_object[0].children[0] == undefined || 
 					curr_individual_object[0].children[1] == undefined) covariance_table[i][j] = 1;
 
 					// both parents are known
@@ -323,9 +323,9 @@ const visualize = (json) => {
 						father_index = unique_names_array.indexOf(father);
 						mother_index = unique_names_array.indexOf(mother);
 
-						if(covariance_table[father_index+1][mother_index+1] != -1)
+						if(covariance_table[father_index+1][mother_index+1] != -1) 
 							covariance_parents = covariance_table[father_index+1][mother_index+1];
-
+						
 						else if(covariance_table[mother_index+1][father_index+1] != -1)
 							covariance_parents = covariance_table[mother_index+1][father_index+1];
 
@@ -334,9 +334,9 @@ const visualize = (json) => {
 					}
 				}
 
-				// different entities (row name and column name are different, 3 cases)
+				// different entities (row name and column name are different, 3 cases) 
 				// 1. both parents unknown, 2. father/mother unknown, 4. both parents known
-				else {
+				else {	
 
 					// case 1. assign the covariance value to 0 if both parents are unknown
 					if(curr_individual_object[0].children == undefined) covariance_table[i][j] = 0;
@@ -347,14 +347,14 @@ const visualize = (json) => {
 						const parent_name = curr_individual_object[0].children[0].name;
 						const parent_index = unique_names_array.indexOf(parent_name);
 
-						if(covariance_table[parent_index+1][j] != -1)
+						if(covariance_table[parent_index+1][j] != -1) 
 							covariance_table[i][j] = covariance_table[parent_index+1][j]/2;
-						else if(covariance_table[j][parent_index+1] != -1)
+						else if(covariance_table[j][parent_index+1] != -1) 
 							covariance_table[i][j] = covariance_table[j][parent_index+1]/2;
 					}
 
 					// case 3. get the covariance value of the current column entity to both parent entities of the current row
-					else if(curr_individual_object[0].children[1] != undefined &&
+					else if(curr_individual_object[0].children[1] != undefined && 
 						curr_individual_object[0].children[0] != undefined){
 
 						const mother_name = curr_individual_object[0].children[0].name;
@@ -362,15 +362,15 @@ const visualize = (json) => {
 
 						const mother_index = unique_names_array.indexOf(mother_name);
 						const father_index = unique_names_array.indexOf(father_name);
-
+					
 						let covariance = 0;
 
 						if(covariance_table[father_index+1][j] != -1) covariance += covariance_table[father_index+1][j];
 						else if(covariance_table[j][father_index+1] != -1) covariance += covariance_table[j][father_index+1];
 
 						if(covariance_table[mother_index+1][j] != -1) covariance += covariance_table[mother_index+1][j];
-						else if(covariance_table[j][mother_index+1] != -1) covariance += covariance_table[j][mother_index+1];
-
+						else if(covariance_table[j][mother_index+1] != -1) covariance += covariance_table[j][mother_index+1];				
+					
 						covariance_table[i][j] = covariance/2;
 					}
 				}
@@ -397,17 +397,17 @@ const visualize = (json) => {
 		if(i == 0) covariance_table_thead.appendChild(covariance_row);
 
 		for(let j = 0; j < covariance_table[i].length; j++) {
-
+				
 			let covariance_header = document.createElement("td");
 			covariance_header.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 1;border:1px solid black;';
 
 			if(i == 0) {
-
+				
 				// for each -1 value in the covariance_table, display an empty string in the table
 				if(covariance_table[i][j] == -1) covariance_header.innerHTML = "";
 				else covariance_header.innerHTML = covariance_table[i][j];
 
-				covariance_row.appendChild(covariance_header);
+				covariance_row.appendChild(covariance_header);								
 			}
 
 			else {
@@ -418,7 +418,7 @@ const visualize = (json) => {
 				if(covariance_table[i][j] == -1) covariance_col.innerHTML = "";
 				else covariance_col.innerHTML = covariance_table[i][j];
 
-				covariance_row.appendChild(covariance_col);
+				covariance_row.appendChild(covariance_col);	
 			}
 		}
 
@@ -426,13 +426,13 @@ const visualize = (json) => {
 	}
 
 	/** FEATURE #3. Inbreeding Coefficient **/
-
+	
 	// create div for the inbreeding table
 	const show_inbreeding_div = document.createElement("div");
 	show_inbreeding_div.style.cssText = "border:1px solid #c6b89e;border-radius:5px; margin-bottom: 5px;width:100%;overflow:auto;";
 
 	required_data_div.appendChild(show_inbreeding_div);
-
+	
 	// Inbreeding table UI
 	const show_inbreeding_text = document.createElement("h4");
 	show_inbreeding_text.innerHTML = "Inbreeding Table"
@@ -455,7 +455,7 @@ const visualize = (json) => {
 
 	show_inbreeding_table_container.appendChild(inbreeding_table);
 
-	const inbreeding_table_header = document.createElement("tr");
+	const inbreeding_table_header = document.createElement("tr");	
 
 	inbreeding_table.appendChild(inbreeding_table_header);
 
@@ -556,9 +556,20 @@ const visualize = (json) => {
 	performance_input.id = "performanceCheckBox";
 
 	const performance_label = document.createElement("label");
-	performance_label.innerHTML = "Show Performance Table";
+	performance_label.innerHTML = "Show Performance Table";	
 	performance_label.setAttribute("for", performance_input.id);
 	performance_label.style.cssText = 'font-family: Arial, Helvetica, sans-serif;';
+
+	const qualitative_graph_p = document.createElement("p");
+
+	const qualitative_graph_input = document.createElement("input");
+	qualitative_graph_input.type = 'checkbox';
+	qualitative_graph_input.id = "qualitativeGraphCheckBox";
+
+	const qualitative_graph_label = document.createElement("label");
+	qualitative_graph_label.innerHTML = "Show Qualitative Graph";	
+	qualitative_graph_label.setAttribute("for", qualitative_graph_input.id);
+	qualitative_graph_label.style.cssText = 'font-family: Arial, Helvetica, sans-serif;';
 
 	// when inbreeding_input is checked, the inbred entities in the SVG pedigree will be filled with red, unchecking will unfill
 	const inbreeding_p = document.createElement("p");
@@ -582,6 +593,9 @@ const visualize = (json) => {
 	checkbox_form.appendChild(performance_p);
 	performance_p.appendChild(performance_input);
 	performance_p.appendChild(performance_label);
+	checkbox_form.appendChild(qualitative_graph_p);
+	qualitative_graph_p.appendChild(qualitative_graph_input);
+	qualitative_graph_p.appendChild(qualitative_graph_label);
 	checkbox_form.appendChild(inbreeding_p);
 	inbreeding_p.appendChild(inbreeding_input);
 	inbreeding_p.appendChild(inbreeding_label);
@@ -596,11 +610,11 @@ const visualize = (json) => {
 	// div for filter section
 	const filter_div = document.createElement('div');
 	filter_div.style.cssText = 	"border:1px solid #c6b89e;border-radius:5px;display:none;margin-bottom:5px;width:100%;overflow:auto;height:250px;";
-
+	
 	main_container.appendChild(filter_div);
 
 	const filter_text = document.createElement("h4");
-	filter_text.innerHTML = "Qualitative Data Filter";
+	filter_text.innerHTML = "Qualitative Trait Filter";
 	filter_text.style.cssText = "font-family:Arial, Helvetica, sans-serif;padding-left:1%;";
 
 	filter_div.appendChild(filter_text);
@@ -615,18 +629,18 @@ const visualize = (json) => {
 	add_button.appendChild(document.createTextNode("Add Filters"));
 	add_button.type = "submit";
 	add_button.style.cssText =	"color:white;margin-left:1%;margin-bottom:1%;background:steelblue;font-family:Arial, Helvetica, sans-serif;padding:0.5%;";
-
+	
 	const filter_button = document.createElement('button');
 	filter_button.appendChild(document.createTextNode("Go Filter!"));
 	filter_button.type = 'submit';
 	filter_button.style.cssText = "color:white;margin-right:1%;margin-bottom:1%;float:right;padding:0.5%;background:green;font-family:Arial, Helvetica, sans-serif;";
-
+	
 	filter_buttons_div.appendChild(add_button);
 	filter_div.appendChild(filter_buttons_div);
 
 	const input_div_container = document.createElement("div");
 	input_div_container.style.cssText = "overflowY:auto; max-height:200px;";
-
+	
 	filter_div.appendChild(input_div_container);
 
 	add_button.addEventListener('click', function() {
@@ -638,7 +652,7 @@ const visualize = (json) => {
 		filter_input_div.style.cssText = 'width:100%;';
 
 		input_div_container.appendChild(filter_input_div);
-
+		
 		// select tags are replicated with the use of div, ul, and li
 		const dropdown_key = document.createElement("div");
 		dropdown_key.className = "dropdown";
@@ -718,7 +732,7 @@ const visualize = (json) => {
 
 			// remove the li's on the previous dropdown_value value
 			for(let j = values_length - 1; j >= 0; j--) this.childNodes[2].removeChild(this.childNodes[2].childNodes[j]);
-
+	
 			for(let k = 0; k < qualitative_value_map[input_value].length; k++) {
 
 				opt = document.createElement('li');
@@ -737,7 +751,7 @@ const visualize = (json) => {
 
 			if(this.childNodes[2].style.display == 'none') this.childNodes[2].style.display = 'block';
 			else this.childNodes[2].style.display = 'none';
-
+		
 		});
 
 		filter_input_div.appendChild(dropdown_value);
@@ -748,26 +762,26 @@ const visualize = (json) => {
 
 			key_list[i].addEventListener('click', function() {
 
-	    		this.parentNode.parentNode.childNodes[0].childNodes[0].innerHTML = this.innerHTML;
-	      		this.parentNode.parentNode.childNodes[1].value = this.id;
+				this.parentNode.parentNode.childNodes[0].childNodes[0].innerHTML = this.innerHTML;
+				this.parentNode.parentNode.childNodes[1].value = this.id;
 
-		      	const values_length = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].length;
-		      	span_value.innerHTML = qualitative_value_map[this.id][0];
-		      	this.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].value = qualitative_value_map[this.id][0];
-
-		      	if(this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].style.display == 'block')
-					this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].style.display = 'none';
+				const values_length = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].length;
+				span_value.innerHTML = qualitative_value_map[this.id][0];
+				this.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].value = qualitative_value_map[this.id][0];
+				
+				if(this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].style.display == 'block')
+					this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].style.display = 'none'; 
 
 				for(let j = values_length - 1; j >= 0; j--) this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].removeChild(this.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].childNodes[j]);
-
+	
 				for(let k = 0; k < qualitative_value_map[this.id].length; k++) {
-
+	
 					opt = document.createElement('li');
 					opt.id = qualitative_value_map[this.id][k];
 					opt.innerHTML = qualitative_value_map[this.id][k];
 					value_ul.appendChild(opt);
 				}
-	    	});
+			});
 		}
 
 		let delete_button = document.createElement('button');
@@ -784,7 +798,7 @@ const visualize = (json) => {
 		});
 
 		filter_input_div.appendChild(delete_button);
-
+		
 		// check if there is at least one filter
 		if(flag) filter_buttons_div.appendChild(filter_button);
 	});
@@ -794,7 +808,7 @@ const visualize = (json) => {
 		// resets the tree to default (all nodes with white fill)
 		if(inbreeding_input.checked == true) {
 
-			inbreeding_input.checked = false;
+			inbreeding_input.checked = false;	
 			inbred_legend.style.display = 'none';
 		}
 
@@ -818,7 +832,7 @@ const visualize = (json) => {
 		let i = 0;
 
 		let keysForFilter = [], valuesForFilter = [];	// will be used for traversing the tree
-
+		
 		while(i < input_div_container.childNodes.length) {
 
 			keysForFilter.push(input_div_container.childNodes[i].childNodes[0].childNodes[1].value);
@@ -826,7 +840,7 @@ const visualize = (json) => {
 
 			i++;
 		}
-
+	
 
 		// fill nodes according to filter
 		node.append("circle")
@@ -875,7 +889,7 @@ const visualize = (json) => {
 			// adds each pairs of quantitative trait and its value to the table
 			for(let key in d.data.quantitative_info) {
 
-				animal_info = animal_info + "<tr style='line-height: 1'><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + key + "</td><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + d.data.quantitative_info[key] + "</td></tr>";
+				animal_info = animal_info + "<tr style='line-height: 1'><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + key + "</td><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + d.data.quantitative_info[key] + "</td></tr>";	
 			}
 
 			animal_info = animal_info + "</table>"
@@ -899,13 +913,16 @@ const visualize = (json) => {
 	// value of each key
 	const getQualitativeDataCount = () => {	// return JSON of the qualitative data of the pedigree
 
-		let qualitative_data_object = {};
+		let qualitative_data_array = [];
 		let count = 0;
 
 		for(let i = 0; i < qualitative_value_keys.length; i++) {
 
+			let qualitative_data_object = {};
+
 			// store each qualitative data key in the qualitative_data_object as keys
-			qualitative_data_object[qualitative_value_keys[i]] = [];
+			qualitative_data_object['trait'] = qualitative_value_keys[i];
+			qualitative_data_object['values'] = [];
 
 			// traverese and count each possible trait value of each qualitative data key
 			for(let j = 0; j < qualitative_value_map[qualitative_value_keys[i]].length; j++) {
@@ -918,22 +935,27 @@ const visualize = (json) => {
 						count++;
 				}
 
-				trait_count_pair[qualitative_value_map[qualitative_value_keys[i]][j]] = count;
-				qualitative_data_object[qualitative_value_keys[i]].push(trait_count_pair);
+				trait_count_pair['value'] = qualitative_value_map[qualitative_value_keys[i]][j];
+				trait_count_pair['count'] = count;
+				qualitative_data_object['values'].push(trait_count_pair);
 				count = 0;
 			}
+
+			qualitative_data_array.push(qualitative_data_object);
 		}
 
-		return qualitative_data_object;
+		return qualitative_data_array;
 	}
 
-	let qualitative_data_object = getQualitativeDataCount();
+	let qualitative_data_array = getQualitativeDataCount();
+
+	console.log(qualitative_data_array);
 
 	let qualitative_data_container = document.createElement("div");
 	qualitative_data_container.style.cssText = "border:1px solid #c6b89e;border-radius:5px;margin-bottom:5px;display:none;width:100%;overflow:auto;";
-
+	
 	let qualitative_text = document.createElement("h4");
-	qualitative_text.innerHTML = "Qualitative Data"
+	qualitative_text.innerHTML = "Qualitative Traits"
 	qualitative_text.style.fontFamily = 'Arial, Helvetica, sans-serif';
 	qualitative_text.style.paddingLeft = '1%';
 
@@ -942,9 +964,9 @@ const visualize = (json) => {
 	main_container.appendChild(qualitative_data_container);
 
 	//	tables for qualitative data
-	for(let i = 0; i < Object.keys(qualitative_data_object).length; i++) {
+	for(let i = 0; i < qualitative_data_array.length; i++) {
 
-		let curr_trait = Object.keys(qualitative_data_object)[i];
+		let curr_trait = qualitative_data_array[i]['trait'];
 
 		let trait_text = document.createElement("h5");
 		trait_text.innerHTML = curr_trait
@@ -959,7 +981,7 @@ const visualize = (json) => {
 		trait_table.style.cssText = 'font-size:12px;margin-bottom:1%;border-collapse:collapse;margin-left:1%;';
 
 		let trait_row = document.createElement("tr");
-		trait_row.style.cssText = 'line-height: 0.8;';
+		trait_row.style.cssText = 'line-height: 0.8;';	
 
 		trait_table.appendChild(trait_row);
 
@@ -969,10 +991,10 @@ const visualize = (json) => {
 
 		trait_row.appendChild(traitword_text);
 
-		for(let j = 0; j < qualitative_data_object[curr_trait].length; j++) {
+		for(let j = 0; j < qualitative_data_array[i]['values'].length; j++) {
 
 			let trait_value = document.createElement("td");
-			trait_value.innerHTML = Object.keys(qualitative_data_object[curr_trait][j])[0];
+			trait_value.innerHTML = qualitative_data_array[i]['values'][j]['value'];
 			trait_value.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
 
 			trait_row.appendChild(trait_value);
@@ -991,11 +1013,11 @@ const visualize = (json) => {
 
 		let count = 0;
 
-		for(let j = 0; j < qualitative_data_object[curr_trait].length; j++) {
+		for(let j = 0; j < qualitative_data_array[i]['values'].length; j++) {
 
 			let trait_count = document.createElement("td");
 			trait_count.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
-			trait_count.innerHTML = qualitative_data_object[curr_trait][j][Object.keys(qualitative_data_object[curr_trait][j])[0]];
+			trait_count.innerHTML = qualitative_data_array[i]['values'][j]['count'];
 			trait_count.style.fontFamily = 'Arial. Helvetica, sans-serif';
 
 			count_row.appendChild(trait_count);
@@ -1013,10 +1035,12 @@ const visualize = (json) => {
 		let quantitative_data_object;
 
 		for(let i = 0; i < quantitative_value_keys.length; i++) {
-
+			
 			quantitative_data_object = {};
 
-			quantitative_data_object['data'] = quantitative_value_keys[i];
+			quantitative_data_object['trait'] = quantitative_value_keys[i];
+
+			quantitative_data_object['values'] = [];
 
 			for(let j = 0; j < entities_tree.length; j++) {
 
@@ -1026,20 +1050,29 @@ const visualize = (json) => {
 				if(typeof(entities_tree[j].quantitative_info[quantitative_value_keys[i]]) == 'string')
 					current_value = parseFloat(entities_tree[j].quantitative_info[quantitative_value_keys[i]]);
 
-				total += current_value;
+				total += entities_tree[j].quantitative_info[quantitative_value_keys[i]];
 
 				if(current_value > max)
 					max = current_value;
 				if(current_value < min)
 					min = current_value;
 			}
+			
+			let min_object = {};
+			let max_object = {};
+			let ave_object = {};
+			let std_object = {};
 
-			quantitative_data_object['minimum'] = min;
-			quantitative_data_object['maximum'] = max;
+			min_object['value'] = min;
+			min_object['category'] = 'Minimum';
 
+			max_object['value'] = max;
+			max_object['category'] = 'Maximum';
+			
 			mean = total/count;
 
-			quantitative_data_object['ave'] = mean;
+			ave_object['value'] = mean;
+			ave_object['category'] = 'Average';
 
 			for(let j = 0; j < entities_tree.length; j++) {
 
@@ -1053,7 +1086,13 @@ const visualize = (json) => {
 
 			std = Math.sqrt(std/(count-1));
 
-			quantitative_data_object['stdev'] = std;
+			std_object['value'] = std;
+			std_object['category'] = 'Standard Deviation';
+
+			quantitative_data_object['values'].push(min_object);
+			quantitative_data_object['values'].push(max_object);
+			quantitative_data_object['values'].push(ave_object);
+			quantitative_data_object['values'].push(std_object);
 
 			min = 9999; max = 0; mean = 0; std = 0; total = 0;
 
@@ -1065,13 +1104,15 @@ const visualize = (json) => {
 
 	const quantitative_data_array = getQuantitativeDataCount();
 
+	console.log(quantitative_data_array);
+
 	let quantitative_data_container = document.createElement("div");
 	quantitative_data_container.style.cssText = "border:1px solid #c6b89e;border-radius:5px;margin-bottom:5px; display:none;width:100%;overflow:auto;";
 
 	main_container.appendChild(quantitative_data_container);
 
 	let quantitative_text = document.createElement("h4");
-	quantitative_text.innerHTML = "Quantitative Data";
+	quantitative_text.innerHTML = "Quantitative Traits";
 	quantitative_text.style.cssText = "font-family: Arial, Helvetica, sans-serif; padding-left: 1%;"
 
 	quantitative_data_container.appendChild(quantitative_text);
@@ -1101,7 +1142,7 @@ const visualize = (json) => {
 	let ave_col = document.createElement("td");
 	ave_col.innerHTML = 'Average';
 	ave_col.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
-
+	
 	let std_col = document.createElement("td");
 	std_col.innerHTML = 'Standard Deviation';
 	std_col.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
@@ -1123,36 +1164,104 @@ const visualize = (json) => {
 		quanti_row.style.cssText = 'line-height: 0.8;';
 
 		let quanti_trait = document.createElement("th");
-		quanti_trait.innerHTML = quantitative_data_array[i]['data'];
+		quanti_trait.innerHTML = quantitative_data_array[i]['trait'];
 		quanti_trait.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
 
 		quanti_row.appendChild(quanti_trait);
 
-		let min_cell = document.createElement("td");
-		min_cell.innerHTML = quantitative_data_array[i]['minimum'];
-		min_cell.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
+		for(let index = 0; index < quantitative_data_array[i]['values'].length; index++) {
 
-		let max_cell = document.createElement("td");
-		max_cell.innerHTML = quantitative_data_array[i]['maximum'];
-		max_cell.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
+			let quanti_trait = document.createElement("td");
+			quanti_trait.innerHTML = quantitative_data_array[i]['values'][index]['value'].toFixed(4);
+			quanti_trait.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
 
-		let mean_cell = document.createElement("td");
-		mean_cell.innerHTML = quantitative_data_array[i]['ave'].toFixed(4);
-		mean_cell.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
-
-		let std_cell = document.createElement("td");
-		std_cell.innerHTML = quantitative_data_array[i]['stdev'].toFixed(4);
-		std_cell.style.cssText = 'font-family: Arial, Helvetica, sans-serif; padding: 7px 7px; line-height: 0.8;border:1px solid black;';
-
-		quanti_row.appendChild(min_cell);
-		quanti_row.appendChild(max_cell);
-		quanti_row.appendChild(mean_cell);
-		quanti_row.appendChild(std_cell);
+			quanti_row.appendChild(quanti_trait);			
+		}
 
 		quanti_table.appendChild(quanti_row);
 	}
 
 	quantitative_data_container.appendChild(quanti_table);
+
+	// GRAPH VERSION SECTION
+
+	const qualitative_data_graph = document.createElement("div");
+	qualitative_data_graph.style.cssText = "border:1px solid #c6b89e;border-radius:5px;margin-bottom:5px; display:none;width:100%;overflow:auto;";
+
+	let qualitative_graph_text = document.createElement("h4");
+	qualitative_graph_text.innerHTML = "Quantitative Traits Graph";
+	qualitative_graph_text.style.cssText = "font-family: Arial, Helvetica, sans-serif; padding-left: 1%;"
+
+	main_container.appendChild(qualitative_data_graph);
+
+	qualitative_data_graph.appendChild(qualitative_graph_text);
+
+	const graph_margin = {top: 30, right: 20, bottom: 30, left: 50},
+	graph_width = 400 - graph_margin.left - graph_margin.right,
+	graph_height = 220 - graph_margin.top - graph_margin.bottom;
+
+	for(let i = 0; i < qualitative_data_array.length; i++) {
+
+		let data = qualitative_data_array[i]['values'];
+
+		let graph_x = d3.scaleBand()
+        	.range([0, graph_width])
+        	.padding(0.1);
+
+		let graph_y = d3.scaleLinear()
+		    .range([graph_height, 0]);
+
+		var graph_svg = d3.select(qualitative_data_graph).append("svg")
+    		.attr("width", graph_width + graph_margin.left + graph_margin.right)
+    		.attr("height", graph_height + graph_margin.top + graph_margin.bottom)
+  		.append("g")
+    	.attr("transform", "translate(" + graph_margin.left + "," + graph_margin.top + ")");
+
+    	graph_x.domain(data.map(function(d) { return d.value; }));
+    	graph_y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+   //      const toolTip = d3.select(qualitative_data_graph).append('div')
+			// .attr('class', 'toolTip')
+			// .style('opacity', 0);
+
+    	graph_svg.selectAll(".bar")
+	      .data(data)
+	    .enter().append("rect")
+	      .attr("class", "bar")
+	      .attr("x", function(d) { return graph_x(d.value); })
+	      .attr("width", graph_x.bandwidth())
+	      .attr("y", function(d) { return graph_y(d.count); })
+	      .attr("height", function(d) { return graph_height - graph_y(d.count); })
+	   //    .on('mouseover', (d) => {
+		  //   toolTip.transition().duration(200).style('opacity', 0.9);
+		  //   toolTip.html("Value: <span>" + d.value + "</span>")
+		  //     .style('left', (d3.event.layerX) + "px")
+		  //     .style('top',  (d3.event.layerY - 28) + "px");
+		  // })
+ 	 	// .on('mouseout', () => toolTip.transition().duration(500).style('opacity', 0));
+
+	    graph_svg.append("g")
+	    	.attr("transform", "translate(0," + graph_height + ")")
+	    	.call(d3.axisBottom(graph_x).ticks(10));
+	    	// .selectAll("text")	
+		    //     .style("text-anchor", "middle")
+		    //     .attr("dx", "-.8em")
+		    //     .attr("dy", ".20em")
+		    //     .attr("transform", "rotate(-8)");
+
+		  // add the y Axis
+		graph_svg.append("g")
+		      .call(d3.axisLeft(graph_y));
+
+		graph_svg.append("text")
+        .attr("x", (graph_width / 2))             
+        .attr("y", 0 - (graph_margin.top / 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px")
+        .text(qualitative_data_array[i].trait + " Graph");
+	}	
+
+	// checkbox listeners
 
 	filter_input.addEventListener('change', () => {
 
@@ -1172,6 +1281,19 @@ const visualize = (json) => {
 
 			qualitative_data_container.style.display = 'none';
 			quantitative_data_container.style.display = 'none';
+		}
+	});
+
+	qualitative_graph_input.addEventListener('change', () => {
+
+		if(qualitative_graph_input.checked == true) {
+
+			qualitative_data_graph.style.display = 'block';
+		}
+
+		else {
+
+			qualitative_data_graph.style.display = 'none';
 		}
 	});
 
@@ -1197,11 +1319,11 @@ const visualize = (json) => {
 
 				for(let i = 0; i < inbred_entities.length; i++) {
 
-					if(d.data.name == inbred_entities[i][0]) return 'red';
-				}
+					if(d.data.name == inbred_entities[i][0]) return 'red'; 
+				}	
 			})
 			.on("mouseover", (d) => {
-
+			
 				// creates a table and  displays the ID of the node (for tooltip)
 				let animal_info = "<table style='border-collapse: collapse; border:1px solid black;'><tr style='line-height: 0.5'><th colspan = '2' style='padding: 7px 7px; line-height: 1;border:1px solid black;'> ID: " + d.data.name + "</th></tr>";
 
@@ -1217,7 +1339,7 @@ const visualize = (json) => {
 				// adds each pairs of quantitative trait and its value to the table
 				for(let key in d.data.quantitative_info) {
 
-					animal_info = animal_info + "<tr style='line-height: 1'><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + key + "</td><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + d.data.quantitative_info[key] + "</td></tr>";
+					animal_info = animal_info + "<tr style='line-height: 1'><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + key + "</td><td style='padding: 7px 7px; line-height: 1;border:1px solid black;'>" + d.data.quantitative_info[key] + "</td></tr>";	
 				}
 
 				animal_info = animal_info + "</table>"
