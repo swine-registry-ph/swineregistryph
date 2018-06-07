@@ -5486,7 +5486,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;\n}\n.summary-table tr td[data-v-4aec38b4]:first-child {\n    color: #757575;\n}\n.summary-table tr td[data-v-4aec38b4]:last-child {\n    color: black;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    margin-bottom: 0px;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    padding-top: 1rem;\n}\n\n/* Accent highlights on cards */\n#swineinfo-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #2672a6;\n}\n#swinecart-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #26a69a;\n}\n#gp-sire-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #9a26a6;\n}\n#gp-dam-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #a69a26;\n}\n", ""]);
+exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;\n}\n.summary-table tr td[data-v-4aec38b4]:first-child {\n    color: #757575;\n}\n.summary-table tr td[data-v-4aec38b4]:last-child {\n    color: black;\n}\n#summary > .card[data-v-4aec38b4] {\n    padding: 0;\n}\n#summary-card-action[data-v-4aec38b4] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    margin-bottom: 0px;\n}\n#swinecart-container div.row[data-v-4aec38b4] {\n    padding-top: 1rem;\n}\n\n/* Accent highlights on cards */\n#swineinfo-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #2672a6;\n}\n#swinecart-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #26a69a;\n}\n#gp-sire-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #9a26a6;\n}\n#gp-dam-container > .card[data-v-4aec38b4] {\n    border-top: 4px solid #a69a26;\n}\n", ""]);
 
 // exports
 
@@ -5497,6 +5497,9 @@ exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -5907,9 +5910,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     computed: {
-        generateCertificateLink: function generateCertificateLink() {
-            // const certificateLink = '/breeder/registry-certificate';
-            // return `${certificateLink}/${this.basicInfo.id}`;
+        tempRegistryCertificateLink: function tempRegistryCertificateLink() {
+            return '/breeder/temp-registry-certificate';
+        },
+        registryCertificateLink: function registryCertificateLink() {
+            var certificateLink = '/breeder/registry-certificate';
+            return certificateLink + '/' + this.basicInfo.id;
         },
         gpOneData: function gpOneData() {
             return this.$store.getters.gpOneData;
@@ -5973,13 +5979,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         capitalize: function capitalize(string) {
             return _.capitalize(string);
         },
-        submitInfo: function submitInfo(event) {
+        registerSwine: function registerSwine(event) {
             var _this = this;
 
             var gpOneData = this.gpOneData;
             var gpSireData = this.gpSireData;
             var gpDamData = this.gpDamData;
-            var submitButton = $('.submit-and-generate-cert');
+            var submitButton = $('.register-and-generate-cert');
 
             this.disableButtons(submitButton, event.target, 'Submitting Info...');
 
@@ -6144,10 +6150,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "check-swinecart"
     }
-  }, [_vm._v("Include this swine in SwineCart?")])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_vm._m(6), _vm._v(" "), _c('a', {
-    staticClass: "btn waves-effect waves-light submit-and-generate-cert",
+  }, [_vm._v("Include this swine in SwineCart?")])])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action center-align",
+    attrs: {
+      "id": "summary-card-action"
+    }
+  }, [_c('a', {
+    staticClass: "btn-flat waves-effect waves-light preview-cert black-text",
+    attrs: {
+      "href": _vm.tempRegistryCertificateLink,
+      "target": "_blank",
+      "name": "action"
+    }
+  }, [_vm._v("\n                Preview Certificate\n            ")]), _vm._v(" "), _c('button', {
+    staticClass: "btn waves-effect waves-light register-and-generate-cert light-blue",
     attrs: {
       "href": "#!",
       "type": "submit",
@@ -6156,10 +6172,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.submitInfo($event)
+        _vm.registerSwine($event)
       }
     }
-  }, [_vm._v("\n                        Submit and Generate Certificate\n                    ")])])])])])])
+  }, [_vm._v("\n                Register Swine and Generate Certificate\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -6178,8 +6194,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('h6', {
     staticClass: "center-align"
   }, [_c('b', [_vm._v("SwineCart")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {

@@ -370,24 +370,27 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- For Breed Registry certificate -->
-                    <div class="col s12 center-align">
-                        <p>
-                            <br>
-                        </p>
-                        <a href="#!"
-                            class="btn waves-effect waves-light submit-and-generate-cert"
-                            type="submit"
-                            name="action"
-                            @click.prevent="submitInfo($event)"
-                        >
-                            Submit and Generate Certificate
-                        </a>
-                    </div>
-
                 </div>
 
+            </div>
+
+            <div id="summary-card-action" class="card-action center-align">
+                <!-- For Breed Registry certificate -->
+                <a :href="tempRegistryCertificateLink"
+                    target="_blank"
+                    class="btn-flat waves-effect waves-light preview-cert black-text"
+                    name="action"
+                >
+                    Preview Certificate
+                </a>
+                <button href="#!"
+                    class="btn waves-effect waves-light register-and-generate-cert light-blue"
+                    type="submit"
+                    name="action"
+                    @click.prevent="registerSwine($event)"
+                >
+                    Register Swine and Generate Certificate
+                </button>
             </div>
         </div>
     </div>
@@ -407,9 +410,12 @@
         },
 
         computed: {
-            generateCertificateLink() {
-                // const certificateLink = '/breeder/registry-certificate';
-                // return `${certificateLink}/${this.basicInfo.id}`;
+            tempRegistryCertificateLink() {
+                return '/breeder/temp-registry-certificate';
+            },
+            registryCertificateLink() {
+                const certificateLink = '/breeder/registry-certificate';
+                return `${certificateLink}/${this.basicInfo.id}`;
             },
             gpOneData() {
                 return this.$store.getters.gpOneData;
@@ -473,11 +479,11 @@
                 return _.capitalize(string);
             },
 
-            submitInfo(event) {
+            registerSwine(event) {
                 const gpOneData = this.gpOneData;
                 const gpSireData = this.gpSireData;
                 const gpDamData = this.gpDamData;
-                const submitButton = $('.submit-and-generate-cert');
+                const submitButton = $('.register-and-generate-cert');
 
                 this.disableButtons(submitButton, event.target, 'Submitting Info...')
 
@@ -554,6 +560,15 @@
 
     .summary-table tr td:last-child {
         color: black;
+    }
+
+    #summary > .card {
+        padding: 0;
+    }
+
+    #summary-card-action {
+        border-top: 0;
+        background-color: rgba(236, 239, 241, 0.7);
     }
 
     #swinecart-container div.row {

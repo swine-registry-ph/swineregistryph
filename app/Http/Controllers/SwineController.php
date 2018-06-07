@@ -97,7 +97,7 @@ class SwineController extends Controller
      * View Registry Certicate
      *
      * @param   integer     $swineId
-     * @return  View
+     * @return  PDF
      */
     public function viewRegistryCertificate($swineId)
     {
@@ -129,11 +129,40 @@ class SwineController extends Controller
         PDF::Output("{$swine->registration_no}.pdf");
     }
 
-    public function viewCertificate($swineId)
+    /**
+     * View temporary Registry Certificate
+     *
+     * @param   Request      $request
+     * @return  PDF
+     */
+    public function viewTempRegistryCertificate(Request $request)
     {
-        $swine = Swine::where('id', $swineId)->with('swineProperties')->first();
+        $swine = Swine::where('id', 1)->with('swineProperties', 'farm')->first();
 
-        return view('users.breeder.registryCertificate', compact('swine'));
+        $view = \View::make('users.breeder._certificate', compact('swine'));
+        $html = $view->render();
+
+        $tagvs = [
+            'h1' => [
+                ['h' => 0, 'n' => 0]
+            ],
+            'h2' => [
+                ['h' => 0, 'n' => 0]
+            ],
+            'p' => [
+                ['h' => 0, 'n' => 0]
+            ]
+        ];
+
+        // Set configuration and show pdf
+        PDF::setPageOrientation('L');
+        PDF::SetCellPadding(0);
+        PDF::setHtmlVSpace($tagvs);
+        PDF::setFont('dejavusanscondensed', '', 10);
+        PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
+        PDF::AddPage();
+        PDF::WriteHTML($html, true, false, true, false, '');
+        PDF::Output("{$swine->registration_no}.pdf");
     }
 
     /**
