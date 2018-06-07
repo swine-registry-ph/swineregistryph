@@ -37,13 +37,13 @@
                     <div class="card-content">
                         <span class="card-title">{{ swine.registration_no }}</span>
                         <p class="grey-text">
-                            {{ swine.farm.name }}, {{ swine.farm.province }} <br> <br>
+                            {{ swine.farm.name }}, {{ swine.farm.province }} <br>
                             {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
                         </p>
                     </div>
                     <div class="card-action">
-                        <a  @click.prevent="viewCertificate(index)"
-                            href="#"
+                        <a :href="`/breeder/registry-certificate/${swine.id}`"
+                            target="_blank"
                             class=""
                         >
                             Certificate
@@ -158,14 +158,6 @@
         },
 
         methods: {
-            viewCertificate(index) {
-                // Prepare needed data for modal
-                this.viewCertificateModal.swineName = this.swines[index].registration_no;
-                this.viewCertificateModal.imageSrc = this.certificatePhotosDirectory + this.swines[index].certificate.photos[0].name;
-
-                $('#view-certificate-modal').modal('open');
-            },
-
             viewPhotos(index) {
                 // Prepare needed data for modal
                 this.viewPhotosModal.photos = this.swines[index].photos;

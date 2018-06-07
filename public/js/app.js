@@ -7264,13 +7264,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        viewCertificate: function viewCertificate(index) {
-            // Prepare needed data for modal
-            this.viewCertificateModal.swineName = this.swines[index].registration_no;
-            this.viewCertificateModal.imageSrc = this.certificatePhotosDirectory + this.swines[index].certificate.photos[0].name;
-
-            $('#view-certificate-modal').modal('open');
-        },
         viewPhotos: function viewPhotos(index) {
             // Prepare needed data for modal
             this.viewPhotosModal.photos = this.swines[index].photos;
@@ -7364,17 +7357,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card-title"
     }, [_vm._v(_vm._s(swine.registration_no))]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v(" "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                    ")])]), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                    ")])]), _vm._v(" "), _c('div', {
       staticClass: "card-action"
     }, [_c('a', {
       attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.viewCertificate(index)
-        }
+        "href": ("/breeder/registry-certificate/" + (swine.id)),
+        "target": "_blank"
       }
     }, [_vm._v("\n                        Certificate\n                    ")]), _vm._v(" "), _c('a', {
       staticClass: "right",
