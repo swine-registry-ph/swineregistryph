@@ -103,30 +103,33 @@ class SwineController extends Controller
     {
         $swine = Swine::where('id', $swineId)->with('swineProperties', 'farm')->first();
 
-        $view = \View::make('users.breeder._certificate', compact('swine'));
-        $html = $view->render();
+        if($swine){
+            $view = \View::make('users.breeder._certificate', compact('swine'));
+            $html = $view->render();
 
-        $tagvs = [
-            'h1' => [
-                ['h' => 0, 'n' => 0]
-            ],
-            'h2' => [
-                ['h' => 0, 'n' => 0]
-            ],
-            'p' => [
-                ['h' => 0, 'n' => 0]
-            ]
-        ];
+            $tagvs = [
+                'h1' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'h2' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'p' => [
+                    ['h' => 0, 'n' => 0]
+                ]
+            ];
 
-        // Set configuration and show pdf
-        PDF::setPageOrientation('L');
-        PDF::SetCellPadding(0);
-        PDF::setHtmlVSpace($tagvs);
-        PDF::setFont('dejavusanscondensed', '', 10);
-        PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
-        PDF::AddPage();
-        PDF::WriteHTML($html, true, false, true, false, '');
-        PDF::Output("{$swine->registration_no}.pdf");
+            // Set configuration and show pdf
+            PDF::setPageOrientation('L');
+            PDF::SetCellPadding(0);
+            PDF::setHtmlVSpace($tagvs);
+            PDF::setFont('dejavusanscondensed', '', 10);
+            PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
+            PDF::AddPage();
+            PDF::WriteHTML($html, true, false, true, false, '');
+            PDF::Output("{$swine->registration_no}.pdf");
+        }
+        else return abort(404);
     }
 
     /**

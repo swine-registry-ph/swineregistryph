@@ -376,21 +376,31 @@
 
             <div id="summary-card-action" class="card-action center-align">
                 <!-- For Breed Registry certificate -->
-                <a :href="tempRegistryCertificateLink"
+                <a  v-if="!successfullyRegistered"
+                    :href="tempRegistryCertificateLink"
                     target="_blank"
                     class="btn-flat waves-effect waves-light preview-cert black-text"
                     name="action"
                 >
                     Preview Certificate
                 </a>
-                <button href="#!"
-                    class="btn waves-effect waves-light register-and-generate-cert light-blue"
+                <button v-if="!successfullyRegistered"
+                    href="#!"
+                    class="btn waves-effect waves-light register-and-generate-cert"
                     type="submit"
                     name="action"
                     @click.prevent="registerSwine($event)"
                 >
                     Register Swine and Generate Certificate
                 </button>
+                <a  v-if="successfullyRegistered"
+                    :href="registryCertificateLink"
+                    target="_blank"
+                    class="btn-flat waves-effect waves-light view-generated-cert black-text"
+                    name="action"
+                >
+                    View Generated Certificate
+                </a>
             </div>
         </div>
     </div>
@@ -405,7 +415,8 @@
 
         data() {
             return {
-                currentPrimaryPhotoIndex: -1
+                currentPrimaryPhotoIndex: -1,
+                successfullyRegistered: false
             }
         },
 
@@ -415,7 +426,8 @@
             },
             registryCertificateLink() {
                 const certificateLink = '/breeder/registry-certificate';
-                return `${certificateLink}/${this.basicInfo.id}`;
+                const gpOneId = this.gpOneData.id;
+                return `${certificateLink}/${gpOneId}`;
             },
             gpOneData() {
                 return this.$store.getters.gpOneData;
@@ -485,7 +497,7 @@
                 const gpDamData = this.gpDamData;
                 const submitButton = $('.register-and-generate-cert');
 
-                this.disableButtons(submitButton, event.target, 'Submitting Info...')
+                this.disableButtons(submitButton, event.target, 'Registering...')
 
                 // Attach derived values such as ADG, FE, and breedId
                 // for parents to original object before submit
@@ -510,10 +522,18 @@
                     gpDam: gpDamData
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    const data = response.data;
 
-                    this.enableButtons(submitButton, event.target, 'Submit and Generate Certificate');
-                    Materialize.toast('Info Submitted!', 2000, 'green lighten-1');
+                    // Mutate state of gpOne
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'id',
+                        value: data.id
+                    });
+
+                    this.successfullyRegistered = true;
+                    this.enableButtons(submitButton, event.target, 'Register Swine and Generate Certificate');
+                    Materialize.toast('Registration Successful!', 3000, 'green lighten-1');
                 })
                 .catch((error) => {
                     console.log(error);

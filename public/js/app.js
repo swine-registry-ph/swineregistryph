@@ -5895,6 +5895,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -5904,7 +5914,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            currentPrimaryPhotoIndex: -1
+            currentPrimaryPhotoIndex: -1,
+            successfullyRegistered: false
         };
     },
 
@@ -5915,7 +5926,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         registryCertificateLink: function registryCertificateLink() {
             var certificateLink = '/breeder/registry-certificate';
-            return certificateLink + '/' + this.basicInfo.id;
+            var gpOneId = this.gpOneData.id;
+            return certificateLink + '/' + gpOneId;
         },
         gpOneData: function gpOneData() {
             return this.$store.getters.gpOneData;
@@ -5987,7 +5999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var gpDamData = this.gpDamData;
             var submitButton = $('.register-and-generate-cert');
 
-            this.disableButtons(submitButton, event.target, 'Submitting Info...');
+            this.disableButtons(submitButton, event.target, 'Registering...');
 
             // Attach derived values such as ADG, FE, and breedId
             // for parents to original object before submit
@@ -6011,10 +6023,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 gpSire: gpSireData,
                 gpDam: gpDamData
             }).then(function (response) {
-                console.log(response.data);
+                var data = response.data;
 
-                _this.enableButtons(submitButton, event.target, 'Submit and Generate Certificate');
-                Materialize.toast('Info Submitted!', 2000, 'green lighten-1');
+                // Mutate state of gpOne
+                _this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'id',
+                    value: data.id
+                });
+
+                _this.successfullyRegistered = true;
+                _this.enableButtons(submitButton, event.target, 'Register Swine and Generate Certificate');
+                Materialize.toast('Registration Successful!', 3000, 'green lighten-1');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -6155,15 +6175,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "summary-card-action"
     }
-  }, [_c('a', {
+  }, [(!_vm.successfullyRegistered) ? _c('a', {
     staticClass: "btn-flat waves-effect waves-light preview-cert black-text",
     attrs: {
       "href": _vm.tempRegistryCertificateLink,
       "target": "_blank",
       "name": "action"
     }
-  }, [_vm._v("\n                Preview Certificate\n            ")]), _vm._v(" "), _c('button', {
-    staticClass: "btn waves-effect waves-light register-and-generate-cert light-blue",
+  }, [_vm._v("\n                Preview Certificate\n            ")]) : _vm._e(), _vm._v(" "), (!_vm.successfullyRegistered) ? _c('button', {
+    staticClass: "btn waves-effect waves-light register-and-generate-cert",
     attrs: {
       "href": "#!",
       "type": "submit",
@@ -6175,7 +6195,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.registerSwine($event)
       }
     }
-  }, [_vm._v("\n                Register Swine and Generate Certificate\n            ")])])])])
+  }, [_vm._v("\n                Register Swine and Generate Certificate\n            ")]) : _vm._e(), _vm._v(" "), (_vm.successfullyRegistered) ? _c('a', {
+    staticClass: "btn-flat waves-effect waves-light view-generated-cert black-text",
+    attrs: {
+      "href": _vm.registryCertificateLink,
+      "target": "_blank",
+      "name": "action"
+    }
+  }, [_vm._v("\n                View Generated Certificate\n            ")]) : _vm._e()])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"

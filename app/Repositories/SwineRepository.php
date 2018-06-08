@@ -140,7 +140,7 @@ class SwineRepository
                     ]),
                     new SwineProperty([
                         'property_id' => 14, // bft collected
-                        'value'       => $swine['bftCollected']
+                        'value'       => Carbon::createFromFormat('F d, Y', $swine['bftCollected'])->toDateString()
                     ]),
                     new SwineProperty([
                         'property_id' => 15, // feed intake
@@ -176,7 +176,7 @@ class SwineRepository
                     ]),
                     new SwineProperty([
                         'property_id' => 23, // date at weaning
-                        'value'       => $swine['dateWeaning']
+                        'value'       => Carbon::createFromFormat('F d, Y', $swine['dateWeaning'])->toDateString()
                     ]),
                     new SwineProperty([
                         'property_id' => 24, // farm swine id / ear mark
@@ -284,7 +284,7 @@ class SwineRepository
                 ]),
                 new SwineProperty([
                     'property_id' => 14, // bft collected
-                    'value'       => $swine['bftCollected']
+                    'value'       => Carbon::createFromFormat('F d, Y', $swine['bftCollected'])->toDateString()
                 ]),
                 new SwineProperty([
                     'property_id' => 15, // feed intake
@@ -320,7 +320,7 @@ class SwineRepository
                 ]),
                 new SwineProperty([
                     'property_id' => 23, // date at weaning
-                    'value'       => $swine['dateWeaning']
+                    'value'       => Carbon::createFromFormat('F d, Y', $swine['dateWeaning'])->toDateString()
                 ]),
                 new SwineProperty([
                     'property_id' => 24, // farm swine id / ear mark
