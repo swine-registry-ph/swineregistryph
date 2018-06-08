@@ -33,7 +33,7 @@ class PedigreeRepository
         $queue = [$swine->id];
         $parentPointers = [];
         $noOfNodes = 1;
-        $noOfParentNodesAtGeneration = $this->getNoOfParentNodesAtGeneration($generation);
+        $noOfExpectedNodesAtGeneration = $this->getNoOfExpectedNodesAtGeneration($generation-1);
 
         // Build properties of root node which is the swine requested
         // Then put its reference to parentPointers
@@ -72,7 +72,7 @@ class PedigreeRepository
             $queue = array_merge($queue, $parentIds);
 
             $noOfNodes++;
-            if($noOfNodes > $noOfParentNodesAtGeneration) break;
+            if($noOfNodes > $noOfExpectedNodesAtGeneration) break;
         }
 
         $maxDepthOfTree = $this->getMaxDepthOfTree($pedigree);
@@ -119,20 +119,17 @@ class PedigreeRepository
 
     /**
      * Get number of expected nodes in a binary tree at a given generation/level.
-     * Note however that since we're immediately getting the parents when
-     * accessing a specific node, the number of expected nodes here
-     * refer to one generation/level less
      *
      * @param   integer     $generation
      * @return  integer
      */
-    private function getNoOfParentNodesAtGeneration($generation)
+    private function getNoOfExpectedNodesAtGeneration($generation)
     {
-        $noOfExpectedParentNodes = 0;
+        $noOfExpectedNodes = 0;
 
-        for ($i=0; $i < $generation; $i++) $noOfExpectedParentNodes = $noOfExpectedParentNodes + pow(2, $i);
+        for ($i=0; $i < $generation; $i++) $noOfExpectedNodes = $noOfExpectedNodes + pow(2, $i);
 
-        return $noOfExpectedParentNodes;
+        return $noOfExpectedNodes;
     }
 
     /**
@@ -166,7 +163,7 @@ class PedigreeRepository
 
             return $max = ($rightDepth > $leftDepth) ? $rightDepth + 1 : $leftDepth + 1;
         }
-        else return 0;
+        else return 1;
 
     }
 }

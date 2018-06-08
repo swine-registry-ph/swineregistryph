@@ -188,10 +188,6 @@
                 <div class="col s12">
                     <h6> Number of Generations </h6>
                     <p>
-                        <input name="generation" type="radio" id="value-one" value="1" checked/>
-                        <label for="value-one">1</label>
-                    </p>
-                    <p>
                         <input name="generation" type="radio" id="value-two" value="2" />
                         <label for="value-two">2</label>
                     </p>
@@ -206,6 +202,10 @@
                     <p>
                         <input name="generation" type="radio" id="value-five" value="5" />
                         <label for="value-five">5</label>
+                    </p>
+                    <p>
+                        <input name="generation" type="radio" id="value-six" value="6" />
+                        <label for="value-six">6</label>
                     </p>
                 </div>
                 <div id="generate-button-container" class="col s12 center-align">
