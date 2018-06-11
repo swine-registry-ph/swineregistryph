@@ -56,6 +56,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user is of type genomics
+     * 
+     * @return boolean
+     */
+    public function isGenomics()
+    {
+        return str_containe($this->userable_type, 'Genomics');
+    }
+
+    /**
      * Check User if it has a certain role
      *
      * @param   String  $role

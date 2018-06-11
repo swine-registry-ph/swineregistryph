@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-    
+
     }
 
     /**
@@ -30,6 +30,7 @@ class HomeController extends Controller
 
         if($user->isAdmin()) return redirect()->action('AdminController@index');
         else if($user->isBreeder()) return redirect()->action('BreederController@index');
+        else if($user->isGenomics()) return redirect()->action('GenomicsController@index');
         else redirect()->route('logout');
     }
 }
