@@ -53,6 +53,12 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/manage/properties', 'ManageFieldsController@updateProperty')->name('updateProperty');
     });
 
+    // Genomics-related
+    Route::group(['prefix' => 'genomics'], function(){
+
+        Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
+    });
+
     // Override Laravel Passport routes
     Route::group(['prefix' => 'oauth', 'middleware' => 'role:admin'], function() {
         Route::post('/clients', 'PassportClientOverrideController@store');

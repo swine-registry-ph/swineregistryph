@@ -21,6 +21,13 @@ class UserInstancesSeeder extends Seeder
             $administrator->users()->save($user);
         });
 
+        // For Genomics User
+        factory(App\Models\User::class, 1)->create()->each(function ($user) {
+            // Create Genomics Profile
+            $genomics = factory(App\Models\Genomics::class)->create();
+            $genomics->users()->save($user);
+        });
+
         // For Breeders
         factory(App\Models\User::class, 5)->create()->each(function ($user) {
 
