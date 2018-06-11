@@ -494,6 +494,10 @@ var nav = new Vue({
                 manageFarms: false,
                 reports: false,
                 swineCart: false
+            },
+            genomics: {
+                regGeneticInfo: false,
+                viewGeneticInfo: false
             }
         }
     },
