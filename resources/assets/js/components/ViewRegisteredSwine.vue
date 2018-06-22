@@ -76,8 +76,8 @@
                         {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
                     </p>
                     <div class="secondary-content">
-                        <a @click.prevent="viewCertificate(index)"
-                            href="#!"
+                        <a :href="`/breeder/registry-certificate/${swine.id}`"
+                            target="_blank"
                             class="btn-flat orange-text text-accent-2"
                         >
                             Certificate
@@ -91,23 +91,6 @@
                     </div>
                 </li>
             </ul>
-        </div>
-
-        <!-- View Certificate Modal -->
-        <div id="view-certificate-modal" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <h4>Certificate <i class="material-icons right modal-close">close</i></h4>
-                <div class="col s12">
-                    <div class="card">
-                        <div class="card-image">
-                            <img :src="viewCertificateModal.imageSrc">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-            </div>
         </div>
 
         <!-- View Photos Modal -->
@@ -145,12 +128,7 @@
         data() {
             return {
                 swinePhotosDirectory: '/storage/images/swine/',
-                certificatePhotosDirectory: '/storage/images/certificate/',
                 viewLayout: 'card',
-                viewCertificateModal: {
-                    swineName: '',
-                    imageSrc: ''
-                },
                 viewPhotosModal: {
                     photos: []
                 }

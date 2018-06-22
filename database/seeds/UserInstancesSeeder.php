@@ -444,19 +444,12 @@ class UserInstancesSeeder extends Seeder
                     ]
                 );
 
-                // Attach photo and certificate to swine, GP sire, and GP dam
+                // Attach photo to swine, GP sire, and GP dam
                 // Swine
                 $swinePhoto = new App\Models\Photo;
                 $swinePhoto->name = $chosenBreedName . '_' . $sexes[$swineSexIndex] . '.jpg';
                 $swine->photos()->save($swinePhoto);
                 $swine->primaryPhoto_id = $swinePhoto->id;
-
-                $swineCertificate = new App\Models\Certificate;
-                $swine->certificate()->save($swineCertificate);
-
-                $swineCertficatePhoto = new App\Models\Photo;
-                $swineCertficatePhoto->name = 'certificate_default.jpg';
-                $swineCertificate->photos()->save($swineCertficatePhoto);
 
                 // Sire
                 $gpSirePhoto = new App\Models\Photo;
@@ -465,26 +458,12 @@ class UserInstancesSeeder extends Seeder
                 $gpSire->primaryPhoto_id = $gpSirePhoto->id;
                 $gpSire->save();
 
-                $gpSireCertificate = new App\Models\Certificate;
-                $gpSire->certificate()->save($gpSireCertificate);
-
-                $gpSireCertficatePhoto = new App\Models\Photo;
-                $gpSireCertficatePhoto->name = 'certificate_default.jpg';
-                $gpSireCertificate->photos()->save($gpSireCertficatePhoto);
-
                 // Dam
                 $gpDamPhoto = new App\Models\Photo;
                 $gpDamPhoto->name = $chosenBreedName . '_female.jpg';
                 $gpDam->photos()->save($gpDamPhoto);
                 $gpDam->primaryPhoto_id = $gpDamPhoto->id;
                 $gpDam->save();
-
-                $gpDamCertificate = new App\Models\Certificate;
-                $gpDam->certificate()->save($gpDamCertificate);
-
-                $gpDamCertficatePhoto = new App\Models\Photo;
-                $gpDamCertficatePhoto->name = 'certificate_default.jpg';
-                $gpDamCertificate->photos()->save($gpDamCertficatePhoto);
 
                 // Attach GP sire and GP dam to swine
                 $swine->gpSire_id = $gpSire->id;

@@ -85,7 +85,7 @@ class ViewRegisteredSwineTest extends TestCase
     public function testBreederViewRegisteredSwine()
     {
         $expectedSwines = $this->breederUser->userable()->first()
-                               ->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm', 'certificate.photos'])
+                               ->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm'])
                                ->get();
 
         $response = $this->actingAs($this->breederUser)
