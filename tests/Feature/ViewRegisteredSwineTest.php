@@ -70,6 +70,7 @@ class ViewRegisteredSwineTest extends TestCase
     public function testAdminViewRegisteredSwine()
     {
         $expectedFarms = Farm::with('swines')->get();
+
         $response = $this->actingAs($this->adminUser)
                          ->get('/admin/view-registered-swine');
 
@@ -90,7 +91,7 @@ class ViewRegisteredSwineTest extends TestCase
 
         $response = $this->actingAs($this->breederUser)
                          ->get('/breeder/manage-swine/view');
-
+                         
         $response->assertViewIs('users.breeder.viewRegisteredSwine');
         $response->assertViewHas('swines', $expectedSwines);
     }
