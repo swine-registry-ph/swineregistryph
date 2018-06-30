@@ -8038,7 +8038,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#add-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#add-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n.delete-breeder-btn[data-v-2b3e0810] {\n    margin-left: 1.5rem;\n}\n.view-farm-btn[data-v-2b3e0810] {\n    font-size: 2.5rem;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -8057,10 +8057,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        initialBreeders: Array
+        breeders: Array
+    },
+
+    methods: {
+        showFarms: function showFarms(index) {
+            $('#show-farms-modal').modal('open');
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
     }
 });
 
@@ -8069,15 +8124,86 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "row"
-  }, [_c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(1), _vm._v(" "), _vm._l((_vm.breeders), function(breeder, index) {
+    return _c('div', {
+      key: breeder.id,
+      staticClass: "col s12 m6 l6"
+    }, [_c('div', {
+      staticClass: "card"
+    }, [_c('div', {
+      staticClass: "card-content"
+    }, [_c('span', {
+      staticClass: "card-title"
+    }, [_c('b', [_vm._v(_vm._s(breeder.name))])]), _vm._v(" "), _c('p', [_c('i', {
+      staticClass: "material-icons right view-farm-btn tooltipped",
+      attrs: {
+        "data-position": "top",
+        "data-delay": "50",
+        "data-tooltip": "View Farm/s"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showFarms(index)
+        }
+      }
+    }, [_vm._v("\n                            store\n                        ")]), _vm._v("\n                        " + _vm._s(breeder.email) + " "), _c('br'), _vm._v("\n                        " + _vm._s(breeder.status_instance) + "\n                    ")])]), _vm._v(" "), _vm._m(2, true)])])
+  })], 2), _vm._v(" "), _vm._m(3)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v(" Manage Breeders ")])])])
+  }, [_vm._v(" Manage Breeders ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "add-breeder-btn-container"
+    }
+  }, [_c('a', {
+    staticClass: "btn",
+    attrs: {
+      "id": "add-breeder-btn",
+      "href": "#!"
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("add")]), _vm._v(" Add Breeder\n            ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-action grey lighten-3"
+  }, [_c('a', {
+    staticClass: "btn blue darken-1 edit-breeder-btn z-depth-0",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Edit")]), _vm._v(" "), _c('a', {
+    staticClass: "red-text text-darken-1 delete-breeder-btn",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Delete")]), _vm._v(" "), _c('a', {
+    staticClass: "grey-text text-darken-1 block-breeder-btn",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Block")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "show-farms-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("Farms")])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  })])
 }]}
 module.exports.render._withStripped = true
 if (false) {

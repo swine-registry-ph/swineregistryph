@@ -24,7 +24,12 @@ class ManageBreedersController extends Controller
      */
     public function index()
     {
-        $breeders = Breeder::with('farms')->get();
+        $breeders = Breeder::with('farms', 'users')->get();
+
+        foreach ($breeders as $breeder) {
+            $breeder->name = $breeder->users->first()->name;
+            $breeder->email = $breeder->users->first()->email;
+        }
 
         return view('users.admin.manageBreeders', compact('breeders'));
     }
