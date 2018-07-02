@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-    <manage-breeders :breeders="{{ $breeders }}"> </manage-breeders>
+    <manage-breeders :breeders="{{ $customizedBreederData }}"> </manage-breeders>
 </div>
 
 @endsection

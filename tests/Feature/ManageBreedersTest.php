@@ -37,12 +37,56 @@ class ManageBreedersTest extends TestCase
      */
     public function testAdminViewManageBreeders()
     {
-        $expectedBreeders = Breeder::with('farms')->get();
+        $customizedBreederData = [];
+        $breeders = Breeder::with('farms')->get();
+
+        // Customize breeder data for easier querying
+        foreach ($breeders as $breeder) {
+            array_push($customizedBreederData, 
+                [
+                    'id'        => $breeder->id,
+                    'name'      => $breeder->users[0]->name,
+                    'email'     => $breeder->users[0]->email,
+                    'status'    => $breeder->status_instance,
+                    'farms'     => $breeder->farms
+                ]
+            );
+        }
         
         $response = $this->actingAs($this->adminUser)
                          ->get('/admin/manage/breeders');
 
         $response->assertViewIs('users.admin.manageBreeders');
-        $response->assertViewHas('breeders', $expectedBreeders);
+        $response->assertViewHas('customizedBreederData', collect($customizedBreederData));
+    }
+
+    /**
+     * Test if creation of breeder is successful
+     *
+     * @return void
+     */
+    public function testAdminCreateBreeder()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->adminUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('POST', '/admin/manage/breeders',
+                [
+                    'name'  => 'Sample Breeder',
+                    'email' => 'breeder@example.com',
+                ]
+            );
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'id'        => 1,
+                'name'      => 'Sample Breeder',
+                'email'     => 'breeder@example.com',    
+                'status'    => 'active',
+                'farms'     => []                   
+            ]);
     }
 }

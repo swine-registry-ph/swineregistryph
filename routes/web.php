@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/manage/properties', 'ManageFieldsController@addProperty')->name('addProperty');
         Route::patch('/manage/properties', 'ManageFieldsController@updateProperty')->name('updateProperty');
         Route::get('/manage/breeders', 'ManageBreedersController@index')->name('showManageBreeders');
+        Route::post('/manage/breeders', 'ManageBreedersController@addBreeder')->name('addBreeder');
     });
 
     // Genomics-related

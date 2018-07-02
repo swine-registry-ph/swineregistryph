@@ -95,24 +95,24 @@ class PedigreeRepository
         $swine = Swine::find($swineId);
 
         return [
-            'registrationnumber' =>             $swine->registration_no,
+            'registrationnumber'                => $swine->registration_no,
             'qualitative_info' => [
-                'farm_name' =>                  $this->getFarmNameWithProvince($swine->farm_id),
-                'breed' =>                      $this->getBreedTitle($swine->breed_id),
-                'sex' =>                        $this->getSwinePropValue($swine, 1),
-                'birthyear' =>                  $this->changeDateFormat($this->getSwinePropValue($swine, 2), 'year'),
-                'date_registered' =>            $this->changeDateFormat($swine->date_registered),
-                'registered_by' =>              $swine->breeder->users()->first()->name
+                'farm_name'                     => $this->getFarmNameWithProvince($swine->farm_id),
+                'breed'                         => $this->getBreedTitle($swine->breed_id),
+                'sex'                           => $this->getSwinePropValue($swine, 1),
+                'birthyear'                     => $this->changeDateFormat($this->getSwinePropValue($swine, 2), 'year'),
+                'date_registered'               => $this->changeDateFormat($swine->date_registered),
+                'registered_by'                 => $swine->breeder->users()->first()->name
             ],
             'quantitative_info' => [
-                'birth_weight' =>               $this->getSwinePropValue($swine, 3),
-                'average_daily_gain_birth' =>   $this->getSwinePropValue($swine, 4),
-                'average_daily_gain_test' =>    $this->getSwinePropValue($swine, 7),
-                'backfat_thickness' =>          $this->getSwinePropValue($swine, 13),
-                'feed_efficiency' =>            $this->getSwinePropValue($swine, 16),
-                'parity' =>                     $this->getSwinePropValue($swine, 18),
-                'total_when_born_male' =>       $this->getSwinePropValue($swine, 19),
-                'total_when_born_female' =>     $this->getSwinePropValue($swine, 20)
+                'birth_weight'                  => $this->getSwinePropValue($swine, 3),
+                'average_daily_gain_birth'      => $this->getSwinePropValue($swine, 4),
+                'average_daily_gain_test'       => $this->getSwinePropValue($swine, 7),
+                'backfat_thickness'             => $this->getSwinePropValue($swine, 13),
+                'feed_efficiency'               => $this->getSwinePropValue($swine, 16),
+                'parity'                        => $this->getSwinePropValue($swine, 18),
+                'total_when_born_male'          => $this->getSwinePropValue($swine, 19),
+                'total_when_born_female'        => $this->getSwinePropValue($swine, 20)
             ]
         ];
     }
