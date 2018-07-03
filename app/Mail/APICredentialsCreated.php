@@ -38,7 +38,7 @@ class APICredentialsCreated extends Mailable
         $outroLines = ['Make sure to store your credentials in a safe location.'];
 
         return $this->view('emails.apicredentials')
-                    ->subject('Breed Registry API Credentials')
+                    ->subject('Swine Breed Registry PH API Credentials')
                     ->with([
                         'level' => 'success',
                         'process' => $this->process,

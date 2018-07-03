@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BreederCreated;
 use App\Models\Breeder;
 use App\Models\User;
 use Illuminate\Http\Request;
+
+use Mail;
 
 class ManageBreedersController extends Controller
 {
@@ -69,8 +72,14 @@ class ManageBreedersController extends Controller
             $breeder = Breeder::create([]);
             $breeder->users()->save($breederUser);
 
-            // Send email to Breeder user here...
+            // Send email to newly created Breeder user
             // Put sending of email in queue
+            $breederDetails = [
+                'email'      => $breederUser->email,
+                'initialPassword'  => $initialPassword
+            ];
+
+            Mail::to($breederUser->email)->queue(new BreederCreated($breederDetails));
 
             return collect(
                 [
