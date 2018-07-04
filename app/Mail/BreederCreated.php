@@ -42,13 +42,14 @@ class BreederCreated extends Mailable
         return $this->view('emails.newbreeder')
                     ->subject('Swine Breed Registry PH Breeder Account')
                     ->with([
-                        'level' => 'success',
-                        'introLines' => $introLines,
-                        'outroLines' => $outroLines,
-                        'email' => $this->breeder['email'],
-                        'initialPassword' => $this->breeder['initialPassword'],
-                        'actionText' => 'Login',
-                        'actionUrl' => route('login')
+                        'level'             => 'success',
+                        'introLines'        => $introLines,
+                        'outroLines'        => $outroLines,
+                        'name'              => $this->breeder['name'],
+                        'email'             => $this->breeder['email'],
+                        'initialPassword'   => $this->breeder['initialPassword'],
+                        'actionText'        => 'Login',
+                        'actionUrl'         => route('login')
                     ]);
     }
 }

@@ -105,8 +105,9 @@ $style = [
                                         @endforeach
 
                                         <p>
-                                            email: <b>{{ $email }}</b> <br>
-                                            password: <b>{{ $initialPassword }}</b>
+                                            Name: <b>{{ $name }}</b> <br/>
+                                            Email: <b>{{ $email }}</b> <br/>
+                                            Password: <b>{{ $initialPassword }}</b>
                                         </p>
                                         <!-- Action Button -->
                                         @if (isset($actionText))

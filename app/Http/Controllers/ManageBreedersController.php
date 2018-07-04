@@ -76,8 +76,9 @@ class ManageBreedersController extends Controller
             // Send email to newly created Breeder user
             // Put sending of email in queue
             $breederDetails = [
-                'email'      => $breederUser->email,
-                'initialPassword'  => $initialPassword
+                'name'              => $breederUser->name,
+                'email'             => $breederUser->email,
+                'initialPassword'   => $initialPassword
             ];
 
             Mail::to($breederUser->email)->queue(new BreederCreated($breederDetails));
