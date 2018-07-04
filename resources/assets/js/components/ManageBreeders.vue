@@ -6,7 +6,7 @@
 
         <div class="col s12">
             <div id="toggle-register-breeder-btn-container" class="col s12"> 
-                <a @click.prevent="showAddBreedersModal" 
+                <a @click.prevent="showAddBreederModal" 
                     id="toggle-register-breeder-btn" 
                     class="btn" 
                     href="#!"
@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div v-for="(breeder,index) in breeders" 
-                :key="breeder.id"
+                :key="breeder.userId"
                 class="col s12 m6 l6"
             >
                 <div class="card">
@@ -23,7 +23,6 @@
                         <span class="card-title"> <b>{{ breeder.name }}</b> </span>
                         <p class="grey-text"> 
                             {{ breeder.status }} • {{ breeder.email }}
-                            
                         </p>
                         <p>
                             <br/>
@@ -37,14 +36,18 @@
                         </p>
                     </div>
                     <div class="card-action grey lighten-3">
-                        <a href="#!" class="btn blue darken-1 toggle-edit-breeder-btn z-depth-0">Edit</a>
-                        <a href="#!" class="red-text text-darken-1 toggle-delete-breeder-btn">Delete</a>
-                        <a href="#!" class="grey-text text-darken-1 toggle-block-breeder-btn">Block</a>
+                        <a @click.prevent="showEditBreederModal(index)" 
+                            href="#!" 
+                            class="btn blue darken-1 toggle-edit-breeder-btn z-depth-0"
+                        >
+                            Edit
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Show Farms Modal -->
         <div id="show-farms-modal" class="modal">
             <div class="modal-content">
                 <h4>
@@ -57,6 +60,7 @@
             </div>
         </div>
 
+        <!-- Add Breeder Modal -->
         <div id="add-breeder-modal" class="modal">
             <div class="modal-content">
                 <h4>
@@ -93,6 +97,46 @@
                 </a>
             </div>
         </div>
+        
+        <!-- Edit Breeder Modal -->
+        <div id="edit-breeder-modal" class="modal">
+            <div class="modal-content">
+                <h4>
+                    Edit Breeder
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input v-model="editBreederData.name"
+                            id="edit-breeder-name"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-breeder-name">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input v-model="editBreederData.email"
+                            id="edit-breeder-email"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-breeder-email">Email</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                <a @click.prevent="updateBreeder($event)" 
+                    href="#!" 
+                    class="modal-action btn z-depth-0 update-breeder-btn"
+                >
+                    Update
+                </a>
+            </div>
+        </div>
+
+        
     </div>
 </template>
 
@@ -107,6 +151,12 @@
                 addBreederData: {
                     name: '',
                     email: ''
+                },
+                editBreederData: {
+                    index: 0,
+                    userId: 0,
+                    name: '',
+                    email: ''
                 }
             }
         },
@@ -116,7 +166,7 @@
                 $('#show-farms-modal').modal('open');
             },
 
-            showAddBreedersModal() {
+            showAddBreederModal() {
                 $('#add-breeder-modal').modal('open');
             },
 
@@ -132,15 +182,14 @@
                     email: vm.addBreederData.email
                 })
                 .then((response) => {
-                    // Put response in local data storage and erase adding of property data
-                    
+                    // Put response in local data storage and erase adding of breeder data
                     vm.breeders.push(response.data);
                     vm.addBreederData = {
                         name: '',
                         email: ''
                     };
 
-                    // Update UI after adding property
+                    // Update UI after adding breeder
                     vm.$nextTick(() => {
                         $('#add-breeder-modal').modal('close');
                         $('#add-breeder-name').removeClass('valid');
@@ -157,6 +206,63 @@
                 });
             },
 
+            showEditBreederModal(index) {
+                // Initialize data for editing
+                const breeder = this.breeders[index];
+                this.editBreederData.index = index;
+                this.editBreederData.userId = breeder.userId;
+                this.editBreederData.name = breeder.name;
+                this.editBreederData.email = breeder.email;
+
+                $('#edit-breeder-modal').modal('open');
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                });
+            },
+
+            updateBreeder(event) {
+                const vm = this;
+                const updateBreederButton = $('.update-breeder-btn');
+
+                this.disableButtons(updateBreederButton, event.target, 'Updating...');
+
+                // Update to server's database
+                axios.patch('/admin/manage/breeders', {
+                    userId: vm.editBreederData.userId,
+                    name: vm.editBreederData.name,
+                    email: vm.editBreederData.email
+                })
+                .then((response) => {
+                    // Put response in local data storage and erase editing of breeder data
+                    if(response.data.updated){
+                        const index = vm.editBreederData.index;
+                        vm.breeders[index].name = vm.editBreederData.name;
+                        vm.breeders[index].email = vm.editBreederData.email;
+                        vm.editBreederData = {
+                            index: 0,
+                            userId: 0,
+                            name: '',
+                            email: ''
+                        };
+
+                        // Update UI after updating breeder
+                        vm.$nextTick(() => {
+                            $('#edit-breeder-modal').modal('close');
+                            $('#edit-breeder-name').removeClass('valid');
+                            $('#edit-breeder-email').removeClass('valid');
+
+                            this.enableButtons(updateBreederButton, event.target, 'Update');
+
+                            Materialize.updateTextFields();
+                            Materialize.toast(`${vm.breeders[index].name} updated`, 2500, 'green lighten-1');
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+            
             disableButtons(buttons, actionBtnElement, textToShow) {
                 buttons.addClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
@@ -192,16 +298,12 @@
         border-radius: 20px;
     }
 
-    #add-breeder-modal {
+    #add-breeder-modal, #edit-breeder-modal {
         width: 40rem;
     }
 
     .modal .modal-footer {
         padding-right: 2rem;
-    }
-
-    .toggle-delete-breeder-btn {
-        margin-left: 1.5rem;
     }
 
 </style>

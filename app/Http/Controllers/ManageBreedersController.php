@@ -35,7 +35,8 @@ class ManageBreedersController extends Controller
         foreach ($breeders as $breeder) {
             array_push($customizedBreederData, 
                 [
-                    'id'        => $breeder->id,
+                    'breederId' => $breeder->id,
+                    'userId'    => $breeder->users[0]->id,
                     'name'      => $breeder->users[0]->name,
                     'email'     => $breeder->users[0]->email,
                     'status'    => $breeder->status_instance,
@@ -81,15 +82,35 @@ class ManageBreedersController extends Controller
 
             Mail::to($breederUser->email)->queue(new BreederCreated($breederDetails));
 
-            return collect(
-                [
-                    'id'        => $breeder->id,
-                    'name'      => $breederUser->name,
-                    'email'     => $breederUser->email,
-                    'status'    => $breederUser->userable()->first()->status_instance,
-                    'farms'     => []
-                ]
-            );
+            return [
+                'breederId' => $breeder->id,
+                'userId'    => $breederUser->id,
+                'name'      => $breederUser->name,
+                'email'     => $breederUser->email,
+                'status'    => $breederUser->userable()->first()->status_instance,
+                'farms'     => []
+            ];
+        }
+    }
+
+    /**
+     * Update Breeder details
+     *
+     * @param   Request $request
+     * @return  JSON
+     */
+    public function updateBreeder(Request $request)
+    {
+        if($request->ajax()){
+
+            $breederUser = User::find($request->userId);
+            $breederUser->name = $request->name;
+            $breederUser->email = $request->email;
+            $breederUser->save();
+
+            return [
+                'updated' => true
+            ];
         }
     }
 }

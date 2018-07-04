@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Artisan;
 use App\Models\Admin;
 use App\Models\Breeder;
 use App\Models\User;
@@ -22,6 +23,8 @@ class ManageBreedersTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
+
+        Artisan::call('db:seed');
 
         $this->adminUser = factory(User::class)->create();
 
@@ -44,7 +47,8 @@ class ManageBreedersTest extends TestCase
         foreach ($breeders as $breeder) {
             array_push($customizedBreederData, 
                 [
-                    'id'        => $breeder->id,
+                    'breederId' => $breeder->id,
+                    'userId'    => $breeder->users[0]->id,
                     'name'      => $breeder->users[0]->name,
                     'email'     => $breeder->users[0]->email,
                     'status'    => $breeder->status_instance,
@@ -82,11 +86,39 @@ class ManageBreedersTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                'id'        => 1,
+                'breederId' => 6,
+                'userId'    => 9,
                 'name'      => 'Sample Breeder',
                 'email'     => 'breeder@example.com',    
                 'status'    => 'active',
                 'farms'     => []                   
+            ]);
+    }
+
+    /**
+     * Test if updating of breeder is successful
+     *
+     * @return void
+     */
+    public function testAdminUpdateBreeder()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->adminUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('PATCH', '/admin/manage/breeders',
+                [
+                    'userId'    => 1,
+                    'name'      => 'Sample Breeder',
+                    'email'     => 'breeder@example.com',
+                ]
+            );
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'updated' => true
             ]);
     }
 }

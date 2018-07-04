@@ -8038,7 +8038,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n#add-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\n.toggle-delete-breeder-btn[data-v-2b3e0810] {\n    margin-left: 1.5rem;\n}\n\n", ""]);
+exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\n\n", ""]);
 
 // exports
 
@@ -8049,6 +8049,50 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8158,6 +8202,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             addBreederData: {
                 name: '',
                 email: ''
+            },
+            editBreederData: {
+                index: 0,
+                userId: 0,
+                name: '',
+                email: ''
             }
         };
     },
@@ -8167,7 +8217,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showFarms: function showFarms(index) {
             $('#show-farms-modal').modal('open');
         },
-        showAddBreedersModal: function showAddBreedersModal() {
+        showAddBreederModal: function showAddBreederModal() {
             $('#add-breeder-modal').modal('open');
         },
         registerBreeder: function registerBreeder(event) {
@@ -8183,15 +8233,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: vm.addBreederData.name,
                 email: vm.addBreederData.email
             }).then(function (response) {
-                // Put response in local data storage and erase adding of property data
-
+                // Put response in local data storage and erase adding of breeder data
                 vm.breeders.push(response.data);
                 vm.addBreederData = {
                     name: '',
                     email: ''
                 };
 
-                // Update UI after adding property
+                // Update UI after adding breeder
                 vm.$nextTick(function () {
                     $('#add-breeder-modal').modal('close');
                     $('#add-breeder-name').removeClass('valid');
@@ -8202,6 +8251,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Materialize.updateTextFields();
                     Materialize.toast(response.data.name + ' added', 2500, 'green lighten-1');
                 });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditBreederModal: function showEditBreederModal(index) {
+            // Initialize data for editing
+            var breeder = this.breeders[index];
+            this.editBreederData.index = index;
+            this.editBreederData.userId = breeder.userId;
+            this.editBreederData.name = breeder.name;
+            this.editBreederData.email = breeder.email;
+
+            $('#edit-breeder-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateBreeder: function updateBreeder(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateBreederButton = $('.update-breeder-btn');
+
+            this.disableButtons(updateBreederButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/breeders', {
+                userId: vm.editBreederData.userId,
+                name: vm.editBreederData.name,
+                email: vm.editBreederData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase editing of breeder data
+                if (response.data.updated) {
+                    var index = vm.editBreederData.index;
+                    vm.breeders[index].name = vm.editBreederData.name;
+                    vm.breeders[index].email = vm.editBreederData.email;
+                    vm.editBreederData = {
+                        index: 0,
+                        userId: 0,
+                        name: '',
+                        email: ''
+                    };
+
+                    // Update UI after updating breeder
+                    vm.$nextTick(function () {
+                        $('#edit-breeder-modal').modal('close');
+                        $('#edit-breeder-name').removeClass('valid');
+                        $('#edit-breeder-email').removeClass('valid');
+
+                        _this2.enableButtons(updateBreederButton, event.target, 'Update');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(vm.breeders[index].name + ' updated', 2500, 'green lighten-1');
+                    });
+                }
             }).catch(function (error) {
                 console.log(error);
             });
@@ -8245,14 +8349,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        return _vm.showAddBreedersModal($event)
+        return _vm.showAddBreederModal($event)
       }
     }
   }, [_c('i', {
     staticClass: "material-icons left"
   }, [_vm._v("add")]), _vm._v(" Register Breeder\n            ")])]), _vm._v(" "), _vm._l((_vm.breeders), function(breeder, index) {
     return _c('div', {
-      key: breeder.id,
+      key: breeder.userId,
       staticClass: "col s12 m6 l6"
     }, [_c('div', {
       staticClass: "card"
@@ -8262,7 +8366,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card-title"
     }, [_c('b', [_vm._v(_vm._s(breeder.name))])]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v(" \n                        " + _vm._s(breeder.status) + " • " + _vm._s(breeder.email) + "\n                        \n                    ")]), _vm._v(" "), _c('p', [_c('br'), _vm._v(" "), _c('a', {
+    }, [_vm._v(" \n                        " + _vm._s(breeder.status) + " • " + _vm._s(breeder.email) + "\n                    ")]), _vm._v(" "), _c('p', [_c('br'), _vm._v(" "), _c('a', {
       staticClass: "black-text",
       attrs: {
         "href": "#!"
@@ -8275,15 +8379,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('i', {
       staticClass: "material-icons left view-farm-btn"
-    }, [_vm._v(" store ")]), _vm._v("\n                            VIEW FARMS\n                        ")])])]), _vm._v(" "), _vm._m(1, true)])])
-  })], 2), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    }, [_vm._v(" store ")]), _vm._v("\n                            VIEW FARMS\n                        ")])])]), _vm._v(" "), _c('div', {
+      staticClass: "card-action grey lighten-3"
+    }, [_c('a', {
+      staticClass: "btn blue darken-1 toggle-edit-breeder-btn z-depth-0",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditBreederModal(index)
+        }
+      }
+    }, [_vm._v("\n                        Edit\n                    ")])])])])
+  })], 2), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
       "id": "add-breeder-modal"
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "input-field col s12"
@@ -8357,32 +8474,94 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.registerBreeder($event)
       }
     }
-  }, [_vm._v("\n                Register\n            ")])])])])
+  }, [_vm._v("\n                Register\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "edit-breeder-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreederData.name),
+      expression: "editBreederData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breeder-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreederData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreederData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breeder-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreederData.email),
+      expression: "editBreederData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breeder-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreederData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreederData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breeder-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn z-depth-0 update-breeder-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateBreeder($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Manage Breeders ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "card-action grey lighten-3"
-  }, [_c('a', {
-    staticClass: "btn blue darken-1 toggle-edit-breeder-btn z-depth-0",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Edit")]), _vm._v(" "), _c('a', {
-    staticClass: "red-text text-darken-1 toggle-delete-breeder-btn",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Delete")]), _vm._v(" "), _c('a', {
-    staticClass: "grey-text text-darken-1 toggle-block-breeder-btn",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Block")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal",
@@ -8398,6 +8577,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                Register Breeder\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Breeder\n                "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
 }]}
