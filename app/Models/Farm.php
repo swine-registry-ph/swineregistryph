@@ -15,7 +15,12 @@ class Farm extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'type', 'farm_code', 'farm_accreditation_no'
+        'name', 
+        'address', 
+        'type', 
+        'farm_code', 
+        'farm_accreditation_no', 
+        'farm_accreditation_date'
     ];
 
     /**

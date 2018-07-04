@@ -47,7 +47,8 @@ class UserInstancesSeeder extends Seeder
             $farm = factory(App\Models\Farm::class)->create([
                 'name' => $fakerFarmName,
                 'farm_code' => strtoupper(substr($fakerFarmName, 0, 3)),
-                'farm_accreditation_no' => random_int(1000, 2000)
+                'farm_accreditation_no' => random_int(1000, 2000),
+                'farm_accreditation_date' => \Carbon\Carbon::now()->subYear()
             ]);
 
             // Attach farm to breeder
