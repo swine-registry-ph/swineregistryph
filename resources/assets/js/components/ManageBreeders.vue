@@ -14,50 +14,55 @@
                     <i class="material-icons left">add</i> Register Breeder
                 </a>
             </div>
-            <div v-for="(breeder,index) in breeders" 
-                :key="breeder.userId"
-                class="col s12 m6 l6"
+            <template v-for="(breeder, index) in breeders"
             >
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title"> <b>{{ breeder.name }}</b> </span>
-                        <p class="grey-text"> 
-                            {{ breeder.status }} • {{ breeder.email }}
-                        </p>
-                        <p>
-                            <br/>
-                            <a @click.prevent="showFarms(index)"
-                                href="#!"
-                                class="black-text"
+                <div v-if="breeder.userId !== -1"
+                    :key="breeder.userId"
+                    class="col s6"
+                >
+                    <div class="card" :class="(manageFarmsData.breederIndex === index) ? 'card-chosen-breeder' : ''">
+                        <div class="card-content">
+                            <span class="card-title"
+                                :class="(manageFarmsData.breederIndex === index) ? 'name-chosen-breeder' : ''"
+                            > 
+                                <b>{{ breeder.name }}</b> 
+                            </span>
+                            <p class="grey-text text-darken-2"> 
+                                {{ breeder.status }} • {{ breeder.email }}
+                            </p>
+                            <p>
+                                <br/>
+                                <a @click.prevent="showFarms(index)"
+                                    href="#!"
+                                    class="black-text"
+                                >
+                                    <i class="material-icons left view-farm-btn"> store </i>
+                                    Manage Farms
+                                </a>
+                            </p>
+                        </div>
+                        <div class="card-action grey lighten-3">
+                            <a @click.prevent="showEditBreederModal(index)" 
+                                href="#!" 
+                                class="btn blue darken-1 toggle-edit-breeder-btn z-depth-0"
                             >
-                                <i class="material-icons left view-farm-btn"> store </i>
-                                VIEW FARMS
+                                Edit
                             </a>
-                        </p>
-                    </div>
-                    <div class="card-action grey lighten-3">
-                        <a @click.prevent="showEditBreederModal(index)" 
-                            href="#!" 
-                            class="btn blue darken-1 toggle-edit-breeder-btn z-depth-0"
-                        >
-                            Edit
-                        </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Show Farms Modal -->
-        <div id="show-farms-modal" class="modal">
-            <div class="modal-content">
-                <h4>
-                    Farms
-                    <i class="material-icons right modal-close">close</i>
-                </h4>
-            </div>
-            <div class="modal-footer">
+                <div v-else
+                    class="col s12"
+                >
+                    <manage-farms 
+                        :manage-farms-data="manageFarmsData"
+                        @close-manage-farms-event="closeManageFarmsContainer"
+                    >
+                    </manage-farms>
+                </div>
 
-            </div>
+            </template>
         </div>
 
         <!-- Add Breeder Modal -->
@@ -141,13 +146,20 @@
 </template>
 
 <script>
+    import ManageFarms from './ManageBreedersManageFarm.vue';
+
     export default {
         props: {
-            breeders: Array
+            initialBreeders: Array
+        },
+
+        components: {
+            ManageFarms
         },
 
         data() {
             return {
+                breeders: this.initialBreeders,
                 addBreederData: {
                     name: '',
                     email: ''
@@ -157,15 +169,17 @@
                     userId: 0,
                     name: '',
                     email: ''
+                },
+                manageFarmsData: {
+                    containerIndex: 0,
+                    breederIndex: -1,
+                    name: '',
+                    farms: []
                 }
             }
         },
 
         methods: {
-            showFarms(index) {
-                $('#show-farms-modal').modal('open');
-            },
-
             showAddBreederModal() {
                 $('#add-breeder-modal').modal('open');
             },
@@ -262,6 +276,89 @@
                     console.log(error);
                 });
             },
+
+            showFarms(breederIndex) {
+                // Initialize needed variables and conditions and compute for
+                // proper index placement of Manage Farms "container"
+                const currentContainerIndex = this.manageFarmsData.containerIndex;
+                const manageFarmsContainerIsOpen = currentContainerIndex > 0;
+
+                let increment, newContainerIndex, breederIndexIsGreaterThanBreedersLength;
+
+                // Check if Manage Farms "container" is open
+                if(manageFarmsContainerIsOpen){
+                    const breederIndexIsGreaterThanContainerIndex = breederIndex > currentContainerIndex;
+
+                    // Check if the computed index placement is greater than the "container" index
+                    if(breederIndexIsGreaterThanContainerIndex) {
+                        let newBreederIndex = breederIndex - 1;
+                        increment = (newBreederIndex === 0 || newBreederIndex % 2 === 0) ? 2 : 1;
+                        breederIndexIsGreaterThanBreedersLength = (newBreederIndex + increment) > (this.breeders.length - 2);
+                        newContainerIndex = (breederIndexIsGreaterThanBreedersLength) ? this.breeders.length - 1: newBreederIndex + increment;
+
+                        // Remove first prior Manage Farms "container" from breeders array
+                        this.breeders.splice(currentContainerIndex, 1);
+                        this.initializeManageFarmsData(newBreederIndex, newContainerIndex);
+                        this.insertManageFarmsContainer(newBreederIndex, newContainerIndex);
+                    }
+                    else {
+                        increment = (breederIndex === 0 || breederIndex % 2 === 0) ? 2 : 1;
+                        newContainerIndex = breederIndex + increment;
+
+                        // If Current Manage Farms "container" is the same with the new one
+                        if(currentContainerIndex === newContainerIndex) {
+                            this.initializeManageFarmsData(breederIndex, currentContainerIndex);
+                        }
+                        else {
+                            // Remove current Manage Farms "container" first then 
+                            // initialize the new one
+                            this.breeders.splice(currentContainerIndex, 1);
+                            this.initializeManageFarmsData(breederIndex, newContainerIndex);
+                            this.insertManageFarmsContainer(breederIndex, newContainerIndex);
+                        }
+
+                    }
+                }
+                else {  
+                    increment = (breederIndex === 0 || breederIndex % 2 === 0) ? 2 : 1;
+                    breederIndexIsGreaterThanBreedersLength = (breederIndex + increment) > (this.breeders.length - 1);
+                    newContainerIndex = (breederIndexIsGreaterThanBreedersLength) ? this.breeders.length : breederIndex + increment;
+                    
+                    this.initializeManageFarmsData(breederIndex, newContainerIndex);
+                    this.insertManageFarmsContainer(breederIndex, newContainerIndex);
+                }
+            },
+
+            initializeManageFarmsData(breederIndex, containerIndex) {
+                // Initialize data and metadata of Manage Farms "container"
+                this.manageFarmsData.breederIndex = breederIndex;
+                this.manageFarmsData.containerIndex = containerIndex;
+                this.manageFarmsData.name = this.breeders[breederIndex].name;
+                this.manageFarmsData.farms = this.breeders[breederIndex].farms;
+            },
+
+            insertManageFarmsContainer(breederIndex, containerIndex) {
+                // Insert Manage Farms "container" to breeders array
+                this.breeders.splice(containerIndex, 0, {
+                    userId: -1,
+                    breederId: -1,
+                    name: this.breeders[breederIndex].name,
+                    email: '',
+                    farms: []
+                });
+            },
+
+            closeManageFarmsContainer(data){
+                this.breeders.splice(data.containerIndex, 1);
+
+                // Set manageFarmsData to default
+                this.manageFarmsData = {
+                    containerIndex: 0,
+                    breederIndex: -1,
+                    name: '',
+                    farms: []
+                }
+            },
             
             disableButtons(buttons, actionBtnElement, textToShow) {
                 buttons.addClass('disabled');
@@ -281,7 +378,7 @@
     }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
     h4 i {
         cursor: pointer;
     }
@@ -304,6 +401,18 @@
 
     .modal .modal-footer {
         padding-right: 2rem;
+    }
+
+    /* 
+    * Card highlights for chosen breeder 
+    * upon managing of farms
+    */
+    .card-chosen-breeder {
+        border-top: 8px solid #26a65a;
+    }
+
+    .name-chosen-breeder {
+        color: #26a65a;
     }
 
 </style>

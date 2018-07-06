@@ -8038,7 +8038,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\n\n", ""]);
+exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
 
 // exports
 
@@ -8049,6 +8049,13 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8192,13 +8199,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        breeders: Array
+        initialBreeders: Array
+    },
+
+    components: {
+        ManageFarms: __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default.a
     },
 
     data: function data() {
         return {
+            breeders: this.initialBreeders,
             addBreederData: {
                 name: '',
                 email: ''
@@ -8208,15 +8222,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 userId: 0,
                 name: '',
                 email: ''
+            },
+            manageFarmsData: {
+                containerIndex: 0,
+                breederIndex: -1,
+                name: '',
+                farms: []
             }
         };
     },
 
 
     methods: {
-        showFarms: function showFarms(index) {
-            $('#show-farms-modal').modal('open');
-        },
         showAddBreederModal: function showAddBreederModal() {
             $('#add-breeder-modal').modal('open');
         },
@@ -8310,6 +8327,83 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
+        showFarms: function showFarms(breederIndex) {
+            // Initialize needed variables and conditions and compute for
+            // proper index placement of Manage Farms "container"
+            var currentContainerIndex = this.manageFarmsData.containerIndex;
+            var manageFarmsContainerIsOpen = currentContainerIndex > 0;
+
+            var increment = void 0,
+                newContainerIndex = void 0,
+                breederIndexIsGreaterThanBreedersLength = void 0;
+
+            // Check if Manage Farms "container" is open
+            if (manageFarmsContainerIsOpen) {
+                var breederIndexIsGreaterThanContainerIndex = breederIndex > currentContainerIndex;
+
+                // Check if the computed index placement is greater than the "container" index
+                if (breederIndexIsGreaterThanContainerIndex) {
+                    var newBreederIndex = breederIndex - 1;
+                    increment = newBreederIndex === 0 || newBreederIndex % 2 === 0 ? 2 : 1;
+                    breederIndexIsGreaterThanBreedersLength = newBreederIndex + increment > this.breeders.length - 2;
+                    newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.breeders.length - 1 : newBreederIndex + increment;
+
+                    // Remove first prior Manage Farms "container" from breeders array
+                    this.breeders.splice(currentContainerIndex, 1);
+                    this.initializeManageFarmsData(newBreederIndex, newContainerIndex);
+                    this.insertManageFarmsContainer(newBreederIndex, newContainerIndex);
+                } else {
+                    increment = breederIndex === 0 || breederIndex % 2 === 0 ? 2 : 1;
+                    newContainerIndex = breederIndex + increment;
+
+                    // If Current Manage Farms "container" is the same with the new one
+                    if (currentContainerIndex === newContainerIndex) {
+                        this.initializeManageFarmsData(breederIndex, currentContainerIndex);
+                    } else {
+                        // Remove current Manage Farms "container" first then 
+                        // initialize the new one
+                        this.breeders.splice(currentContainerIndex, 1);
+                        this.initializeManageFarmsData(breederIndex, newContainerIndex);
+                        this.insertManageFarmsContainer(breederIndex, newContainerIndex);
+                    }
+                }
+            } else {
+                increment = breederIndex === 0 || breederIndex % 2 === 0 ? 2 : 1;
+                breederIndexIsGreaterThanBreedersLength = breederIndex + increment > this.breeders.length - 1;
+                newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.breeders.length : breederIndex + increment;
+
+                this.initializeManageFarmsData(breederIndex, newContainerIndex);
+                this.insertManageFarmsContainer(breederIndex, newContainerIndex);
+            }
+        },
+        initializeManageFarmsData: function initializeManageFarmsData(breederIndex, containerIndex) {
+            // Initialize data and metadata of Manage Farms "container"
+            this.manageFarmsData.breederIndex = breederIndex;
+            this.manageFarmsData.containerIndex = containerIndex;
+            this.manageFarmsData.name = this.breeders[breederIndex].name;
+            this.manageFarmsData.farms = this.breeders[breederIndex].farms;
+        },
+        insertManageFarmsContainer: function insertManageFarmsContainer(breederIndex, containerIndex) {
+            // Insert Manage Farms "container" to breeders array
+            this.breeders.splice(containerIndex, 0, {
+                userId: -1,
+                breederId: -1,
+                name: this.breeders[breederIndex].name,
+                email: '',
+                farms: []
+            });
+        },
+        closeManageFarmsContainer: function closeManageFarmsContainer(data) {
+            this.breeders.splice(data.containerIndex, 1);
+
+            // Set manageFarmsData to default
+            this.manageFarmsData = {
+                containerIndex: 0,
+                breederIndex: -1,
+                name: '',
+                farms: []
+            };
+        },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
             actionBtnElement.innerHTML = textToShow;
@@ -8355,18 +8449,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "material-icons left"
   }, [_vm._v("add")]), _vm._v(" Register Breeder\n            ")])]), _vm._v(" "), _vm._l((_vm.breeders), function(breeder, index) {
-    return _c('div', {
+    return [(breeder.userId !== -1) ? _c('div', {
       key: breeder.userId,
-      staticClass: "col s12 m6 l6"
+      staticClass: "col s6"
     }, [_c('div', {
-      staticClass: "card"
+      staticClass: "card",
+      class: (_vm.manageFarmsData.breederIndex === index) ? 'card-chosen-breeder' : ''
     }, [_c('div', {
       staticClass: "card-content"
     }, [_c('span', {
-      staticClass: "card-title"
+      staticClass: "card-title",
+      class: (_vm.manageFarmsData.breederIndex === index) ? 'name-chosen-breeder' : ''
     }, [_c('b', [_vm._v(_vm._s(breeder.name))])]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text"
-    }, [_vm._v(" \n                        " + _vm._s(breeder.status) + " • " + _vm._s(breeder.email) + "\n                    ")]), _vm._v(" "), _c('p', [_c('br'), _vm._v(" "), _c('a', {
+      staticClass: "grey-text text-darken-2"
+    }, [_vm._v(" \n                            " + _vm._s(breeder.status) + " • " + _vm._s(breeder.email) + "\n                        ")]), _vm._v(" "), _c('p', [_c('br'), _vm._v(" "), _c('a', {
       staticClass: "black-text",
       attrs: {
         "href": "#!"
@@ -8379,7 +8475,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('i', {
       staticClass: "material-icons left view-farm-btn"
-    }, [_vm._v(" store ")]), _vm._v("\n                            VIEW FARMS\n                        ")])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" store ")]), _vm._v("\n                                Manage Farms\n                            ")])])]), _vm._v(" "), _c('div', {
       staticClass: "card-action grey lighten-3"
     }, [_c('a', {
       staticClass: "btn blue darken-1 toggle-edit-breeder-btn z-depth-0",
@@ -8392,15 +8488,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.showEditBreederModal(index)
         }
       }
-    }, [_vm._v("\n                        Edit\n                    ")])])])])
-  })], 2), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                            Edit\n                        ")])])])]) : _c('div', {
+      staticClass: "col s12"
+    }, [_c('manage-farms', {
+      attrs: {
+        "manage-farms-data": _vm.manageFarmsData
+      },
+      on: {
+        "close-manage-farms-event": _vm.closeManageFarmsContainer
+      }
+    })], 1)]
+  })], 2), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
       "id": "add-breeder-modal"
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "input-field col s12"
@@ -8481,7 +8586,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "input-field col s12"
@@ -8562,19 +8667,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Manage Breeders ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "show-farms-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("\n                Farms\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer"
-  })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                Register Breeder\n                "), _c('i', {
     staticClass: "material-icons right modal-close"
@@ -10048,6 +10140,240 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(129)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(131),
+  /* template */
+  __webpack_require__(132),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-6d46f7eb",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreedersManageFarm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreedersManageFarm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6d46f7eb", Component.options)
+  } else {
+    hotAPI.reload("data-v-6d46f7eb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(130);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("27351926", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid #1E88E5;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 2rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 131 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        manageFarmsData: Object
+    },
+
+    methods: {
+        toggleCloseFarmsDataContainerEvent: function toggleCloseFarmsDataContainerEvent() {
+            this.$emit('close-manage-farms-event', { 'containerIndex': this.manageFarmsData.containerIndex });
+        },
+        convertToReadableDate: function convertToReadableDate(date) {
+            var dateObject = new Date(date);
+            var monthConversion = {
+                '0': 'January',
+                '1': 'February',
+                '2': 'March',
+                '3': 'April',
+                '4': 'May',
+                '5': 'June',
+                '6': 'July',
+                '7': 'August',
+                '8': 'September',
+                '9': 'October',
+                '10': 'November',
+                '11': 'December'
+            };
+
+            return monthConversion[dateObject.getMonth()] + ' ' + dateObject.getDate() + ', ' + dateObject.getFullYear();
+        }
+    }
+
+});
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card",
+    attrs: {
+      "id": "manage-farms-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h5', [_c('b', {
+    staticClass: "name-chosen-breeder"
+  }, [_vm._v(_vm._s(_vm.manageFarmsData.name))]), _vm._v(" "), _c('i', {
+    staticClass: "material-icons right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.toggleCloseFarmsDataContainerEvent($event)
+      }
+    }
+  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', {
+    staticClass: "center-align"
+  }, [_vm._v(" Manage Farms ")]), _vm._v(" "), _c('ul', {
+    staticClass: "collection"
+  }, _vm._l((_vm.manageFarmsData.farms), function(farm, index) {
+    return _c('li', {
+      key: farm.id,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "farm-title"
+    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text address-line"
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), _c('a', {
+      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
+      attrs: {
+        "href": "#!"
+      }
+    }, [_vm._v(" \n                    Edit \n                ")])])
+  }))])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6d46f7eb", module.exports)
+  }
+}
 
 /***/ })
 ],[19]);
