@@ -6,6 +6,7 @@
 
         <div class="col s12">
             <div id="toggle-register-breeder-btn-container" class="col s12"> 
+                <!-- Register breeder button -->
                 <a @click.prevent="showAddBreederModal" 
                     id="toggle-register-breeder-btn" 
                     class="btn" 
@@ -14,6 +15,7 @@
                     <i class="material-icons left">add</i> Register Breeder
                 </a>
             </div>
+            <!-- Card displays for Breeder -->
             <template v-for="(breeder, index) in breeders"
             >
                 <div v-if="breeder.userId !== -1"
@@ -57,7 +59,9 @@
                 >
                     <manage-farms 
                         :manage-farms-data="manageFarmsData"
+                        :province-options="provinceOptions"
                         @close-manage-farms-event="closeManageFarmsContainer"
+                        @add-breeder-farm-event="addBreederFarm"
                     >
                     </manage-farms>
                 </div>
@@ -73,7 +77,8 @@
                     <i class="material-icons right modal-close">close</i>
                 </h4>
 
-                <div class="row">
+                <div class="row modal-input-container">
+                    <div class="col s12"><br/></div>
                     <div class="input-field col s12">
                         <input v-model="addBreederData.name"
                             id="add-breeder-name"
@@ -111,7 +116,8 @@
                     <i class="material-icons right modal-close">close</i>
                 </h4>
 
-                <div class="row">
+                <div class="row modal-input-container">
+                    <div class="col s12"><br/></div>
                     <div class="input-field col s12">
                         <input v-model="editBreederData.name"
                             id="edit-breeder-name"
@@ -134,7 +140,7 @@
                 <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
                 <a @click.prevent="updateBreeder($event)" 
                     href="#!" 
-                    class="modal-action btn z-depth-0 update-breeder-btn"
+                    class="modal-action btn blue darken-1 z-depth-0 update-breeder-btn"
                 >
                     Update
                 </a>
@@ -150,7 +156,8 @@
 
     export default {
         props: {
-            initialBreeders: Array
+            initialBreeders: Array,
+            provinceOptions: Array
         },
 
         components: {
@@ -173,6 +180,7 @@
                 manageFarmsData: {
                     containerIndex: 0,
                     breederIndex: -1,
+                    breederId: 0,
                     name: '',
                     farms: []
                 }
@@ -329,10 +337,16 @@
                 }
             },
 
+            addBreederFarm(data){
+                // Insert new breeder farm data to breeders array
+                this.breeders[data.breederIndex].farms.push(data.farm);
+            },
+
             initializeManageFarmsData(breederIndex, containerIndex) {
                 // Initialize data and metadata of Manage Farms "container"
                 this.manageFarmsData.breederIndex = breederIndex;
                 this.manageFarmsData.containerIndex = containerIndex;
+                this.manageFarmsData.breederId = this.breeders[breederIndex].breederId;
                 this.manageFarmsData.name = this.breeders[breederIndex].name;
                 this.manageFarmsData.farms = this.breeders[breederIndex].farms;
             },
@@ -355,6 +369,7 @@
                 this.manageFarmsData = {
                     containerIndex: 0,
                     breederIndex: -1,
+                    breederId: 0,
                     name: '',
                     farms: []
                 }
@@ -395,11 +410,17 @@
         border-radius: 20px;
     }
 
+    /* Modal customizations */
     #add-breeder-modal, #edit-breeder-modal {
         width: 40rem;
     }
 
     .modal .modal-footer {
+        padding-right: 2rem;
+    }
+
+    div.modal-input-container {
+        padding-left: 2rem;
         padding-right: 2rem;
     }
 

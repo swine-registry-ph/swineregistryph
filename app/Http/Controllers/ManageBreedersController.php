@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Mail\BreederCreated;
 use App\Models\Breeder;
+use App\Models\Farm;
 use App\Models\User;
+use App\Repositories\CustomHelpers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Mail;
 
 class ManageBreedersController extends Controller
 {
+    use CustomHelpers;
+
     /**
      * Create a new controller instance.
      *
@@ -44,10 +49,12 @@ class ManageBreedersController extends Controller
                 ]
             );
         }
-
+        
         $customizedBreederData = collect($customizedBreederData);
-
-        return view('users.admin.manageBreeders', compact('customizedBreederData'));
+        $provinceOptions = collect($this->getProvinceOptions())->sortBy('text');
+        $provinceOptionsSorted = collect($provinceOptions->values()->all());
+        
+        return view('users.admin.manageBreeders', compact('customizedBreederData', 'provinceOptionsSorted'));
     }
 
     /**
@@ -112,6 +119,40 @@ class ManageBreedersController extends Controller
             return [
                 'updated' => true
             ];
+        }
+    }
+
+    /**
+     * Add Breeder farm details
+     *
+     * @param   Request $request
+     * @return  void
+     */
+    public function addFarm(Request $request)
+    {
+        if($request->ajax()){
+
+            $breeder = Breeder::find($request->breederId);
+
+            // Check if breeder exists
+            if($breeder){
+                $farm = new Farm;
+                $farm->name = $request->name;
+                $farm->farm_code = $request->farmCode;
+                $farm->farm_accreditation_no = $request->accreditationNo;
+                $farm->farm_accreditation_date = Carbon::createFromFormat('F d, Y', $request->accreditationDate)->toDateString();
+                $farm->address_line1 = $request->addressLine1;
+                $farm->address_line2 = $request->addressLine2;
+                $farm->province = $request->province;
+                $farm->province_code = $request->provinceCode;
+
+                // Attach farm to breeder
+                $breeder->farms()->save($farm);
+
+                return $farm;
+            }
+            else return abort(404);
+             
         }
     }
 }

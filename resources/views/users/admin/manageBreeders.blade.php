@@ -7,7 +7,11 @@
 @section('content')
 
 <div class="container">
-    <manage-breeders :initial-breeders="{{ $customizedBreederData }}"> </manage-breeders>
+    <manage-breeders 
+        :initial-breeders="{{ $customizedBreederData }}"
+        :province-options="{{ $provinceOptionsSorted }}"
+    > 
+    </manage-breeders>
 </div>
 
 @endsection

@@ -11,7 +11,15 @@
             </h5>
             <br/>
             <h5 class="center-align"> Manage Farms </h5>
-
+            <!-- Add Farm button -->
+            <a @click.prevent="showAddFarmModal" 
+                id="toggle-add-farm-btn" 
+                class="btn z-depth-0" 
+                href="#!"
+            >
+                <i class="material-icons left">add</i> Add Farm
+            </a>
+            <!-- Collection of Farms -->
             <ul class="collection">
                 <li v-for="(farm, index) in manageFarmsData.farms"
                     :key="farm.id"
@@ -36,22 +44,138 @@
                 </li>
             </ul>
         </div>
+
+        <!-- Add Farm Modal -->
+        <div id="add-farm-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>
+                    Add Farm
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+                <h5 class="grey-text text-darken-2"> {{ manageFarmsData.name }} </h5>
+
+                <div class="row modal-input-container">
+                    <div class="col s12"><br/></div>
+                    <div class="input-field col s8">
+                        <input v-model="addFarmData.name"
+                            id="add-farm-name"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="add-farm-name">Name</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input v-model="addFarmData.farmCode"
+                            id="add-farm-code"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="add-farm-code">Farm Code</label>
+                    </div>
+                    <div class="col s12">
+                        <br/>
+                        <h6>
+                            <b>Accreditation</b>
+                        </h6>
+                    </div>
+                    <div class="input-field col s8">
+                        <app-input-date
+                            v-model="addFarmData.accreditationDate"
+                            @date-select="val => {addFarmData.accreditationDate = val}"
+                        >
+                        </app-input-date>
+                        <label for=""> Accreditation Date </label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input v-model="addFarmData.accreditationNo"
+                            id="add-farm-accreditation-no"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="add-farm-accreditation-no">Accreditation No.</label>
+                    </div>
+                    <div class="col s12">
+                        <br/>
+                        <h6>
+                            <b>Farm Address</b>
+                        </h6>
+                    </div>
+                    <div class="input-field col s6">
+                        <input v-model="addFarmData.addressLine1"
+                            id="add-farm-address-one"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="add-farm-address-one">Address Line 1</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input v-model="addFarmData.addressLine2"
+                            id="add-farm-address-two"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="add-farm-address-two">Address Line 2</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <app-input-select
+                            labelDescription="Province"
+                            v-model="addFarmData.province"
+                            :options="provinceOptions"
+                            @select="val => {addFarmData.province = val}"
+                        >
+                        </app-input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                <a @click.prevent="addFarm($event)" 
+                    href="#!" 
+                    class="modal-action btn z-depth-0 add-farm-btn"
+                >
+                    Add
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
         props: {
-            manageFarmsData: Object
+            manageFarmsData: Object,
+            provinceOptions: Array
+        },
+
+        data() {
+            return {
+                addFarmData: {
+                    breederId: this.manageFarmsData.breederId,
+                    name: '',
+                    farmCode: '',
+                    accreditationDate: '',
+                    accreditationNo: '',
+                    addressLine1: '',
+                    addressLine2: '',
+                    province: '',
+                    provinceCode: ''
+                },
+                editFarmData: {
+                    breederId: this.manageFarmsData.breederId,
+                    farmId: 0,
+                    name: '',
+                    farmCode: '',
+                    accreditationDate: '',
+                    accreditationNo: '',
+                    addressLine1: '',
+                    addressLine2: '',
+                    province: '',
+                    provinceCode: ''
+                }
+            }
         },
 
         methods: {
-            toggleCloseFarmsDataContainerEvent() {
-                this.$emit('close-manage-farms-event', 
-                    { 'containerIndex': this.manageFarmsData.containerIndex }
-                );
-            },
-
             convertToReadableDate(date) {
                 const dateObject = new Date(date);
                 const monthConversion = {
@@ -70,7 +194,103 @@
                 };
                 
                 return `${monthConversion[dateObject.getMonth()]} ${dateObject.getDate()}, ${dateObject.getFullYear()}`;
+            },
+
+            toggleCloseFarmsDataContainerEvent() {
+                // Trigger event to ManageBreeders component
+                this.$emit('close-manage-farms-event', 
+                    { 'containerIndex': this.manageFarmsData.containerIndex }
+                );
+            },
+
+            showAddFarmModal() {
+                $('#add-farm-modal').modal('open');
+            },
+
+            addFarm() {
+                const vm = this;
+                const addFarmBtn = $('.add-farm-btn');
+
+                this.disableButtons(addFarmBtn, event.target, 'Adding...');
+
+                // Parse input-date-select to get province and province code
+                let provinceWithItsCode = vm.addFarmData.province.split(';')
+                                            .map(x => x.trim());
+                
+                // Add to server's database
+                axios.post('/admin/manage/farms', {
+                    breederId: vm.addFarmData.breederId,
+                    name: vm.addFarmData.name,
+                    farmCode: vm.addFarmData.farmCode,
+                    accreditationDate: vm.addFarmData.accreditationDate,
+                    accreditationNo: vm.addFarmData.accreditationNo,
+                    addressLine1: vm.addFarmData.addressLine1,
+                    addressLine2: vm.addFarmData.addressLine2,
+                    province: provinceWithItsCode[0],
+                    provinceCode: provinceWithItsCode[1]
+                })
+                .then((response) => {
+                    // Put response in local data storage by emitting an event 
+                    // to ManageBreeders component and erase 
+                    // adding of breeder farm data
+                    vm.$emit('add-breeder-farm-event', 
+                        {
+                            'breederIndex': vm.manageFarmsData.breederIndex,
+                            'farm': response.data
+                        }
+                    );
+
+                    vm.addFarmData =  {
+                        breederId: vm.manageFarmsData.breederId,
+                        name: '',
+                        farmCode: '',
+                        accreditationDate: '',
+                        accreditationNo: '',
+                        addressLine1: '',
+                        addressLine2: '',
+                        province: '',
+                        provinceCode: ''
+                    };
+
+                    // Update UI after adding breeder
+                    vm.$nextTick(() => {
+                        $('#add-farm-modal').modal('close');
+                        $('#add-farm-name').removeClass('valid');
+                        $('#add-farm-code').removeClass('valid');
+                        $('#add-farm-accreditation-no').removeClass('valid');
+                        $('#add-farm-address-one').removeClass('valid');
+                        $('#add-farm-address-two').removeClass('valid');
+
+                        this.enableButtons(addFarmBtn, event.target, 'Add');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(`${response.data.name} farm added`, 3000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            showEditFarmModal() {
+
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
             }
+            
+        },
+
+        mounted() {
+            // Materialize component initializations
+            $('.modal').modal();
         }
 
     }
@@ -85,6 +305,12 @@
         font-size: 18px;
     }
 
+    #toggle-add-farm-btn {
+        margin-top: 1rem;
+        margin-left: 72px;
+        border-radius: 20px;
+    }
+
     .custom-secondary-btn {
         border: 1px solid #1E88E5;
         background-color: white;
@@ -94,10 +320,28 @@
         padding-top: 10px;
     }
 
+    /* Modal customizations */
+    #add-farm-modal, #edit-farm-modal {
+        width: 50rem;
+    }
+
+    .modal.modal-fixed-footer .modal-footer{
+        border: 0;
+    }
+
+    .modal .modal-footer {
+        padding-right: 2rem;
+    }
+
+    div.modal-input-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
     /* Override MaterializeCSS' collection styles */
     ul.collection {
         border: 0;
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
     li.collection-item {

@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(109);
+module.exports = __webpack_require__(114);
 
 
 /***/ }),
@@ -465,8 +465,8 @@ Vue.component('view-registered-swine', __webpack_require__(84));
 // Admin
 Vue.component('manage-breeds', __webpack_require__(89));
 Vue.component('manage-breeders', __webpack_require__(94));
-Vue.component('manage-properties', __webpack_require__(99));
-Vue.component('manage-apis', __webpack_require__(104));
+Vue.component('manage-properties', __webpack_require__(104));
+Vue.component('manage-apis', __webpack_require__(109));
 
 // For main container
 var app = new Vue({
@@ -7972,7 +7972,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(97),
   /* template */
-  __webpack_require__(98),
+  __webpack_require__(103),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8038,7 +8038,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
+exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n\n/* Modal customizations */\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-2b3e0810] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
 
 // exports
 
@@ -8049,8 +8049,14 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8203,7 +8209,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        initialBreeders: Array
+        initialBreeders: Array,
+        provinceOptions: Array
     },
 
     components: {
@@ -8226,6 +8233,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             manageFarmsData: {
                 containerIndex: 0,
                 breederIndex: -1,
+                breederId: 0,
                 name: '',
                 farms: []
             }
@@ -8376,10 +8384,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.insertManageFarmsContainer(breederIndex, newContainerIndex);
             }
         },
+        addBreederFarm: function addBreederFarm(data) {
+            // Insert new breeder farm data to breeders array
+            this.breeders[data.breederIndex].farms.push(data.farm);
+        },
         initializeManageFarmsData: function initializeManageFarmsData(breederIndex, containerIndex) {
             // Initialize data and metadata of Manage Farms "container"
             this.manageFarmsData.breederIndex = breederIndex;
             this.manageFarmsData.containerIndex = containerIndex;
+            this.manageFarmsData.breederId = this.breeders[breederIndex].breederId;
             this.manageFarmsData.name = this.breeders[breederIndex].name;
             this.manageFarmsData.farms = this.breeders[breederIndex].farms;
         },
@@ -8400,6 +8413,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.manageFarmsData = {
                 containerIndex: 0,
                 breederIndex: -1,
+                breederId: 0,
                 name: '',
                 farms: []
             };
@@ -8422,6 +8436,665 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(99)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(101),
+  /* template */
+  __webpack_require__(102),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-6d46f7eb",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreedersManageFarm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreedersManageFarm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6d46f7eb", Component.options)
+  } else {
+    hotAPI.reload("data-v-6d46f7eb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(100);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("27351926", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n#toggle-add-farm-btn[data-v-6d46f7eb] {\n    margin-top: 1rem;\n    margin-left: 72px;\n    border-radius: 20px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid #1E88E5;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Modal customizations */\n#add-farm-modal[data-v-6d46f7eb], #edit-farm-modal[data-v-6d46f7eb] {\n    width: 50rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-6d46f7eb]{\n    border: 0;\n}\n.modal .modal-footer[data-v-6d46f7eb] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-6d46f7eb] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 1rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        manageFarmsData: Object,
+        provinceOptions: Array
+    },
+
+    data: function data() {
+        return {
+            addFarmData: {
+                breederId: this.manageFarmsData.breederId,
+                name: '',
+                farmCode: '',
+                accreditationDate: '',
+                accreditationNo: '',
+                addressLine1: '',
+                addressLine2: '',
+                province: '',
+                provinceCode: ''
+            },
+            editFarmData: {
+                breederId: this.manageFarmsData.breederId,
+                farmId: 0,
+                name: '',
+                farmCode: '',
+                accreditationDate: '',
+                accreditationNo: '',
+                addressLine1: '',
+                addressLine2: '',
+                province: '',
+                provinceCode: ''
+            }
+        };
+    },
+
+
+    methods: {
+        convertToReadableDate: function convertToReadableDate(date) {
+            var dateObject = new Date(date);
+            var monthConversion = {
+                '0': 'January',
+                '1': 'February',
+                '2': 'March',
+                '3': 'April',
+                '4': 'May',
+                '5': 'June',
+                '6': 'July',
+                '7': 'August',
+                '8': 'September',
+                '9': 'October',
+                '10': 'November',
+                '11': 'December'
+            };
+
+            return monthConversion[dateObject.getMonth()] + ' ' + dateObject.getDate() + ', ' + dateObject.getFullYear();
+        },
+        toggleCloseFarmsDataContainerEvent: function toggleCloseFarmsDataContainerEvent() {
+            // Trigger event to ManageBreeders component
+            this.$emit('close-manage-farms-event', { 'containerIndex': this.manageFarmsData.containerIndex });
+        },
+        showAddFarmModal: function showAddFarmModal() {
+            $('#add-farm-modal').modal('open');
+        },
+        addFarm: function addFarm() {
+            var _this = this;
+
+            var vm = this;
+            var addFarmBtn = $('.add-farm-btn');
+
+            this.disableButtons(addFarmBtn, event.target, 'Adding...');
+
+            // Parse input-date-select to get province and province code
+            var provinceWithItsCode = vm.addFarmData.province.split(';').map(function (x) {
+                return x.trim();
+            });
+
+            // Add to server's database
+            axios.post('/admin/manage/farms', {
+                breederId: vm.addFarmData.breederId,
+                name: vm.addFarmData.name,
+                farmCode: vm.addFarmData.farmCode,
+                accreditationDate: vm.addFarmData.accreditationDate,
+                accreditationNo: vm.addFarmData.accreditationNo,
+                addressLine1: vm.addFarmData.addressLine1,
+                addressLine2: vm.addFarmData.addressLine2,
+                province: provinceWithItsCode[0],
+                provinceCode: provinceWithItsCode[1]
+            }).then(function (response) {
+                // Put response in local data storage by emitting an event 
+                // to ManageBreeders component and erase 
+                // adding of breeder farm data
+                vm.$emit('add-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farm': response.data
+                });
+
+                vm.addFarmData = {
+                    breederId: vm.manageFarmsData.breederId,
+                    name: '',
+                    farmCode: '',
+                    accreditationDate: '',
+                    accreditationNo: '',
+                    addressLine1: '',
+                    addressLine2: '',
+                    province: '',
+                    provinceCode: ''
+                };
+
+                // Update UI after adding breeder
+                vm.$nextTick(function () {
+                    $('#add-farm-modal').modal('close');
+                    $('#add-farm-name').removeClass('valid');
+                    $('#add-farm-code').removeClass('valid');
+                    $('#add-farm-accreditation-no').removeClass('valid');
+                    $('#add-farm-address-one').removeClass('valid');
+                    $('#add-farm-address-two').removeClass('valid');
+
+                    _this.enableButtons(addFarmBtn, event.target, 'Add');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(response.data.name + ' farm added', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditFarmModal: function showEditFarmModal() {},
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card",
+    attrs: {
+      "id": "manage-farms-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h5', [_c('b', {
+    staticClass: "name-chosen-breeder"
+  }, [_vm._v(_vm._s(_vm.manageFarmsData.name))]), _vm._v(" "), _c('i', {
+    staticClass: "material-icons right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.toggleCloseFarmsDataContainerEvent($event)
+      }
+    }
+  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', {
+    staticClass: "center-align"
+  }, [_vm._v(" Manage Farms ")]), _vm._v(" "), _c('a', {
+    staticClass: "btn z-depth-0",
+    attrs: {
+      "id": "toggle-add-farm-btn",
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.showAddFarmModal($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("add")]), _vm._v(" Add Farm\n        ")]), _vm._v(" "), _c('ul', {
+    staticClass: "collection"
+  }, _vm._l((_vm.manageFarmsData.farms), function(farm, index) {
+    return _c('li', {
+      key: farm.id,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "farm-title"
+    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text address-line"
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), _c('a', {
+      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
+      attrs: {
+        "href": "#!"
+      }
+    }, [_vm._v(" \n                    Edit \n                ")])])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "add-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " ")]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.name),
+      expression: "addFarmData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.farmCode),
+      expression: "addFarmData.farmCode"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.farmCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "farmCode", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-code"
+    }
+  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.addFarmData.accreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.addFarmData.accreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.addFarmData, "accreditationDate", $$v)
+      },
+      expression: "addFarmData.accreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.accreditationNo),
+      expression: "addFarmData.accreditationNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-accreditation-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.accreditationNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "accreditationNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-accreditation-no"
+    }
+  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.addressLine1),
+      expression: "addFarmData.addressLine1"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-address-one",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.addressLine1)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "addressLine1", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-address-one"
+    }
+  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.addressLine2),
+      expression: "addFarmData.addressLine2"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-address-two",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.addressLine2)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "addressLine2", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-address-two"
+    }
+  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Province",
+      "options": _vm.provinceOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.addFarmData.province = val
+      }
+    },
+    model: {
+      value: (_vm.addFarmData.province),
+      callback: function($$v) {
+        _vm.$set(_vm.addFarmData, "province", $$v)
+      },
+      expression: "addFarmData.province"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn z-depth-0 add-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Add\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Add Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6d46f7eb", module.exports)
+  }
+}
+
+/***/ }),
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8492,10 +9165,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "col s12"
     }, [_c('manage-farms', {
       attrs: {
-        "manage-farms-data": _vm.manageFarmsData
+        "manage-farms-data": _vm.manageFarmsData,
+        "province-options": _vm.provinceOptions
       },
       on: {
-        "close-manage-farms-event": _vm.closeManageFarmsContainer
+        "close-manage-farms-event": _vm.closeManageFarmsContainer,
+        "add-breeder-farm-event": _vm.addBreederFarm
       }
     })], 1)]
   })], 2), _vm._v(" "), _c('div', {
@@ -8506,8 +9181,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "modal-content"
   }, [_vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('input', {
     directives: [{
@@ -8586,9 +9261,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('input', {
     directives: [{
@@ -8650,7 +9325,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#!"
     }
   }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn z-depth-0 update-breeder-btn",
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-breeder-btn",
     attrs: {
       "href": "#!"
     },
@@ -8672,9 +9347,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                Edit Breeder\n                "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -8685,19 +9368,19 @@ if (false) {
 }
 
 /***/ }),
-/* 99 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(100)
+  __webpack_require__(105)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(102),
+  __webpack_require__(107),
   /* template */
-  __webpack_require__(103),
+  __webpack_require__(108),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8729,13 +9412,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 100 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(101);
+var content = __webpack_require__(106);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8755,7 +9438,7 @@ if(false) {
 }
 
 /***/ }),
-/* 101 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -8769,7 +9452,7 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 
 /***/ }),
-/* 102 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9038,7 +9721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 103 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9336,19 +10019,19 @@ if (false) {
 }
 
 /***/ }),
-/* 104 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(105)
+  __webpack_require__(110)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(107),
+  __webpack_require__(112),
   /* template */
-  __webpack_require__(108),
+  __webpack_require__(113),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9380,13 +10063,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 105 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(106);
+var content = __webpack_require__(111);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9406,7 +10089,7 @@ if(false) {
 }
 
 /***/ }),
-/* 106 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -9420,7 +10103,7 @@ exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-propert
 
 
 /***/ }),
-/* 107 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9810,7 +10493,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 108 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10136,244 +10819,10 @@ if (false) {
 }
 
 /***/ }),
-/* 109 */
+/* 114 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(129)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(131),
-  /* template */
-  __webpack_require__(132),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-6d46f7eb",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreedersManageFarm.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageBreedersManageFarm.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6d46f7eb", Component.options)
-  } else {
-    hotAPI.reload("data-v-6d46f7eb", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(130);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("27351926", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid #1E88E5;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 2rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 131 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        manageFarmsData: Object
-    },
-
-    methods: {
-        toggleCloseFarmsDataContainerEvent: function toggleCloseFarmsDataContainerEvent() {
-            this.$emit('close-manage-farms-event', { 'containerIndex': this.manageFarmsData.containerIndex });
-        },
-        convertToReadableDate: function convertToReadableDate(date) {
-            var dateObject = new Date(date);
-            var monthConversion = {
-                '0': 'January',
-                '1': 'February',
-                '2': 'March',
-                '3': 'April',
-                '4': 'May',
-                '5': 'June',
-                '6': 'July',
-                '7': 'August',
-                '8': 'September',
-                '9': 'October',
-                '10': 'November',
-                '11': 'December'
-            };
-
-            return monthConversion[dateObject.getMonth()] + ' ' + dateObject.getDate() + ', ' + dateObject.getFullYear();
-        }
-    }
-
-});
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "card",
-    attrs: {
-      "id": "manage-farms-container"
-    }
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('h5', [_c('b', {
-    staticClass: "name-chosen-breeder"
-  }, [_vm._v(_vm._s(_vm.manageFarmsData.name))]), _vm._v(" "), _c('i', {
-    staticClass: "material-icons right",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.toggleCloseFarmsDataContainerEvent($event)
-      }
-    }
-  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', {
-    staticClass: "center-align"
-  }, [_vm._v(" Manage Farms ")]), _vm._v(" "), _c('ul', {
-    staticClass: "collection"
-  }, _vm._l((_vm.manageFarmsData.farms), function(farm, index) {
-    return _c('li', {
-      key: farm.id,
-      staticClass: "collection-item avatar"
-    }, [_c('span', {
-      staticClass: "farm-title"
-    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text address-line"
-    }, [_c('i', {
-      staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), _c('a', {
-      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
-      attrs: {
-        "href": "#!"
-      }
-    }, [_vm._v(" \n                    Edit \n                ")])])
-  }))])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6d46f7eb", module.exports)
-  }
-}
 
 /***/ })
 ],[19]);
