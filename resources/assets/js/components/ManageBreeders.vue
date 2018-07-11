@@ -62,6 +62,7 @@
                         :province-options="provinceOptions"
                         @close-manage-farms-event="closeManageFarmsContainer"
                         @add-breeder-farm-event="addBreederFarm"
+                        @update-breeder-farm-event="updateBreederFarm"
                     >
                     </manage-farms>
                 </div>
@@ -340,6 +341,20 @@
             addBreederFarm(data){
                 // Insert new breeder farm data to breeders array
                 this.breeders[data.breederIndex].farms.push(data.farm);
+            },
+
+            updateBreederFarm(data){
+                // Edit breeder farm
+                const farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+                farm.name = data.farm.name;
+                farm.farm_code = data.farm.farmCode;
+                farm.farm_accreditation_date = data.farm.accreditationDate;
+                farm.farm_accreditation_no = data.farm.accreditationNo;
+                farm.address_line1 = data.farm.addressLine1;
+                farm.address_line2 = data.farm.addressLine2;
+                farm.province = data.farm.province;
+                farm.province_code = data.farm.provinceCode;
             },
 
             initializeManageFarmsData(breederIndex, containerIndex) {

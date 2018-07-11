@@ -74,4 +74,37 @@ class ManageBreederFarmsTest extends TestCase
                 'province_code'             => 'ROM'                   
             ]);
     }
+
+    /**
+     * Test if editing of breeder farm is successful
+     *
+     * @return void
+     */
+    public function testAdminUpdateFarm()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->adminUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('PATCH', '/admin/manage/farms',
+                [
+                    'farmId'            => 1,
+                    'name'              => 'Pogi and Piolo Farms 2',
+                    'farmCode'          => 'PAP',
+                    'accreditationDate' => 'July 9, 2017',
+                    'accreditationNo'   => 12345,
+                    'addressLine1'      => '2826 Putho-Tuntungin St.',
+                    'addressLine2'      => 'Bungad, Alfonso',
+                    'province'          => 'Romblon',
+                    'provinceCode'      => 'ROM'
+                ]
+            );
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'updated' => true
+            ]);;
+    }
 }

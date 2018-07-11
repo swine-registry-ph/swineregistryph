@@ -35,7 +35,7 @@
                         {{ farm.address_line1 }}, {{ farm.address_line2 }},
                         {{ farm.province }} ({{ farm.province_code }})
                     </p>
-                    <a 
+                    <a @click.prevent="showEditFarmModal(index)"
                         href="#!" 
                         class="secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1"
                     > 
@@ -137,6 +137,99 @@
                 </a>
             </div>
         </div>
+
+        <!-- Edit Farm Modal -->
+        <div id="edit-farm-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>
+                    Edit Farm
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+                <h5 class="grey-text text-darken-2"> {{ manageFarmsData.name }} </h5>
+
+                <div class="row modal-input-container">
+                    <div class="col s12"><br/></div>
+                    <div class="input-field col s8">
+                        <input v-model="editFarmData.name"
+                            id="edit-farm-name"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-farm-name">Name</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input v-model="editFarmData.farmCode"
+                            id="edit-farm-code"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-farm-code">Farm Code</label>
+                    </div>
+                    <div class="col s12">
+                        <br/>
+                        <h6>
+                            <b>Accreditation</b>
+                        </h6>
+                    </div>
+                    <div class="input-field col s8">
+                        <app-input-date
+                            v-model="editFarmData.accreditationDate"
+                            @date-select="val => {editFarmData.accreditationDate = val}"
+                        >
+                        </app-input-date>
+                        <label for=""> Accreditation Date </label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input v-model="editFarmData.accreditationNo"
+                            id="edit-farm-accreditation-no"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-farm-accreditation-no">Accreditation No.</label>
+                    </div>
+                    <div class="col s12">
+                        <br/>
+                        <h6>
+                            <b>Farm Address</b>
+                        </h6>
+                    </div>
+                    <div class="input-field col s6">
+                        <input v-model="editFarmData.addressLine1"
+                            id="edit-farm-address-one"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-farm-address-one">Address Line 1</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input v-model="editFarmData.addressLine2"
+                            id="edit-farm-address-two"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-farm-address-two">Address Line 2</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <app-input-select
+                            labelDescription="Province"
+                            v-model="editFarmData.province"
+                            :options="provinceOptions"
+                            @select="val => {editFarmData.province = val}"
+                        >
+                        </app-input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                <a @click.prevent="updateFarm($event)" 
+                    href="#!" 
+                    class="modal-action btn blue darken-1 z-depth-0 update-farm-btn"
+                >
+                    Update
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -161,8 +254,8 @@
                     provinceCode: ''
                 },
                 editFarmData: {
-                    breederId: this.manageFarmsData.breederId,
                     farmId: 0,
+                    farmIndex: -1,
                     name: '',
                     farmCode: '',
                     accreditationDate: '',
@@ -207,15 +300,14 @@
                 $('#add-farm-modal').modal('open');
             },
 
-            addFarm() {
+            addFarm(event) {
                 const vm = this;
-                const addFarmBtn = $('.add-farm-btn');
-
-                this.disableButtons(addFarmBtn, event.target, 'Adding...');
-
+                const addFarmButton = $('.add-farm-btn');
                 // Parse input-date-select to get province and province code
                 let provinceWithItsCode = vm.addFarmData.province.split(';')
                                             .map(x => x.trim());
+
+                this.disableButtons(addFarmButton, event.target, 'Adding...');
                 
                 // Add to server's database
                 axios.post('/admin/manage/farms', {
@@ -231,8 +323,7 @@
                 })
                 .then((response) => {
                     // Put response in local data storage by emitting an event 
-                    // to ManageBreeders component and erase 
-                    // adding of breeder farm data
+                    // to ManageBreeders component
                     vm.$emit('add-breeder-farm-event', 
                         {
                             'breederIndex': vm.manageFarmsData.breederIndex,
@@ -240,6 +331,7 @@
                         }
                     );
 
+                    // Erase adding of breeder farm data
                     vm.addFarmData =  {
                         breederId: vm.manageFarmsData.breederId,
                         name: '',
@@ -261,7 +353,7 @@
                         $('#add-farm-address-one').removeClass('valid');
                         $('#add-farm-address-two').removeClass('valid');
 
-                        this.enableButtons(addFarmBtn, event.target, 'Add');
+                        this.enableButtons(addFarmButton, event.target, 'Add');
 
                         Materialize.updateTextFields();
                         Materialize.toast(`${response.data.name} farm added`, 3000, 'green lighten-1');
@@ -272,8 +364,79 @@
                 });
             },
 
-            showEditFarmModal() {
+            showEditFarmModal(index) {
+                // Initialize data for editing
+                const farm = this.manageFarmsData.farms[index];
+                this.editFarmData.farmId = farm.id;
+                this.editFarmData.farmIndex = index;
+                this.editFarmData.name = farm.name;                
+                this.editFarmData.farmCode = farm.farm_code;
+                this.editFarmData.accreditationDate = this.convertToReadableDate(farm.farm_accreditation_date);
+                this.editFarmData.accreditationNo = farm.farm_accreditation_no;
+                this.editFarmData.addressLine1 = farm.address_line1;
+                this.editFarmData.addressLine2 = farm.address_line2;
+                this.editFarmData.province = `${farm.province} ; ${farm.province_code}`;
+                this.editFarmData.provinceCode = farm.province_code;
 
+                $('#edit-farm-modal').modal('open');
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                    $('#edit-farm-modal select').material_select();
+                }); 
+            },
+
+            updateFarm(event) {
+                const vm = this;
+                const updateFarmButton = $('.update-farm-btn');
+                // Parse input-date-select to get province and province code
+                let provinceWithItsCode = vm.editFarmData.province.split(';')
+                                            .map(x => x.trim());
+
+                this.disableButtons(updateFarmButton, event.target, 'Updating...');
+                
+                // Add to server's database
+                axios.patch('/admin/manage/farms', {
+                    farmId: vm.editFarmData.farmId,
+                    name: vm.editFarmData.name,
+                    farmCode: vm.editFarmData.farmCode,
+                    accreditationDate: vm.editFarmData.accreditationDate,
+                    accreditationNo: vm.editFarmData.accreditationNo,
+                    addressLine1: vm.editFarmData.addressLine1,
+                    addressLine2: vm.editFarmData.addressLine2,
+                    province: provinceWithItsCode[0],
+                    provinceCode: provinceWithItsCode[1]
+                })
+                .then((response) => {
+                    // Edit farm in local data storage by emitting an event 
+                    // to ManageBreeders component
+                    vm.editFarmData.province = provinceWithItsCode[0];
+                    vm.editFarmData.provinceCode = provinceWithItsCode[1];
+                    vm.$emit('update-breeder-farm-event', 
+                        {
+                            'breederIndex': vm.manageFarmsData.breederIndex,
+                            'farmIndex': vm.editFarmData.farmIndex,
+                            'farm': vm.editFarmData
+                        }
+                    );
+
+                    // Update UI after adding breeder
+                    vm.$nextTick(() => {
+                        $('#edit-farm-modal').modal('close');
+                        $('#edit-farm-name').removeClass('valid');
+                        $('#edit-farm-code').removeClass('valid');
+                        $('#edit-farm-accreditation-no').removeClass('valid');
+                        $('#edit-farm-address-one').removeClass('valid');
+                        $('#edit-farm-address-two').removeClass('valid');
+
+                        this.enableButtons(updateFarmButton, event.target, 'Add');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(`${vm.editFarmData.name} farm updated`, 3000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             },
 
             disableButtons(buttons, actionBtnElement, textToShow) {

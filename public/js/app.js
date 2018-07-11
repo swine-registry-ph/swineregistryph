@@ -2038,8 +2038,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('option', {
     attrs: {
       "value": "",
-      "disabled": "",
-      "selected": ""
+      "disabled": ""
     }
   }, [_vm._v(" Choose " + _vm._s(_vm.labelDescription) + " ")]), _vm._v(" "), _vm._l((_vm.options), function(option) {
     return _c('option', {
@@ -8204,6 +8203,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -8387,6 +8387,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addBreederFarm: function addBreederFarm(data) {
             // Insert new breeder farm data to breeders array
             this.breeders[data.breederIndex].farms.push(data.farm);
+        },
+        updateBreederFarm: function updateBreederFarm(data) {
+            // Edit breeder farm
+            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+            farm.name = data.farm.name;
+            farm.farm_code = data.farm.farmCode;
+            farm.farm_accreditation_date = data.farm.accreditationDate;
+            farm.farm_accreditation_no = data.farm.accreditationNo;
+            farm.address_line1 = data.farm.addressLine1;
+            farm.address_line2 = data.farm.addressLine2;
+            farm.province = data.farm.province;
+            farm.province_code = data.farm.provinceCode;
         },
         initializeManageFarmsData: function initializeManageFarmsData(breederIndex, containerIndex) {
             // Initialize data and metadata of Manage Farms "container"
@@ -8666,6 +8679,99 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -8687,8 +8793,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 provinceCode: ''
             },
             editFarmData: {
-                breederId: this.manageFarmsData.breederId,
                 farmId: 0,
+                farmIndex: -1,
                 name: '',
                 farmCode: '',
                 accreditationDate: '',
@@ -8729,18 +8835,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         showAddFarmModal: function showAddFarmModal() {
             $('#add-farm-modal').modal('open');
         },
-        addFarm: function addFarm() {
+        addFarm: function addFarm(event) {
             var _this = this;
 
             var vm = this;
-            var addFarmBtn = $('.add-farm-btn');
-
-            this.disableButtons(addFarmBtn, event.target, 'Adding...');
-
+            var addFarmButton = $('.add-farm-btn');
             // Parse input-date-select to get province and province code
             var provinceWithItsCode = vm.addFarmData.province.split(';').map(function (x) {
                 return x.trim();
             });
+
+            this.disableButtons(addFarmButton, event.target, 'Adding...');
 
             // Add to server's database
             axios.post('/admin/manage/farms', {
@@ -8755,13 +8860,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 provinceCode: provinceWithItsCode[1]
             }).then(function (response) {
                 // Put response in local data storage by emitting an event 
-                // to ManageBreeders component and erase 
-                // adding of breeder farm data
+                // to ManageBreeders component
                 vm.$emit('add-breeder-farm-event', {
                     'breederIndex': vm.manageFarmsData.breederIndex,
                     'farm': response.data
                 });
 
+                // Erase adding of breeder farm data
                 vm.addFarmData = {
                     breederId: vm.manageFarmsData.breederId,
                     name: '',
@@ -8783,7 +8888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#add-farm-address-one').removeClass('valid');
                     $('#add-farm-address-two').removeClass('valid');
 
-                    _this.enableButtons(addFarmBtn, event.target, 'Add');
+                    _this.enableButtons(addFarmButton, event.target, 'Add');
 
                     Materialize.updateTextFields();
                     Materialize.toast(response.data.name + ' farm added', 3000, 'green lighten-1');
@@ -8792,7 +8897,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        showEditFarmModal: function showEditFarmModal() {},
+        showEditFarmModal: function showEditFarmModal(index) {
+            // Initialize data for editing
+            var farm = this.manageFarmsData.farms[index];
+            this.editFarmData.farmId = farm.id;
+            this.editFarmData.farmIndex = index;
+            this.editFarmData.name = farm.name;
+            this.editFarmData.farmCode = farm.farm_code;
+            this.editFarmData.accreditationDate = this.convertToReadableDate(farm.farm_accreditation_date);
+            this.editFarmData.accreditationNo = farm.farm_accreditation_no;
+            this.editFarmData.addressLine1 = farm.address_line1;
+            this.editFarmData.addressLine2 = farm.address_line2;
+            this.editFarmData.province = farm.province + ' ; ' + farm.province_code;
+            this.editFarmData.provinceCode = farm.province_code;
+
+            $('#edit-farm-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+                $('#edit-farm-modal select').material_select();
+            });
+        },
+        updateFarm: function updateFarm(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateFarmButton = $('.update-farm-btn');
+            // Parse input-date-select to get province and province code
+            var provinceWithItsCode = vm.editFarmData.province.split(';').map(function (x) {
+                return x.trim();
+            });
+
+            this.disableButtons(updateFarmButton, event.target, 'Updating...');
+
+            // Add to server's database
+            axios.patch('/admin/manage/farms', {
+                farmId: vm.editFarmData.farmId,
+                name: vm.editFarmData.name,
+                farmCode: vm.editFarmData.farmCode,
+                accreditationDate: vm.editFarmData.accreditationDate,
+                accreditationNo: vm.editFarmData.accreditationNo,
+                addressLine1: vm.editFarmData.addressLine1,
+                addressLine2: vm.editFarmData.addressLine2,
+                province: provinceWithItsCode[0],
+                provinceCode: provinceWithItsCode[1]
+            }).then(function (response) {
+                // Edit farm in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.editFarmData.province = provinceWithItsCode[0];
+                vm.editFarmData.provinceCode = provinceWithItsCode[1];
+                vm.$emit('update-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farmIndex': vm.editFarmData.farmIndex,
+                    'farm': vm.editFarmData
+                });
+
+                // Update UI after adding breeder
+                vm.$nextTick(function () {
+                    $('#edit-farm-modal').modal('close');
+                    $('#edit-farm-name').removeClass('valid');
+                    $('#edit-farm-code').removeClass('valid');
+                    $('#edit-farm-accreditation-no').removeClass('valid');
+                    $('#edit-farm-address-one').removeClass('valid');
+                    $('#edit-farm-address-two').removeClass('valid');
+
+                    _this2.enableButtons(updateFarmButton, event.target, 'Add');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(vm.editFarmData.name + ' farm updated', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
             actionBtnElement.innerHTML = textToShow;
@@ -8863,6 +9039,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
       attrs: {
         "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditFarmModal(index)
+        }
       }
     }, [_vm._v(" \n                    Edit \n                ")])])
   }))]), _vm._v(" "), _c('div', {
@@ -9067,9 +9249,227 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addFarm($event)
       }
     }
-  }, [_vm._v("\n                Add\n            ")])])])])
+  }, [_vm._v("\n                Add\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(4), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " ")]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.name),
+      expression: "editFarmData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.farmCode),
+      expression: "editFarmData.farmCode"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.farmCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "farmCode", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-code"
+    }
+  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.editFarmData.accreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.editFarmData.accreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.editFarmData, "accreditationDate", $$v)
+      },
+      expression: "editFarmData.accreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.accreditationNo),
+      expression: "editFarmData.accreditationNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-accreditation-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.accreditationNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "accreditationNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-accreditation-no"
+    }
+  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.addressLine1),
+      expression: "editFarmData.addressLine1"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-address-one",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.addressLine1)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "addressLine1", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-address-one"
+    }
+  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.addressLine2),
+      expression: "editFarmData.addressLine2"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-address-two",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.addressLine2)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "addressLine2", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-address-two"
+    }
+  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Province",
+      "options": _vm.provinceOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.editFarmData.province = val
+      }
+    },
+    model: {
+      value: (_vm.editFarmData.province),
+      callback: function($$v) {
+        _vm.$set(_vm.editFarmData, "province", $$v)
+      },
+      expression: "editFarmData.province"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                Add Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Farm\n                "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9170,7 +9570,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "close-manage-farms-event": _vm.closeManageFarmsContainer,
-        "add-breeder-farm-event": _vm.addBreederFarm
+        "add-breeder-farm-event": _vm.addBreederFarm,
+        "update-breeder-farm-event": _vm.updateBreederFarm
       }
     })], 1)]
   })], 2), _vm._v(" "), _c('div', {

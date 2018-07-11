@@ -126,7 +126,7 @@ class ManageBreedersController extends Controller
      * Add Breeder farm details
      *
      * @param   Request $request
-     * @return  void
+     * @return  JSON
      */
     public function addFarm(Request $request)
     {
@@ -151,8 +151,41 @@ class ManageBreedersController extends Controller
 
                 return $farm;
             }
-            else return abort(404);
+            else return response('Breeder not found.', 404);
              
+        }
+    }
+
+    /**
+     * Update Breeder farm details
+     *
+     * @param   Request $request
+     * @return  JSON
+     */
+    public function updateFarm(Request $request)
+    {
+        if($request->ajax()){
+            $farm = Farm::find($request->farmId);
+
+            // Check if farm exists
+            if($farm){
+
+                $farm->name = $request->name;
+                $farm->farm_code = $request->farmCode;
+                $farm->farm_accreditation_no = $request->accreditationNo;
+                $farm->farm_accreditation_date = Carbon::createFromFormat('F d, Y', $request->accreditationDate)->toDateString();
+                $farm->address_line1 = $request->addressLine1;
+                $farm->address_line2 = $request->addressLine2;
+                $farm->province = $request->province;
+                $farm->province_code = $request->provinceCode;
+                $farm->save();
+
+                return [
+                    'updated' => true
+                ];
+            }
+            else return response('Farm not found.', 404);
+            
         }
     }
 }

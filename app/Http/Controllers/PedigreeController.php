@@ -57,7 +57,7 @@ class PedigreeController extends Controller
 
             return ($swine)
                 ? $this->pedigreeRepo->buildPedigree($swine, $generation)
-                : abort(404);
+                : response('Swine not found.', 404);;
         }
     }
 }
