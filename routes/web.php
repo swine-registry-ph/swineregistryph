@@ -56,6 +56,28 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/manage/breeders', 'ManageBreedersController@updateBreeder')->name('updateBreeder');
         Route::post('/manage/farms', 'ManageBreedersController@addFarm')->name('addFarm');
         Route::patch('/manage/farms', 'ManageBreedersController@updateFarm')->name('updateFarm');
+        Route::get('/email', function(){
+            $farm = App\Models\Farm::find(1);
+            $level = 'success';
+            $beforeExpiration = '2 months';
+            $afterExpiration = '2 months';
+            $accreditationDate = \Carbon\Carbon::createFromFormat('Y-m-d', $farm->farm_accreditation_date);
+            $expiration = $accreditationDate->addYear()->format('F d, Y');
+            $gracePeriod = \Carbon\Carbon::createFromFormat('Y-m-d', $farm->farm_accreditation_date)->addYear()->addMonths(3)->format('F d, Y');
+            $introLines = [
+                "Your farm accreditation has been renewed already!",
+                'The following are the new details of your farm:'
+            ];
+            $outroLines = [
+                ''
+            ];
+            $farmDetails = [
+                'name'                  => $farm->name,
+                'accreditationNo'      => $farm->farm_accreditation_no,
+                'accreditationDate'    => \Carbon\Carbon::createFromFormat('Y-m-d', $farm->farm_accreditation_date)->format('F d, Y')
+            ];
+            return view('emails.accreditationNotice', compact('introLines', 'outroLines', 'level', 'farmDetails'));
+        });
     });
 
     // Genomics-related
