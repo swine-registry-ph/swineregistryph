@@ -8204,6 +8204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -8401,6 +8402,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             farm.province = data.farm.province;
             farm.province_code = data.farm.provinceCode;
         },
+        renewBreederFarm: function renewBreederFarm(data) {
+            // Renew breeder farm
+            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+            farm.is_suspended = 0;
+            farm.farm_accreditation_date = data.newAccreditationDate;
+        },
         initializeManageFarmsData: function initializeManageFarmsData(breederIndex, containerIndex) {
             // Initialize data and metadata of Manage Farms "container"
             this.manageFarmsData.breederIndex = breederIndex;
@@ -8526,7 +8534,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n#toggle-add-farm-btn[data-v-6d46f7eb] {\n    margin-top: 1rem;\n    margin-left: 72px;\n    border-radius: 20px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid #1E88E5;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Modal customizations */\n#add-farm-modal[data-v-6d46f7eb], #edit-farm-modal[data-v-6d46f7eb] {\n    width: 50rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-6d46f7eb]{\n    border: 0;\n}\n.modal .modal-footer[data-v-6d46f7eb] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-6d46f7eb] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 1rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
+exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n#toggle-add-farm-btn[data-v-6d46f7eb] {\n    margin-top: 1rem;\n    margin-left: 72px;\n    border-radius: 20px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Modal customizations */\n#add-farm-modal[data-v-6d46f7eb], #edit-farm-modal[data-v-6d46f7eb] {\n    width: 50rem;\n}\n#renew-farm-modal[data-v-6d46f7eb] {\n    width: 40rem;\n    height:40rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-6d46f7eb] {\n    border: 0;\n}\n.modal .modal-footer[data-v-6d46f7eb] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-6d46f7eb] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 1rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
 
 // exports
 
@@ -8772,6 +8780,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -8782,7 +8841,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             addFarmData: {
-                breederId: this.manageFarmsData.breederId,
+                breederId: 0,
                 name: '',
                 farmCode: '',
                 accreditationDate: '',
@@ -8803,6 +8862,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 addressLine2: '',
                 province: '',
                 provinceCode: ''
+            },
+            renewFarmData: {
+                farmId: 0,
+                farmIndex: -1,
+                name: '',
+                newAccreditationDate: ''
             }
         };
     },
@@ -8849,7 +8914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // Add to server's database
             axios.post('/admin/manage/farms', {
-                breederId: vm.addFarmData.breederId,
+                breederId: vm.manageFarmsData.breederId,
                 name: vm.addFarmData.name,
                 farmCode: vm.addFarmData.farmCode,
                 accreditationDate: vm.addFarmData.accreditationDate,
@@ -8929,7 +8994,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disableButtons(updateFarmButton, event.target, 'Updating...');
 
-            // Add to server's database
+            // Update to server's database
             axios.patch('/admin/manage/farms', {
                 farmId: vm.editFarmData.farmId,
                 name: vm.editFarmData.name,
@@ -8951,7 +9016,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'farm': vm.editFarmData
                 });
 
-                // Update UI after adding breeder
+                // Update UI after updating breeder farm
                 vm.$nextTick(function () {
                     $('#edit-farm-modal').modal('close');
                     $('#edit-farm-name').removeClass('valid');
@@ -8964,6 +9029,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     Materialize.updateTextFields();
                     Materialize.toast(vm.editFarmData.name + ' farm updated', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRenewFarmModal: function showRenewFarmModal(index) {
+            // Initialize data for renewing
+            var farm = this.manageFarmsData.farms[index];
+            this.renewFarmData.farmId = farm.id;
+            this.renewFarmData.farmIndex = index;
+            this.renewFarmData.name = farm.name;
+
+            $('#renew-farm-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        renewFarm: function renewFarm(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var renewFarmButton = $('.renew-farm-btn');
+
+            this.disableButtons(renewFarmButton, event.target, 'Renewing...');
+
+            // Update server's database
+            axios.patch('/admin/manage/farms/renew', {
+                farmId: vm.renewFarmData.farmId,
+                newAccreditationDate: vm.renewFarmData.newAccreditationDate
+            }).then(function (response) {
+                // Edit farm in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.$emit('renew-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farmIndex': vm.renewFarmData.farmIndex,
+                    'newAccreditationDate': vm.renewFarmData.newAccreditationDate
+                });
+
+                // Update UI after renewing breeder farm
+                vm.$nextTick(function () {
+                    $('#renew-farm-modal').modal('close');
+
+                    _this3.enableButtons(renewFarmButton, event.target, 'Renew');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(vm.renewFarmData.name + ' farm renewed!', 3000, 'green lighten-1');
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -9030,12 +9141,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: farm.id,
       staticClass: "collection-item avatar"
     }, [_c('span', {
-      staticClass: "farm-title"
-    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text address-line"
+      staticClass: "farm-title",
+      class: {
+        'grey-text text-darken-2': farm.is_suspended
+      }
+    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {
+      class: {
+        'grey-text text-darken-2': farm.is_suspended
+      }
+    }, [(farm.is_suspended) ? [_c('b', [_vm._v(" SUSPENDED ")]), _vm._v(" "), _c('br')] : _vm._e(), _vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')], 2), _vm._v(" "), _c('p', {
+      staticClass: "grey-text text-darken-2 address-line"
     }, [_c('i', {
       staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), _c('a', {
+    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), (!farm.is_suspended) ? _c('a', {
       staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
       attrs: {
         "href": "#!"
@@ -9046,7 +9164,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.showEditFarmModal(index)
         }
       }
-    }, [_vm._v(" \n                    Edit \n                ")])])
+    }, [_vm._v(" \n                    Edit \n                ")]) : _c('a', {
+      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn orange-text text-darken-4",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showRenewFarmModal(index)
+        }
+      }
+    }, [_vm._v(" \n                    Renew \n                ")])])
   }))]), _vm._v(" "), _c('div', {
     staticClass: "modal modal-fixed-footer",
     attrs: {
@@ -9258,7 +9387,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-content"
   }, [_vm._m(4), _vm._v(" "), _c('h5', {
     staticClass: "grey-text text-darken-2"
-  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.editFarmData.name) + " ")]), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
   }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "input-field col s8"
@@ -9451,7 +9580,55 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateFarm($event)
       }
     }
-  }, [_vm._v("\n                Update\n            ")])])])])
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "renew-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(8), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.renewFarmData.name))]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(9), _vm._v(" "), _vm._m(10), _vm._v(" "), _vm._m(11), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.renewFarmData.newAccreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.renewFarmData.newAccreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.renewFarmData, "newAccreditationDate", $$v)
+      },
+      expression: "renewFarmData.newAccreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" New Accreditation Date ")])], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn orange darken-4 z-depth-0 renew-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.renewFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Renew\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                Add Farm\n                "), _c('i', {
     staticClass: "material-icons right modal-close"
@@ -9484,6 +9661,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Renew Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _c('br'), _c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                        Input new accreditation date to renew farm.\n                    ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -9571,7 +9766,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "close-manage-farms-event": _vm.closeManageFarmsContainer,
         "add-breeder-farm-event": _vm.addBreederFarm,
-        "update-breeder-farm-event": _vm.updateBreederFarm
+        "update-breeder-farm-event": _vm.updateBreederFarm,
+        "renew-breeder-farm-event": _vm.renewBreederFarm
       }
     })], 1)]
   })], 2), _vm._v(" "), _c('div', {

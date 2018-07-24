@@ -63,6 +63,7 @@
                         @close-manage-farms-event="closeManageFarmsContainer"
                         @add-breeder-farm-event="addBreederFarm"
                         @update-breeder-farm-event="updateBreederFarm"
+                        @renew-breeder-farm-event="renewBreederFarm"
                     >
                     </manage-farms>
                 </div>
@@ -338,12 +339,12 @@
                 }
             },
 
-            addBreederFarm(data){
+            addBreederFarm(data) {
                 // Insert new breeder farm data to breeders array
                 this.breeders[data.breederIndex].farms.push(data.farm);
             },
 
-            updateBreederFarm(data){
+            updateBreederFarm(data) {
                 // Edit breeder farm
                 const farm = this.breeders[data.breederIndex].farms[data.farmIndex];
 
@@ -355,6 +356,14 @@
                 farm.address_line2 = data.farm.addressLine2;
                 farm.province = data.farm.province;
                 farm.province_code = data.farm.provinceCode;
+            },
+
+            renewBreederFarm(data) {
+                // Renew breeder farm
+                const farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+                farm.is_suspended = 0;
+                farm.farm_accreditation_date = data.newAccreditationDate;
             },
 
             initializeManageFarmsData(breederIndex, containerIndex) {
@@ -377,7 +386,7 @@
                 });
             },
 
-            closeManageFarmsContainer(data){
+            closeManageFarmsContainer(data) {
                 this.breeders.splice(data.containerIndex, 1);
 
                 // Set manageFarmsData to default

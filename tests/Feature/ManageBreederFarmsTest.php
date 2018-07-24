@@ -107,4 +107,30 @@ class ManageBreederFarmsTest extends TestCase
                 'updated' => true
             ]);;
     }
+
+    /**
+     * Test if renwal of breeder's farm is successful
+     *
+     * @return void
+     */
+    public function testAdminRenewFarm()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->adminUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('PATCH', '/admin/manage/farms/renew',
+                [
+                    'farmId'               => 1,
+                    'newAccreditationDate' => 'July 24, 2018'
+                ]
+            );
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'updated' => true
+            ]);
+    }
 }

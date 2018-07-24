@@ -25,21 +25,34 @@
                     :key="farm.id"
                     class="collection-item avatar"
                 >
-                    <span class="farm-title"> <b>{{ farm.name }} ({{ farm.farm_code }})</b> </span>
-                    <p class="">
+                    <span class="farm-title" :class="{ 'grey-text text-darken-2': farm.is_suspended }"> 
+                        <b>{{ farm.name }} ({{ farm.farm_code }})</b> 
+                    </span>
+                    <p :class="{ 'grey-text text-darken-2': farm.is_suspended }">
+                        <template v-if="farm.is_suspended">
+                            <b> SUSPENDED </b> <br/>
+                        </template>
                         Accreditation No. : {{ farm.farm_accreditation_no }} <br/>
                         Accreditation Date. : {{ convertToReadableDate(farm.farm_accreditation_date) }}  <br/>
                     </p>
-                    <p class="grey-text address-line">
+                    <p class="grey-text text-darken-2 address-line">
                         <i class="material-icons left">location_on</i>
                         {{ farm.address_line1 }}, {{ farm.address_line2 }},
                         {{ farm.province }} ({{ farm.province_code }})
                     </p>
-                    <a @click.prevent="showEditFarmModal(index)"
+                    <a v-if="!farm.is_suspended"
+                        @click.prevent="showEditFarmModal(index)"
                         href="#!" 
                         class="secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1"
                     > 
                         Edit 
+                    </a>
+                    <a v-else
+                        @click.prevent="showRenewFarmModal(index)"
+                        href="#!" 
+                        class="secondary-content btn z-depth-0 custom-secondary-btn orange-text text-darken-4"
+                    > 
+                        Renew 
                     </a>
                 </li>
             </ul>
@@ -145,7 +158,7 @@
                     Edit Farm
                     <i class="material-icons right modal-close">close</i>
                 </h4>
-                <h5 class="grey-text text-darken-2"> {{ manageFarmsData.name }} </h5>
+                <h5 class="grey-text text-darken-2"> {{ manageFarmsData.name }} > {{ editFarmData.name }} </h5>
 
                 <div class="row modal-input-container">
                     <div class="col s12"><br/></div>
@@ -230,6 +243,44 @@
                 </a>
             </div>
         </div>
+
+        <!-- Renew Farm Modal -->
+        <div id="renew-farm-modal" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>
+                    Renew Farm
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+                <h5 class="grey-text text-darken-2"> {{ manageFarmsData.name }} > {{ renewFarmData.name }}</h5>
+
+                <div class="row modal-input-container">
+                    <div class="col s12"><br/><br/><br/></div>
+                    <div class="col s12">
+                        <blockquote class="info">
+                            Input new accreditation date to renew farm.
+                        </blockquote>
+                    </div>
+                    <div class="col s12"><br/></div>
+                    <div class="input-field col s12">
+                        <app-input-date
+                            v-model="renewFarmData.newAccreditationDate"
+                            @date-select="val => {renewFarmData.newAccreditationDate = val}"
+                        >
+                        </app-input-date>
+                        <label for=""> New Accreditation Date </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                <a @click.prevent="renewFarm($event)" 
+                    href="#!" 
+                    class="modal-action btn orange darken-4 z-depth-0 renew-farm-btn"
+                >
+                    Renew
+                </a>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -243,7 +294,7 @@
         data() {
             return {
                 addFarmData: {
-                    breederId: this.manageFarmsData.breederId,
+                    breederId: 0,
                     name: '',
                     farmCode: '',
                     accreditationDate: '',
@@ -264,6 +315,12 @@
                     addressLine2: '',
                     province: '',
                     provinceCode: ''
+                },
+                renewFarmData: {
+                    farmId: 0,
+                    farmIndex: -1,
+                    name: '',
+                    newAccreditationDate: ''
                 }
             }
         },
@@ -311,7 +368,7 @@
                 
                 // Add to server's database
                 axios.post('/admin/manage/farms', {
-                    breederId: vm.addFarmData.breederId,
+                    breederId: vm.manageFarmsData.breederId,
                     name: vm.addFarmData.name,
                     farmCode: vm.addFarmData.farmCode,
                     accreditationDate: vm.addFarmData.accreditationDate,
@@ -394,7 +451,7 @@
 
                 this.disableButtons(updateFarmButton, event.target, 'Updating...');
                 
-                // Add to server's database
+                // Update to server's database
                 axios.patch('/admin/manage/farms', {
                     farmId: vm.editFarmData.farmId,
                     name: vm.editFarmData.name,
@@ -419,7 +476,7 @@
                         }
                     );
 
-                    // Update UI after adding breeder
+                    // Update UI after updating breeder farm
                     vm.$nextTick(() => {
                         $('#edit-farm-modal').modal('close');
                         $('#edit-farm-name').removeClass('valid');
@@ -432,6 +489,56 @@
 
                         Materialize.updateTextFields();
                         Materialize.toast(`${vm.editFarmData.name} farm updated`, 3000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            showRenewFarmModal(index) {
+                // Initialize data for renewing
+                const farm = this.manageFarmsData.farms[index];
+                this.renewFarmData.farmId = farm.id;
+                this.renewFarmData.farmIndex = index;
+                this.renewFarmData.name = farm.name;        
+
+                $('#renew-farm-modal').modal('open');
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                }); 
+            },
+
+            renewFarm(event) {
+                const vm = this;
+                const renewFarmButton = $('.renew-farm-btn');
+
+                this.disableButtons(renewFarmButton, event.target, 'Renewing...');
+                
+                // Update server's database
+                axios.patch('/admin/manage/farms/renew', {
+                    farmId: vm.renewFarmData.farmId,
+                    newAccreditationDate: vm.renewFarmData.newAccreditationDate,
+                })
+                .then((response) => {
+                    // Edit farm in local data storage by emitting an event 
+                    // to ManageBreeders component
+                    vm.$emit('renew-breeder-farm-event', 
+                        {
+                            'breederIndex': vm.manageFarmsData.breederIndex,
+                            'farmIndex': vm.renewFarmData.farmIndex,
+                            'newAccreditationDate': vm.renewFarmData.newAccreditationDate
+                        }
+                    );
+
+                    // Update UI after renewing breeder farm
+                    vm.$nextTick(() => {
+                        $('#renew-farm-modal').modal('close');
+
+                        this.enableButtons(renewFarmButton, event.target, 'Renew');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(`${vm.renewFarmData.name} farm renewed!`, 3000, 'green lighten-1');
                     });
                 })
                 .catch((error) => {
@@ -475,7 +582,7 @@
     }
 
     .custom-secondary-btn {
-        border: 1px solid #1E88E5;
+        border: 1px solid;
         background-color: white;
     }
 
@@ -488,7 +595,12 @@
         width: 50rem;
     }
 
-    .modal.modal-fixed-footer .modal-footer{
+    #renew-farm-modal {
+        width: 40rem;
+        height:40rem;
+    }
+
+    .modal.modal-fixed-footer .modal-footer {
         border: 0;
     }
 

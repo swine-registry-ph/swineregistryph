@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BreederCreated;
+use App\Mail\NoticeOnFarmRenewal;
 use App\Models\Breeder;
 use App\Models\Farm;
 use App\Models\User;
@@ -140,7 +141,10 @@ class ManageBreedersController extends Controller
                 $farm->name = $request->name;
                 $farm->farm_code = $request->farmCode;
                 $farm->farm_accreditation_no = $request->accreditationNo;
-                $farm->farm_accreditation_date = Carbon::createFromFormat('F d, Y', $request->accreditationDate)->toDateString();
+                $farm->farm_accreditation_date = Carbon::createFromFormat(
+                    'F d, Y', 
+                    $request->accreditationDate
+                )->toDateString();
                 $farm->address_line1 = $request->addressLine1;
                 $farm->address_line2 = $request->addressLine2;
                 $farm->province = $request->province;
@@ -173,7 +177,10 @@ class ManageBreedersController extends Controller
                 $farm->name = $request->name;
                 $farm->farm_code = $request->farmCode;
                 $farm->farm_accreditation_no = $request->accreditationNo;
-                $farm->farm_accreditation_date = Carbon::createFromFormat('F d, Y', $request->accreditationDate)->toDateString();
+                $farm->farm_accreditation_date = Carbon::createFromFormat(
+                    'F d, Y', 
+                    $request->accreditationDate
+                )->toDateString();
                 $farm->address_line1 = $request->addressLine1;
                 $farm->address_line2 = $request->addressLine2;
                 $farm->province = $request->province;
@@ -186,6 +193,47 @@ class ManageBreedersController extends Controller
             }
             else return response('Farm not found.', 404);
             
+        }
+    }
+
+    /**
+     * Renew suspended farm
+     *
+     * @param   Request $request
+     * @return  JSON
+     */
+    public function renewFarm(Request $request)
+    {
+        if($request->ajax()){
+            $farm = Farm::find($request->farmId);
+
+            if($farm){
+                $farm->farm_accreditation_date = Carbon::createFromFormat(
+                    'F d, Y', 
+                    $request->newAccreditationDate
+                )->toDateString();
+                $farm->is_suspended = 0;
+                $farm->save();
+    
+                $breederUser = $farm->breeder->users()->first();
+                $farmDetails = [
+                    'name'              => $farm->name,
+                    'accreditationNo'   => $farm->farm_accreditation_no,
+                    'accreditationDate' => Carbon::createFromFormat(
+                                                'Y-m-d', 
+                                                $farm->farm_accreditation_date
+                                            )->format('F d, Y')
+                ];
+    
+                // Send Email of Farm Renewal
+                Mail::to($breederUser->email)->queue(new NoticeOnFarmRenewal($farmDetails));
+    
+                return [
+                    'updated' => true
+                ];
+            }
+            else return response('Farm not found.', 404);
+
         }
     }
 }
