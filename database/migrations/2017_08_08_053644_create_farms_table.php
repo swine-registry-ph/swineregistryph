@@ -24,6 +24,7 @@ class CreateFarmsTable extends Migration
             $table->text('address_line2');
             $table->text('province');
             $table->text('province_code');
+            $table->boolean('is_suspended')->default('0');
             $table->timestamps();
         });
     }

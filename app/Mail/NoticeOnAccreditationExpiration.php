@@ -36,7 +36,7 @@ class NoticeOnAccreditationExpiration extends Mailable
         $gracePeriod = $this->farmAccreditationDetails['gracePeriod'];
         $farmDetails = 
             [
-                'name'                  => $this->farmAccreditationDetails['name'],
+                'name'                 => $this->farmAccreditationDetails['name'],
                 'accreditationNo'      => $this->farmAccreditationDetails['accreditationNo'],
                 'accreditationDate'    => $this->farmAccreditationDetails['accreditationDate']
             ];

@@ -40,14 +40,15 @@ class NoticeAfterAccreditationExpiration extends Mailable
         $gracePeriod = $this->farmAccreditationDetails['gracePeriod'];
         $farmDetails = 
             [
-                'name'                  => $this->farmAccreditationDetails['name'],
+                'name'                 => $this->farmAccreditationDetails['name'],
                 'accreditationNo'      => $this->farmAccreditationDetails['accreditationNo'],
                 'accreditationDate'    => $this->farmAccreditationDetails['accreditationDate']
             ];
 
         $introLines = 
             [
-                "Please be notified that it's already {$afterExpiration} after the expiration of your breeder farm's accreditation which was on {$expiration}.",
+                "Please be notified that it's just {$afterExpiration} before the grace period of your breeder farm's accreditation expiration ends.",
+                "Just a reminder that your accreditation expired on {$expiration}",
                 'The following are the details of your farm:'
             ];
 

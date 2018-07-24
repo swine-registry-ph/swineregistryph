@@ -57,12 +57,14 @@ class SwineController extends Controller
 
         // Get farm options for farm from input select
         foreach ($this->breederUser->farms as $farm) {
-            array_push($farmOptions,
-                [
-                    'text' => $farm->name . ' , ' . $farm->province,
-                    'value' => $farm->id
-                ]
-            );
+            if(!$farm->is_suspended){
+                array_push($farmOptions,
+                    [
+                        'text' => $farm->name . ' , ' . $farm->province,
+                        'value' => $farm->id
+                    ]
+                );
+            }
         }
 
         // Get breed options for breed input select

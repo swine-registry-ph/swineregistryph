@@ -35,7 +35,7 @@ class NoticeOnFarmRenewal extends Mailable
         // Data initialization
         $farmDetails = 
             [
-                'name'                  => $this->farmAccreditationDetails['name'],
+                'name'                 => $this->farmAccreditationDetails['name'],
                 'accreditationNo'      => $this->farmAccreditationDetails['accreditationNo'],
                 'accreditationDate'    => $this->farmAccreditationDetails['accreditationDate']
             ];
