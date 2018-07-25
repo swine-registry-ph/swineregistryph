@@ -485,7 +485,7 @@
                         $('#edit-farm-address-one').removeClass('valid');
                         $('#edit-farm-address-two').removeClass('valid');
 
-                        this.enableButtons(updateFarmButton, event.target, 'Add');
+                        this.enableButtons(updateFarmButton, event.target, 'Update');
 
                         Materialize.updateTextFields();
                         Materialize.toast(`${vm.editFarmData.name} farm updated`, 3000, 'green lighten-1');

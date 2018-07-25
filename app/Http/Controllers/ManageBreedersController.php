@@ -51,8 +51,7 @@ class ManageBreedersController extends Controller
             );
         }
         
-        $customizedBreederData = collect($customizedBreederData)->sortBy('name');
-        $customizedBreederData = collect($customizedBreederData->values()->all());
+        $customizedBreederData = collect($customizedBreederData);
         $provinceOptions = collect($this->getProvinceOptions())->sortBy('text');
         $provinceOptionsSorted = collect($provinceOptions->values()->all());
         

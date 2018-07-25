@@ -22,10 +22,10 @@
                     :key="breeder.userId"
                     class="col s6"
                 >
-                    <div class="card" :class="(manageFarmsData.breederIndex === index) ? 'card-chosen-breeder' : ''">
+                    <div class="card" :class="(manageFarmsData.paginatedBreederIndex === index) ? 'card-chosen-breeder' : ''">
                         <div class="card-content">
                             <span class="card-title"
-                                :class="(manageFarmsData.breederIndex === index) ? 'name-chosen-breeder' : ''"
+                                :class="(manageFarmsData.paginatedBreederIndex === index) ? 'name-chosen-breeder' : ''"
                             > 
                                 <b>{{ breeder.name }}</b> 
                             </span>
@@ -44,7 +44,7 @@
                             </p>
                         </div>
                         <div class="card-action grey lighten-3">
-                            <a @click.prevent="showEditBreederModal(index)" 
+                            <a @click.prevent="showEditBreederModal(breeder.breederId)" 
                                 href="#!" 
                                 class="btn blue darken-1 toggle-edit-breeder-btn z-depth-0"
                             >
@@ -204,6 +204,7 @@
                 },
                 manageFarmsData: {
                     containerIndex: 0,
+                    paginatedBreederIndex: -1,
                     breederIndex: -1,
                     breederId: 0,
                     name: '',
@@ -224,23 +225,38 @@
                 const start = this.pageNumber * this.paginationSize;
                 const end = start + this.paginationSize;
 
-                return this.breeders.slice(start, end);
+                return _.sortBy(this.breeders, ['name']).slice(start, end);
             }
         },
 
         methods: {
             previousPage() {
                 // For pagination
+                // Check if Manage Farms container is closed
+                this.closeManageFarmsContainer(
+                    { 'containerIndex': this.manageFarmsData.containerIndex }
+                );
+
                 if(this.pageNumber !== 0) this.pageNumber--;
             },
 
             nextPage() {
                 // For pagination
+                // Check if Manage Farms container is closed
+                this.closeManageFarmsContainer(
+                    { 'containerIndex': this.manageFarmsData.containerIndex }
+                );
+
                 if(this.pageNumber < this.pageCount -1) this.pageNumber++;
             },
 
             goToPage(page) {
                 // For pagination
+                // Check if Manage Farms container is closed
+                this.closeManageFarmsContainer(
+                    { 'containerIndex': this.manageFarmsData.containerIndex }
+                );
+
                 this.pageNumber = page - 1;
             },
 
@@ -284,9 +300,11 @@
                 });
             },
 
-            showEditBreederModal(index) {
+            showEditBreederModal(breederId) {
                 // Initialize data for editing
+                const index = this.findBreederIndexById(breederId);
                 const breeder = this.breeders[index];
+                
                 this.editBreederData.index = index;
                 this.editBreederData.userId = breeder.userId;
                 this.editBreederData.name = breeder.name;
@@ -341,9 +359,12 @@
                 });
             },
 
-            showFarms(breederIndex) {
+            showFarms(paginatedBreederIndex) {
                 // Initialize needed variables and conditions and compute for
-                // proper index placement of Manage Farms "container"
+                // proper index placement of Manage Farms "container".
+                // Note that indices here are related to the 
+                // this.paginatedBreeders array and 
+                // not the this.breeders array
                 const currentContainerIndex = this.manageFarmsData.containerIndex;
                 const manageFarmsContainerIsOpen = currentContainerIndex > 0;
 
@@ -351,45 +372,45 @@
 
                 // Check if Manage Farms "container" is open
                 if(manageFarmsContainerIsOpen){
-                    const breederIndexIsGreaterThanContainerIndex = breederIndex > currentContainerIndex;
+                    const breederIndexIsGreaterThanContainerIndex = paginatedBreederIndex > currentContainerIndex;
 
                     // Check if the computed index placement is greater than the "container" index
                     if(breederIndexIsGreaterThanContainerIndex) {
-                        let newBreederIndex = breederIndex - 1;
+                        let newBreederIndex = paginatedBreederIndex - 1;
                         increment = (newBreederIndex === 0 || newBreederIndex % 2 === 0) ? 2 : 1;
-                        breederIndexIsGreaterThanBreedersLength = (newBreederIndex + increment) > (this.breeders.length - 2);
-                        newContainerIndex = (breederIndexIsGreaterThanBreedersLength) ? this.breeders.length - 1: newBreederIndex + increment;
+                        breederIndexIsGreaterThanBreedersLength = (newBreederIndex + increment) > (this.paginatedBreeders.length - 2);
+                        newContainerIndex = (breederIndexIsGreaterThanBreedersLength) ? this.paginatedBreeders.length - 1: newBreederIndex + increment;
 
                         // Remove first prior Manage Farms "container" from breeders array
-                        this.breeders.splice(currentContainerIndex, 1);
+                        this.paginatedBreeders.splice(currentContainerIndex, 1);
                         this.initializeManageFarmsData(newBreederIndex, newContainerIndex);
                         this.insertManageFarmsContainer(newBreederIndex, newContainerIndex);
                     }
                     else {
-                        increment = (breederIndex === 0 || breederIndex % 2 === 0) ? 2 : 1;
-                        newContainerIndex = breederIndex + increment;
+                        increment = (paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0) ? 2 : 1;
+                        newContainerIndex = paginatedBreederIndex + increment;
 
                         // If Current Manage Farms "container" is the same with the new one
                         if(currentContainerIndex === newContainerIndex) {
-                            this.initializeManageFarmsData(breederIndex, currentContainerIndex);
+                            this.initializeManageFarmsData(paginatedBreederIndex, currentContainerIndex);
                         }
                         else {
                             // Remove current Manage Farms "container" first then 
                             // initialize the new one
-                            this.breeders.splice(currentContainerIndex, 1);
-                            this.initializeManageFarmsData(breederIndex, newContainerIndex);
-                            this.insertManageFarmsContainer(breederIndex, newContainerIndex);
+                            this.paginatedBreeders.splice(currentContainerIndex, 1);
+                            this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
+                            this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
                         }
 
                     }
                 }
                 else {  
-                    increment = (breederIndex === 0 || breederIndex % 2 === 0) ? 2 : 1;
-                    breederIndexIsGreaterThanBreedersLength = (breederIndex + increment) > (this.breeders.length - 1);
-                    newContainerIndex = (breederIndexIsGreaterThanBreedersLength) ? this.breeders.length : breederIndex + increment;
+                    increment = (paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0) ? 2 : 1;
+                    breederIndexIsGreaterThanBreedersLength = (paginatedBreederIndex + increment) > (this.paginatedBreeders.length - 1);
+                    newContainerIndex = (breederIndexIsGreaterThanBreedersLength) ? this.paginatedBreeders.length : paginatedBreederIndex + increment;
                     
-                    this.initializeManageFarmsData(breederIndex, newContainerIndex);
-                    this.insertManageFarmsContainer(breederIndex, newContainerIndex);
+                    this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
+                    this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
                 }
             },
 
@@ -420,32 +441,46 @@
                 farm.farm_accreditation_date = data.newAccreditationDate;
             },
 
-            initializeManageFarmsData(breederIndex, containerIndex) {
+            initializeManageFarmsData(paginatedBreederIndex, containerIndex) {
                 // Initialize data and metadata of Manage Farms "container"
-                this.manageFarmsData.breederIndex = breederIndex;
+                // Data should be mapped to the this.breeders array
+                const breederId = this.paginatedBreeders[paginatedBreederIndex].breederId;
+                const breederIndex = this.findBreederIndexById(breederId);
+
                 this.manageFarmsData.containerIndex = containerIndex;
+                this.manageFarmsData.paginatedBreederIndex = paginatedBreederIndex;
+                this.manageFarmsData.breederIndex = breederIndex;
                 this.manageFarmsData.breederId = this.breeders[breederIndex].breederId;
                 this.manageFarmsData.name = this.breeders[breederIndex].name;
                 this.manageFarmsData.farms = this.breeders[breederIndex].farms;
             },
 
-            insertManageFarmsContainer(breederIndex, containerIndex) {
+            insertManageFarmsContainer(paginatedBreederIndex, containerIndex) {
                 // Insert Manage Farms "container" to breeders array
-                this.breeders.splice(containerIndex, 0, {
+                this.paginatedBreeders.splice(containerIndex, 0, {
                     userId: -1,
                     breederId: -1,
-                    name: this.breeders[breederIndex].name,
+                    name: this.paginatedBreeders[paginatedBreederIndex].name,
                     email: '',
                     farms: []
                 });
             },
 
+            findBreederIndexById(id) {
+                for (let i = 0; i < this.breeders.length; i++) {
+                    if(this.breeders[i].breederId === id) return i;
+                }
+
+                return -1;
+            },
+
             closeManageFarmsContainer(data) {
-                this.breeders.splice(data.containerIndex, 1);
+                if(data.containerIndex !== 0) this.paginatedBreeders.splice(data.containerIndex, 1);
 
                 // Set manageFarmsData to default
                 this.manageFarmsData = {
                     containerIndex: 0,
+                    paginatedBreederIndex: -1,
                     breederIndex: -1,
                     breederId: 0,
                     name: '',
