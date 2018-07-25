@@ -16,7 +16,7 @@
                 </a>
             </div>
             <!-- Card displays for Breeder -->
-            <template v-for="(breeder, index) in breeders"
+            <template v-for="(breeder, index) in paginatedBreeders"
             >
                 <div v-if="breeder.userId !== -1"
                     :key="breeder.userId"
@@ -69,6 +69,27 @@
                 </div>
 
             </template>
+
+            <div class="col s12 center-align pagination-container">
+                <ul class="pagination">
+                    <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
+                        <a @click.prevent="previousPage()">
+                            <i class="material-icons">chevron_left</i>
+                        </a>
+                    </li>
+                    <li v-for="i in pageCount"
+                        class="waves-effect"
+                        :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
+                    >
+                        <a @click.prevent="goToPage(i)"> {{ i }} </a>
+                    </li>
+                    <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
+                        <a @click.prevent="nextPage()">
+                            <i class="material-icons">chevron_right</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- Add Breeder Modal -->
@@ -168,6 +189,8 @@
 
         data() {
             return {
+                pageNumber: 0,
+                paginationSize: 6,
                 breeders: this.initialBreeders,
                 addBreederData: {
                     name: '',
@@ -189,7 +212,38 @@
             }
         },
 
+        computed: {
+            pageCount() {
+                let l = this.breeders.length;
+                let s = this.paginationSize;
+
+                return Math.ceil(l/s);
+            },
+            
+            paginatedBreeders() {
+                const start = this.pageNumber * this.paginationSize;
+                const end = start + this.paginationSize;
+
+                return this.breeders.slice(start, end);
+            }
+        },
+
         methods: {
+            previousPage() {
+                // For pagination
+                if(this.pageNumber !== 0) this.pageNumber--;
+            },
+
+            nextPage() {
+                // For pagination
+                if(this.pageNumber < this.pageCount -1) this.pageNumber++;
+            },
+
+            goToPage(page) {
+                // For pagination
+                this.pageNumber = page - 1;
+            },
+
             showAddBreederModal() {
                 $('#add-breeder-modal').modal('open');
             },
@@ -432,6 +486,11 @@
 
     #toggle-register-breeder-btn {
         border-radius: 20px;
+    }
+
+    .pagination-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 
     /* Modal customizations */

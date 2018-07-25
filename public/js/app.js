@@ -8037,7 +8037,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n\n/* Modal customizations */\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-2b3e0810] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
+exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n.pagination-container[data-v-2b3e0810] {\n    padding-top: 2rem;\n    padding-bottom: 2rem;\n}\n\n/* Modal customizations */\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-2b3e0810] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
 
 // exports
 
@@ -8050,6 +8050,27 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8220,6 +8241,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            pageNumber: 0,
+            paginationSize: 6,
             breeders: this.initialBreeders,
             addBreederData: {
                 name: '',
@@ -8242,7 +8265,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.breeders.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedBreeders: function paginatedBreeders() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return this.breeders.slice(start, end);
+        }
+    },
+
     methods: {
+        previousPage: function previousPage() {
+            // For pagination
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            // For pagination
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            // For pagination
+            this.pageNumber = page - 1;
+        },
         showAddBreederModal: function showAddBreederModal() {
             $('#add-breeder-modal').modal('open');
         },
@@ -9716,7 +9766,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons left"
-  }, [_vm._v("add")]), _vm._v(" Register Breeder\n            ")])]), _vm._v(" "), _vm._l((_vm.breeders), function(breeder, index) {
+  }, [_vm._v("add")]), _vm._v(" Register Breeder\n            ")])]), _vm._v(" "), _vm._l((_vm.paginatedBreeders), function(breeder, index) {
     return [(breeder.userId !== -1) ? _c('div', {
       key: breeder.userId,
       staticClass: "col s6"
@@ -9770,7 +9820,45 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "renew-breeder-farm-event": _vm.renewBreederFarm
       }
     })], 1)]
-  })], 2), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align pagination-container"
+  }, [_c('ul', {
+    staticClass: "pagination"
+  }, [_c('li', {
+    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.previousPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
+    return _c('li', {
+      staticClass: "waves-effect",
+      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
+    }, [_c('a', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.goToPage(i)
+        }
+      }
+    }, [_vm._v(" " + _vm._s(i) + " ")])])
+  }), _vm._v(" "), _c('li', {
+    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.nextPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_right")])])])], 2)])], 2), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
       "id": "add-breeder-modal"
