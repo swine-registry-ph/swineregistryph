@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SendAccreditationExpirationNotice;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        SendAccreditationExpirationNotice::class
     ];
 
     /**
@@ -24,8 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // Command for notifying breeder users of their 
+        // accreditation expiration status
+        $schedule->command('accreditation:notify')->dailyAt('00:10');
     }
 
     /**

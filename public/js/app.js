@@ -1,6 +1,5 @@
 webpackJsonp([0],[
-/* 0 */,
-/* 1 */
+/* 0 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -97,6 +96,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 1 */,
 /* 2 */
 /***/ (function(module, exports) {
 
@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(104);
+module.exports = __webpack_require__(114);
 
 
 /***/ }),
@@ -464,8 +464,9 @@ Vue.component('view-registered-swine', __webpack_require__(84));
 
 // Admin
 Vue.component('manage-breeds', __webpack_require__(89));
-Vue.component('manage-properties', __webpack_require__(94));
-Vue.component('manage-apis', __webpack_require__(99));
+Vue.component('manage-breeders', __webpack_require__(94));
+Vue.component('manage-properties', __webpack_require__(104));
+Vue.component('manage-apis', __webpack_require__(109));
 
 // For main container
 var app = new Vue({
@@ -481,7 +482,7 @@ var nav = new Vue({
         currentRoute: {
             admin: {
                 adminViewRegdSwine: false,
-                manageAccreditedFarms: false,
+                showManageBreeders: false,
                 showManagePropertiesView: false,
                 showManageBreedsView: false,
                 manageAPIsView: false,
@@ -522,6 +523,10 @@ var nav = new Vue({
 
             case '/admin/manage/breeds':
                 this.currentRoute.admin.showManageBreedsView = true;
+                break;
+
+            case '/admin/manage/breeders':
+                this.currentRoute.admin.showManageBreeders = true;
                 break;
 
             case '/breeder/manage-swine/register':
@@ -1833,7 +1838,7 @@ var actions = {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(48),
   /* template */
@@ -1931,7 +1936,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(51),
   /* template */
@@ -2033,8 +2038,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('option', {
     attrs: {
       "value": "",
-      "disabled": "",
-      "selected": ""
+      "disabled": ""
     }
   }, [_vm._v(" Choose " + _vm._s(_vm.labelDescription) + " ")]), _vm._v(" "), _vm._l((_vm.options), function(option) {
     return _c('option', {
@@ -2071,7 +2075,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(54)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(57),
   /* template */
@@ -3880,7 +3884,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(60)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(62),
   /* template */
@@ -4198,7 +4202,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(65)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(67),
   /* template */
@@ -5420,7 +5424,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(70)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(72),
   /* template */
@@ -6243,7 +6247,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(75)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(77),
   /* template */
@@ -6509,7 +6513,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(80)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(82),
   /* template */
@@ -7053,7 +7057,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(85)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(87),
   /* template */
@@ -7494,7 +7498,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(90)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(92),
   /* template */
@@ -7963,11 +7967,2133 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(95)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(97),
   /* template */
-  __webpack_require__(98),
+  __webpack_require__(103),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-2b3e0810",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeders.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreeders.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2b3e0810", Component.options)
+  } else {
+    hotAPI.reload("data-v-2b3e0810", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(96);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("5af96e1a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3e0810\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeders.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3e0810\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeders.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n.pagination-container[data-v-2b3e0810] {\n    padding-top: 2rem;\n    padding-bottom: 2rem;\n}\n\n/* Modal customizations */\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-2b3e0810] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        initialBreeders: Array,
+        provinceOptions: Array
+    },
+
+    components: {
+        ManageFarms: __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default.a
+    },
+
+    data: function data() {
+        return {
+            pageNumber: 0,
+            paginationSize: 6,
+            breeders: this.initialBreeders,
+            addBreederData: {
+                name: '',
+                email: ''
+            },
+            editBreederData: {
+                index: 0,
+                userId: 0,
+                name: '',
+                email: ''
+            },
+            manageFarmsData: {
+                containerIndex: 0,
+                paginatedBreederIndex: -1,
+                breederIndex: -1,
+                breederId: 0,
+                name: '',
+                farms: []
+            }
+        };
+    },
+
+
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.breeders.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedBreeders: function paginatedBreeders() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return _.sortBy(this.breeders, ['name']).slice(start, end);
+        }
+    },
+
+    methods: {
+        previousPage: function previousPage() {
+            // For pagination
+            // Check if Manage Farms container is closed
+            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
+
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            // For pagination
+            // Check if Manage Farms container is closed
+            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
+
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            // For pagination
+            // Check if Manage Farms container is closed
+            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
+
+            this.pageNumber = page - 1;
+        },
+        showAddBreederModal: function showAddBreederModal() {
+            $('#add-breeder-modal').modal('open');
+        },
+        registerBreeder: function registerBreeder(event) {
+            var _this = this;
+
+            var vm = this;
+            var registerBreederButton = $('.register-breeder-btn');
+
+            this.disableButtons(registerBreederButton, event.target, 'Registering...');
+
+            // Add to server's database
+            axios.post('/admin/manage/breeders', {
+                name: vm.addBreederData.name,
+                email: vm.addBreederData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of breeder data
+                vm.breeders.push(response.data);
+                vm.addBreederData = {
+                    name: '',
+                    email: ''
+                };
+
+                // Update UI after adding breeder
+                vm.$nextTick(function () {
+                    $('#add-breeder-modal').modal('close');
+                    $('#add-breeder-name').removeClass('valid');
+                    $('#add-breeder-email').removeClass('valid');
+
+                    _this.enableButtons(registerBreederButton, event.target, 'Register');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(response.data.name + ' added', 2500, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditBreederModal: function showEditBreederModal(breederId) {
+            // Initialize data for editing
+            var index = this.findBreederIndexById(breederId);
+            var breeder = this.breeders[index];
+
+            this.editBreederData.index = index;
+            this.editBreederData.userId = breeder.userId;
+            this.editBreederData.name = breeder.name;
+            this.editBreederData.email = breeder.email;
+
+            $('#edit-breeder-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateBreeder: function updateBreeder(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateBreederButton = $('.update-breeder-btn');
+
+            this.disableButtons(updateBreederButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/breeders', {
+                userId: vm.editBreederData.userId,
+                name: vm.editBreederData.name,
+                email: vm.editBreederData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase editing of breeder data
+                if (response.data.updated) {
+                    var index = vm.editBreederData.index;
+                    vm.breeders[index].name = vm.editBreederData.name;
+                    vm.breeders[index].email = vm.editBreederData.email;
+                    vm.editBreederData = {
+                        index: 0,
+                        userId: 0,
+                        name: '',
+                        email: ''
+                    };
+
+                    // Update UI after updating breeder
+                    vm.$nextTick(function () {
+                        $('#edit-breeder-modal').modal('close');
+                        $('#edit-breeder-name').removeClass('valid');
+                        $('#edit-breeder-email').removeClass('valid');
+
+                        _this2.enableButtons(updateBreederButton, event.target, 'Update');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(vm.breeders[index].name + ' updated', 2500, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showFarms: function showFarms(paginatedBreederIndex) {
+            // Initialize needed variables and conditions and compute for
+            // proper index placement of Manage Farms "container".
+            // Note that indices here are related to the 
+            // this.paginatedBreeders array and 
+            // not the this.breeders array
+            var currentContainerIndex = this.manageFarmsData.containerIndex;
+            var manageFarmsContainerIsOpen = currentContainerIndex > 0;
+
+            var increment = void 0,
+                newContainerIndex = void 0,
+                breederIndexIsGreaterThanBreedersLength = void 0;
+
+            // Check if Manage Farms "container" is open
+            if (manageFarmsContainerIsOpen) {
+                var breederIndexIsGreaterThanContainerIndex = paginatedBreederIndex > currentContainerIndex;
+
+                // Check if the computed index placement is greater than the "container" index
+                if (breederIndexIsGreaterThanContainerIndex) {
+                    var newBreederIndex = paginatedBreederIndex - 1;
+                    increment = newBreederIndex === 0 || newBreederIndex % 2 === 0 ? 2 : 1;
+                    breederIndexIsGreaterThanBreedersLength = newBreederIndex + increment > this.paginatedBreeders.length - 2;
+                    newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.paginatedBreeders.length - 1 : newBreederIndex + increment;
+
+                    // Remove first prior Manage Farms "container" from breeders array
+                    this.paginatedBreeders.splice(currentContainerIndex, 1);
+                    this.initializeManageFarmsData(newBreederIndex, newContainerIndex);
+                    this.insertManageFarmsContainer(newBreederIndex, newContainerIndex);
+                } else {
+                    increment = paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0 ? 2 : 1;
+                    newContainerIndex = paginatedBreederIndex + increment;
+
+                    // If Current Manage Farms "container" is the same with the new one
+                    if (currentContainerIndex === newContainerIndex) {
+                        this.initializeManageFarmsData(paginatedBreederIndex, currentContainerIndex);
+                    } else {
+                        // Remove current Manage Farms "container" first then 
+                        // initialize the new one
+                        this.paginatedBreeders.splice(currentContainerIndex, 1);
+                        this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
+                        this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
+                    }
+                }
+            } else {
+                increment = paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0 ? 2 : 1;
+                breederIndexIsGreaterThanBreedersLength = paginatedBreederIndex + increment > this.paginatedBreeders.length - 1;
+                newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.paginatedBreeders.length : paginatedBreederIndex + increment;
+
+                this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
+                this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
+            }
+        },
+        addBreederFarm: function addBreederFarm(data) {
+            // Insert new breeder farm data to breeders array
+            this.breeders[data.breederIndex].farms.push(data.farm);
+        },
+        updateBreederFarm: function updateBreederFarm(data) {
+            // Edit breeder farm
+            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+            farm.name = data.farm.name;
+            farm.farm_code = data.farm.farmCode;
+            farm.farm_accreditation_date = data.farm.accreditationDate;
+            farm.farm_accreditation_no = data.farm.accreditationNo;
+            farm.address_line1 = data.farm.addressLine1;
+            farm.address_line2 = data.farm.addressLine2;
+            farm.province = data.farm.province;
+            farm.province_code = data.farm.provinceCode;
+        },
+        renewBreederFarm: function renewBreederFarm(data) {
+            // Renew breeder farm
+            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+            farm.is_suspended = 0;
+            farm.farm_accreditation_date = data.newAccreditationDate;
+        },
+        initializeManageFarmsData: function initializeManageFarmsData(paginatedBreederIndex, containerIndex) {
+            // Initialize data and metadata of Manage Farms "container"
+            // Data should be mapped to the this.breeders array
+            var breederId = this.paginatedBreeders[paginatedBreederIndex].breederId;
+            var breederIndex = this.findBreederIndexById(breederId);
+
+            this.manageFarmsData.containerIndex = containerIndex;
+            this.manageFarmsData.paginatedBreederIndex = paginatedBreederIndex;
+            this.manageFarmsData.breederIndex = breederIndex;
+            this.manageFarmsData.breederId = this.breeders[breederIndex].breederId;
+            this.manageFarmsData.name = this.breeders[breederIndex].name;
+            this.manageFarmsData.farms = this.breeders[breederIndex].farms;
+        },
+        insertManageFarmsContainer: function insertManageFarmsContainer(paginatedBreederIndex, containerIndex) {
+            // Insert Manage Farms "container" to breeders array
+            this.paginatedBreeders.splice(containerIndex, 0, {
+                userId: -1,
+                breederId: -1,
+                name: this.paginatedBreeders[paginatedBreederIndex].name,
+                email: '',
+                farms: []
+            });
+        },
+        findBreederIndexById: function findBreederIndexById(id) {
+            for (var i = 0; i < this.breeders.length; i++) {
+                if (this.breeders[i].breederId === id) return i;
+            }
+
+            return -1;
+        },
+        closeManageFarmsContainer: function closeManageFarmsContainer(data) {
+            if (data.containerIndex !== 0) this.paginatedBreeders.splice(data.containerIndex, 1);
+
+            // Set manageFarmsData to default
+            this.manageFarmsData = {
+                containerIndex: 0,
+                paginatedBreederIndex: -1,
+                breederIndex: -1,
+                breederId: 0,
+                name: '',
+                farms: []
+            };
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(99)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(101),
+  /* template */
+  __webpack_require__(102),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-6d46f7eb",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreedersManageFarm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreedersManageFarm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6d46f7eb", Component.options)
+  } else {
+    hotAPI.reload("data-v-6d46f7eb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(100);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("27351926", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n#toggle-add-farm-btn[data-v-6d46f7eb] {\n    margin-top: 1rem;\n    margin-left: 72px;\n    border-radius: 20px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Modal customizations */\n#add-farm-modal[data-v-6d46f7eb], #edit-farm-modal[data-v-6d46f7eb] {\n    width: 50rem;\n}\n#renew-farm-modal[data-v-6d46f7eb] {\n    width: 40rem;\n    height:40rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-6d46f7eb] {\n    border: 0;\n}\n.modal .modal-footer[data-v-6d46f7eb] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-6d46f7eb] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 1rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        manageFarmsData: Object,
+        provinceOptions: Array
+    },
+
+    data: function data() {
+        return {
+            addFarmData: {
+                breederId: 0,
+                name: '',
+                farmCode: '',
+                accreditationDate: '',
+                accreditationNo: '',
+                addressLine1: '',
+                addressLine2: '',
+                province: '',
+                provinceCode: ''
+            },
+            editFarmData: {
+                farmId: 0,
+                farmIndex: -1,
+                name: '',
+                farmCode: '',
+                accreditationDate: '',
+                accreditationNo: '',
+                addressLine1: '',
+                addressLine2: '',
+                province: '',
+                provinceCode: ''
+            },
+            renewFarmData: {
+                farmId: 0,
+                farmIndex: -1,
+                name: '',
+                newAccreditationDate: ''
+            }
+        };
+    },
+
+
+    methods: {
+        convertToReadableDate: function convertToReadableDate(date) {
+            var dateObject = new Date(date);
+            var monthConversion = {
+                '0': 'January',
+                '1': 'February',
+                '2': 'March',
+                '3': 'April',
+                '4': 'May',
+                '5': 'June',
+                '6': 'July',
+                '7': 'August',
+                '8': 'September',
+                '9': 'October',
+                '10': 'November',
+                '11': 'December'
+            };
+
+            return monthConversion[dateObject.getMonth()] + ' ' + dateObject.getDate() + ', ' + dateObject.getFullYear();
+        },
+        toggleCloseFarmsDataContainerEvent: function toggleCloseFarmsDataContainerEvent() {
+            // Trigger event to ManageBreeders component
+            this.$emit('close-manage-farms-event', { 'containerIndex': this.manageFarmsData.containerIndex });
+        },
+        showAddFarmModal: function showAddFarmModal() {
+            $('#add-farm-modal').modal('open');
+        },
+        addFarm: function addFarm(event) {
+            var _this = this;
+
+            var vm = this;
+            var addFarmButton = $('.add-farm-btn');
+            // Parse input-date-select to get province and province code
+            var provinceWithItsCode = vm.addFarmData.province.split(';').map(function (x) {
+                return x.trim();
+            });
+
+            this.disableButtons(addFarmButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/farms', {
+                breederId: vm.manageFarmsData.breederId,
+                name: vm.addFarmData.name,
+                farmCode: vm.addFarmData.farmCode,
+                accreditationDate: vm.addFarmData.accreditationDate,
+                accreditationNo: vm.addFarmData.accreditationNo,
+                addressLine1: vm.addFarmData.addressLine1,
+                addressLine2: vm.addFarmData.addressLine2,
+                province: provinceWithItsCode[0],
+                provinceCode: provinceWithItsCode[1]
+            }).then(function (response) {
+                // Put response in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.$emit('add-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farm': response.data
+                });
+
+                // Erase adding of breeder farm data
+                vm.addFarmData = {
+                    breederId: vm.manageFarmsData.breederId,
+                    name: '',
+                    farmCode: '',
+                    accreditationDate: '',
+                    accreditationNo: '',
+                    addressLine1: '',
+                    addressLine2: '',
+                    province: '',
+                    provinceCode: ''
+                };
+
+                // Update UI after adding breeder
+                vm.$nextTick(function () {
+                    $('#add-farm-modal').modal('close');
+                    $('#add-farm-name').removeClass('valid');
+                    $('#add-farm-code').removeClass('valid');
+                    $('#add-farm-accreditation-no').removeClass('valid');
+                    $('#add-farm-address-one').removeClass('valid');
+                    $('#add-farm-address-two').removeClass('valid');
+
+                    _this.enableButtons(addFarmButton, event.target, 'Add');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(response.data.name + ' farm added', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditFarmModal: function showEditFarmModal(index) {
+            // Initialize data for editing
+            var farm = this.manageFarmsData.farms[index];
+            this.editFarmData.farmId = farm.id;
+            this.editFarmData.farmIndex = index;
+            this.editFarmData.name = farm.name;
+            this.editFarmData.farmCode = farm.farm_code;
+            this.editFarmData.accreditationDate = this.convertToReadableDate(farm.farm_accreditation_date);
+            this.editFarmData.accreditationNo = farm.farm_accreditation_no;
+            this.editFarmData.addressLine1 = farm.address_line1;
+            this.editFarmData.addressLine2 = farm.address_line2;
+            this.editFarmData.province = farm.province + ' ; ' + farm.province_code;
+            this.editFarmData.provinceCode = farm.province_code;
+
+            $('#edit-farm-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+                $('#edit-farm-modal select').material_select();
+            });
+        },
+        updateFarm: function updateFarm(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateFarmButton = $('.update-farm-btn');
+            // Parse input-date-select to get province and province code
+            var provinceWithItsCode = vm.editFarmData.province.split(';').map(function (x) {
+                return x.trim();
+            });
+
+            this.disableButtons(updateFarmButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/farms', {
+                farmId: vm.editFarmData.farmId,
+                name: vm.editFarmData.name,
+                farmCode: vm.editFarmData.farmCode,
+                accreditationDate: vm.editFarmData.accreditationDate,
+                accreditationNo: vm.editFarmData.accreditationNo,
+                addressLine1: vm.editFarmData.addressLine1,
+                addressLine2: vm.editFarmData.addressLine2,
+                province: provinceWithItsCode[0],
+                provinceCode: provinceWithItsCode[1]
+            }).then(function (response) {
+                // Edit farm in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.editFarmData.province = provinceWithItsCode[0];
+                vm.editFarmData.provinceCode = provinceWithItsCode[1];
+                vm.$emit('update-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farmIndex': vm.editFarmData.farmIndex,
+                    'farm': vm.editFarmData
+                });
+
+                // Update UI after updating breeder farm
+                vm.$nextTick(function () {
+                    $('#edit-farm-modal').modal('close');
+                    $('#edit-farm-name').removeClass('valid');
+                    $('#edit-farm-code').removeClass('valid');
+                    $('#edit-farm-accreditation-no').removeClass('valid');
+                    $('#edit-farm-address-one').removeClass('valid');
+                    $('#edit-farm-address-two').removeClass('valid');
+
+                    _this2.enableButtons(updateFarmButton, event.target, 'Update');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(vm.editFarmData.name + ' farm updated', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRenewFarmModal: function showRenewFarmModal(index) {
+            // Initialize data for renewing
+            var farm = this.manageFarmsData.farms[index];
+            this.renewFarmData.farmId = farm.id;
+            this.renewFarmData.farmIndex = index;
+            this.renewFarmData.name = farm.name;
+
+            $('#renew-farm-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        renewFarm: function renewFarm(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var renewFarmButton = $('.renew-farm-btn');
+
+            this.disableButtons(renewFarmButton, event.target, 'Renewing...');
+
+            // Update server's database
+            axios.patch('/admin/manage/farms/renew', {
+                farmId: vm.renewFarmData.farmId,
+                newAccreditationDate: vm.renewFarmData.newAccreditationDate
+            }).then(function (response) {
+                // Edit farm in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.$emit('renew-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farmIndex': vm.renewFarmData.farmIndex,
+                    'newAccreditationDate': vm.renewFarmData.newAccreditationDate
+                });
+
+                // Update UI after renewing breeder farm
+                vm.$nextTick(function () {
+                    $('#renew-farm-modal').modal('close');
+
+                    _this3.enableButtons(renewFarmButton, event.target, 'Renew');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(vm.renewFarmData.name + ' farm renewed!', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card",
+    attrs: {
+      "id": "manage-farms-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h5', [_c('b', {
+    staticClass: "name-chosen-breeder"
+  }, [_vm._v(_vm._s(_vm.manageFarmsData.name))]), _vm._v(" "), _c('i', {
+    staticClass: "material-icons right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.toggleCloseFarmsDataContainerEvent($event)
+      }
+    }
+  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', {
+    staticClass: "center-align"
+  }, [_vm._v(" Manage Farms ")]), _vm._v(" "), _c('a', {
+    staticClass: "btn z-depth-0",
+    attrs: {
+      "id": "toggle-add-farm-btn",
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.showAddFarmModal($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("add")]), _vm._v(" Add Farm\n        ")]), _vm._v(" "), _c('ul', {
+    staticClass: "collection"
+  }, _vm._l((_vm.manageFarmsData.farms), function(farm, index) {
+    return _c('li', {
+      key: farm.id,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "farm-title",
+      class: {
+        'grey-text text-darken-2': farm.is_suspended
+      }
+    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {
+      class: {
+        'grey-text text-darken-2': farm.is_suspended
+      }
+    }, [(farm.is_suspended) ? [_c('b', [_vm._v(" SUSPENDED ")]), _vm._v(" "), _c('br')] : _vm._e(), _vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')], 2), _vm._v(" "), _c('p', {
+      staticClass: "grey-text text-darken-2 address-line"
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), (!farm.is_suspended) ? _c('a', {
+      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditFarmModal(index)
+        }
+      }
+    }, [_vm._v(" \n                    Edit \n                ")]) : _c('a', {
+      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn orange-text text-darken-4",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showRenewFarmModal(index)
+        }
+      }
+    }, [_vm._v(" \n                    Renew \n                ")])])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "add-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " ")]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.name),
+      expression: "addFarmData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.farmCode),
+      expression: "addFarmData.farmCode"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.farmCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "farmCode", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-code"
+    }
+  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.addFarmData.accreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.addFarmData.accreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.addFarmData, "accreditationDate", $$v)
+      },
+      expression: "addFarmData.accreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.accreditationNo),
+      expression: "addFarmData.accreditationNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-accreditation-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.accreditationNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "accreditationNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-accreditation-no"
+    }
+  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.addressLine1),
+      expression: "addFarmData.addressLine1"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-address-one",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.addressLine1)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "addressLine1", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-address-one"
+    }
+  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.addressLine2),
+      expression: "addFarmData.addressLine2"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-address-two",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.addressLine2)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "addressLine2", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-address-two"
+    }
+  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Province",
+      "options": _vm.provinceOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.addFarmData.province = val
+      }
+    },
+    model: {
+      value: (_vm.addFarmData.province),
+      callback: function($$v) {
+        _vm.$set(_vm.addFarmData, "province", $$v)
+      },
+      expression: "addFarmData.province"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn z-depth-0 add-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Add\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(4), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.editFarmData.name) + " ")]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.name),
+      expression: "editFarmData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.farmCode),
+      expression: "editFarmData.farmCode"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.farmCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "farmCode", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-code"
+    }
+  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.editFarmData.accreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.editFarmData.accreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.editFarmData, "accreditationDate", $$v)
+      },
+      expression: "editFarmData.accreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.accreditationNo),
+      expression: "editFarmData.accreditationNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-accreditation-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.accreditationNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "accreditationNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-accreditation-no"
+    }
+  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.addressLine1),
+      expression: "editFarmData.addressLine1"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-address-one",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.addressLine1)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "addressLine1", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-address-one"
+    }
+  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.addressLine2),
+      expression: "editFarmData.addressLine2"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-address-two",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.addressLine2)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "addressLine2", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-address-two"
+    }
+  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Province",
+      "options": _vm.provinceOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.editFarmData.province = val
+      }
+    },
+    model: {
+      value: (_vm.editFarmData.province),
+      callback: function($$v) {
+        _vm.$set(_vm.editFarmData, "province", $$v)
+      },
+      expression: "editFarmData.province"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "renew-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(8), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.renewFarmData.name))]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(9), _vm._v(" "), _vm._m(10), _vm._v(" "), _vm._m(11), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.renewFarmData.newAccreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.renewFarmData.newAccreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.renewFarmData, "newAccreditationDate", $$v)
+      },
+      expression: "renewFarmData.newAccreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" New Accreditation Date ")])], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn orange darken-4 z-depth-0 renew-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.renewFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Renew\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Add Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Renew Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _c('br'), _c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                        Input new accreditation date to renew farm.\n                    ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6d46f7eb", module.exports)
+  }
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "toggle-register-breeder-btn-container"
+    }
+  }, [_c('a', {
+    staticClass: "btn",
+    attrs: {
+      "id": "toggle-register-breeder-btn",
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.showAddBreederModal($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("add")]), _vm._v(" Register Breeder\n            ")])]), _vm._v(" "), _vm._l((_vm.paginatedBreeders), function(breeder, index) {
+    return [(breeder.userId !== -1) ? _c('div', {
+      key: breeder.userId,
+      staticClass: "col s6"
+    }, [_c('div', {
+      staticClass: "card",
+      class: (_vm.manageFarmsData.paginatedBreederIndex === index) ? 'card-chosen-breeder' : ''
+    }, [_c('div', {
+      staticClass: "card-content"
+    }, [_c('span', {
+      staticClass: "card-title",
+      class: (_vm.manageFarmsData.paginatedBreederIndex === index) ? 'name-chosen-breeder' : ''
+    }, [_c('b', [_vm._v(_vm._s(breeder.name))])]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text text-darken-2"
+    }, [_vm._v(" \n                            " + _vm._s(breeder.status) + " • " + _vm._s(breeder.email) + "\n                        ")]), _vm._v(" "), _c('p', [_c('br'), _vm._v(" "), _c('a', {
+      staticClass: "black-text",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showFarms(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons left view-farm-btn"
+    }, [_vm._v(" store ")]), _vm._v("\n                                Manage Farms\n                            ")])])]), _vm._v(" "), _c('div', {
+      staticClass: "card-action grey lighten-3"
+    }, [_c('a', {
+      staticClass: "btn blue darken-1 toggle-edit-breeder-btn z-depth-0",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditBreederModal(breeder.breederId)
+        }
+      }
+    }, [_vm._v("\n                            Edit\n                        ")])])])]) : _c('div', {
+      staticClass: "col s12"
+    }, [_c('manage-farms', {
+      attrs: {
+        "manage-farms-data": _vm.manageFarmsData,
+        "province-options": _vm.provinceOptions
+      },
+      on: {
+        "close-manage-farms-event": _vm.closeManageFarmsContainer,
+        "add-breeder-farm-event": _vm.addBreederFarm,
+        "update-breeder-farm-event": _vm.updateBreederFarm,
+        "renew-breeder-farm-event": _vm.renewBreederFarm
+      }
+    })], 1)]
+  }), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align pagination-container"
+  }, [_c('ul', {
+    staticClass: "pagination"
+  }, [_c('li', {
+    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.previousPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
+    return _c('li', {
+      staticClass: "waves-effect",
+      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
+    }, [_c('a', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.goToPage(i)
+        }
+      }
+    }, [_vm._v(" " + _vm._s(i) + " ")])])
+  }), _vm._v(" "), _c('li', {
+    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.nextPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_right")])])])], 2)])], 2), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "add-breeder-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addBreederData.name),
+      expression: "addBreederData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-breeder-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addBreederData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addBreederData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-breeder-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addBreederData.email),
+      expression: "addBreederData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-breeder-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addBreederData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addBreederData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-breeder-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn z-depth-0 register-breeder-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.registerBreeder($event)
+      }
+    }
+  }, [_vm._v("\n                Register\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "edit-breeder-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreederData.name),
+      expression: "editBreederData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breeder-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreederData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreederData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breeder-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreederData.email),
+      expression: "editBreederData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breeder-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreederData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreederData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breeder-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-breeder-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateBreeder($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Breeders ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Register Breeder\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Breeder\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2b3e0810", module.exports)
+  }
+}
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(105)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(107),
+  /* template */
+  __webpack_require__(108),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7999,13 +10125,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 95 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(96);
+var content = __webpack_require__(106);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8025,7 +10151,7 @@ if(false) {
 }
 
 /***/ }),
-/* 96 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -8039,7 +10165,7 @@ exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-a
 
 
 /***/ }),
-/* 97 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8308,7 +10434,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 98 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8606,19 +10732,19 @@ if (false) {
 }
 
 /***/ }),
-/* 99 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(100)
+  __webpack_require__(110)
 }
-var Component = __webpack_require__(1)(
+var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(102),
+  __webpack_require__(112),
   /* template */
-  __webpack_require__(103),
+  __webpack_require__(113),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8650,13 +10776,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 100 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(101);
+var content = __webpack_require__(111);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8676,7 +10802,7 @@ if(false) {
 }
 
 /***/ }),
-/* 101 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -8690,7 +10816,7 @@ exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-propert
 
 
 /***/ }),
-/* 102 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9080,7 +11206,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 103 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9236,12 +11362,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons right"
   }, [_vm._v("send")])])])])]), _vm._v(" "), (_vm.clients.length < 1) ? [_vm._m(2)] : _vm._l((_vm.clients), function(client, index) {
     return _c('li', {
+      key: client.id,
       staticClass: "collection-item avatar"
     }, [_c('span', {
       staticClass: "title"
     }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
-    }, [_vm._v("\n                            CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                            CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                            Redirect: " + _vm._s(client.redirect) + "\n                        ")]), _vm._v(" "), _c('span', {
+    }, [_vm._v("\n                        CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                        CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                        Redirect: " + _vm._s(client.redirect) + "\n                    ")]), _vm._v(" "), _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "edit-credentials-button",
@@ -9405,7 +11532,7 @@ if (false) {
 }
 
 /***/ }),
-/* 104 */
+/* 114 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -51,6 +51,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage/properties', 'ManageFieldsController@showManagePropertiesView')->name('showManagePropertiesView');
         Route::post('/manage/properties', 'ManageFieldsController@addProperty')->name('addProperty');
         Route::patch('/manage/properties', 'ManageFieldsController@updateProperty')->name('updateProperty');
+        Route::get('/manage/breeders', 'ManageBreedersController@index')->name('showManageBreeders');
+        Route::post('/manage/breeders', 'ManageBreedersController@addBreeder')->name('addBreeder');
+        Route::patch('/manage/breeders', 'ManageBreedersController@updateBreeder')->name('updateBreeder');
+        Route::post('/manage/farms', 'ManageBreedersController@addFarm')->name('addFarm');
+        Route::patch('/manage/farms', 'ManageBreedersController@updateFarm')->name('updateFarm');
+        Route::patch('/manage/farms/renew', 'ManageBreedersController@renewFarm')->name('renewFarm');
     });
 
     // Genomics-related

@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="app-input-select">
         <select ref="select" :value="value">
-            <option value="" disabled selected> Choose {{ labelDescription }} </option>
+            <option value="" disabled> Choose {{ labelDescription }} </option>
             <option v-for="option in options" :value="option.value"> {{ option.text }} </option>
         </select>
         <label v-show="hideLabel" for=""> {{ labelDescription }} </label>

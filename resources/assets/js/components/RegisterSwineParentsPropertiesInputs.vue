@@ -347,7 +347,7 @@
             </template>
 
             <div class="col s12">
-                <br>
+                <br/>
             </div>
 
         </template>

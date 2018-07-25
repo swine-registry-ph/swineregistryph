@@ -57,12 +57,14 @@ class SwineController extends Controller
 
         // Get farm options for farm from input select
         foreach ($this->breederUser->farms as $farm) {
-            array_push($farmOptions,
-                [
-                    'text' => $farm->name . ' , ' . $farm->province,
-                    'value' => $farm->id
-                ]
-            );
+            if(!$farm->is_suspended){
+                array_push($farmOptions,
+                    [
+                        'text' => $farm->name . ' , ' . $farm->province,
+                        'value' => $farm->id
+                    ]
+                );
+            }
         }
 
         // Get breed options for breed input select
@@ -185,35 +187,35 @@ class SwineController extends Controller
 
                 if($swineSex === $sex){
                     return $data = [
-                        'existingRegNo' =>         $swine->registration_no,
+                        'existingRegNo'             => $swine->registration_no,
                         'imported' => [
-                            'regNo' =>             ($swine->farm_id == 0) ? $swine->registration_no : '',
-                            'farmOfOrigin' =>      ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 26) : '',
-                            'countryOfOrigin' =>   ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 27) : ''
+                            'regNo'                 => ($swine->farm_id == 0) ? $swine->registration_no : '',
+                            'farmOfOrigin'          => ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 26) : '',
+                            'countryOfOrigin'       => ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 27) : ''
                         ],
-                        'farmFromId' =>            $swine->farm_id,
-                        'sex' =>                   $this->getSwinePropValue($swine, 1),
-                        'birthDate' =>             $this->changeDateFormat($this->getSwinePropValue($swine, 2)),
-                        'birthWeight' =>           $this->getSwinePropValue($swine, 3),
-                        'adgBirthEndDate' =>       $this->changeDateFormat($this->getSwinePropValue($swine, 5)),
-                        'adgBirthEndWeight' =>     $this->getSwinePropValue($swine, 6),
-                        'adgTestStartDate' =>      $this->changeDateFormat($this->getSwinePropValue($swine, 8)),
-                        'adgTestStartWeight' =>    $this->getSwinePropValue($swine, 9),
-                        'adgTestEndDate' =>        $this->changeDateFormat($this->getSwinePropValue($swine, 10)),
-                        'adgTestEndWeight' =>      $this->getSwinePropValue($swine, 11),
-                        'houseType' =>             $this->getSwinePropValue($swine, 12),
-                        'bft' =>                   $this->getSwinePropValue($swine, 13),
-                        'bftCollected' =>          $this->changeDateFormat($this->getSwinePropValue($swine, 14)),
-                        'feedIntake' =>            $this->getSwinePropValue($swine, 15),
-                        'teatNo' =>                $this->getSwinePropValue($swine, 17),
-                        'parity' =>                $this->getSwinePropValue($swine, 18),
-                        'littersizeAliveMale' =>   $this->getSwinePropValue($swine, 19),
-                        'littersizeAliveFemale' => $this->getSwinePropValue($swine, 20),
-                        'littersizeWeaning' =>     $this->getSwinePropValue($swine, 21),
-                        'litterweightWeaning' =>   $this->getSwinePropValue($swine, 22),
-                        'dateWeaning' =>           $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
-                        'farmSwineId' =>           $this->getSwinePropValue($swine, 24),
-                        'geneticInfoId' =>         $this->getSwinePropValue($swine, 25)
+                        'farmFromId'                => $swine->farm_id,
+                        'sex'                       => $this->getSwinePropValue($swine, 1),
+                        'birthDate'                 => $this->changeDateFormat($this->getSwinePropValue($swine, 2)),
+                        'birthWeight'               => $this->getSwinePropValue($swine, 3),
+                        'adgBirthEndDate'           => $this->changeDateFormat($this->getSwinePropValue($swine, 5)),
+                        'adgBirthEndWeight'         => $this->getSwinePropValue($swine, 6),
+                        'adgTestStartDate'          => $this->changeDateFormat($this->getSwinePropValue($swine, 8)),
+                        'adgTestStartWeight'        => $this->getSwinePropValue($swine, 9),
+                        'adgTestEndDate'            => $this->changeDateFormat($this->getSwinePropValue($swine, 10)),
+                        'adgTestEndWeight'          => $this->getSwinePropValue($swine, 11),
+                        'houseType'                 => $this->getSwinePropValue($swine, 12),
+                        'bft'                       => $this->getSwinePropValue($swine, 13),
+                        'bftCollected'              => $this->changeDateFormat($this->getSwinePropValue($swine, 14)),
+                        'feedIntake'                => $this->getSwinePropValue($swine, 15),
+                        'teatNo'                    => $this->getSwinePropValue($swine, 17),
+                        'parity'                    => $this->getSwinePropValue($swine, 18),
+                        'littersizeAliveMale'       => $this->getSwinePropValue($swine, 19),
+                        'littersizeAliveFemale'     => $this->getSwinePropValue($swine, 20),
+                        'littersizeWeaning'         => $this->getSwinePropValue($swine, 21),
+                        'litterweightWeaning'       => $this->getSwinePropValue($swine, 22),
+                        'dateWeaning'               => $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
+                        'farmSwineId'               => $this->getSwinePropValue($swine, 24),
+                        'geneticInfoId'             => $this->getSwinePropValue($swine, 25)
                     ];
                 }
                 else return 'Swine with registration no. ' . $regNo . ' is not '. $sex . '.';

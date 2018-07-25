@@ -19,8 +19,8 @@
         <li :class="{ active : currentRoute.admin.adminViewRegdSwine }">
             <a href="{{ route('adminViewRegdSwine') }}"> <i class="material-icons">find_in_page</i> View Registered Swine </a>
         </li>
-        <li :class="{ active : currentRoute.admin.manageAccreditedFarms }">
-            <a href="#!"> <i class="material-icons">store</i> Manage Accredited Farms </a>
+        <li :class="{ active : currentRoute.admin.showManageBreeders }">
+            <a href="{{ route('showManageBreeders') }}"> <i class="material-icons">account_circle</i> Manage Breeders </a>
         </li>
         <li :class="{ active : currentRoute.admin.showManagePropertiesView }">
             <a href="{{ route('showManagePropertiesView') }}"> <i class="material-icons">list</i> Manage Properties </a>

@@ -18,11 +18,13 @@ class CreateFarmsTable extends Migration
             $table->integer('breeder_id')->unsigned();
             $table->string('name');
             $table->text('farm_code');
+            $table->date('farm_accreditation_date');
             $table->text('farm_accreditation_no');
             $table->text('address_line1');
             $table->text('address_line2');
             $table->text('province');
             $table->text('province_code');
+            $table->boolean('is_suspended')->default('0');
             $table->timestamps();
         });
     }
