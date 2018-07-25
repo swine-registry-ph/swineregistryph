@@ -12,12 +12,16 @@ class BreedInstancesSeeder extends Seeder
     public function run()
     {
         $breedTitles = [
-            'Landrace', 'Largewhite', 'Duroc', 'Pietrain'
+            ['Landrace', 'LR'],
+            ['Largewhite', 'LW'],
+            ['Duroc', 'DR'],
+            ['Pietrain', 'PT']
         ];
 
         foreach ($breedTitles as $breedTitle) {
             $breed = new App\Models\Breed;
-            $breed->title = $breedTitle;
+            $breed->title = $breedTitle[0];
+            $breed->code = $breedTitle[1];
             $breed->save();
         }
     }

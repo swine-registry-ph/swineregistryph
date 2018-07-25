@@ -28,11 +28,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage-swine/register', 'SwineController@showRegistrationForm')->name('showRegForm');
         Route::get('/manage-swine/view', 'SwineController@viewRegisteredSwine')->name('viewRegdSwine');
         Route::post('/manage-swine/register', 'SwineController@addSwineInfo')->name('addSwineInfo');
-        Route::get('/manage-swine/get/{regNo}', 'SwineController@getSwine')->name('getSwine');
+        Route::get('/manage-swine/get/{sex}/{regNo}', 'SwineController@getSwine')->name('getSwine');
         Route::post('/manage-swine/set-primary-photo', 'PhotoController@setPrimaryPhoto')->name('setPrimaryPhoto');
         Route::post('/manage-swine/upload-photo', 'PhotoController@uploadPhoto')->name('uploadPhoto');
         Route::delete('/manage-swine/upload-photo/{photoId}', 'PhotoController@deletePhoto')->name('deletePhoto');
-        Route::get('/registry-certificate', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
+        Route::get('/registry-certificate/{swineId}', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
+        Route::get('/temp-registry-certificate', 'SwineController@viewTempRegistryCertificate')->name('viewTempRegistryCert');
+        Route::get('/pedigree', 'PedigreeController@index')->name('viewSwinePedigreePage');
+        Route::get('/pedigree/reg/{regNo}/gen/{generation}', 'PedigreeController@getSwinePedigree')->name('getSwinePedigree');
+        Route::get('/swinecart', 'BreederController@viewSwineCartPage')->name('viewSwineCartPage');
     });
 
     // Admin-related
@@ -47,6 +51,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage/properties', 'ManageFieldsController@showManagePropertiesView')->name('showManagePropertiesView');
         Route::post('/manage/properties', 'ManageFieldsController@addProperty')->name('addProperty');
         Route::patch('/manage/properties', 'ManageFieldsController@updateProperty')->name('updateProperty');
+        Route::get('/manage/breeders', 'ManageBreedersController@index')->name('showManageBreeders');
+        Route::post('/manage/breeders', 'ManageBreedersController@addBreeder')->name('addBreeder');
+        Route::patch('/manage/breeders', 'ManageBreedersController@updateBreeder')->name('updateBreeder');
+        Route::post('/manage/farms', 'ManageBreedersController@addFarm')->name('addFarm');
+        Route::patch('/manage/farms', 'ManageBreedersController@updateFarm')->name('updateFarm');
+        Route::patch('/manage/farms/renew', 'ManageBreedersController@renewFarm')->name('renewFarm');
+    });
+
+    // Genomics-related
+    Route::group(['prefix' => 'genomics'], function(){
+
+        Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
     });
 
     // Override Laravel Passport routes

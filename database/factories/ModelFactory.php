@@ -32,130 +32,123 @@ $factory->define(App\Models\Breeder::class, function (Faker\Generator $faker){
     return [];
 });
 
+$factory->define(App\Models\Genomics::class, function (Faker\Generator $faker){
+    return [];
+});
+
 $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
 
     $provinces = [
         // Negros Island Rregion
-        'Negros Occidental',
-        'Negros Oriental',
+        ['Negros Occidental', 'NEC'],
+        ['Negros Oriental', 'NER'],
         // Cordillera Administrative Region
-        'Mountain Province',
-        'Ifugao',
-        'Benguet',
-        'Abra',
-        'Apayao',
-        'Kalinga',
+        ['Abra', 'ABR'],
+        ['Apayao', 'APA'],
+        ['Benguet', 'BEN'],
+        ['Ifugao', 'IFU'],
+        ['Kalinga', 'KAL'],
+        ['Mountain Province', 'MOU'],
         // Region I
-        'La Union',
-        'Ilocos Norte',
-        'Ilocos Sur',
-        'Pangasinan',
+        ['Ilocos Norte', 'ILN'],
+        ['Ilocos Sur', 'ILS'],
+        ['La Union', 'LUN'],
+        ['Pangasinan', 'PAN'],
         // Region II
-        'Nueva Vizcaya',
-        'Cagayan',
-        'Isabela',
-        'Quirino',
-        'Batanes',
+        ['Batanes', 'BTN'],
+        ['Cagayan', 'CAG'],
+        ['Isabela', 'ISA'],
+        ['Nueva Vizcaya', 'NUV'],
+        ['Quirino', 'QUI'],
         // Region III
-        'Bataan',
-        'Zambales',
-        'Tarlac',
-        'Pampanga',
-        'Bulacan',
-        'Nueva Ecija',
-        'Aurora',
+        ['Aurora', 'AUR'],
+        ['Bataan', 'BAN'],
+        ['Bulacan', 'BUL'],
+        ['Nueva Ecija', 'NUE'],
+        ['Pampanga', 'PAM'],
+        ['Tarlac', 'TAR'],
+        ['Zambales', 'ZMB'],
         // Region IV-A
-        'Rizal',
-        'Cavite',
-        'Laguna',
-        'Batangas',
-        'Quezon',
+        ['Batangas', 'BTG'],
+        ['Cavite', 'CAV'],
+        ['Laguna', 'LAG'],
+        ['Quezon', 'QUE'],
+        ['Rizal', 'RIZ'],
         // Region IV-B
-        'Occidental Mindoro',
-        'Oriental Mindoro',
-        'Romblon',
-        'Palawan',
-        'Marinduque',
+        ['Marinduque', 'MAD'],
+        ['Occidental Mindoro', 'MDC'],
+        ['Oriental Mindoro', 'MDR'],
+        ['Palawan', 'PLW'],
+        ['Romblon', 'ROM'],
         // Region V
-        'Catanduanes',
-        'Camarines Norte',
-        'Sorsogon',
-        'Albay',
-        'Masbate',
-        'Camarines Sur',
+        ['Albay', 'ALB'],
+        ['Camarines Norte', 'CAN'],
+        ['Camarines Sur', 'CAS'],
+        ['Catanduanes', 'CAT'],
+        ['Masbate', 'MAS'],
+        ['Sorsogon', 'SOR'],
         // Region VI
-        'Capiz',
-        'Aklan',
-        'Antique',
-        'Iloilo',
-        'Guimaras',
+        ['Aklan', 'AKL'],
+        ['Antique', 'ANT'],
+        ['Capiz', 'CAP'],
+        ['Guimaras', 'GUI'],
+        ['Iloilo', 'ILI'],
         // Region VII
-        'Cebu',
-        'Bohol',
-        'Siquijor',
+        ['Bohol', 'BOH'],
+        ['Cebu', 'CEB'],
+        ['Siquijor', 'SIG'],
         // Region VIII
-        'Southern Leyte',
-        'Eastern Samar',
-        'Northern Samar',
-        'Western Samar',
-        'Leyte',
-        'Biliran',
+        ['Biliran', 'BIL'],
+        ['Eastern Samar', 'EAS'],
+        ['Leyte', 'LEY'],
+        ['Northern Samar', 'NSA'],
+        ['Southern Leyte', 'SLE'],
+        ['Western Samar', 'WSA'],
         // Region IX
-        'Zamboanga Sibugay',
-        'Zamboanga del Norte',
-        'Zamboanga del Sur',
+        ['Zamboanga del Norte', 'ZAN'],
+        ['Zamboanga del Sur', 'ZAS'],
+        ['Zamboanga Sibugay', 'ZSI'],
         // Region X
-        'Misamis Occidental',
-        'Bukidnon',
-        'Lanao del Norte',
-        'Misamis Oriental',
-        'Camiguin',
+        ['Bukidnon', 'BUK'],
+        ['Camiguin', 'CAM'],
+        ['Lanao del Norte', 'LAN'],
+        ['Misamis Occidental', 'MSC'],
+        ['Misamis Oriental', 'MSR'],
         // Region XI
-        'Davao Oriental',
-        'Compostela Valley',
-        'Davao del Sur',
-        'Davao Occidental',
-        'Davao del Norte',
+        ['Compostela Valley', 'COM'],
+        ['Davao del Norte', 'DAV'],
+        ['Davao del Sur', 'DAS'],
+        ['Davao Occidental', 'DVO'],
+        ['Davao Oriental', 'DAO'],
         // Region XII
-        'South Cotabato',
-        'Sultan Kudarat',
-        'North Cotabato',
-        'Sarangani',
+        ['Sarangani', 'SAR'],
+        ['South Cotabato', 'SCO'],
+        ['Sultan Kudarat', 'SUK'],
+        ['North Cotabato', 'NCO'],
         // Region XIII
-        'Agusan del Norte',
-        'Agusan del Sur',
-        'Surigao del Sur',
-        'Surigao del Norte',
-        'Dinagat Islands',
+        ['Agusan del Norte', 'AGN'],
+        ['Agusan del Sur', 'AGS'],
+        ['Dinagat Islands', 'DIN'],
+        ['Surigao del Norte', 'SUN'],
+        ['Surigao del Sur', 'SUR'],
         // ARMM
-        'Tawi-tawi',
-        'Basilan',
-        'Sulu',
-        'Maguindanao',
-        'Lanao del Sur'
+        ['Basilan', 'BAS'],
+        ['Lanao del Sur', 'LAS'],
+        ['Maguindanao', 'MAG'],
+        ['Sulu', 'SLU'],
+        ['Tawi-tawi', 'TAW']
     ];
 
-    // tunnel - tunnel ventilated
-    // open - open area
-    $typeArray = ['tunnel', 'open'];
-
-    // Generate random integer for choosing province
+    // Generate random integer
+    //  for choosing province
     $rand = random_int(0,sizeof($provinces)-1);
 
     return [
         'breeder_id' => 0,
-        'name' => $faker->company,
         'address_line1' => $faker->streetAddress,
         'address_line2' => $faker->secondaryAddress,
-        'province' => $provinces[$rand],
-        'type' => $typeArray[random_int(0,1)]
-    ];
-});
-
-$factory->define(App\Models\Collection::class, function (Faker\Generator $faker) {
-
-    return [
-        'date_collected' => \Carbon\Carbon::now()
+        'province' => $provinces[$rand][0],
+        'province_code' => $provinces[$rand][1]
     ];
 });
 

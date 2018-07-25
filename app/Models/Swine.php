@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use App\Models\Breed;
-use App\Models\Certificate;
-use App\Models\Collection;
+use App\Models\Breeder;
 use App\Models\Farm;
 use App\Models\Photo;
 use App\Models\SwineProperty;
@@ -45,11 +44,11 @@ class Swine extends Model
     }
 
     /**
-     * Get the corresponding collection of the swine
+     * Get the corresponding breeder of the swine
      */
-    public function collection()
+    public function breeder()
     {
-        return $this->belongsTo(Collection::class);
+        return $this->belongsTo(Breeder::class);
     }
 
     /**
@@ -58,14 +57,6 @@ class Swine extends Model
     public function farm()
     {
         return $this->belongsTo(Farm::class);
-    }
-
-    /**
-     * Get the certificate of the swine
-     */
-    public function certificate()
-    {
-        return $this->hasOne(Certificate::class);
     }
 
     /**

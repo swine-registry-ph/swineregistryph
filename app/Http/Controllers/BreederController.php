@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Swine;
 use Illuminate\Http\Request;
+
+use Auth;
 
 class BreederController extends Controller
 {
@@ -24,5 +27,16 @@ class BreederController extends Controller
     public function index()
     {
         return view('users.breeder.home');
+    }
+
+    /**
+     * Show Breeder's swines connected to the
+     * SwineCart application
+     *
+     * @return void
+     */
+    public function viewSwineCartPage()
+    {
+        return view('users.breeder.swinecart');
     }
 }

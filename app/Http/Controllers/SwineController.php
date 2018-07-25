@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterSwineRequest;
 use App\Models\Breed;
-use App\Models\Collection;
 use App\Models\Photo;
 use App\Models\Property;
 use App\Models\Swine;
 use App\Models\SwineProperty;
+use App\Repositories\CustomHelpers;
+use App\Repositories\SwineRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Auth;
 use Storage;
+use PDF;
 
 class SwineController extends Controller
 {
+    use CustomHelpers;
+
     protected $user;
     protected $breederUser;
+    protected $swineRepo;
 
     // Constant variable paths
     const SWINE_IMG_PATH = '/images/swine/';
@@ -27,7 +33,7 @@ class SwineController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(SwineRepository $swineRepository)
     {
         $this->middleware('role:breeder');
         $this->middleware(function($request, $next){
@@ -36,6 +42,7 @@ class SwineController extends Controller
 
             return $next($request);
         });
+        $this->swineRepo = $swineRepository;
     }
 
     /**
@@ -50,12 +57,14 @@ class SwineController extends Controller
 
         // Get farm options for farm from input select
         foreach ($this->breederUser->farms as $farm) {
-            array_push($farmOptions,
-                [
-                    'text' => $farm->name . ' , ' . $farm->province,
-                    'value' => $farm->id
-                ]
-            );
+            if(!$farm->is_suspended){
+                array_push($farmOptions,
+                    [
+                        'text' => $farm->name . ' , ' . $farm->province,
+                        'value' => $farm->id
+                    ]
+                );
+            }
         }
 
         // Get breed options for breed input select
@@ -81,7 +90,7 @@ class SwineController extends Controller
      */
     public function viewRegisteredSwine()
     {
-        $swines = $this->breederUser->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm', 'certificate.photos'])->get();
+        $swines = $this->breederUser->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm'])->get();
 
         return view('users.breeder.viewRegisteredSwine', compact('swines'));
     }
@@ -89,11 +98,76 @@ class SwineController extends Controller
     /**
      * View Registry Certicate
      *
-     * @return  View
+     * @param   integer     $swineId
+     * @return  PDF
      */
-    public function viewRegistryCertificate()
+    public function viewRegistryCertificate($swineId)
     {
-        return view('users.breeder.registryCertificate');
+        $swine = Swine::where('id', $swineId)->with('swineProperties', 'farm')->first();
+
+        if($swine){
+            $view = \View::make('users.breeder._certificate', compact('swine'));
+            $html = $view->render();
+
+            $tagvs = [
+                'h1' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'h2' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'p' => [
+                    ['h' => 0, 'n' => 0]
+                ]
+            ];
+
+            // Set configuration and show pdf
+            PDF::setPageOrientation('L');
+            PDF::SetCellPadding(0);
+            PDF::setHtmlVSpace($tagvs);
+            PDF::setFont('dejavusanscondensed', '', 10);
+            PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
+            PDF::AddPage();
+            PDF::WriteHTML($html, true, false, true, false, '');
+            PDF::Output("{$swine->registration_no}.pdf");
+        }
+        else return abort(404);
+    }
+
+    /**
+     * View temporary Registry Certificate
+     *
+     * @param   Request      $request
+     * @return  PDF
+     */
+    public function viewTempRegistryCertificate(Request $request)
+    {
+        $swine = Swine::where('id', 1)->with('swineProperties', 'farm')->first();
+
+        $view = \View::make('users.breeder._certificate', compact('swine'));
+        $html = $view->render();
+
+        $tagvs = [
+            'h1' => [
+                ['h' => 0, 'n' => 0]
+            ],
+            'h2' => [
+                ['h' => 0, 'n' => 0]
+            ],
+            'p' => [
+                ['h' => 0, 'n' => 0]
+            ]
+        ];
+
+        // Set configuration and show pdf
+        PDF::setPageOrientation('L');
+        PDF::SetCellPadding(0);
+        PDF::setHtmlVSpace($tagvs);
+        PDF::setFont('dejavusanscondensed', '', 10);
+        PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
+        PDF::AddPage();
+        PDF::WriteHTML($html, true, false, true, false, '');
+        PDF::Output("{$swine->registration_no}.pdf");
     }
 
     /**
@@ -103,16 +177,50 @@ class SwineController extends Controller
      * @param   integer     $regNo
      * @return  JSON
      */
-    public function getSwine(Request $request, $regNo)
+    public function getSwine(Request $request, $sex, $regNo)
     {
         if($request->ajax()){
-            $swine = Swine::where('registration_no', $regNo)->with('swineProperties')->first();
+            $swine = Swine::where('registration_no', $regNo)->first();
 
-            foreach ($swine->swineProperties as $swineProperty) {
-                $swineProperty->title = Property::find($swineProperty->property_id)->property;
+            if($swine){
+                $swineSex = $this->getSwinePropValue($swine,1);
+
+                if($swineSex === $sex){
+                    return $data = [
+                        'existingRegNo'             => $swine->registration_no,
+                        'imported' => [
+                            'regNo'                 => ($swine->farm_id == 0) ? $swine->registration_no : '',
+                            'farmOfOrigin'          => ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 26) : '',
+                            'countryOfOrigin'       => ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 27) : ''
+                        ],
+                        'farmFromId'                => $swine->farm_id,
+                        'sex'                       => $this->getSwinePropValue($swine, 1),
+                        'birthDate'                 => $this->changeDateFormat($this->getSwinePropValue($swine, 2)),
+                        'birthWeight'               => $this->getSwinePropValue($swine, 3),
+                        'adgBirthEndDate'           => $this->changeDateFormat($this->getSwinePropValue($swine, 5)),
+                        'adgBirthEndWeight'         => $this->getSwinePropValue($swine, 6),
+                        'adgTestStartDate'          => $this->changeDateFormat($this->getSwinePropValue($swine, 8)),
+                        'adgTestStartWeight'        => $this->getSwinePropValue($swine, 9),
+                        'adgTestEndDate'            => $this->changeDateFormat($this->getSwinePropValue($swine, 10)),
+                        'adgTestEndWeight'          => $this->getSwinePropValue($swine, 11),
+                        'houseType'                 => $this->getSwinePropValue($swine, 12),
+                        'bft'                       => $this->getSwinePropValue($swine, 13),
+                        'bftCollected'              => $this->changeDateFormat($this->getSwinePropValue($swine, 14)),
+                        'feedIntake'                => $this->getSwinePropValue($swine, 15),
+                        'teatNo'                    => $this->getSwinePropValue($swine, 17),
+                        'parity'                    => $this->getSwinePropValue($swine, 18),
+                        'littersizeAliveMale'       => $this->getSwinePropValue($swine, 19),
+                        'littersizeAliveFemale'     => $this->getSwinePropValue($swine, 20),
+                        'littersizeWeaning'         => $this->getSwinePropValue($swine, 21),
+                        'litterweightWeaning'       => $this->getSwinePropValue($swine, 22),
+                        'dateWeaning'               => $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
+                        'farmSwineId'               => $this->getSwinePropValue($swine, 24),
+                        'geneticInfoId'             => $this->getSwinePropValue($swine, 25)
+                    ];
+                }
+                else return 'Swine with registration no. ' . $regNo . ' is not '. $sex . '.';
             }
-
-            return ($swine) ? $swine : 'Swine with registration no. ' . $regNo . ' cannot be found.';
+            else return 'Swine with registration no. ' . $regNo . ' cannot be found.';
         }
     }
 
@@ -122,86 +230,14 @@ class SwineController extends Controller
      * @param   Request     $request
      * @return  integer
      */
-    public function addSwineInfo(Request $request)
+    public function addSwineInfo(RegisterSwineRequest $request)
     {
         if($request->ajax()){
+            $gpSireInstance = $this->swineRepo->addParent($request->gpSire);
+            $gpDamInstance = $this->swineRepo->addParent($request->gpDam);
+            $gpOneInstance = $this->swineRepo->addSwine($request->gpOne, $gpSireInstance->id, $gpDamInstance->id);
 
-            // Collection instance
-            $collection = new Collection;
-            $collection->breeder_id = $this->breederUser->id;
-            $collection->date_collected = new Carbon($request->basicInfo['dateCollected']);
-            $collection->save();
-
-            // Swine Instance
-            $swine = new Swine;
-            $swine->collection_id = $collection->id;
-            $swine->registration_no = str_random(15);
-            $swine->farm_id = $request->basicInfo['farmFrom'];
-            $swine->breed_id = $request->basicInfo['breed'];
-            $swine->date_registered = Carbon::now();
-            $swine->gpSire_id = ($request->gpSireId) ? $request->gpSireId : null;
-            $swine->gpDam_id = ($request->gpDamId) ? $request->gpDamId : null;
-            $swine->save();
-
-            // Swine Properties
-            $swine->swineProperties()->saveMany(
-                [
-                    new SwineProperty([
-                        'property_id' => 1, // sex
-                        'value' => $request->basicInfo['sex']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 2, // birthdate
-                        'value' => Carbon::createFromFormat('F m, Y', $request->basicInfo['birthDate'])->toDateString()
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 4, // weight when data was collected
-                        'value' => $request->basicInfo['weight']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 5, // adg
-                        'value' => $request->gpOne['adg']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 6, // bft
-                        'value' => $request->gpOne['bft']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 7, // feed efficiency
-                        'value' => $request->gpOne['fe']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 8, // birth weight
-                        'value' => $request->gpOne['birth_weight']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 9, // total male born alive
-                        'value' => $request->gpOne['littersizeAlive_male']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 10, // total female born alive
-                        'value' => $request->gpOne['littersizeAlive_female']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 11, // parity
-                        'value' => $request->gpOne['parity']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 12, // littersize at weaning
-                        'value' => $request->gpOne['littersize_weaning']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 13, // litterweight at weaning
-                        'value' => $request->gpOne['litterweight_weaning']
-                    ]),
-                    new SwineProperty([
-                        'property_id' => 14, // date at weaning
-                        'value' => Carbon::createFromFormat('F m, Y', $request->gpOne['date_weaning'])->toDateString()
-                    ])
-                ]
-            );
-
-            return $swine->id;
+            return $gpOneInstance;
         }
     }
 

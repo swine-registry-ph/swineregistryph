@@ -114,14 +114,17 @@
                         </div>
                     </div>
                 </li>
+
                 <!-- Show this list if there are not listed clients -->
-                <li v-if="clients.length < 1"
-                    class="collection-item avatar center-align"
-                >
-                    <span class="title"> No clients yet.</span>
-                </li>
+                <template v-if="clients.length < 1">
+                    <li class="collection-item avatar center-align">
+                        <span class="title"> No clients yet.</span>
+                    </li>
+                </template>
+
                 <!-- Exising credentials list -->
-                <li v-for="(client, index) in clients"
+                <li v-for="(client, index) in clients" 
+                    :key="client.id"
                     v-else
                     class="collection-item avatar"
                 >
@@ -131,7 +134,6 @@
                         CLIENT_SECRET: {{ client.secret }} <br>
                         Redirect: {{ client.redirect }}
                     </p>
-
 
                     <span class="secondary-content">
                         <a @click.prevent="toggleEditCredentialsModal(index)"
@@ -148,7 +150,6 @@
                             <i class="material-icons">delete</i>
                         </a>
                     </span>
-
                 </li>
             </ul>
         </div>
@@ -388,7 +389,7 @@
     }
 </script>
 
-<style lang="css">
+<style scoped lang="css">
     .collection-header a,
     .edit-property-button,
     #close-add-credentials-container-button,
@@ -409,11 +410,6 @@
     #delete-credentials-modal {
         width: 40rem;
         height: 23rem;
-    }
-
-    blockquote.error{
-    	border-left: 5px solid #ee6e73;
-    	background-color: #fdf0f1;
     }
 
 </style>

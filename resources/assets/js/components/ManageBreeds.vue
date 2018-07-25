@@ -52,6 +52,7 @@
                 </li>
                 <!-- Exising breeds list -->
                 <li v-for="(breed, index) in breeds"
+                    :key="breed.id"
                     class="collection-item"
                 >
                     {{ breed.title }}
@@ -96,110 +97,112 @@
 </template>
 
 <script>
-export default {
-    props: ['initialBreeds'],
-
-    data() {
-        return {
-            breeds: this.initialBreeds,
-            showAddBreedInput: false,
-            addBreedData: {
-                title: ''
-            },
-            editBreedData: {
-                index: -1,
-                id: 0,
-                title: ''
-            }
-        }
-    },
-
-    methods: {
-        toggleAddBreedContainer() {
-            this.showAddBreedInput = !this.showAddBreedInput;
+    export default {
+        props: {
+            initialBreeds: Array
         },
 
-        addBreed() {
-            const vm = this;
-
-            // Add to server's database
-            axios.post('/admin/manage/breeds', {
-                title: vm.addBreedData.title
-            })
-            .then((response) => {
-                // Put response in local data storage and erase adding of breed data
-                vm.breeds.push(response.data);
-                vm.addBreedData.title = '';
-
-                // Update UI after adding breed
-                vm.$nextTick(() => {
-                    $('#breed-title').removeClass('valid');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Breed added', 2000, 'green lighten-1');
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        },
-
-        toggleEditBreedModal(index) {
-            // Initialize data for editing
-            this.editBreedData.index = index;
-            this.editBreedData.id = this.breeds[index].id;
-            this.editBreedData.title = this.breeds[index].title;
-
-            $('#edit-breed-modal').modal('open');
-            this.$nextTick(() => {
-                Materialize.updateTextFields();
-            });
-        },
-
-        updateBreed() {
-            const vm = this;
-            const index = this.editBreedData.index;
-
-            // Update to server's database
-            axios.patch('/admin/manage/breeds', {
-                breedId: vm.editBreedData.id,
-                title: vm.editBreedData.title
-            })
-            .then((response) => {
-                // Update local data storage and erase editing of breed data
-                if(response.data === 'OK'){
-                    vm.breeds[index].title = vm.editBreedData.title;
-                    vm.editBreedData = {
-                        index: -1,
-                        id: 0,
-                        title: ''
-                    };
+        data() {
+            return {
+                breeds: this.initialBreeds,
+                showAddBreedInput: false,
+                addBreedData: {
+                    title: ''
+                },
+                editBreedData: {
+                    index: -1,
+                    id: 0,
+                    title: ''
                 }
+            }
+        },
 
-                // Update UI after updating breed
-                vm.$nextTick(() => {
-                    $('#edit-breed-modal').modal('close');
-                    $('#edit-breed-title').removeClass('valid');
+        methods: {
+            toggleAddBreedContainer() {
+                this.showAddBreedInput = !this.showAddBreedInput;
+            },
 
-                    Materialize.updateTextFields();
-                    Materialize.toast('Breed updated', 2000, 'green lighten-1');
+            addBreed() {
+                const vm = this;
+
+                // Add to server's database
+                axios.post('/admin/manage/breeds', {
+                    title: vm.addBreedData.title
+                })
+                .then((response) => {
+                    // Put response in local data storage and erase adding of breed data
+                    vm.breeds.push(response.data);
+                    vm.addBreedData.title = '';
+
+                    // Update UI after adding breed
+                    vm.$nextTick(() => {
+                        $('#breed-title').removeClass('valid');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Breed added', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            },
+
+            toggleEditBreedModal(index) {
+                // Initialize data for editing
+                this.editBreedData.index = index;
+                this.editBreedData.id = this.breeds[index].id;
+                this.editBreedData.title = this.breeds[index].title;
+
+                $('#edit-breed-modal').modal('open');
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                });
+            },
+
+            updateBreed() {
+                const vm = this;
+                const index = this.editBreedData.index;
+
+                // Update to server's database
+                axios.patch('/admin/manage/breeds', {
+                    breedId: vm.editBreedData.id,
+                    title: vm.editBreedData.title
+                })
+                .then((response) => {
+                    // Update local data storage and erase editing of breed data
+                    if(response.data === 'OK'){
+                        vm.breeds[index].title = vm.editBreedData.title;
+                        vm.editBreedData = {
+                            index: -1,
+                            id: 0,
+                            title: ''
+                        };
+                    }
+
+                    // Update UI after updating breed
+                    vm.$nextTick(() => {
+                        $('#edit-breed-modal').modal('close');
+                        $('#edit-breed-title').removeClass('valid');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Breed updated', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+
+        },
+
+        mounted() {
+            // Materialize component initializations
+            $('.modal').modal();
         }
-
-    },
-
-    mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
     }
-}
 </script>
 
-<style lang="css">
+<style scoped lang="css">
     .collection-header a, .edit-breed-button, #close-add-breed-container-button {
         cursor: pointer;
     }

@@ -18,8 +18,7 @@ class SwineResourceController extends Controller
             'swineProperties.property',
             'breed',
             'photos',
-            'farm',
-            'certificate.photos'
+            'farm'
         ])->get();
     }
 
@@ -35,8 +34,7 @@ class SwineResourceController extends Controller
             'swineProperties.property',
             'breed',
             'photos',
-            'farm',
-            'certificate.photos'
+            'farm'
         ])->get();
     }
 }

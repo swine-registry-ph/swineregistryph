@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFarmCodesTable extends Migration
+class CreateGenomicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateFarmCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('farm_codes', function (Blueprint $table) {
+        Schema::create('genomics', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('farm_id')->unsigned();
-            $table->text('farm_code');
-            $table->text('farm_accreditation_no');
+            $table->string('status_instance')->default('active');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateFarmCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('farm_codes');
+        Schema::dropIfExists('genomics');
     }
 }

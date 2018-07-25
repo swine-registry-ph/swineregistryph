@@ -41,7 +41,7 @@ class APICredentialsRevoked extends Mailable
         $outroLines = [];
 
         return $this->view('emails.apicredentials')
-                    ->subject('Breed Registry API Credentials Revoked')
+                    ->subject('Swine Breed Registry PH API Credentials Revoked')
                     ->with([
                         'level' => 'success',
                         'process' => $this->process,
