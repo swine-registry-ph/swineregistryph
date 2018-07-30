@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <!-- Add property container -->
-                <li v-show="showAddPropertyContainer" class="collection-item">
+                <li v-show="showAddPropertyContainer" id="add-property-container" class="collection-item">
                     <div class="row">
                         <div class="col s12">
                             <i @click.prevent="showAddPropertyContainer = !showAddPropertyContainer"
@@ -62,12 +62,11 @@
                             <label for="add-definition">Definition</label>
                         </div>
                         <div class="col s4 offset-s4">
-                            <a @click.prevent="addProperty()"
+                            <a @click.prevent="addProperty($event)"
                                 href="#!"
-                                class="right btn"
+                                class="right btn z-depth-0 add-property-btn"
                             >
-                                Submit
-                                <i class="material-icons right">send</i>
+                                Add Property
                             </a>
                         </div>
                     </div>
@@ -76,20 +75,23 @@
                 <li v-for="(property, index) in properties"
                     class="collection-item avatar"
                 >
-                    <span class="title"> {{ property.property }} </span>
+                    <span class="title"> <b>{{ property.property }}</b> </span>
                     <p class="grey-text">
                         Slug: {{ property.slug }} <br>
                         Definition: {{ property.definition }}
                     </p>
-
-
-                    <a @click.prevent="toggleEditPropertyModal(index)"
-                        href="#"
-                        class="secondary-content edit-property-button light-blue-text text-darken-1"
-                    >
-                        <i class="material-icons">edit</i>
-                    </a>
-
+                    <span class="secondary-content">
+                        <a @click.prevent="toggleEditPropertyModal(index)"
+                            href="#"
+                            class="btn custom-secondary-btn
+                                edit-property-button
+                                blue-text
+                                text-darken-1
+                                z-depth-0"
+                        >
+                            Edit
+                        </a>
+                    </span>
                 </li>
             </ul>
         </div>
@@ -97,8 +99,12 @@
         <!-- Edit Property Modal -->
         <div id="edit-property-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>Edit Property</h4>
-                <div class="row">
+                <h4>
+                    Edit Property
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+                <div class="row modal-input-container">
+                    <div class="col s12"> <br/> </div>
                     <div class="input-field col s12">
                         <input v-model="editPropertyData.property"
                             id="edit-property"
@@ -125,11 +131,11 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                <a @click.prevent="updateProperty"
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close waves-effect btn-flat ">Close</a>
+                <a @click.prevent="updateProperty($event)"
                     href="#!"
-                    class="modal-action waves-effect waves-green btn-flat"
+                    class="modal-action waves-effect btn blue darken-1 z-depth-0 update-property-btn"
                 >
                     Update
                 </a>
@@ -164,8 +170,11 @@
         },
 
         methods: {
-            addProperty() {
+            addProperty(event) {
                 const vm = this;
+                const addPropertyButton = $('.add-property-btn');
+
+                this.disableButtons(addPropertyButton, event.target, 'Adding...');
 
                 // Add to server's database
                 axios.post('/admin/manage/properties', {
@@ -187,6 +196,8 @@
                         $('#add-property').removeClass('valid');
                         $('#add-slug').removeClass('valid');
                         $('#add-definition').removeClass('valid');
+                        
+                        this.enableButtons(addPropertyButton, event.target, 'Add Property');
 
                         Materialize.updateTextFields();
                         Materialize.toast('Property added', 2000, 'green lighten-1');
@@ -211,9 +222,12 @@
                 });
             },
 
-            updateProperty() {
+            updateProperty(event) {
                 const vm = this;
                 const index = this.editPropertyData.index;
+                const updatePropertyButton = $('.update-property-btn');
+
+                this.disableButtons(updatePropertyButton, event.target, 'Updating...');
 
                 // Update to server's database
                 axios.patch('/admin/manage/properties', {
@@ -240,6 +254,8 @@
                         $('#add-slug').removeClass('valid');
                         $('#add-definition').removeClass('valid');
 
+                        this.enableButtons(updatePropertyButton, event.target, 'Update');
+
                         Materialize.updateTextFields();
                         Materialize.toast('Property updated', 2000, 'green lighten-1');
                     });
@@ -247,6 +263,16 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
             }
 
         },
@@ -266,7 +292,7 @@
     }
 </script>
 
-<style lang="css">
+<style scoped lang="css">
     .collection-header a, .edit-property-button, #close-add-property-container-button {
         cursor: pointer;
     }
@@ -279,9 +305,32 @@
         padding-left: 20px !important;
     }
 
+    #add-property-container {
+        padding-bottom: 2rem;
+    }
+
     #edit-property-modal {
         width: 30rem;
         height: 35rem;
+    }
+
+    .custom-secondary-btn {
+        border: 1px solid;
+        background-color: white;
+    }
+
+    /* Modal customizations */
+    div.modal-input-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .modal.modal-fixed-footer .modal-footer {
+        border: 0;
+    }
+
+    .modal .modal-footer {
+        padding-right: 2rem;
     }
 
 </style>

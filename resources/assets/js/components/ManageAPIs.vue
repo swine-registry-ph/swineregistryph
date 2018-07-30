@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <!-- Add credentials container -->
-                <li v-show="showAddCredentialsContainer" class="collection-item">
+                <li v-show="showAddCredentialsContainer" id="add-api-container" class="collection-item">
                     <div class="row">
                         <div class="col s12">
                             <i @click.prevent="showAddCredentialsContainer = !showAddCredentialsContainer"
@@ -425,6 +425,10 @@
 
     .collection-item.avatar {
         padding-left: 20px !important;
+    }
+
+    #add-api-container {
+        padding-bottom: 2rem;
     }
 
     #edit-credentials-modal {

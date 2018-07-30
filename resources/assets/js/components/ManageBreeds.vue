@@ -270,7 +270,6 @@
     }
 
     #add-breed-container {
-        padding-top: 2rem;
         padding-bottom: 2rem;
     }
 

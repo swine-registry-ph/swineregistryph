@@ -7568,7 +7568,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-button[data-v-63d665c6], #close-add-breed-container-button[data-v-63d665c6] {\n    cursor: pointer;\n}\n.collection-item[data-v-63d665c6] {\n    overflow: auto;\n}\n.collection-item .row[data-v-63d665c6] {\n    margin-bottom: 0;\n}\n#add-breed-container[data-v-63d665c6] {\n    padding-top: 2rem;\n    padding-bottom: 2rem;\n}\n#edit-breed-modal[data-v-63d665c6] {\n    width: 30rem;\n    height: 30rem;\n}\n.custom-secondary-btn[data-v-63d665c6] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-63d665c6] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-63d665c6] {\n    border: 0;\n}\n.modal .modal-footer[data-v-63d665c6] {\n    padding-right: 2rem;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-button[data-v-63d665c6], #close-add-breed-container-button[data-v-63d665c6] {\n    cursor: pointer;\n}\n.collection-item[data-v-63d665c6] {\n    overflow: auto;\n}\n.collection-item .row[data-v-63d665c6] {\n    margin-bottom: 0;\n}\n#add-breed-container[data-v-63d665c6] {\n    padding-bottom: 2rem;\n}\n#edit-breed-modal[data-v-63d665c6] {\n    width: 30rem;\n    height: 30rem;\n}\n.custom-secondary-btn[data-v-63d665c6] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-63d665c6] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-63d665c6] {\n    border: 0;\n}\n.modal .modal-footer[data-v-63d665c6] {\n    padding-right: 2rem;\n}\n\n", ""]);
 
 // exports
 
@@ -10204,17 +10204,17 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(105)
+  __webpack_require__(130)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(107),
   /* template */
-  __webpack_require__(108),
+  __webpack_require__(132),
   /* styles */
   injectStyle,
   /* scopeId */
-  null,
+  "data-v-0e4e505e",
   /* moduleIdentifier (server only) */
   null
 )
@@ -10242,51 +10242,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(106);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("54278d57", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.collection-header a, .edit-property-button, #close-add-property-container-button {\n    cursor: pointer;\n}\n.collection-item .row {\n    margin-bottom: 0;\n}\n.collection-item.avatar {\n    padding-left: 20px !important;\n}\n#edit-property-modal {\n    width: 30rem;\n    height: 35rem;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 105 */,
+/* 106 */,
 /* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10454,8 +10422,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        addProperty: function addProperty() {
+        addProperty: function addProperty(event) {
+            var _this = this;
+
             var vm = this;
+            var addPropertyButton = $('.add-property-btn');
+
+            this.disableButtons(addPropertyButton, event.target, 'Adding...');
 
             // Add to server's database
             axios.post('/admin/manage/properties', {
@@ -10477,6 +10450,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#add-slug').removeClass('valid');
                     $('#add-definition').removeClass('valid');
 
+                    _this.enableButtons(addPropertyButton, event.target, 'Add Property');
+
                     Materialize.updateTextFields();
                     Materialize.toast('Property added', 2000, 'green lighten-1');
                 });
@@ -10497,9 +10472,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 Materialize.updateTextFields();
             });
         },
-        updateProperty: function updateProperty() {
+        updateProperty: function updateProperty(event) {
+            var _this2 = this;
+
             var vm = this;
             var index = this.editPropertyData.index;
+            var updatePropertyButton = $('.update-property-btn');
+
+            this.disableButtons(updatePropertyButton, event.target, 'Updating...');
 
             // Update to server's database
             axios.patch('/admin/manage/properties', {
@@ -10525,25 +10505,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#add-slug').removeClass('valid');
                     $('#add-definition').removeClass('valid');
 
+                    _this2.enableButtons(updatePropertyButton, event.target, 'Update');
+
                     Materialize.updateTextFields();
                     Materialize.toast('Property updated', 2000, 'green lighten-1');
                 });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
     },
 
     mounted: function mounted() {
-        var _this = this;
+        var _this3 = this;
 
         // Materialize component initializations
         $('.modal').modal();
 
         // Watch the respective property to produce a default slug
         this.$watch('addPropertyData.property', function (newValue) {
-            _this.addPropertyData.slug = _.snakeCase(newValue);
-            _this.$nextTick(function () {
+            _this3.addPropertyData.slug = _.snakeCase(newValue);
+            _this3.$nextTick(function () {
                 Materialize.updateTextFields();
             });
         });
@@ -10551,304 +10541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
-    attrs: {
-      "href": "#!",
-      "id": "toggle-add-property-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new property"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showAddPropertyContainer),
-      expression: "showAddPropertyContainer"
-    }],
-    staticClass: "collection-item"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-property-container-button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
-      }
-    }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addPropertyData.property),
-      expression: "addPropertyData.property"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-property",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addPropertyData.property)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addPropertyData, "property", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-property"
-    }
-  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addPropertyData.slug),
-      expression: "addPropertyData.slug"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-slug",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addPropertyData.slug)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addPropertyData, "slug", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-slug"
-    }
-  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addPropertyData.definition),
-      expression: "addPropertyData.definition"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-definition",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addPropertyData.definition)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addPropertyData, "definition", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-definition"
-    }
-  }, [_vm._v("Definition")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addProperty()
-      }
-    }
-  }, [_vm._v("\n                            Submit\n                            "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("send")])])])])]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
-    return _c('li', {
-      staticClass: "collection-item avatar"
-    }, [_c('span', {
-      staticClass: "title"
-    }, [_vm._v(" " + _vm._s(property.property) + " ")]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text"
-    }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('a', {
-      staticClass: "secondary-content edit-property-button light-blue-text text-darken-1",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.toggleEditPropertyModal(index)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "material-icons"
-    }, [_vm._v("edit")])])])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
-    attrs: {
-      "id": "edit-property-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("Edit Property")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editPropertyData.property),
-      expression: "editPropertyData.property"
-    }],
-    attrs: {
-      "id": "edit-property",
-      "type": "text",
-      "disabled": ""
-    },
-    domProps: {
-      "value": (_vm.editPropertyData.property)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editPropertyData, "property", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-property"
-    }
-  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editPropertyData.slug),
-      expression: "editPropertyData.slug"
-    }],
-    attrs: {
-      "id": "edit-slug",
-      "type": "text",
-      "disabled": ""
-    },
-    domProps: {
-      "value": (_vm.editPropertyData.slug)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editPropertyData, "slug", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-slug"
-    }
-  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editPropertyData.definition),
-      expression: "editPropertyData.definition"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-definition",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editPropertyData.definition)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editPropertyData, "definition", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-definition"
-    }
-  }, [_vm._v("Definition")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect waves-green btn-flat ",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action waves-effect waves-green btn-flat",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.updateProperty($event)
-      }
-    }
-  }, [_vm._v("\n                Update\n            ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Manage Properties ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('blockquote', {}, [_vm._v("\n                            Note that Property and Slug fields cannot be edited once\n                            it has been submitted already.\n                        ")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
-  }
-}
-
-/***/ }),
+/* 108 */,
 /* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10927,7 +10620,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n.custom-secondary-btn[data-v-13cd11b7] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-13cd11b7]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-13cd11b7] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-13cd11b7] {\n    border: 0;\n}\n.modal .modal-footer[data-v-13cd11b7] {\n    padding-right: 2rem;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#add-api-container[data-v-13cd11b7] {\n    padding-bottom: 2rem;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n.custom-secondary-btn[data-v-13cd11b7] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-13cd11b7]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-13cd11b7] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-13cd11b7] {\n    border: 0;\n}\n.modal .modal-footer[data-v-13cd11b7] {\n    padding-right: 2rem;\n}\n\n", ""]);
 
 // exports
 
@@ -11417,7 +11110,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showAddCredentialsContainer),
       expression: "showAddCredentialsContainer"
     }],
-    staticClass: "collection-item"
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-api-container"
+    }
   }, [_c('div', {
     staticClass: "row"
   }, [_c('div', {
@@ -11690,6 +11386,368 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(131);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("64529a3a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a[data-v-0e4e505e], .edit-property-button[data-v-0e4e505e], #close-add-property-container-button[data-v-0e4e505e] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0e4e505e] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0e4e505e] {\n    padding-left: 20px !important;\n}\n#add-property-container[data-v-0e4e505e] {\n    padding-bottom: 2rem;\n}\n#edit-property-modal[data-v-0e4e505e] {\n    width: 30rem;\n    height: 35rem;\n}\n.custom-secondary-btn[data-v-0e4e505e] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0e4e505e] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0e4e505e] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0e4e505e] {\n    padding-right: 2rem;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-property-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new property"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddPropertyContainer),
+      expression: "showAddPropertyContainer"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-property-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-property-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.property),
+      expression: "addPropertyData.property"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-property",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addPropertyData, "property", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.slug),
+      expression: "addPropertyData.slug"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-slug",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addPropertyData, "slug", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.definition),
+      expression: "addPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addPropertyData, "definition", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-definition"
+    }
+  }, [_vm._v("Definition")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-property-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addProperty($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Property\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
+    return _c('li', {
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(_vm._s(property.property))])]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn custom-secondary-btn\n                            edit-property-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditPropertyModal(index)
+        }
+      }
+    }, [_vm._v("\n                        Edit\n                    ")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-property-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.property),
+      expression: "editPropertyData.property"
+    }],
+    attrs: {
+      "id": "edit-property",
+      "type": "text",
+      "disabled": ""
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editPropertyData, "property", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.slug),
+      expression: "editPropertyData.slug"
+    }],
+    attrs: {
+      "id": "edit-slug",
+      "type": "text",
+      "disabled": ""
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editPropertyData, "slug", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.definition),
+      expression: "editPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editPropertyData, "definition", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-definition"
+    }
+  }, [_vm._v("Definition")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect btn blue darken-1 z-depth-0 update-property-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateProperty($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Properties ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('blockquote', {}, [_vm._v("\n                            Note that Property and Slug fields cannot be edited once\n                            it has been submitted already.\n                        ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Property\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
+  }
+}
 
 /***/ })
 ],[19]);
