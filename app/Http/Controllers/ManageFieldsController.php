@@ -41,6 +41,7 @@ class ManageFieldsController extends Controller
         if($request->ajax()){
             $breed = new Breed;
             $breed->title = $request->title;
+            $breed->code = $request->code;
             $breed->save();
 
             return $breed;
@@ -58,6 +59,7 @@ class ManageFieldsController extends Controller
         if($request->ajax()){
             $breed = Breed::find($request->breedId);
             $breed->title = $request->title;
+            $breed->code = $request->code;
             $breed->save();
 
             return 'OK';

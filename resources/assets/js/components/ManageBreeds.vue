@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <!-- Add breed container -->
-                <li v-show="showAddBreedInput" class="collection-item">
+                <li v-show="showAddBreedInput" id="add-breed-container" class="collection-item">
                     <div class="row">
                         <div class="col s12">
                             <i @click.prevent="toggleAddBreedContainer()"
@@ -39,13 +39,20 @@
                             >
                             <label for="breed-title">Breed Title</label>
                         </div>
-                        <div class="col s4 offset-s4">
-                            <a @click.prevent="addBreed()"
-                                href="#!"
-                                class="right btn"
+                        <div class="input-field col s4 offset-s4">
+                            <input v-model="addBreedData.code"
+                                id="breed-code"
+                                type="text"
+                                class="validate"
                             >
-                                Submit
-                                <i class="material-icons right">send</i>
+                            <label for="breed-code">Breed Code</label>
+                        </div>
+                        <div class="col s4 offset-s4">
+                            <a @click.prevent="addBreed($event)"
+                                href="#!"
+                                class="right btn z-depth-0 add-breed-button"
+                            >
+                                Add Breed
                             </a>
                         </div>
                     </div>
@@ -55,13 +62,18 @@
                     :key="breed.id"
                     class="collection-item"
                 >
-                    {{ breed.title }}
-                    <span >
+                    <b>{{ breed.title }}</b> ({{ breed.code }})
+                    <span>
                         <a @click.prevent="toggleEditBreedModal(index)"
                             href="#"
-                            class="secondary-content edit-breed-button light-blue-text text-darken-1"
+                            class="secondary-content 
+                                btn custom-secondary-btn 
+                                edit-breed-button 
+                                blue-text 
+                                text-darken-1
+                                z-depth-0"
                         >
-                            <i class="material-icons">edit</i>
+                            Edit
                         </a>
                     </span>
                 </li>
@@ -71,8 +83,12 @@
         <!-- Edit Breed Modal -->
         <div id="edit-breed-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>Edit Breed</h4>
-                <div class="row">
+                <h4>
+                    Edit Breed
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+                <div class="row modal-input-container">
+                    <div class="col s12"> <br/> </div>
                     <div class="input-field col s12">
                         <input v-model="editBreedData.title"
                             id="edit-breed-title"
@@ -81,13 +97,21 @@
                         >
                         <label for="edit-breed-title">Breed Title</label>
                     </div>
+                    <div class="input-field col s12">
+                        <input v-model="editBreedData.code"
+                            id="edit-breed-code"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-breed-code">Breed Code</label>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
-                <a @click.prevent="updateBreed"
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close waves-effect btn-flat ">Close</a>
+                <a @click.prevent="updateBreed($event)"
                     href="#!"
-                    class="modal-action waves-effect waves-green btn-flat"
+                    class="modal-action waves-effect btn blue darken-1 z-depth-0 update-breed-btn"
                 >
                     Update
                 </a>
@@ -107,12 +131,14 @@
                 breeds: this.initialBreeds,
                 showAddBreedInput: false,
                 addBreedData: {
-                    title: ''
+                    title: '',
+                    code: ''
                 },
                 editBreedData: {
                     index: -1,
                     id: 0,
-                    title: ''
+                    title: '',
+                    code: ''
                 }
             }
         },
@@ -122,21 +148,29 @@
                 this.showAddBreedInput = !this.showAddBreedInput;
             },
 
-            addBreed() {
+            addBreed(event) {
                 const vm = this;
+                const addBreedButton = $('.add-breed-button');
+
+                this.disableButtons(addBreedButton, event.target, 'Adding...');
 
                 // Add to server's database
                 axios.post('/admin/manage/breeds', {
-                    title: vm.addBreedData.title
+                    title: vm.addBreedData.title,
+                    code: vm.addBreedData.code
                 })
                 .then((response) => {
                     // Put response in local data storage and erase adding of breed data
                     vm.breeds.push(response.data);
                     vm.addBreedData.title = '';
+                    vm.addBreedData.code = '';
 
                     // Update UI after adding breed
                     vm.$nextTick(() => {
                         $('#breed-title').removeClass('valid');
+                        $('#breed-code').removeClass('valid');
+
+                        this.enableButtons(addBreedButton, event.target, 'Add Breed');
 
                         Materialize.updateTextFields();
                         Materialize.toast('Breed added', 2000, 'green lighten-1');
@@ -152,6 +186,7 @@
                 this.editBreedData.index = index;
                 this.editBreedData.id = this.breeds[index].id;
                 this.editBreedData.title = this.breeds[index].title;
+                this.editBreedData.code = this.breeds[index].code;
 
                 $('#edit-breed-modal').modal('open');
                 this.$nextTick(() => {
@@ -159,23 +194,29 @@
                 });
             },
 
-            updateBreed() {
+            updateBreed(event) {
                 const vm = this;
                 const index = this.editBreedData.index;
+                const updateBreedButton = $('.update-breed-btn');
+
+                this.disableButtons(updateBreedButton, event.target, 'Updating...');
 
                 // Update to server's database
                 axios.patch('/admin/manage/breeds', {
                     breedId: vm.editBreedData.id,
-                    title: vm.editBreedData.title
+                    title: vm.editBreedData.title,
+                    code: vm.editBreedData.code
                 })
                 .then((response) => {
                     // Update local data storage and erase editing of breed data
                     if(response.data === 'OK'){
                         vm.breeds[index].title = vm.editBreedData.title;
+                        vm.breeds[index].code = vm.editBreedData.code;
                         vm.editBreedData = {
                             index: -1,
                             id: 0,
-                            title: ''
+                            title: '',
+                            code: ''
                         };
                     }
 
@@ -183,6 +224,9 @@
                     vm.$nextTick(() => {
                         $('#edit-breed-modal').modal('close');
                         $('#edit-breed-title').removeClass('valid');
+                        $('#edit-breed-code').removeClass('valid');
+
+                        this.enableButtons(updateBreedButton, event.target, 'Update');
 
                         Materialize.updateTextFields();
                         Materialize.toast('Breed updated', 2000, 'green lighten-1');
@@ -191,6 +235,16 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
             }
 
         },
@@ -207,13 +261,41 @@
         cursor: pointer;
     }
 
+    .collection-item {
+        overflow: auto;
+    }
+
     .collection-item .row {
         margin-bottom: 0;
     }
 
+    #add-breed-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
     #edit-breed-modal {
         width: 30rem;
-        height: 20rem;
+        height: 30rem;
+    }
+
+    .custom-secondary-btn {
+        border: 1px solid;
+        background-color: white;
+    }
+
+    /* Modal customizations */
+    div.modal-input-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .modal.modal-fixed-footer .modal-footer {
+        border: 0;
+    }
+
+    .modal .modal-footer {
+        padding-right: 2rem;
     }
 
 </style>
