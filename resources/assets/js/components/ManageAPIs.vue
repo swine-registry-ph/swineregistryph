@@ -106,10 +106,9 @@
                         <div class="col s4 offset-s4">
                             <a @click.prevent="addCredentials($event)"
                                 href="#!"
-                                class="right btn add-credentials-button"
+                                class="right btn add-credentials-button z-depth-0"
                             >
-                                Submit
-                                <i class="material-icons right">send</i>
+                                Add Credentials
                             </a>
                         </div>
                     </div>
@@ -128,7 +127,7 @@
                     v-else
                     class="collection-item avatar"
                 >
-                    <span class="title"> {{ client.name }} </span>
+                    <span class="title"> <b> {{ client.name }} </b> </span>
                     <p class="grey-text">
                         CLIENT_ID: {{ client.id }} <br>
                         CLIENT_SECRET: {{ client.secret }} <br>
@@ -138,16 +137,20 @@
                     <span class="secondary-content">
                         <a @click.prevent="toggleEditCredentialsModal(index)"
                             href="#"
-                            class="edit-credentials-button"
+                            class="btn edit-credentials-button 
+                                custom-secondary-btn
+                                blue-text 
+                                text-darken-1
+                                z-depth-0"
                         >
-                            <i class="material-icons">edit</i>
+                            Edit
                         </a>
 
                         <a @click.prevent="toggleDeleteCredentialsModal(index)"
                             href="#"
-                            class="delete-credentials-button red-text text-lighten-2"
+                            class="btn btn-flat delete-credentials-button custom-tertiary-btn"
                         >
-                            <i class="material-icons">delete</i>
+                            Delete
                         </a>
                     </span>
                 </li>
@@ -157,8 +160,12 @@
         <!-- Edit Credentials Modal -->
         <div id="edit-credentials-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>Edit Credentials</h4>
-                <div class="row">
+                <h4>
+                    Edit Credentials
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+                <div class="row modal-input-container">
+                    <div class="col s12"> <br/> </div>
                     <div class="input-field col s12">
                         <input v-model="editCredentialsData.name"
                             id="edit-credentials-name"
@@ -175,11 +182,16 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat update-credentials-button">Close</a>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close waves-effect btn-flat update-credentials-button">Close</a>
                 <a @click.prevent="updateCredentials($event)"
                     href="#!"
-                    class="modal-action waves-effect waves-green btn-flat update-credentials-button"
+                    class="modal-action 
+                        waves-effect 
+                        btn
+                        update-credentials-button
+                        blue darken-1
+                        z-depth-0"
                 >
                     Update
                 </a>
@@ -189,19 +201,30 @@
         <!-- Delete Credentials Modal -->
         <div id="delete-credentials-modal" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>Delete Credentials</h4>
-                <p>
-                    <blockquote class="error">
-                        THIS ACTION CANNOT BE UNDONE.
-                    </blockquote>
-                    Are you sure you want to delete credentials for <b>{{ deleteCredentialsData.name }}</b>? <br>
-                </p>
+                <h4>
+                    Delete Credentials
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+                <div class="row modal-input-container">
+                    <div class="col s12"> <br/> </div>
+                    <p>
+                        <blockquote class="error">
+                            THIS ACTION CANNOT BE UNDONE.
+                        </blockquote>
+                        Are you sure you want to delete credentials for <b>{{ deleteCredentialsData.name }}</b>? <br>
+                    </p>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat delete-credentials-button">Close</a>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close waves-effect btn-flat delete-credentials-button">Close</a>
                 <a @click.prevent="deleteCredentials($event)"
                     href="#!"
-                    class="modal-action waves-effect waves-green btn-flat delete-credentials-button"
+                    class="modal-action 
+                    waves-effect 
+                    btn 
+                    delete-credentials-button
+                    red lighten-2
+                    z-depth-0"
                 >
                     Delete
                 </a>
@@ -269,7 +292,7 @@
                         $('#add-credentials-name').removeClass('valid');
                         $('#add-credentials-redirect').removeClass('valid');
 
-                        this.enableButtons(addButtons, event.target, 'Submit <i class="material-icons right">send</i>');
+                        this.enableButtons(addButtons, event.target, 'Add Credentials');
 
                         Materialize.updateTextFields();
                         Materialize.toast('Credentials added', 2000, 'green lighten-1');
@@ -321,6 +344,7 @@
                         $('#edit-credentials-modal').modal('close');
                         $('#add-credentials-name').removeClass('valid');
                         $('#add-credentials-redirect').removeClass('valid');
+
                         this.enableButtons(updateButtons, event.target, 'Update');
 
                         Materialize.updateTextFields();
@@ -356,6 +380,7 @@
                     // Update UI after deleting credentials
                     this.$nextTick(() => {
                         $('#delete-credentials-modal').modal('close');
+
                         this.enableButtons(deleteButtons, event.target, 'Delete');
 
                         Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
@@ -410,6 +435,29 @@
     #delete-credentials-modal {
         width: 40rem;
         height: 23rem;
+    }
+
+    .custom-secondary-btn {
+        border: 1px solid;
+        background-color: white;
+    }
+
+    .custom-tertiary-btn:hover {
+        background-color: rgba(173, 173, 173, 0.3);
+    }
+
+    /* Modal customizations */
+    div.modal-input-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .modal.modal-fixed-footer .modal-footer {
+        border: 0;
+    }
+
+    .modal .modal-footer {
+        padding-right: 2rem;
     }
 
 </style>

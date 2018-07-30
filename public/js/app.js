@@ -10927,7 +10927,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n.custom-secondary-btn[data-v-13cd11b7] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-13cd11b7]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-13cd11b7] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-13cd11b7] {\n    border: 0;\n}\n.modal .modal-footer[data-v-13cd11b7] {\n    padding-right: 2rem;\n}\n\n", ""]);
 
 // exports
 
@@ -10938,6 +10938,29 @@ exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-propert
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11210,7 +11233,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#add-credentials-name').removeClass('valid');
                     $('#add-credentials-redirect').removeClass('valid');
 
-                    _this2.enableButtons(addButtons, event.target, 'Submit <i class="material-icons right">send</i>');
+                    _this2.enableButtons(addButtons, event.target, 'Add Credentials');
 
                     Materialize.updateTextFields();
                     Materialize.toast('Credentials added', 2000, 'green lighten-1');
@@ -11260,6 +11283,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $('#edit-credentials-modal').modal('close');
                     $('#add-credentials-name').removeClass('valid');
                     $('#add-credentials-redirect').removeClass('valid');
+
                     _this3.enableButtons(updateButtons, event.target, 'Update');
 
                     Materialize.updateTextFields();
@@ -11293,6 +11317,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Update UI after deleting credentials
                 _this4.$nextTick(function () {
                     $('#delete-credentials-modal').modal('close');
+
                     _this4.enableButtons(deleteButtons, event.target, 'Delete');
 
                     Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
@@ -11465,7 +11490,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Redirect")])]), _vm._v(" "), _c('div', {
     staticClass: "col s4 offset-s4"
   }, [_c('a', {
-    staticClass: "right btn add-credentials-button",
+    staticClass: "right btn add-credentials-button z-depth-0",
     attrs: {
       "href": "#!"
     },
@@ -11475,20 +11500,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addCredentials($event)
       }
     }
-  }, [_vm._v("\n                                Submit\n                                "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("send")])])])])]), _vm._v(" "), (_vm.clients.length < 1) ? [_vm._m(2)] : _vm._l((_vm.clients), function(client, index) {
+  }, [_vm._v("\n                                Add Credentials\n                            ")])])])]), _vm._v(" "), (_vm.clients.length < 1) ? [_vm._m(2)] : _vm._l((_vm.clients), function(client, index) {
     return _c('li', {
       key: client.id,
       staticClass: "collection-item avatar"
     }, [_c('span', {
       staticClass: "title"
-    }, [_vm._v(" " + _vm._s(client.name) + " ")]), _vm._v(" "), _c('p', {
+    }, [_c('b', [_vm._v(" " + _vm._s(client.name) + " ")])]), _vm._v(" "), _c('p', {
       staticClass: "grey-text"
     }, [_vm._v("\n                        CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                        CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                        Redirect: " + _vm._s(client.redirect) + "\n                    ")]), _vm._v(" "), _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "edit-credentials-button",
+      staticClass: "btn edit-credentials-button \n                                custom-secondary-btn\n                                blue-text \n                                text-darken-1\n                                z-depth-0",
       attrs: {
         "href": "#"
       },
@@ -11498,10 +11521,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.toggleEditCredentialsModal(index)
         }
       }
-    }, [_c('i', {
-      staticClass: "material-icons"
-    }, [_vm._v("edit")])]), _vm._v(" "), _c('a', {
-      staticClass: "delete-credentials-button red-text text-lighten-2",
+    }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat delete-credentials-button custom-tertiary-btn",
       attrs: {
         "href": "#"
       },
@@ -11511,9 +11532,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.toggleDeleteCredentialsModal(index)
         }
       }
-    }, [_c('i', {
-      staticClass: "material-icons"
-    }, [_vm._v("delete")])])])])
+    }, [_vm._v("\n                            Delete\n                        ")])])])
   })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "modal modal-fixed-footer",
     attrs: {
@@ -11521,9 +11540,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("Edit Credentials")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('input', {
     directives: [{
@@ -11576,14 +11595,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": "edit-credentials-redirect"
     }
   }, [_vm._v("Redirect")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer"
+    staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect waves-green btn-flat update-credentials-button",
+    staticClass: "modal-action modal-close waves-effect btn-flat update-credentials-button",
     attrs: {
       "href": "#!"
     }
   }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action waves-effect waves-green btn-flat update-credentials-button",
+    staticClass: "modal-action \n                        waves-effect \n                        btn\n                        update-credentials-button\n                        blue darken-1\n                        z-depth-0",
     attrs: {
       "href": "#!"
     },
@@ -11600,17 +11619,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("Delete Credentials")]), _vm._v(" "), _c('p'), _c('blockquote', {
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(6), _vm._v(" "), _c('p'), _c('blockquote', {
     staticClass: "error"
-  }, [_vm._v("\n                        THIS ACTION CANNOT BE UNDONE.\n                    ")]), _vm._v("\n                    Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer"
+  }, [_vm._v("\n                            THIS ACTION CANNOT BE UNDONE.\n                        ")]), _vm._v("\n                        Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect waves-green btn-flat delete-credentials-button",
+    staticClass: "modal-action modal-close waves-effect btn-flat delete-credentials-button",
     attrs: {
       "href": "#!"
     }
   }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action waves-effect waves-green btn-flat delete-credentials-button",
+    staticClass: "modal-action \n                    waves-effect \n                    btn \n                    delete-credentials-button\n                    red lighten-2\n                    z-depth-0",
     attrs: {
       "href": "#!"
     },
@@ -11639,6 +11660,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('span', {
     staticClass: "title"
   }, [_vm._v(" No clients yet.")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Edit Credentials\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Delete Credentials\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
