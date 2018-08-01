@@ -86,8 +86,6 @@ class ManageBreedersTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                'breederId' => 6,
-                'userId'    => 9,
                 'name'      => 'Sample Breeder',
                 'email'     => 'breeder@example.com',    
                 'status'    => 'active',

@@ -1,0 +1,62 @@
+<?php
+
+namespace Tests\Feature;
+
+use Artisan;
+use App\Models\Admin;
+use App\Models\Evaluator;
+use App\Models\User;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+class ManageEvaluatorsTest extends TestCase
+{
+    use DatabaseMigrations, DatabaseTransactions;
+
+    protected $adminUser;
+
+    /**
+     * Initialize data needed for testing
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+
+        Artisan::call('db:seed');
+
+        $this->adminUser = factory(User::class)->create();
+
+        // Create Admin Profile
+        $administrator = factory(Admin::class)->create();
+        $administrator->users()->save($this->adminUser);
+    }
+
+    /**
+     * For admin viewing current evaluators
+     *
+     * @return void
+     */
+    public function testAdminViewManageEvaluators()
+    {
+        $customizedEvaluatorData = [];
+        $evaluators = Evaluator::with('users')->get();
+        
+        foreach ($evaluators as $evaluator) {
+            $customizedEvaluatorData[] = [
+                'evaluatorId' => $evaluator->id,
+                'userId'      => $evaluator->users[0]->id,
+                'name'        => $evaluator->users[0]->name,
+                'email'       => $evaluator->users[0]->email
+            ];
+        }
+
+        $response = $this->actingAs($this->adminUser)
+                         ->get('/admin/manage/evaluators');
+
+        $response->assertViewIs('users.admin.manageEvaluators');
+        $response->assertViewHas('customizedEvaluatorData', collect($customizedEvaluatorData));
+    }
+}

@@ -29,7 +29,7 @@ class UserInstancesSeeder extends Seeder
         });
 
         // For Evaluators
-        factory(App\Models\User::class, 1)->create()->each(function ($user) {
+        factory(App\Models\User::class, 3)->create()->each(function ($user) {
             // Create Evaluator Profile
             $evaluator = factory(App\Models\Evaluator::class)->create();
             $evaluator->users()->save($user);
