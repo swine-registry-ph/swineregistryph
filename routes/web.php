@@ -65,6 +65,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
     });
 
+    // Evaluator-related
+    Route::group(['prefix' => 'evaluator'], function(){
+
+        Route::get('/home', 'EvaluatorController@index')->name('evaluatorHome');
+    });
+
     // Override Laravel Passport routes
     Route::group(['prefix' => 'oauth', 'middleware' => 'role:admin'], function() {
         Route::post('/clients', 'PassportClientOverrideController@store');

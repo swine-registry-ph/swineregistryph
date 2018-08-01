@@ -66,6 +66,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user is of type evaluator
+     *
+     * @return boolean
+     */
+    public function isEvaluator()
+    {
+        return str_contains($this->userable_type, 'Evaluator');
+    }
+
+    /**
      * Check User if it has a certain role
      *
      * @param   String  $role

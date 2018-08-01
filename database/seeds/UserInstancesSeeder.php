@@ -28,8 +28,15 @@ class UserInstancesSeeder extends Seeder
             $genomics->users()->save($user);
         });
 
+        // For Evaluators
+        factory(App\Models\User::class, 1)->create()->each(function ($user) {
+            // Create Evaluator Profile
+            $evaluator = factory(App\Models\Evaluator::class)->create();
+            $evaluator->users()->save($user);
+        });
+
         // For Breeders
-        factory(App\Models\User::class, 15)->create()->each(function ($user) {
+        factory(App\Models\User::class, 10)->create()->each(function ($user) {
 
             // Create Breeder Profile
             $breeder = factory(App\Models\Breeder::class)->create();
