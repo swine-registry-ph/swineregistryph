@@ -10348,6 +10348,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -10357,7 +10394,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             evaluators: this.initialEvaluators,
-            showAddEvaluatorContainer: false
+            showAddEvaluatorContainer: false,
+            addEvaluatorData: {
+                name: '',
+                email: ''
+            }
         };
     },
 
@@ -10369,8 +10410,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        findEvaluatorIndexById: function findEvaluatorIndexById(id) {
+            for (var i = 0; i < this.evaluators.length; i++) {
+                if (this.evaluators[i].evaluatorId === id) return i;
+            }
+
+            return -1;
+        },
+        addEvaluator: function addEvaluator(event) {
+            var _this = this;
+
+            var vm = this;
+            var addEvaluatorButton = $('.add-evaluator-btn');
+
+            this.disableButtons(addEvaluatorButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/evaluators', {
+                name: vm.addEvaluatorData.name,
+                email: vm.addEvaluatorData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of evaluator data
+                vm.evaluators.push(response.data);
+                vm.addEvaluatorData = {
+                    name: '',
+                    email: ''
+                };
+
+                // Update UI after adding evaluator
+                vm.$nextTick(function () {
+                    $('#add-name').removeClass('valid');
+                    $('#add-email').removeClass('valid');
+
+                    _this.enableButtons(addEvaluatorButton, event.target, 'Add Evaluator');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Evaluator ' + response.data.name + ' added', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         toggleEditEvaluatorModal: function toggleEditEvaluatorModal() {},
-        toggleDeleteEvaluatorModal: function toggleDeleteEvaluatorModal() {}
+        toggleDeleteEvaluatorModal: function toggleDeleteEvaluatorModal() {},
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
     }
 });
 
@@ -10404,7 +10494,100 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _vm._l((_vm.sortedEvaluators), function(evaluator, index) {
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddEvaluatorContainer),
+      expression: "showAddEvaluatorContainer"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-evaluator-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-evaluator-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddEvaluatorContainer = !_vm.showAddEvaluatorContainer
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addEvaluatorData.name),
+      expression: "addEvaluatorData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addEvaluatorData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addEvaluatorData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addEvaluatorData.email),
+      expression: "addEvaluatorData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addEvaluatorData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addEvaluatorData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-email"
+    }
+  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-evaluator-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addEvaluator($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Evaluator\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedEvaluators), function(evaluator, index) {
     return _c('li', {
       key: evaluator.userId,
       staticClass: "collection-item avatar"

@@ -49,7 +49,8 @@ class ManageEvaluatorsTest extends TestCase
                 'evaluatorId' => $evaluator->id,
                 'userId'      => $evaluator->users[0]->id,
                 'name'        => $evaluator->users[0]->name,
-                'email'       => $evaluator->users[0]->email
+                'email'       => $evaluator->users[0]->email,
+                'status'      => $evaluator->status_instance
             ];
         }
 
@@ -58,5 +59,33 @@ class ManageEvaluatorsTest extends TestCase
 
         $response->assertViewIs('users.admin.manageEvaluators');
         $response->assertViewHas('customizedEvaluatorData', collect($customizedEvaluatorData));
+    }
+
+     /**
+     * Test if creation of evaluator is successful
+     *
+     * @return void
+     */
+    public function testAdminCreateEvaluator()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->adminUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('POST', '/admin/manage/evaluators',
+                [
+                    'name'  => 'Sample Evaluator',
+                    'email' => 'evaluator@example.com',
+                ]
+            );
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'name'      => 'Sample Evaluator',
+                'email'     => 'evaluator@example.com',    
+                'status'    => 'active'           
+            ]);
     }
 }
