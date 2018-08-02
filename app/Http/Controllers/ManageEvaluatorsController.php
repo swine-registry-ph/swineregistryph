@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EvaluatorCreated;
 use App\Models\Evaluator;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 use Auth;
+use Mail;
 
 class ManageEvaluatorsController extends Controller
 {
@@ -76,7 +78,7 @@ class ManageEvaluatorsController extends Controller
                 'initialPassword'   => $initialPassword
             ];
 
-            // Mail::to($evaluatorUser->email)->queue(new EvaluatorCreated($evaluatorDetails));
+            Mail::to($evaluatorUser->email)->queue(new EvaluatorCreated($evaluatorDetails));
 
             return [
                 'evaluatorId' => $evaluator->id,
