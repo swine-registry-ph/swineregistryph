@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/manage/farms/renew', 'ManageBreedersController@renewFarm')->name('renewFarm');
         Route::get('/manage/evaluators', 'ManageEvaluatorsController@index')->name('showManageEvaluators');
         Route::post('/manage/evaluators', 'ManageEvaluatorsController@add')->name('addEvaluator');
+        Route::patch('/manage/evaluators', 'ManageEvaluatorsController@update')->name('updateEvaluator');
     });
 
     // Genomics-related

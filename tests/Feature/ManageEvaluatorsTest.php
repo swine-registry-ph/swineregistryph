@@ -88,4 +88,31 @@ class ManageEvaluatorsTest extends TestCase
                 'status'    => 'active'           
             ]);
     }
+
+    /**
+     * Test if updating of evaluator is successful
+     *
+     * @return void
+     */
+    public function testAdminUpdateEvaluator()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->adminUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('PATCH', '/admin/manage/evaluators',
+                [
+                    'userId'    => 3,
+                    'name'      => 'Sample Evaluator',
+                    'email'     => 'evaluator@example.com',
+                ]
+            );
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'updated' => true
+            ]);
+    }
 }

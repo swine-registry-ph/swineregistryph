@@ -8348,7 +8348,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -8496,6 +8495,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Put response in local data storage and erase editing of breeder data
                 if (response.data.updated) {
                     var index = vm.editBreederData.index;
+
                     vm.breeders[index].name = vm.editBreederData.name;
                     vm.breeders[index].email = vm.editBreederData.email;
                     vm.editBreederData = {
@@ -10282,7 +10282,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-evaluator-container-button[data-v-0298ef7c] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0298ef7c] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0298ef7c] {\n    padding-left: 20px !important;\n}\n#add-evaluator-container[data-v-0298ef7c] {\n    padding-bottom: 2rem;\n}\n.custom-secondary-btn[data-v-0298ef7c] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-0298ef7c]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0298ef7c] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0298ef7c] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0298ef7c] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-evaluator-container-button[data-v-0298ef7c] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0298ef7c] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0298ef7c] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-0298ef7c] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-0298ef7c]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-evaluator-container[data-v-0298ef7c] {\n    padding-bottom: 2rem;\n}\n#edit-evaluator-modal[data-v-0298ef7c] {\n    width: 40rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0298ef7c] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0298ef7c] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0298ef7c] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -10293,6 +10293,46 @@ exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-eva
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10398,6 +10438,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             addEvaluatorData: {
                 name: '',
                 email: ''
+            },
+            editEvaluatorData: {
+                index: 0,
+                userId: 0,
+                name: '',
+                email: ''
             }
         };
     },
@@ -10451,8 +10497,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        toggleEditEvaluatorModal: function toggleEditEvaluatorModal() {},
-        toggleDeleteEvaluatorModal: function toggleDeleteEvaluatorModal() {},
+        showEditEvaluatorModal: function showEditEvaluatorModal(evaluatorId) {
+            // Initialize data for editing
+            var index = this.findEvaluatorIndexById(evaluatorId);
+            var evaluator = this.evaluators[index];
+
+            this.editEvaluatorData.index = index;
+            this.editEvaluatorData.userId = evaluator.userId;
+            this.editEvaluatorData.name = evaluator.name;
+            this.editEvaluatorData.email = evaluator.email;
+
+            $('#edit-evaluator-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateEvaluator: function updateEvaluator(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateEvaluatorButton = $('.update-evaluator-btn');
+
+            this.disableButtons(updateEvaluatorButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/evaluators', {
+                userId: vm.editEvaluatorData.userId,
+                name: vm.editEvaluatorData.name,
+                email: vm.editEvaluatorData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase editing of evaluator data
+                if (response.data.updated) {
+                    var index = vm.editEvaluatorData.index;
+
+                    vm.evaluators[index].name = vm.editEvaluatorData.name;
+                    vm.evaluators[index].email = vm.editEvaluatorData.email;
+                    vm.editEvaluatorData = {
+                        index: 0,
+                        userId: 0,
+                        name: '',
+                        email: ''
+                    };
+
+                    // Update UI after updating breeder
+                    vm.$nextTick(function () {
+                        $('#edit-evaluator-modal').modal('close');
+                        $('#edit-name').removeClass('valid');
+                        $('#edit-email').removeClass('valid');
+
+                        _this2.enableButtons(updateEvaluatorButton, event.target, 'Update');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(vm.evaluators[index].name + ' updated', 2500, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showDeleteEvaluatorModal: function showDeleteEvaluatorModal() {},
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
             actionBtnElement.innerHTML = textToShow;
@@ -10461,6 +10564,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             buttons.removeClass('disabled');
             actionBtnElement.innerHTML = textToShow;
         }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
     }
 });
 
@@ -10596,35 +10704,124 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('b', [_vm._v(_vm._s(evaluator.name))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(evaluator.email) + "\n                ")]), _vm._v(" "), _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn custom-secondary-btn\n                            edit-property-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
+      staticClass: "btn custom-secondary-btn\n                            edit-evaluator-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
       attrs: {
         "href": "#"
       },
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.toggleEditEvaluatorModal(index)
+          _vm.showEditEvaluatorModal(evaluator.evaluatorId)
         }
       }
     }, [_vm._v("\n                        Edit\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat delete-credentials-button custom-tertiary-btn",
+      staticClass: "btn btn-flat delete-evaluator-button custom-tertiary-btn",
       attrs: {
         "href": "#"
       },
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.toggleDeleteEvaluatorModal(index)
+          _vm.showDeleteEvaluatorModal(evaluator.evaluatorId)
         }
       }
     }, [_vm._v("\n                        Delete\n                    ")])])])
-  })], 2)])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "edit-evaluator-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editEvaluatorData.name),
+      expression: "editEvaluatorData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editEvaluatorData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editEvaluatorData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editEvaluatorData.email),
+      expression: "editEvaluatorData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editEvaluatorData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editEvaluatorData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-evaluator-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateEvaluator($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Manage Evaluators ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Evaluator\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {

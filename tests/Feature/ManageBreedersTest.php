@@ -107,7 +107,7 @@ class ManageBreedersTest extends TestCase
             ])
             ->json('PATCH', '/admin/manage/breeders',
                 [
-                    'userId'    => 1,
+                    'userId'    => 10,
                     'name'      => 'Sample Breeder',
                     'email'     => 'breeder@example.com',
                 ]

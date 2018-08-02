@@ -89,4 +89,25 @@ class ManageEvaluatorsController extends Controller
             ];
         }
     }
+
+    /**
+     * Update Evaluator details
+     *
+     * @param   Request $request
+     * @return  JSON
+     */
+    public function update(Request $request)
+    {
+        if($request->ajax()){
+
+            $evaluatorUser = User::find($request->userId);
+            $evaluatorUser->name = $request->name;
+            $evaluatorUser->email = $request->email;
+            $evaluatorUser->save();
+
+            return [
+                'updated' => true
+            ];
+        }
+    }
 }

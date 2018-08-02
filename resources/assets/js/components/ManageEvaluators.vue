@@ -66,10 +66,10 @@
                         {{ evaluator.email }}
                     </p>
                     <span class="secondary-content">
-                        <a @click.prevent="toggleEditEvaluatorModal(index)"
+                        <a @click.prevent="showEditEvaluatorModal(evaluator.evaluatorId)"
                             href="#"
                             class="btn custom-secondary-btn
-                                edit-property-button
+                                edit-evaluator-button
                                 blue-text
                                 text-darken-1
                                 z-depth-0"
@@ -77,9 +77,9 @@
                             Edit
                         </a>
 
-                        <a @click.prevent="toggleDeleteEvaluatorModal(index)"
+                        <a @click.prevent="showDeleteEvaluatorModal(evaluator.evaluatorId)"
                             href="#"
-                            class="btn btn-flat delete-credentials-button custom-tertiary-btn"
+                            class="btn btn-flat delete-evaluator-button custom-tertiary-btn"
                         >
                             Delete
                         </a>
@@ -87,6 +87,46 @@
                 </li>
             </ul>
         </div>
+
+        <!-- Edit Evaluator Modal -->
+        <div id="edit-evaluator-modal" class="modal">
+            <div class="modal-content">
+                <h4>
+                    Edit Evaluator
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+
+                <div class="row modal-input-container">
+                    <div class="col s12"><br/></div>
+                    <div class="input-field col s12">
+                        <input v-model="editEvaluatorData.name"
+                            id="edit-name"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-name">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input v-model="editEvaluatorData.email"
+                            id="edit-email"
+                            type="text"
+                            class="validate"
+                        >
+                        <label for="edit-email">Email</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                <a @click.prevent="updateEvaluator($event)" 
+                    href="#!" 
+                    class="modal-action btn blue darken-1 z-depth-0 update-evaluator-btn"
+                >
+                    Update
+                </a>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -101,6 +141,12 @@
                 evaluators: this.initialEvaluators,
                 showAddEvaluatorContainer: false,
                 addEvaluatorData: {
+                    name: '',
+                    email: ''
+                },
+                editEvaluatorData: {
+                    index: 0,
+                    userId: 0,
                     name: '',
                     email: ''
                 }
@@ -157,11 +203,67 @@
                 });
             },
 
-            toggleEditEvaluatorModal() {
+            showEditEvaluatorModal(evaluatorId) {
+                // Initialize data for editing
+                const index = this.findEvaluatorIndexById(evaluatorId);
+                const evaluator = this.evaluators[index];
+                
+                this.editEvaluatorData.index = index;
+                this.editEvaluatorData.userId = evaluator.userId;
+                this.editEvaluatorData.name = evaluator.name;
+                this.editEvaluatorData.email = evaluator.email;
 
+                $('#edit-evaluator-modal').modal('open');
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+                });
             },
 
-            toggleDeleteEvaluatorModal() {
+            updateEvaluator(event) {
+                const vm = this;
+                const updateEvaluatorButton = $('.update-evaluator-btn');
+
+                this.disableButtons(updateEvaluatorButton, event.target, 'Updating...');
+
+                // Update to server's database
+                axios.patch('/admin/manage/evaluators', {
+                    userId: vm.editEvaluatorData.userId,
+                    name: vm.editEvaluatorData.name,
+                    email: vm.editEvaluatorData.email
+                })
+                .then((response) => {
+                    // Put response in local data storage and erase editing of evaluator data
+                    if(response.data.updated){
+                        const index = vm.editEvaluatorData.index;
+
+                        vm.evaluators[index].name = vm.editEvaluatorData.name;
+                        vm.evaluators[index].email = vm.editEvaluatorData.email;
+                        vm.editEvaluatorData = {
+                            index: 0,
+                            userId: 0,
+                            name: '',
+                            email: ''
+                        };
+
+                        // Update UI after updating breeder
+                        vm.$nextTick(() => {
+                            $('#edit-evaluator-modal').modal('close');
+                            $('#edit-name').removeClass('valid');
+                            $('#edit-email').removeClass('valid');
+
+                            this.enableButtons(updateEvaluatorButton, event.target, 'Update');
+
+                            Materialize.updateTextFields();
+                            Materialize.toast(`${vm.evaluators[index].name} updated`, 2500, 'green lighten-1');
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            showDeleteEvaluatorModal() {
 
             },
 
@@ -174,6 +276,11 @@
                 buttons.removeClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
             }
+        },
+
+        mounted() {
+            // Materialize component initializations
+            $('.modal').modal();
         }
     }
 </script>
@@ -191,10 +298,6 @@
         padding-left: 20px !important;
     }
 
-    #add-evaluator-container {
-        padding-bottom: 2rem;
-    }
-
     .custom-secondary-btn {
         border: 1px solid;
         background-color: white;
@@ -202,6 +305,14 @@
 
     .custom-tertiary-btn:hover {
         background-color: rgba(173, 173, 173, 0.3);
+    }
+
+    #add-evaluator-container {
+        padding-bottom: 2rem;
+    }
+
+    #edit-evaluator-modal {
+        width: 40rem;
     }
 
     /* Modal customizations */

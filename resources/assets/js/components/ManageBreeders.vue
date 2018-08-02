@@ -170,7 +170,6 @@
             </div>
         </div>
 
-        
     </div>
 </template>
 
@@ -332,6 +331,7 @@
                     // Put response in local data storage and erase editing of breeder data
                     if(response.data.updated){
                         const index = vm.editBreederData.index;
+                        
                         vm.breeders[index].name = vm.editBreederData.name;
                         vm.breeders[index].email = vm.editBreederData.email;
                         vm.editBreederData = {
@@ -499,7 +499,7 @@
             }
         },
 
-        mounted(){
+        mounted() {
             // Materialize component initializations
             $('.modal').modal();
         }
