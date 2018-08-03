@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\EvaluatorCreated;
 use App\Mail\EvaluatorUpdated;
+use App\Mail\EvaluatorDeleted;
 use App\Models\Evaluator;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -136,6 +137,15 @@ class ManageEvaluatorsController extends Controller
             // Set status of Evaluator to inactive then
             // soft delete Evaluator user
             $evaluatorUser = User::find($userId);
+
+            // Send email to updated Evaluator user
+            // Put sending of email in queue
+            $evaluatorDetails = [
+                'name'              => $evaluatorUser->name,
+                'email'             => $evaluatorUser->email
+            ];
+
+            Mail::to($evaluatorUser->email)->queue(new EvaluatorDeleted($evaluatorDetails));
 
             $evaluator = $evaluatorUser->userable()->first();
             $evaluator->status_instance = 'inactive';
