@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\EvaluatorCreated;
+use App\Mail\EvaluatorUpdated;
 use App\Models\Evaluator;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -106,6 +107,15 @@ class ManageEvaluatorsController extends Controller
             $evaluatorUser->name = $request->name;
             $evaluatorUser->email = $request->email;
             $evaluatorUser->save();
+
+            // Send email to updated Evaluator user
+            // Put sending of email in queue
+            $evaluatorDetails = [
+                'name'              => $evaluatorUser->name,
+                'email'             => $evaluatorUser->email
+            ];
+
+            Mail::to($evaluatorUser->email)->queue(new EvaluatorUpdated($evaluatorDetails));
 
             return [
                 'updated' => true

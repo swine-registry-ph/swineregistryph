@@ -106,8 +106,8 @@ class ManageEvaluatorsTest extends TestCase
             ->json('PATCH', '/admin/manage/evaluators',
                 [
                     'userId'    => 3,
-                    'name'      => 'Sample Evaluator',
-                    'email'     => 'evaluator@example.com',
+                    'name'      => 'Sample Edited Evaluator',
+                    'email'     => 'evaluatorEdited@example.com',
                 ]
             );
 
