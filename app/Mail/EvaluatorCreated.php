@@ -7,11 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class BreederCreated extends Mailable
+class EvaluatorCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $breeder;
+    protected $evaluator;
 
     /**
      * Create a new message instance.
@@ -19,11 +19,11 @@ class BreederCreated extends Mailable
      * @param  array $breeder
      * @return void
      */
-    public function __construct($breeder)
+    public function __construct($evaluator)
     {
-        // $breeder is an associative array that should consist of
+        // $evaluator is an associative array that should consist of
         // 'name', 'email', and 'initialPassword' keys
-        $this->breeder = $breeder;
+        $this->evaluator = $evaluator;
     }
 
     /**
@@ -34,20 +34,20 @@ class BreederCreated extends Mailable
     public function build()
     {
         $introLines = [
-            'You now have a Breeder account!',
-            'The following is your breeder user credentials:'
+            'You now have an Evaluator account!',
+            'The following is your evaluator user credentials:'
         ];
-        $outroLines = ['Note that this is just an initial password. Make sure to change your initial password in your Breeder\'s profile.'];
+        $outroLines = ['Note that this is just an initial password. Make sure to change your initial password in your Evaluator\'s profile.'];
 
-        return $this->view('emails.newbreeder')
-                    ->subject('Swine Breed Registry PH Breeder Account')
+        return $this->view('emails.newevaluator')
+                    ->subject('Swine Breed Registry PH Evaluator Account')
                     ->with([
                         'level'             => 'success',
                         'introLines'        => $introLines,
                         'outroLines'        => $outroLines,
-                        'name'              => $this->breeder['name'],
-                        'email'             => $this->breeder['email'],
-                        'initialPassword'   => $this->breeder['initialPassword'],
+                        'name'              => $this->evaluator['name'],
+                        'email'             => $this->evaluator['email'],
+                        'initialPassword'   => $this->evaluator['initialPassword'],
                         'actionText'        => 'Login',
                         'actionUrl'         => route('login')
                     ]);
