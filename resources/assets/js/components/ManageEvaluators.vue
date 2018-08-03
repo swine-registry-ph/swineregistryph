@@ -57,7 +57,7 @@
                     </div>
                 </li>
                 <!-- Existing evaluators list -->
-                <li v-for="(evaluator, index) in sortedEvaluators"
+                <li v-for="(evaluator) in sortedEvaluators"
                     class="collection-item avatar"
                     :key="evaluator.userId"
                 >
@@ -127,6 +127,34 @@
             </div>
         </div>
 
+        <!-- Delete Evaluator Modal -->
+        <div id="delete-evaluator-modal" class="modal">
+            <div class="modal-content">
+                <h4>
+                    Delete Evaluator
+                    <i class="material-icons right modal-close">close</i>
+                </h4>
+
+                <div class="row modal-input-container">
+                    <div class="col s12"><br/></div>
+                    <div class="input-field col s12">
+                        <p>
+                            Are you sure you want to delete <b>{{ deleteEvaluatorData.name }}</b> ?
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer grey lighten-3">
+                <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                <a @click.prevent="deleteEvaluator($event)" 
+                    href="#!" 
+                    class="modal-action btn red lighten-2 z-depth-0 delete-evaluator-btn"
+                >
+                    Delete
+                </a>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -149,6 +177,11 @@
                     userId: 0,
                     name: '',
                     email: ''
+                },
+                deleteEvaluatorData: {
+                    index: 0,
+                    userId: 0,
+                    name: ''
                 }
             }
         },
@@ -263,8 +296,55 @@
                 });
             },
 
-            showDeleteEvaluatorModal() {
+            showDeleteEvaluatorModal(evaluatorId) {
+                // Initialize data for deleting
+                const index = this.findEvaluatorIndexById(evaluatorId);
+                const evaluator = this.evaluators[index];
+                
+                this.deleteEvaluatorData.index = index;
+                this.deleteEvaluatorData.userId = evaluator.userId;
+                this.deleteEvaluatorData.name = evaluator.name;
 
+                $('#delete-evaluator-modal').modal('open');
+            },
+
+            deleteEvaluator(event) {
+                const vm = this;
+                const deleteEvaluatorButton = $('.delete-evaluator-btn');
+
+                this.disableButtons(deleteEvaluatorButton, event.target, 'Deleting...');
+
+                // Remove from server's database
+                axios.delete(
+                    `/admin/manage/evaluators/${vm.deleteEvaluatorData.userId}`
+                )
+                .then((response) => {
+                    // Remove evaluator details on local storage and erase
+                    // deleting of evaluator data
+                    if(response.data.deleted){
+                        const evaluatorName = vm.deleteEvaluatorData.name;
+
+                        vm.evaluators.splice(vm.deleteEvaluatorData.index, 1);
+                        vm.deleteEvaluatorData = {
+                            index: 0,
+                            userId: 0,
+                            name: ''
+                        };
+    
+                        // Update UI after deleting evaluator
+                        vm.$nextTick(() => {
+                            $('#delete-evaluator-modal').modal('close');
+    
+                            this.enableButtons(deleteEvaluatorButton, event.target, 'Delete');
+    
+                            Materialize.updateTextFields();
+                            Materialize.toast(`Evaluator ${evaluatorName} deleted`, 3000, 'green lighten-1');
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             },
 
             disableButtons(buttons, actionBtnElement, textToShow) {
@@ -313,6 +393,10 @@
 
     #edit-evaluator-modal {
         width: 40rem;
+    }
+
+    #delete-evaluator-modal {
+        width: 30rem;
     }
 
     /* Modal customizations */

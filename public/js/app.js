@@ -10282,7 +10282,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-evaluator-container-button[data-v-0298ef7c] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0298ef7c] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0298ef7c] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-0298ef7c] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-0298ef7c]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-evaluator-container[data-v-0298ef7c] {\n    padding-bottom: 2rem;\n}\n#edit-evaluator-modal[data-v-0298ef7c] {\n    width: 40rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0298ef7c] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0298ef7c] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0298ef7c] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-evaluator-container-button[data-v-0298ef7c] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0298ef7c] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0298ef7c] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-0298ef7c] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-0298ef7c]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-evaluator-container[data-v-0298ef7c] {\n    padding-bottom: 2rem;\n}\n#edit-evaluator-modal[data-v-0298ef7c] {\n    width: 40rem;\n}\n#delete-evaluator-modal[data-v-0298ef7c] {\n    width: 30rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0298ef7c] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0298ef7c] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0298ef7c] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -10293,6 +10293,34 @@ exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-eva
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -10444,6 +10472,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 userId: 0,
                 name: '',
                 email: ''
+            },
+            deleteEvaluatorData: {
+                index: 0,
+                userId: 0,
+                name: ''
             }
         };
     },
@@ -10555,7 +10588,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        showDeleteEvaluatorModal: function showDeleteEvaluatorModal() {},
+        showDeleteEvaluatorModal: function showDeleteEvaluatorModal(evaluatorId) {
+            // Initialize data for deleting
+            var index = this.findEvaluatorIndexById(evaluatorId);
+            var evaluator = this.evaluators[index];
+
+            this.deleteEvaluatorData.index = index;
+            this.deleteEvaluatorData.userId = evaluator.userId;
+            this.deleteEvaluatorData.name = evaluator.name;
+
+            $('#delete-evaluator-modal').modal('open');
+        },
+        deleteEvaluator: function deleteEvaluator(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var deleteEvaluatorButton = $('.delete-evaluator-btn');
+
+            this.disableButtons(deleteEvaluatorButton, event.target, 'Deleting...');
+
+            // Remove from server's database
+            axios.delete('/admin/manage/evaluators/' + vm.deleteEvaluatorData.userId).then(function (response) {
+                // Remove evaluator details on local storage and erase
+                // deleting of evaluator data
+                if (response.data.deleted) {
+                    var evaluatorName = vm.deleteEvaluatorData.name;
+
+                    vm.evaluators.splice(vm.deleteEvaluatorData.index, 1);
+                    vm.deleteEvaluatorData = {
+                        index: 0,
+                        userId: 0,
+                        name: ''
+                    };
+
+                    // Update UI after deleting evaluator
+                    vm.$nextTick(function () {
+                        $('#delete-evaluator-modal').modal('close');
+
+                        _this3.enableButtons(deleteEvaluatorButton, event.target, 'Delete');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Evaluator ' + evaluatorName + ' deleted', 3000, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
             actionBtnElement.innerHTML = textToShow;
@@ -10695,7 +10774,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addEvaluator($event)
       }
     }
-  }, [_vm._v("\n                            Add Evaluator\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedEvaluators), function(evaluator, index) {
+  }, [_vm._v("\n                            Add Evaluator\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedEvaluators), function(evaluator) {
     return _c('li', {
       key: evaluator.userId,
       staticClass: "collection-item avatar"
@@ -10807,7 +10886,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateEvaluator($event)
       }
     }
-  }, [_vm._v("\n                Update\n            ")])])])])
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "delete-evaluator-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteEvaluatorData.name))]), _vm._v(" ?\n                    ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn red lighten-2 z-depth-0 delete-evaluator-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deleteEvaluator($event)
+      }
+    }
+  }, [_vm._v("\n                Delete\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -10816,6 +10924,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" Manage Evaluators ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                Edit Evaluator\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Delete Evaluator\n                "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

@@ -42,7 +42,9 @@ class ManageEvaluatorsTest extends TestCase
     public function testAdminViewManageEvaluators()
     {
         $customizedEvaluatorData = [];
-        $evaluators = Evaluator::with('users')->get();
+        $evaluators = Evaluator::with('users')
+            ->where('status_instance', 'active')
+            ->get();
         
         foreach ($evaluators as $evaluator) {
             $customizedEvaluatorData[] = [
@@ -115,4 +117,25 @@ class ManageEvaluatorsTest extends TestCase
                 'updated' => true
             ]);
     }
+
+    /**
+     * Test if deleting of evaluator is successful
+     *
+     * @return void
+     */
+    public function testAdminDeleteEvaluator()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->adminUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('DELETE', '/admin/manage/evaluators/3');
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'deleted' => true
+            ]);
+    }    
 }

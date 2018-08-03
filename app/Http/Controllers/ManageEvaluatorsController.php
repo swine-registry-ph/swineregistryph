@@ -30,7 +30,9 @@ class ManageEvaluatorsController extends Controller
     public function index()
     {
         $customizedEvaluatorData = [];
-        $evaluators = Evaluator::with('users')->get();
+        $evaluators = Evaluator::with('users')
+            ->where('status_instance', 'active')
+            ->get();
 
         foreach ($evaluators as $evaluator) {
             $customizedEvaluatorData[] = [
@@ -107,6 +109,32 @@ class ManageEvaluatorsController extends Controller
 
             return [
                 'updated' => true
+            ];
+        }
+    }
+
+    /**
+     * Delete Evaluator user
+     *
+     * @param   Request $request
+     * @param   integer $userId
+     * @return  JSON
+     */
+    public function delete(Request $request, $userId)
+    {
+        if($request->ajax()){
+            // Set status of Evaluator to inactive then
+            // soft delete Evaluator user
+            $evaluatorUser = User::find($userId);
+
+            $evaluator = $evaluatorUser->userable()->first();
+            $evaluator->status_instance = 'inactive';
+            $evaluator->save();
+
+            $evaluatorUser->delete();
+
+            return [
+                'deleted' => true
             ];
         }
     }

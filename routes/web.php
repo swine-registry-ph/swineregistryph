@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage/evaluators', 'ManageEvaluatorsController@index')->name('showManageEvaluators');
         Route::post('/manage/evaluators', 'ManageEvaluatorsController@add')->name('addEvaluator');
         Route::patch('/manage/evaluators', 'ManageEvaluatorsController@update')->name('updateEvaluator');
+        Route::delete('/manage/evaluators/{userId}', 'ManageEvaluatorsController@delete')->name('deleteEvaluator');
     });
 
     // Genomics-related
