@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </li>
-                <!-- Exising breeds list -->
+                <!-- Existing properties list -->
                 <li v-for="(property, index) in properties"
                     class="collection-item avatar"
                 >

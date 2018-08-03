@@ -57,12 +57,22 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/manage/farms', 'ManageBreedersController@addFarm')->name('addFarm');
         Route::patch('/manage/farms', 'ManageBreedersController@updateFarm')->name('updateFarm');
         Route::patch('/manage/farms/renew', 'ManageBreedersController@renewFarm')->name('renewFarm');
+        Route::get('/manage/evaluators', 'ManageEvaluatorsController@index')->name('showManageEvaluators');
+        Route::post('/manage/evaluators', 'ManageEvaluatorsController@add')->name('addEvaluator');
+        Route::patch('/manage/evaluators', 'ManageEvaluatorsController@update')->name('updateEvaluator');
+        Route::delete('/manage/evaluators/{userId}', 'ManageEvaluatorsController@delete')->name('deleteEvaluator');
     });
 
     // Genomics-related
     Route::group(['prefix' => 'genomics'], function(){
 
         Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
+    });
+
+    // Evaluator-related
+    Route::group(['prefix' => 'evaluator'], function(){
+
+        Route::get('/home', 'EvaluatorController@index')->name('evaluatorHome');
     });
 
     // Override Laravel Passport routes

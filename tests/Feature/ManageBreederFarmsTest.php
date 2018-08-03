@@ -62,7 +62,6 @@ class ManageBreederFarmsTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                'id'                        => 6,
                 'breeder_id'                => 1,
                 'name'                      => 'John and Piolo Farms',
                 'farm_code'                 => 'JAP',    

@@ -31,6 +31,7 @@ class HomeController extends Controller
         if($user->isAdmin()) return redirect()->action('AdminController@index');
         else if($user->isBreeder()) return redirect()->action('BreederController@index');
         else if($user->isGenomics()) return redirect()->action('GenomicsController@index');
+        else if($user->isEvaluator()) return redirect()->action('EvaluatorController@index');
         else redirect()->route('logout');
     }
 }

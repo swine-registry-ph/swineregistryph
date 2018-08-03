@@ -36,6 +36,10 @@ $factory->define(App\Models\Genomics::class, function (Faker\Generator $faker){
     return [];
 });
 
+$factory->define(App\Models\Evaluator::class, function (Faker\Generator $faker){
+    return [];
+});
+
 $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
 
     $provinces = [

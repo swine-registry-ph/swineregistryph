@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * Get all of the owning userable models
@@ -63,6 +71,16 @@ class User extends Authenticatable
     public function isGenomics()
     {
         return str_contains($this->userable_type, 'Genomics');
+    }
+
+    /**
+     * Check if user is of type evaluator
+     *
+     * @return boolean
+     */
+    public function isEvaluator()
+    {
+        return str_contains($this->userable_type, 'Evaluator');
     }
 
     /**

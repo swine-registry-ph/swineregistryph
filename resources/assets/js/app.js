@@ -34,6 +34,7 @@ Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine
 // Admin
 Vue.component('manage-breeds', require('./components/ManageBreeds.vue'));
 Vue.component('manage-breeders', require('./components/ManageBreeders.vue'));
+Vue.component('manage-evaluators', require('./components/ManageEvaluators.vue'));
 Vue.component('manage-properties', require('./components/ManageProperties.vue'));
 Vue.component('manage-apis', require('./components/ManageAPIs.vue'));
 
@@ -52,6 +53,7 @@ const nav = new Vue({
             admin: {
                 adminViewRegdSwine: false,
                 showManageBreeders: false,
+                showManageEvaluators: false,
                 showManagePropertiesView: false,
                 showManageBreedsView: false,
                 manageAPIsView: false,
@@ -96,6 +98,10 @@ const nav = new Vue({
 
             case '/admin/manage/breeders':
                 this.currentRoute.admin.showManageBreeders = true;
+                break;
+
+            case '/admin/manage/evaluators':
+                this.currentRoute.admin.showManageEvaluators = true;
                 break;
 
             case '/breeder/manage-swine/register':
