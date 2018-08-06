@@ -23,11 +23,6 @@ Vue.component('app-input-date', require('./components/AppInputDate.vue'));
 Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
 
 // Breeder
-Vue.component('register-swine-parents-properties-inputs', require('./components/RegisterSwineParentsPropertiesInputs.vue'));
-Vue.component('register-swine-parents-properties', require('./components/RegisterSwineParentsProperties.vue'));
-Vue.component('register-swine-properties', require('./components/RegisterSwineProperties.vue'));
-Vue.component('register-swine-summary', require('./components/RegisterSwineSummary.vue'));
-Vue.component('register-swine-upload-photo', require('./components/RegisterSwineUploadPhoto.vue'));
 Vue.component('register-swine', require('./components/RegisterSwine.vue'));
 Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
 

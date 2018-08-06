@@ -454,11 +454,6 @@ Vue.component('app-input-date', __webpack_require__(47));
 Vue.component('app-input-select', __webpack_require__(50));
 
 // Breeder
-Vue.component('register-swine-parents-properties-inputs', __webpack_require__(53));
-Vue.component('register-swine-parents-properties', __webpack_require__(59));
-Vue.component('register-swine-properties', __webpack_require__(64));
-Vue.component('register-swine-summary', __webpack_require__(69));
-Vue.component('register-swine-upload-photo', __webpack_require__(74));
 Vue.component('register-swine', __webpack_require__(79));
 Vue.component('view-registered-swine', __webpack_require__(84));
 
@@ -3126,7 +3121,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n                GP " + _vm._s(_vm.parentGender) + " Registration #\n            ")])]), _vm._v(" "), _c('div', {
     staticClass: "col s8 offset-s2 center-align"
   }, [_c('br'), _vm._v(" "), _c('a', {
-    staticClass: "btn waves-effect waves-light ",
+    staticClass: "btn waves-effect waves-light z-depth-0",
     attrs: {
       "href": "#!",
       "id": _vm.parentIdPrefix + 'check',
@@ -3971,6 +3966,8 @@ exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
 //
 //
 //
@@ -4064,9 +4061,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         farmoptions: Array
+    },
+
+    components: {
+        RegisterSwineParentsPropertiesInputs: __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default.a
     },
 
     data: function data() {
@@ -6600,6 +6603,14 @@ exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__);
 //
 //
 //
@@ -6719,11 +6730,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         farmoptions: Array,
         breeds: Array,
         uploadurl: String
+    },
+
+    components: {
+        RegisterSwineParentsProperties: __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default.a,
+        RegisterSwineProperties: __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default.a,
+        RegisterSwineSummary: __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default.a,
+        RegisterSwineUploadPhoto: __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default.a
     },
 
     data: function data() {

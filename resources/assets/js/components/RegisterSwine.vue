@@ -117,11 +117,23 @@
 </template>
 
 <script>
+    import RegisterSwineParentsProperties from './RegisterSwineParentsProperties.vue';
+    import RegisterSwineProperties from './RegisterSwineProperties.vue';
+    import RegisterSwineSummary from './RegisterSwineSummary.vue';
+    import RegisterSwineUploadPhoto from './RegisterSwineUploadPhoto.vue';
+
     export default {
         props: {
             farmoptions: Array,
             breeds: Array,
             uploadurl: String
+        },
+
+        components: {
+            RegisterSwineParentsProperties,
+            RegisterSwineProperties,
+            RegisterSwineSummary,
+            RegisterSwineUploadPhoto
         },
 
         data() {
