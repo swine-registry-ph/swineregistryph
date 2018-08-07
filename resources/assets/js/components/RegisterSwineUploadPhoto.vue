@@ -4,20 +4,103 @@
             <div class="card-content">
                 <span class="card-title center-align">Upload Photos</span>
 
-                <div class="">
-                    <dropzone id="uploadDropzone"
-                        ref="uploadDropzone"
-                        :url="uploadurl"
-                        :headers="csrfHeader"
-                        :use-custom-dropzone-options="true"
-                        :dropzone-options="customOptions"
-                        v-on:vdropzone-success="renameFile"
-                        v-on:vdropzone-removed-file="removeFile"
-                    >
-                        <!-- Optional parameters if any! -->
-                        <input type="hidden" name="swineId" :value="swineId">
-                        <input type="hidden" name="token" :value="csrfToken">
-                    </dropzone>
+                <blockquote class="info">
+                    Please upload good quality images with recommended
+                    <b>front</b>, <b>side</b>, <b>back</b>, and <b>top</b> orientations. <br/>
+                    Recommended file formats are <b>JPEG</b> and <b>PNG</b>.
+                </blockquote>
+
+                <div class="row">
+                    <div class="col s12">
+                        <!-- Dropzone -->
+                        <dropzone id="uploadDropzone"
+                            ref="uploadDropzone"
+                            :url="uploadurl"
+                            :headers="csrfHeader"
+                            :use-custom-dropzone-options="true"
+                            :dropzone-options="customOptions"
+                            v-on:vdropzone-success="renameFile"
+                            v-on:vdropzone-removed-file="removeFile"
+                        >
+                            <!-- Optional parameters if any! -->
+                            <input type="hidden" name="swineId" :value="swineId">
+                            <input type="hidden" name="token" :value="csrfToken">
+                        </dropzone>
+                    </div>
+                    <div id="uploaded-photos-container" class="col s12">
+                        <!-- Uploaded photos -->
+                        <div class="col s12">
+                            <h6>
+                                <b>Uploaded Photos</b>
+                            </h6>
+                        </div>
+                        
+                        <div class="col s12 m6 l6">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="/storage/images/swine/duroc_female.jpg">
+                                </div>
+                                <div class="card-action center-align">
+                                    <a @click.prevent=""
+                                        href="#!"
+                                        class="btn z-depth-0 white black-text"
+                                    >
+                                        <i class="material-icons left">photo</i>
+                                        Display Photo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col s12 m6 l6">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="/storage/images/swine/duroc_male.jpg">
+                                </div>
+                                <div class="card-action center-align">
+                                    <a @click.prevent=""
+                                        href="#!"
+                                        class="btn z-depth-0"
+                                    >
+                                        Set as Display Photo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col s12 m6 l6">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="/storage/images/swine/landrace_male.jpg">
+                                </div>
+                                <div class="card-action center-align">
+                                    <a @click.prevent=""
+                                        href="#!"
+                                        class="btn z-depth-0"
+                                    >
+                                        Set as Display Photo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col s12 m6 l6">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="/storage/images/swine/landrace_female.jpg">
+                                </div>
+                                <div class="card-action center-align">
+                                    <a @click.prevent=""
+                                        href="#!"
+                                        class="btn z-depth-0"
+                                    >
+                                        Set as Display Photo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,7 +155,7 @@
             removeFile(file, error, xhr) {
                 const photoId = file.previewElement.getAttribute('data-photo-id');
 
-                axios.delete(`/breeder/manage-swine/upload-photo/${photoId}`)
+                axios.delete(`/breeder/manage-swine/photo/${photoId}`)
                     .then((response) => { })
                     .catch((error) => { console.log(error); });
 
@@ -136,10 +219,10 @@
     }
 </script>
 
-<style lang="css">
+<style scoped lang="scss">
     /* Custom style from vue-dropzone */
     .vue-dropzone {
-        margin-top: 3rem;
+        margin-top: 2rem;
         min-height: 20rem;
         border: 2px solid #000000;
         font-family: inherit;
@@ -217,4 +300,9 @@
             }
         }
     }
+
+    #uploaded-photos-container {
+        margin-top: 3rem;
+    }
+
 </style>

@@ -107,6 +107,7 @@
 
         <!-- Upload photos tab -->
         <register-swine-upload-photo
+            :swineId="gpOneId"
             :uploadurl="uploadurl"
             v-on:addedPhotoEvent="addPhotoToImageFiles"
             v-on:removedPhotoEvent="removePhotoFromImageFiles"
@@ -140,12 +141,16 @@
             return {
                 tabDisables: {
                     summary: true,
-                    photos: true
+                    photos: false
                 }
             }
         },
 
         computed: {
+            gpOneId() {
+                return 1;
+                // return this.$store.state.registerSwine.gpOne.id;
+            },
             gpOneBreedId: {
                 // get and set value from vuex store
                 get() { return this.$store.state.registerSwine.gpOne.breedId; },
@@ -246,5 +251,9 @@
     .tab.disabled a {
         color: #9e9e9e !important;
         cursor: not-allowed !important;
+    }
+
+    .tabs .indicator {
+        background-color: #c62828 !important;
     }
 </style>
