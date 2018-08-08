@@ -217,7 +217,13 @@ const mutations = {
     },
 
     addToImageFiles(state, {imageDetails, orientation}) {
+        // Add image according to its orientation
         state.imageFiles[orientation] = imageDetails;
+    },
+
+    removeFromImageFiles(state, {orientation}) {
+        // Remove image according to its orientation
+        state.imageFiles[orientation] = {};
     }
 }
 

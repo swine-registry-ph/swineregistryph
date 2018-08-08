@@ -137,29 +137,23 @@
         },
 
         methods: {
-            getIndex(id, arrayToBeSearched) {
-                // // Return index of object to find
-                // for(var i = 0; i < arrayToBeSearched.length; i++) {
-                //     if(arrayToBeSearched[i].id === id) return i;
-                // }
-            },
-
             addPhotoToImageFiles(imageDetails) {
-                // Put information of uploaded photos in local data storage
-                this.$store.commit('addToImageFiles', {
-                    imageDetails: imageDetails.data,
-                    orientation: imageDetails.orientation
-                });
+                // Put information of uploaded photos in vuex state
+                this.$store.commit('addToImageFiles', 
+                    {
+                        imageDetails: imageDetails.data,
+                        orientation: imageDetails.orientation
+                    }
+                );
             },
 
             removePhotoFromImageFiles(imageDetails) {
-                // Remove photo from local data storage
-                // and check if 'Summary' tab
-                // should still be enabled
-                // const index = this.getIndex(imageDetails.photoId, this.imageFiles);
-                //
-                // this.imageFiles.splice(index,1);
-                // this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
+                // Remove photo from vuex state
+                this.$store.commit('removeFromImageFiles', 
+                    {
+                        orientation: imageDetails.orientation
+                    }
+                );
             }
         },
 

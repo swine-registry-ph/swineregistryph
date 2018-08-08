@@ -69,10 +69,12 @@
                 previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
 
                 // Trigger addedPhotoEvent
-                this.$emit('addedPhotoEvent', {
-                    data: imageDetails,
-                    orientation: this.orientation
-                });
+                this.$emit('addedPhotoEvent', 
+                    {
+                        data: imageDetails,
+                        orientation: this.orientation
+                    }
+                );
             },
 
             removeFile(file, error, xhr) {
@@ -83,9 +85,11 @@
                     .catch((error) => { console.log(error); });
 
                 // Trigger removedPhotoEvent
-                this.$emit('removedPhotoEvent', {
-                    orientation: this.orientation
-                });
+                this.$emit('removedPhotoEvent', 
+                    {
+                        orientation: this.orientation
+                    }
+                );
 
             },
 

@@ -1831,7 +1831,14 @@ var getters = {
         var imageDetails = _ref2.imageDetails,
             orientation = _ref2.orientation;
 
+        // Add image according to its orientation
         state.imageFiles[orientation] = imageDetails;
+    },
+    removeFromImageFiles: function removeFromImageFiles(state, _ref3) {
+        var orientation = _ref3.orientation;
+
+        // Remove image according to its orientation
+        state.imageFiles[orientation] = {};
     }
 };
 
@@ -6820,27 +6827,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        getIndex: function getIndex(id, arrayToBeSearched) {
-            // // Return index of object to find
-            // for(var i = 0; i < arrayToBeSearched.length; i++) {
-            //     if(arrayToBeSearched[i].id === id) return i;
-            // }
-        },
         addPhotoToImageFiles: function addPhotoToImageFiles(imageDetails) {
-            // Put information of uploaded photos in local data storage
+            // Put information of uploaded photos in vuex state
             this.$store.commit('addToImageFiles', {
                 imageDetails: imageDetails.data,
                 orientation: imageDetails.orientation
             });
         },
         removePhotoFromImageFiles: function removePhotoFromImageFiles(imageDetails) {
-            // Remove photo from local data storage
-            // and check if 'Summary' tab
-            // should still be enabled
-            // const index = this.getIndex(imageDetails.photoId, this.imageFiles);
-            //
-            // this.imageFiles.splice(index,1);
-            // this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
+            // Remove photo from vuex state
+            this.$store.commit('removeFromImageFiles', {
+                orientation: imageDetails.orientation
+            });
         }
     },
 
