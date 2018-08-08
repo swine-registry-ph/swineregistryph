@@ -90,7 +90,12 @@ const state = {
         litterweightWeaning: '',
         dateWeaning: ''
     },
-    imageFiles: []
+    imageFiles: {
+        side: {},
+        front: {},
+        back: {},
+        top: {}
+    }
 };
 
 // getters
@@ -209,6 +214,10 @@ const mutations = {
 
 
         }
+    },
+
+    addToImageFiles(state, {imageDetails, orientation}) {
+        state.imageFiles[orientation] = imageDetails;
     }
 }
 

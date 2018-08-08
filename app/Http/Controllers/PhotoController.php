@@ -67,9 +67,33 @@ class PhotoController extends Controller
                         $photo->name = $photoInfo['filename'];
                         $swine->photos()->save($photo);
 
+                        switch ($request->orientation) {
+                            case 'side':
+                                $swine->sidePhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+
+                            case 'front':
+                                $swine->frontPhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+
+                            case 'back':
+                                $swine->backPhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+
+                            case 'top':
+                                $swine->topPhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+                            
+                            default:
+                                break;
+                        }
+
                         // Additional metadata
-                        $photo->fullFilePath = '/storage\/' . $photoInfo['directory'] . $photoInfo['filename'];
-                        $photo->isPrimaryPhoto = false;
+                        $photo->fullFilePath = asset('storage'. $photoInfo['directory'] . $photoInfo['filename']);
 
                         return response()->json($photo, 200);
 
@@ -108,15 +132,45 @@ class PhotoController extends Controller
      * @param   Request     $request
      * @return  JSON
      */
-    public function deletePhoto(Request $request, $photoId)
+    public function deletePhoto(Request $request, $photoId, $orientation)
     {
         if($request->ajax()){
+            // Get swine parent as well to make changes to
+            // applicable orientation photo id
             $photo = Photo::find($photoId);
+            $swine = $photo->photoable()->first();
             $fullFilePath = self::SWINE_IMG_PATH . $photo->name;
 
-            if(Storage::disk('public')->exists($fullFilePath)) Storage::disk('public')->delete($fullFilePath);
+            if(Storage::disk('public')->exists($fullFilePath)){
+                Storage::disk('public')->delete($fullFilePath);
+            }
 
             $photo->delete();
+
+            switch ($orientation) {
+                case 'side':
+                    $swine->sidePhoto_id = 0;
+                    $swine->save();
+                    break;
+                
+                case 'front':
+                    $swine->frontPhoto_id = 0;
+                    $swine->save();
+                    break;
+                
+                case 'back':
+                    $swine->backPhoto_id = 0;
+                    $swine->save();
+                    break;
+
+                case 'top':
+                    $swine->topPhoto_id = 0;
+                    $swine->save(); 
+                    break;
+
+                default:
+                    break;
+            }
 
             return response()->json('Image deleted', 200);
         }

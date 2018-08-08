@@ -20,7 +20,10 @@ class CreateSwinesTable extends Migration
             $table->integer('farm_id')->unsigned();
             $table->integer('gpSire_id')->unsigned()->nullable();
             $table->integer('gpDam_id')->unsigned()->nullable();
-            $table->integer('primaryPhoto_id')->unsigned()->default(0);
+            $table->integer('sidePhoto_id')->unsigned()->default(0);
+            $table->integer('frontPhoto_id')->unsigned()->default(0);
+            $table->integer('backPhoto_id')->unsigned()->default(0);
+            $table->integer('topPhoto_id')->unsigned()->default(0);
             $table->text('registration_no')->nullable();
             $table->date('date_registered');
             $table->boolean('swinecart')->default(0);

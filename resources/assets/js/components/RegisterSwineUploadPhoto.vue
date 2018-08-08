@@ -6,101 +6,111 @@
 
                 <blockquote class="info">
                     Please upload good quality images with recommended
-                    <b>front</b>, <b>side</b>, <b>back</b>, and <b>top</b> orientations. <br/>
-                    Recommended file formats are <b>JPEG</b> and <b>PNG</b>.
+                    <b>side</b>, <b>front</b>, <b>back</b>, and <b>top</b> orientations. <br/>
+                    Recommended image file formats are <b>JPEG</b> and <b>PNG</b>.
                 </blockquote>
 
                 <div class="row">
-                    <div class="col s12">
-                        <!-- Dropzone -->
-                        <dropzone id="uploadDropzone"
-                            ref="uploadDropzone"
-                            :url="uploadurl"
-                            :headers="csrfHeader"
-                            :use-custom-dropzone-options="true"
-                            :dropzone-options="customOptions"
-                            v-on:vdropzone-success="renameFile"
-                            v-on:vdropzone-removed-file="removeFile"
+                    <!-- Side View -->
+                    <div class="col s6 m6 l3">
+                        <h6><b>Side View</b></h6>
+                        <register-swine-upload-photo-dropzone
+                            :dropzoneId="'uploadSidePhotoDropzone'"
+                            :orientation="'side'"
+                            :swineId="swineId"
+                            :uploadurl="uploadurl"
+                            v-on:addedPhotoEvent="addPhotoToImageFiles"
+                            v-on:removedPhotoEvent="removePhotoFromImageFiles"
                         >
-                            <!-- Optional parameters if any! -->
-                            <input type="hidden" name="swineId" :value="swineId">
-                            <input type="hidden" name="token" :value="csrfToken">
-                        </dropzone>
+                        </register-swine-upload-photo-dropzone>
                     </div>
-                    <div id="uploaded-photos-container" class="col s12">
-                        <!-- Uploaded photos -->
-                        <div class="col s12">
-                            <h6>
-                                <b>Uploaded Photos</b>
-                            </h6>
-                        </div>
-                        
-                        <div class="col s12 m6 l6">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="/storage/images/swine/duroc_female.jpg">
-                                </div>
-                                <div class="card-action center-align">
-                                    <a @click.prevent=""
-                                        href="#!"
-                                        class="btn z-depth-0 white black-text"
-                                    >
-                                        <i class="material-icons left">photo</i>
-                                        Display Photo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col s12 m6 l6">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="/storage/images/swine/duroc_male.jpg">
-                                </div>
-                                <div class="card-action center-align">
-                                    <a @click.prevent=""
-                                        href="#!"
-                                        class="btn z-depth-0"
-                                    >
-                                        Set as Display Photo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                         <div class="col s12 m6 l6">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="/storage/images/swine/landrace_male.jpg">
-                                </div>
-                                <div class="card-action center-align">
-                                    <a @click.prevent=""
-                                        href="#!"
-                                        class="btn z-depth-0"
-                                    >
-                                        Set as Display Photo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                         <div class="col s12 m6 l6">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="/storage/images/swine/landrace_female.jpg">
-                                </div>
-                                <div class="card-action center-align">
-                                    <a @click.prevent=""
-                                        href="#!"
-                                        class="btn z-depth-0"
-                                    >
-                                        Set as Display Photo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
+                    <!-- Front View -->
+                    <div class="col s6 m6 l3">
+                        <h6><b>Front View</b></h6>
+                        <register-swine-upload-photo-dropzone
+                            :dropzoneId="'uploadFrontPhotoDropzone'"
+                            :orientation="'front'"
+                            :swineId="swineId"
+                            :uploadurl="uploadurl"
+                            v-on:addedPhotoEvent="addPhotoToImageFiles"
+                            v-on:removedPhotoEvent="removePhotoFromImageFiles"
+                        >
+                        </register-swine-upload-photo-dropzone>
                     </div>
+
+                    <!-- Back View -->
+                    <div class="col s6 m6 l3">
+                        <h6><b>Back View</b></h6>
+                        <register-swine-upload-photo-dropzone
+                            :dropzoneId="'uploadBackPhotoDropzone'"
+                            :orientation="'back'"
+                            :swineId="swineId"
+                            :uploadurl="uploadurl"
+                            v-on:addedPhotoEvent="addPhotoToImageFiles"
+                            v-on:removedPhotoEvent="removePhotoFromImageFiles"
+                        >
+                        </register-swine-upload-photo-dropzone>
+                    </div>
+
+                    <!-- Top View -->
+                    <div class="col s6 m6 l3">
+                        <h6><b>Top View</b></h6>
+                        <register-swine-upload-photo-dropzone
+                            :dropzoneId="'uploadTopPhotoDropzone'"
+                            :orientation="'top'"
+                            :swineId="swineId"
+                            :uploadurl="uploadurl"
+                            v-on:addedPhotoEvent="addPhotoToImageFiles"
+                            v-on:removedPhotoEvent="removePhotoFromImageFiles"
+                        >
+                        </register-swine-upload-photo-dropzone>
+                    </div>
+
+                    <!-- <div class="col s6">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/storage/images/swine/duroc_male.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Sample Side View</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s6">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/storage/images/swine/duroc_male.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Sample Front View</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s6">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/storage/images/swine/duroc_male.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Sample Back View</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s6">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/storage/images/swine/duroc_male.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Sample Top View</span>
+                            </div>
+                        </div>
+                    </div> -->
+
                 </div>
             </div>
         </div>
@@ -108,7 +118,7 @@
 </template>
 
 <script>
-    import Dropzone from 'vue2-dropzone';
+    import RegisterSwineUploadPhotoDropzone from './RegisterSwineUploadPhotoDropzone.vue';
 
     export default {
         props: {
@@ -116,74 +126,17 @@
             uploadurl: String
         },
 
-        data() {
-            return {
-                csrfToken: document.head.querySelector('meta[name="csrf-token"]').content,
-                csrfHeader: {
-                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-                },
-                customOptions: {
-                    parallelUploads: 1,
-                    maxNumberOfFiles: 10,
-                    maxFileSizeInMB: 50,
-                    acceptedFileTypes: 'image/png, image/jpeg, image/jpg, image/tiff, image/heif, image/heic'
-                }
+        components: {
+            RegisterSwineUploadPhotoDropzone
+        },
+
+        computed: {
+            imageFiles() {
+                return this.$store.getters.imageFiles;
             }
         },
 
-        components: {
-            Dropzone
-        },
-
         methods: {
-            renameFile(file, response) {
-                let previewElement = file.previewElement;
-                let imageDetails = response;
-
-                // setAttribute is for photo id purposes. Chose not to put it
-                // into vue local data storage for ease of use in
-                // fetching id upon removal of file
-                previewElement.setAttribute('data-photo-id', imageDetails.id);
-                previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
-
-                // Trigger addedPhotoEvent
-                this.$emit('addedPhotoEvent', {
-                    data : imageDetails
-                });
-            },
-
-            removeFile(file, error, xhr) {
-                const photoId = file.previewElement.getAttribute('data-photo-id');
-
-                axios.delete(`/breeder/manage-swine/photo/${photoId}`)
-                    .then((response) => { })
-                    .catch((error) => { console.log(error); });
-
-                // Trigger removedPhotoEvent
-                this.$emit('removedPhotoEvent', {
-                    photoId : photoId
-                });
-
-            },
-
-            template() {
-                return `
-                    <div class="dz-preview dz-file-preview">
-                        <div class="dz-image" style="width: 200px;height: 200px">
-                            <img data-dz-thumbnail />
-                        </div>
-                        <div class="dz-details">
-                            <div class="dz-size"><span data-dz-size></span></div>
-                            <div class="dz-filename"><span data-dz-name></span></div>
-                        </div>
-                        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                        <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                        <div class="dz-success-mark"><i class="fa fa-check"></i></div>
-                        <div class="dz-error-mark"><i class="fa fa-close"></i></div>
-                    </div>
-                `;
-            },
-
             getIndex(id, arrayToBeSearched) {
                 // // Return index of object to find
                 // for(var i = 0; i < arrayToBeSearched.length; i++) {
@@ -191,25 +144,22 @@
                 // }
             },
 
-            setAsPrimaryPhoto(chosenPhotoId) {
-                // const vm = this;
-                // const index = this.getIndex(chosenPhotoId, this.summaryImageFiles);
-                // const currentPrimaryPhotoIndex = this.currentPrimaryPhotoIndex;
+            addPhotoToImageFiles(imageDetails) {
+                // Put information of uploaded photos in local data storage
+                this.$store.commit('addToImageFiles', {
+                    imageDetails: imageDetails.data,
+                    orientation: imageDetails.orientation
+                });
+            },
+
+            removePhotoFromImageFiles(imageDetails) {
+                // Remove photo from local data storage
+                // and check if 'Summary' tab
+                // should still be enabled
+                // const index = this.getIndex(imageDetails.photoId, this.imageFiles);
                 //
-                // axios.post('/breeder/manage-swine/set-primary-photo', {
-                //     swineId: vm.basicInfo.id,
-                //     photoId: chosenPhotoId
-                // })
-                // .then((response) => {
-                //     // Change current primary photo if there is any
-                //     if(currentPrimaryPhotoIndex >= 0) vm.summaryImageFiles[currentPrimaryPhotoIndex].isPrimaryPhoto = false;
-                //
-                //     vm.summaryImageFiles[index].isPrimaryPhoto = true;
-                //     vm.currentPrimaryPhotoIndex = index;
-                // })
-                // .catch((error) => {
-                //     console.error(error);
-                // });
+                // this.imageFiles.splice(index,1);
+                // this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
             }
         },
 
@@ -220,87 +170,6 @@
 </script>
 
 <style scoped lang="scss">
-    /* Custom style from vue-dropzone */
-    .vue-dropzone {
-        margin-top: 2rem;
-        min-height: 20rem;
-        border: 2px solid #000000;
-        font-family: inherit;
-        letter-spacing: 0.2px;
-        color: #777;
-        transition: background-color .2s linear;
-        &:hover {
-            background-color: #F6F6F6;
-        }
-        i {
-            color: #CCC;
-        }
-        .dz-preview {
-            .dz-image {
-                border-radius: 1;
-                &:hover {
-                    img {
-                        transform: none;
-                        -webkit-filter: none;
-                    }
-                }
-            }
-            .dz-details {
-                bottom: 0;
-                top: 0;
-                color: white;
-                background-color: rgba(33, 150, 243, 0.8);
-                transition: opacity .2s linear;
-                text-align: left;
-                .dz-filename span, .dz-size span {
-                    background-color: transparent;
-                }
-                .dz-filename:not(:hover) span {
-                    border: none;
-                }
-                .dz-filename:hover span {
-                    background-color: transparent;
-                    border: none;
-                }
-            }
-            .dz-progress .dz-upload {
-                background: #cccccc;
-            }
-            .dz-remove {
-                position: absolute;
-                z-index: 30;
-                color: white;
-                margin-left: 15px;
-                padding: 10px;
-                top: inherit;
-                bottom: 15px;
-                border: 2px white solid;
-                text-decoration: none;
-                text-transform: uppercase;
-                font-size: 0.8rem;
-                font-weight: 800;
-                letter-spacing: 1.1px;
-                opacity: 0;
-            }
-            &:hover {
-                .dz-remove {
-                    opacity: 1;
-                }
-            }
-            .dz-success-mark, .dz-error-mark {
-                margin-left: auto !important;
-                margin-top: auto !important;
-                width: 100% !important;
-                top: 35% !important;
-                left: 0;
-                i {
-                    color: white !important;
-                    font-size: 5rem !important;
-                }
-            }
-        }
-    }
-
     #uploaded-photos-container {
         margin-top: 3rem;
     }

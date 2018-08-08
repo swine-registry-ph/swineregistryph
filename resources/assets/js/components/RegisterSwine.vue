@@ -109,8 +109,6 @@
         <register-swine-upload-photo
             :swineId="gpOneId"
             :uploadurl="uploadurl"
-            v-on:addedPhotoEvent="addPhotoToImageFiles"
-            v-on:removedPhotoEvent="removePhotoFromImageFiles"
         >
         </register-swine-upload-photo>
 
@@ -217,23 +215,6 @@
                     }, 500);
                 });
 
-            },
-
-            addPhotoToImageFiles(imageDetails) {
-                // Put information of uploaded photos in local data storage
-                // and enable 'Summary' tab
-                // this.imageFiles.push(imageDetails.data);
-                // this.tabDisables.summary = false;
-            },
-
-            removePhotoFromImageFiles(imageDetails) {
-                // Remove photo from local data storage
-                // and check if 'Summary' tab
-                // should still be enabled
-                // const index = this.getIndex(imageDetails.photoId, this.imageFiles);
-                //
-                // this.imageFiles.splice(index,1);
-                // this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
             }
         },
 
