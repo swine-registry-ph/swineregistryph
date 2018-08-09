@@ -56,7 +56,7 @@ class PhotoController extends Controller
                 if($file->isValid()){
                     $swine = Swine::find($request->swineId);
 
-                    $photoInfo = $this->createImageDetails($swine->id, $fileName, $fileExtension);
+                    $photoInfo = $this->createImageDetails($swine->id, $request->orientation, $fileExtension);
 
                     // Save image to Storage
                     Storage::disk('public')->put($photoInfo['directory'] . $photoInfo['filename'], file_get_contents($file));
@@ -107,23 +107,6 @@ class PhotoController extends Controller
         }
         else return response()->json('No files detected.', 500);
 
-    }
-
-    /**
-     * Set the primary photo of a Swine
-     *
-     * @param   Request     $request
-     * @return  string
-     */
-    public function setPrimaryPhoto(Request $request)
-    {
-        if($request->ajax()){
-            $swine = Swine::find($request->swineId);
-            $swine->primaryPhoto_id = $request->photoId;
-            $swine->save();
-
-            return "OK";
-        }
     }
 
     /**
@@ -180,16 +163,18 @@ class PhotoController extends Controller
      * Create image details specific for the system
      *
      * @param   integer     $swineId
-     * @param   string      $filename
+     * @param   string      $orientation
      * @param   string      $extension
      * @return  Array
      */
-    private function createImageDetails($swineId, $filename, $extension)
+    private function createImageDetails($swineId, $orientation, $extension)
     {
         $imageDetails = [];
+        $startingIndex = 100000000;
+        $newFileName = $startingIndex + $swineId . '_' . $orientation . '_' . md5(bin2hex(random_bytes(2)) . time()) . '.' . $extension;
 
         $imageDetails['directory'] = self::SWINE_IMG_PATH;
-        $imageDetails['filename'] = md5($swineId) . '_' . md5($filename . time()) . '.' . $extension;
+        $imageDetails['filename'] = $newFileName;
 
         return $imageDetails;
     }

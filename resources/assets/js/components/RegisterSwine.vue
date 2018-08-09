@@ -205,7 +205,18 @@
 
             goToTab(tabId) {
                 // Function used in tab navigation links
-                (tabId === 'summary') ? this.tabDisables.summary = false : this.tabDisables.summary = true;
+                if(tabId === 'summary') {
+                    this.tabDisables.summary = false;
+
+                    // Add onbeforeunload event to help users from discarding changes
+                    // they have made in registering swine
+                    window.onbeforeunload = function(e) {
+                        const dialogText = 'Changes you made may not be saved.';
+                        e.returnValue = dialogText;
+                        return dialogText;
+                    };
+                }
+                else this.tabDisables.summary = true;
 
                 this.$nextTick(() => {
                     $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);

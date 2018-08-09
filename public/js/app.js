@@ -2432,7 +2432,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         goToTab: function goToTab(tabId) {
             // Function used in tab navigation links
-            tabId === 'summary' ? this.tabDisables.summary = false : this.tabDisables.summary = true;
+            if (tabId === 'summary') {
+                this.tabDisables.summary = false;
+
+                // Add onbeforeunload event to help users from discarding changes
+                // they have made in registering swine
+                window.onbeforeunload = function (e) {
+                    var dialogText = 'Changes you made may not be saved.';
+                    e.returnValue = dialogText;
+                    return dialogText;
+                };
+            } else this.tabDisables.summary = true;
 
             this.$nextTick(function () {
                 $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
@@ -6603,7 +6613,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(79)
+  __webpack_require__(140)
 }
 var Component = __webpack_require__(0)(
   /* script */
@@ -6641,46 +6651,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(80);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("5ee9b18a", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n#uploaded-photos-container[data-v-5bf32331] {\n  margin-top: 3rem;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 79 */,
+/* 80 */,
 /* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6688,6 +6660,24 @@ exports.push([module.i, "\n#uploaded-photos-container[data-v-5bf32331] {\n  marg
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6839,6 +6829,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$store.commit('removeFromImageFiles', {
                 orientation: imageDetails.orientation
             });
+        },
+        savePhotos: function savePhotos(event) {
+            var sidePhoto = this.imageFiles.side;
+
+            // Check if there is a side photo
+            if (!_.isEmpty(sidePhoto)) {
+                var savePhotosButton = $('.save-photos-button');
+
+                this.disableButtons(savePhotosButton, event.target, 'Saving...');
+                Materialize.toast('Photos saved.', 1500, 'green lighten-1');
+
+                // Remove onbeforeunload event
+                window.onbeforeunload = null;
+
+                // Reload page
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1600);
+            } else {
+                Materialize.toast('Photo in side view orientation is required.', 3500, 'orange darken-1');
+            }
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
     },
 
@@ -7156,19 +7171,41 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "addedPhotoEvent": _vm.addPhotoToImageFiles,
       "removedPhotoEvent": _vm.removePhotoFromImageFiles
     }
-  })], 1)])])])])
+  })], 1), _vm._v(" "), _vm._m(5)])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action center-align",
+    attrs: {
+      "id": "photos-card-action"
+    }
+  }, [_c('button', {
+    staticClass: "btn waves-effect waves-light save-photos-button",
+    attrs: {
+      "href": "#!",
+      "type": "submit",
+      "name": "action"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.savePhotos($event)
+      }
+    }
+  }, [_vm._v("\n                Save Photos\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('blockquote', {
     staticClass: "info"
   }, [_vm._v("\n                Please upload good quality images with recommended\n                "), _c('b', [_vm._v("side")]), _vm._v(", "), _c('b', [_vm._v("front")]), _vm._v(", "), _c('b', [_vm._v("back")]), _vm._v(", and "), _c('b', [_vm._v("top")]), _vm._v(" orientations. "), _c('br'), _vm._v("\n                Recommended image file formats are "), _c('b', [_vm._v("JPEG")]), _vm._v(" and "), _c('b', [_vm._v("PNG")]), _vm._v(".\n            ")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Side View")])])
+  return _c('h6', [_c('b', [_vm._v("Side View *")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', [_c('b', [_vm._v("Front View")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', [_c('b', [_vm._v("Back View")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', [_c('b', [_vm._v("Top View")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br'), _vm._v("\n                        * Photo in side view orientation is required.\n                    ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -12823,6 +12860,61 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(141);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("d3795bfc", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n#photos > .card[data-v-5bf32331] {\n    padding: 0;\n}\n#photos-card-action[data-v-5bf32331] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n#uploaded-photos-container[data-v-5bf32331] {\n    margin-top: 3rem;\n}\n\n", ""]);
+
+// exports
+
 
 /***/ })
 ],[19]);
