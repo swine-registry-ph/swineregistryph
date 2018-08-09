@@ -16,6 +16,7 @@ class CreateSwinePropertiesTable extends Migration
         Schema::create('swine_properties', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('swine_id')->unsigned();
+            $table->foreign('swine_id')->references('id')->on('swines');
             $table->integer('property_id')->unsigned();
             $table->string('value');
         });

@@ -51,7 +51,7 @@ class UserInstancesSeeder extends Seeder
             // then making it all uppercase letters
             $faker = Faker\Factory::create();
             $fakerFarmName = $faker->company;
-            $farm = factory(App\Models\Farm::class)->create([
+            $farm = factory(App\Models\Farm::class)->make([
                 'name' => $fakerFarmName,
                 'farm_code' => strtoupper(substr($fakerFarmName, 0, 3)),
                 'farm_accreditation_no' => random_int(1000, 2000),
