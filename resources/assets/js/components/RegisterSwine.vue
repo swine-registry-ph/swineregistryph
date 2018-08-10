@@ -102,6 +102,7 @@
         <register-swine-summary
             :breeds="breeds"
             :farmoptions="farmoptions"
+            v-on:goToTabEvent="goToTab"
         >
         </register-swine-summary>
 
@@ -139,15 +140,14 @@
             return {
                 tabDisables: {
                     summary: true,
-                    photos: false
+                    photos: true
                 }
             }
         },
 
         computed: {
             gpOneId() {
-                return 1;
-                // return this.$store.state.registerSwine.gpOne.id;
+                return this.$store.state.registerSwine.gpOne.id;
             },
             gpOneBreedId: {
                 // get and set value from vuex store
@@ -216,7 +216,9 @@
                         return dialogText;
                     };
                 }
-                else this.tabDisables.summary = true;
+                else if(tabId === 'photos') {
+                    this.tabDisables.photos = false;
+                }
 
                 this.$nextTick(() => {
                     $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);

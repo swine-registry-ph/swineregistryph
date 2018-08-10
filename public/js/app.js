@@ -1607,6 +1607,7 @@ var index_esm = {
 var state = {
     gpOne: {
         id: 0,
+        regNo: '',
         breedId: '',
         sex: '',
         birthDate: '',
@@ -2333,6 +2334,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -2357,7 +2359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             tabDisables: {
                 summary: true,
-                photos: false
+                photos: true
             }
         };
     },
@@ -2365,8 +2367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         gpOneId: function gpOneId() {
-            return 1;
-            // return this.$store.state.registerSwine.gpOne.id;
+            return this.$store.state.registerSwine.gpOne.id;
         },
 
         gpOneBreedId: {
@@ -2442,7 +2443,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     e.returnValue = dialogText;
                     return dialogText;
                 };
-            } else this.tabDisables.summary = true;
+            } else if (tabId === 'photos') {
+                this.tabDisables.photos = false;
+            }
 
             this.$nextTick(function () {
                 $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
@@ -6281,6 +6284,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -6290,7 +6300,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            currentPrimaryPhotoIndex: -1,
             successfullyRegistered: false
         };
     },
@@ -6408,9 +6417,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     value: data.id
                 });
 
+                _this.$store.commit('updateValue', {
+                    instance: 'gpOne',
+                    property: 'regNo',
+                    value: data.registration_no
+                });
+
                 _this.successfullyRegistered = true;
-                _this.enableButtons(submitButton, event.target, 'Register Swine and Generate Certificate');
-                Materialize.toast('Registration Successful!', 3000, 'green lighten-1');
+                // this.enableButtons(submitButton, event.target, 'Register Swine and Generate Certificate');
+                Materialize.toast('Registration Successful! You can now upload swine photos', 4000, 'green lighten-1');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -6431,6 +6446,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
             buttons.removeClass('disabled');
             actionBtnElement.innerHTML = textToShow;
+        },
+        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
+            this.$emit('goToTabEvent', tabId);
         }
     },
 
@@ -6578,7 +6596,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "target": "_blank",
       "name": "action"
     }
-  }, [_vm._v("\n                View Generated Certificate\n            ")]) : _vm._e()])])])
+  }, [_vm._v("\n                View Generated Certificate\n            ")]) : _vm._e(), _vm._v(" "), (_vm.successfullyRegistered) ? _c('a', {
+    staticClass: "btn waves-effect waves-light",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.triggerGoToTabEvent('photos')
+      }
+    }
+  }, [_vm._v("\n                Upload Swine Photos\n            ")]) : _vm._e()])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -6797,6 +6826,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6813,6 +6846,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         imageFiles: function imageFiles() {
             return this.$store.getters.imageFiles;
+        },
+        gpOneRegistrationNo: function gpOneRegistrationNo() {
+            return this.$store.state.registerSwine.gpOne.regNo;
         }
     },
 
@@ -7117,7 +7153,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title center-align"
-  }, [_vm._v("Upload Photos")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+  }, [_vm._v("Upload Photos")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', [_vm._v(_vm._s(_vm.gpOneRegistrationNo))]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('br'), _c('br'), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s6 m6 l3"
@@ -7380,6 +7416,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "breeds": _vm.breeds,
       "farmoptions": _vm.farmoptions
+    },
+    on: {
+      "goToTabEvent": _vm.goToTab
     }
   }), _vm._v(" "), _c('register-swine-upload-photo', {
     attrs: {

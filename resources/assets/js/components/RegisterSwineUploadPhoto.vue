@@ -3,12 +3,16 @@
         <div class="card col s12">
             <div class="card-content">
                 <span class="card-title center-align">Upload Photos</span>
+                <br/>
+
+                <h5>{{ gpOneRegistrationNo }}</h5>
 
                 <blockquote class="info">
                     Please upload good quality images with recommended
                     <b>side</b>, <b>front</b>, <b>back</b>, and <b>top</b> orientations. <br/>
                     Recommended image file formats are <b>JPEG</b> and <b>PNG</b>.
                 </blockquote>
+                <br/><br/>
 
                 <div class="row">
                     <!-- Side View -->
@@ -151,6 +155,10 @@
         computed: {
             imageFiles() {
                 return this.$store.getters.imageFiles;
+            },
+
+            gpOneRegistrationNo() {
+                return this.$store.state.registerSwine.gpOne.regNo;
             }
         },
 

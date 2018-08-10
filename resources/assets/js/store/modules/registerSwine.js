@@ -2,6 +2,7 @@
 const state = {
     gpOne: {
         id: 0,
+        regNo: '',
         breedId: '',
         sex: '',
         birthDate: '',
