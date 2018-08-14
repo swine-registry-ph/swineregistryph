@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ResizeUploadedImage;
 use App\Models\Photo;
 use App\Models\Swine;
 use Carbon\Carbon;
@@ -94,6 +95,9 @@ class PhotoController extends Controller
 
                         // Additional metadata
                         $photo->fullFilePath = asset('storage'. $photoInfo['directory'] . $photoInfo['filename']);
+
+                        // Queue resizing of images
+                        dispatch(new ResizeUploadedImage($photo->name));
 
                         return response()->json($photo, 200);
 
