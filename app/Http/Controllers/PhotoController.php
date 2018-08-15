@@ -18,6 +18,9 @@ class PhotoController extends Controller
 
     // Constant variable paths
     const SWINE_IMG_PATH = '/images/swine/';
+    const SWINE_SIMG_PATH = '/images/swine/small/';
+    const SWINE_MIMG_PATH = '/images/swine/medium/';
+    const SWINE_LIMG_PATH = '/images/swine/large/';
 
     /**
      * Create a new controller instance.
@@ -126,11 +129,15 @@ class PhotoController extends Controller
             // applicable orientation photo id
             $photo = Photo::find($photoId);
             $swine = $photo->photoable()->first();
-            $fullFilePath = self::SWINE_IMG_PATH . $photo->name;
+            $fullFilePath  = self::SWINE_IMG_PATH . $photo->name;
+            $sFullFilePath = self::SWINE_SIMG_PATH . $photo->name;
+            $mFullFilePath = self::SWINE_MIMG_PATH . $photo->name;
+            $lFullFilePath = self::SWINE_LIMG_PATH . $photo->name;
 
-            if(Storage::disk('public')->exists($fullFilePath)){
-                Storage::disk('public')->delete($fullFilePath);
-            }
+            if(Storage::disk('public')->exists($fullFilePath))  Storage::disk('public')->delete($fullFilePath);
+            if(Storage::disk('public')->exists($sFullFilePath)) Storage::disk('public')->delete($sFullFilePath);
+            if(Storage::disk('public')->exists($mFullFilePath)) Storage::disk('public')->delete($mFullFilePath);
+            if(Storage::disk('public')->exists($lFullFilePath)) Storage::disk('public')->delete($lFullFilePath);
 
             $photo->delete();
 

@@ -15,6 +15,7 @@ class ResizeUploadedImage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    // Constant variable paths
     const SWINE_IMG_PATH = '/images/swine/';
     const SWINE_SIMG_PATH = '/images/swine/small/';
     const SWINE_MIMG_PATH = '/images/swine/medium/';
