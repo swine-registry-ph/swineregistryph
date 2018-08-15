@@ -102,14 +102,14 @@
         <register-swine-summary
             :breeds="breeds"
             :farmoptions="farmoptions"
+            v-on:goToTabEvent="goToTab"
         >
         </register-swine-summary>
 
         <!-- Upload photos tab -->
         <register-swine-upload-photo
+            :swineId="gpOneId"
             :uploadurl="uploadurl"
-            v-on:addedPhotoEvent="addPhotoToImageFiles"
-            v-on:removedPhotoEvent="removePhotoFromImageFiles"
         >
         </register-swine-upload-photo>
 
@@ -146,6 +146,9 @@
         },
 
         computed: {
+            gpOneId() {
+                return this.$store.state.registerSwine.gpOne.id;
+            },
             gpOneBreedId: {
                 // get and set value from vuex store
                 get() { return this.$store.state.registerSwine.gpOne.breedId; },
@@ -202,7 +205,20 @@
 
             goToTab(tabId) {
                 // Function used in tab navigation links
-                (tabId === 'summary') ? this.tabDisables.summary = false : this.tabDisables.summary = true;
+                if(tabId === 'summary') {
+                    this.tabDisables.summary = false;
+
+                    // Add onbeforeunload event to help users from discarding changes
+                    // they have made in registering swine
+                    window.onbeforeunload = function(e) {
+                        const dialogText = 'Changes you made may not be saved.';
+                        e.returnValue = dialogText;
+                        return dialogText;
+                    };
+                }
+                else if(tabId === 'photos') {
+                    this.tabDisables.photos = false;
+                }
 
                 this.$nextTick(() => {
                     $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
@@ -212,23 +228,6 @@
                     }, 500);
                 });
 
-            },
-
-            addPhotoToImageFiles(imageDetails) {
-                // Put information of uploaded photos in local data storage
-                // and enable 'Summary' tab
-                // this.imageFiles.push(imageDetails.data);
-                // this.tabDisables.summary = false;
-            },
-
-            removePhotoFromImageFiles(imageDetails) {
-                // Remove photo from local data storage
-                // and check if 'Summary' tab
-                // should still be enabled
-                // const index = this.getIndex(imageDetails.photoId, this.imageFiles);
-                //
-                // this.imageFiles.splice(index,1);
-                // this.tabDisables.summary = (this.imageFiles.length < 1) ? true : false;
             }
         },
 
@@ -246,5 +245,9 @@
     .tab.disabled a {
         color: #9e9e9e !important;
         cursor: not-allowed !important;
+    }
+
+    .tabs .indicator {
+        background-color: #c62828 !important;
     }
 </style>

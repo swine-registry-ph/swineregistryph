@@ -16,6 +16,7 @@ class CreateFarmsTable extends Migration
         Schema::create('farms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('breeder_id')->unsigned();
+            $table->foreign('breeder_id')->references('id')->on('breeders');
             $table->string('name');
             $table->text('farm_code');
             $table->date('farm_accreditation_date');

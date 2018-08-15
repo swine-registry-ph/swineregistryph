@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ResizeUploadedImage;
 use App\Models\Photo;
 use App\Models\Swine;
 use Carbon\Carbon;
@@ -17,6 +18,9 @@ class PhotoController extends Controller
 
     // Constant variable paths
     const SWINE_IMG_PATH = '/images/swine/';
+    const SWINE_SIMG_PATH = '/images/swine/small/';
+    const SWINE_MIMG_PATH = '/images/swine/medium/';
+    const SWINE_LIMG_PATH = '/images/swine/large/';
 
     /**
      * Create a new controller instance.
@@ -56,7 +60,7 @@ class PhotoController extends Controller
                 if($file->isValid()){
                     $swine = Swine::find($request->swineId);
 
-                    $photoInfo = $this->createImageDetails($swine->id, $fileName, $fileExtension);
+                    $photoInfo = $this->createImageDetails($swine->id, $request->orientation, $fileExtension);
 
                     // Save image to Storage
                     Storage::disk('public')->put($photoInfo['directory'] . $photoInfo['filename'], file_get_contents($file));
@@ -67,9 +71,36 @@ class PhotoController extends Controller
                         $photo->name = $photoInfo['filename'];
                         $swine->photos()->save($photo);
 
+                        switch ($request->orientation) {
+                            case 'side':
+                                $swine->sidePhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+
+                            case 'front':
+                                $swine->frontPhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+
+                            case 'back':
+                                $swine->backPhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+
+                            case 'top':
+                                $swine->topPhoto_id = $photo->id;
+                                $swine->save();
+                                break;
+                            
+                            default:
+                                break;
+                        }
+
                         // Additional metadata
-                        $photo->fullFilePath = '/storage\/' . $photoInfo['directory'] . $photoInfo['filename'];
-                        $photo->isPrimaryPhoto = false;
+                        $photo->fullFilePath = asset('storage'. $photoInfo['directory'] . $photoInfo['filename']);
+
+                        // Queue resizing of images
+                        dispatch(new ResizeUploadedImage($photo->name));
 
                         return response()->json($photo, 200);
 
@@ -86,37 +117,54 @@ class PhotoController extends Controller
     }
 
     /**
-     * Set the primary photo of a Swine
-     *
-     * @param   Request     $request
-     * @return  string
-     */
-    public function setPrimaryPhoto(Request $request)
-    {
-        if($request->ajax()){
-            $swine = Swine::find($request->swineId);
-            $swine->primaryPhoto_id = $request->photoId;
-            $swine->save();
-
-            return "OK";
-        }
-    }
-
-    /**
      * Delete Photo in file storage and database
      *
      * @param   Request     $request
      * @return  JSON
      */
-    public function deletePhoto(Request $request, $photoId)
+    public function deletePhoto(Request $request, $photoId, $orientation)
     {
         if($request->ajax()){
+            // Get swine parent as well to make changes to
+            // applicable orientation photo id
             $photo = Photo::find($photoId);
-            $fullFilePath = self::SWINE_IMG_PATH . $photo->name;
+            $swine = $photo->photoable()->first();
+            $fullFilePath  = self::SWINE_IMG_PATH . $photo->name;
+            $sFullFilePath = self::SWINE_SIMG_PATH . $photo->name;
+            $mFullFilePath = self::SWINE_MIMG_PATH . $photo->name;
+            $lFullFilePath = self::SWINE_LIMG_PATH . $photo->name;
 
-            if(Storage::disk('public')->exists($fullFilePath)) Storage::disk('public')->delete($fullFilePath);
+            if(Storage::disk('public')->exists($fullFilePath))  Storage::disk('public')->delete($fullFilePath);
+            if(Storage::disk('public')->exists($sFullFilePath)) Storage::disk('public')->delete($sFullFilePath);
+            if(Storage::disk('public')->exists($mFullFilePath)) Storage::disk('public')->delete($mFullFilePath);
+            if(Storage::disk('public')->exists($lFullFilePath)) Storage::disk('public')->delete($lFullFilePath);
 
             $photo->delete();
+
+            switch ($orientation) {
+                case 'side':
+                    $swine->sidePhoto_id = 0;
+                    $swine->save();
+                    break;
+                
+                case 'front':
+                    $swine->frontPhoto_id = 0;
+                    $swine->save();
+                    break;
+                
+                case 'back':
+                    $swine->backPhoto_id = 0;
+                    $swine->save();
+                    break;
+
+                case 'top':
+                    $swine->topPhoto_id = 0;
+                    $swine->save(); 
+                    break;
+
+                default:
+                    break;
+            }
 
             return response()->json('Image deleted', 200);
         }
@@ -126,16 +174,18 @@ class PhotoController extends Controller
      * Create image details specific for the system
      *
      * @param   integer     $swineId
-     * @param   string      $filename
+     * @param   string      $orientation
      * @param   string      $extension
      * @return  Array
      */
-    private function createImageDetails($swineId, $filename, $extension)
+    private function createImageDetails($swineId, $orientation, $extension)
     {
         $imageDetails = [];
+        $startingIndex = 100000000;
+        $newFileName = $startingIndex + $swineId . '_' . $orientation . '_' . md5(bin2hex(random_bytes(2)) . time()) . '.' . $extension;
 
         $imageDetails['directory'] = self::SWINE_IMG_PATH;
-        $imageDetails['filename'] = md5($swineId) . '_' . md5($filename . time()) . '.' . $extension;
+        $imageDetails['filename'] = $newFileName;
 
         return $imageDetails;
     }

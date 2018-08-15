@@ -401,6 +401,13 @@
                 >
                     View Generated Certificate
                 </a>
+                <a v-if="successfullyRegistered"
+                    href="#!"
+                    class="btn waves-effect waves-light"
+                    @click.prevent="triggerGoToTabEvent('photos')"
+                >
+                    Upload Swine Photos
+                </a>
             </div>
         </div>
     </div>
@@ -415,7 +422,6 @@
 
         data() {
             return {
-                currentPrimaryPhotoIndex: -1,
                 successfullyRegistered: false
             }
         },
@@ -531,9 +537,15 @@
                         value: data.id
                     });
 
+                    this.$store.commit('updateValue', {
+                        instance: 'gpOne',
+                        property: 'regNo',
+                        value: data.registration_no
+                    });
+
                     this.successfullyRegistered = true;
-                    this.enableButtons(submitButton, event.target, 'Register Swine and Generate Certificate');
-                    Materialize.toast('Registration Successful!', 3000, 'green lighten-1');
+                    // this.enableButtons(submitButton, event.target, 'Register Swine and Generate Certificate');
+                    Materialize.toast('Registration Successful! You can now upload swine photos', 4000, 'green lighten-1');
                 })
                 .catch((error) => {
                     console.log(error);
@@ -560,6 +572,10 @@
             enableButtons(buttons, actionBtnElement, textToShow) {
                 buttons.removeClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
+            },
+
+            triggerGoToTabEvent(tabId) {
+                this.$emit('goToTabEvent', tabId);
             }
         },
 
