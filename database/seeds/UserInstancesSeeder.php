@@ -51,7 +51,7 @@ class UserInstancesSeeder extends Seeder
             // then making it all uppercase letters
             $faker = Faker\Factory::create();
             $fakerFarmName = $faker->company;
-            $farm = factory(App\Models\Farm::class)->create([
+            $farm = factory(App\Models\Farm::class)->make([
                 'name' => $fakerFarmName,
                 'farm_code' => strtoupper(substr($fakerFarmName, 0, 3)),
                 'farm_accreditation_no' => random_int(1000, 2000),
@@ -457,20 +457,20 @@ class UserInstancesSeeder extends Seeder
                 $swinePhoto = new App\Models\Photo;
                 $swinePhoto->name = $chosenBreedName . '_' . $sexes[$swineSexIndex] . '.jpg';
                 $swine->photos()->save($swinePhoto);
-                $swine->primaryPhoto_id = $swinePhoto->id;
+                $swine->sidePhoto_id = $swinePhoto->id;
 
                 // Sire
                 $gpSirePhoto = new App\Models\Photo;
                 $gpSirePhoto->name = $chosenBreedName . '_male.jpg';
                 $gpSire->photos()->save($gpSirePhoto);
-                $gpSire->primaryPhoto_id = $gpSirePhoto->id;
+                $gpSire->sidePhoto_id = $gpSirePhoto->id;
                 $gpSire->save();
 
                 // Dam
                 $gpDamPhoto = new App\Models\Photo;
                 $gpDamPhoto->name = $chosenBreedName . '_female.jpg';
                 $gpDam->photos()->save($gpDamPhoto);
-                $gpDam->primaryPhoto_id = $gpDamPhoto->id;
+                $gpDam->sidePhoto_id = $gpDamPhoto->id;
                 $gpDam->save();
 
                 // Attach GP sire and GP dam to swine

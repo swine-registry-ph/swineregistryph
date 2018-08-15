@@ -91,9 +91,15 @@
 </template>
 
 <script>
+    import RegisterSwineParentsPropertiesInputs from './RegisterSwineParentsPropertiesInputs.vue';
+
     export default {
         props: {
             farmoptions: Array
+        },
+
+        components: {
+            RegisterSwineParentsPropertiesInputs
         },
 
         data() {

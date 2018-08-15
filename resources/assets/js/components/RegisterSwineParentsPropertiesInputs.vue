@@ -52,7 +52,7 @@
                 <br>
                 <a href="#!"
                     :id="parentIdPrefix + 'check'"
-                    class="btn waves-effect waves-light "
+                    class="btn waves-effect waves-light z-depth-0"
                     type="submit"
                     name="action"
                     @click.prevent="checkParent($event)"

@@ -2,6 +2,7 @@
 const state = {
     gpOne: {
         id: 0,
+        regNo: '',
         breedId: '',
         sex: '',
         birthDate: '',
@@ -90,7 +91,12 @@ const state = {
         litterweightWeaning: '',
         dateWeaning: ''
     },
-    imageFiles: []
+    imageFiles: {
+        side: {},
+        front: {},
+        back: {},
+        top: {}
+    }
 };
 
 // getters
@@ -209,6 +215,16 @@ const mutations = {
 
 
         }
+    },
+
+    addToImageFiles(state, {imageDetails, orientation}) {
+        // Add image according to its orientation
+        state.imageFiles[orientation] = imageDetails;
+    },
+
+    removeFromImageFiles(state, {orientation}) {
+        // Remove image according to its orientation
+        state.imageFiles[orientation] = {};
     }
 }
 
