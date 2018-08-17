@@ -43,12 +43,32 @@
                 <div class="card">
                     <div class="card-image">
                         <img :src="swinePhotosDirectory + swine.photos[0].name" class="materialboxed">
+                        <a v-if="swine.swinecart"
+                            class="btn-floating halfway-fab red lighten-1 tooltipped"
+                            data-position="top" 
+                            data-delay="50" 
+                            data-tooltip="Included in SwineCart"
+                        >
+                            <i class="material-icons">shopping_cart</i>
+                        </a>
                     </div>
                     <div class="card-content">
                         <span class="card-title flow-text"><b>{{ swine.registration_no }}</b></span>
                         <p class="">
                             {{ swine.farm.name }}, {{ swine.farm.province }} <br>
                             {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
+                            <!-- <a :href="`/breeder/registry-certificate/${swine.id}`"
+                                target="_blank"
+                                class="btn blue darken-1 z-depth-0"
+                            >
+                                View Certificate
+                            </a> <br><br>
+                            <a @click.prevent="viewPhotos(index)"
+                                href="#"
+                                class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
+                            >
+                                View Photos
+                            </a> -->
                         </p>
                     </div>
                     <div class="card-action">
@@ -86,6 +106,15 @@
                         {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
                     </p>
                     <div class="secondary-content">
+                        <a v-if="swine.swinecart"
+                            id="list-swinecart-icon"
+                            class="btn-floating red lighten-1 z-depth-0 tooltipped"
+                            data-position="top" 
+                            data-delay="50" 
+                            data-tooltip="Included in SwineCart"
+                        >
+                            <i class="material-icons">shopping_cart</i>
+                        </a>
                         <a :href="`/breeder/registry-certificate/${swine.id}`"
                             target="_blank"
                             class="btn blue darken-1 z-depth-0"
@@ -180,6 +209,10 @@
         background-color: white !important;
     }
 
+    a#list-swinecart-icon {
+        margin-right: 2rem;
+    }
+
     /* Card customizations */
     .card-image {
         background-color: white;
@@ -190,6 +223,12 @@
     	width: auto;
     	padding: 0.5rem;
     }
+
+    .card-action a {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
 
     /* Medium Screen */
     @media only screen and (min-width: 601px){
