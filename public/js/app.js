@@ -7590,7 +7590,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n\n", ""]);
+exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\ndiv#view-icons-container {\n    cursor: pointer;\n}\nspan#view-label {\n    margin-right: 1rem;\n}\n.custom-secondary-btn {\n    border: 1px solid;\n    background-color: white !important;\n}\n\n/* Card customizations */\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n", ""]);
 
 // exports
 
@@ -7601,6 +7601,16 @@ exports.push([module.i, "\n.switch label i {\n    margin: 0;\n}\n.card-image {\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7762,49 +7772,44 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "col s12"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "switch right"
-  }, [_c('label', [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("view_module")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.viewLayout),
-      expression: "viewLayout"
-    }],
+    staticClass: "col s12",
     attrs: {
-      "type": "checkbox",
-      "true-value": 'list',
-      "false-value": 'card'
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.viewLayout) ? _vm._i(_vm.viewLayout, null) > -1 : _vm._q(_vm.viewLayout, 'list')
+      "id": "options-container"
+    }
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "left",
+    attrs: {
+      "id": "view-icons-container"
+    }
+  }, [_c('i', {
+    staticClass: "material-icons tooltipped",
+    class: _vm.viewLayout === 'card' ? 'blue-text' : 'grey-text',
+    attrs: {
+      "data-position": "top",
+      "data-delay": "50",
+      "data-tooltip": "Card"
     },
     on: {
-      "change": function($event) {
-        var $$a = _vm.viewLayout,
-          $$el = $event.target,
-          $$c = $$el.checked ? ('list') : ('card');
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.viewLayout = $$a.concat([$$v]))
-          } else {
-            $$i > -1 && (_vm.viewLayout = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-          }
-        } else {
-          _vm.viewLayout = $$c
-        }
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.viewLayout = 'card'
       }
     }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "lever"
-  }), _vm._v(" "), _c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("list")])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                view_module\n            ")]), _vm._v(" "), _c('i', {
+    staticClass: "material-icons tooltipped",
+    class: _vm.viewLayout === 'list' ? 'blue-text' : 'grey-text',
+    attrs: {
+      "data-position": "top",
+      "data-delay": "50",
+      "data-tooltip": "List"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.viewLayout = 'list'
+      }
+    }
+  }, [_vm._v("\n                view_list\n            ")])])]), _vm._v(" "), _c('div', {
     attrs: {
       "id": "card-layout-container"
     }
@@ -7817,7 +7822,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "viewLayout === 'card'"
       }],
       key: swine.id,
-      staticClass: "col s4"
+      staticClass: "col s12 m6 l4"
     }, [_c('div', {
       staticClass: "card"
     }, [_c('div', {
@@ -7830,18 +7835,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })]), _vm._v(" "), _c('div', {
       staticClass: "card-content"
     }, [_c('span', {
-      staticClass: "card-title"
-    }, [_vm._v(_vm._s(swine.registration_no))]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text"
-    }, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                    ")])]), _vm._v(" "), _c('div', {
+      staticClass: "card-title flow-text"
+    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                    ")])]), _vm._v(" "), _c('div', {
       staticClass: "card-action"
     }, [_c('a', {
+      staticClass: "btn blue darken-1 z-depth-0",
       attrs: {
         "href": ("/breeder/registry-certificate/" + (swine.id)),
         "target": "_blank"
       }
     }, [_vm._v("\n                        Certificate\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "right",
+      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
       attrs: {
         "href": "#"
       },
@@ -7877,18 +7881,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }), _vm._v(" "), _c('span', {
       staticClass: "title"
-    }, [_vm._v(_vm._s(swine.registration_no))]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text"
-    }, [_vm._v("\n                    " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                    " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                ")]), _vm._v(" "), _c('div', {
+    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                    " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                ")]), _vm._v(" "), _c('div', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn-flat orange-text text-accent-2",
+      staticClass: "btn blue darken-1 z-depth-0",
       attrs: {
         "href": ("/breeder/registry-certificate/" + (swine.id)),
         "target": "_blank"
       }
     }, [_vm._v("\n                        Certificate\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn-flat orange-text text-accent-2",
+      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
       attrs: {
         "href": "#!"
       },
@@ -7906,7 +7908,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, _vm._l((_vm.viewPhotosModal.photos), function(photo) {
     return _c('div', {
@@ -7921,15 +7923,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": _vm.swinePhotosDirectory + photo.name
       }
     })])])])
-  }))]), _vm._v(" "), _vm._m(2)])])
+  }))]), _vm._v(" "), _vm._m(3)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v(" View Registered Swine ")])])])
+  }, [_vm._v(" View Registered Swine ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "left"
+  }, [_c('span', {
+    attrs: {
+      "id": "view-label"
+    }
+  }, [_vm._v("\n                VIEW\n            ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("Photos "), _c('i', {
     staticClass: "material-icons right modal-close"

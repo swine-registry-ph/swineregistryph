@@ -2,24 +2,34 @@
     <div class="col s12">
 
         <div class="col s12">
-            <div class="col s12">
-                <h4 class="title-page"> View Registered Swine </h4>
-            </div>
+            <h4 class="title-page"> View Registered Swine </h4>
         </div>
 
-        <div class="col s12">
-            <!-- Switch -->
-            <div class="switch right">
-                <label>
-                    <i class="material-icons left">view_module</i>
-                    <input type="checkbox"
-                        v-model="viewLayout"
-                        v-bind:true-value="'list'"
-                        v-bind:false-value="'card'"
-                    >
-                    <span class="lever"></span>
-                    <i class="material-icons right">list</i>
-                </label>
+        <div id="options-container" class="col s12">
+            <div class="left">
+                <span id="view-label">
+                    VIEW
+                </span>
+            </div>
+            <div id="view-icons-container" class="left">
+                <i @click.prevent="viewLayout = 'card'"
+                    class="material-icons tooltipped"
+                    :class="viewLayout === 'card' ? 'blue-text' : 'grey-text'"
+                    data-position="top" 
+                    data-delay="50" 
+                    data-tooltip="Card"
+                >
+                    view_module
+                </i>
+                <i @click.prevent="viewLayout = 'list'"
+                    class="material-icons tooltipped"
+                    :class="viewLayout === 'list' ? 'blue-text' : 'grey-text'"
+                    data-position="top" 
+                    data-delay="50" 
+                    data-tooltip="List"
+                >
+                    view_list
+                </i>
             </div>
         </div>
 
@@ -28,15 +38,15 @@
             <div v-show="viewLayout === 'card'"
                 v-for="(swine, index) in swines"
                 :key="swine.id"
-                class="col s4"
+                class="col s12 m6 l4"
             >
                 <div class="card">
                     <div class="card-image">
                         <img :src="swinePhotosDirectory + swine.photos[0].name" class="materialboxed">
                     </div>
                     <div class="card-content">
-                        <span class="card-title">{{ swine.registration_no }}</span>
-                        <p class="grey-text">
+                        <span class="card-title flow-text"><b>{{ swine.registration_no }}</b></span>
+                        <p class="">
                             {{ swine.farm.name }}, {{ swine.farm.province }} <br>
                             {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
                         </p>
@@ -44,13 +54,13 @@
                     <div class="card-action">
                         <a :href="`/breeder/registry-certificate/${swine.id}`"
                             target="_blank"
-                            class=""
+                            class="btn blue darken-1 z-depth-0"
                         >
                             Certificate
                         </a>
                         <a @click.prevent="viewPhotos(index)"
                             href="#"
-                            class="right"
+                            class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
                         >
                             Photos
                         </a>
@@ -70,21 +80,21 @@
                     class="collection-item avatar"
                 >
                     <img :src="swinePhotosDirectory + swine.photos[0].name" alt="" class="circle materialboxed">
-                    <span class="title">{{ swine.registration_no }}</span>
-                    <p class="grey-text">
+                    <span class="title"><b>{{ swine.registration_no }}</b></span>
+                    <p class="">
                         {{ swine.farm.name }}, {{ swine.farm.province }} <br>
                         {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
                     </p>
                     <div class="secondary-content">
                         <a :href="`/breeder/registry-certificate/${swine.id}`"
                             target="_blank"
-                            class="btn-flat orange-text text-accent-2"
+                            class="btn blue darken-1 z-depth-0"
                         >
                             Certificate
                         </a>
                         <a @click.prevent="viewPhotos(index)"
                             href="#!"
-                            class="btn-flat orange-text text-accent-2"
+                            class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
                         >
                             Photos
                         </a>
@@ -152,11 +162,25 @@
 </script>
 
 <style lang="css">
-
-    .switch label i {
-        margin: 0;
+    div#options-container {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
     }
 
+    div#view-icons-container {
+        cursor: pointer;
+    }
+
+    span#view-label {
+        margin-right: 1rem;
+    }
+
+    .custom-secondary-btn {
+        border: 1px solid;
+        background-color: white !important;
+    }
+
+    /* Card customizations */
     .card-image {
         background-color: white;
     }
@@ -206,5 +230,4 @@
             height: 270px;
         }
     }
-
 </style>
