@@ -70,6 +70,7 @@
 
             </template>
 
+            <!-- Pagination -->
             <div class="col s12 center-align pagination-container">
                 <ul class="pagination">
                     <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">

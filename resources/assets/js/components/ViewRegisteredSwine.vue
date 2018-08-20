@@ -36,7 +36,7 @@
         <!-- Card Style -->
         <div id="card-layout-container">
             <div v-show="viewLayout === 'card'"
-                v-for="(swine, index) in swines"
+                v-for="(swine, index) in paginatedSwines"
                 :key="swine.id"
                 class="col s12 m6 l4"
             >
@@ -78,7 +78,7 @@
                         >
                             Certificate
                         </a>
-                        <a @click.prevent="viewPhotos(index)"
+                        <a @click.prevent="viewPhotos(swine.id)"
                             href="#"
                             class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
                         >
@@ -95,7 +95,7 @@
             class="col s12"
         >
             <ul class="collection">
-                <li v-for="(swine, index) in swines"
+                <li v-for="(swine, index) in paginatedSwines"
                     :key="swine.id"
                     class="collection-item avatar"
                 >
@@ -121,7 +121,7 @@
                         >
                             Certificate
                         </a>
-                        <a @click.prevent="viewPhotos(index)"
+                        <a @click.prevent="viewPhotos(swine.id)"
                             href="#!"
                             class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
                         >
@@ -132,10 +132,35 @@
             </ul>
         </div>
 
+        <!-- Pagination -->
+        <div class="col s12 center-align pagination-container">
+            <ul class="pagination">
+                <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
+                    <a @click.prevent="previousPage()">
+                        <i class="material-icons">chevron_left</i>
+                    </a>
+                </li>
+                <li v-for="i in pageCount"
+                    class="waves-effect"
+                    :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
+                >
+                    <a @click.prevent="goToPage(i)"> {{ i }} </a>
+                </li>
+                <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
+                    <a @click.prevent="nextPage()">
+                        <i class="material-icons">chevron_right</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
         <!-- View Photos Modal -->
         <div id="view-photos-modal" class="modal bottom-sheet">
             <div class="modal-content">
-                <h4>Photos <i class="material-icons right modal-close">close</i></h4>
+                <h5>
+                    <b>{{ viewPhotosModal.registrationNo }}</b> &nbsp; / &nbsp; Photos
+                    <i class="material-icons right modal-close">close</i>
+                </h5>
                 <div class="row">
                     <div v-for="photo in viewPhotosModal.photos"
                         :key="photo.id"
@@ -168,16 +193,58 @@
             return {
                 swinePhotosDirectory: '/storage/images/swine/',
                 viewLayout: 'card',
+                pageNumber: 0,
+                paginationSize: 15,
                 viewPhotosModal: {
+                    registrationNo: '',
                     photos: []
                 }
             }
         },
 
+        computed: {
+            pageCount() {
+                let l = this.swines.length;
+                let s = this.paginationSize;
+
+                return Math.ceil(l/s);
+            },
+
+            paginatedSwines() {
+                const start = this.pageNumber * this.paginationSize;
+                const end = start + this.paginationSize;
+
+                return _.sortBy(this.swines, ['registration_no']).slice(start, end);
+            }
+        },
+
         methods: {
-            viewPhotos(index) {
+            previousPage() {
+                if(this.pageNumber !== 0) this.pageNumber--;
+            },
+
+            nextPage() {
+                if(this.pageNumber < this.pageCount -1) this.pageNumber++;
+            },
+
+            goToPage(page) {
+                this.pageNumber = page - 1;
+            },
+
+            getIndex(id, arrayToBeSearched) {
+                // Return index of object to find
+                for(var i = 0; i < arrayToBeSearched.length; i++) {
+                    if(arrayToBeSearched[i].id === id) return i;
+                }
+            },
+
+            viewPhotos(swineId) {
                 // Prepare needed data for modal
-                this.viewPhotosModal.photos = this.swines[index].photos;
+                const index = this.getIndex(swineId, this.swines);
+                const swine = this.swines[index];
+
+                this.viewPhotosModal.registrationNo = swine.registration_no;
+                this.viewPhotosModal.photos = swine.photos;
 
                 $('#view-photos-modal').modal('open');
             }

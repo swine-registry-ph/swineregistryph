@@ -7761,6 +7761,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -7771,17 +7796,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             swinePhotosDirectory: '/storage/images/swine/',
             viewLayout: 'card',
+            pageNumber: 0,
+            paginationSize: 15,
             viewPhotosModal: {
+                registrationNo: '',
                 photos: []
             }
         };
     },
 
 
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.swines.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedSwines: function paginatedSwines() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return _.sortBy(this.swines, ['registration_no']).slice(start, end);
+        }
+    },
+
     methods: {
-        viewPhotos: function viewPhotos(index) {
+        previousPage: function previousPage() {
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            this.pageNumber = page - 1;
+        },
+        getIndex: function getIndex(id, arrayToBeSearched) {
+            // Return index of object to find
+            for (var i = 0; i < arrayToBeSearched.length; i++) {
+                if (arrayToBeSearched[i].id === id) return i;
+            }
+        },
+        viewPhotos: function viewPhotos(swineId) {
             // Prepare needed data for modal
-            this.viewPhotosModal.photos = this.swines[index].photos;
+            var index = this.getIndex(swineId, this.swines);
+            var swine = this.swines[index];
+
+            this.viewPhotosModal.registrationNo = swine.registration_no;
+            this.viewPhotosModal.photos = swine.photos;
 
             $('#view-photos-modal').modal('open');
         }
@@ -7842,7 +7904,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "card-layout-container"
     }
-  }, _vm._l((_vm.swines), function(swine, index) {
+  }, _vm._l((_vm.paginatedSwines), function(swine, index) {
     return _c('div', {
       directives: [{
         name: "show",
@@ -7890,7 +7952,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.viewPhotos(index)
+          _vm.viewPhotos(swine.id)
         }
       }
     }, [_vm._v("\n                        Photos\n                    ")])])])])
@@ -7907,7 +7969,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('ul', {
     staticClass: "collection"
-  }, _vm._l((_vm.swines), function(swine, index) {
+  }, _vm._l((_vm.paginatedSwines), function(swine, index) {
     return _c('li', {
       key: swine.id,
       staticClass: "collection-item avatar"
@@ -7945,18 +8007,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.viewPhotos(index)
+          _vm.viewPhotos(swine.id)
         }
       }
     }, [_vm._v("\n                        Photos\n                    ")])])])
   }))]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align pagination-container"
+  }, [_c('ul', {
+    staticClass: "pagination"
+  }, [_c('li', {
+    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.previousPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
+    return _c('li', {
+      staticClass: "waves-effect",
+      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
+    }, [_c('a', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.goToPage(i)
+        }
+      }
+    }, [_vm._v(" " + _vm._s(i) + " ")])])
+  }), _vm._v(" "), _c('li', {
+    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.nextPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
     staticClass: "modal bottom-sheet",
     attrs: {
       "id": "view-photos-modal"
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
+  }, [_c('h5', [_c('b', [_vm._v(_vm._s(_vm.viewPhotosModal.registrationNo))]), _vm._v("   /   Photos\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, _vm._l((_vm.viewPhotosModal.photos), function(photo) {
     return _c('div', {
@@ -7971,7 +8073,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": _vm.swinePhotosDirectory + photo.name
       }
     })])])])
-  }))]), _vm._v(" "), _vm._m(3)])])
+  }))]), _vm._v(" "), _vm._m(2)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -7986,10 +8088,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "view-label"
     }
   }, [_vm._v("\n                VIEW\n            ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("Photos "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-footer"
@@ -8686,6 +8784,7 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
+//
 //
 //
 //
