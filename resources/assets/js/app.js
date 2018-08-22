@@ -70,8 +70,29 @@ const nav = new Vue({
     },
 
     mounted() {
+        // const mainElement = document.querySelector('.main-logged-in');
+        // const footerElement = document.querySelector('.footer-logged-in');
+
         // Initialize side navigation
-        $(".button-collapse").sideNav();
+        $(".button-collapse").sideNav({
+            onOpen: function() {
+                // Add 300px padding on left of containers upon 
+                // opening of side navigation
+                // if(!window.matchMedia("(max-width: 992px)").matches){
+                //     mainElement.style.cssText = "padding-left: 300px;";
+                //     footerElement.style.cssText = "padding-left: 300px;";
+                // }
+            },
+
+            onClose: function() {
+                // Remove padding on left of containers upon 
+                // closing of side navigation
+                // if(!window.matchMedia("(max-width: 992px)").matches){
+                //     mainElement.style.cssText = "padding-left: 0px;";
+                //     footerElement.style.cssText = "padding-left: 0px;";
+                // }
+            }
+        });
 
         // Initialize side navigation active link
         switch (location.pathname) {

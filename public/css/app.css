@@ -9895,23 +9895,6 @@ main {
 }
 
 /**
- * Add padding to main and footer containers
- * for authenticated users
- */
-
-.main-logged-in,
-.footer-logged-in {
-  padding-left: 300px;
-}
-
-@media only screen and (max-width: 992px) {
-  .main-logged-in,
-  .footer-logged-in {
-    padding-left: 0;
-  }
-}
-
-/**
  * Side Nav
  */
 
@@ -9920,7 +9903,9 @@ main {
 }
 
 #sidenav-overlay {
+  top: 65px;
   margin-left: 300px;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 #slide-out div.user-view {
@@ -9936,7 +9921,7 @@ main {
 }
 
 .title-page {
-  font-weight: 300;
+  margin-top: 3rem;
 }
 
 /*
