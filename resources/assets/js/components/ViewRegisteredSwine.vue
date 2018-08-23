@@ -5,153 +5,215 @@
             <h4 class="title-page"> View Registered Swine </h4>
         </div>
 
-        <div id="options-container" class="col s12">
-            <div class="left">
-                <span id="view-label">
-                    VIEW
-                </span>
-            </div>
-            <div id="view-icons-container" class="left">
-                <i @click.prevent="viewLayout = 'card'"
-                    class="material-icons tooltipped"
-                    :class="viewLayout === 'card' ? 'blue-text' : 'grey-text'"
-                    data-position="top" 
-                    data-delay="50" 
-                    data-tooltip="Card"
-                >
-                    view_module
-                </i>
-                <i @click.prevent="viewLayout = 'list'"
-                    class="material-icons tooltipped"
-                    :class="viewLayout === 'list' ? 'blue-text' : 'grey-text'"
-                    data-position="top" 
-                    data-delay="50" 
-                    data-tooltip="List"
-                >
-                    view_list
-                </i>
-            </div>
+        <div class="col s4 m3 l2">
+            <ul class="collapsible" data-collapsible="expandable">
+                <li>
+                    <!-- Breed filter -->
+                    <div class="collapsible-header active"><i class="material-icons">details</i> <b>Breed</b></div>
+                    <div class="collapsible-body">
+                        <p class="range-field">
+                            <template v-for="breed in breeds">
+                                <input v-model="filterOptions.breed"
+                                    type="checkbox" 
+                                    class="filled-in" 
+                                    :value="breed.value" 
+                                    :id="breed.text"
+                                />
+                                <label :for="breed.text"> {{breed.text}} </label> <br>
+                            </template>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <!-- Sex filter -->
+                    <div class="collapsible-header active"><i class="material-icons">more</i> <b>Sex</b></div>
+                    <div class="collapsible-body">
+                        <p class="range-field">
+                            <input v-model="filterOptions.sex"
+                                type="checkbox" 
+                                class="filled-in" 
+                                id="male" 
+                                value="male"
+                            />
+                            <label for="male">Male</label> <br>
+
+                            <input v-model="filterOptions.sex"
+                                type="checkbox" 
+                                class="filled-in" 
+                                id="female" 
+                                value="female"
+                            />
+                            <label for="female">Female</label>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <!-- Farm filter -->
+                    <div class="collapsible-header active"><i class="material-icons">place</i> <b>Farm</b></div>
+                    <div class="collapsible-body">
+                        <p class="range-field">
+                            <template v-for="farm in farmoptions">
+                                <input v-model="filterOptions.farm"
+                                    type="checkbox" 
+                                    class="filled-in" 
+                                    :value="farm.value" 
+                                    :id="farm.text"
+                                />
+                                <label :for="farm.text"> {{farm.text}} </label> <br>
+                            </template>
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <!-- SwineCart filter -->
+                    <div class="collapsible-header active"><i class="material-icons">shopping_cart</i> <b>SwineCart</b></div>
+                    <div class="collapsible-body">
+                        <p class="range-field">
+                            <input v-model="filterOptions.swineCart" type="checkbox" class="filled-in" id="swinecart"/>
+                            <label for="swinecart">Included in SwineCart</label>
+                        </p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-        <!-- Card Style -->
-        <div id="card-layout-container">
-            <div v-show="viewLayout === 'card'"
-                v-for="(swine, index) in paginatedSwines"
-                :key="swine.id"
-                class="col s12 m6 l4"
-            >
-                <div class="card">
-                    <div class="card-image">
-                        <img :src="swinePhotosDirectory + swine.photos[0].name" class="materialboxed">
-                        <a v-if="swine.swinecart"
-                            class="btn-floating halfway-fab red lighten-1 tooltipped"
-                            data-position="top" 
-                            data-delay="50" 
-                            data-tooltip="Included in SwineCart"
-                        >
-                            <i class="material-icons">shopping_cart</i>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title flow-text"><b>{{ swine.registration_no }}</b></span>
-                        <p class="">
-                            {{ swine.farm.name }}, {{ swine.farm.province }} <br>
-                            {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
-                            <!-- <a :href="`/breeder/registry-certificate/${swine.id}`"
+        <div class="col s8 m9 l10">
+            <div id="options-container" class="col s12">
+                <div class="left">
+                    <span id="view-label">
+                        VIEW
+                    </span>
+                </div>
+                <div id="view-icons-container" class="left">
+                    <i @click.prevent="viewLayout = 'card'"
+                        class="material-icons tooltipped"
+                        :class="viewLayout === 'card' ? 'blue-text' : 'grey-text'"
+                        data-position="top" 
+                        data-delay="50" 
+                        data-tooltip="Card"
+                    >
+                        view_module
+                    </i>
+                    <i @click.prevent="viewLayout = 'list'"
+                        class="material-icons tooltipped"
+                        :class="viewLayout === 'list' ? 'blue-text' : 'grey-text'"
+                        data-position="top" 
+                        data-delay="50" 
+                        data-tooltip="List"
+                    >
+                        view_list
+                    </i>
+                </div>
+            </div>
+
+            <!-- Card Style -->
+            <div id="card-layout-container">
+                <div v-show="viewLayout === 'card'"
+                    v-for="(swine, index) in paginatedSwines"
+                    :key="swine.id"
+                    class="col s12 m6 l4"
+                >
+                    <div class="card">
+                        <div class="card-image">
+                            <img :src="swinePhotosDirectory + swine.photos[0].name" class="materialboxed">
+                            <a v-if="swine.swinecart"
+                                class="btn-floating halfway-fab red lighten-1 tooltipped"
+                                data-position="top" 
+                                data-delay="50" 
+                                data-tooltip="Included in SwineCart"
+                            >
+                                <i class="material-icons">shopping_cart</i>
+                            </a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title flow-text"><b>{{ swine.registration_no }}</b></span>
+                            <p class="">
+                                {{ swine.farm.name }}, {{ swine.farm.province }} <br>
+                                {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a :href="`/breeder/registry-certificate/${swine.id}`"
                                 target="_blank"
                                 class="btn blue darken-1 z-depth-0"
                             >
-                                View Certificate
-                            </a> <br><br>
-                            <a @click.prevent="viewPhotos(index)"
+                                Certificate
+                            </a>
+                            <a @click.prevent="viewPhotos(swine.id)"
                                 href="#"
                                 class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
                             >
-                                View Photos
-                            </a> -->
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a :href="`/breeder/registry-certificate/${swine.id}`"
-                            target="_blank"
-                            class="btn blue darken-1 z-depth-0"
-                        >
-                            Certificate
-                        </a>
-                        <a @click.prevent="viewPhotos(swine.id)"
-                            href="#"
-                            class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
-                        >
-                            Photos
-                        </a>
+                                Photos
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- List Style -->
-        <div v-show="viewLayout === 'list'"
-            id="list-layout-container"
-            class="col s12"
-        >
-            <ul class="collection">
-                <li v-for="(swine, index) in paginatedSwines"
-                    :key="swine.id"
-                    class="collection-item avatar"
-                >
-                    <img :src="swinePhotosDirectory + swine.photos[0].name" alt="" class="circle materialboxed">
-                    <span class="title"><b>{{ swine.registration_no }}</b></span>
-                    <p class="">
-                        {{ swine.farm.name }}, {{ swine.farm.province }} <br>
-                        {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
-                    </p>
-                    <div class="secondary-content">
-                        <a v-if="swine.swinecart"
-                            id="list-swinecart-icon"
-                            class="btn-floating red lighten-1 z-depth-0 tooltipped"
-                            data-position="top" 
-                            data-delay="50" 
-                            data-tooltip="Included in SwineCart"
-                        >
-                            <i class="material-icons">shopping_cart</i>
-                        </a>
-                        <a :href="`/breeder/registry-certificate/${swine.id}`"
-                            target="_blank"
-                            class="btn blue darken-1 z-depth-0"
-                        >
-                            Certificate
-                        </a>
-                        <a @click.prevent="viewPhotos(swine.id)"
-                            href="#!"
-                            class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
-                        >
-                            Photos
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+            <!-- List Style -->
+            <div v-show="viewLayout === 'list'"
+                id="list-layout-container"
+                class="col s12"
+            >
+                <ul class="collection">
+                    <li v-for="(swine, index) in paginatedSwines"
+                        :key="swine.id"
+                        class="collection-item avatar"
+                    >
+                        <img :src="swinePhotosDirectory + swine.photos[0].name" alt="" class="circle materialboxed">
+                        <span class="title"><b>{{ swine.registration_no }}</b></span>
+                        <p class="">
+                            {{ swine.farm.name }}, {{ swine.farm.province }} <br>
+                            {{ swine.breed.title }} ({{ swine.swine_properties[0].value }})
+                        </p>
+                        <div class="secondary-content">
+                            <a v-if="swine.swinecart"
+                                id="list-swinecart-icon"
+                                class="btn-floating red lighten-1 z-depth-0 tooltipped"
+                                data-position="top" 
+                                data-delay="50" 
+                                data-tooltip="Included in SwineCart"
+                            >
+                                <i class="material-icons">shopping_cart</i>
+                            </a>
+                            <a :href="`/breeder/registry-certificate/${swine.id}`"
+                                target="_blank"
+                                class="btn blue darken-1 z-depth-0"
+                            >
+                                Certificate
+                            </a>
+                            <a @click.prevent="viewPhotos(swine.id)"
+                                href="#!"
+                                class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
+                            >
+                                Photos
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-        <!-- Pagination -->
-        <div class="col s12 center-align pagination-container">
-            <ul class="pagination">
-                <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
-                    <a @click.prevent="previousPage()">
-                        <i class="material-icons">chevron_left</i>
-                    </a>
-                </li>
-                <li v-for="i in pageCount"
-                    class="waves-effect"
-                    :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
-                >
-                    <a @click.prevent="goToPage(i)"> {{ i }} </a>
-                </li>
-                <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
-                    <a @click.prevent="nextPage()">
-                        <i class="material-icons">chevron_right</i>
-                    </a>
-                </li>
-            </ul>
+            <!-- Pagination -->
+            <div class="col s12 center-align pagination-container">
+                <ul class="pagination">
+                    <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
+                        <a @click.prevent="previousPage()">
+                            <i class="material-icons">chevron_left</i>
+                        </a>
+                    </li>
+                    <li v-for="i in pageCount"
+                        class="waves-effect"
+                        :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
+                    >
+                        <a @click.prevent="goToPage(i)"> {{ i }} </a>
+                    </li>
+                    <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
+                        <a @click.prevent="nextPage()">
+                            <i class="material-icons">chevron_right</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- View Photos Modal -->
@@ -186,7 +248,9 @@
 <script>
     export default {
         props: {
-            swines: Array
+            swines: Array,
+            breeds: Array,
+            farmoptions: Array
         },
 
         data() {
@@ -195,6 +259,12 @@
                 viewLayout: 'card',
                 pageNumber: 0,
                 paginationSize: 15,
+                filterOptions: {
+                    breed: [],
+                    sex: [],
+                    farm: [],
+                    swineCart: false
+                },
                 viewPhotosModal: {
                     registrationNo: '',
                     photos: []
@@ -278,6 +348,19 @@
 
     a#list-swinecart-icon {
         margin-right: 2rem;
+    }
+
+    /* Collapsible customizations */
+    div.collapsible-body {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    p.range-field {
+        margin: 0;
+    }
+
+    p.range-field label {
+        color: black;
     }
 
     /* Card customizations */

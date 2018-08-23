@@ -55,32 +55,28 @@ class SwineController extends Controller
         $farmOptions = [];
         $breedOptions = [];
 
-        // Get farm options for farm from input select
+        // Get farm options for farm filter checkbox
         foreach ($this->breederUser->farms as $farm) {
             if(!$farm->is_suspended){
-                array_push($farmOptions,
-                    [
-                        'text' => $farm->name . ' , ' . $farm->province,
-                        'value' => $farm->id
-                    ]
-                );
+                $farmOptions[] = [
+                    'text' => $farm->name . ' , ' . $farm->province,
+                    'value' => $farm->id
+                ];
             }
         }
 
-        // Get breed options for breed input select
+        // Get breed options for breed filter checkbox
         foreach(Breed::all() as $breed){
-            array_push($breedOptions,
-                [
-                    'text' => $breed->title,
-                    'value' => $breed->id
-                ]
-            );
+            $breedOptions[] = [
+                'text' => $breed->title,
+                'value' => $breed->id
+            ];
         }
 
         $farmOptions = collect($farmOptions);
         $breedOptions = collect($breedOptions);
 
-        return view('users.breeder.form', compact('farmOptions', 'breedOptions'));
+        return view('users.breeder.registerSwine', compact('farmOptions', 'breedOptions'));
     }
 
     /**
@@ -91,8 +87,31 @@ class SwineController extends Controller
     public function viewRegisteredSwine()
     {
         $swines = $this->breederUser->swines()->with(['swineProperties.property', 'breed', 'photos', 'farm'])->get();
+        $farmOptions = [];
+        $breedOptions = [];
 
-        return view('users.breeder.viewRegisteredSwine', compact('swines'));
+        // Get farm options for farm from input select
+        foreach ($this->breederUser->farms as $farm) {
+            if(!$farm->is_suspended){
+                $farmOptions[] = [
+                    'text' => $farm->name . ' , ' . $farm->province,
+                    'value' => $farm->id
+                ];
+            }
+        }
+
+        // Get breed options for breed input select
+        foreach(Breed::all() as $breed){
+            $breedOptions[] = [
+                'text' => $breed->title,
+                'value' => $breed->id
+            ];
+        }
+
+        $farmOptions = collect($farmOptions);
+        $breedOptions = collect($breedOptions);
+
+        return view('users.breeder.viewRegisteredSwine', compact('swines', 'farmOptions', 'breedOptions'));
     }
 
     /**

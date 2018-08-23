@@ -7611,7 +7611,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\ndiv#view-icons-container {\n    cursor: pointer;\n}\nspan#view-label {\n    margin-right: 1rem;\n}\n.custom-secondary-btn {\n    border: 1px solid;\n    background-color: white !important;\n}\na#list-swinecart-icon {\n    margin-right: 2rem;\n}\n\n/* Card customizations */\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n.card-action a {\n    margin-top: 0.5rem;\n    margin-bottom: 0.5rem;\n}\n\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n", ""]);
+exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\ndiv#view-icons-container {\n    cursor: pointer;\n}\nspan#view-label {\n    margin-right: 1rem;\n}\n.custom-secondary-btn {\n    border: 1px solid;\n    background-color: white !important;\n}\na#list-swinecart-icon {\n    margin-right: 2rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field {\n    margin: 0;\n}\np.range-field label {\n    color: black;\n}\n\n/* Card customizations */\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n.card-action a {\n    margin-top: 0.5rem;\n    margin-bottom: 0.5rem;\n}\n\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n", ""]);
 
 // exports
 
@@ -7807,10 +7807,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        swines: Array
+        swines: Array,
+        breeds: Array,
+        farmoptions: Array
     },
 
     data: function data() {
@@ -7819,6 +7883,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             viewLayout: 'card',
             pageNumber: 0,
             paginationSize: 15,
+            filterOptions: {
+                breed: [],
+                sex: [],
+                farm: [],
+                swineCart: false
+            },
             viewPhotosModal: {
                 registrationNo: '',
                 photos: []
@@ -7884,11 +7954,229 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "col s12"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s4 m3 l2"
+  }, [_c('ul', {
+    staticClass: "collapsible",
+    attrs: {
+      "data-collapsible": "expandable"
+    }
+  }, [_c('li', [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('p', {
+    staticClass: "range-field"
+  }, [_vm._l((_vm.breeds), function(breed) {
+    return [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.filterOptions.breed),
+        expression: "filterOptions.breed"
+      }],
+      staticClass: "filled-in",
+      attrs: {
+        "type": "checkbox",
+        "id": breed.text
+      },
+      domProps: {
+        "value": breed.value,
+        "checked": Array.isArray(_vm.filterOptions.breed) ? _vm._i(_vm.filterOptions.breed, breed.value) > -1 : (_vm.filterOptions.breed)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.filterOptions.breed,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = breed.value,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.$set(_vm.filterOptions, "breed", $$a.concat([$$v])))
+            } else {
+              $$i > -1 && (_vm.$set(_vm.filterOptions, "breed", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+            }
+          } else {
+            _vm.$set(_vm.filterOptions, "breed", $$c)
+          }
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": breed.text
+      }
+    }, [_vm._v(" " + _vm._s(breed.text) + " ")]), _vm._v(" "), _c('br')]
+  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('p', {
+    staticClass: "range-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.filterOptions.sex),
+      expression: "filterOptions.sex"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "male",
+      "value": "male"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.filterOptions.sex) ? _vm._i(_vm.filterOptions.sex, "male") > -1 : (_vm.filterOptions.sex)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.filterOptions.sex,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = "male",
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.filterOptions, "sex", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.filterOptions, "sex", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.filterOptions, "sex", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "male"
+    }
+  }, [_vm._v("Male")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.filterOptions.sex),
+      expression: "filterOptions.sex"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "female",
+      "value": "female"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.filterOptions.sex) ? _vm._i(_vm.filterOptions.sex, "female") > -1 : (_vm.filterOptions.sex)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.filterOptions.sex,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = "female",
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.filterOptions, "sex", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.filterOptions, "sex", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.filterOptions, "sex", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "female"
+    }
+  }, [_vm._v("Female")])])])]), _vm._v(" "), _c('li', [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('p', {
+    staticClass: "range-field"
+  }, [_vm._l((_vm.farmoptions), function(farm) {
+    return [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.filterOptions.farm),
+        expression: "filterOptions.farm"
+      }],
+      staticClass: "filled-in",
+      attrs: {
+        "type": "checkbox",
+        "id": farm.text
+      },
+      domProps: {
+        "value": farm.value,
+        "checked": Array.isArray(_vm.filterOptions.farm) ? _vm._i(_vm.filterOptions.farm, farm.value) > -1 : (_vm.filterOptions.farm)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.filterOptions.farm,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = farm.value,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.$set(_vm.filterOptions, "farm", $$a.concat([$$v])))
+            } else {
+              $$i > -1 && (_vm.$set(_vm.filterOptions, "farm", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+            }
+          } else {
+            _vm.$set(_vm.filterOptions, "farm", $$c)
+          }
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": farm.text
+      }
+    }, [_vm._v(" " + _vm._s(farm.text) + " ")]), _vm._v(" "), _c('br')]
+  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('p', {
+    staticClass: "range-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.filterOptions.swineCart),
+      expression: "filterOptions.swineCart"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "swinecart"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.filterOptions.swineCart) ? _vm._i(_vm.filterOptions.swineCart, null) > -1 : (_vm.filterOptions.swineCart)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.filterOptions.swineCart,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.filterOptions, "swineCart", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.filterOptions, "swineCart", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.filterOptions, "swineCart", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "swinecart"
+    }
+  }, [_vm._v("Included in SwineCart")])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s8 m9 l10"
+  }, [_c('div', {
     staticClass: "col s12",
     attrs: {
       "id": "options-container"
     }
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "left",
     attrs: {
       "id": "view-icons-container"
@@ -7907,7 +8195,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.viewLayout = 'card'
       }
     }
-  }, [_vm._v("\n                view_module\n            ")]), _vm._v(" "), _c('i', {
+  }, [_vm._v("\n                    view_module\n                ")]), _vm._v(" "), _c('i', {
     staticClass: "material-icons tooltipped",
     class: _vm.viewLayout === 'list' ? 'blue-text' : 'grey-text',
     attrs: {
@@ -7921,7 +8209,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.viewLayout = 'list'
       }
     }
-  }, [_vm._v("\n                view_list\n            ")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                    view_list\n                ")])])]), _vm._v(" "), _c('div', {
     attrs: {
       "id": "card-layout-container"
     }
@@ -7957,7 +8245,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card-content"
     }, [_c('span', {
       staticClass: "card-title flow-text"
-    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                        ")])]), _vm._v(" "), _c('div', {
+    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                            " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                            " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                        ")])]), _vm._v(" "), _c('div', {
       staticClass: "card-action"
     }, [_c('a', {
       staticClass: "btn blue darken-1 z-depth-0",
@@ -7965,7 +8253,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": ("/breeder/registry-certificate/" + (swine.id)),
         "target": "_blank"
       }
-    }, [_vm._v("\n                        Certificate\n                    ")]), _vm._v(" "), _c('a', {
+    }, [_vm._v("\n                            Certificate\n                        ")]), _vm._v(" "), _c('a', {
       staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
       attrs: {
         "href": "#"
@@ -7976,7 +8264,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.viewPhotos(swine.id)
         }
       }
-    }, [_vm._v("\n                        Photos\n                    ")])])])])
+    }, [_vm._v("\n                            Photos\n                        ")])])])])
   })), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -8002,7 +8290,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }), _vm._v(" "), _c('span', {
       staticClass: "title"
-    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                    " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                ")]), _vm._v(" "), _c('div', {
+    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                    ")]), _vm._v(" "), _c('div', {
       staticClass: "secondary-content"
     }, [(swine.swinecart) ? _c('a', {
       staticClass: "btn-floating red lighten-1 z-depth-0 tooltipped",
@@ -8020,7 +8308,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": ("/breeder/registry-certificate/" + (swine.id)),
         "target": "_blank"
       }
-    }, [_vm._v("\n                        Certificate\n                    ")]), _vm._v(" "), _c('a', {
+    }, [_vm._v("\n                            Certificate\n                        ")]), _vm._v(" "), _c('a', {
       staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
       attrs: {
         "href": "#!"
@@ -8031,7 +8319,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.viewPhotos(swine.id)
         }
       }
-    }, [_vm._v("\n                        Photos\n                    ")])])])
+    }, [_vm._v("\n                            Photos\n                        ")])])])
   }))]), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
@@ -8070,7 +8358,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
+  }, [_vm._v("chevron_right")])])])], 2)])]), _vm._v(" "), _c('div', {
     staticClass: "modal bottom-sheet",
     attrs: {
       "id": "view-photos-modal"
@@ -8094,7 +8382,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": _vm.swinePhotosDirectory + photo.name
       }
     })])])])
-  }))]), _vm._v(" "), _vm._m(2)])])
+  }))]), _vm._v(" "), _vm._m(6)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -8103,12 +8391,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" View Registered Swine ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("details")]), _vm._v(" "), _c('b', [_vm._v("Breed")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("more")]), _vm._v(" "), _c('b', [_vm._v("Sex")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("place")]), _vm._v(" "), _c('b', [_vm._v("Farm")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("shopping_cart")]), _vm._v(" "), _c('b', [_vm._v("SwineCart")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticClass: "left"
   }, [_c('span', {
     attrs: {
       "id": "view-label"
     }
-  }, [_vm._v("\n                VIEW\n            ")])])
+  }, [_vm._v("\n                    VIEW\n                ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-footer"
