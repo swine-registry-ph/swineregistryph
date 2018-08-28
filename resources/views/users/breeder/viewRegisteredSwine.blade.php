@@ -9,9 +9,11 @@
 <div class="row">
     <div class="col s10 offset-s1">
         <view-registered-swine 
-            :swines="{{ $swines }}"
             :breeds="{{ $breedOptions }}"
+            :current-filter-options="{{ $currentFilterOptions }}"
             :farmoptions="{{ $farmOptions }}"
+            :swines="{{ $filteredSwines }}"
+            :view-url="'{{ route('viewRegdSwine') }}'"
         >
         </view-registered-swine>
     </div>

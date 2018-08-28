@@ -9,7 +9,7 @@
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
                     <!-- Breed filter -->
-                    <div class="collapsible-header active"><i class="material-icons">details</i> <b>Breed</b></div>
+                    <div class="collapsible-header active"><b>Breed</b></div>
                     <div class="collapsible-body">
                         <p class="range-field">
                             <template v-for="breed in breeds">
@@ -26,7 +26,7 @@
                 </li>
                 <li>
                     <!-- Sex filter -->
-                    <div class="collapsible-header active"><i class="material-icons">more</i> <b>Sex</b></div>
+                    <div class="collapsible-header active"><b>Sex</b></div>
                     <div class="collapsible-body">
                         <p class="range-field">
                             <input v-model="filterOptions.sex"
@@ -49,7 +49,7 @@
                 </li>
                 <li>
                     <!-- Farm filter -->
-                    <div class="collapsible-header active"><i class="material-icons">place</i> <b>Farm</b></div>
+                    <div class="collapsible-header active"><b>Farm</b></div>
                     <div class="collapsible-body">
                         <p class="range-field">
                             <template v-for="farm in farmoptions">
@@ -66,10 +66,16 @@
                 </li>
                 <li>
                     <!-- SwineCart filter -->
-                    <div class="collapsible-header active"><i class="material-icons">shopping_cart</i> <b>SwineCart</b></div>
+                    <div class="collapsible-header active"><b>SwineCart</b></div>
                     <div class="collapsible-body">
                         <p class="range-field">
-                            <input v-model="filterOptions.swineCart" type="checkbox" class="filled-in" id="swinecart"/>
+                            <input v-model="filterOptions.sc" 
+                                true-value="1"
+                                false-value="0"
+                                type="checkbox" 
+                                class="filled-in" 
+                                id="swinecart"
+                            />
                             <label for="swinecart">Included in SwineCart</label>
                         </p>
                     </div>
@@ -193,6 +199,16 @@
                 </ul>
             </div>
 
+            <!-- Empty Swine Container -->
+            <div v-show="paginatedSwines.length === 0" 
+                id="empty-swine-container" 
+                class="col s12 center-align"
+            >
+                <p>
+                    <b>Sorry, no swine found.</b>
+                </p>
+            </div>
+
             <!-- Pagination -->
             <div class="col s12 center-align pagination-container">
                 <ul class="pagination">
@@ -248,9 +264,11 @@
 <script>
     export default {
         props: {
-            swines: Array,
             breeds: Array,
-            farmoptions: Array
+            currentFilterOptions: Object,
+            farmoptions: Array,
+            swines: Array,
+            viewUrl: String
         },
 
         data() {
@@ -259,12 +277,7 @@
                 viewLayout: 'card',
                 pageNumber: 0,
                 paginationSize: 15,
-                filterOptions: {
-                    breed: [],
-                    sex: [],
-                    farm: [],
-                    swineCart: false
-                },
+                filterOptions: this.currentFilterOptions,
                 viewPhotosModal: {
                     registrationNo: '',
                     photos: []
@@ -285,6 +298,54 @@
                 const end = start + this.paginationSize;
 
                 return _.sortBy(this.swines, ['registration_no']).slice(start, end);
+            }
+        },
+
+        watch: {
+            filterOptions: {
+                handler: function(oldValue, newValue) {
+                    // Watch filterOptions object for url rewrite
+                    let url = this.viewUrl + '?';
+                    let parameters = [];
+
+                    // Put breed parameter in parameters if filter is chosen
+                    if(newValue.breed.length > 0){
+                        let breedParameter = 'breed=';
+                        breedParameter += newValue.breed.join('+');
+
+                        parameters.push(breedParameter);
+                    }
+
+                    // Put sex parameter in parameters if filter is chosen
+                    if(newValue.sex.length > 0){
+                        let sexParameter = 'sex=';
+                        sexParameter += newValue.sex.join('+');
+
+                        parameters.push(sexParameter);
+                    }
+
+                    // Put farm parameter in parameters if filter is chosen
+                    if(newValue.farm.length > 0){
+                        let farmParameter = 'farm=';
+                        farmParameter += newValue.farm.join('+');
+
+                        parameters.push(farmParameter);
+                    }
+
+                    // Put swineCart parameter in parameters if filter is chosen
+                    if(newValue.sc){
+                        let swineCartParameter = `sc=${newValue.sc}`;
+
+                        parameters.push(swineCartParameter);
+                    }
+
+                    // Join all parameters with '&'
+                    url += parameters.join('&');
+
+                    // Redirect to new url
+                    window.location = url;
+                },
+                deep: true
             }
         },
 
@@ -335,6 +396,11 @@
 
     div#view-icons-container {
         cursor: pointer;
+    }
+
+    div#empty-swine-container {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 
     span#view-label {
