@@ -90,20 +90,30 @@ class SwineController extends Controller
             ->swines()
             ->with(['swineProperties.property', 'breed', 'photos', 'farm'])
             ->get();
-        $filteredSwines       = $swines;
         $currentFilterOptions = [
             'breed' => [],
             'farm'  => [],
             'sex'   => [],
             'sc'    => 0
         ];
-        $farmOptions          = [];
-        $breedOptions         = [];
-        $breedArray           = []; 
-        $farmArray            = []; 
-        $sexArray             = [];
+        $currentSearchParameter = '';
+        $filteredSwines         = $swines;
+        $farmOptions            = [];
+        $breedOptions           = [];
+        $breedArray             = []; 
+        $farmArray              = []; 
+        $sexArray               = [];
 
         // Filter swine according to requested filters
+        if($request->q){
+            $filteredSwines = $filteredSwines
+                ->where('registration_no', $request->q)
+                ->values();
+
+            // Retain current search parameter
+            $currentSearchParameter = $request->q;
+        }
+
         if($request->breed){
             $breedArray = explode(' ',$request->breed);
             $filteredSwines = $filteredSwines
@@ -172,7 +182,13 @@ class SwineController extends Controller
 
         return view(
             'users.breeder.viewRegisteredSwine', 
-            compact('filteredSwines', 'currentFilterOptions', 'farmOptions', 'breedOptions')
+            compact(
+                'filteredSwines', 
+                'currentFilterOptions', 
+                'currentSearchParameter', 
+                'farmOptions', 
+                'breedOptions'
+            )
         );
     }
 

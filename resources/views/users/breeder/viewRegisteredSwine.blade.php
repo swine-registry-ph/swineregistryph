@@ -12,6 +12,7 @@
             :breeds="{{ $breedOptions }}"
             :current-filter-options="{{ $currentFilterOptions }}"
             :farmoptions="{{ $farmOptions }}"
+            :current-search-parameter="'{{ $currentSearchParameter }}'"
             :swines="{{ $filteredSwines }}"
             :view-url="'{{ route('viewRegdSwine') }}'"
         >

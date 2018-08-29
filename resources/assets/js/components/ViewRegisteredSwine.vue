@@ -5,6 +5,10 @@
             <h4 class="title-page"> View Registered Swine </h4>
         </div>
 
+        <div class="col s12">
+            <p><br></p>
+        </div>
+
         <div class="col s4 m3 l2">
             <ul class="collapsible" data-collapsible="expandable">
                 <li>
@@ -84,6 +88,31 @@
         </div>
 
         <div class="col s8 m9 l10">
+            <!-- Search container -->
+            <div class="col s8 offset-s2">
+                <nav id="search-container">
+                    <div id="search-field" class="nav-wrapper white">
+                        <div style="height:1px;"></div>
+                        <form @submit.prevent="rewriteUrl(filterOptions, searchParameter)">
+                            <div class="input-field">
+                                <input v-model="searchParameter"
+                                    id="search" 
+                                    name="q"
+                                    type="search"
+                                    placeholder="Type swine registration no. to search" 
+                                    autocomplete="off"
+                                >
+                                <label class="label-icon" for="search">
+                                    <i class="material-icons teal-text">search</i>
+                                </label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Layout Options Container -->
             <div id="options-container" class="col s12">
                 <div class="left">
                     <span id="view-label">
@@ -267,6 +296,7 @@
             breeds: Array,
             currentFilterOptions: Object,
             farmoptions: Array,
+            currentSearchParameter: String,
             swines: Array,
             viewUrl: String
         },
@@ -278,6 +308,7 @@
                 pageNumber: 0,
                 paginationSize: 15,
                 filterOptions: this.currentFilterOptions,
+                searchParameter: this.currentSearchParameter,
                 viewPhotosModal: {
                     registrationNo: '',
                     photos: []
@@ -305,45 +336,7 @@
             filterOptions: {
                 handler: function(oldValue, newValue) {
                     // Watch filterOptions object for url rewrite
-                    let url = this.viewUrl + '?';
-                    let parameters = [];
-
-                    // Put breed parameter in parameters if filter is chosen
-                    if(newValue.breed.length > 0){
-                        let breedParameter = 'breed=';
-                        breedParameter += newValue.breed.join('+');
-
-                        parameters.push(breedParameter);
-                    }
-
-                    // Put sex parameter in parameters if filter is chosen
-                    if(newValue.sex.length > 0){
-                        let sexParameter = 'sex=';
-                        sexParameter += newValue.sex.join('+');
-
-                        parameters.push(sexParameter);
-                    }
-
-                    // Put farm parameter in parameters if filter is chosen
-                    if(newValue.farm.length > 0){
-                        let farmParameter = 'farm=';
-                        farmParameter += newValue.farm.join('+');
-
-                        parameters.push(farmParameter);
-                    }
-
-                    // Put swineCart parameter in parameters if filter is chosen
-                    if(newValue.sc){
-                        let swineCartParameter = `sc=${newValue.sc}`;
-
-                        parameters.push(swineCartParameter);
-                    }
-
-                    // Join all parameters with '&'
-                    url += parameters.join('&');
-
-                    // Redirect to new url
-                    window.location = url;
+                    this.rewriteUrl(newValue, this.searchParameter);
                 },
                 deep: true
             }
@@ -367,6 +360,61 @@
                 for(var i = 0; i < arrayToBeSearched.length; i++) {
                     if(arrayToBeSearched[i].id === id) return i;
                 }
+            },
+
+            rewriteUrl(filterOptions, searchParameter) {
+                /**
+                 *  URL rewrite syntax: 
+                 *  ?q=value*
+                 *  &breed=value[+value]*
+                 *  &sex=value[+value]
+                 *  &farm=value[+value]*
+                 *  &sc=[0|1]
+                 */
+                let url = this.viewUrl;
+                let parameters = [];
+
+                // Put search parameter in parameters if it is non-empty
+                if(searchParameter.length > 0){
+                    let qParameter = `q=${searchParameter}`;
+
+                    parameters.push(qParameter);
+                }
+
+                // Put breed parameter in parameters if filter is chosen
+                if(filterOptions.breed.length > 0){
+                    let breedParameter = 'breed=';
+                    breedParameter += filterOptions.breed.join('+');
+
+                    parameters.push(breedParameter);
+                }
+
+                // Put sex parameter in parameters if filter is chosen
+                if(filterOptions.sex.length > 0){
+                    let sexParameter = 'sex=';
+                    sexParameter += filterOptions.sex.join('+');
+
+                    parameters.push(sexParameter);
+                }
+
+                // Put farm parameter in parameters if filter is chosen
+                if(filterOptions.farm.length > 0){
+                    let farmParameter = 'farm=';
+                    farmParameter += filterOptions.farm.join('+');
+
+                    parameters.push(farmParameter);
+                }
+
+                // Put swineCart parameter in parameters if filter is chosen
+                if(filterOptions.sc){
+                    let swineCartParameter = `sc=${filterOptions.sc}`;
+
+                    parameters.push(swineCartParameter);
+                }
+
+                // Redirect to new url
+                if(parameters.length > 0) window.location = url + '?' + parameters.join('&');
+                else window.location = url;
             },
 
             viewPhotos(swineId) {
@@ -445,6 +493,19 @@
         margin-bottom: 0.5rem;
     }
 
+    /* Search component overrides */
+    .input-field label[for='search'] {
+        font-size: inherit;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        transform: none;
+    }
+
+    input#search {
+        color: black;
+    }
 
     /* Medium Screen */
     @media only screen and (min-width: 601px){

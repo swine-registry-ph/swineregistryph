@@ -7611,7 +7611,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\ndiv#view-icons-container {\n    cursor: pointer;\n}\ndiv#empty-swine-container {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\nspan#view-label {\n    margin-right: 1rem;\n}\n.custom-secondary-btn {\n    border: 1px solid;\n    background-color: white !important;\n}\na#list-swinecart-icon {\n    margin-right: 2rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field {\n    margin: 0;\n}\np.range-field label {\n    color: black;\n}\n\n/* Card customizations */\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n.card-action a {\n    margin-top: 0.5rem;\n    margin-bottom: 0.5rem;\n}\n\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n", ""]);
+exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\ndiv#view-icons-container {\n    cursor: pointer;\n}\ndiv#empty-swine-container {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\nspan#view-label {\n    margin-right: 1rem;\n}\n.custom-secondary-btn {\n    border: 1px solid;\n    background-color: white !important;\n}\na#list-swinecart-icon {\n    margin-right: 2rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field {\n    margin: 0;\n}\np.range-field label {\n    color: black;\n}\n\n/* Card customizations */\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n.card-action a {\n    margin-top: 0.5rem;\n    margin-bottom: 0.5rem;\n}\n\n/* Search component overrides */\n.input-field label[for='search'] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search {\n    color: black;\n}\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n", ""]);
 
 // exports
 
@@ -7885,12 +7885,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         breeds: Array,
         currentFilterOptions: Object,
         farmoptions: Array,
+        currentSearchParameter: String,
         swines: Array,
         viewUrl: String
     },
@@ -7902,6 +7932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             pageNumber: 0,
             paginationSize: 15,
             filterOptions: this.currentFilterOptions,
+            searchParameter: this.currentSearchParameter,
             viewPhotosModal: {
                 registrationNo: '',
                 photos: []
@@ -7929,45 +7960,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filterOptions: {
             handler: function handler(oldValue, newValue) {
                 // Watch filterOptions object for url rewrite
-                var url = this.viewUrl + '?';
-                var parameters = [];
-
-                // Put breed parameter in parameters if filter is chosen
-                if (newValue.breed.length > 0) {
-                    var breedParameter = 'breed=';
-                    breedParameter += newValue.breed.join('+');
-
-                    parameters.push(breedParameter);
-                }
-
-                // Put sex parameter in parameters if filter is chosen
-                if (newValue.sex.length > 0) {
-                    var sexParameter = 'sex=';
-                    sexParameter += newValue.sex.join('+');
-
-                    parameters.push(sexParameter);
-                }
-
-                // Put farm parameter in parameters if filter is chosen
-                if (newValue.farm.length > 0) {
-                    var farmParameter = 'farm=';
-                    farmParameter += newValue.farm.join('+');
-
-                    parameters.push(farmParameter);
-                }
-
-                // Put swineCart parameter in parameters if filter is chosen
-                if (newValue.sc) {
-                    var swineCartParameter = 'sc=' + newValue.sc;
-
-                    parameters.push(swineCartParameter);
-                }
-
-                // Join all parameters with '&'
-                url += parameters.join('&');
-
-                // Redirect to new url
-                window.location = url;
+                this.rewriteUrl(newValue, this.searchParameter);
             },
             deep: true
         }
@@ -7988,6 +7981,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             for (var i = 0; i < arrayToBeSearched.length; i++) {
                 if (arrayToBeSearched[i].id === id) return i;
             }
+        },
+        rewriteUrl: function rewriteUrl(filterOptions, searchParameter) {
+            /**
+             *  URL rewrite syntax: 
+             *  ?q=value*
+             *  &breed=value[+value]*
+             *  &sex=value[+value]
+             *  &farm=value[+value]*
+             *  &sc=[0|1]
+             */
+            var url = this.viewUrl;
+            var parameters = [];
+
+            // Put search parameter in parameters if it is non-empty
+            if (searchParameter.length > 0) {
+                var qParameter = 'q=' + searchParameter;
+
+                parameters.push(qParameter);
+            }
+
+            // Put breed parameter in parameters if filter is chosen
+            if (filterOptions.breed.length > 0) {
+                var breedParameter = 'breed=';
+                breedParameter += filterOptions.breed.join('+');
+
+                parameters.push(breedParameter);
+            }
+
+            // Put sex parameter in parameters if filter is chosen
+            if (filterOptions.sex.length > 0) {
+                var sexParameter = 'sex=';
+                sexParameter += filterOptions.sex.join('+');
+
+                parameters.push(sexParameter);
+            }
+
+            // Put farm parameter in parameters if filter is chosen
+            if (filterOptions.farm.length > 0) {
+                var farmParameter = 'farm=';
+                farmParameter += filterOptions.farm.join('+');
+
+                parameters.push(farmParameter);
+            }
+
+            // Put swineCart parameter in parameters if filter is chosen
+            if (filterOptions.sc) {
+                var swineCartParameter = 'sc=' + filterOptions.sc;
+
+                parameters.push(swineCartParameter);
+            }
+
+            // Redirect to new url
+            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
         },
         viewPhotos: function viewPhotos(swineId) {
             // Prepare needed data for modal
@@ -8014,14 +8060,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "col s4 m3 l2"
   }, [_c('ul', {
     staticClass: "collapsible",
     attrs: {
       "data-collapsible": "expandable"
     }
-  }, [_c('li', [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_c('li', [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('p', {
     staticClass: "range-field"
@@ -8065,7 +8111,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "for": breed.text
       }
     }, [_vm._v(" " + _vm._s(breed.text) + " ")]), _vm._v(" "), _c('br')]
-  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(2), _vm._v(" "), _c('div', {
+  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('p', {
     staticClass: "range-field"
@@ -8145,7 +8191,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "female"
     }
-  }, [_vm._v("Female")])])])]), _vm._v(" "), _c('li', [_vm._m(3), _vm._v(" "), _c('div', {
+  }, [_vm._v("Female")])])])]), _vm._v(" "), _c('li', [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('p', {
     staticClass: "range-field"
@@ -8189,7 +8235,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "for": farm.text
       }
     }, [_vm._v(" " + _vm._s(farm.text) + " ")]), _vm._v(" "), _c('br')]
-  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(4), _vm._v(" "), _c('div', {
+  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('p', {
     staticClass: "range-field"
@@ -8235,11 +8281,60 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Included in SwineCart")])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s8 m9 l10"
   }, [_c('div', {
+    staticClass: "col s8 offset-s2"
+  }, [_c('nav', {
+    attrs: {
+      "id": "search-container"
+    }
+  }, [_c('div', {
+    staticClass: "nav-wrapper white",
+    attrs: {
+      "id": "search-field"
+    }
+  }, [_c('div', {
+    staticStyle: {
+      "height": "1px"
+    }
+  }), _vm._v(" "), _c('form', {
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.rewriteUrl(_vm.filterOptions, _vm.searchParameter)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.searchParameter),
+      expression: "searchParameter"
+    }],
+    attrs: {
+      "id": "search",
+      "name": "q",
+      "type": "search",
+      "placeholder": "Type swine registration no. to search",
+      "autocomplete": "off"
+    },
+    domProps: {
+      "value": (_vm.searchParameter)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.searchParameter = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("close")])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12",
     attrs: {
       "id": "options-container"
     }
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
     staticClass: "left",
     attrs: {
       "id": "view-icons-container"
@@ -8394,7 +8489,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "empty-swine-container"
     }
-  }, [_vm._m(6)]), _vm._v(" "), _c('div', {
+  }, [_vm._m(8)]), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
     staticClass: "pagination"
@@ -8456,13 +8551,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": _vm.swinePhotosDirectory + photo.name
       }
     })])])])
-  }))]), _vm._v(" "), _vm._m(7)])])
+  }))]), _vm._v(" "), _vm._m(9)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" View Registered Swine ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br')])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "collapsible-header active"
@@ -8479,6 +8578,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "collapsible-header active"
   }, [_c('b', [_vm._v("SwineCart")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "label-icon",
+    attrs: {
+      "for": "search"
+    }
+  }, [_c('i', {
+    staticClass: "material-icons teal-text"
+  }, [_vm._v("search")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "left"
