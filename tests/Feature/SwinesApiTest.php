@@ -84,6 +84,7 @@ class SwinesApiTest extends TestCase
                     'topPhoto_id',
                     'registration_no',
                     'date_registered',
+                    'swinecart',
                     'created_at',
                     'updated_at'
                 ]
@@ -98,7 +99,7 @@ class SwinesApiTest extends TestCase
     public function testSpecificSwineEndpointIsWorking()
     {
         $swinesEndpoint = $this->swinesEndpoint;
-        $testIds = [1, 2, 3];
+        $testIds = [1, 4, 7];
 
         foreach ($testIds as $testId) {
             $response = $this->get("{$swinesEndpoint}/{$testId}", [
@@ -121,6 +122,7 @@ class SwinesApiTest extends TestCase
                         'topPhoto_id',
                         'registration_no',
                         'date_registered',
+                        'swine',
                         'created_at',
                         'updated_at'
                     ]

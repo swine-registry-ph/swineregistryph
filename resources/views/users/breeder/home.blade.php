@@ -5,7 +5,7 @@
 @endsection
 
 @section('sidebar')
-    <ul id="slide-out" class="side-nav fixed">
+    <ul id="slide-out" class="side-nav">
         <li>
             <div class="user-view">
                 <div class="background">

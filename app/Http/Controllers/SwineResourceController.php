@@ -15,11 +15,11 @@ class SwineResourceController extends Controller
     public function index()
     {
         return Swine::with([
-            'swineProperties.property',
-            'breed',
-            'photos',
-            'farm'
-        ])->get();
+                'swineProperties.property',
+                'breed',
+                'photos',
+                'farm'
+            ])->where('swinecart', 1)->get();
     }
 
     /**
@@ -30,11 +30,16 @@ class SwineResourceController extends Controller
      */
     public function show($swineId)
     {
-        return Swine::where('id', $swineId)->with([
-            'swineProperties.property',
-            'breed',
-            'photos',
-            'farm'
-        ])->get();
+        $swine = Swine::where('id', $swineId)
+            ->where('swinecart', 1)
+            ->with([
+                'swineProperties.property',
+                'breed',
+                'photos',
+                'farm'
+            ])->first();
+        
+        if($swine) return $swine;
+        else return response('Swine not found.', 404);
     }
 }

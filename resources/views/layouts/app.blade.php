@@ -20,10 +20,10 @@
         <div id="custom-nav" class="navbar-fixed">
             <nav class="teal lighten-1">
                 <div class="nav-wrapper">
-                    <a href="{{ route('home') }}" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
                     @auth
-                        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <a href="#!" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
                     @endauth
+                    <a href="{{ route('home') }}" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -82,7 +82,7 @@
             </div>
           <div class="footer-copyright">
             <div class="row">
-                © 2017 Purebred Swine Registry PH
+                © 2018 Purebred Swine Registry PH
                 {{-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> --}}
             </div>
           </div>
