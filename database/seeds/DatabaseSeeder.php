@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         // adding swine instances to user's collection
         $this->call(PropertyInstancesSeeder::class);
         $this->call(BreedInstancesSeeder::class);
+        $this->call(TestInstancesSeeder::class);
         $this->call(UserInstancesSeeder::class);
     }
 }

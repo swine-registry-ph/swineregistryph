@@ -18,7 +18,8 @@
 
                             <!-- Laboratory Result No. -->
                             <div class="col s12 input-field">
-                                <input id="lab-result-no"
+                                <input v-model="recordInfoData.laboratoryResultNo"
+                                    id="lab-result-no"
                                     type="text"
                                     class="validate"
                                 >
@@ -27,7 +28,8 @@
 
                             <!-- Animal ID -->
                             <div class="col s12 input-field">
-                                <input id="animal-id"
+                                <input v-model="recordInfoData.animalId"
+                                    id="animal-id"
                                     type="text"
                                     class="validate"
                                 >
@@ -36,7 +38,8 @@
 
                             <!-- Sex -->
                             <div class="col s12 input-field">
-                                <input id="sex"
+                                <input v-model="recordInfoData.sex"
+                                    id="sex"
                                     type="text"
                                     class="validate"
                                 >
@@ -45,7 +48,8 @@
 
                             <!-- Farm -->
                             <div class="col s12 input-field">
-                                <input id="farm"
+                                <input v-model="recordInfoData.farm"
+                                    id="farm"
                                     type="text"
                                     class="validate"
                                 >
@@ -66,10 +70,10 @@
                             <div class="col s12 input-field">
                                 <app-input-date
                                     v-model="recordInfoData.dateSubmission"
-                                    @date-select="val => {recordInfoData.dateSubmission = val}"
+                                    @date-select="val => {recordInfoData.dateSubmitted = val}"
                                 >
                                 </app-input-date>
-                                <label for="">Date of Submission</label>
+                                <label for="">Date Submitted</label>
                             </div>
 
                             <div class="col s12">
@@ -542,8 +546,35 @@
                     bpi: false
                 },
                 recordInfoData: {
+                    laboratoryResultNo: '',
+                    animalId: '',
+                    sex: '',
+                    farm: '',
                     dateResult: '',
-                    dateSubmission: ''
+                    dateSubmitted: '',
+                    fertility: {
+                        esr: '',
+                        prlr: '',
+                        rbp4: '',
+                        lif: ''
+                    },
+                    meatAndGrowth: {
+                        hfabp: '',
+                        igf2: '',
+                        lepr: '',
+                        myog: ''
+                    },
+                    defects: {
+                        pss: '',
+                        rn: '',
+                        bax: ''
+                    },
+                    diseases: {
+                        fut1: '',
+                        mx1: '',
+                        nramp: '',
+                        bpi: ''
+                    }
                 }
             }
         },

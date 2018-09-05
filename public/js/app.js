@@ -14212,6 +14212,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -14234,8 +14238,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 bpi: false
             },
             recordInfoData: {
+                laboratoryResultNo: '',
+                animalId: '',
+                sex: '',
+                farm: '',
                 dateResult: '',
-                dateSubmission: ''
+                dateSubmitted: '',
+                fertility: {
+                    esr: '',
+                    prlr: '',
+                    rbp4: '',
+                    lif: ''
+                },
+                meatAndGrowth: {
+                    hfabp: '',
+                    igf2: '',
+                    lepr: '',
+                    myog: ''
+                },
+                defects: {
+                    pss: '',
+                    rn: '',
+                    bax: ''
+                },
+                diseases: {
+                    fut1: '',
+                    mx1: '',
+                    nramp: '',
+                    bpi: ''
+                }
             }
         };
     },
@@ -14268,7 +14299,115 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s12 m6 l4 offset-m3 offset-l4"
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.recordInfoData.laboratoryResultNo),
+      expression: "recordInfoData.laboratoryResultNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "lab-result-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.recordInfoData.laboratoryResultNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.recordInfoData, "laboratoryResultNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "lab-result-no"
+    }
+  }, [_vm._v("Laboratory Result No.")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.recordInfoData.animalId),
+      expression: "recordInfoData.animalId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "animal-id",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.recordInfoData.animalId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.recordInfoData, "animalId", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "animal-id"
+    }
+  }, [_vm._v("Animal ID")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.recordInfoData.sex),
+      expression: "recordInfoData.sex"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "sex",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.recordInfoData.sex)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.recordInfoData, "sex", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "sex"
+    }
+  }, [_vm._v("Sex")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.recordInfoData.farm),
+      expression: "recordInfoData.farm"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "farm",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.recordInfoData.farm)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.recordInfoData, "farm", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "farm"
+    }
+  }, [_vm._v("Farm")])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 input-field"
   }, [_c('app-input-date', {
     on: {
@@ -14292,7 +14431,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.recordInfoData.dateSubmission = val
+        _vm.recordInfoData.dateSubmitted = val
       }
     },
     model: {
@@ -14306,14 +14445,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": ""
     }
-  }, [_vm._v("Date of Submission")])], 1), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('ul', {
     staticClass: "collapsible z-depth-0",
     attrs: {
       "data-collapsible": "expandable"
     }
-  }, [_c('li', [_vm._m(7), _vm._v(" "), _c('div', {
+  }, [_c('li', [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('div', {
     staticClass: "row"
@@ -14356,7 +14495,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(8)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(4)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14365,7 +14504,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.esr),
       expression: "showChoices.esr"
     }]
-  }, [_vm._m(9)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(5)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14404,7 +14543,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(6)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14413,7 +14552,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.prlr),
       expression: "showChoices.prlr"
     }]
-  }, [_vm._m(11)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(7)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14452,7 +14591,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(12)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(8)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14461,7 +14600,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.rbp4),
       expression: "showChoices.rbp4"
     }]
-  }, [_vm._m(13)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(9)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14500,7 +14639,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(14)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14509,7 +14648,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.lif),
       expression: "showChoices.lif"
     }]
-  }, [_vm._m(15)])])])])])]), _vm._v(" "), _c('li', [_vm._m(16), _vm._v(" "), _c('div', {
+  }, [_vm._m(11)])])])])])]), _vm._v(" "), _c('li', [_vm._m(12), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('div', {
     staticClass: "row"
@@ -14552,7 +14691,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(13)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14561,7 +14700,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.hfabp),
       expression: "showChoices.hfabp"
     }]
-  }, [_vm._m(18)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(14)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14600,7 +14739,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14609,7 +14748,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.igf2),
       expression: "showChoices.igf2"
     }]
-  }, [_vm._m(20)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(16)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14648,7 +14787,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(21)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14657,7 +14796,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.lepr),
       expression: "showChoices.lepr"
     }]
-  }, [_vm._m(22)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(18)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14696,7 +14835,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(23)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14705,7 +14844,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.myog),
       expression: "showChoices.myog"
     }]
-  }, [_vm._m(24)])])])])])]), _vm._v(" "), _c('li', [_vm._m(25), _vm._v(" "), _c('div', {
+  }, [_vm._m(20)])])])])])]), _vm._v(" "), _c('li', [_vm._m(21), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('div', {
     staticClass: "row"
@@ -14748,7 +14887,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(22)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14757,7 +14896,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.pss),
       expression: "showChoices.pss"
     }]
-  }, [_vm._m(27)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(23)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14796,7 +14935,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(28)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14805,7 +14944,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.rn),
       expression: "showChoices.rn"
     }]
-  }, [_vm._m(29)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(25)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14844,7 +14983,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(30)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14853,7 +14992,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.bax),
       expression: "showChoices.bax"
     }]
-  }, [_vm._m(31)])])])])])]), _vm._v(" "), _c('li', [_vm._m(32), _vm._v(" "), _c('div', {
+  }, [_vm._m(27)])])])])])]), _vm._v(" "), _c('li', [_vm._m(28), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('div', {
     staticClass: "row"
@@ -14896,7 +15035,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(33)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(29)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14905,7 +15044,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.fut1),
       expression: "showChoices.fut1"
     }]
-  }, [_vm._m(34)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(30)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14944,7 +15083,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(35)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(31)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -14953,7 +15092,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.mx1),
       expression: "showChoices.mx1"
     }]
-  }, [_vm._m(36)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(32)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -14992,7 +15131,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(37)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(33)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -15001,7 +15140,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.nramp),
       expression: "showChoices.nramp"
     }]
-  }, [_vm._m(38)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(34)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m3"
@@ -15040,7 +15179,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(39)])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _vm._m(35)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m9"
   }, [_c('div', {
     directives: [{
@@ -15049,7 +15188,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.bpi),
       expression: "showChoices.bpi"
     }]
-  }, [_vm._m(40)])])])])])])])])])]), _vm._v(" "), _vm._m(41)])])])
+  }, [_vm._m(36)])])])])])])])])])]), _vm._v(" "), _vm._m(37)])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -15060,62 +15199,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    staticClass: "validate",
-    attrs: {
-      "id": "lab-result-no",
-      "type": "text"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "lab-result-no"
-    }
-  }, [_vm._v("Laboratory Result No.")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    staticClass: "validate",
-    attrs: {
-      "id": "animal-id",
-      "type": "text"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "animal-id"
-    }
-  }, [_vm._v("Animal ID")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    staticClass: "validate",
-    attrs: {
-      "id": "sex",
-      "type": "text"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "sex"
-    }
-  }, [_vm._v("Sex")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    staticClass: "validate",
-    attrs: {
-      "id": "farm",
-      "type": "text"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "farm"
-    }
-  }, [_vm._v("Farm")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
