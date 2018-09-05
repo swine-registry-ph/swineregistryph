@@ -26,4 +26,13 @@ class GenomicsController extends Controller
         return view('users.genomics.home');
     }
 
+    /**
+     * Show form for registering genetic information
+     *
+     * @return void
+     */
+    public function showRegisterGeneticInfo()
+    {
+        return view('users.genomics.registerGeneticInfo');
+    }
 }

@@ -17,7 +17,7 @@
             </div>
         </li>
         <li :class="{ active : currentRoute.genomics.regGeneticInfo }">
-            <a href="#!"> <i class="material-icons">add_box</i> Register Genetic Info </a>
+            <a href="{{ route('genomicsRegisterForm') }}"> <i class="material-icons">add_box</i> Register Genetic Info </a>
         </li>
         <li :class="{ active : currentRoute.genomics.viewGeneticInfo }">
             <a href="#!"> <i class="material-icons">find_in_page</i> View Genetic Info </a>
