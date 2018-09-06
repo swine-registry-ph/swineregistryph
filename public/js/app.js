@@ -11297,6 +11297,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -11505,7 +11517,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('h6', {
     staticClass: "center-align"
-  }, [_c('b', [_vm._v("\n                                    GP Sire Information\n                                    "), (_vm.gpSireData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpSireData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
+  }, [(_vm.gpSireData.existingRegNo) ? [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (Registered)\n                                    ")])] : (_vm.gpSireData.imported.regNo) ? [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (Imported)\n                                    ")])] : [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (New)\n                                    ")])]], 2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
     staticClass: "striped summary-table"
   }, [_c('tbody', [(_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6",
@@ -11518,7 +11530,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('h6', {
     staticClass: "center-align"
-  }, [_c('b', [_vm._v("\n                                    GP Dam Information\n                                    "), (_vm.gpDamData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpDamData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
+  }, [(_vm.gpDamData.existingRegNo) ? [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (Registered)\n                                    ")])] : (_vm.gpDamData.imported.regNo) ? [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (Imported)\n                                    ")])] : [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (New)\n                                    ")])]], 2), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
     staticClass: "striped summary-table"
   }, [_c('tbody', [(_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6 offset-l3",
@@ -13679,7 +13691,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\np.padded[data-v-066ad98a] {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\np.padded label[data-v-066ad98a] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-066ad98a] {\n    padding: 0;\n}\ndiv.card-action[data-v-066ad98a] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n", ""]);
+exports.push([module.i, "\np.padded[data-v-066ad98a] {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\np.padded label[data-v-066ad98a] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-066ad98a] {\n    padding: 0;\n}\n.card-traits-container[data-v-066ad98a] {\n    padding-bottom: 1rem;\n}\ndiv.card-action[data-v-066ad98a] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #2672a6;\n}\n#meat-and-growth-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #26a69a;\n}\n#defects-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #a69a26;\n}\n\n", ""]);
 
 // exports
 
@@ -13690,6 +13702,39 @@ exports.push([module.i, "\np.padded[data-v-066ad98a] {\n    padding-top: 1rem;\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14272,7 +14317,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    methods: {},
+    methods: {
+        goToTab: function goToTab(tabId) {
+            this.$nextTick(function () {
+                $('#add-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
+                // Scroll animation
+                $('html, body').animate({
+                    scrollTop: $('#add-lab-result-tabs').offset().top - 70 + "px"
+                }, 500);
+            });
+        }
+    },
 
     mounted: function mounted() {
         // Materialize component initializations
@@ -14287,19 +14342,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s10 offset-s1"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "general-information"
+    }
   }, [_c('div', {
     staticClass: "card col s12"
   }, [_c('div', {
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title center-align"
-  }, [_vm._v(" Genetic Information ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v(" General Information ")]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col s12 m6 l4 offset-m3 offset-l4"
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "col s12 input-field"
   }, [_c('input', {
     directives: [{
@@ -14445,21 +14503,44 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": ""
     }
-  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collapsible z-depth-0",
-    attrs: {
-      "data-collapsible": "expandable"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.goToTab('genetic-information')
+      }
     }
-  }, [_c('li', [_vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "genetic-information"
+    }
   }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v(" Genetic Information ")]), _vm._v(" "), _c('div', {
     staticClass: "row"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m6",
+    attrs: {
+      "id": "fertility-container"
+    }
   }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14495,8 +14576,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(4)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(6)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14504,10 +14585,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.esr),
       expression: "showChoices.esr"
     }]
-  }, [_vm._m(5)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(7)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14543,8 +14624,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(6)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(8)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14552,10 +14633,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.prlr),
       expression: "showChoices.prlr"
     }]
-  }, [_vm._m(7)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(9)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14591,8 +14672,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(8)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14600,10 +14681,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.rbp4),
       expression: "showChoices.rbp4"
     }]
-  }, [_vm._m(9)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(11)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14639,8 +14720,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(12)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14648,14 +14729,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.lif),
       expression: "showChoices.lif"
     }]
-  }, [_vm._m(11)])])])])])]), _vm._v(" "), _c('li', [_vm._m(12), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
+  }, [_vm._m(13)])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "meat-and-growth-container"
+    }
   }, [_c('div', {
-    staticClass: "row"
+    staticClass: "card col s12 card-traits-container"
   }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(14), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14691,8 +14777,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(13)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14700,10 +14786,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.hfabp),
       expression: "showChoices.hfabp"
     }]
-  }, [_vm._m(14)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(16)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14739,8 +14825,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14748,10 +14834,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.igf2),
       expression: "showChoices.igf2"
     }]
-  }, [_vm._m(16)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(18)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14787,8 +14873,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14796,10 +14882,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.lepr),
       expression: "showChoices.lepr"
     }]
-  }, [_vm._m(18)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(20)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14835,8 +14921,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(21)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14844,14 +14930,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.myog),
       expression: "showChoices.myog"
     }]
-  }, [_vm._m(20)])])])])])]), _vm._v(" "), _c('li', [_vm._m(21), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
+  }, [_vm._m(22)])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "defects-container"
+    }
   }, [_c('div', {
-    staticClass: "row"
+    staticClass: "card col s12 card-traits-container"
   }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(23), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14887,8 +14978,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(22)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14896,10 +14987,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.pss),
       expression: "showChoices.pss"
     }]
-  }, [_vm._m(23)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(25)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14935,8 +15026,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14944,10 +15035,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.rn),
       expression: "showChoices.rn"
     }]
-  }, [_vm._m(25)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(27)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -14983,8 +15074,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(28)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -14992,14 +15083,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.bax),
       expression: "showChoices.bax"
     }]
-  }, [_vm._m(27)])])])])])]), _vm._v(" "), _c('li', [_vm._m(28), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
+  }, [_vm._m(29)])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "diseases-container"
+    }
   }, [_c('div', {
-    staticClass: "row"
+    staticClass: "card col s12 card-traits-container"
   }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(30), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -15035,8 +15131,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(29)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(31)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -15044,10 +15140,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.fut1),
       expression: "showChoices.fut1"
     }]
-  }, [_vm._m(30)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(32)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -15083,8 +15179,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(31)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(33)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -15092,10 +15188,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.mx1),
       expression: "showChoices.mx1"
     }]
-  }, [_vm._m(32)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(34)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -15131,8 +15227,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(33)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(35)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -15140,10 +15236,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.nramp),
       expression: "showChoices.nramp"
     }]
-  }, [_vm._m(34)])])]), _vm._v(" "), _c('div', {
+  }, [_vm._m(36)])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s5 m3"
+    staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
   }, [_c('input', {
@@ -15179,8 +15275,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  }), _vm._v(" "), _vm._m(35)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m9"
+  }), _vm._v(" "), _vm._m(37)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -15188,13 +15284,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showChoices.bpi),
       expression: "showChoices.bpi"
     }]
-  }, [_vm._m(36)])])])])])])])])])]), _vm._v(" "), _vm._m(37)])])])
+  }, [_vm._m(38)])])])])])])])]), _vm._v(" "), _vm._m(39)])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v(" Register Genetic Information ")])])
+  }, [_vm._v(" Register Laboratory Results ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    staticStyle: {
+      "margin-bottom": "0"
+    }
+  }, [_c('div', {
+    staticClass: "col s12",
+    staticStyle: {
+      "margin-top": "2rem",
+      "padding": "0"
+    },
+    attrs: {
+      "id": "add-lab-result-tabs"
+    }
+  }, [_c('ul', {
+    staticClass: "tabs tabs-fixed-width z-depth-2"
+  }, [_c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#general-information"
+    }
+  }, [_vm._v("General Information")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#genetic-information"
+    }
+  }, [_vm._v("Genetic Information")])])])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -15205,10 +15331,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "collapsible-header"
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("label")]), _vm._v(" "), _c('b', [_vm._v("Fertility Traits")])])
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Fertility Traits")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('label', {
     staticClass: "black-text",
@@ -15374,11 +15502,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("bb")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "collapsible-header"
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("label")]), _vm._v(" "), _c('b', [_vm._v("Meat Quality and Growth Rate")])])
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Meat Quality and Growth Rate")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('label', {
     staticClass: "black-text",
@@ -15544,11 +15670,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("aa")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "collapsible-header"
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("label")]), _vm._v(" "), _c('b', [_vm._v("Genetic Defects")])])
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Genetic Defects")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('label', {
     staticClass: "black-text",
@@ -15643,11 +15767,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Negative")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "collapsible-header"
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("label")]), _vm._v(" "), _c('b', [_vm._v("Diseases Resistance")])])
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Diseases Resistance")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('label', {
     staticClass: "black-text",
