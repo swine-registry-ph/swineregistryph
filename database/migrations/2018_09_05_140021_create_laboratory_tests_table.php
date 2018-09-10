@@ -15,8 +15,8 @@ class CreateLaboratoryTestsTable extends Migration
     {
         Schema::create('laboratory_tests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('laboratory_test_id')->unsigned();
-            $table->foreign('laboratory_test_id')->references('id')->on('laboratory_results');
+            $table->integer('laboratory_result_id')->unsigned();
+            $table->foreign('laboratory_result_id')->references('id')->on('laboratory_results');
             $table->integer('test_id')->unsigned();
             $table->text('result');
             $table->timestamps();

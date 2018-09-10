@@ -68,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
         Route::get('/register', 'GenomicsController@showRegisterGeneticInfo')->name('genomicsRegisterForm');
+        Route::post('/manage/laboratory-results', 'GenomicsController@addLaboratoryResults')->name('addLabResults');
     });
 
     // Evaluator-related

@@ -14261,6 +14261,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -14289,24 +14292,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 farm: '',
                 dateResult: '',
                 dateSubmitted: '',
-                fertility: {
+                tests: {
                     esr: '',
                     prlr: '',
                     rbp4: '',
-                    lif: ''
-                },
-                meatAndGrowth: {
+                    lif: '',
                     hfabp: '',
                     igf2: '',
                     lepr: '',
-                    myog: ''
-                },
-                defects: {
+                    myog: '',
                     pss: '',
                     rn: '',
-                    bax: ''
-                },
-                diseases: {
+                    bax: '',
                     fut1: '',
                     mx1: '',
                     nramp: '',
@@ -15332,7 +15329,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('br')])
+  }, [_c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                            *   -   Favorable genotype\n                        ")]), _vm._v(" "), _c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h6', {
     staticClass: "center-align"
@@ -15929,7 +15928,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-action center-align"
   }, [_c('button', {
     staticClass: "btn"
-  }, [_vm._v("\n                    Record\n                ")])])
+  }, [_vm._v("\n                    Save\n                ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

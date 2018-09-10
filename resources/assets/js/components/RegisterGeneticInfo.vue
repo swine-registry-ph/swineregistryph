@@ -114,6 +114,9 @@
 
                     <div class="row">
                         <div class="col s12">
+                            <blockquote class="info">
+                                * &nbsp; - &nbsp; Favorable genotype
+                            </blockquote>
                             <br>
                         </div>
                         <!-- Fertility Traits Card -->
@@ -547,9 +550,9 @@
                 </div>
 
                 <div class="card-action center-align">
-                    <!-- Record Button -->
+                    <!-- Save Button -->
                     <button class="btn">
-                        Record
+                        Save
                     </button>
                 </div>
             </div>
@@ -585,24 +588,18 @@
                     farm: '',
                     dateResult: '',
                     dateSubmitted: '',
-                    fertility: {
+                    tests: {
                         esr: '',
                         prlr: '',
                         rbp4: '',
-                        lif: ''
-                    },
-                    meatAndGrowth: {
+                        lif: '',
                         hfabp: '',
                         igf2: '',
                         lepr: '',
-                        myog: ''
-                    },
-                    defects: {
+                        myog: '',
                         pss: '',
                         rn: '',
-                        bax: ''
-                    },
-                    diseases: {
+                        bax: '',
                         fut1: '',
                         mx1: '',
                         nramp: '',

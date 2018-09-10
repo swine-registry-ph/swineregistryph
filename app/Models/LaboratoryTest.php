@@ -9,6 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 class LaboratoryTest extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'test_id', 'result'
+    ];
+
+    /**
      * Get the corresponding laboratory result 
      * of the laboratory test
      */
