@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col s10 offset-s1">
-        <register-genetic-info> </register-genetic-info>
+        <register-genetic-info :farmoptions="{{ $farmOptions }}"> </register-genetic-info>
     </div>
 </div>
 

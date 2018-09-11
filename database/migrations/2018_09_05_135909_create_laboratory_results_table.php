@@ -17,8 +17,9 @@ class CreateLaboratoryResultsTable extends Migration
             $table->increments('id');
             $table->integer('genomics_id')->unsigned();
             $table->foreign('genomics_id')->references('id')->on('genomics');
-            $table->integer('farm_id')->unsigned();
+            $table->integer('farm_id')->unsigned()->nullable();
             $table->foreign('farm_id')->references('id')->on('farms');
+            $table->text('farm_name')->nullable();
             $table->text('laboratory_result_no');
             $table->text('animal_id');
             $table->string('sex');

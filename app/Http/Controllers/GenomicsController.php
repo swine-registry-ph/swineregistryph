@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Farm;
 use App\Models\LaboratoryResult;
 use App\Models\LaboratoryTest;
 use App\Repositories\GenomicsRepository;
@@ -49,7 +50,19 @@ class GenomicsController extends Controller
      */
     public function showRegisterGeneticInfo()
     {
-        return view('users.genomics.registerGeneticInfo');
+        $farmOptions = [];
+        $farms = Farm::all();
+
+        foreach ($farms as $farm) {
+            $farmOptions[] = [
+                'text'  => $farm->name . ' , ' . $farm->province,
+                'value' => $farm->id
+            ];
+        }
+
+        $farmOptions = collect($farmOptions)->sortBy('text')->values();
+
+        return view('users.genomics.registerGeneticInfo', compact('farmOptions'));
     }
 
     /**

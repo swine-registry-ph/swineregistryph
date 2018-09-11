@@ -52,8 +52,9 @@ class ManageLaboratoryResultsTest extends TestCase
                     'animalId'            => '6543',
                     'sex'                 => 'male',
                     'farmId'              => 1,
-                    'dateResult'          => Carbon::now()->format('Y-m-d'),
-                    'dateSubmitted'       => Carbon::now()->subWeeks(2)->format('Y-m-d'),
+                    'farmName'            => '',
+                    'dateResult'          => Carbon::now()->format('F d, Y'),
+                    'dateSubmitted'       => Carbon::now()->subWeeks(2)->format('F d, Y'),
                     'tests'             => [
                         'esr'                 => 'BB',
                         'prlr'                => 'AA',

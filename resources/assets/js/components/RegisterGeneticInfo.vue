@@ -48,22 +48,13 @@
 
                             <!-- Sex -->
                             <div class="col s12 input-field">
-                                <input v-model="recordInfoData.sex"
-                                    id="sex"
-                                    type="text"
-                                    class="validate"
+                                <app-input-select
+                                    labelDescription="Sex"
+                                    v-model="recordInfoData.sex"
+                                    :options="[{text:'Male', value:'male'}, {text:'Female', value:'female'}]"
+                                    @select="val => {recordInfoData.sex = val}"
                                 >
-                                <label for="sex">Sex</label>
-                            </div>
-
-                            <!-- Farm -->
-                            <div class="col s12 input-field">
-                                <input v-model="recordInfoData.farm"
-                                    id="farm"
-                                    type="text"
-                                    class="validate"
-                                >
-                                <label for="farm">Farm</label>
+                                </app-input-select>
                             </div>
 
                             <!-- Date of Result -->
@@ -84,6 +75,59 @@
                                 >
                                 </app-input-date>
                                 <label for="">Date Submitted</label>
+                            </div>
+
+                            <div class="col s12">
+                                <br>
+                            </div>
+
+                            <div class="col s12">
+                                <h6>
+                                    <b>Is Farm reigstered in the system?</b>
+                                </h6>
+                                <p>
+                                    <input v-model="showChoices.farm"
+                                        name="yes"
+                                        type="radio"
+                                        id="yes"
+                                        value="registered"
+                                    >
+                                    <label for="yes">Yes</label>
+                                </p>
+                                <p>
+                                    <input v-model="showChoices.farm"
+                                        name="no"
+                                        type="radio"
+                                        id="no"
+                                        value="not-registered"
+                                    >
+                                    <label for="no">No</label>
+                                </p>
+                            </div>
+
+                            <div class="col s12">
+                                <br>
+                            </div>
+
+                            <!-- Exsiting Farm -->
+                            <div v-show="showChoices.farm === 'registered'" class="col s12 input-field">
+                                <app-input-select
+                                    labelDescription="Farm Of Origin"
+                                    v-model="recordInfoData.farmId"
+                                    :options="farmoptions"
+                                    @select="val => {recordInfoData.farmId = val}"
+                                >
+                                </app-input-select>
+                            </div>
+
+                            <!-- Not yet registered Farm -->
+                            <div v-show="showChoices.farm === 'not-registered'" class="col s12 input-field">
+                                <input v-model="recordInfoData.farmName"
+                                    id="farm-name"
+                                    type="text"
+                                    class="validate"
+                                >
+                                <label for="farm-name">Farm Name</label>
                             </div>
 
                             <div class="col s12">
@@ -142,12 +186,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.esr">
                                                 <p class="padded">
-                                                    <input name="esr" type="radio" id="esr-1" />
-                                                    <label for="esr-1">BB</label>
-                                                    <input name="esr" type="radio" id="esr-2" />
-                                                    <label for="esr-2">Bb</label>
-                                                    <input name="esr" type="radio" id="esr-3" />
-                                                    <label for="esr-3">bb</label>
+                                                    <template v-for="(choice, index) in testChoices.esr">
+                                                        <input v-model="recordInfoData.tests.esr" 
+                                                            name="esr" 
+                                                            type="radio" 
+                                                            :id="`esr-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`esr-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -168,12 +215,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.prlr">
                                                 <p class="padded">
-                                                    <input name="prlr" type="radio" id="prlr-1" />
-                                                    <label for="prlr-1">AA</label>
-                                                    <input name="prlr" type="radio" id="prlr-2" />
-                                                    <label for="prlr-2">Aa</label>
-                                                    <input name="prlr" type="radio" id="prlr-3" />
-                                                    <label for="prlr-3">aa</label>
+                                                    <template v-for="(choice, index) in testChoices.prlr">
+                                                        <input v-model="recordInfoData.tests.prlr" 
+                                                            name="prlr" 
+                                                            type="radio" 
+                                                            :id="`prlr${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`prlr${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -194,12 +244,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.rbp4">
                                                 <p class="padded">
-                                                    <input name="rbp4" type="radio" id="rbp4-1" />
-                                                    <label for="rbp4-2">BB</label>
-                                                    <input name="rbp4" type="radio" id="rbp4-2" />
-                                                    <label for="rbp4-2">Bb</label>
-                                                    <input name="rbp4" type="radio" id="rbp4-3" />
-                                                    <label for="rbp4-3">bb</label>
+                                                    <template v-for="(choice, index) in testChoices.rbp4">
+                                                        <input v-model="recordInfoData.tests.rbp4" 
+                                                            name="rbp4" 
+                                                            type="radio" 
+                                                            :id="`rbp4-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`rbp4-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -220,12 +273,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.lif">
                                                 <p class="padded">
-                                                    <input name="lif" type="radio" id="lif-1" />
-                                                    <label for="lif-1">BB</label>
-                                                    <input name="lif" type="radio" id="lif-2" />
-                                                    <label for="lif-2">Bb</label>
-                                                    <input name="lif" type="radio" id="lif-3" />
-                                                    <label for="lif-3">bb</label>
+                                                    <template v-for="(choice, index) in testChoices.lif">
+                                                        <input v-model="recordInfoData.tests.lif" 
+                                                            name="lif" 
+                                                            type="radio" 
+                                                            :id="`lif-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`lif-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -257,12 +313,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.hfabp">
                                                 <p class="padded">
-                                                    <input name="hfabp" type="radio" id="hfabp-1" />
-                                                    <label for="hfabp-1">AA</label>
-                                                    <input name="hfabp" type="radio" id="hfabp-2" />
-                                                    <label for="hfabp-2">Aa</label>
-                                                    <input name="hfabp" type="radio" id="hfabp-3" />
-                                                    <label for="hfabp-3">aa</label>
+                                                    <template v-for="(choice, index) in testChoices.hfabp">
+                                                        <input v-model="recordInfoData.tests.hfabp" 
+                                                            name="hfabp" 
+                                                            type="radio" 
+                                                            :id="`hfabp-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`hfabp-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -283,12 +342,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.igf2">
                                                 <p class="padded">
-                                                    <input name="igf2" type="radio" id="igf2-1" />
-                                                    <label for="igf2-1">CC</label>
-                                                    <input name="igf2" type="radio" id="igf2-2" />
-                                                    <label for="igf2-2">Cc</label>
-                                                    <input name="igf2" type="radio" id="igf2-3" />
-                                                    <label for="igf2-3">cc</label>
+                                                    <template v-for="(choice, index) in testChoices.igf2">
+                                                        <input v-model="recordInfoData.tests.igf2" 
+                                                            name="igf2" 
+                                                            type="radio" 
+                                                            :id="`igf2-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`igf2-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -309,12 +371,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.lepr">
                                                 <p class="padded">
-                                                    <input name="lepr" type="radio" id="lepr-1" />
-                                                    <label for="lepr-1">BB</label>
-                                                    <input name="lepr" type="radio" id="lepr-2" />
-                                                    <label for="lepr-2">Bb</label>
-                                                    <input name="lepr" type="radio" id="lepr-3" />
-                                                    <label for="lepr-3">bb</label>
+                                                    <template v-for="(choice, index) in testChoices.lepr">
+                                                        <input v-model="recordInfoData.tests.lepr" 
+                                                            name="lepr" 
+                                                            type="radio" 
+                                                            :id="`lepr-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`lepr-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -335,12 +400,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.myog">
                                                 <p class="padded">
-                                                    <input name="myog" type="radio" id="myog-1" />
-                                                    <label for="myog-1">AA</label>
-                                                    <input name="myog" type="radio" id="myog-2" />
-                                                    <label for="myog-2">Aa</label>
-                                                    <input name="myog" type="radio" id="myog-3" />
-                                                    <label for="myog-3">aa</label>
+                                                    <template v-for="(choice, index) in testChoices.myog">
+                                                        <input v-model="recordInfoData.tests.myog" 
+                                                            name="myog" 
+                                                            type="radio" 
+                                                            :id="`myog-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`myog-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -373,10 +441,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.pss">
                                                 <p class="padded">
-                                                    <input name="pss" type="radio" id="pss-1" />
-                                                    <label for="pss-1">Positive</label>
-                                                    <input name="pss" type="radio" id="pss-2" />
-                                                    <label for="pss-2">Negative</label>
+                                                    <template v-for="(choice, index) in testChoices.pss">
+                                                        <input v-model="recordInfoData.tests.pss" 
+                                                            name="pss" 
+                                                            type="radio" 
+                                                            :id="`pss-${index}`"
+                                                            :value="choice.toUpperCase()" 
+                                                        />
+                                                        <label :for="`pss-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -397,10 +470,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.rn">
                                                 <p class="padded">
-                                                    <input name="rn" type="radio" id="rn-1" />
-                                                    <label for="rn-1">Positive</label>
-                                                    <input name="rn" type="radio" id="rn-2" />
-                                                    <label for="rn-2">Negative</label>
+                                                    <template v-for="(choice, index) in testChoices.rn">
+                                                        <input v-model="recordInfoData.tests.rn" 
+                                                            name="rn" 
+                                                            type="radio" 
+                                                            :id="`rn-${index}`"
+                                                            :value="choice.toUpperCase()" 
+                                                        />
+                                                        <label :for="`rn-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -421,10 +499,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.bax">
                                                 <p class="padded">
-                                                    <input name="bax" type="radio" id="bax-1" />
-                                                    <label for="bax-1">Positive</label>
-                                                    <input name="bax" type="radio" id="bax-2" />
-                                                    <label for="bax-2">Negative</label>
+                                                    <template v-for="(choice, index) in testChoices.bax">
+                                                        <input v-model="recordInfoData.tests.bax" 
+                                                            name="bax" 
+                                                            type="radio" 
+                                                            :id="`bax-${index}`"
+                                                            :value="choice.toUpperCase()" 
+                                                        />
+                                                        <label :for="`bax-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -456,12 +539,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.fut1">
                                                 <p class="padded">
-                                                    <input name="fut1" type="radio" id="fut1-1" />
-                                                    <label for="fut1-1">AA</label>
-                                                    <input name="fut1" type="radio" id="fut1-2" />
-                                                    <label for="fut1-2">Aa</label>
-                                                    <input name="fut1" type="radio" id="fut1-3" />
-                                                    <label for="fut1-3">aa</label>
+                                                    <template v-for="(choice, index) in testChoices.fut1">
+                                                        <input v-model="recordInfoData.tests.fut1" 
+                                                            name="fut1" 
+                                                            type="radio" 
+                                                            :id="`fut1-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`fut1-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -482,10 +568,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.mx1">
                                                 <p class="padded">
-                                                    <input name="mx1" type="radio" id="mx1-1" />
-                                                    <label for="mx1-1">Resistant</label>
-                                                    <input name="mx1" type="radio" id="mx1-2" />
-                                                    <label for="mx1-2">Non-resistant</label>
+                                                    <template v-for="(choice, index) in testChoices.mx1">
+                                                        <input v-model="recordInfoData.tests.mx1" 
+                                                            name="mx1" 
+                                                            type="radio" 
+                                                            :id="`mx1-${index}`"
+                                                            :value="choice.toUpperCase()" 
+                                                        />
+                                                        <label :for="`mx1-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -506,12 +597,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.nramp">
                                                 <p class="padded">
-                                                    <input name="nramp" type="radio" id="nramp-1" />
-                                                    <label for="nramp-1">BB</label>
-                                                    <input name="nramp" type="radio" id="nramp-2" />
-                                                    <label for="nramp-2">Bb</label>
-                                                    <input name="nramp" type="radio" id="nramp-3" />
-                                                    <label for="nramp-3">bb</label>
+                                                    <template v-for="(choice, index) in testChoices.nramp">
+                                                        <input v-model="recordInfoData.tests.nramp" 
+                                                            name="nramp" 
+                                                            type="radio" 
+                                                            :id="`nramp-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`nramp-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -532,12 +626,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.bpi">
                                                 <p class="padded">
-                                                    <input name="bpi" type="radio" id="bpi-1" />
-                                                    <label for="bpi-1">GG</label>
-                                                    <input name="bpi" type="radio" id="bpi-2" />
-                                                    <label for="bpi-2">Gg</label>
-                                                    <input name="bpi" type="radio" id="bpi-3" />
-                                                    <label for="bpi-3">gg</label>
+                                                    <template v-for="(choice, index) in testChoices.bpi">
+                                                        <input v-model="recordInfoData.tests.bpi" 
+                                                            name="bpi" 
+                                                            type="radio" 
+                                                            :id="`bpi-${index}`"
+                                                            :value="choice" 
+                                                        />
+                                                        <label :for="`bpi-${index}`"> {{choice}} </label>
+                                                    </template>
                                                 </p>
                                             </div>
                                         </div>
@@ -551,7 +648,9 @@
 
                 <div class="card-action center-align">
                     <!-- Save Button -->
-                    <button class="btn">
+                    <button @click.prevent="saveLaboratoryResults($event)"
+                        class="btn save-btn"
+                    >
                         Save
                     </button>
                 </div>
@@ -562,9 +661,14 @@
 
 <script>
     export default {
+        props: {
+            farmoptions: Array
+        },
+
         data() {
             return {
                 showChoices: {
+                    farm: 'registered',
                     esr: false,
                     prlr: false,
                     rbp4: false,
@@ -581,11 +685,30 @@
                     nramp: false,
                     bpi: false
                 },
+                testChoices: {
+                    esr: ['BB', 'Bb', 'bb'],
+                    prlr: ['AA', 'Aa', 'aa'],
+                    rbp4: ['BB', 'Bb', 'bb'],
+                    lif: ['BB', 'Bb', 'bb'],
+                    hfabp: ['AA', 'Aa', 'aa'],
+                    igf2: ['CC', 'Cc', 'cc'],
+                    lepr: ['BB', 'Bb', 'bb'],
+                    myog: ['AA', 'Aa', 'aa'],
+                    pss: ['Positive', 'Negative'],
+                    rn: ['Positive', 'Negative'],
+                    bax: ['Positive', 'Negative'],
+                    fut1: ['AA', 'Aa', 'aa'],
+                    mx1: ['Resistant', 'Non-resistant'],
+                    nramp: ['BB', 'Bb', 'bb'],
+                    bpi: ['GG', 'Gg', 'gg']
+
+                },
                 recordInfoData: {
                     laboratoryResultNo: '',
                     animalId: '',
                     sex: '',
-                    farm: '',
+                    farmId: '',
+                    farmName: '',
                     dateResult: '',
                     dateSubmitted: '',
                     tests: {
@@ -609,6 +732,56 @@
             }
         },
 
+        watch: {
+            // Check if test is not chosen/shown anymore
+            // then reset value of test to default
+            'showChoices.esr': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.esr = '';
+            },
+            'showChoices.prlr': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.prlr = '';
+            },
+            'showChoices.rbp4': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.rbp4 = '';
+            },
+            'showChoices.lif': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.lif = '';
+            },
+            'showChoices.hfabp': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.hfabp = '';
+            },
+            'showChoices.igf2': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.igf2 = '';
+            },
+            'showChoices.lepr': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.lepr = '';
+            },
+            'showChoices.myog': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.myog = '';
+            },
+            'showChoices.pss': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.pss = '';
+            },
+            'showChoices.rn': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.rn = '';
+            },
+            'showChoices.bax': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.bax = '';
+            },
+            'showChoices.fut1': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.fut1 = '';
+            },
+            'showChoices.mx1': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.mx1 = '';
+            },
+            'showChoices.nramp': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.nramp = '';
+            },
+            'showChoices.bpi': function(oldValue, newValue) {
+                if(oldValue === false) this.recordInfoData.tests.bpi = '';
+            },
+        },
+
         methods: {
             goToTab(tabId) {
                 this.$nextTick(() => {
@@ -618,6 +791,70 @@
                         scrollTop: $(`#add-lab-result-tabs`).offset().top - 70 + "px"
                     }, 500);
                 });
+            },
+
+            saveLaboratoryResults(event) {
+                const vm = this;
+                const saveLabResultsButton = $('.save-btn');
+
+                this.disableButtons(saveLabResultsButton, event.target, 'Saving...');
+
+                // Add to server's database
+                axios.post('/genomics/manage/laboratory-results', vm.recordInfoData)
+                .then((response) => {
+                    // Reset registering of lab results to default values
+                    vm.recordInfoData = {
+                        laboratoryResultNo: '',
+                        animalId: '',
+                        sex: '',
+                        farmId: '',
+                        farmName: '',
+                        dateResult: '',
+                        dateSubmitted: '',
+                        tests: {
+                            esr: '',
+                            prlr: '',
+                            rbp4: '',
+                            lif: '',
+                            hfabp: '',
+                            igf2: '',
+                            lepr: '',
+                            myog: '',
+                            pss: '',
+                            rn: '',
+                            bax: '',
+                            fut1: '',
+                            mx1: '',
+                            nramp: '',
+                            bpi: ''
+                        }
+                    };
+
+                    // Update UI after adding breed
+                    vm.$nextTick(() => {
+                        this.enableButtons(saveLabResultsButton, event.target, 'Save');
+
+                        Materialize.toast('Laboratory Results saved.', 2500, 'green lighten-1');
+
+                        // Reload page
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2600);
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
             }
         },
 

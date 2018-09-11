@@ -7,6 +7,8 @@ use App\Models\LaboratoryResult;
 use App\Models\LaboratoryTest;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 class GenomicsRepository
 {
     /**
@@ -21,12 +23,19 @@ class GenomicsRepository
 
         $labResults = new LaboratoryResult;
 
-        $labResults->farm_id = $request->farmId;
+        $labResults->farm_id = $request->farmId ?? null;
+        $labResults->farm_name = $request->farmName ?? null;
         $labResults->laboratory_result_no = $request->laboratoryResultNo;
         $labResults->animal_id = $request->animalId;
         $labResults->sex = $request->sex;
-        $labResults->date_result = $request->dateResult;
-        $labResults->date_submitted = $request->dateSubmitted;
+        $labResults->date_result = Carbon::createFromFormat(
+            'F d, Y', 
+            $request->dateResult)
+            ->toDateString();
+        $labResults->date_submitted = Carbon::createFromFormat(
+            'F d, Y', 
+            $request->dateSubmitted)
+            ->toDateString();
         
         $genomicsUser->laboratoryResults()->save($labResults);
 

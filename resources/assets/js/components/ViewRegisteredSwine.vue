@@ -57,13 +57,15 @@
                     <div class="collapsible-body">
                         <p class="range-field">
                             <template v-for="farm in farmoptions">
-                                <input v-model="filterOptions.farm"
-                                    type="checkbox" 
-                                    class="filled-in" 
-                                    :value="farm.value" 
-                                    :id="farm.text"
-                                />
-                                <label :for="farm.text"> {{farm.text}} </label> <br>
+                                <div>
+                                    <input v-model="filterOptions.farm"
+                                        type="checkbox" 
+                                        class="filled-in" 
+                                        :value="farm.value" 
+                                        :id="farm.text"
+                                    />
+                                    <label :for="farm.text"> {{farm.text}} </label>
+                                </div>
                             </template>
                         </p>
                     </div>
@@ -99,7 +101,7 @@
                                     id="search" 
                                     name="q"
                                     type="search"
-                                    placeholder="Type swine registration no. to search" 
+                                    placeholder="Type swine registration no. and press enter to search" 
                                     autocomplete="off"
                                 >
                                 <label class="label-icon" for="search">
