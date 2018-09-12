@@ -48,7 +48,7 @@ class GenomicsController extends Controller
      *
      * @return  void
      */
-    public function showRegisterGeneticInfo()
+    public function showRegisterLaboratoryResults()
     {
         $farmOptions = [];
         $farms = Farm::all();
@@ -62,7 +62,7 @@ class GenomicsController extends Controller
 
         $farmOptions = collect($farmOptions)->sortBy('text')->values();
 
-        return view('users.genomics.registerGeneticInfo', compact('farmOptions'));
+        return view('users.genomics.registerLaboratoryResults', compact('farmOptions'));
     }
 
     /**

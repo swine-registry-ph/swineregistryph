@@ -465,7 +465,7 @@ Vue.component('register-swine', __webpack_require__(84));
 Vue.component('view-registered-swine', __webpack_require__(119));
 
 // Genomics
-Vue.component('register-genetic-info', __webpack_require__(124));
+Vue.component('register-laboratory-results', __webpack_require__(124));
 
 // For main container
 var app = new Vue({
@@ -496,8 +496,8 @@ var nav = new Vue({
                 reports: false
             },
             genomics: {
-                regGeneticInfo: false,
-                viewGeneticInfo: false
+                regLabResults: false,
+                viewLabResults: false
             }
         }
     },
@@ -566,7 +566,7 @@ var nav = new Vue({
                 break;
 
             case '/genomics/register':
-                this.currentRoute.genomics.regGeneticInfo = true;
+                this.currentRoute.genomics.regLabResults = true;
                 break;
 
             default:
@@ -13631,13 +13631,13 @@ var Component = __webpack_require__(0)(
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-066ad98a",
+  "data-v-091d2757",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterGeneticInfo.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterLaboratoryResults.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegisterGeneticInfo.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterLaboratoryResults.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -13646,9 +13646,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-066ad98a", Component.options)
+    hotAPI.createRecord("data-v-091d2757", Component.options)
   } else {
-    hotAPI.reload("data-v-066ad98a", Component.options)
+    hotAPI.reload("data-v-091d2757", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -13669,13 +13669,13 @@ var content = __webpack_require__(126);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("09df9240", content, false);
+var update = __webpack_require__(2)("7f966660", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-066ad98a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterGeneticInfo.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-066ad98a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterGeneticInfo.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-091d2757\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterLaboratoryResults.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-091d2757\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterLaboratoryResults.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -13693,7 +13693,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\np.padded[data-v-066ad98a] {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\np.padded label[data-v-066ad98a] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-066ad98a] {\n    padding: 0;\n}\n.card-traits-container[data-v-066ad98a] {\n    padding-bottom: 1rem;\n}\ndiv.card-action[data-v-066ad98a] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #2672a6;\n}\n#meat-and-growth-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #26a69a;\n}\n#defects-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-066ad98a] {\n    border-top: 4px solid #a69a26;\n}\n\n", ""]);
+exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\np.padded label[data-v-091d2757] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-091d2757] {\n    padding: 0;\n}\n.card-traits-container[data-v-091d2757] {\n    padding-bottom: 1rem;\n}\ndiv.card-action[data-v-091d2757] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-091d2757] {\n    border-top: 4px solid #2672a6;\n}\n#meat-and-growth-container > .card[data-v-091d2757] {\n    border-top: 4px solid #26a69a;\n}\n#defects-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-091d2757] {\n    border-top: 4px solid #a69a26;\n}\n\n", ""]);
 
 // exports
 
@@ -16230,7 +16230,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-066ad98a", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-091d2757", module.exports)
   }
 }
 
