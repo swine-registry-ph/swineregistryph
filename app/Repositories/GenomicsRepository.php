@@ -2,15 +2,19 @@
 
 namespace App\Repositories;
 
+use App\Models\Farm;
 use App\Models\Genomics;
 use App\Models\LaboratoryResult;
 use App\Models\LaboratoryTest;
+use App\Repositories\CustomHelpers;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
 
 class GenomicsRepository
 {
+    use CustomHelpers;
+
     /**
      * Add laboratory results for genomics
      *
@@ -175,5 +179,62 @@ class GenomicsRepository
         }
 
         return $labResults;
+    }
+
+    /**
+     * Customize laboratory results data for better
+     * consumption in front-end
+     *
+     * @param   Collection  $labResults
+     * @return  Collection
+     */
+    public function customizeLabResults($labResults)
+    {
+        $customData = [];
+
+        foreach ($labResults as $result) {
+            $farm = Farm::find($result->farm_id);
+
+            $customData[] = [
+                'id'            => $result->id,
+                'labResultNo'   => $result->laboratory_result_no,
+                'animalId'      => $result->animal_id,
+                'sex'           => ucfirst($result->sex),
+                'dateResult'    => $this->changeDateFormat($result->date_result),
+                'dateSubmitted' => $this->changeDateFormat($result->date_submitted),
+                'farm'          => [
+                    'registered' => ($result->farm_id) ? true : false,
+                    'name'       => ($result->farm_id) 
+                                        ? $farm->name . ', ' . $farm->province
+                                        : $result->farm_name
+                ],
+                'tests'         => [
+                    'esr'   => $this->getLabTestValue($result, 1),
+                    'prlr'  => $this->getLabTestValue($result, 2),
+                    'rbp4'  => $this->getLabTestValue($result, 3),
+                    'lif'   => $this->getLabTestValue($result, 4),
+                    'hfabp' => $this->getLabTestValue($result, 5),
+                    'igf2'  => $this->getLabTestValue($result, 6),
+                    'lepr'  => $this->getLabTestValue($result, 7),
+                    'myog'  => $this->getLabTestValue($result, 8),
+                    'pss'   => $this->getLabTestValue($result, 9),
+                    'rn'    => $this->getLabTestValue($result, 10),
+                    'bax'   => $this->getLabTestValue($result, 11),
+                    'fut1'  => $this->getLabTestValue($result, 12),
+                    'mx1'   => $this->getLabTestValue($result, 13),
+                    'nramp' => $this->getLabTestValue($result, 14),
+                    'bpi'   => $this->getLabTestValue($result, 15)
+                ],
+                'showTests'     => [
+                    'fertility'     => false,
+                    'meatAndGrowth' => false,
+                    'defects'       => false,
+                    'diseases'      => false
+                ]
+            ];
+
+        }
+
+        return collect($customData)->sortBy('labResultNo')->values();
     }
 }

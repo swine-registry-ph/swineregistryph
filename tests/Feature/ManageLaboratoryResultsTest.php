@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use Artisan;
+use App\Models\LaboratoryResult;
 use App\Models\Genomics;
 use App\Models\User;
+use App\Repositories\GenomicsRepository;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -17,6 +19,7 @@ class ManageLaboratoryResultsTest extends TestCase
     use DatabaseMigrations, DatabaseTransactions;
 
     protected $genomicsUser;
+    protected $genomicsRepo;
 
     /**
      * Initialize data needed for testing
@@ -28,6 +31,7 @@ class ManageLaboratoryResultsTest extends TestCase
         Artisan::call('db:seed');
 
         $this->genomicsUser = factory(User::class)->create();
+        $this->genomicsRepo = new GenomicsRepository;
 
         // Create Genomics Profile
         $genomics = factory(Genomics::class)->create();
@@ -55,22 +59,22 @@ class ManageLaboratoryResultsTest extends TestCase
                     'farmName'            => '',
                     'dateResult'          => Carbon::now()->format('F d, Y'),
                     'dateSubmitted'       => Carbon::now()->subWeeks(2)->format('F d, Y'),
-                    'tests'             => [
-                        'esr'                 => 'BB',
-                        'prlr'                => 'AA',
-                        'rbp4'                => 'BB',
-                        'lif'                 => 'BB',
-                        'hfabp'               => 'AA',
-                        'igf2'                => 'CC',
-                        'lepr'                => 'BB',
-                        'myog'                => 'AA',
-                        'pss'                 => 'NEGATIVE',
-                        'rn'                  => 'NEGATIVE',
-                        'bax'                 => 'NEGATIVE',
-                        'fut1'                => 'AA',
-                        'mx1'                 => 'RESISTANT',
-                        'nramp'               => 'BB',
-                        'bpi'                 => 'GG'
+                    'tests'               => [
+                        'esr'   => 'BB',
+                        'prlr'  => 'AA',
+                        'rbp4'  => 'BB',
+                        'lif'   => 'BB',
+                        'hfabp' => 'AA',
+                        'igf2'  => 'CC',
+                        'lepr'  => 'BB',
+                        'myog'  => 'AA',
+                        'pss'   => 'NEGATIVE',
+                        'rn'    => 'NEGATIVE',
+                        'bax'   => 'NEGATIVE',
+                        'fut1'  => 'AA',
+                        'mx1'   => 'RESISTANT',
+                        'nramp' => 'BB',
+                        'bpi'   => 'GG'
                     ]
                 ]
             );
@@ -78,4 +82,22 @@ class ManageLaboratoryResultsTest extends TestCase
         $response
             ->assertStatus(200);
     }
+
+    /**
+     * For genomics viewing current laboratory results
+     *
+     * @return void
+     */
+    public function testGenomicsViewLabResults()
+    {
+        $labResults = LaboratoryResult::with(['laboratoryTests'])->get();
+        $customLabResults = $this->genomicsRepo->customizeLabResults($labResults);
+
+        $response = $this->actingAs($this->genomicsUser)
+                         ->get('/genomics/manage/laboratory-results');
+                         
+        $response->assertViewIs('users.genomics.viewLaboratoryResults');
+        $response->assertViewHas('customLabResults', $customLabResults);
+    }
+    
 }

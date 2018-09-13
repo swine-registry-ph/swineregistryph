@@ -9,6 +9,42 @@ use Carbon\Carbon;
 trait CustomHelpers
 {
     /**
+     * Changes "Y-m-d" date format to  readable format "F d, Y"
+     * Ex. "2018-04-18" -> "April 18, 2018"
+     *
+     * Or just get the year of "Y-m-d" format
+     *
+     * @param   string
+     * @return  string
+     */
+    public function changeDateFormat($originalFormat, $toFormat = '')
+    {
+        switch ($toFormat) {
+            case 'year':
+            return ($originalFormat)
+            ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('Y')
+            : '';
+            
+            default:
+            return ($originalFormat)
+            ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('F d, Y')
+            : '';
+        }
+    }
+    
+    /**
+     * Turns first letter of string to uppercase
+     * and return 1st letter
+     *
+     * @param   string  $string
+     * @return  string
+     */
+    private function firstLetterUpper($string)
+    {
+        return strtoupper(substr($string, 0, 1));
+    }
+    
+    /**
      * Generate Registration number of swine according to the following naming system:
      * [Location][Farm][Breed][BirthYear][Gender][Tunnel/Open]-earmark/farmID
      * Ex. DAOJJLW16MT-1896
@@ -19,13 +55,50 @@ trait CustomHelpers
     public function generateRegistrationNumber($requiredData)
     {
         return "{$requiredData['farmProvinceCode']}"
-                . "{$requiredData['farmCode']}"
-                . "{$requiredData['breedCode']}"
-                . "{$requiredData['birthYear']}"
-                . "{$this->firstLetterUpper($requiredData['sex'])}"
-                . "{$this->firstLetterUpper($requiredData['houseType'])}"
-                . "-"
-                . "{$requiredData['farmSwineId']}";
+        . "{$requiredData['farmCode']}"
+        . "{$requiredData['breedCode']}"
+        . "{$requiredData['birthYear']}"
+        . "{$this->firstLetterUpper($requiredData['sex'])}"
+        . "{$this->firstLetterUpper($requiredData['houseType'])}"
+        . "-"
+        . "{$requiredData['farmSwineId']}";
+    }
+    
+    /**
+     * Get breed title
+     *
+     * @param   integer     $breedId
+     * @return  string
+     */
+    public function getBreedTitle($breedId)
+    {
+        return Breed::find($breedId)->title;
+    }
+
+    /**
+     * Append Farm name with Province
+     *
+     * @param   integer     $farm
+     * @return  string
+     */
+    public function getFarmNameWithProvince($farmId)
+    {
+        $farm = Farm::find($farmId);
+        
+        return "{$farm->name}" . ", " . "{$farm->province}";
+    }
+
+    /**
+     * Wrapper for getting a specific test of lab result
+     *
+     * @param   LaboratoryResult    $labResult
+     * @param   integer             $testId
+     * @return  string
+     */
+    public function getLabTestValue($labResult, $testId)
+    {
+        return $labResult->laboratoryTests->where('test_id', $testId)->first()->result
+            ?? '';
     }
 
     /**
@@ -40,55 +113,7 @@ trait CustomHelpers
         return $swine->swineProperties->where('property_id', $propertyId)->first()->value
             ?? '';
     }
-
-    /**
-     * Changes "Y-m-d" date format to  readable format "F d, Y"
-     * Ex. "2018-04-18" -> "April 18, 2018"
-     *
-     * Or just get the year of "Y-m-d" format
-     *
-     * @param   string
-     * @return  string
-     */
-    public function changeDateFormat($originalFormat, $toFormat = '')
-    {
-        switch ($toFormat) {
-            case 'year':
-                return ($originalFormat)
-                    ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('Y')
-                    : '';
-
-            default:
-                return ($originalFormat)
-                    ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('F d, Y')
-                    : '';
-        }
-    }
-
-    /**
-     * Append Farm name with Province
-     *
-     * @param   integer     $farm
-     * @return  string
-     */
-    public function getFarmNameWithProvince($farmId)
-    {
-        $farm = Farm::find($farmId);
-
-        return "{$farm->name}" . ", " . "{$farm->province}";
-    }
-
-    /**
-     * Get breed title
-     *
-     * @param   integer     $breedId
-     * @return  string
-     */
-    public function getBreedTitle($breedId)
-    {
-        return Breed::find($breedId)->title;
-    }
-
+    
     /**
      * Get Provinces along with respective Province code
      *
@@ -439,18 +464,6 @@ trait CustomHelpers
                 'value' => 'Tawi-tawi ; TAW'
             ]
         ];
-    }
-
-    /**
-     * Turns first letter of string to uppercase
-     * and return 1st letter
-     *
-     * @param   string  $string
-     * @return  string
-     */
-    private function firstLetterUpper($string)
-    {
-        return strtoupper(substr($string, 0, 1));
     }
 
 }

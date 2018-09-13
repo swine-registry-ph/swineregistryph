@@ -20,7 +20,7 @@
             <a href="{{ route('genomicsRegisterForm') }}"> <i class="material-icons">add_box</i> Register Lab Results </a>
         </li>
         <li :class="{ active : currentRoute.genomics.viewLabResults }">
-            <a href="#!"> <i class="material-icons">find_in_page</i> View Lab Results </a>
+            <a href="{{ route('viewLabResults') }}"> <i class="material-icons">find_in_page</i> View Lab Results </a>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <div class="divider"></div>

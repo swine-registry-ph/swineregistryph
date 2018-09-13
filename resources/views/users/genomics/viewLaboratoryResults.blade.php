@@ -1,14 +1,14 @@
 @extends('users.genomics.home')
 
 @section('title')
-    | Register Laboratory Results
+    | View Laboratory Results
 @endsection
 
 @section('content')
 
 <div class="row">
     <div class="col s10 offset-s1">
-        <register-laboratory-results :farmoptions="{{ $farmOptions }}"> </register-laboratory-results>
+        <view-laboratory-results :custom-lab-results="{{ $customLabResults }}"></view-laboratory-results>
     </div>
 </div>
 

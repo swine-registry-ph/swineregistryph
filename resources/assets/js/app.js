@@ -35,6 +35,7 @@ Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine
 
 // Genomics
 Vue.component('register-laboratory-results', require('./components/RegisterLaboratoryResults.vue'));
+Vue.component('view-laboratory-results', require('./components/ViewLaboratoryResults.vue'));
 
 // For main container
 const app = new Vue({
@@ -136,6 +137,10 @@ const nav = new Vue({
 
             case '/genomics/register':
                 this.currentRoute.genomics.regLabResults = true;
+                break;
+            
+            case '/genomics/manage/laboratory-results':
+                this.currentRoute.genomics.viewLabResults = true;
                 break;
 
             default: break;

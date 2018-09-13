@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(129);
+module.exports = __webpack_require__(134);
 
 
 /***/ }),
@@ -466,6 +466,7 @@ Vue.component('view-registered-swine', __webpack_require__(119));
 
 // Genomics
 Vue.component('register-laboratory-results', __webpack_require__(124));
+Vue.component('view-laboratory-results', __webpack_require__(129));
 
 // For main container
 var app = new Vue({
@@ -567,6 +568,10 @@ var nav = new Vue({
 
             case '/genomics/register':
                 this.currentRoute.genomics.regLabResults = true;
+                break;
+
+            case '/genomics/manage/laboratory-results':
+                this.currentRoute.genomics.viewLabResults = true;
                 break;
 
             default:
@@ -16236,6 +16241,635 @@ if (false) {
 
 /***/ }),
 /* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(130)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(132),
+  /* template */
+  __webpack_require__(133),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-241c1815",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewLaboratoryResults.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ViewLaboratoryResults.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-241c1815", Component.options)
+  } else {
+    hotAPI.reload("data-v-241c1815", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(131);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("17ae8e14", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-241c1815\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResults.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-241c1815\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResults.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815] /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        customLabResults: Array
+    },
+
+    data: function data() {
+        return {
+            pageNumber: 0,
+            paginationSize: 6,
+            labResults: this.customLabResults
+        };
+    },
+
+
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.labResults.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedLabResults: function paginatedLabResults() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return this.labResults.slice(start, end);
+        }
+    },
+
+    methods: {
+        findLabResultIndexById: function findLabResultIndexById(id) {
+            for (var i = 0; i < this.labResults.length; i++) {
+                if (this.labResults[i].id === id) return i;
+            }
+
+            return -1;
+        },
+        previousPage: function previousPage() {
+            // For pagination
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            // For pagination
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            // For pagination
+            this.pageNumber = page - 1;
+        },
+        showGeneticInformation: function showGeneticInformation(id, category) {
+            var index = this.findLabResultIndexById(id);
+
+            var booleanValue = this.paginatedLabResults[index]['showTests'][category];
+            this.paginatedLabResults[index]['showTests'][category] = !booleanValue;
+        }
+    }
+});
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('table', {
+    staticClass: "z-depth-1 striped white"
+  }, [_vm._m(2), _vm._v(" "), _c('tbody', _vm._l((_vm.paginatedLabResults), function(result, index) {
+    return _c('tr', {
+      key: result.id
+    }, [_c('td', [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(_vm._s(result.labResultNo))])]), _vm._v(" "), _c('p', {
+      staticClass: "primary-details"
+    }, [_vm._v("\n                            " + _vm._s(result.sex) + " • " + _vm._s(result.animalId) + "\n                        ")]), _vm._v(" "), _c('p', {
+      staticClass: "secondary-details grey-text text-darken-2"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left tooltipped",
+      attrs: {
+        "data-position": "top",
+        "data-delay": "50",
+        "data-tooltip": "Farm Name"
+      }
+    }, [_vm._v("\n                                    location_on\n                                ")]), _vm._v(" \n                                " + _vm._s(result.farm.name) + "\n                            ")])]), _vm._v(" "), _c('p', {
+      staticClass: "secondary-details grey-text text-darken-2"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left tooltipped",
+      attrs: {
+        "data-position": "top",
+        "data-delay": "50",
+        "data-tooltip": "Date of Result"
+      }
+    }, [_vm._v("\n                                    event_available\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateResult) + "\n                            ")])]), _vm._v(" "), _c('p', {
+      staticClass: "secondary-details grey-text text-darken-2"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left tooltipped",
+      attrs: {
+        "data-position": "top",
+        "data-delay": "50",
+        "data-tooltip": "Date Submitted"
+      }
+    }, [_vm._v("\n                                    event_note\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateSubmitted) + "\n                            ")])])]), _vm._v(" "), _c('td', [_c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showGeneticInformation(result.id, 'fertility')
+        }
+      }
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.fertility),
+        expression: "!result.showTests.fertility"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.fertility),
+        expression: "result.showTests.fertility"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Fertility\n                            ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.fertility),
+        expression: "result.showTests.fertility"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("ESR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.esr) ? result.tests.esr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("PRLR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.prlr) ? result.tests.prlr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("RBP4")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.rbp4) ? result.tests.rbp4 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("LIF")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.lif) ? result.tests.lif : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showGeneticInformation(result.id, 'meatAndGrowth')
+        }
+      }
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.meatAndGrowth),
+        expression: "!result.showTests.meatAndGrowth"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.meatAndGrowth),
+        expression: "result.showTests.meatAndGrowth"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Meat Quality and Growth Rate\n                            ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.meatAndGrowth),
+        expression: "result.showTests.meatAndGrowth"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("HFABP")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.hfabp) ? result.tests.hfabp : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("IGF2")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.igf2) ? result.tests.igf2 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("LEPR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.lepr) ? result.tests.lepr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("MYOG")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.myog) ? result.tests.myog : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showGeneticInformation(result.id, 'defects')
+        }
+      }
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.defects),
+        expression: "!result.showTests.defects"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.defects),
+        expression: "result.showTests.defects"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Genetic Defects\n                            ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.defects),
+        expression: "result.showTests.defects"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("PSS")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.pss) ? result.tests.pss : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("RN")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.rn) ? result.tests.rn : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("BAX")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.bax) ? result.tests.bax : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showGeneticInformation(result.id, 'diseases')
+        }
+      }
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.diseases),
+        expression: "!result.showTests.diseases"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.diseases),
+        expression: "result.showTests.diseases"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Diseases Resistance\n                            ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.diseases),
+        expression: "result.showTests.diseases"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("FUT1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.fut1) ? result.tests.fut1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("MX1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.mx1) ? result.tests.mx1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("NRAMP")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.nramp) ? result.tests.nramp : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("BPI")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.bpi) ? result.tests.bpi : '---'))])])])])])])], 1)]), _vm._v(" "), _vm._m(3, true)])
+  }))])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align pagination-container"
+  }, [_c('ul', {
+    staticClass: "pagination"
+  }, [_c('li', {
+    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.previousPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
+    return _c('li', {
+      staticClass: "waves-effect",
+      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
+    }, [_c('a', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.goToPage(i)
+        }
+      }
+    }, [_vm._v(" " + _vm._s(i) + " ")])])
+  }), _vm._v(" "), _c('li', {
+    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.nextPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_right")])])])], 2)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" View Laboratory Results ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br')])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("General Information")]), _vm._v(" "), _c('th', [_vm._v("Genetic Information")]), _vm._v(" "), _c('th', [_vm._v("Action")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('td', [_c('a', {
+    staticClass: "btn blue darken-1 z-depth-0",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("\n                            Edit\n                        ")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-241c1815", module.exports)
+  }
+}
+
+/***/ }),
+/* 134 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

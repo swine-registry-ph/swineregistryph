@@ -12,6 +12,7 @@ use Auth;
 
 class GenomicsController extends Controller
 {
+
     protected $user;
     protected $genomicsUser;
     protected $genomicsRepo;
@@ -36,7 +37,7 @@ class GenomicsController extends Controller
     /**
      * Show Genomics' homepage view
      *
-     * @return  void
+     * @return  View
      */
     public function index()
     {
@@ -46,7 +47,7 @@ class GenomicsController extends Controller
     /**
      * Show form for registering genetic information
      *
-     * @return  void
+     * @return  View
      */
     public function showRegisterLaboratoryResults()
     {
@@ -66,14 +67,27 @@ class GenomicsController extends Controller
     }
 
     /**
+     * View Current Laboratory Results
+     *
+     * @param   Request $request
+     * @return  View
+     */
+    public function viewLaboratoryResults(Request $request)
+    {
+        $labResults = LaboratoryResult::with(['laboratoryTests'])->get();
+        $customLabResults = $this->genomicsRepo->customizeLabResults($labResults);
+
+        return view('users.genomics.viewLaboratoryResults', compact('customLabResults'));
+    }
+
+    /**
      * Add laboratory results
      *
      * @param   Request $request
-     * @return  void
+     * @return  JSON
      */
     public function addLaboratoryResults(Request $request)
     {
-
         return $this->genomicsRepo->addLabResults($request, $this->genomicsUser);
     }
 }
