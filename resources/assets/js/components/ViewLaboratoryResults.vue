@@ -190,6 +190,12 @@
                                 class="btn blue darken-1 z-depth-0"
                             >
                                 Edit
+                            </a> <br> <br>
+                            <a :href="`/genomics/pdf-lab-results/${result.id}`"
+                                target="_blank"
+                                class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
+                            >
+                                View PDF
                             </a>
                         </td>
                     </tr>
@@ -286,6 +292,11 @@
 </script>
 
 <style scoped>
+    .custom-secondary-btn {
+        border: 1px solid;
+        background-color: white !important;
+    }
+
     span.title {
         font-size: 20px !important;
     }

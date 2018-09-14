@@ -98,7 +98,7 @@ trait CustomHelpers
     public function getLabTestValue($labResult, $testId)
     {
         return $labResult->laboratoryTests->where('test_id', $testId)->first()->result
-            ?? '';
+            ?? null;
     }
 
     /**

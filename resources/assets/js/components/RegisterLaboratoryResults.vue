@@ -647,6 +647,15 @@
                 </div>
 
                 <div class="card-action center-align">
+                    <!-- For Breed Registry certificate -->
+                    <a  v-if="!successfullyRegistered"
+                        :href="tempPdfLink"
+                        target="_blank"
+                        class="btn-flat waves-effect waves-light preview-cert black-text"
+                        name="action"
+                    >
+                        Preview Temporary PDF
+                    </a>
                     <!-- Save Button -->
                     <button @click.prevent="saveLaboratoryResults($event)"
                         class="btn save-btn"
@@ -667,6 +676,7 @@
 
         data() {
             return {
+                successfullyRegistered: false,
                 showChoices: {
                     farm: 'registered',
                     esr: false,
@@ -729,6 +739,12 @@
                         bpi: ''
                     }
                 }
+            }
+        },
+
+        computed: {
+            tempPdfLink() {
+                return '/genomics/temp-pdf-lab-results';
             }
         },
 

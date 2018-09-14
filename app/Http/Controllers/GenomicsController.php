@@ -9,6 +9,7 @@ use App\Repositories\GenomicsRepository;
 use Illuminate\Http\Request;
 
 use Auth;
+use PDF;
 
 class GenomicsController extends Controller
 {
@@ -89,5 +90,46 @@ class GenomicsController extends Controller
     public function addLaboratoryResults(Request $request)
     {
         return $this->genomicsRepo->addLabResults($request, $this->genomicsUser);
+    }
+
+    /**
+     * View PDF of Laboratory Results
+     *
+     * @param   integer     $labResultId
+     * @return  PDF
+     */
+    public function viewPDFLaboratoryResults($labResultId)
+    {
+        $labResult = LaboratoryResult::where('id', $labResultId)->with('laboratoryTests')->first();
+
+        if($labResult){
+            $farm = Farm::find($labResult->farm_id);
+            $customLabResult = $this->genomicsRepo->buildLabResultData($labResult, $farm);
+            
+            $view = \View::make('users.genomics._pdfLabResults', compact('customLabResult'));
+            $html = $view->render();
+
+            $tagvs = [
+                'h1' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'h2' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'p' => [
+                    ['h' => 0, 'n' => 0]
+                ]
+            ];
+
+            // Set configuration and show pdf
+            PDF::SetCellPadding(0);
+            PDF::setHtmlVSpace($tagvs);
+            PDF::setFont('dejavusanscondensed', '', 10);
+            PDF::SetTitle("Lab Result No. {$customLabResult['labResultNo']}");
+            PDF::AddPage();
+            PDF::WriteHTML($html, true, false, true, false, '');
+            PDF::Output("{$customLabResult['labResultNo']}.pdf");
+        }
+        else return abort(404);
     }
 }

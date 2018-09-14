@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
         Route::get('/register', 'GenomicsController@showRegisterLaboratoryResults')->name('genomicsRegisterForm');
+        Route::get('/pdf-lab-results/{labResultId}', 'GenomicsController@viewPDFLaboratoryResults')->name('viewPDFLabResults');
+        Route::get('/temp-pdf-lab-results', 'GenomicsController@viewTempPDFLaboratoryResults')->name('viewTempPDFLabResults');
         Route::get('/manage/laboratory-results', 'GenomicsController@viewLaboratoryResults')->name('viewLabResults');
         Route::post('/manage/laboratory-results', 'GenomicsController@addLaboratoryResults')->name('addLabResults');
     });
