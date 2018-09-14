@@ -36,6 +36,9 @@ class ManageLaboratoryResultsTest extends TestCase
         // Create Genomics Profile
         $genomics = factory(Genomics::class)->create();
         $genomics->users()->save($this->genomicsUser);
+
+        // Create a Laboratory Result
+        $laboratoryResult = factory(LaboratoryResult::class)->create();
     }
 
     /**
@@ -80,7 +83,65 @@ class ManageLaboratoryResultsTest extends TestCase
             );
 
         $response
-            ->assertStatus(200);
+            ->assertStatus(200)
+            ->assertJson([
+                'farm_id'              => 1,
+                'farm_name'            => null,    
+                'laboratory_result_no' => '123456',
+                'animal_id'            => '6543',
+                'sex'                  => 'male',
+                'date_result'          => Carbon::now()->format('Y-m-d'),
+                'date_submitted'       => Carbon::now()->subWeeks(2)->format('Y-m-d')
+            ]);;
+    }
+
+    /**
+     * Test if updating of laboratory results is successful
+     *
+     * @return void
+     */
+    public function testGenomicsUpdateLabResults()
+    {
+        // Imitate AJAX request
+        $response = $this->actingAs($this->genomicsUser)
+            ->withHeaders([
+                'HTTP_X-Requested-With' => 'XMLHttpRequest'
+            ])
+            ->json('PATCH', '/genomics/manage/laboratory-results',
+                [
+                    'laboratoryResultId'  => '1',
+                    'laboratoryResultNo'  => '123456',
+                    'animalId'            => '6543',
+                    'sex'                 => 'male',
+                    'farmId'              => 1,
+                    'farmName'            => '',
+                    'dateResult'          => Carbon::now()->format('F d, Y'),
+                    'dateSubmitted'       => Carbon::now()->subWeeks(2)->format('F d, Y'),
+                    'tests'               => [
+                        'esr'   => 'BB',
+                        'prlr'  => 'AA',
+                        'rbp4'  => 'BB',
+                        'lif'   => 'BB',
+                        'hfabp' => 'AA',
+                        'igf2'  => 'CC',
+                        'lepr'  => 'BB',
+                        'myog'  => 'AA',
+                        'pss'   => 'NEGATIVE',
+                        'rn'    => 'NEGATIVE',
+                        'bax'   => 'NEGATIVE',
+                        'fut1'  => 'AA',
+                        'mx1'   => 'RESISTANT',
+                        'nramp' => 'BB',
+                        'bpi'   => 'GG'
+                    ]
+                ]
+            );
+
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'updated' => true
+            ]);
     }
 
     /**

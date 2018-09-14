@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/temp-pdf-lab-results', 'GenomicsController@viewTempPDFLaboratoryResults')->name('viewTempPDFLabResults');
         Route::get('/manage/laboratory-results', 'GenomicsController@viewLaboratoryResults')->name('viewLabResults');
         Route::post('/manage/laboratory-results', 'GenomicsController@addLaboratoryResults')->name('addLabResults');
+        Route::patch('/manage/laboratory-results', 'GenomicsController@updateLaboratoryResults')->name('updateLabResults');
     });
 
     // Evaluator-related

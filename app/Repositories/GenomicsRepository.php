@@ -25,160 +25,222 @@ class GenomicsRepository
     public function addLabResults(Request $request, Genomics $genomicsUser)
     {
 
-        $labResults = new LaboratoryResult;
+        $labResult = new LaboratoryResult;
 
-        $labResults->farm_id = $request->farmId ?? null;
-        $labResults->farm_name = $request->farmName ?? null;
-        $labResults->laboratory_result_no = $request->laboratoryResultNo;
-        $labResults->animal_id = $request->animalId;
-        $labResults->sex = $request->sex;
-        $labResults->date_result = Carbon::createFromFormat(
+        $labResult->farm_id = $request->farmId ?? null;
+        $labResult->farm_name = $request->farmName ?? null;
+        $labResult->laboratory_result_no = $request->laboratoryResultNo;
+        $labResult->animal_id = $request->animalId;
+        $labResult->sex = $request->sex;
+        $labResult->date_result = Carbon::createFromFormat(
             'F d, Y', 
             $request->dateResult)
             ->toDateString();
-        $labResults->date_submitted = Carbon::createFromFormat(
+        $labResult->date_submitted = Carbon::createFromFormat(
             'F d, Y', 
             $request->dateSubmitted)
             ->toDateString();
         
-        $genomicsUser->laboratoryResults()->save($labResults);
+        $genomicsUser->laboratoryResults()->save($labResult);
 
         if($request->tests['esr']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 1, // esr
-                    'result'  => $request->tests['esr']
-                ]));
+            $this->addSpecificTest($labResult, 1, $request->tests['esr']);
         }
 
         if($request->tests['prlr']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 2, // prlr
-                    'result'  => $request->tests['prlr']
-                ]));
+            $this->addSpecificTest($labResult, 2, $request->tests['prlr']);
         }
 
         if($request->tests['rbp4']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 3, // rbp4
-                    'result'  => $request->tests['rbp4']
-                ]));
+            $this->addSpecificTest($labResult, 3, $request->tests['rbp4']);
         }
 
         if($request->tests['lif']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 4, // lif
-                    'result'  => $request->tests['lif']
-                ]));
+            $this->addSpecificTest($labResult, 4, $request->tests['lif']);
         }
 
         if($request->tests['hfabp']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 5, // hfabp
-                    'result'  => $request->tests['hfabp']
-                ]));
+            $this->addSpecificTest($labResult, 5, $request->tests['hfabp']);
         }
 
         if($request->tests['igf2']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 6, // igf2
-                    'result'  => $request->tests['igf2']
-                ]));
+            $this->addSpecificTest($labResult, 6, $request->tests['igf2']);
         }
 
         if($request->tests['lepr']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 7, // lepr
-                    'result'  => $request->tests['lepr']
-                ]));
+            $this->addSpecificTest($labResult, 7, $request->tests['lepr']);
         }
 
         if($request->tests['myog']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 8, // myog
-                    'result'  => $request->tests['myog']
-                ]));
+            $this->addSpecificTest($labResult, 8, $request->tests['myog']);
         }
 
         if($request->tests['pss']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 9, // pss
-                    'result'  => $request->tests['pss']
-                ]));
+            $this->addSpecificTest($labResult, 9, $request->tests['pss']);
         }
 
         if($request->tests['rn']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 10, // rn
-                    'result'  => $request->tests['rn']
-                ]));
+            $this->addSpecificTest($labResult, 10, $request->tests['rn']);
         }
 
         if($request->tests['bax']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 11, // bax
-                    'result'  => $request->tests['bax']
-                ]));
+            $this->addSpecificTest($labResult, 11, $request->tests['bax']);
         }
 
         if($request->tests['fut1']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 12, // fut1
-                    'result'  => $request->tests['fut1']
-                ]));
+            $this->addSpecificTest($labResult, 12, $request->tests['fut1']);
         }
 
         if($request->tests['mx1']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 13, // mx1
-                    'result'  => $request->tests['mx1']
-                ]));
+            $this->addSpecificTest($labResult, 13, $request->tests['mx1']);
         }
 
         if($request->tests['nramp']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 14, // nramp
-                    'result'  => $request->tests['nramp']
-                ]));
+            $this->addSpecificTest($labResult, 14, $request->tests['nramp']);
         }
 
         if($request->tests['bpi']) {
-            $labResults
-                ->laboratoryTests()
-                ->save(new LaboratoryTest([
-                    'test_id' => 15, // bpi
-                    'result'  => $request->tests['bpi']
-                ]));
+            $this->addSpecificTest($labResult, 15, $request->tests['bpi']);
         }
 
-        return $labResults;
+        return $labResult;
+    }
+
+    /**
+     * Add laboratory results for genomics
+     *
+     * @param   LaboratoryResult    $labResult
+     * @param   Request             $labResult
+     * @return  Array
+     */
+    public function updateLabResults(LaboratoryResult $labResult, Request $request)
+    {
+        $labResult->farm_id = $request->farmId ?? null;
+        $labResult->farm_name = $request->farmName ?? null;
+        $labResult->laboratory_result_no = $request->laboratoryResultNo;
+        $labResult->animal_id = $request->animalId;
+        $labResult->sex = $request->sex;
+        $labResult->date_result = Carbon::createFromFormat(
+            'F d, Y', 
+            $request->dateResult)
+            ->toDateString();
+        $labResult->date_submitted = Carbon::createFromFormat(
+            'F d, Y', 
+            $request->dateSubmitted)
+            ->toDateString();
+        
+        $labResult->save();
+
+        // Check if test is already existing. If not,
+        // then create a new laboratory test
+        if($request->tests['esr']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 1)->first();
+
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['esr']);
+            else $this->addSpecificTest($labResult, 1, $request->tests['esr']);
+        }
+
+        if($request->tests['prlr']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 2)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['prlr']);
+            $this->addSpecificTest($labResult, 2, $request->tests['prlr']);
+        }
+
+        if($request->tests['rbp4']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 3)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['rbp4']);
+            $this->addSpecificTest($labResult, 3, $request->tests['rbp4']);
+        }
+
+        if($request->tests['lif']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 4)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['lif']);
+            $this->addSpecificTest($labResult, 4, $request->tests['lif']);
+        }
+
+        if($request->tests['hfabp']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 5)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['hfabp']);
+            $this->addSpecificTest($labResult, 5, $request->tests['hfabp']);
+        }
+
+        if($request->tests['igf2']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 6)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['igf2']);
+            $this->addSpecificTest($labResult, 6, $request->tests['igf2']);
+        }
+
+        if($request->tests['lepr']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 7)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['lepr']);
+            $this->addSpecificTest($labResult, 7, $request->tests['lepr']);
+        }
+
+        if($request->tests['myog']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 8)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['myog']);
+            $this->addSpecificTest($labResult, 8, $request->tests['myog']);
+        }
+
+        if($request->tests['pss']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 9)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['pss']);
+            $this->addSpecificTest($labResult, 9, $request->tests['pss']);
+        }
+
+        if($request->tests['rn']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 10)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['rn']);
+            $this->addSpecificTest($labResult, 10, $request->tests['rn']);
+        }
+
+        if($request->tests['bax']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 11)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['bax']);
+            $this->addSpecificTest($labResult, 11, $request->tests['bax']);
+        }
+
+        if($request->tests['fut1']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 12)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['fut1']);
+            $this->addSpecificTest($labResult, 12, $request->tests['fut1']);
+        }
+
+        if($request->tests['mx1']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 13)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['mx1']);
+            $this->addSpecificTest($labResult, 13, $request->tests['mx1']);
+        }
+
+        if($request->tests['nramp']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 14)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['nramp']);
+            $this->addSpecificTest($labResult, 14, $request->tests['nramp']);
+        }
+
+        if($request->tests['bpi']) {
+            $labTestExists = $labResult->laboratoryTests()->where('test_id', 15)->first();
+            
+            if($labTestExists) $this->updateSpecificTest($labTestExists, $request->tests['bpi']);
+            $this->addSpecificTest($labResult, 15, $request->tests['bpi']);
+        }
+
+        return [
+            'updated' => true
+        ];
     }
 
     /**
@@ -247,5 +309,36 @@ class GenomicsRepository
                 'diseases'      => false
             ]
         ];
+    }
+
+    /**
+     * Add Laboratory Test to Laboratory Result
+     *
+     * @param   LaboratoryResult    $labResults
+     * @param   integer             $testId
+     * @param   string              $result
+     * @return  void
+     */
+    private function addSpecificTest(LaboratoryResult $labResult, int $testId, string $result)
+    {
+        $labResult
+            ->laboratoryTests()
+            ->save(new LaboratoryTest([
+                'test_id' => $testId,
+                'result'  => $result
+            ]));
+    }
+
+    /**
+     * Update Laboratory Test of Laboratory Result
+     *
+     * @param   LaboratoryTest $labTest
+     * @param   string $result
+     * @return  void
+     */
+    private function updateSpecificTest(LaboratoryTest $labTest, string $result)
+    {
+        $labTest->result = $result;
+        $labTest->save();
     }
 }

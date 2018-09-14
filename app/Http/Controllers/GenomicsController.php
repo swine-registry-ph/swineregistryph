@@ -108,6 +108,22 @@ class GenomicsController extends Controller
     }
 
     /**
+     * Update laboratory results
+     *
+     * @param   Request $request
+     * @return  JSON
+     */
+    public function updateLaboratoryResults(Request $request)
+    {
+        $labResult = LaboratoryResult::find($request->laboratoryResultId);
+
+        if($labResult) {
+            return $this->genomicsRepo->updateLabResults($labResult, $request);
+        }
+        else response('Laboratory Result No. not found', 404);
+    }
+
+    /**
      * View PDF of Laboratory Results
      *
      * @param   integer     $labResultId
