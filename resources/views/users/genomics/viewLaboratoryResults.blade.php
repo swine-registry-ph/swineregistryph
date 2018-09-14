@@ -8,7 +8,12 @@
 
 <div class="row">
     <div class="col s10 offset-s1">
-        <view-laboratory-results :custom-lab-results="{{ $customLabResults }}"></view-laboratory-results>
+        <view-laboratory-results 
+            :custom-lab-results="{{ $customLabResults }}"
+            :current-search-parameter="'{{ $currentSearchParameter }}'"
+            :view-url="'{{ route('viewLabResults') }}'"
+        >
+        </view-laboratory-results>
     </div>
 </div>
 

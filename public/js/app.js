@@ -16341,7 +16341,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815] /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815] /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n\n/* Search component overrides */\n.input-field label[for='search'][data-v-241c1815] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search[data-v-241c1815] {\n    color: black;\n}\n", ""]);
 
 // exports
 
@@ -16581,14 +16581,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        customLabResults: Array
+        customLabResults: Array,
+        currentSearchParameter: String,
+        viewUrl: String
     },
 
     data: function data() {
         return {
+            searchParameter: this.currentSearchParameter,
             pageNumber: 0,
             paginationSize: 6,
             labResults: this.customLabResults
@@ -16631,6 +16664,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // For pagination
             this.pageNumber = page - 1;
         },
+        rewriteUrl: function rewriteUrl(searchParameter) {
+            /**
+             *  URL rewrite syntax: ?q=value
+             */
+            var url = this.viewUrl;
+            var parameters = [];
+
+            // Put search parameter in parameters if it is non-empty
+            if (searchParameter.length > 0) {
+                var qParameter = 'q=' + searchParameter;
+
+                parameters.push(qParameter);
+            }
+
+            // Redirect to new url
+            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
+        },
         showGeneticInformation: function showGeneticInformation(id, category) {
             var index = this.findLabResultIndexById(id);
 
@@ -16649,9 +16699,60 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s8 offset-s2"
+  }, [_c('nav', {
+    attrs: {
+      "id": "search-container"
+    }
+  }, [_c('div', {
+    staticClass: "nav-wrapper white",
+    attrs: {
+      "id": "search-field"
+    }
+  }, [_c('div', {
+    staticStyle: {
+      "height": "1px"
+    }
+  }), _vm._v(" "), _c('form', {
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.rewriteUrl(_vm.searchParameter)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.searchParameter),
+      expression: "searchParameter"
+    }],
+    attrs: {
+      "id": "search",
+      "name": "q",
+      "type": "search",
+      "placeholder": "Type laboratory result no. and press enter to search",
+      "autocomplete": "off"
+    },
+    domProps: {
+      "value": (_vm.searchParameter)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.searchParameter = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("close")])])])])])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
   }, [_c('table', {
     staticClass: "z-depth-1 striped white"
-  }, [_vm._m(2), _vm._v(" "), _c('tbody', _vm._l((_vm.paginatedLabResults), function(result, index) {
+  }, [_vm._m(4), _vm._v(" "), _c('tbody', _vm._l((_vm.paginatedLabResults), function(result, index) {
     return _c('tr', {
       key: result.id
     }, [_c('td', [_c('span', {
@@ -16674,18 +16775,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "data-position": "top",
         "data-delay": "50",
-        "data-tooltip": "Date of Result"
+        "data-tooltip": "Date Submitted"
       }
-    }, [_vm._v("\n                                    event_available\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateResult) + "\n                            ")])]), _vm._v(" "), _c('p', {
+    }, [_vm._v("\n                                    event_note\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateSubmitted) + "\n                            ")])]), _vm._v(" "), _c('p', {
       staticClass: "secondary-details grey-text text-darken-2"
     }, [_c('span', [_c('i', {
       staticClass: "material-icons left tooltipped",
       attrs: {
         "data-position": "top",
         "data-delay": "50",
-        "data-tooltip": "Date Submitted"
+        "data-tooltip": "Date of Result"
       }
-    }, [_vm._v("\n                                    event_note\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateSubmitted) + "\n                            ")])])]), _vm._v(" "), _c('td', [_c('p', {
+    }, [_vm._v("\n                                    event_available\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateResult) + "\n                            ")])])]), _vm._v(" "), _c('td', [_c('p', {
       staticClass: "genetic-details"
     }, [_c('span', {
       on: {
@@ -16886,6 +16987,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" View Laboratory Results ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br')])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "label-icon",
+    attrs: {
+      "for": "search"
+    }
+  }, [_c('i', {
+    staticClass: "material-icons teal-text"
+  }, [_vm._v("search")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"

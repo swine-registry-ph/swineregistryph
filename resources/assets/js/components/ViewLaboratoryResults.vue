@@ -9,6 +9,36 @@
             <p><br></p>
         </div>
 
+        <div class="col s12">
+            <!-- Search container -->
+            <div class="col s8 offset-s2">
+                <nav id="search-container">
+                    <div id="search-field" class="nav-wrapper white">
+                        <div style="height:1px;"></div>
+                        <form @submit.prevent="rewriteUrl(searchParameter)">
+                            <div class="input-field">
+                                <input v-model="searchParameter"
+                                    id="search" 
+                                    name="q"
+                                    type="search"
+                                    placeholder="Type laboratory result no. and press enter to search" 
+                                    autocomplete="off"
+                                >
+                                <label class="label-icon" for="search">
+                                    <i class="material-icons teal-text">search</i>
+                                </label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="col s12">
+            <p><br></p>
+        </div>
+
         <!-- List of Laboratory Results -->
         <div class="col s12">
             <table class="z-depth-1 striped white">
@@ -46,11 +76,11 @@
                                     <i class="material-icons left tooltipped"
                                         data-position="top" 
                                         data-delay="50" 
-                                        data-tooltip="Date of Result"
+                                        data-tooltip="Date Submitted"
                                     >
-                                        event_available
+                                        event_note
                                     </i> 
-                                    {{ result.dateResult }}
+                                    {{ result.dateSubmitted }}
                                 </span>
                             </p>
                             <p class="secondary-details grey-text text-darken-2">
@@ -58,11 +88,11 @@
                                     <i class="material-icons left tooltipped"
                                         data-position="top" 
                                         data-delay="50" 
-                                        data-tooltip="Date Submitted"
+                                        data-tooltip="Date of Result"
                                     >
-                                        event_note
+                                        event_available
                                     </i> 
-                                    {{ result.dateSubmitted }}
+                                    {{ result.dateResult }}
                                 </span>
                             </p>
                         </td>
@@ -230,11 +260,14 @@
 <script>
     export default {
         props: {
-            customLabResults: Array
+            customLabResults: Array,
+            currentSearchParameter: String,
+            viewUrl: String
         },
 
         data() {
             return {
+                searchParameter: this.currentSearchParameter,
                 pageNumber: 0,
                 paginationSize: 6,
                 labResults: this.customLabResults
@@ -279,6 +312,25 @@
             goToPage(page) {
                 // For pagination
                 this.pageNumber = page - 1;
+            },
+
+            rewriteUrl(searchParameter) {
+                /**
+                 *  URL rewrite syntax: ?q=value
+                 */
+                let url = this.viewUrl;
+                let parameters = [];
+
+                // Put search parameter in parameters if it is non-empty
+                if(searchParameter.length > 0){
+                    let qParameter = `q=${searchParameter}`;
+
+                    parameters.push(qParameter);
+                }
+
+                // Redirect to new url
+                if(parameters.length > 0) window.location = url + '?' + parameters.join('&');
+                else window.location = url;
             },
 
             showGeneticInformation(id, category) {
@@ -348,5 +400,19 @@
 
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
         opacity: 0;
+    }
+
+    /* Search component overrides */
+    .input-field label[for='search'] {
+        font-size: inherit;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        transform: none;
+    }
+
+    input#search {
+        color: black;
     }
 </style>

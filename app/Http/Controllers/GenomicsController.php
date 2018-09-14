@@ -75,10 +75,25 @@ class GenomicsController extends Controller
      */
     public function viewLaboratoryResults(Request $request)
     {
+        $currentSearchParameter = '';
         $labResults = LaboratoryResult::with(['laboratoryTests'])->get();
         $customLabResults = $this->genomicsRepo->customizeLabResults($labResults);
 
-        return view('users.genomics.viewLaboratoryResults', compact('customLabResults'));
+        // Filter laboratory results according to search filter
+        if($request->q){
+            $customLabResults = $customLabResults
+                ->where('labResultNo', $request->q)
+                ->values();
+
+            // Retain current search parameter
+            $currentSearchParameter = $request->q;
+        }
+
+        return view('users.genomics.viewLaboratoryResults', 
+            compact(
+                'customLabResults', 
+                'currentSearchParameter'
+            ));
     }
 
     /**
