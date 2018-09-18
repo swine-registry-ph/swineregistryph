@@ -276,10 +276,11 @@ class GenomicsRepository
             'id'            => $result->id,
             'labResultNo'   => $result->laboratory_result_no,
             'animalId'      => $result->animal_id,
-            'sex'           => ucfirst($result->sex),
+            'sex'           => $result->sex,
             'dateResult'    => $this->changeDateFormat($result->date_result),
             'dateSubmitted' => $this->changeDateFormat($result->date_submitted),
             'farm'          => [
+                'id'         => ($result->farm_id) ?? null,
                 'registered' => ($result->farm_id) ? true : false,
                 'name'       => ($result->farm_id) 
                                     ? $farm->name . ', ' . $farm->province

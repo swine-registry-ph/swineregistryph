@@ -1,12 +1,24 @@
-<template lang="html">
-    <div class="col s10 offset-s1">
+<template>
+    <div class="col s12">
 
         <div class="col s12">
-            <h4 class="title-page"> Register Laboratory Results </h4>
+            <h4 class="title-page"> Edit Laboratory Results </h4>
         </div>
 
+        <div class="col s12">
+            <a @click.prevent="hideEditLabResultsView"
+                id="back-to-viewing-btn"
+                href="#!"
+                class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
+            >
+                <i class="material-icons left">keyboard_arrow_left</i>
+                Back To Viewing
+            </a>
+        </div>
+
+        <!-- Tab -->
         <div class="row" style="margin-bottom:0;">
-            <div id="add-lab-result-tabs" class="col s12" style="margin-top:2rem; padding:0;">
+            <div id="edit-lab-result-tabs" class="col s12" style="margin-top:2rem; padding:0;">
                 <ul class="tabs tabs-fixed-width z-depth-2">
                     <li class="tab col s6"><a href="#general-information">General Information</a></li>
                     <li class="tab col s6"><a href="#genetic-information">Genetic Information</a></li>
@@ -28,7 +40,7 @@
 
                             <!-- Laboratory Result No. -->
                             <div class="col s12 input-field">
-                                <input v-model="recordInfoData.laboratoryResultNo"
+                                <input v-model="labResultData.laboratoryResultNo"
                                     id="lab-result-no"
                                     type="text"
                                     class="validate"
@@ -38,7 +50,7 @@
 
                             <!-- Animal ID -->
                             <div class="col s12 input-field">
-                                <input v-model="recordInfoData.animalId"
+                                <input v-model="labResultData.animalId"
                                     id="animal-id"
                                     type="text"
                                     class="validate"
@@ -48,20 +60,20 @@
 
                             <!-- Sex -->
                             <div class="col s12 input-field">
-                                <app-input-select
+                                <component :is="'app-input-select'"
                                     labelDescription="Sex"
-                                    v-model="recordInfoData.sex"
+                                    v-model="labResultData.sex"
                                     :options="[{text:'Male', value:'male'}, {text:'Female', value:'female'}]"
-                                    @select="val => {recordInfoData.sex = val}"
+                                    @select="val => {labResultData.sex = val}"
                                 >
-                                </app-input-select>
+                                </component>
                             </div>
 
                             <!-- Date of Result -->
                             <div class="col s12 input-field">
                                 <app-input-date
-                                    v-model="recordInfoData.dateResult"
-                                    @date-select="val => {recordInfoData.dateResult = val}"
+                                    v-model="labResultData.dateResult"
+                                    @date-select="val => {labResultData.dateResult = val}"
                                 >
                                 </app-input-date>
                                 <label for="">Date of Result</label>
@@ -70,8 +82,8 @@
                             <!-- Date Submitted -->
                             <div class="col s12 input-field">
                                 <app-input-date
-                                    v-model="recordInfoData.dateSubmitted"
-                                    @date-select="val => {recordInfoData.dateSubmitted = val}"
+                                    v-model="labResultData.dateSubmitted"
+                                    @date-select="val => {labResultData.dateSubmitted = val}"
                                 >
                                 </app-input-date>
                                 <label for="">Date Submitted</label>
@@ -111,18 +123,18 @@
 
                             <!-- Exsiting Farm -->
                             <div v-show="showChoices.farm === 'registered'" class="col s12 input-field">
-                                <app-input-select
+                                <component :is="'app-input-select'"
                                     labelDescription="Farm Of Origin"
-                                    v-model="recordInfoData.farmId"
+                                    v-model="labResultData.farmId"
                                     :options="farmoptions"
-                                    @select="val => {recordInfoData.farmId = val}"
+                                    @select="val => {labResultData.farmId = val}"
                                 >
-                                </app-input-select>
+                                </component>
                             </div>
 
                             <!-- Not yet registered Farm -->
                             <div v-show="showChoices.farm === 'not-registered'" class="col s12 input-field">
-                                <input v-model="recordInfoData.farmName"
+                                <input v-model="labResultData.farmName"
                                     id="farm-name"
                                     type="text"
                                     class="validate"
@@ -186,15 +198,15 @@
                                         <div class="col s7 m7">
                                             <div v-show="showChoices.esr">
                                                 <p class="padded">
-                                                    <template v-for="(choice, index) in testChoices.esr">
-                                                        <input v-model="recordInfoData.tests.esr" 
+                                                    <span v-for="(choice, index) in testChoices.esr" :key="choice">
+                                                        <input v-model="labResultData.tests.esr" 
                                                             name="esr" 
                                                             type="radio" 
                                                             :id="`esr-${index}`"
                                                             :value="choice" 
                                                         />
                                                         <label :for="`esr-${index}`"> {{choice}} </label>
-                                                    </template>
+                                                    </span>
                                                 </p>
                                             </div>
                                         </div>
@@ -216,7 +228,7 @@
                                             <div v-show="showChoices.prlr">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.prlr" :key="choice">
-                                                        <input v-model="recordInfoData.tests.prlr" 
+                                                        <input v-model="labResultData.tests.prlr" 
                                                             name="prlr" 
                                                             type="radio" 
                                                             :id="`prlr${index}`"
@@ -245,7 +257,7 @@
                                             <div v-show="showChoices.rbp4">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.rbp4" :key="choice">
-                                                        <input v-model="recordInfoData.tests.rbp4" 
+                                                        <input v-model="labResultData.tests.rbp4" 
                                                             name="rbp4" 
                                                             type="radio" 
                                                             :id="`rbp4-${index}`"
@@ -274,7 +286,7 @@
                                             <div v-show="showChoices.lif">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.lif" :key="choice">
-                                                        <input v-model="recordInfoData.tests.lif" 
+                                                        <input v-model="labResultData.tests.lif" 
                                                             name="lif" 
                                                             type="radio" 
                                                             :id="`lif-${index}`"
@@ -314,7 +326,7 @@
                                             <div v-show="showChoices.hfabp">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.hfabp" :key="choice">
-                                                        <input v-model="recordInfoData.tests.hfabp" 
+                                                        <input v-model="labResultData.tests.hfabp" 
                                                             name="hfabp" 
                                                             type="radio" 
                                                             :id="`hfabp-${index}`"
@@ -343,7 +355,7 @@
                                             <div v-show="showChoices.igf2">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.igf2" :key="choice">
-                                                        <input v-model="recordInfoData.tests.igf2" 
+                                                        <input v-model="labResultData.tests.igf2" 
                                                             name="igf2" 
                                                             type="radio" 
                                                             :id="`igf2-${index}`"
@@ -372,7 +384,7 @@
                                             <div v-show="showChoices.lepr">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.lepr" :key="choice">
-                                                        <input v-model="recordInfoData.tests.lepr" 
+                                                        <input v-model="labResultData.tests.lepr" 
                                                             name="lepr" 
                                                             type="radio" 
                                                             :id="`lepr-${index}`"
@@ -401,7 +413,7 @@
                                             <div v-show="showChoices.myog">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.myog" :key="choice">
-                                                        <input v-model="recordInfoData.tests.myog" 
+                                                        <input v-model="labResultData.tests.myog" 
                                                             name="myog" 
                                                             type="radio" 
                                                             :id="`myog-${index}`"
@@ -442,7 +454,7 @@
                                             <div v-show="showChoices.pss">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.pss" :key="choice">
-                                                        <input v-model="recordInfoData.tests.pss" 
+                                                        <input v-model="labResultData.tests.pss" 
                                                             name="pss" 
                                                             type="radio" 
                                                             :id="`pss-${index}`"
@@ -471,7 +483,7 @@
                                             <div v-show="showChoices.rn">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.rn" :key="choice">
-                                                        <input v-model="recordInfoData.tests.rn" 
+                                                        <input v-model="labResultData.tests.rn" 
                                                             name="rn" 
                                                             type="radio" 
                                                             :id="`rn-${index}`"
@@ -500,7 +512,7 @@
                                             <div v-show="showChoices.bax">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.bax" :key="choice">
-                                                        <input v-model="recordInfoData.tests.bax" 
+                                                        <input v-model="labResultData.tests.bax" 
                                                             name="bax" 
                                                             type="radio" 
                                                             :id="`bax-${index}`"
@@ -517,7 +529,7 @@
                         </div>
 
                         <!-- Diseases Resistance Card -->
-                        <div id="diseases-container"class="col s6">
+                        <div id="diseases-container" class="col s6">
                             <div class="card col s12 card-traits-container">
                                 <div class="card-content">
                                     <h6 class="center-align">
@@ -540,7 +552,7 @@
                                             <div v-show="showChoices.fut1">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.fut1" :key="choice">
-                                                        <input v-model="recordInfoData.tests.fut1" 
+                                                        <input v-model="labResultData.tests.fut1" 
                                                             name="fut1" 
                                                             type="radio" 
                                                             :id="`fut1-${index}`"
@@ -569,7 +581,7 @@
                                             <div v-show="showChoices.mx1">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.mx1" :key="choice">
-                                                        <input v-model="recordInfoData.tests.mx1" 
+                                                        <input v-model="labResultData.tests.mx1" 
                                                             name="mx1" 
                                                             type="radio" 
                                                             :id="`mx1-${index}`"
@@ -598,7 +610,7 @@
                                             <div v-show="showChoices.nramp">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.nramp" :key="choice">
-                                                        <input v-model="recordInfoData.tests.nramp" 
+                                                        <input v-model="labResultData.tests.nramp" 
                                                             name="nramp" 
                                                             type="radio" 
                                                             :id="`nramp-${index}`"
@@ -627,7 +639,7 @@
                                             <div v-show="showChoices.bpi">
                                                 <p class="padded">
                                                     <span v-for="(choice, index) in testChoices.bpi" :key="choice">
-                                                        <input v-model="recordInfoData.tests.bpi" 
+                                                        <input v-model="labResultData.tests.bpi" 
                                                             name="bpi" 
                                                             type="radio" 
                                                             :id="`bpi-${index}`"
@@ -647,20 +659,11 @@
                 </div>
 
                 <div class="card-action center-align">
-                    <!-- For Breed Registry certificate -->
-                    <a  v-if="!successfullyRegistered"
-                        :href="tempPdfLink"
-                        target="_blank"
-                        class="btn-flat waves-effect waves-light preview-cert black-text"
-                        name="action"
+                    <!-- Update Button -->
+                    <button @click.prevent="updateLabResults($event)"
+                        class="btn save-btn blue darken-1 update-lab-results-btn"
                     >
-                        Preview Temporary PDF
-                    </a>
-                    <!-- Save Button -->
-                    <button @click.prevent="saveLaboratoryResults($event)"
-                        class="btn save-btn"
-                    >
-                        Save
+                        Update
                     </button>
                 </div>
             </div>
@@ -671,12 +674,39 @@
 <script>
     export default {
         props: {
+            editLabResultData: Object,
             farmoptions: Array
         },
 
         data() {
             return {
-                successfullyRegistered: false,
+                labResultData: {
+                    laboratoryResultId: 0,
+                    laboratoryResultNo: '',
+                    animalId: '',
+                    sex: '',
+                    farmId: '',
+                    farmName: '',
+                    dateResult: '',
+                    dateSubmitted: '',
+                    tests: {
+                        esr: '',
+                        prlr: '',
+                        rbp4: '',
+                        lif: '',
+                        hfabp: '',
+                        igf2: '',
+                        lepr: '',
+                        myog: '',
+                        pss: '',
+                        rn: '',
+                        bax: '',
+                        fut1: '',
+                        mx1: '',
+                        nramp: '',
+                        bpi: ''
+                    }
+                },
                 showChoices: {
                     farm: 'registered',
                     esr: false,
@@ -711,151 +741,148 @@
                     mx1: ['Resistant', 'Non-resistant'],
                     nramp: ['BB', 'Bb', 'bb'],
                     bpi: ['GG', 'Gg', 'gg']
-
                 },
-                recordInfoData: {
-                    laboratoryResultNo: '',
-                    animalId: '',
-                    sex: '',
-                    farmId: '',
-                    farmName: '',
-                    dateResult: '',
-                    dateSubmitted: '',
-                    tests: {
-                        esr: '',
-                        prlr: '',
-                        rbp4: '',
-                        lif: '',
-                        hfabp: '',
-                        igf2: '',
-                        lepr: '',
-                        myog: '',
-                        pss: '',
-                        rn: '',
-                        bax: '',
-                        fut1: '',
-                        mx1: '',
-                        nramp: '',
-                        bpi: ''
-                    }
-                }
-            }
-        },
-
-        computed: {
-            tempPdfLink() {
-                return '/genomics/temp-pdf-lab-results';
             }
         },
 
         watch: {
+            editLabResultData(newValue, oldValue) {
+                this.labResultData = newValue;
+
+                // Check if farm is existing or not
+                if(newValue.farmId) this.showChoices.farm = 'registered';
+                else this.showChoices.farm = 'not-registered';
+
+                // Iterate through existing tests 
+                _.forIn(newValue.tests, (value, key) => {
+                    this.showChoices[key] = (value) ? true : false;
+                });
+
+                // Update UI after data changes
+                this.$nextTick(() => {
+                    Materialize.updateTextFields();
+
+                    $('ul.tabs').tabs();
+                    $('ul.tabs').tabs('select_tab', 'general-information');
+                });
+            },
+            // If farmId exists, find its corresponding farm name
+            'labResultData.farmId': function(newValue, oldValue) {
+                const farmName = this.findFarmNameById(newValue);
+                
+                if(farmName !== -1) this.labResultData.farmName = farmName;
+            },
             // Check if test is not chosen/shown anymore
             // then reset value of test to default
             'showChoices.esr': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.esr = '';
+                if(newValue === false) this.labResultData.tests.esr = '';
             },
             'showChoices.prlr': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.prlr = '';
+                if(newValue === false) this.labResultData.tests.prlr = '';
             },
             'showChoices.rbp4': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.rbp4 = '';
+                if(newValue === false) this.labResultData.tests.rbp4 = '';
             },
             'showChoices.lif': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.lif = '';
+                if(newValue === false) this.labResultData.tests.lif = '';
             },
             'showChoices.hfabp': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.hfabp = '';
+                if(newValue === false) this.labResultData.tests.hfabp = '';
             },
             'showChoices.igf2': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.igf2 = '';
+                if(newValue === false) this.labResultData.tests.igf2 = '';
             },
             'showChoices.lepr': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.lepr = '';
+                if(newValue === false) this.labResultData.tests.lepr = '';
             },
             'showChoices.myog': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.myog = '';
+                if(newValue === false) this.labResultData.tests.myog = '';
             },
             'showChoices.pss': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.pss = '';
+                if(newValue === false) this.labResultData.tests.pss = '';
             },
             'showChoices.rn': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.rn = '';
+                if(newValue === false) this.labResultData.tests.rn = '';
             },
             'showChoices.bax': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.bax = '';
+                if(newValue === false) this.labResultData.tests.bax = '';
             },
             'showChoices.fut1': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.fut1 = '';
+                if(newValue === false) this.labResultData.tests.fut1 = '';
             },
             'showChoices.mx1': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.mx1 = '';
+                if(newValue === false) this.labResultData.tests.mx1 = '';
             },
             'showChoices.nramp': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.nramp = '';
+                if(newValue === false) this.labResultData.tests.nramp = '';
             },
             'showChoices.bpi': function(newValue, oldValue) {
-                if(newValue === false) this.recordInfoData.tests.bpi = '';
-            }
+                if(newValue === false) this.labResultData.tests.bpi = '';
+            },
         },
 
         methods: {
+            findFarmNameById(id) {
+                for (let i = 0; i < this.farmoptions.length; i++) {
+                    if(this.farmoptions[i].value === parseInt(id)) {
+                        return this.farmoptions[i].text;
+                    }
+                }
+
+                return -1;
+            },
+
             goToTab(tabId) {
                 this.$nextTick(() => {
-                    $('#add-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
+                    $('#edit-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
                     // Scroll animation
                     $('html, body').animate({
-                        scrollTop: $(`#add-lab-result-tabs`).offset().top - 70 + "px"
+                        scrollTop: $(`#edit-lab-result-tabs`).offset().top - 70 + "px"
                     }, 500);
                 });
             },
 
-            saveLaboratoryResults(event) {
+            hideEditLabResultsView() {
+                this.$emit('hideEditLabResultsViewEvent');
+            },
+
+            updateLabResults(event) {
                 const vm = this;
-                const saveLabResultsButton = $('.save-btn');
+                const labResult = this.labResultData;
+                const updateLabResultsBtn = $('.update-lab-results-btn');
 
-                this.disableButtons(saveLabResultsButton, event.target, 'Saving...');
+                this.disableButtons(updateLabResultsBtn, event.target, 'Updating...');
 
-                // Add to server's database
-                axios.post('/genomics/manage/laboratory-results', vm.recordInfoData)
+                // Update to server's database
+                axios.patch('/genomics/manage/laboratory-results', labResult)
                 .then((response) => {
-                    // Reset registering of lab results to default values
-                    vm.recordInfoData = {
-                        laboratoryResultNo: '',
-                        animalId: '',
-                        sex: '',
-                        farmId: '',
-                        farmName: '',
-                        dateResult: '',
-                        dateSubmitted: '',
-                        tests: {
-                            esr: '',
-                            prlr: '',
-                            rbp4: '',
-                            lif: '',
-                            hfabp: '',
-                            igf2: '',
-                            lepr: '',
-                            myog: '',
-                            pss: '',
-                            rn: '',
-                            bax: '',
-                            fut1: '',
-                            mx1: '',
-                            nramp: '',
-                            bpi: ''
-                        }
-                    };
+                    // Update parent component for changes
+                    if(response.data.updated){
+                        this.$emit('updateLabResultEvent', 
+                            { labResult }
+                        );
+                    }
 
-                    // Update UI after adding breed
+                    // Update UI after updating lab result
                     vm.$nextTick(() => {
-                        this.enableButtons(saveLabResultsButton, event.target, 'Save');
+                        $('#lab-result-no').removeClass('valid');
+                        $('#animal-id').removeClass('valid');
+                        $('#farm-name').removeClass('valid');
 
-                        Materialize.toast('Laboratory Results saved.', 2500, 'green lighten-1');
+                        this.enableButtons(updateLabResultsBtn, event.target, 'Update');
 
-                        // Reload page
+                        Materialize.updateTextFields();
+                        Materialize.toast(
+                            `Laboratory Result No. ${labResult.laboratoryResultNo} updated`, 
+                            1800, 
+                            'green lighten-1'
+                        );
+
+                        // Call hiding of this view
                         setTimeout(() => {
-                            window.location.reload();
-                        }, 2600);
+                            vm.hideEditLabResultsView();
+                        }, 2000);
+
                     });
                 })
                 .catch((error) => {
@@ -873,11 +900,20 @@
                 actionBtnElement.innerHTML = textToShow;
             }
         }
-
     }
 </script>
 
 <style scoped>
+    .custom-secondary-btn {
+        border: 1px solid;
+        background-color: white !important;
+    }
+
+    #back-to-viewing-btn {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
     p.padded {
         padding-top: 1rem;
     }
@@ -916,5 +952,5 @@
     #diseases-container > .card {
         border-top: 4px solid #9a26a6;
     }
-
+    
 </style>

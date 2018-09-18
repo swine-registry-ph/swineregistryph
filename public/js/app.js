@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(134);
+module.exports = __webpack_require__(139);
 
 
 /***/ }),
@@ -2048,8 +2048,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             hideLabel: false
         };
     },
+
+
+    watch: {
+        value: function value(newValue, oldValue) {
+            var _this = this;
+
+            // If a new value is being passed in props, 
+            // re-initialize Material select
+            this.$nextTick(function () {
+                $(_this.$refs.select).material_select();
+            });
+        }
+    },
+
     mounted: function mounted() {
-        var _this = this;
+        var _this2 = this;
 
         // Initialize Material select
         $(this.$refs.select).material_select();
@@ -2059,14 +2073,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         $(this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').addClass('grey-text');
 
         $(this.$refs.select).on('change', function () {
-            _this.$emit('select', _this.$refs.select.value);
+            _this2.$emit('select', _this2.$refs.select.value);
 
             // Show label upon value change
-            _this.hideLabel = true;
+            _this2.hideLabel = true;
 
             // Make value on select have
             // black text color
-            $(_this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').removeClass('grey-text');
+            $(_this2.$refs.select).parents('.select-wrapper').find('input.select-dropdown').removeClass('grey-text');
         });
     }
 });
@@ -13698,7 +13712,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\np.padded label[data-v-091d2757] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-091d2757] {\n    padding: 0;\n}\n.card-traits-container[data-v-091d2757] {\n    padding-bottom: 1rem;\n}\ndiv.card-action[data-v-091d2757] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-091d2757] {\n    border-top: 4px solid #2672a6;\n}\n#meat-and-growth-container > .card[data-v-091d2757] {\n    border-top: 4px solid #26a69a;\n}\n#defects-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-091d2757] {\n    border-top: 4px solid #a69a26;\n}\n\n", ""]);
+exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n}\np.padded label[data-v-091d2757] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-091d2757] {\n    padding: 0;\n}\n.card-traits-container[data-v-091d2757] {\n    padding-bottom: 2rem;\n}\ndiv.card-action[data-v-091d2757] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#meat-and-growth-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#defects-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n\n", ""]);
 
 // exports
 
@@ -14463,50 +14477,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         // Check if test is not chosen/shown anymore
         // then reset value of test to default
-        'showChoices.esr': function showChoicesEsr(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.esr = '';
+        'showChoices.esr': function showChoicesEsr(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.esr = '';
         },
-        'showChoices.prlr': function showChoicesPrlr(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.prlr = '';
+        'showChoices.prlr': function showChoicesPrlr(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.prlr = '';
         },
-        'showChoices.rbp4': function showChoicesRbp4(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.rbp4 = '';
+        'showChoices.rbp4': function showChoicesRbp4(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.rbp4 = '';
         },
-        'showChoices.lif': function showChoicesLif(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.lif = '';
+        'showChoices.lif': function showChoicesLif(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.lif = '';
         },
-        'showChoices.hfabp': function showChoicesHfabp(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.hfabp = '';
+        'showChoices.hfabp': function showChoicesHfabp(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.hfabp = '';
         },
-        'showChoices.igf2': function showChoicesIgf2(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.igf2 = '';
+        'showChoices.igf2': function showChoicesIgf2(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.igf2 = '';
         },
-        'showChoices.lepr': function showChoicesLepr(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.lepr = '';
+        'showChoices.lepr': function showChoicesLepr(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.lepr = '';
         },
-        'showChoices.myog': function showChoicesMyog(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.myog = '';
+        'showChoices.myog': function showChoicesMyog(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.myog = '';
         },
-        'showChoices.pss': function showChoicesPss(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.pss = '';
+        'showChoices.pss': function showChoicesPss(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.pss = '';
         },
-        'showChoices.rn': function showChoicesRn(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.rn = '';
+        'showChoices.rn': function showChoicesRn(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.rn = '';
         },
-        'showChoices.bax': function showChoicesBax(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.bax = '';
+        'showChoices.bax': function showChoicesBax(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.bax = '';
         },
-        'showChoices.fut1': function showChoicesFut1(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.fut1 = '';
+        'showChoices.fut1': function showChoicesFut1(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.fut1 = '';
         },
-        'showChoices.mx1': function showChoicesMx1(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.mx1 = '';
+        'showChoices.mx1': function showChoicesMx1(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.mx1 = '';
         },
-        'showChoices.nramp': function showChoicesNramp(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.nramp = '';
+        'showChoices.nramp': function showChoicesNramp(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.nramp = '';
         },
-        'showChoices.bpi': function showChoicesBpi(oldValue, newValue) {
-            if (oldValue === false) this.recordInfoData.tests.bpi = '';
+        'showChoices.bpi': function showChoicesBpi(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.bpi = '';
         }
     },
 
@@ -14581,12 +14595,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             buttons.removeClass('disabled');
             actionBtnElement.innerHTML = textToShow;
         }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.collapsible').collapsible();
     }
+
 });
 
 /***/ }),
@@ -14718,11 +14728,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     },
     model: {
-      value: (_vm.recordInfoData.dateSubmission),
+      value: (_vm.recordInfoData.dateSubmitted),
       callback: function($$v) {
-        _vm.$set(_vm.recordInfoData, "dateSubmission", $$v)
+        _vm.$set(_vm.recordInfoData, "dateSubmitted", $$v)
       },
-      expression: "recordInfoData.dateSubmission"
+      expression: "recordInfoData.dateSubmitted"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
@@ -14999,8 +15009,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.prlr), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.prlr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15025,8 +15037,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("prlr" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15076,8 +15088,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.rbp4), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.rbp4), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15102,8 +15116,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("rbp4-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15153,8 +15167,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.lif), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.lif), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15179,8 +15195,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("lif-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])])])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s6",
     attrs: {
       "id": "meat-and-growth-container"
@@ -15239,8 +15255,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.hfabp), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.hfabp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15265,8 +15283,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("hfabp-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15316,8 +15334,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.igf2), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.igf2), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15342,8 +15362,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("igf2-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15393,8 +15413,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.lepr), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.lepr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15419,8 +15441,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("lepr-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15470,8 +15492,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.myog), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.myog), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15496,8 +15520,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("myog-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])])])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s6",
     attrs: {
       "id": "defects-container"
@@ -15556,8 +15580,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.pss), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.pss), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15582,8 +15608,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("pss-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15633,8 +15659,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.rn), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.rn), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15659,8 +15687,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("rn-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15710,8 +15738,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.bax), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.bax), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15736,8 +15766,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("bax-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])])])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s6",
     attrs: {
       "id": "diseases-container"
@@ -15796,8 +15826,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.fut1), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.fut1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15822,8 +15854,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("fut1-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15873,8 +15905,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.mx1), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.mx1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15899,8 +15933,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("mx1-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -15950,8 +15984,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.nramp), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.nramp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -15976,8 +16012,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("nramp-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s5 m5"
@@ -16027,8 +16063,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.bpi), function(choice, index) {
-    return [_c('input', {
+  }, _vm._l((_vm.testChoices.bpi), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -16053,8 +16091,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("bpi-" + index)
       }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])])])])])])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "card-action center-align"
   }, [(!_vm.successfullyRegistered) ? _c('a', {
     staticClass: "btn-flat waves-effect waves-light preview-cert black-text",
@@ -16117,7 +16155,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Is Farm reigstered in the system?")])])
+  return _c('h6', [_c('b', [_vm._v("Is Farm registered in the system?")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -16275,7 +16313,7 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(132),
   /* template */
-  __webpack_require__(133),
+  __webpack_require__(138),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -16341,13 +16379,524 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815] /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n\n/* Search component overrides */\n.input-field label[for='search'][data-v-241c1815] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search[data-v-241c1815] {\n    color: black;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-241c1815] {\n    transition: opacity .15s;\n}\n.edit-fade-enter-active[data-v-241c1815] {\n    transition: opacity 1.5s;\n}\n.edit-fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815],\n.view-fade-enter[data-v-241c1815], .view-fade-leave-to[data-v-241c1815],\n.edit-fade-enter[data-v-241c1815], .edit-fade-leave-to[data-v-241c1815] {\n    opacity: 0;\n}\n\n\n/* Search component overrides */\n.input-field label[for='search'][data-v-241c1815] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search[data-v-241c1815] {\n    color: black;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 132 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        customLabResults: Array,
+        currentSearchParameter: String,
+        farmoptions: Array,
+        viewUrl: String
+    },
+
+    components: {
+        ViewLaboratoryResultsUpdateView: __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default.a
+    },
+
+    data: function data() {
+        return {
+            searchParameter: this.currentSearchParameter,
+            pageNumber: 0,
+            paginationSize: 6,
+            showEditLabResult: false,
+            labResults: this.customLabResults,
+            editLabResultData: {}
+        };
+    },
+
+
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.labResults.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedLabResults: function paginatedLabResults() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return this.labResults.slice(start, end);
+        }
+    },
+
+    methods: {
+        findLabResultIndexById: function findLabResultIndexById(id) {
+            for (var i = 0; i < this.labResults.length; i++) {
+                if (this.labResults[i].id === id) return i;
+            }
+
+            return -1;
+        },
+        previousPage: function previousPage() {
+            // For pagination
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            // For pagination
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            // For pagination
+            this.pageNumber = page - 1;
+        },
+        rewriteUrl: function rewriteUrl(searchParameter) {
+            /**
+             *  URL rewrite syntax: ?q=value
+             */
+            var url = this.viewUrl;
+            var parameters = [];
+
+            // Put search parameter in parameters if it is non-empty
+            if (searchParameter.length > 0) {
+                var qParameter = 'q=' + searchParameter;
+
+                parameters.push(qParameter);
+            }
+
+            // Redirect to new url
+            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
+        },
+        capitalizeFirstLetter: function capitalizeFirstLetter(string) {
+            return _.capitalize(string);
+        },
+        showGeneticInformation: function showGeneticInformation(id, category) {
+            var index = this.findLabResultIndexById(id);
+
+            var booleanValue = this.paginatedLabResults[index]['showTests'][category];
+            this.paginatedLabResults[index]['showTests'][category] = !booleanValue;
+        },
+        showEditLabResultsView: function showEditLabResultsView(id) {
+            var index = this.findLabResultIndexById(id);
+            var labResult = this.labResults[index];
+
+            // Customize lab result data
+            this.editLabResultData = {
+                index: index,
+                laboratoryResultId: labResult.id,
+                laboratoryResultNo: labResult.labResultNo,
+                animalId: labResult.animalId,
+                sex: labResult.sex,
+                farmId: labResult.farm.id ? labResult.farm.id.toString() : '',
+                farmName: labResult.farm.id ? '' : labResult.farm.name,
+                dateResult: labResult.dateResult,
+                dateSubmitted: labResult.dateSubmitted,
+                tests: labResult.tests
+            };
+
+            this.showEditLabResult = true;
+
+            this.$nextTick(function () {
+                // Make sure UI is clean
+                $('#lab-result-no').removeClass('valid');
+                $('#animal-id').removeClass('valid');
+                $('#farm-name').removeClass('valid');
+            });
+        },
+        updateLabResult: function updateLabResult(_ref) {
+            var labResult = _ref.labResult;
+
+            var updatedLabResult = this.labResults[labResult.index];
+
+            // Update local data storage
+            updatedLabResult.labResultNo = labResult.laboratoryResultNo;
+            updatedLabResult.animalId = labResult.animalId;
+            updatedLabResult.sex = labResult.sex;
+            updatedLabResult.dateResult = labResult.dateResult;
+            updatedLabResult.dateSubmitted = labResult.dateSubmitted;
+            updatedLabResult.tests = labResult.tests;
+
+            // Check if farm is registered or not
+            if (labResult.farmId) {
+                updatedLabResult.farm.id = labResult.farmId;
+                updatedLabResult.farm.registered = true;
+                updatedLabResult.farm.name = labResult.farmName;
+            } else {
+                updatedLabResult.farm.id = null;
+                updatedLabResult.farm.registered = false;
+                updatedLabResult.farm.name = labResult.farmName;
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(134)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(136),
+  /* template */
+  __webpack_require__(137),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-615ddffa",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewLaboratoryResultsUpdateView.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ViewLaboratoryResultsUpdateView.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-615ddffa", Component.options)
+  } else {
+    hotAPI.reload("data-v-615ddffa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(135);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("63a7e8a0", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-615ddffa\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResultsUpdateView.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-615ddffa\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResultsUpdateView.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-615ddffa] {\n    border: 1px solid;\n    background-color: white !important;\n}\n#back-to-viewing-btn[data-v-615ddffa] {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\np.padded[data-v-615ddffa] {\n    padding-top: 1rem;\n}\np.padded label[data-v-615ddffa] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-615ddffa] {\n    padding: 0;\n}\n.card-traits-container[data-v-615ddffa] {\n    padding-bottom: 2rem;\n}\ndiv.card-action[data-v-615ddffa] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#meat-and-growth-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#defects-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16611,93 +17160,2381 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        customLabResults: Array,
-        currentSearchParameter: String,
-        viewUrl: String
+        editLabResultData: Object,
+        farmoptions: Array
     },
 
     data: function data() {
         return {
-            searchParameter: this.currentSearchParameter,
-            pageNumber: 0,
-            paginationSize: 6,
-            labResults: this.customLabResults
+            labResultData: {
+                laboratoryResultId: 0,
+                laboratoryResultNo: '',
+                animalId: '',
+                sex: '',
+                farmId: '',
+                farmName: '',
+                dateResult: '',
+                dateSubmitted: '',
+                tests: {
+                    esr: '',
+                    prlr: '',
+                    rbp4: '',
+                    lif: '',
+                    hfabp: '',
+                    igf2: '',
+                    lepr: '',
+                    myog: '',
+                    pss: '',
+                    rn: '',
+                    bax: '',
+                    fut1: '',
+                    mx1: '',
+                    nramp: '',
+                    bpi: ''
+                }
+            },
+            showChoices: {
+                farm: 'registered',
+                esr: false,
+                prlr: false,
+                rbp4: false,
+                lif: false,
+                hfabp: false,
+                igf2: false,
+                lepr: false,
+                myog: false,
+                pss: false,
+                rn: false,
+                bax: false,
+                fut1: false,
+                mx1: false,
+                nramp: false,
+                bpi: false
+            },
+            testChoices: {
+                esr: ['BB', 'Bb', 'bb'],
+                prlr: ['AA', 'Aa', 'aa'],
+                rbp4: ['BB', 'Bb', 'bb'],
+                lif: ['BB', 'Bb', 'bb'],
+                hfabp: ['AA', 'Aa', 'aa'],
+                igf2: ['CC', 'Cc', 'cc'],
+                lepr: ['BB', 'Bb', 'bb'],
+                myog: ['AA', 'Aa', 'aa'],
+                pss: ['Positive', 'Negative'],
+                rn: ['Positive', 'Negative'],
+                bax: ['Positive', 'Negative'],
+                fut1: ['AA', 'Aa', 'aa'],
+                mx1: ['Resistant', 'Non-resistant'],
+                nramp: ['BB', 'Bb', 'bb'],
+                bpi: ['GG', 'Gg', 'gg']
+            }
         };
     },
 
 
-    computed: {
-        pageCount: function pageCount() {
-            var l = this.labResults.length;
-            var s = this.paginationSize;
+    watch: {
+        editLabResultData: function editLabResultData(newValue, oldValue) {
+            var _this = this;
 
-            return Math.ceil(l / s);
+            this.labResultData = newValue;
+
+            // Check if farm is existing or not
+            if (newValue.farmId) this.showChoices.farm = 'registered';else this.showChoices.farm = 'not-registered';
+
+            // Iterate through existing tests 
+            _.forIn(newValue.tests, function (value, key) {
+                _this.showChoices[key] = value ? true : false;
+            });
+
+            // Update UI after data changes
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+
+                $('ul.tabs').tabs();
+                $('ul.tabs').tabs('select_tab', 'general-information');
+            });
         },
-        paginatedLabResults: function paginatedLabResults() {
-            var start = this.pageNumber * this.paginationSize;
-            var end = start + this.paginationSize;
 
-            return this.labResults.slice(start, end);
+        // If farmId exists, find its corresponding farm name
+        'labResultData.farmId': function labResultDataFarmId(newValue, oldValue) {
+            var farmName = this.findFarmNameById(newValue);
+
+            if (farmName !== -1) this.labResultData.farmName = farmName;
+        },
+        // Check if test is not chosen/shown anymore
+        // then reset value of test to default
+        'showChoices.esr': function showChoicesEsr(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.esr = '';
+        },
+        'showChoices.prlr': function showChoicesPrlr(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.prlr = '';
+        },
+        'showChoices.rbp4': function showChoicesRbp4(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.rbp4 = '';
+        },
+        'showChoices.lif': function showChoicesLif(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.lif = '';
+        },
+        'showChoices.hfabp': function showChoicesHfabp(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.hfabp = '';
+        },
+        'showChoices.igf2': function showChoicesIgf2(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.igf2 = '';
+        },
+        'showChoices.lepr': function showChoicesLepr(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.lepr = '';
+        },
+        'showChoices.myog': function showChoicesMyog(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.myog = '';
+        },
+        'showChoices.pss': function showChoicesPss(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.pss = '';
+        },
+        'showChoices.rn': function showChoicesRn(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.rn = '';
+        },
+        'showChoices.bax': function showChoicesBax(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.bax = '';
+        },
+        'showChoices.fut1': function showChoicesFut1(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.fut1 = '';
+        },
+        'showChoices.mx1': function showChoicesMx1(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.mx1 = '';
+        },
+        'showChoices.nramp': function showChoicesNramp(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.nramp = '';
+        },
+        'showChoices.bpi': function showChoicesBpi(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.bpi = '';
         }
     },
 
     methods: {
-        findLabResultIndexById: function findLabResultIndexById(id) {
-            for (var i = 0; i < this.labResults.length; i++) {
-                if (this.labResults[i].id === id) return i;
+        findFarmNameById: function findFarmNameById(id) {
+            for (var i = 0; i < this.farmoptions.length; i++) {
+                if (this.farmoptions[i].value === parseInt(id)) {
+                    return this.farmoptions[i].text;
+                }
             }
 
             return -1;
         },
-        previousPage: function previousPage() {
-            // For pagination
-            if (this.pageNumber !== 0) this.pageNumber--;
+        goToTab: function goToTab(tabId) {
+            this.$nextTick(function () {
+                $('#edit-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
+                // Scroll animation
+                $('html, body').animate({
+                    scrollTop: $('#edit-lab-result-tabs').offset().top - 70 + "px"
+                }, 500);
+            });
         },
-        nextPage: function nextPage() {
-            // For pagination
-            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        hideEditLabResultsView: function hideEditLabResultsView() {
+            this.$emit('hideEditLabResultsViewEvent');
         },
-        goToPage: function goToPage(page) {
-            // For pagination
-            this.pageNumber = page - 1;
+        updateLabResults: function updateLabResults(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var labResult = this.labResultData;
+            var updateLabResultsBtn = $('.update-lab-results-btn');
+
+            this.disableButtons(updateLabResultsBtn, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/genomics/manage/laboratory-results', labResult).then(function (response) {
+                // Update parent component for changes
+                if (response.data.updated) {
+                    _this2.$emit('updateLabResultEvent', { labResult: labResult });
+                }
+
+                // Update UI after updating lab result
+                vm.$nextTick(function () {
+                    $('#lab-result-no').removeClass('valid');
+                    $('#animal-id').removeClass('valid');
+                    $('#farm-name').removeClass('valid');
+
+                    _this2.enableButtons(updateLabResultsBtn, event.target, 'Update');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Laboratory Result No. ' + labResult.laboratoryResultNo + ' updated', 1800, 'green lighten-1');
+
+                    // Call hiding of this view
+                    setTimeout(function () {
+                        vm.hideEditLabResultsView();
+                    }, 2000);
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
-        rewriteUrl: function rewriteUrl(searchParameter) {
-            /**
-             *  URL rewrite syntax: ?q=value
-             */
-            var url = this.viewUrl;
-            var parameters = [];
-
-            // Put search parameter in parameters if it is non-empty
-            if (searchParameter.length > 0) {
-                var qParameter = 'q=' + searchParameter;
-
-                parameters.push(qParameter);
-            }
-
-            // Redirect to new url
-            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         },
-        showGeneticInformation: function showGeneticInformation(id, category) {
-            var index = this.findLabResultIndexById(id);
-
-            var booleanValue = this.paginatedLabResults[index]['showTests'][category];
-            this.paginatedLabResults[index]['showTests'][category] = !booleanValue;
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
     }
 });
 
 /***/ }),
-/* 133 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
+    attrs: {
+      "id": "back-to-viewing-btn",
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideEditLabResultsView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "general-information"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v(" General Information ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.labResultData.laboratoryResultNo),
+      expression: "labResultData.laboratoryResultNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "lab-result-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.labResultData.laboratoryResultNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.labResultData, "laboratoryResultNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "lab-result-no"
+    }
+  }, [_vm._v("Laboratory Result No.")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.labResultData.animalId),
+      expression: "labResultData.animalId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "animal-id",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.labResultData.animalId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.labResultData, "animalId", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "animal-id"
+    }
+  }, [_vm._v("Animal ID")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-select', {
+    tag: "component",
+    attrs: {
+      "labelDescription": "Sex",
+      "options": [{
+        text: 'Male',
+        value: 'male'
+      }, {
+        text: 'Female',
+        value: 'female'
+      }]
+    },
+    on: {
+      "select": function (val) {
+        _vm.labResultData.sex = val
+      }
+    },
+    model: {
+      value: (_vm.labResultData.sex),
+      callback: function($$v) {
+        _vm.$set(_vm.labResultData, "sex", $$v)
+      },
+      expression: "labResultData.sex"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.labResultData.dateResult = val
+      }
+    },
+    model: {
+      value: (_vm.labResultData.dateResult),
+      callback: function($$v) {
+        _vm.$set(_vm.labResultData, "dateResult", $$v)
+      },
+      expression: "labResultData.dateResult"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Date of Result")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.labResultData.dateSubmitted = val
+      }
+    },
+    model: {
+      value: (_vm.labResultData.dateSubmitted),
+      callback: function($$v) {
+        _vm.$set(_vm.labResultData, "dateSubmitted", $$v)
+      },
+      expression: "labResultData.dateSubmitted"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.farm),
+      expression: "showChoices.farm"
+    }],
+    attrs: {
+      "name": "yes",
+      "type": "radio",
+      "id": "yes",
+      "value": "registered"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.showChoices.farm, "registered")
+    },
+    on: {
+      "change": function($event) {
+        _vm.$set(_vm.showChoices, "farm", "registered")
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "yes"
+    }
+  }, [_vm._v("Yes")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.farm),
+      expression: "showChoices.farm"
+    }],
+    attrs: {
+      "name": "no",
+      "type": "radio",
+      "id": "no",
+      "value": "not-registered"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.showChoices.farm, "not-registered")
+    },
+    on: {
+      "change": function($event) {
+        _vm.$set(_vm.showChoices, "farm", "not-registered")
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "no"
+    }
+  }, [_vm._v("No")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.farm === 'registered'),
+      expression: "showChoices.farm === 'registered'"
+    }],
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-select', {
+    tag: "component",
+    attrs: {
+      "labelDescription": "Farm Of Origin",
+      "options": _vm.farmoptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.labResultData.farmId = val
+      }
+    },
+    model: {
+      value: (_vm.labResultData.farmId),
+      callback: function($$v) {
+        _vm.$set(_vm.labResultData, "farmId", $$v)
+      },
+      expression: "labResultData.farmId"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.farm === 'not-registered'),
+      expression: "showChoices.farm === 'not-registered'"
+    }],
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.labResultData.farmName),
+      expression: "labResultData.farmName"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.labResultData.farmName)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.labResultData, "farmName", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "farm-name"
+    }
+  }, [_vm._v("Farm Name")])]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.goToTab('genetic-information')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "genetic-information"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v(" Genetic Information ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m6",
+    attrs: {
+      "id": "fertility-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.esr),
+      expression: "showChoices.esr"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "esr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.esr) ? _vm._i(_vm.showChoices.esr, null) > -1 : (_vm.showChoices.esr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.esr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "esr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "esr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "esr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(9)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.esr),
+      expression: "showChoices.esr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.esr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.esr),
+        expression: "labResultData.tests.esr"
+      }],
+      attrs: {
+        "name": "esr",
+        "type": "radio",
+        "id": ("esr-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.esr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "esr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("esr-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.prlr),
+      expression: "showChoices.prlr"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "prlr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.prlr) ? _vm._i(_vm.showChoices.prlr, null) > -1 : (_vm.showChoices.prlr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.prlr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "prlr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "prlr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "prlr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.prlr),
+      expression: "showChoices.prlr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.prlr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.prlr),
+        expression: "labResultData.tests.prlr"
+      }],
+      attrs: {
+        "name": "prlr",
+        "type": "radio",
+        "id": ("prlr" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.prlr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "prlr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("prlr" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.rbp4),
+      expression: "showChoices.rbp4"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "rbp4-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.rbp4) ? _vm._i(_vm.showChoices.rbp4, null) > -1 : (_vm.showChoices.rbp4)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.rbp4,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "rbp4", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "rbp4", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "rbp4", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(11)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.rbp4),
+      expression: "showChoices.rbp4"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.rbp4), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.rbp4),
+        expression: "labResultData.tests.rbp4"
+      }],
+      attrs: {
+        "name": "rbp4",
+        "type": "radio",
+        "id": ("rbp4-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.rbp4, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "rbp4", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("rbp4-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.lif),
+      expression: "showChoices.lif"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "lif-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.lif) ? _vm._i(_vm.showChoices.lif, null) > -1 : (_vm.showChoices.lif)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.lif,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "lif", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "lif", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "lif", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(12)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.lif),
+      expression: "showChoices.lif"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.lif), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.lif),
+        expression: "labResultData.tests.lif"
+      }],
+      attrs: {
+        "name": "lif",
+        "type": "radio",
+        "id": ("lif-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.lif, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "lif", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("lif-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "meat-and-growth-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(13), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.hfabp),
+      expression: "showChoices.hfabp"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "hfabp-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.hfabp) ? _vm._i(_vm.showChoices.hfabp, null) > -1 : (_vm.showChoices.hfabp)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.hfabp,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "hfabp", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "hfabp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "hfabp", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(14)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.hfabp),
+      expression: "showChoices.hfabp"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.hfabp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.hfabp),
+        expression: "labResultData.tests.hfabp"
+      }],
+      attrs: {
+        "name": "hfabp",
+        "type": "radio",
+        "id": ("hfabp-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.hfabp, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "hfabp", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("hfabp-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.igf2),
+      expression: "showChoices.igf2"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "igf2-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.igf2) ? _vm._i(_vm.showChoices.igf2, null) > -1 : (_vm.showChoices.igf2)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.igf2,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "igf2", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "igf2", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "igf2", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.igf2),
+      expression: "showChoices.igf2"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.igf2), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.igf2),
+        expression: "labResultData.tests.igf2"
+      }],
+      attrs: {
+        "name": "igf2",
+        "type": "radio",
+        "id": ("igf2-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.igf2, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "igf2", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("igf2-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.lepr),
+      expression: "showChoices.lepr"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "lepr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.lepr) ? _vm._i(_vm.showChoices.lepr, null) > -1 : (_vm.showChoices.lepr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.lepr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "lepr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "lepr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "lepr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(16)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.lepr),
+      expression: "showChoices.lepr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.lepr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.lepr),
+        expression: "labResultData.tests.lepr"
+      }],
+      attrs: {
+        "name": "lepr",
+        "type": "radio",
+        "id": ("lepr-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.lepr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "lepr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("lepr-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.myog),
+      expression: "showChoices.myog"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "myog-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.myog) ? _vm._i(_vm.showChoices.myog, null) > -1 : (_vm.showChoices.myog)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.myog,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "myog", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "myog", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "myog", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.myog),
+      expression: "showChoices.myog"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.myog), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.myog),
+        expression: "labResultData.tests.myog"
+      }],
+      attrs: {
+        "name": "myog",
+        "type": "radio",
+        "id": ("myog-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.myog, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "myog", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("myog-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "defects-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(18), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.pss),
+      expression: "showChoices.pss"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "pss-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.pss) ? _vm._i(_vm.showChoices.pss, null) > -1 : (_vm.showChoices.pss)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.pss,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "pss", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "pss", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "pss", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.pss),
+      expression: "showChoices.pss"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.pss), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.pss),
+        expression: "labResultData.tests.pss"
+      }],
+      attrs: {
+        "name": "pss",
+        "type": "radio",
+        "id": ("pss-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.pss, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "pss", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("pss-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.rn),
+      expression: "showChoices.rn"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "rn-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.rn) ? _vm._i(_vm.showChoices.rn, null) > -1 : (_vm.showChoices.rn)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.rn,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "rn", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "rn", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "rn", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(20)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.rn),
+      expression: "showChoices.rn"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.rn), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.rn),
+        expression: "labResultData.tests.rn"
+      }],
+      attrs: {
+        "name": "rn",
+        "type": "radio",
+        "id": ("rn-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.rn, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "rn", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("rn-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.bax),
+      expression: "showChoices.bax"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "bax-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.bax) ? _vm._i(_vm.showChoices.bax, null) > -1 : (_vm.showChoices.bax)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.bax,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "bax", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "bax", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "bax", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(21)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.bax),
+      expression: "showChoices.bax"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.bax), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.bax),
+        expression: "labResultData.tests.bax"
+      }],
+      attrs: {
+        "name": "bax",
+        "type": "radio",
+        "id": ("bax-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.bax, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "bax", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("bax-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "diseases-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(22), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.fut1),
+      expression: "showChoices.fut1"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "fut1-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.fut1) ? _vm._i(_vm.showChoices.fut1, null) > -1 : (_vm.showChoices.fut1)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.fut1,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "fut1", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "fut1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "fut1", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(23)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.fut1),
+      expression: "showChoices.fut1"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.fut1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.fut1),
+        expression: "labResultData.tests.fut1"
+      }],
+      attrs: {
+        "name": "fut1",
+        "type": "radio",
+        "id": ("fut1-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.fut1, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "fut1", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("fut1-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.mx1),
+      expression: "showChoices.mx1"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "mx1-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.mx1) ? _vm._i(_vm.showChoices.mx1, null) > -1 : (_vm.showChoices.mx1)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.mx1,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "mx1", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "mx1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "mx1", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.mx1),
+      expression: "showChoices.mx1"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.mx1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.mx1),
+        expression: "labResultData.tests.mx1"
+      }],
+      attrs: {
+        "name": "mx1",
+        "type": "radio",
+        "id": ("mx1-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.mx1, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "mx1", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("mx1-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.nramp),
+      expression: "showChoices.nramp"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "nramp-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.nramp) ? _vm._i(_vm.showChoices.nramp, null) > -1 : (_vm.showChoices.nramp)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.nramp,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "nramp", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "nramp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "nramp", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(25)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.nramp),
+      expression: "showChoices.nramp"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.nramp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.nramp),
+        expression: "labResultData.tests.nramp"
+      }],
+      attrs: {
+        "name": "nramp",
+        "type": "radio",
+        "id": ("nramp-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.nramp, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "nramp", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("nramp-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.bpi),
+      expression: "showChoices.bpi"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "bpi-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.bpi) ? _vm._i(_vm.showChoices.bpi, null) > -1 : (_vm.showChoices.bpi)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.bpi,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "bpi", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "bpi", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "bpi", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.bpi),
+      expression: "showChoices.bpi"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.bpi), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.bpi),
+        expression: "labResultData.tests.bpi"
+      }],
+      attrs: {
+        "name": "bpi",
+        "type": "radio",
+        "id": ("bpi-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.bpi, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "bpi", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("bpi-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action center-align"
+  }, [_c('button', {
+    staticClass: "btn save-btn blue darken-1 update-lab-results-btn",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateLabResults($event)
+      }
+    }
+  }, [_vm._v("\n                    Update\n                ")])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Edit Laboratory Results ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    staticStyle: {
+      "margin-bottom": "0"
+    }
+  }, [_c('div', {
+    staticClass: "col s12",
+    staticStyle: {
+      "margin-top": "2rem",
+      "padding": "0"
+    },
+    attrs: {
+      "id": "edit-lab-result-tabs"
+    }
+  }, [_c('ul', {
+    staticClass: "tabs tabs-fixed-width z-depth-2"
+  }, [_c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#general-information"
+    }
+  }, [_vm._v("General Information")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#genetic-information"
+    }
+  }, [_vm._v("Genetic Information")])])])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Is Farm registered in the system?")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                            *   -   Favorable genotype\n                        ")]), _vm._v(" "), _c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Fertility Traits")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "esr-checkbox"
+    }
+  }, [_c('b', [_vm._v("ESR")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "prlr-checkbox"
+    }
+  }, [_c('b', [_vm._v("PRLR")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "rbp4-checkbox"
+    }
+  }, [_c('b', [_vm._v("RBP4")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "lif-checkbox"
+    }
+  }, [_c('b', [_vm._v("LIF")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Meat Quality and Growth Rate")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "hfabp-checkbox"
+    }
+  }, [_c('b', [_vm._v("HFABP")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "igf2-checkbox"
+    }
+  }, [_c('b', [_vm._v("IGF2")]), _vm._v(" (CC)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "lepr-checkbox"
+    }
+  }, [_c('b', [_vm._v("LEPR")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "myog-checkbox"
+    }
+  }, [_c('b', [_vm._v("MYOG")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Genetic Defects")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "pss-checkbox"
+    }
+  }, [_c('b', [_vm._v("PSS")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "rn-checkbox"
+    }
+  }, [_c('b', [_vm._v("RN")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "bax-checkbox"
+    }
+  }, [_c('b', [_vm._v("BAX")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Diseases Resistance")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "fut1-checkbox"
+    }
+  }, [_c('b', [_vm._v("FUT1")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "mx1-checkbox"
+    }
+  }, [_c('b', [_vm._v("MX1")]), _vm._v(" (Resistant)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "nramp-checkbox"
+    }
+  }, [_c('b', [_vm._v("NRAMP")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "bpi-checkbox"
+    }
+  }, [_c('b', [_vm._v("BPI")]), _vm._v(" (GG)*")])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-615ddffa", module.exports)
+  }
+}
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s10 offset-s1"
+  }, [_c('transition', {
+    attrs: {
+      "name": "view-fade"
+    }
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.showEditLabResult),
+      expression: "!showEditLabResult"
+    }]
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" View Laboratory Results ")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br')])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
     staticClass: "col s8 offset-s2"
@@ -16746,20 +19583,29 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.searchParameter = $event.target.value
       }
     }
-  }), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('i', {
+  }), _vm._v(" "), _c('label', {
+    staticClass: "label-icon",
+    attrs: {
+      "for": "search"
+    }
+  }, [_c('i', {
+    staticClass: "material-icons teal-text"
+  }, [_vm._v("search")])]), _vm._v(" "), _c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("close")])])])])])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+  }, [_vm._v("close")])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br')])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('table', {
     staticClass: "z-depth-1 striped white"
-  }, [_vm._m(4), _vm._v(" "), _c('tbody', _vm._l((_vm.paginatedLabResults), function(result, index) {
+  }, [_c('thead', [_c('tr', [_c('th', [_vm._v("General Information")]), _vm._v(" "), _c('th', [_vm._v("Genetic Information")]), _vm._v(" "), _c('th', [_vm._v("Action")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.paginatedLabResults), function(result, index) {
     return _c('tr', {
       key: result.id
     }, [_c('td', [_c('span', {
       staticClass: "title"
     }, [_c('b', [_vm._v(_vm._s(result.labResultNo))])]), _vm._v(" "), _c('p', {
       staticClass: "primary-details"
-    }, [_vm._v("\n                            " + _vm._s(result.sex) + " • " + _vm._s(result.animalId) + "\n                        ")]), _vm._v(" "), _c('p', {
+    }, [_vm._v("\n                                " + _vm._s(_vm.capitalizeFirstLetter(result.sex)) + " • " + _vm._s(result.animalId) + "\n                            ")]), _vm._v(" "), _c('p', {
       staticClass: "secondary-details grey-text text-darken-2"
     }, [_c('span', [_c('i', {
       staticClass: "material-icons left tooltipped",
@@ -16768,7 +19614,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-delay": "50",
         "data-tooltip": "Farm Name"
       }
-    }, [_vm._v("\n                                    location_on\n                                ")]), _vm._v(" \n                                " + _vm._s(result.farm.name) + "\n                            ")])]), _vm._v(" "), _c('p', {
+    }, [_vm._v("\n                                        location_on\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.farm.name) + "\n                                ")])]), _vm._v(" "), _c('p', {
       staticClass: "secondary-details grey-text text-darken-2"
     }, [_c('span', [_c('i', {
       staticClass: "material-icons left tooltipped",
@@ -16777,7 +19623,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-delay": "50",
         "data-tooltip": "Date Submitted"
       }
-    }, [_vm._v("\n                                    event_note\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateSubmitted) + "\n                            ")])]), _vm._v(" "), _c('p', {
+    }, [_vm._v("\n                                        event_note\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.dateSubmitted) + "\n                                ")])]), _vm._v(" "), _c('p', {
       staticClass: "secondary-details grey-text text-darken-2"
     }, [_c('span', [_c('i', {
       staticClass: "material-icons left tooltipped",
@@ -16786,7 +19632,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-delay": "50",
         "data-tooltip": "Date of Result"
       }
-    }, [_vm._v("\n                                    event_available\n                                ")]), _vm._v(" \n                                " + _vm._s(result.dateResult) + "\n                            ")])])]), _vm._v(" "), _c('td', [_c('p', {
+    }, [_vm._v("\n                                        event_available\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.dateResult) + "\n                                ")])])]), _vm._v(" "), _c('td', [_c('p', {
       staticClass: "genetic-details"
     }, [_c('span', {
       on: {
@@ -16811,7 +19657,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "result.showTests.fertility"
       }],
       staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Fertility\n                            ")]), _vm._v(" "), _c('transition', {
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Fertility\n                                ")]), _vm._v(" "), _c('transition', {
       attrs: {
         "name": "fade"
       }
@@ -16847,7 +19693,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "result.showTests.meatAndGrowth"
       }],
       staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Meat Quality and Growth Rate\n                            ")]), _vm._v(" "), _c('transition', {
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Meat Quality and Growth Rate\n                                ")]), _vm._v(" "), _c('transition', {
       attrs: {
         "name": "fade"
       }
@@ -16883,7 +19729,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "result.showTests.defects"
       }],
       staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Genetic Defects\n                            ")]), _vm._v(" "), _c('transition', {
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Genetic Defects\n                                ")]), _vm._v(" "), _c('transition', {
       attrs: {
         "name": "fade"
       }
@@ -16919,7 +19765,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "result.showTests.diseases"
       }],
       staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                Diseases Resistance\n                            ")]), _vm._v(" "), _c('transition', {
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Diseases Resistance\n                                ")]), _vm._v(" "), _c('transition', {
       attrs: {
         "name": "fade"
       }
@@ -16934,14 +19780,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "btn blue darken-1 z-depth-0",
       attrs: {
         "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditLabResultsView(result.id)
+        }
       }
-    }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('a', {
+    }, [_vm._v("\n                                Edit\n                            ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('a', {
       staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
       attrs: {
         "href": ("/genomics/pdf-lab-results/" + (result.id)),
         "target": "_blank"
       }
-    }, [_vm._v("\n                            View PDF\n                        ")])])])
+    }, [_vm._v("\n                                View PDF\n                            ")])])])
   }))])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
@@ -16980,33 +19832,29 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" View Laboratory Results ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('p', [_c('br')])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "label-icon",
+  }, [_vm._v("chevron_right")])])])], 2)])])]), _vm._v(" "), _c('transition', {
     attrs: {
-      "for": "search"
+      "name": "edit-fade"
     }
-  }, [_c('i', {
-    staticClass: "material-icons teal-text"
-  }, [_vm._v("search")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('p', [_c('br')])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("General Information")]), _vm._v(" "), _c('th', [_vm._v("Genetic Information")]), _vm._v(" "), _c('th', [_vm._v("Action")])])])
-}]}
+  }, [_c('view-laboratory-results-update-view', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showEditLabResult),
+      expression: "showEditLabResult"
+    }],
+    attrs: {
+      "edit-lab-result-data": _vm.editLabResultData,
+      "farmoptions": _vm.farmoptions
+    },
+    on: {
+      "hideEditLabResultsViewEvent": function($event) {
+        _vm.showEditLabResult = false
+      },
+      "updateLabResultEvent": _vm.updateLabResult
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -17016,7 +19864,7 @@ if (false) {
 }
 
 /***/ }),
-/* 134 */
+/* 139 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

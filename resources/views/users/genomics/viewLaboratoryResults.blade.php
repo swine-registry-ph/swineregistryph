@@ -11,6 +11,7 @@
         <view-laboratory-results 
             :custom-lab-results="{{ $customLabResults }}"
             :current-search-parameter="'{{ $currentSearchParameter }}'"
+            :farmoptions="{{ $farmOptions }}"
             :view-url="'{{ route('viewLabResults') }}'"
         >
         </view-laboratory-results>

@@ -55,6 +55,7 @@ class GenomicsController extends Controller
         $farmOptions = [];
         $farms = Farm::all();
 
+        // Include all farms registered in the system
         foreach ($farms as $farm) {
             $farmOptions[] = [
                 'text'  => $farm->name . ' , ' . $farm->province,
@@ -76,8 +77,20 @@ class GenomicsController extends Controller
     public function viewLaboratoryResults(Request $request)
     {
         $currentSearchParameter = '';
+        $farmOptions = [];
+        $farms = Farm::all();
         $labResults = LaboratoryResult::with(['laboratoryTests'])->get();
         $customLabResults = $this->genomicsRepo->customizeLabResults($labResults);
+        
+        // Include all famrs registered in the system
+        foreach ($farms as $farm) {
+            $farmOptions[] = [
+                'text'  => $farm->name . ' , ' . $farm->province,
+                'value' => $farm->id
+            ];
+        }
+
+        $farmOptions = collect($farmOptions)->sortBy('text')->values();
 
         // Filter laboratory results according to search filter
         if($request->q){
@@ -92,7 +105,8 @@ class GenomicsController extends Controller
         return view('users.genomics.viewLaboratoryResults', 
             compact(
                 'customLabResults', 
-                'currentSearchParameter'
+                'currentSearchParameter',
+                'farmOptions'
             ));
     }
 
