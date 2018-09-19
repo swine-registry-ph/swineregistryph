@@ -38,7 +38,7 @@
                     <td>Animal ID: <b>{{ $customLabResult['animalId'] }}</b></td>
                 </tr>
                 <tr>
-                    <td>Sex: <b>{{ $customLabResult['sex'] }}</b></td>
+                    <td>Sex: <b>{{ ucfirst($customLabResult['sex']) }}</b></td>
                 </tr>
                 <tr>
                     <td>Date Submitted: <b>{{ $customLabResult['dateSubmitted'] }}</b></td>

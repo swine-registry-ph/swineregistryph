@@ -149,6 +149,7 @@ class GenomicsController extends Controller
 
         if($labResult){
             $farm = Farm::find($labResult->farm_id);
+            $watermarkImgPath = storage_path('app/public/images/default/watermark.png');
             $customLabResult = $this->genomicsRepo->buildLabResultData($labResult, $farm);
             
             $view = \View::make('users.genomics._pdfLabResults', compact('customLabResult'));
@@ -173,6 +174,8 @@ class GenomicsController extends Controller
             PDF::SetTitle("Lab Result No. {$customLabResult['labResultNo']}");
             PDF::AddPage();
             PDF::WriteHTML($html, true, false, true, false, '');
+            PDF::Image($watermarkImgPath, 25, 50, 150, '', '', '', '', false, 300);
+            
             PDF::Output("{$customLabResult['labResultNo']}.pdf");
         }
         else return abort(404);

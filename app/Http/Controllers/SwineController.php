@@ -204,6 +204,8 @@ class SwineController extends Controller
 
         if($swine){
             $swineInfo = $this->getSwineInfo($swine);
+            $watermarkImgPath = storage_path('app/public/images/default/watermark.png');
+
             $view = \View::make('users.breeder._certificate', compact('swineInfo'));
             $html = $view->render();
 
@@ -227,6 +229,8 @@ class SwineController extends Controller
             PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
             PDF::AddPage();
             PDF::WriteHTML($html, true, false, true, false, '');
+            PDF::Image($watermarkImgPath, 75, 25, 150, '', '', '', '', false, 300);
+
             PDF::Output("{$swine->registration_no}.pdf");
         }
         else return abort(404);
