@@ -175,9 +175,56 @@ class GenomicsController extends Controller
             PDF::AddPage();
             PDF::WriteHTML($html, true, false, true, false, '');
             PDF::Image($watermarkImgPath, 25, 50, 150, '', '', '', '', false, 300);
-            
-            PDF::Output("{$customLabResult['labResultNo']}.pdf");
+
+            PDF::Output("Lab_Result_{$customLabResult['labResultNo']}.pdf");
+
         }
         else return abort(404);
+    }
+
+    /**
+     * Download PDF of Laboratory Results
+     *
+     * @param   integer     $labResultId
+     * @return  PDF
+     */
+    public function downloadPDFLaboratoryResults($labResultId)
+    {
+        $labResult = LaboratoryResult::where('id', $labResultId)->with('laboratoryTests')->first();
+
+        if($labResult) {
+            $labResult->is_downloaded = 1;
+            $labResult->save();
+
+            $farm = Farm::find($labResult->farm_id);
+            $customLabResult = $this->genomicsRepo->buildLabResultData($labResult, $farm);
+            
+            $view = \View::make('users.genomics._pdfLabResults', compact('customLabResult'));
+            $html = $view->render();
+
+            $tagvs = [
+                'h1' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'h2' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'p' => [
+                    ['h' => 0, 'n' => 0]
+                ]
+            ];
+
+            // Set configuration and show pdf
+            PDF::SetCellPadding(0);
+            PDF::setHtmlVSpace($tagvs);
+            PDF::setFont('dejavusanscondensed', '', 10);
+            PDF::SetTitle("Lab Result No. {$customLabResult['labResultNo']}");
+            PDF::AddPage();
+            PDF::WriteHTML($html, true, false, true, false, '');
+
+            PDF::Output("Lab_Result_{$customLabResult['labResultNo']}.pdf", 'D');
+        }
+        else return abort(404);
+
     }
 }

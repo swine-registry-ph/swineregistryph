@@ -308,7 +308,8 @@ class GenomicsRepository
                 'meatAndGrowth' => false,
                 'defects'       => false,
                 'diseases'      => false
-            ]
+            ],
+            'canBeEdited'   => !$result->is_downloaded
         ];
     }
 

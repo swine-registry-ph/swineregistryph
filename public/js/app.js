@@ -11319,15 +11319,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -11606,14 +11597,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "summary-card-action"
     }
-  }, [(!_vm.successfullyRegistered) ? _c('a', {
-    staticClass: "btn-flat waves-effect waves-light preview-cert black-text",
-    attrs: {
-      "href": _vm.tempRegistryCertificateLink,
-      "target": "_blank",
-      "name": "action"
-    }
-  }, [_vm._v("\n                Preview Certificate\n            ")]) : _vm._e(), _vm._v(" "), (!_vm.successfullyRegistered) ? _c('button', {
+  }, [(!_vm.successfullyRegistered) ? _c('button', {
     staticClass: "btn waves-effect waves-light register-and-generate-cert",
     attrs: {
       "href": "#!",
@@ -14383,16 +14367,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -16094,14 +16068,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(" " + _vm._s(choice) + " ")])])
   }))])])])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "card-action center-align"
-  }, [(!_vm.successfullyRegistered) ? _c('a', {
-    staticClass: "btn-flat waves-effect waves-light preview-cert black-text",
-    attrs: {
-      "href": _vm.tempPdfLink,
-      "target": "_blank",
-      "name": "action"
-    }
-  }, [_vm._v("\n                    Preview Temporary PDF\n                ")]) : _vm._e(), _vm._v(" "), _c('button', {
+  }, [_c('button', {
     staticClass: "btn save-btn",
     on: {
       "click": function($event) {
@@ -16379,7 +16346,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-241c1815] {\n    transition: opacity .15s;\n}\n.edit-fade-enter-active[data-v-241c1815] {\n    transition: opacity 1.5s;\n}\n.edit-fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815],\n.view-fade-enter[data-v-241c1815], .view-fade-leave-to[data-v-241c1815],\n.edit-fade-enter[data-v-241c1815], .edit-fade-leave-to[data-v-241c1815] {\n    opacity: 0;\n}\n\n\n/* Search component overrides */\n.input-field label[for='search'][data-v-241c1815] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search[data-v-241c1815] {\n    color: black;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n#download-confirmation-modal[data-v-241c1815] {\n    width: 40rem;\n}\n\n/* Modal customizations */\n.modal .modal-footer[data-v-241c1815] {\n    padding-right: 2rem;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-241c1815] {\n    transition: opacity .15s;\n}\n.edit-fade-enter-active[data-v-241c1815] {\n    transition: opacity 1.5s;\n}\n.edit-fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815],\n.view-fade-enter[data-v-241c1815], .view-fade-leave-to[data-v-241c1815],\n.edit-fade-enter[data-v-241c1815], .edit-fade-leave-to[data-v-241c1815] {\n    opacity: 0;\n}\n\n/* Search component overrides */\n.input-field label[for='search'][data-v-241c1815] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search[data-v-241c1815] {\n    color: black;\n}\n", ""]);
 
 // exports
 
@@ -16392,6 +16359,64 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border:
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16691,7 +16716,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             paginationSize: 6,
             showEditLabResult: false,
             labResults: this.customLabResults,
-            editLabResultData: {}
+            editLabResultData: {},
+            downloadData: {
+                labResultIndex: -1,
+                labResultId: 0,
+                labResultNo: '',
+                canBeEdited: true
+            }
         };
     },
 
@@ -16807,7 +16838,86 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 updatedLabResult.farm.registered = false;
                 updatedLabResult.farm.name = labResult.farmName;
             }
+        },
+        openDownloadConfirmationModal: function openDownloadConfirmationModal(id) {
+            var index = this.findLabResultIndexById(id);
+            var labResult = this.labResults[index];
+
+            this.downloadData.labResultIndex = index;
+            this.downloadData.labResultId = labResult.id;
+            this.downloadData.labResultNo = labResult.labResultNo;
+            this.downloadData.canBeEdited = labResult.canBeEdited;
+
+            $('#download-confirmation-modal').modal('open');
+        },
+        downloadFinalLabResults: function downloadFinalLabResults(event) {
+            var _this = this;
+
+            var vm = this;
+            var downloadFinalLabResultsBtn = $('.download-btn');
+            var labResult = this.labResults[this.downloadData.labResultIndex];
+
+            this.disableButtons(downloadFinalLabResultsBtn, event.target, 'Downloading...');
+
+            // Add to server's database
+            axios.post('/genomics/pdf-lab-results/' + vm.downloadData.labResultId, {}, { responseType: 'arraybuffer' }).then(function (response) {
+                // Make BLOB then download then manually download the pdf file returned
+                // Try to find out the filename from the content 
+                // disposition `filename` value
+                var disposition = response.headers['content-disposition'];
+                var matches = /"([^"]*)"/.exec(disposition);
+                var filename = matches != null && matches[1] ? matches[1] : 'file.pdf';
+                var blob = new Blob([response.data], { type: 'application/pdf' });
+                var data = window.URL.createObjectURL(blob);
+
+                // IE doesn't allow using a blob object directly as link href
+                // instead it is necessary to use msSaveOrOpenBlob
+                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob);
+                    return;
+                }
+
+                // The actual download
+                var link = document.createElement('a');
+                link.href = data;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+
+                setTimeout(function () {
+                    // For Firefox it is necessary to delay revoking the ObjectURL
+                    window.URL.revokeObjectURL(data);
+                    document.body.removeChild(link);
+                }, 500);
+
+                // Update local storage data
+                labResult.canBeEdited = false;
+
+                // Update UI after downloading
+                vm.$nextTick(function () {
+                    _this.enableButtons(downloadFinalLabResultsBtn, event.target, 'Download');
+
+                    Materialize.toast('Laboratory Result No. ' + labResult.labResultNo + ' PDF downloaded', 1800, 'green lighten-1');
+
+                    $('#download-confirmation-modal').modal('close');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
     }
 });
 
@@ -19779,6 +19889,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("FUT1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.fut1) ? result.tests.fut1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("MX1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.mx1) ? result.tests.mx1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("NRAMP")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.nramp) ? result.tests.nramp : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("BPI")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.bpi) ? result.tests.bpi : '---'))])])])])])])], 1)]), _vm._v(" "), _c('td', [_c('a', {
       staticClass: "btn blue darken-1 z-depth-0",
       attrs: {
+        "target": "_blank"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.openDownloadConfirmationModal(result.id)
+        }
+      }
+    }, [_vm._v("\n                                Download PDF\n                            ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (result.canBeEdited) ? _c('a', {
+      staticClass: "btn custom-secondary-btn teal-text text-darken-1 z-depth-0",
+      attrs: {
+        "href": ("/genomics/pdf-lab-results/" + (result.id)),
+        "target": "_blank"
+      }
+    }, [_vm._v("\n                                View PDF\n                            ")]) : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (result.canBeEdited) ? _c('a', {
+      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
+      attrs: {
         "href": "#!"
       },
       on: {
@@ -19787,14 +19914,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.showEditLabResultsView(result.id)
         }
       }
-    }, [_vm._v("\n                                Edit\n                            ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('a', {
-      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
-      attrs: {
-        "href": ("/genomics/pdf-lab-results/" + (result.id)),
-        "target": "_blank"
-      }
-    }, [_vm._v("\n                                View PDF\n                            ")])])])
+    }, [_vm._v("\n                                Edit\n                            ")]) : _vm._e()])])
   }))])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.paginatedLabResults.length === 0),
+      expression: "paginatedLabResults.length === 0"
+    }],
+    staticClass: "col s12 center-align",
+    attrs: {
+      "id": "empty-lab-results-container"
+    }
+  }, [_c('p', [_c('br'), _vm._v(" "), _c('b', [_vm._v("Sorry, no laboratory results found.")]), _vm._v(" "), _c('br')])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
     staticClass: "pagination"
@@ -19832,7 +19964,40 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)])])]), _vm._v(" "), _c('transition', {
+  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "download-confirmation-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("\n                    Download PDF Confirmation\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('br')]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to download final PDF for\n                            laboratory result "), _c('b', [_vm._v(_vm._s(_vm.downloadData.labResultNo))]), _vm._v(" ? \n                            "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (_vm.downloadData.canBeEdited) ? _c('b', [_vm._v("\n                                Note that this laboratory result CANNOT be edited \n                                anymore after downloading.\n                            ")]) : _c('b', [_vm._v("\n                                This laboratory result CANNOT be edited \n                                anymore.\n                            ")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue lighten-2 z-depth-0 download-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.downloadFinalLabResults($event)
+      }
+    }
+  }, [_vm._v("\n                    Download\n                ")])])])])]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "edit-fade"
     }

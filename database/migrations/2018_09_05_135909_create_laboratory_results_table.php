@@ -26,6 +26,7 @@ class CreateLaboratoryResultsTable extends Migration
             $table->date('date_result');
             $table->date('date_submitted');
             $table->boolean('is_used')->default('0');
+            $table->boolean('is_downloaded')->default('0');
             $table->timestamps();
         });
     }

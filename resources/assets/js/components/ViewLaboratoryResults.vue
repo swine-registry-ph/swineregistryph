@@ -218,22 +218,42 @@
                             </td>
                             <td>
                                 <!-- Action -->
-                                <a @click.prevent="showEditLabResultsView(result.id)"
-                                    href="#!"
+                                <a @click.prevent="openDownloadConfirmationModal(result.id)"
+                                    target="_blank"
                                     class="btn blue darken-1 z-depth-0"
                                 >
-                                    Edit
+                                    Download PDF
                                 </a> <br> <br>
-                                <a :href="`/genomics/pdf-lab-results/${result.id}`"
+                                <a v-if="result.canBeEdited"
+                                    :href="`/genomics/pdf-lab-results/${result.id}`"
                                     target="_blank"
-                                    class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
+                                    class="btn custom-secondary-btn teal-text text-darken-1 z-depth-0"
                                 >
                                     View PDF
+                                </a> <br> <br>
+                                <a v-if="result.canBeEdited"
+                                    @click.prevent="showEditLabResultsView(result.id)"
+                                    href="#!"
+                                    class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
+                                >
+                                    Edit
                                 </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Empty Laboratory Results Container -->
+            <div v-show="paginatedLabResults.length === 0" 
+                id="empty-lab-results-container" 
+                class="col s12 center-align"
+            >
+                <p>
+                    <br>
+                    <b>Sorry, no laboratory results found.</b>
+                    <br>
+                </p>
             </div>
 
             <!-- Pagination -->
@@ -256,6 +276,44 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+
+            <!-- Download Confirmation Modal -->
+            <div id="download-confirmation-modal" class="modal">
+                <div class="modal-content">
+                    <h4>
+                        Download PDF Confirmation
+                        <i class="material-icons right modal-close">close</i>
+                    </h4>
+
+                    <div class="row modal-input-container">
+                        <div class="col s12"><br/></div>
+                        <div class="input-field col s12">
+                            <p>
+                                Are you sure you want to download final PDF for
+                                laboratory result <b>{{ downloadData.labResultNo }}</b> ? 
+                                <br> <br>
+                                <b v-if="downloadData.canBeEdited">
+                                    Note that this laboratory result CANNOT be edited 
+                                    anymore after downloading.
+                                </b>
+                                <b v-else>
+                                    This laboratory result CANNOT be edited 
+                                    anymore.
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer grey lighten-3">
+                    <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                    <a @click.prevent="downloadFinalLabResults($event)" 
+                        href="#!" 
+                        class="modal-action btn blue lighten-2 z-depth-0 download-btn"
+                    >
+                        Download
+                    </a>
+                </div>
             </div>
         </div>
         </transition>
@@ -297,7 +355,13 @@
                 paginationSize: 6,
                 showEditLabResult: false,
                 labResults: this.customLabResults,
-                editLabResultData: {}
+                editLabResultData: {},
+                downloadData: {
+                    labResultIndex: -1,
+                    labResultId: 0,
+                    labResultNo: '',
+                    canBeEdited: true
+                }
             }
         },
 
@@ -421,8 +485,98 @@
                     updatedLabResult.farm.registered = false;
                     updatedLabResult.farm.name = labResult.farmName;
                 }
+            },
+
+            openDownloadConfirmationModal(id) {
+                const index = this.findLabResultIndexById(id);
+                const labResult = this.labResults[index];
+
+                this.downloadData.labResultIndex = index;
+                this.downloadData.labResultId = labResult.id;
+                this.downloadData.labResultNo = labResult.labResultNo;
+                this.downloadData.canBeEdited = labResult.canBeEdited;
+
+                $('#download-confirmation-modal').modal('open');
+            },
+
+            downloadFinalLabResults(event) {
+                const vm = this;
+                const downloadFinalLabResultsBtn = $('.download-btn');
+                const labResult = this.labResults[this.downloadData.labResultIndex];
+
+                this.disableButtons(downloadFinalLabResultsBtn, event.target, 'Downloading...');
+
+                // Add to server's database
+                axios.post(`/genomics/pdf-lab-results/${vm.downloadData.labResultId}`,
+                    {},
+                    { responseType: 'arraybuffer' }    
+                )
+                .then((response) => {
+                    // Make BLOB then download then manually download the pdf file returned
+                    // Try to find out the filename from the content 
+                    // disposition `filename` value
+                    const disposition = response.headers['content-disposition'];
+                    const matches = /"([^"]*)"/.exec(disposition);
+                    const filename = (matches != null && matches[1] ? matches[1] : 'file.pdf');
+                    const blob = new Blob([response.data], { type: 'application/pdf' });
+                    const data = window.URL.createObjectURL(blob); 
+
+                    // IE doesn't allow using a blob object directly as link href
+                    // instead it is necessary to use msSaveOrOpenBlob
+                    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                        window.navigator.msSaveOrOpenBlob(blob);
+                        return;
+                    } 
+
+                    // The actual download
+                    var link = document.createElement('a');
+                    link.href = data;
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+
+                    setTimeout(function(){
+                        // For Firefox it is necessary to delay revoking the ObjectURL
+                        window.URL.revokeObjectURL(data);
+                        document.body.removeChild(link);
+                    }, 500);
+
+                    // Update local storage data
+                    labResult.canBeEdited = false;
+
+                    // Update UI after downloading
+                    vm.$nextTick(() => {
+                        this.enableButtons(downloadFinalLabResultsBtn, event.target, 'Download');
+
+                        Materialize.toast(
+                            `Laboratory Result No. ${labResult.labResultNo} PDF downloaded`, 
+                            1800, 
+                            'green lighten-1'
+                        );
+
+                        $('#download-confirmation-modal').modal('close');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
             }
 
+        },
+
+        mounted() {
+            // Materialize component initializations
+            $('.modal').modal();
         }
     }
 </script>
@@ -450,6 +604,15 @@
 
     p.genetic-details > span {
         cursor: pointer;
+    }
+
+    #download-confirmation-modal {
+        width: 40rem;
+    }
+
+    /* Modal customizations */
+    .modal .modal-footer {
+        padding-right: 2rem;
     }
 
     /* Table styles */
@@ -504,7 +667,6 @@
     .edit-fade-enter, .edit-fade-leave-to {
         opacity: 0;
     }
-
 
     /* Search component overrides */
     .input-field label[for='search'] {

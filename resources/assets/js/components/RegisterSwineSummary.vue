@@ -387,15 +387,6 @@
             </div>
 
             <div id="summary-card-action" class="card-action center-align">
-                <!-- For Breed Registry certificate -->
-                <a  v-if="!successfullyRegistered"
-                    :href="tempRegistryCertificateLink"
-                    target="_blank"
-                    class="btn-flat waves-effect waves-light preview-cert black-text"
-                    name="action"
-                >
-                    Preview Certificate
-                </a>
                 <button v-if="!successfullyRegistered"
                     href="#!"
                     class="btn waves-effect waves-light register-and-generate-cert"
