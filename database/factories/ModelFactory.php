@@ -156,6 +156,19 @@ $factory->define(App\Models\Farm::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Models\LaboratoryResult::class, function (Faker\Generator $faker) {
+
+    return [
+        'genomics_id'          => 1,
+        'laboratory_result_no' => '123456',
+        'animal_id'            => '6543',
+        'sex'                  => 'male',
+        'farm_id'              => 1,
+        'date_result'          => \Carbon\Carbon::now()->format('Y-m-d'),
+        'date_submitted'       => \Carbon\Carbon::now()->subWeeks(2)->format('Y-m-d'),
+    ];
+});
+
 $factory->define(App\Models\Swine::class, function (Faker\Generator $faker) {
 
     return [

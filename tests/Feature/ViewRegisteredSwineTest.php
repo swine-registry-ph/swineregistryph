@@ -93,6 +93,6 @@ class ViewRegisteredSwineTest extends TestCase
                          ->get('/breeder/manage-swine/view');
                          
         $response->assertViewIs('users.breeder.viewRegisteredSwine');
-        $response->assertViewHas('swines', $expectedSwines);
+        $response->assertViewHas('filteredSwines', $expectedSwines);
     }
 }

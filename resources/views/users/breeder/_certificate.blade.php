@@ -36,7 +36,7 @@
         <table border="">
             <tbody>
                 <tr>
-                    <td><h1 id="largewhite-title">LANDRACE</h1></td>
+                    <td><h1 id="largewhite-title">{{ $swineInfo['breed'] }}</h1></td>
                 </tr>
             </tbody>
         </table>
@@ -48,15 +48,17 @@
             <table border="">
                 <tbody>
                     <tr>
-                        <td>Boar | {{$swine->swineProperties[1]->value}}</td>
+                        <td>{{ ucfirst($swineInfo['sex']) }} | 
+                            {{ $swineInfo['birthDate'] }} 
+                        </td>
                     </tr>
                     <tr>
-                        <td><h3>{{$swine->registration_no}}*</h3></td>
+                        <td><h3>{{ $swineInfo['registrationNo'] }}*</h3></td>
                     </tr>
                     <tr>
-                        <td><b>{{$swine->swineProperties[16]->value}}</b> teats •
-                            <b>{{$swine->swineProperties[18]->value}}</b> (M) born alive •
-                            <b>{{$swine->swineProperties[19]->value}}</b> (F) born alive
+                        <td><b>{{ $swineInfo['teatNo'] }}</b> teats •
+                            <b>{{ $swineInfo['littersizeAliveMale'] }}</b>(M) born alive •
+                            <b>{{ $swineInfo['littersizeAliveFemale'] }}</b>(F) born alive
                         </td>
                     </tr>
                 </tbody>
@@ -80,13 +82,15 @@
                         <td>Breeder</td>
                     </tr>
                     <tr>
-                        <td><h3>{{$swine->farm->name}}</h3></td>
+                        <td><h3>{{ $swineInfo['farmName'] }}</h3></td>
                     </tr>
                     <tr>
-                        <td>Accreditation No.: {{$swine->farm->farm_accreditation_no}}</td>
+                        <td>Accreditation No.: {{ $swineInfo['farmAccreditationNo'] }}</td>
                     </tr>
                     <tr>
-                        <td>{{$swine->farm->address_line1}}, {{$swine->farm->province}}</td>
+                        <td>{{ $swineInfo['farmAddressLine1'] }},
+                            {{ $swineInfo['farmAddressLine2'] }}, 
+                            {{ $swineInfo['farmProvince'] }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -98,8 +102,8 @@
             <table border="">
                 <tbody>
                     <tr>
-                        <th colspan="4"><b>*{{$swine->registration_no}}</b> means the ff:</th>
-                        <th colspan="1"> </th>
+                        <th colspan="4"><b>*{{ $swineInfo['registrationNo'] }}</b> means the ff: </th>
+                        <th colspan="1"></th>
                         <th colspan="5"><b>Breeding Values</b></th>
                     </tr>
                     <tr>
@@ -107,38 +111,38 @@
                             <table border="">
                                 <tbody>
                                     <tr>
-                                        <td colspan="1"><b>{{$swine->farm->province_code}}</b></td>
-                                        <td colspan="2">{{$swine->farm->province}}</td>
+                                        <td colspan="1"><b>{{ $swineInfo['farmProvinceCode'] }}</b> </td>
+                                        <td colspan="2">{{ $swineInfo['farmProvince'] }}</td>
                                         <td colspan="3"><i>Province of Farm</i></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1"><b>{{$swine->farm->farm_code}}</b></td>
-                                        <td colspan="2">{{$swine->farm->name}}</td>
+                                        <td colspan="1"><b>{{ $swineInfo['farmCode'] }}</b> </td>
+                                        <td colspan="2">{{ $swineInfo['farmName'] }}</td>
                                         <td colspan="3"><i>Name of Farm</i></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1"><b>LR</b></td>
-                                        <td colspan="2">Landrace</td>
+                                        <td colspan="1"><b>{{ $swineInfo['breedCode'] }}</b></td>
+                                        <td colspan="2">{{ $swineInfo['breed'] }}</td>
                                         <td colspan="3"><i>Breed</i></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1"><b>2017</b></td>
-                                        <td colspan="2">2017</td>
+                                        <td colspan="1"><b>{{ $swineInfo['birthYear'] }}</b></td>
+                                        <td colspan="2">{{ $swineInfo['birthYear'] }}</td>
                                         <td colspan="3"><i>Birthyear</i></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1"><b>M</b></td>
-                                        <td colspan="2">Male</td>
+                                        <td colspan="1"><b>{{ ucfirst(substr($swineInfo['sex'], 0, 1)) }}</b></td>
+                                        <td colspan="2">{{ ucfirst($swineInfo['sex']) }}</td>
                                         <td colspan="3"><i>Sex</i></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1"><b>O</b></td>
-                                        <td colspan="2">Open-house</td>
+                                        <td colspan="1"><b>{{ ucfirst(substr($swineInfo['houseType'], 0, 1)) }}</b></td>
+                                        <td colspan="2">{{ ucfirst($swineInfo['houseType']) }}</td>
                                         <td colspan="3"><i>House Type</i></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="1"><b>12344</b></td>
-                                        <td colspan="2">12344</td>
+                                        <td colspan="1"><b>{{ $swineInfo['farmSwineId'] }}</b></td>
+                                        <td colspan="2">{{ $swineInfo['farmSwineId'] }}</td>
                                         <td colspan="3"><i>Farm Id</i></td>
                                     </tr>
                                 </tbody>
@@ -149,26 +153,26 @@
                             <table border="">
                                 <tbody>
                                     <tr>
-                                        <td>ADG on Birth</td>
-                                        <td><b>{{$swine->swineProperties[3]->value}} kg/day</b></td>
+                                        <td>ADG from Birth</td>
+                                        <td><b>{{ $swineInfo['adgFromBirth'] }} kg/day</b></td>
                                         <td>Trait</td>
-                                        <td><b>9.99</b></td>
+                                        <td><b>9.99</b> </td>
                                     </tr>
                                     <tr>
                                         <td>ADG on Test</td>
-                                        <td><b>{{$swine->swineProperties[6]->value}} kg/day</b></td>
+                                        <td><b>{{ $swineInfo['adgOnTest'] }} kg/day</b> </td>
                                         <td>Trait</td>
                                         <td><b>9.99</b></td>
                                     </tr>
                                     <tr>
-                                        <td>Feed Efficiency</td>
-                                        <td><b>{{$swine->swineProperties[15]->value}}</b></td>
+                                        <td>Feed Efficiency </td>
+                                        <td><b>{{ $swineInfo['feedEfficiency'] }}</b> </td>
                                         <td>Trait</td>
                                         <td><b>9.99</b></td>
                                     </tr>
                                     <tr>
                                         <td>Backfat</td>
-                                        <td><b>{{$swine->swineProperties[12]->value}} mm</b></td>
+                                        <td><b>{{ $swineInfo['bft'] }} mm</b> </td>
                                         <td>Trait</td>
                                         <td><b>9.99</b></td>
                                     </tr>
@@ -176,7 +180,7 @@
                                         <td></td> <td></td> <td></td> <td></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" style="text-align:center;">Selection Index (SI) &nbsp; <b>99.99</b></td>
+                                        <td colspan="4" style="text-align:center;"> Selection Index (SI) &nbsp; <b>99.99</b> </td>
                                     </tr>
                                 </tbody>
                             </table>

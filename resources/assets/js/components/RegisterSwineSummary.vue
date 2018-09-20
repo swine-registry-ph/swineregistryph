@@ -111,18 +111,24 @@
                         <div class="card">
                             <div class="card-content">
                                 <h6 class="center-align">
-                                    <b>
-                                        GP Sire Information
-                                        <template v-if="gpSireData.existingRegNo">
+                                    <template v-if="gpSireData.existingRegNo">
+                                        <b>
+                                            GP Sire Information
                                             (Registered)
-                                        </template>
-                                        <template v-else-if="gpSireData.imported.regNo">
+                                        </b>
+                                    </template>
+                                    <template v-else-if="gpSireData.imported.regNo">
+                                        <b>
+                                            GP Sire Information
                                             (Imported)
-                                        </template>
-                                        <template v-else>
+                                        </b>
+                                    </template>
+                                    <template v-else>
+                                        <b>
+                                            GP Sire Information
                                             (New)
-                                        </template>
-                                    </b>
+                                        </b>
+                                    </template>
                                 </h6>
 
                                 <p> <br> </p>
@@ -233,18 +239,24 @@
                         <div class="card">
                             <div class="card-content">
                                 <h6 class="center-align">
-                                    <b>
-                                        GP Dam Information
-                                        <template v-if="gpDamData.existingRegNo">
+                                    <template v-if="gpDamData.existingRegNo">
+                                        <b>
+                                            GP Dam Information
                                             (Registered)
-                                        </template>
-                                        <template v-else-if="gpDamData.imported.regNo">
+                                        </b>
+                                    </template>
+                                    <template v-else-if="gpDamData.imported.regNo">
+                                        <b>
+                                            GP Dam Information
                                             (Imported)
-                                        </template>
-                                        <template v-else>
+                                        </b>
+                                    </template>
+                                    <template v-else>
+                                        <b>
+                                            GP Dam Information
                                             (New)
-                                        </template>
-                                    </b>
+                                        </b>
+                                    </template>
                                 </h6>
 
                                 <p> <br> </p>
@@ -375,15 +387,6 @@
             </div>
 
             <div id="summary-card-action" class="card-action center-align">
-                <!-- For Breed Registry certificate -->
-                <a  v-if="!successfullyRegistered"
-                    :href="tempRegistryCertificateLink"
-                    target="_blank"
-                    class="btn-flat waves-effect waves-light preview-cert black-text"
-                    name="action"
-                >
-                    Preview Certificate
-                </a>
                 <button v-if="!successfullyRegistered"
                     href="#!"
                     class="btn waves-effect waves-light register-and-generate-cert"

@@ -84,6 +84,7 @@ class SwinesApiTest extends TestCase
                     'topPhoto_id',
                     'registration_no',
                     'date_registered',
+                    'swinecart',
                     'created_at',
                     'updated_at'
                 ]
@@ -98,7 +99,7 @@ class SwinesApiTest extends TestCase
     public function testSpecificSwineEndpointIsWorking()
     {
         $swinesEndpoint = $this->swinesEndpoint;
-        $testIds = [1, 2, 3];
+        $testIds = [1, 4, 7];
 
         foreach ($testIds as $testId) {
             $response = $this->get("{$swinesEndpoint}/{$testId}", [
@@ -108,22 +109,21 @@ class SwinesApiTest extends TestCase
             $response
                 ->assertStatus(200)
                 ->assertJsonStructure([
-                    '*' => [
-                        'id',
-                        'breeder_id',
-                        'breed_id',
-                        'farm_id',
-                        'gpSire_id',
-                        'gpDam_id',
-                        'sidePhoto_id',
-                        'frontPhoto_id',
-                        'backPhoto_id',
-                        'topPhoto_id',
-                        'registration_no',
-                        'date_registered',
-                        'created_at',
-                        'updated_at'
-                    ]
+                    'id',
+                    'breeder_id',
+                    'breed_id',
+                    'farm_id',
+                    'gpSire_id',
+                    'gpDam_id',
+                    'sidePhoto_id',
+                    'frontPhoto_id',
+                    'backPhoto_id',
+                    'topPhoto_id',
+                    'registration_no',
+                    'date_registered',
+                    'swinecart',
+                    'created_at',
+                    'updated_at'
                 ]);
         }
     }

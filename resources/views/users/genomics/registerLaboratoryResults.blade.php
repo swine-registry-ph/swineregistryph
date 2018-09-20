@@ -1,20 +1,19 @@
-@extends('users.breeder.home')
+@extends('users.genomics.home')
 
 @section('title')
-    | SwineCart
+    | Register Laboratory Results
 @endsection
 
 @section('content')
 
 <div class="row">
     <div class="col s10 offset-s1">
-        <div class="col s12">
-            <h4 class="title-page"> SwineCart </h4>
-        </div>
+        <register-laboratory-results :farmoptions="{{ $farmOptions }}"> </register-laboratory-results>
     </div>
 </div>
 
 @endsection
+
 
 @section('customScript')
 @endsection

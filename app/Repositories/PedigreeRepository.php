@@ -66,10 +66,14 @@ class PedigreeRepository
                 // Append references of both parents to parentPointers
                 $parentPointers[] =& $currentInstance['parents'][0];
                 $parentPointers[] =& $currentInstance['parents'][1];
-            }
 
-            // Append parent ids to queue
-            $queue = array_merge($queue, $parentIds);
+                // Append parent ids to queue
+                $queue = array_merge($queue, $parentIds);
+
+            } else {
+                // Pop front of parentPointers
+                array_shift($parentPointers);
+            }
 
             $noOfNodes++;
             if($noOfNodes > $noOfExpectedNodesAtGeneration) break;
