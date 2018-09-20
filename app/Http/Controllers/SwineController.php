@@ -204,6 +204,8 @@ class SwineController extends Controller
 
         if($swine){
             $swineInfo = $this->getSwineInfo($swine);
+            $watermarkImgPath = storage_path('app/public/images/default/watermark.png');
+
             $view = \View::make('users.breeder._certificate', compact('swineInfo'));
             $html = $view->render();
 
@@ -227,45 +229,11 @@ class SwineController extends Controller
             PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
             PDF::AddPage();
             PDF::WriteHTML($html, true, false, true, false, '');
+            PDF::Image($watermarkImgPath, 75, 25, 150, '', '', '', '', false, 300);
+
             PDF::Output("{$swine->registration_no}.pdf");
         }
         else return abort(404);
-    }
-
-    /**
-     * View temporary Registry Certificate
-     *
-     * @param   Request      $request
-     * @return  PDF
-     */
-    public function viewTempRegistryCertificate(Request $request)
-    {
-        $swine = Swine::where('id', 1)->with('swineProperties', 'farm')->first();
-
-        $view = \View::make('users.breeder._certificate', compact('swine'));
-        $html = $view->render();
-
-        $tagvs = [
-            'h1' => [
-                ['h' => 0, 'n' => 0]
-            ],
-            'h2' => [
-                ['h' => 0, 'n' => 0]
-            ],
-            'p' => [
-                ['h' => 0, 'n' => 0]
-            ]
-        ];
-
-        // Set configuration and show pdf
-        PDF::setPageOrientation('L');
-        PDF::SetCellPadding(0);
-        PDF::setHtmlVSpace($tagvs);
-        PDF::setFont('dejavusanscondensed', '', 10);
-        PDF::SetTitle("{$swine->registration_no} Certificate of Registry");
-        PDF::AddPage();
-        PDF::WriteHTML($html, true, false, true, false, '');
-        PDF::Output("{$swine->registration_no}.pdf");
     }
 
     /**

@@ -22,16 +22,20 @@ import store from './store';
 Vue.component('app-input-date', require('./components/AppInputDate.vue'));
 Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
 
-// Breeder
-Vue.component('register-swine', require('./components/RegisterSwine.vue'));
-Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
-
 // Admin
 Vue.component('manage-breeds', require('./components/ManageBreeds.vue'));
 Vue.component('manage-breeders', require('./components/ManageBreeders.vue'));
 Vue.component('manage-evaluators', require('./components/ManageEvaluators.vue'));
 Vue.component('manage-properties', require('./components/ManageProperties.vue'));
 Vue.component('manage-apis', require('./components/ManageAPIs.vue'));
+
+// Breeder
+Vue.component('register-swine', require('./components/RegisterSwine.vue'));
+Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
+
+// Genomics
+Vue.component('register-laboratory-results', require('./components/RegisterLaboratoryResults.vue'));
+Vue.component('view-laboratory-results', require('./components/ViewLaboratoryResults.vue'));
 
 // For main container
 const app = new Vue({
@@ -59,12 +63,11 @@ const nav = new Vue({
                 viewRegdSwine: false,
                 viewSwinePedigree: false,
                 manageFarms: false,
-                reports: false,
-                swineCart: false
+                reports: false
             },
             genomics: {
-                regGeneticInfo: false,
-                viewGeneticInfo: false
+                regLabResults: false,
+                viewLabResults: false
             }
         }
     },
@@ -132,8 +135,12 @@ const nav = new Vue({
                 this.currentRoute.breeder.viewSwinePedigree = true;
                 break;
 
-            case '/breeder/swinecart':
-                this.currentRoute.breeder.swineCart = true;
+            case '/genomics/register':
+                this.currentRoute.genomics.regLabResults = true;
+                break;
+            
+            case '/genomics/manage/laboratory-results':
+                this.currentRoute.genomics.viewLabResults = true;
                 break;
 
             default: break;

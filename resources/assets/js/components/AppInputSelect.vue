@@ -22,6 +22,16 @@
             }
         },
 
+        watch: {
+            value(newValue, oldValue) {
+                // If a new value is being passed in props, 
+                // re-initialize Material select
+                this.$nextTick(() => {
+                    $(this.$refs.select).material_select();
+                });
+            }
+        },
+
         mounted() {
             // Initialize Material select
             $(this.$refs.select).material_select();

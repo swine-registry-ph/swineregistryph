@@ -109,23 +109,21 @@ class SwinesApiTest extends TestCase
             $response
                 ->assertStatus(200)
                 ->assertJsonStructure([
-                    '*' => [
-                        'id',
-                        'breeder_id',
-                        'breed_id',
-                        'farm_id',
-                        'gpSire_id',
-                        'gpDam_id',
-                        'sidePhoto_id',
-                        'frontPhoto_id',
-                        'backPhoto_id',
-                        'topPhoto_id',
-                        'registration_no',
-                        'date_registered',
-                        'swine',
-                        'created_at',
-                        'updated_at'
-                    ]
+                    'id',
+                    'breeder_id',
+                    'breed_id',
+                    'farm_id',
+                    'gpSire_id',
+                    'gpDam_id',
+                    'sidePhoto_id',
+                    'frontPhoto_id',
+                    'backPhoto_id',
+                    'topPhoto_id',
+                    'registration_no',
+                    'date_registered',
+                    'swinecart',
+                    'created_at',
+                    'updated_at'
                 ]);
         }
     }

@@ -16,14 +16,12 @@
                                     <div class="collapsible-header"
                                         @click="collapsibleStatus.sire = !collapsibleStatus.sire"
                                     >
-                                        <i class="material-icons">
-                                            <template v-if="collapsibleStatus.sire">
-                                                label_outline
-                                            </template>
-                                            <template v-else>
-                                                label
-                                            </template>
-                                        </i>
+                                        <template v-if="collapsibleStatus.sire">
+                                            <i class="material-icons"> label_outline </i>
+                                        </template>
+                                        <template v-else>
+                                            <i class="material-icons"> label </i>
+                                        </template>
                                         GP Sire
                                     </div>
                                     <div class="collapsible-body">
@@ -40,14 +38,12 @@
                                     <div class="collapsible-header"
                                         @click="collapsibleStatus.dam = !collapsibleStatus.dam"
                                     >
-                                        <i class="material-icons">
-                                            <template v-if="collapsibleStatus.dam">
-                                                label_outline
-                                            </template>
-                                            <template v-else>
-                                                label
-                                            </template>
-                                        </i>
+                                        <template v-if="collapsibleStatus.dam">
+                                            <i class="material-icons"> label_outline </i>
+                                        </template>
+                                        <template v-else>
+                                            <i class="material-icons"> label </i>
+                                        </template>
                                         GP Dam
                                     </div>
                                     <div class="collapsible-body">

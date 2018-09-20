@@ -33,7 +33,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/manage-swine/photo', 'PhotoController@uploadPhoto')->name('uploadPhoto');
         Route::delete('/manage-swine/photo/{photoId}/orientation/{orientation}', 'PhotoController@deletePhoto')->name('deletePhoto');
         Route::get('/registry-certificate/{swineId}', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
-        Route::get('/temp-registry-certificate', 'SwineController@viewTempRegistryCertificate')->name('viewTempRegistryCert');
         Route::get('/pedigree', 'PedigreeController@index')->name('viewSwinePedigreePage');
         Route::get('/pedigree/reg/{regNo}/gen/{generation}', 'PedigreeController@getSwinePedigree')->name('getSwinePedigree');
         Route::get('/swinecart', 'BreederController@viewSwineCartPage')->name('viewSwineCartPage');
@@ -67,6 +66,12 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'genomics'], function(){
 
         Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
+        Route::get('/register', 'GenomicsController@showRegisterLaboratoryResults')->name('genomicsRegisterForm');
+        Route::get('/pdf-lab-results/{labResultId}', 'GenomicsController@viewPDFLaboratoryResults')->name('viewPDFLabResults');
+        Route::post('/pdf-lab-results/{labResultId}', 'GenomicsController@downloadPDFLaboratoryResults')->name('downloadPDFLabResults');
+        Route::get('/manage/laboratory-results', 'GenomicsController@viewLaboratoryResults')->name('viewLabResults');
+        Route::post('/manage/laboratory-results', 'GenomicsController@addLaboratoryResults')->name('addLabResults');
+        Route::patch('/manage/laboratory-results', 'GenomicsController@updateLaboratoryResults')->name('updateLabResults');
     });
 
     // Evaluator-related
@@ -77,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Override Laravel Passport routes
     Route::group(['prefix' => 'oauth', 'middleware' => 'role:admin'], function() {
+
         Route::post('/clients', 'PassportClientOverrideController@store');
         Route::put('/clients/{client_id}', 'PassportClientOverrideController@update');
         Route::delete('/clients/{client_id}', 'PassportClientOverrideController@destroy');

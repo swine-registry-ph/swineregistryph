@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(124);
+module.exports = __webpack_require__(139);
 
 
 /***/ }),
@@ -453,16 +453,20 @@ window.Vue = __webpack_require__(7);
 Vue.component('app-input-date', __webpack_require__(47));
 Vue.component('app-input-select', __webpack_require__(50));
 
-// Breeder
-Vue.component('register-swine', __webpack_require__(53));
-Vue.component('view-registered-swine', __webpack_require__(89));
-
 // Admin
-Vue.component('manage-breeds', __webpack_require__(94));
-Vue.component('manage-breeders', __webpack_require__(99));
-Vue.component('manage-evaluators', __webpack_require__(109));
-Vue.component('manage-properties', __webpack_require__(114));
-Vue.component('manage-apis', __webpack_require__(119));
+Vue.component('manage-breeds', __webpack_require__(53));
+Vue.component('manage-breeders', __webpack_require__(59));
+Vue.component('manage-evaluators', __webpack_require__(69));
+Vue.component('manage-properties', __webpack_require__(74));
+Vue.component('manage-apis', __webpack_require__(79));
+
+// Breeder
+Vue.component('register-swine', __webpack_require__(84));
+Vue.component('view-registered-swine', __webpack_require__(119));
+
+// Genomics
+Vue.component('register-laboratory-results', __webpack_require__(124));
+Vue.component('view-laboratory-results', __webpack_require__(129));
 
 // For main container
 var app = new Vue({
@@ -490,12 +494,11 @@ var nav = new Vue({
                 viewRegdSwine: false,
                 viewSwinePedigree: false,
                 manageFarms: false,
-                reports: false,
-                swineCart: false
+                reports: false
             },
             genomics: {
-                regGeneticInfo: false,
-                viewGeneticInfo: false
+                regLabResults: false,
+                viewLabResults: false
             }
         }
     },
@@ -563,8 +566,12 @@ var nav = new Vue({
                 this.currentRoute.breeder.viewSwinePedigree = true;
                 break;
 
-            case '/breeder/swinecart':
-                this.currentRoute.breeder.swineCart = true;
+            case '/genomics/register':
+                this.currentRoute.genomics.regLabResults = true;
+                break;
+
+            case '/genomics/manage/laboratory-results':
+                this.currentRoute.genomics.viewLabResults = true;
                 break;
 
             default:
@@ -2041,8 +2048,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             hideLabel: false
         };
     },
+
+
+    watch: {
+        value: function value(newValue, oldValue) {
+            var _this = this;
+
+            // If a new value is being passed in props, 
+            // re-initialize Material select
+            this.$nextTick(function () {
+                $(_this.$refs.select).material_select();
+            });
+        }
+    },
+
     mounted: function mounted() {
-        var _this = this;
+        var _this2 = this;
 
         // Initialize Material select
         $(this.$refs.select).material_select();
@@ -2052,14 +2073,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         $(this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').addClass('grey-text');
 
         $(this.$refs.select).on('change', function () {
-            _this.$emit('select', _this.$refs.select.value);
+            _this2.$emit('select', _this2.$refs.select.value);
 
             // Show label upon value change
-            _this.hideLabel = true;
+            _this2.hideLabel = true;
 
             // Make value on select have
             // black text color
-            $(_this.$refs.select).parents('.select-wrapper').find('input.select-dropdown').removeClass('grey-text');
+            $(_this2.$refs.select).parents('.select-wrapper').find('input.select-dropdown').removeClass('grey-text');
         });
     }
 });
@@ -2120,17 +2141,17 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(57),
   /* template */
-  __webpack_require__(88),
+  __webpack_require__(58),
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-ee7fd1e0",
+  "data-v-63d665c6",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwine.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeds.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegisterSwine.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreeds.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -2139,9 +2160,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ee7fd1e0", Component.options)
+    hotAPI.createRecord("data-v-63d665c6", Component.options)
   } else {
-    hotAPI.reload("data-v-ee7fd1e0", Component.options)
+    hotAPI.reload("data-v-63d665c6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -2162,13 +2183,13 @@ var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("eab6435a", content, false);
+var update = __webpack_require__(2)("84fa81c4", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -2186,7 +2207,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 !important;\n}\n.tab.disabled a[data-v-ee7fd1e0] {\n    color: #9e9e9e !important;\n    cursor: not-allowed !important;\n}\n.tabs .indicator[data-v-ee7fd1e0] {\n    background-color: #c62828 !important;\n}\n", ""]);
+exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-button[data-v-63d665c6], #close-add-breed-container-button[data-v-63d665c6] {\n    cursor: pointer;\n}\n.collection-item[data-v-63d665c6] {\n    overflow: auto;\n}\n.collection-item .row[data-v-63d665c6] {\n    margin-bottom: 0;\n}\n#add-breed-container[data-v-63d665c6] {\n    padding-bottom: 2rem;\n}\n#edit-breed-modal[data-v-63d665c6] {\n    width: 30rem;\n    height: 30rem;\n}\n.custom-secondary-btn[data-v-63d665c6] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-63d665c6] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-63d665c6] {\n    border: 0;\n}\n.modal .modal-footer[data-v-63d665c6] {\n    padding-right: 2rem;\n}\n\n", ""]);
 
 // exports
 
@@ -2230,13 +2251,4996 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(58);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        initialBreeds: Array
+    },
+
+    data: function data() {
+        return {
+            breeds: this.initialBreeds,
+            showAddBreedInput: false,
+            addBreedData: {
+                title: '',
+                code: ''
+            },
+            editBreedData: {
+                index: -1,
+                id: 0,
+                title: '',
+                code: ''
+            }
+        };
+    },
+
+
+    methods: {
+        toggleAddBreedContainer: function toggleAddBreedContainer() {
+            this.showAddBreedInput = !this.showAddBreedInput;
+        },
+        addBreed: function addBreed(event) {
+            var _this = this;
+
+            var vm = this;
+            var addBreedButton = $('.add-breed-button');
+
+            this.disableButtons(addBreedButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/breeds', {
+                title: vm.addBreedData.title,
+                code: vm.addBreedData.code
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of breed data
+                vm.breeds.push(response.data);
+                vm.addBreedData.title = '';
+                vm.addBreedData.code = '';
+
+                // Update UI after adding breed
+                vm.$nextTick(function () {
+                    $('#breed-title').removeClass('valid');
+                    $('#breed-code').removeClass('valid');
+
+                    _this.enableButtons(addBreedButton, event.target, 'Add Breed');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Breed added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleEditBreedModal: function toggleEditBreedModal(index) {
+            // Initialize data for editing
+            this.editBreedData.index = index;
+            this.editBreedData.id = this.breeds[index].id;
+            this.editBreedData.title = this.breeds[index].title;
+            this.editBreedData.code = this.breeds[index].code;
+
+            $('#edit-breed-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateBreed: function updateBreed(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var index = this.editBreedData.index;
+            var updateBreedButton = $('.update-breed-btn');
+
+            this.disableButtons(updateBreedButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/breeds', {
+                breedId: vm.editBreedData.id,
+                title: vm.editBreedData.title,
+                code: vm.editBreedData.code
+            }).then(function (response) {
+                // Update local data storage and erase editing of breed data
+                if (response.data === 'OK') {
+                    vm.breeds[index].title = vm.editBreedData.title;
+                    vm.breeds[index].code = vm.editBreedData.code;
+                    vm.editBreedData = {
+                        index: -1,
+                        id: 0,
+                        title: '',
+                        code: ''
+                    };
+                }
+
+                // Update UI after updating breed
+                vm.$nextTick(function () {
+                    $('#edit-breed-modal').modal('close');
+                    $('#edit-breed-title').removeClass('valid');
+                    $('#edit-breed-code').removeClass('valid');
+
+                    _this2.enableButtons(updateBreedButton, event.target, 'Update');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Breed updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-breed-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new breed"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddBreedContainer()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddBreedInput),
+      expression: "showAddBreedInput"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-breed-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-breed-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleAddBreedContainer()
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addBreedData.title),
+      expression: "addBreedData.title"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "breed-title",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addBreedData.title)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addBreedData, "title", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "breed-title"
+    }
+  }, [_vm._v("Breed Title")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addBreedData.code),
+      expression: "addBreedData.code"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "breed-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addBreedData.code)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addBreedData, "code", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "breed-code"
+    }
+  }, [_vm._v("Breed Code")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-breed-button",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addBreed($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Breed\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.breeds), function(breed, index) {
+    return _c('li', {
+      key: breed.id,
+      staticClass: "collection-item"
+    }, [_c('b', [_vm._v(_vm._s(breed.title))]), _vm._v(" (" + _vm._s(breed.code) + ")\n                "), _c('span', [_c('a', {
+      staticClass: "secondary-content \n                            btn custom-secondary-btn \n                            edit-breed-button \n                            blue-text \n                            text-darken-1\n                            z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditBreedModal(index)
+        }
+      }
+    }, [_vm._v("\n                        Edit\n                    ")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-breed-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreedData.title),
+      expression: "editBreedData.title"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breed-title",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreedData.title)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreedData, "title", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breed-title"
+    }
+  }, [_vm._v("Breed Title")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreedData.code),
+      expression: "editBreedData.code"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breed-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreedData.code)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreedData, "code", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breed-code"
+    }
+  }, [_vm._v("Breed Code")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect btn blue darken-1 z-depth-0 update-breed-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateBreed($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Breeds ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Breed\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-63d665c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(60)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(62),
+  /* template */
+  __webpack_require__(68),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-2b3e0810",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeders.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreeders.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2b3e0810", Component.options)
+  } else {
+    hotAPI.reload("data-v-2b3e0810", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(61);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("5af96e1a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3e0810\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeders.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3e0810\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeders.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n.pagination-container[data-v-2b3e0810] {\n    padding-top: 2rem;\n    padding-bottom: 2rem;\n}\n\n/* Modal customizations */\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-2b3e0810] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        initialBreeders: Array,
+        provinceOptions: Array
+    },
+
+    components: {
+        ManageFarms: __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default.a
+    },
+
+    data: function data() {
+        return {
+            pageNumber: 0,
+            paginationSize: 6,
+            breeders: this.initialBreeders,
+            addBreederData: {
+                name: '',
+                email: ''
+            },
+            editBreederData: {
+                index: 0,
+                userId: 0,
+                name: '',
+                email: ''
+            },
+            manageFarmsData: {
+                containerIndex: 0,
+                paginatedBreederIndex: -1,
+                breederIndex: -1,
+                breederId: 0,
+                name: '',
+                farms: []
+            }
+        };
+    },
+
+
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.breeders.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedBreeders: function paginatedBreeders() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return _.sortBy(this.breeders, ['name']).slice(start, end);
+        }
+    },
+
+    methods: {
+        previousPage: function previousPage() {
+            // For pagination
+            // Check if Manage Farms container is closed
+            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
+
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            // For pagination
+            // Check if Manage Farms container is closed
+            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
+
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            // For pagination
+            // Check if Manage Farms container is closed
+            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
+
+            this.pageNumber = page - 1;
+        },
+        showAddBreederModal: function showAddBreederModal() {
+            $('#add-breeder-modal').modal('open');
+        },
+        registerBreeder: function registerBreeder(event) {
+            var _this = this;
+
+            var vm = this;
+            var registerBreederButton = $('.register-breeder-btn');
+
+            this.disableButtons(registerBreederButton, event.target, 'Registering...');
+
+            // Add to server's database
+            axios.post('/admin/manage/breeders', {
+                name: vm.addBreederData.name,
+                email: vm.addBreederData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of breeder data
+                vm.breeders.push(response.data);
+                vm.addBreederData = {
+                    name: '',
+                    email: ''
+                };
+
+                // Update UI after adding breeder
+                vm.$nextTick(function () {
+                    $('#add-breeder-modal').modal('close');
+                    $('#add-breeder-name').removeClass('valid');
+                    $('#add-breeder-email').removeClass('valid');
+
+                    _this.enableButtons(registerBreederButton, event.target, 'Register');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(response.data.name + ' added', 2500, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditBreederModal: function showEditBreederModal(breederId) {
+            // Initialize data for editing
+            var index = this.findBreederIndexById(breederId);
+            var breeder = this.breeders[index];
+
+            this.editBreederData.index = index;
+            this.editBreederData.userId = breeder.userId;
+            this.editBreederData.name = breeder.name;
+            this.editBreederData.email = breeder.email;
+
+            $('#edit-breeder-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateBreeder: function updateBreeder(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateBreederButton = $('.update-breeder-btn');
+
+            this.disableButtons(updateBreederButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/breeders', {
+                userId: vm.editBreederData.userId,
+                name: vm.editBreederData.name,
+                email: vm.editBreederData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase editing of breeder data
+                if (response.data.updated) {
+                    var index = vm.editBreederData.index;
+
+                    vm.breeders[index].name = vm.editBreederData.name;
+                    vm.breeders[index].email = vm.editBreederData.email;
+                    vm.editBreederData = {
+                        index: 0,
+                        userId: 0,
+                        name: '',
+                        email: ''
+                    };
+
+                    // Update UI after updating breeder
+                    vm.$nextTick(function () {
+                        $('#edit-breeder-modal').modal('close');
+                        $('#edit-breeder-name').removeClass('valid');
+                        $('#edit-breeder-email').removeClass('valid');
+
+                        _this2.enableButtons(updateBreederButton, event.target, 'Update');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(vm.breeders[index].name + ' updated', 2500, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showFarms: function showFarms(paginatedBreederIndex) {
+            // Initialize needed variables and conditions and compute for
+            // proper index placement of Manage Farms "container".
+            // Note that indices here are related to the 
+            // this.paginatedBreeders array and 
+            // not the this.breeders array
+            var currentContainerIndex = this.manageFarmsData.containerIndex;
+            var manageFarmsContainerIsOpen = currentContainerIndex > 0;
+
+            var increment = void 0,
+                newContainerIndex = void 0,
+                breederIndexIsGreaterThanBreedersLength = void 0;
+
+            // Check if Manage Farms "container" is open
+            if (manageFarmsContainerIsOpen) {
+                var breederIndexIsGreaterThanContainerIndex = paginatedBreederIndex > currentContainerIndex;
+
+                // Check if the computed index placement is greater than the "container" index
+                if (breederIndexIsGreaterThanContainerIndex) {
+                    var newBreederIndex = paginatedBreederIndex - 1;
+                    increment = newBreederIndex === 0 || newBreederIndex % 2 === 0 ? 2 : 1;
+                    breederIndexIsGreaterThanBreedersLength = newBreederIndex + increment > this.paginatedBreeders.length - 2;
+                    newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.paginatedBreeders.length - 1 : newBreederIndex + increment;
+
+                    // Remove first prior Manage Farms "container" from breeders array
+                    this.paginatedBreeders.splice(currentContainerIndex, 1);
+                    this.initializeManageFarmsData(newBreederIndex, newContainerIndex);
+                    this.insertManageFarmsContainer(newBreederIndex, newContainerIndex);
+                } else {
+                    increment = paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0 ? 2 : 1;
+                    newContainerIndex = paginatedBreederIndex + increment;
+
+                    // If Current Manage Farms "container" is the same with the new one
+                    if (currentContainerIndex === newContainerIndex) {
+                        this.initializeManageFarmsData(paginatedBreederIndex, currentContainerIndex);
+                    } else {
+                        // Remove current Manage Farms "container" first then 
+                        // initialize the new one
+                        this.paginatedBreeders.splice(currentContainerIndex, 1);
+                        this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
+                        this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
+                    }
+                }
+            } else {
+                increment = paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0 ? 2 : 1;
+                breederIndexIsGreaterThanBreedersLength = paginatedBreederIndex + increment > this.paginatedBreeders.length - 1;
+                newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.paginatedBreeders.length : paginatedBreederIndex + increment;
+
+                this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
+                this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
+            }
+        },
+        addBreederFarm: function addBreederFarm(data) {
+            // Insert new breeder farm data to breeders array
+            this.breeders[data.breederIndex].farms.push(data.farm);
+        },
+        updateBreederFarm: function updateBreederFarm(data) {
+            // Edit breeder farm
+            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+            farm.name = data.farm.name;
+            farm.farm_code = data.farm.farmCode;
+            farm.farm_accreditation_date = data.farm.accreditationDate;
+            farm.farm_accreditation_no = data.farm.accreditationNo;
+            farm.address_line1 = data.farm.addressLine1;
+            farm.address_line2 = data.farm.addressLine2;
+            farm.province = data.farm.province;
+            farm.province_code = data.farm.provinceCode;
+        },
+        renewBreederFarm: function renewBreederFarm(data) {
+            // Renew breeder farm
+            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
+
+            farm.is_suspended = 0;
+            farm.farm_accreditation_date = data.newAccreditationDate;
+        },
+        initializeManageFarmsData: function initializeManageFarmsData(paginatedBreederIndex, containerIndex) {
+            // Initialize data and metadata of Manage Farms "container"
+            // Data should be mapped to the this.breeders array
+            var breederId = this.paginatedBreeders[paginatedBreederIndex].breederId;
+            var breederIndex = this.findBreederIndexById(breederId);
+
+            this.manageFarmsData.containerIndex = containerIndex;
+            this.manageFarmsData.paginatedBreederIndex = paginatedBreederIndex;
+            this.manageFarmsData.breederIndex = breederIndex;
+            this.manageFarmsData.breederId = this.breeders[breederIndex].breederId;
+            this.manageFarmsData.name = this.breeders[breederIndex].name;
+            this.manageFarmsData.farms = this.breeders[breederIndex].farms;
+        },
+        insertManageFarmsContainer: function insertManageFarmsContainer(paginatedBreederIndex, containerIndex) {
+            // Insert Manage Farms "container" to breeders array
+            this.paginatedBreeders.splice(containerIndex, 0, {
+                userId: -1,
+                breederId: -1,
+                name: this.paginatedBreeders[paginatedBreederIndex].name,
+                email: '',
+                farms: []
+            });
+        },
+        findBreederIndexById: function findBreederIndexById(id) {
+            for (var i = 0; i < this.breeders.length; i++) {
+                if (this.breeders[i].breederId === id) return i;
+            }
+
+            return -1;
+        },
+        closeManageFarmsContainer: function closeManageFarmsContainer(data) {
+            if (data.containerIndex !== 0) this.paginatedBreeders.splice(data.containerIndex, 1);
+
+            // Set manageFarmsData to default
+            this.manageFarmsData = {
+                containerIndex: 0,
+                paginatedBreederIndex: -1,
+                breederIndex: -1,
+                breederId: 0,
+                name: '',
+                farms: []
+            };
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(64)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(66),
+  /* template */
+  __webpack_require__(67),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-6d46f7eb",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreedersManageFarm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreedersManageFarm.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6d46f7eb", Component.options)
+  } else {
+    hotAPI.reload("data-v-6d46f7eb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(65);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("27351926", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n#toggle-add-farm-btn[data-v-6d46f7eb] {\n    margin-top: 1rem;\n    margin-left: 72px;\n    border-radius: 20px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Modal customizations */\n#add-farm-modal[data-v-6d46f7eb], #edit-farm-modal[data-v-6d46f7eb] {\n    width: 50rem;\n}\n#renew-farm-modal[data-v-6d46f7eb] {\n    width: 40rem;\n    height:40rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-6d46f7eb] {\n    border: 0;\n}\n.modal .modal-footer[data-v-6d46f7eb] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-6d46f7eb] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 1rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        manageFarmsData: Object,
+        provinceOptions: Array
+    },
+
+    data: function data() {
+        return {
+            addFarmData: {
+                breederId: 0,
+                name: '',
+                farmCode: '',
+                accreditationDate: '',
+                accreditationNo: '',
+                addressLine1: '',
+                addressLine2: '',
+                province: '',
+                provinceCode: ''
+            },
+            editFarmData: {
+                farmId: 0,
+                farmIndex: -1,
+                name: '',
+                farmCode: '',
+                accreditationDate: '',
+                accreditationNo: '',
+                addressLine1: '',
+                addressLine2: '',
+                province: '',
+                provinceCode: ''
+            },
+            renewFarmData: {
+                farmId: 0,
+                farmIndex: -1,
+                name: '',
+                newAccreditationDate: ''
+            }
+        };
+    },
+
+
+    methods: {
+        convertToReadableDate: function convertToReadableDate(date) {
+            var dateObject = new Date(date);
+            var monthConversion = {
+                '0': 'January',
+                '1': 'February',
+                '2': 'March',
+                '3': 'April',
+                '4': 'May',
+                '5': 'June',
+                '6': 'July',
+                '7': 'August',
+                '8': 'September',
+                '9': 'October',
+                '10': 'November',
+                '11': 'December'
+            };
+
+            return monthConversion[dateObject.getMonth()] + ' ' + dateObject.getDate() + ', ' + dateObject.getFullYear();
+        },
+        toggleCloseFarmsDataContainerEvent: function toggleCloseFarmsDataContainerEvent() {
+            // Trigger event to ManageBreeders component
+            this.$emit('close-manage-farms-event', { 'containerIndex': this.manageFarmsData.containerIndex });
+        },
+        showAddFarmModal: function showAddFarmModal() {
+            $('#add-farm-modal').modal('open');
+        },
+        addFarm: function addFarm(event) {
+            var _this = this;
+
+            var vm = this;
+            var addFarmButton = $('.add-farm-btn');
+            // Parse input-date-select to get province and province code
+            var provinceWithItsCode = vm.addFarmData.province.split(';').map(function (x) {
+                return x.trim();
+            });
+
+            this.disableButtons(addFarmButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/farms', {
+                breederId: vm.manageFarmsData.breederId,
+                name: vm.addFarmData.name,
+                farmCode: vm.addFarmData.farmCode,
+                accreditationDate: vm.addFarmData.accreditationDate,
+                accreditationNo: vm.addFarmData.accreditationNo,
+                addressLine1: vm.addFarmData.addressLine1,
+                addressLine2: vm.addFarmData.addressLine2,
+                province: provinceWithItsCode[0],
+                provinceCode: provinceWithItsCode[1]
+            }).then(function (response) {
+                // Put response in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.$emit('add-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farm': response.data
+                });
+
+                // Erase adding of breeder farm data
+                vm.addFarmData = {
+                    breederId: vm.manageFarmsData.breederId,
+                    name: '',
+                    farmCode: '',
+                    accreditationDate: '',
+                    accreditationNo: '',
+                    addressLine1: '',
+                    addressLine2: '',
+                    province: '',
+                    provinceCode: ''
+                };
+
+                // Update UI after adding breeder
+                vm.$nextTick(function () {
+                    $('#add-farm-modal').modal('close');
+                    $('#add-farm-name').removeClass('valid');
+                    $('#add-farm-code').removeClass('valid');
+                    $('#add-farm-accreditation-no').removeClass('valid');
+                    $('#add-farm-address-one').removeClass('valid');
+                    $('#add-farm-address-two').removeClass('valid');
+
+                    _this.enableButtons(addFarmButton, event.target, 'Add');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(response.data.name + ' farm added', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditFarmModal: function showEditFarmModal(index) {
+            // Initialize data for editing
+            var farm = this.manageFarmsData.farms[index];
+            this.editFarmData.farmId = farm.id;
+            this.editFarmData.farmIndex = index;
+            this.editFarmData.name = farm.name;
+            this.editFarmData.farmCode = farm.farm_code;
+            this.editFarmData.accreditationDate = this.convertToReadableDate(farm.farm_accreditation_date);
+            this.editFarmData.accreditationNo = farm.farm_accreditation_no;
+            this.editFarmData.addressLine1 = farm.address_line1;
+            this.editFarmData.addressLine2 = farm.address_line2;
+            this.editFarmData.province = farm.province + ' ; ' + farm.province_code;
+            this.editFarmData.provinceCode = farm.province_code;
+
+            $('#edit-farm-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+                $('#edit-farm-modal select').material_select();
+            });
+        },
+        updateFarm: function updateFarm(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateFarmButton = $('.update-farm-btn');
+            // Parse input-date-select to get province and province code
+            var provinceWithItsCode = vm.editFarmData.province.split(';').map(function (x) {
+                return x.trim();
+            });
+
+            this.disableButtons(updateFarmButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/farms', {
+                farmId: vm.editFarmData.farmId,
+                name: vm.editFarmData.name,
+                farmCode: vm.editFarmData.farmCode,
+                accreditationDate: vm.editFarmData.accreditationDate,
+                accreditationNo: vm.editFarmData.accreditationNo,
+                addressLine1: vm.editFarmData.addressLine1,
+                addressLine2: vm.editFarmData.addressLine2,
+                province: provinceWithItsCode[0],
+                provinceCode: provinceWithItsCode[1]
+            }).then(function (response) {
+                // Edit farm in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.editFarmData.province = provinceWithItsCode[0];
+                vm.editFarmData.provinceCode = provinceWithItsCode[1];
+                vm.$emit('update-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farmIndex': vm.editFarmData.farmIndex,
+                    'farm': vm.editFarmData
+                });
+
+                // Update UI after updating breeder farm
+                vm.$nextTick(function () {
+                    $('#edit-farm-modal').modal('close');
+                    $('#edit-farm-name').removeClass('valid');
+                    $('#edit-farm-code').removeClass('valid');
+                    $('#edit-farm-accreditation-no').removeClass('valid');
+                    $('#edit-farm-address-one').removeClass('valid');
+                    $('#edit-farm-address-two').removeClass('valid');
+
+                    _this2.enableButtons(updateFarmButton, event.target, 'Update');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(vm.editFarmData.name + ' farm updated', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRenewFarmModal: function showRenewFarmModal(index) {
+            // Initialize data for renewing
+            var farm = this.manageFarmsData.farms[index];
+            this.renewFarmData.farmId = farm.id;
+            this.renewFarmData.farmIndex = index;
+            this.renewFarmData.name = farm.name;
+
+            $('#renew-farm-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        renewFarm: function renewFarm(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var renewFarmButton = $('.renew-farm-btn');
+
+            this.disableButtons(renewFarmButton, event.target, 'Renewing...');
+
+            // Update server's database
+            axios.patch('/admin/manage/farms/renew', {
+                farmId: vm.renewFarmData.farmId,
+                newAccreditationDate: vm.renewFarmData.newAccreditationDate
+            }).then(function (response) {
+                // Edit farm in local data storage by emitting an event 
+                // to ManageBreeders component
+                vm.$emit('renew-breeder-farm-event', {
+                    'breederIndex': vm.manageFarmsData.breederIndex,
+                    'farmIndex': vm.renewFarmData.farmIndex,
+                    'newAccreditationDate': vm.renewFarmData.newAccreditationDate
+                });
+
+                // Update UI after renewing breeder farm
+                vm.$nextTick(function () {
+                    $('#renew-farm-modal').modal('close');
+
+                    _this3.enableButtons(renewFarmButton, event.target, 'Renew');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(vm.renewFarmData.name + ' farm renewed!', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card",
+    attrs: {
+      "id": "manage-farms-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('h5', [_c('b', {
+    staticClass: "name-chosen-breeder"
+  }, [_vm._v(_vm._s(_vm.manageFarmsData.name))]), _vm._v(" "), _c('i', {
+    staticClass: "material-icons right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.toggleCloseFarmsDataContainerEvent($event)
+      }
+    }
+  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', {
+    staticClass: "center-align"
+  }, [_vm._v(" Manage Farms ")]), _vm._v(" "), _c('a', {
+    staticClass: "btn z-depth-0",
+    attrs: {
+      "id": "toggle-add-farm-btn",
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.showAddFarmModal($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("add")]), _vm._v(" Add Farm\n        ")]), _vm._v(" "), _c('ul', {
+    staticClass: "collection"
+  }, _vm._l((_vm.manageFarmsData.farms), function(farm, index) {
+    return _c('li', {
+      key: farm.id,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "farm-title",
+      class: {
+        'grey-text text-darken-2': farm.is_suspended
+      }
+    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {
+      class: {
+        'grey-text text-darken-2': farm.is_suspended
+      }
+    }, [(farm.is_suspended) ? [_c('b', {
+      staticClass: "red-text text-lighten-1"
+    }, [_vm._v(" SUSPENDED • ACCREDITATION EXPIRED ")]), _vm._v(" "), _c('br')] : _vm._e(), _vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')], 2), _vm._v(" "), _c('p', {
+      staticClass: "grey-text text-darken-2 address-line"
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), (!farm.is_suspended) ? _c('a', {
+      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditFarmModal(index)
+        }
+      }
+    }, [_vm._v(" \n                    Edit \n                ")]) : _c('a', {
+      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn orange-text text-darken-4",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showRenewFarmModal(index)
+        }
+      }
+    }, [_vm._v(" \n                    Renew \n                ")])])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "add-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " ")]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.name),
+      expression: "addFarmData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.farmCode),
+      expression: "addFarmData.farmCode"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.farmCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "farmCode", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-code"
+    }
+  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.addFarmData.accreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.addFarmData.accreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.addFarmData, "accreditationDate", $$v)
+      },
+      expression: "addFarmData.accreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.accreditationNo),
+      expression: "addFarmData.accreditationNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-accreditation-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.accreditationNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "accreditationNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-accreditation-no"
+    }
+  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.addressLine1),
+      expression: "addFarmData.addressLine1"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-address-one",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.addressLine1)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "addressLine1", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-address-one"
+    }
+  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addFarmData.addressLine2),
+      expression: "addFarmData.addressLine2"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-farm-address-two",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addFarmData.addressLine2)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addFarmData, "addressLine2", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-farm-address-two"
+    }
+  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Province",
+      "options": _vm.provinceOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.addFarmData.province = val
+      }
+    },
+    model: {
+      value: (_vm.addFarmData.province),
+      callback: function($$v) {
+        _vm.$set(_vm.addFarmData, "province", $$v)
+      },
+      expression: "addFarmData.province"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn z-depth-0 add-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Add\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(4), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.editFarmData.name) + " ")]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.name),
+      expression: "editFarmData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.farmCode),
+      expression: "editFarmData.farmCode"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-code",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.farmCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "farmCode", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-code"
+    }
+  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s8"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.editFarmData.accreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.editFarmData.accreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.editFarmData, "accreditationDate", $$v)
+      },
+      expression: "editFarmData.accreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.accreditationNo),
+      expression: "editFarmData.accreditationNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-accreditation-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.accreditationNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "accreditationNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-accreditation-no"
+    }
+  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.addressLine1),
+      expression: "editFarmData.addressLine1"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-address-one",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.addressLine1)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "addressLine1", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-address-one"
+    }
+  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editFarmData.addressLine2),
+      expression: "editFarmData.addressLine2"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-farm-address-two",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editFarmData.addressLine2)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editFarmData, "addressLine2", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-farm-address-two"
+    }
+  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s6"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Province",
+      "options": _vm.provinceOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.editFarmData.province = val
+      }
+    },
+    model: {
+      value: (_vm.editFarmData.province),
+      callback: function($$v) {
+        _vm.$set(_vm.editFarmData, "province", $$v)
+      },
+      expression: "editFarmData.province"
+    }
+  })], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "renew-farm-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(8), _vm._v(" "), _c('h5', {
+    staticClass: "grey-text text-darken-2"
+  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.renewFarmData.name))]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(9), _vm._v(" "), _vm._m(10), _vm._v(" "), _vm._m(11), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.renewFarmData.newAccreditationDate = val
+      }
+    },
+    model: {
+      value: (_vm.renewFarmData.newAccreditationDate),
+      callback: function($$v) {
+        _vm.$set(_vm.renewFarmData, "newAccreditationDate", $$v)
+      },
+      expression: "renewFarmData.newAccreditationDate"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" New Accreditation Date ")])], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn orange darken-4 z-depth-0 renew-farm-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.renewFarm($event)
+      }
+    }
+  }, [_vm._v("\n                Renew\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Add Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Renew Farm\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br'), _c('br'), _c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                        Input new accreditation date to renew farm.\n                    ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6d46f7eb", module.exports)
+  }
+}
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "toggle-register-breeder-btn-container"
+    }
+  }, [_c('a', {
+    staticClass: "btn",
+    attrs: {
+      "id": "toggle-register-breeder-btn",
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.showAddBreederModal($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("add")]), _vm._v(" Register Breeder\n            ")])]), _vm._v(" "), _vm._l((_vm.paginatedBreeders), function(breeder, index) {
+    return [(breeder.userId !== -1) ? _c('div', {
+      key: breeder.userId,
+      staticClass: "col s6"
+    }, [_c('div', {
+      staticClass: "card",
+      class: (_vm.manageFarmsData.paginatedBreederIndex === index) ? 'card-chosen-breeder' : ''
+    }, [_c('div', {
+      staticClass: "card-content"
+    }, [_c('span', {
+      staticClass: "card-title",
+      class: (_vm.manageFarmsData.paginatedBreederIndex === index) ? 'name-chosen-breeder' : ''
+    }, [_c('b', [_vm._v(_vm._s(breeder.name))])]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text text-darken-2"
+    }, [_vm._v(" \n                            " + _vm._s(breeder.status) + " • " + _vm._s(breeder.email) + "\n                        ")]), _vm._v(" "), _c('p', [_c('br'), _vm._v(" "), _c('a', {
+      staticClass: "black-text",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showFarms(index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "material-icons left view-farm-btn"
+    }, [_vm._v(" store ")]), _vm._v("\n                                Manage Farms\n                            ")])])]), _vm._v(" "), _c('div', {
+      staticClass: "card-action grey lighten-3"
+    }, [_c('a', {
+      staticClass: "btn blue darken-1 toggle-edit-breeder-btn z-depth-0",
+      attrs: {
+        "href": "#!"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditBreederModal(breeder.breederId)
+        }
+      }
+    }, [_vm._v("\n                            Edit\n                        ")])])])]) : _c('div', {
+      staticClass: "col s12"
+    }, [_c('manage-farms', {
+      attrs: {
+        "manage-farms-data": _vm.manageFarmsData,
+        "province-options": _vm.provinceOptions
+      },
+      on: {
+        "close-manage-farms-event": _vm.closeManageFarmsContainer,
+        "add-breeder-farm-event": _vm.addBreederFarm,
+        "update-breeder-farm-event": _vm.updateBreederFarm,
+        "renew-breeder-farm-event": _vm.renewBreederFarm
+      }
+    })], 1)]
+  }), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align pagination-container"
+  }, [_c('ul', {
+    staticClass: "pagination"
+  }, [_c('li', {
+    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.previousPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
+    return _c('li', {
+      staticClass: "waves-effect",
+      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
+    }, [_c('a', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.goToPage(i)
+        }
+      }
+    }, [_vm._v(" " + _vm._s(i) + " ")])])
+  }), _vm._v(" "), _c('li', {
+    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.nextPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_right")])])])], 2)])], 2), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "add-breeder-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addBreederData.name),
+      expression: "addBreederData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-breeder-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addBreederData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addBreederData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-breeder-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addBreederData.email),
+      expression: "addBreederData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-breeder-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addBreederData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addBreederData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-breeder-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn z-depth-0 register-breeder-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.registerBreeder($event)
+      }
+    }
+  }, [_vm._v("\n                Register\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "edit-breeder-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreederData.name),
+      expression: "editBreederData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breeder-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreederData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreederData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breeder-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editBreederData.email),
+      expression: "editBreederData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-breeder-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editBreederData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editBreederData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-breeder-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-breeder-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateBreeder($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Breeders ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Register Breeder\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Breeder\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2b3e0810", module.exports)
+  }
+}
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(70)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(72),
+  /* template */
+  __webpack_require__(73),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-0298ef7c",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageEvaluators.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageEvaluators.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0298ef7c", Component.options)
+  } else {
+    hotAPI.reload("data-v-0298ef7c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(71);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("68e89ca6", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0298ef7c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageEvaluators.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0298ef7c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageEvaluators.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-evaluator-container-button[data-v-0298ef7c] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0298ef7c] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0298ef7c] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-0298ef7c] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-0298ef7c]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-evaluator-container[data-v-0298ef7c] {\n    padding-bottom: 2rem;\n}\n#edit-evaluator-modal[data-v-0298ef7c] {\n    width: 40rem;\n}\n#delete-evaluator-modal[data-v-0298ef7c] {\n    width: 30rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0298ef7c] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0298ef7c] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0298ef7c] {\n    padding-right: 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        initialEvaluators: Array
+    },
+
+    data: function data() {
+        return {
+            evaluators: this.initialEvaluators,
+            showAddEvaluatorContainer: false,
+            addEvaluatorData: {
+                name: '',
+                email: ''
+            },
+            editEvaluatorData: {
+                index: 0,
+                userId: 0,
+                name: '',
+                email: ''
+            },
+            deleteEvaluatorData: {
+                index: 0,
+                userId: 0,
+                name: ''
+            }
+        };
+    },
+
+
+    computed: {
+        sortedEvaluators: function sortedEvaluators() {
+            return _.sortBy(this.evaluators, ['name']);
+        }
+    },
+
+    methods: {
+        findEvaluatorIndexById: function findEvaluatorIndexById(id) {
+            for (var i = 0; i < this.evaluators.length; i++) {
+                if (this.evaluators[i].evaluatorId === id) return i;
+            }
+
+            return -1;
+        },
+        addEvaluator: function addEvaluator(event) {
+            var _this = this;
+
+            var vm = this;
+            var addEvaluatorButton = $('.add-evaluator-btn');
+
+            this.disableButtons(addEvaluatorButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/evaluators', {
+                name: vm.addEvaluatorData.name,
+                email: vm.addEvaluatorData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of evaluator data
+                vm.evaluators.push(response.data);
+                vm.addEvaluatorData = {
+                    name: '',
+                    email: ''
+                };
+
+                // Update UI after adding evaluator
+                vm.$nextTick(function () {
+                    $('#add-name').removeClass('valid');
+                    $('#add-email').removeClass('valid');
+
+                    _this.enableButtons(addEvaluatorButton, event.target, 'Add Evaluator');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Evaluator ' + response.data.name + ' added', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditEvaluatorModal: function showEditEvaluatorModal(evaluatorId) {
+            // Initialize data for editing
+            var index = this.findEvaluatorIndexById(evaluatorId);
+            var evaluator = this.evaluators[index];
+
+            this.editEvaluatorData.index = index;
+            this.editEvaluatorData.userId = evaluator.userId;
+            this.editEvaluatorData.name = evaluator.name;
+            this.editEvaluatorData.email = evaluator.email;
+
+            $('#edit-evaluator-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateEvaluator: function updateEvaluator(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateEvaluatorButton = $('.update-evaluator-btn');
+
+            this.disableButtons(updateEvaluatorButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/evaluators', {
+                userId: vm.editEvaluatorData.userId,
+                name: vm.editEvaluatorData.name,
+                email: vm.editEvaluatorData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase editing of evaluator data
+                if (response.data.updated) {
+                    var index = vm.editEvaluatorData.index;
+
+                    vm.evaluators[index].name = vm.editEvaluatorData.name;
+                    vm.evaluators[index].email = vm.editEvaluatorData.email;
+                    vm.editEvaluatorData = {
+                        index: 0,
+                        userId: 0,
+                        name: '',
+                        email: ''
+                    };
+
+                    // Update UI after updating breeder
+                    vm.$nextTick(function () {
+                        $('#edit-evaluator-modal').modal('close');
+                        $('#edit-name').removeClass('valid');
+                        $('#edit-email').removeClass('valid');
+
+                        _this2.enableButtons(updateEvaluatorButton, event.target, 'Update');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(vm.evaluators[index].name + ' updated', 2500, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showDeleteEvaluatorModal: function showDeleteEvaluatorModal(evaluatorId) {
+            // Initialize data for deleting
+            var index = this.findEvaluatorIndexById(evaluatorId);
+            var evaluator = this.evaluators[index];
+
+            this.deleteEvaluatorData.index = index;
+            this.deleteEvaluatorData.userId = evaluator.userId;
+            this.deleteEvaluatorData.name = evaluator.name;
+
+            $('#delete-evaluator-modal').modal('open');
+        },
+        deleteEvaluator: function deleteEvaluator(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var deleteEvaluatorButton = $('.delete-evaluator-btn');
+
+            this.disableButtons(deleteEvaluatorButton, event.target, 'Deleting...');
+
+            // Remove from server's database
+            axios.delete('/admin/manage/evaluators/' + vm.deleteEvaluatorData.userId).then(function (response) {
+                // Remove evaluator details on local storage and erase
+                // deleting of evaluator data
+                if (response.data.deleted) {
+                    var evaluatorName = vm.deleteEvaluatorData.name;
+
+                    vm.evaluators.splice(vm.deleteEvaluatorData.index, 1);
+                    vm.deleteEvaluatorData = {
+                        index: 0,
+                        userId: 0,
+                        name: ''
+                    };
+
+                    // Update UI after deleting evaluator
+                    vm.$nextTick(function () {
+                        $('#delete-evaluator-modal').modal('close');
+
+                        _this3.enableButtons(deleteEvaluatorButton, event.target, 'Delete');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Evaluator ' + evaluatorName + ' deleted', 3000, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-evaluator-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new evaluator"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddEvaluatorContainer = !_vm.showAddEvaluatorContainer
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddEvaluatorContainer),
+      expression: "showAddEvaluatorContainer"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-evaluator-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-evaluator-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddEvaluatorContainer = !_vm.showAddEvaluatorContainer
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addEvaluatorData.name),
+      expression: "addEvaluatorData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addEvaluatorData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addEvaluatorData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addEvaluatorData.email),
+      expression: "addEvaluatorData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addEvaluatorData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addEvaluatorData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-email"
+    }
+  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-evaluator-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addEvaluator($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Evaluator\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedEvaluators), function(evaluator) {
+    return _c('li', {
+      key: evaluator.userId,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(_vm._s(evaluator.name))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(evaluator.email) + "\n                ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn custom-secondary-btn\n                            edit-evaluator-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditEvaluatorModal(evaluator.evaluatorId)
+        }
+      }
+    }, [_vm._v("\n                        Edit\n                    ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat delete-evaluator-button custom-tertiary-btn",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showDeleteEvaluatorModal(evaluator.evaluatorId)
+        }
+      }
+    }, [_vm._v("\n                        Delete\n                    ")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "edit-evaluator-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editEvaluatorData.name),
+      expression: "editEvaluatorData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editEvaluatorData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editEvaluatorData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editEvaluatorData.email),
+      expression: "editEvaluatorData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editEvaluatorData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editEvaluatorData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-evaluator-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateEvaluator($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "delete-evaluator-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteEvaluatorData.name))]), _vm._v(" ?\n                    ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn red lighten-2 z-depth-0 delete-evaluator-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deleteEvaluator($event)
+      }
+    }
+  }, [_vm._v("\n                Delete\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Evaluators ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Evaluator\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Delete Evaluator\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0298ef7c", module.exports)
+  }
+}
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(75)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(77),
+  /* template */
+  __webpack_require__(78),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-0e4e505e",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageProperties.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageProperties.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0e4e505e", Component.options)
+  } else {
+    hotAPI.reload("data-v-0e4e505e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(76);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("64529a3a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a[data-v-0e4e505e], .edit-property-button[data-v-0e4e505e], #close-add-property-container-button[data-v-0e4e505e] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0e4e505e] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0e4e505e] {\n    padding-left: 20px !important;\n}\n#add-property-container[data-v-0e4e505e] {\n    padding-bottom: 2rem;\n}\n#edit-property-modal[data-v-0e4e505e] {\n    width: 30rem;\n    height: 35rem;\n}\n.custom-secondary-btn[data-v-0e4e505e] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0e4e505e] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0e4e505e] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0e4e505e] {\n    padding-right: 2rem;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        initialProperties: Array
+    },
+
+    data: function data() {
+        return {
+            properties: this.initialProperties,
+            showAddPropertyContainer: false,
+            addPropertyData: {
+                slug: '',
+                property: '',
+                definition: ''
+            },
+            editPropertyData: {
+                index: -1,
+                id: 0,
+                slug: '',
+                property: '',
+                definition: ''
+            }
+        };
+    },
+
+
+    methods: {
+        addProperty: function addProperty(event) {
+            var _this = this;
+
+            var vm = this;
+            var addPropertyButton = $('.add-property-btn');
+
+            this.disableButtons(addPropertyButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/properties', {
+                slug: vm.addPropertyData.slug,
+                property: vm.addPropertyData.property,
+                definition: vm.addPropertyData.definition
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of property data
+                vm.properties.push(response.data);
+                vm.addPropertyData = {
+                    slug: '',
+                    property: '',
+                    definition: ''
+                };
+
+                // Update UI after adding property
+                vm.$nextTick(function () {
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+
+                    _this.enableButtons(addPropertyButton, event.target, 'Add Property');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleEditPropertyModal: function toggleEditPropertyModal(index) {
+            // Initialize data for editing
+            this.editPropertyData.index = index;
+            this.editPropertyData.id = this.properties[index].id;
+            this.editPropertyData.slug = this.properties[index].slug;
+            this.editPropertyData.property = this.properties[index].property;
+            this.editPropertyData.definition = this.properties[index].definition;
+
+            $('#edit-property-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateProperty: function updateProperty(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var index = this.editPropertyData.index;
+            var updatePropertyButton = $('.update-property-btn');
+
+            this.disableButtons(updatePropertyButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/properties', {
+                propertyId: vm.editPropertyData.id,
+                definition: vm.editPropertyData.definition
+            }).then(function (response) {
+                // Update local data storage and erase editing of property data
+                if (response.data === 'OK') {
+                    vm.properties[index].definition = vm.editPropertyData.definition;
+                    vm.editPropertyData = {
+                        index: -1,
+                        id: 0,
+                        slug: '',
+                        property: '',
+                        definition: ''
+                    };
+                }
+
+                // Update UI after updating property
+                vm.$nextTick(function () {
+                    $('#edit-property-modal').modal('close');
+                    $('#add-property').removeClass('valid');
+                    $('#add-slug').removeClass('valid');
+                    $('#add-definition').removeClass('valid');
+
+                    _this2.enableButtons(updatePropertyButton, event.target, 'Update');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Property updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        var _this3 = this;
+
+        // Materialize component initializations
+        $('.modal').modal();
+
+        // Watch the respective property to produce a default slug
+        this.$watch('addPropertyData.property', function (newValue) {
+            _this3.addPropertyData.slug = _.snakeCase(newValue);
+            _this3.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        });
+    }
+});
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-property-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new property"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddPropertyContainer),
+      expression: "showAddPropertyContainer"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-property-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-property-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.property),
+      expression: "addPropertyData.property"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-property",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addPropertyData, "property", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.slug),
+      expression: "addPropertyData.slug"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-slug",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addPropertyData, "slug", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addPropertyData.definition),
+      expression: "addPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addPropertyData, "definition", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-definition"
+    }
+  }, [_vm._v("Definition")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-property-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addProperty($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Property\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
+    return _c('li', {
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(_vm._s(property.property))])]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn custom-secondary-btn\n                            edit-property-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditPropertyModal(index)
+        }
+      }
+    }, [_vm._v("\n                        Edit\n                    ")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-property-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.property),
+      expression: "editPropertyData.property"
+    }],
+    attrs: {
+      "id": "edit-property",
+      "type": "text",
+      "disabled": ""
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.property)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editPropertyData, "property", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-property"
+    }
+  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.slug),
+      expression: "editPropertyData.slug"
+    }],
+    attrs: {
+      "id": "edit-slug",
+      "type": "text",
+      "disabled": ""
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.slug)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editPropertyData, "slug", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-slug"
+    }
+  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editPropertyData.definition),
+      expression: "editPropertyData.definition"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-definition",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editPropertyData.definition)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editPropertyData, "definition", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-definition"
+    }
+  }, [_vm._v("Definition")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect btn-flat ",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action waves-effect btn blue darken-1 z-depth-0 update-property-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateProperty($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Properties ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('blockquote', {}, [_vm._v("\n                            Note that Property and Slug fields cannot be edited once\n                            it has been submitted already.\n                        ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Property\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
+  }
+}
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(80)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(82),
+  /* template */
+  __webpack_require__(83),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-13cd11b7",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageAPIs.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageAPIs.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-13cd11b7", Component.options)
+  } else {
+    hotAPI.reload("data-v-13cd11b7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(81);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("8717e40a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#add-api-container[data-v-13cd11b7] {\n    padding-bottom: 2rem;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n.custom-secondary-btn[data-v-13cd11b7] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-13cd11b7]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-13cd11b7] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-13cd11b7] {\n    border: 0;\n}\n.modal .modal-footer[data-v-13cd11b7] {\n    padding-right: 2rem;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            clients: [],
+            showHelpInfo: false,
+            showAddCredentialsContainer: false,
+            addCredentialsData: {
+                name: '',
+                redirect: 'http://localhost/callback'
+            },
+            editCredentialsData: {
+                index: -1,
+                id: 0,
+                name: '',
+                redirect: ''
+            },
+            deleteCredentialsData: {
+                index: -1,
+                id: 0,
+                name: ''
+            }
+        };
+    },
+
+
+    methods: {
+        getClients: function getClients() {
+            var _this = this;
+
+            axios.get('/oauth/clients').then(function (response) {
+                _this.clients = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addCredentials: function addCredentials(event) {
+            var _this2 = this;
+
+            var addButtons = $('.add-credentials-button');
+
+            this.disableButtons(addButtons, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/oauth/clients', {
+                name: this.addCredentialsData.name,
+                redirect: this.addCredentialsData.redirect
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of property data
+                _this2.clients.unshift(response.data);
+                _this2.addCredentialsData = {
+                    name: '',
+                    redirect: ''
+                };
+
+                // Update UI after adding credentials
+                _this2.$nextTick(function () {
+                    $('#add-credentials-name').removeClass('valid');
+                    $('#add-credentials-redirect').removeClass('valid');
+
+                    _this2.enableButtons(addButtons, event.target, 'Add Credentials');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Credentials added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleEditCredentialsModal: function toggleEditCredentialsModal(index) {
+            // Initialize data for editing
+            this.editCredentialsData.index = index;
+            this.editCredentialsData.id = this.clients[index].id;
+            this.editCredentialsData.name = this.clients[index].name;
+            this.editCredentialsData.redirect = this.clients[index].redirect;
+
+            $('#edit-credentials-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateCredentials: function updateCredentials(event) {
+            var _this3 = this;
+
+            var index = this.editCredentialsData.index;
+            var updateButtons = $('.update-credentials-button');
+
+            this.disableButtons(updateButtons, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.put('/oauth/clients/' + this.editCredentialsData.id, {
+                name: this.editCredentialsData.name,
+                redirect: this.editCredentialsData.redirect
+            }).then(function (response) {
+                var data = response.data;
+
+                _this3.clients[index].name = data.name;
+                _this3.clients[index].redirect = data.redirect;
+                _this3.editCredentialsData = {
+                    index: -1,
+                    id: 0,
+                    name: '',
+                    redirect: ''
+                };
+
+                // Update UI after updating credentials
+                _this3.$nextTick(function () {
+                    $('#edit-credentials-modal').modal('close');
+                    $('#add-credentials-name').removeClass('valid');
+                    $('#add-credentials-redirect').removeClass('valid');
+
+                    _this3.enableButtons(updateButtons, event.target, 'Update');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Credentials updated', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        toggleDeleteCredentialsModal: function toggleDeleteCredentialsModal(index) {
+            // Initialize data for deleting
+            this.deleteCredentialsData.index = index;
+            this.deleteCredentialsData.id = this.clients[index].id;
+            this.deleteCredentialsData.name = this.clients[index].name;
+
+            $('#delete-credentials-modal').modal('open');
+        },
+        deleteCredentials: function deleteCredentials(event) {
+            var _this4 = this;
+
+            var index = this.deleteCredentialsData.index;
+            var deleteButtons = $('.delete-credentials-button');
+
+            this.disableButtons(deleteButtons, event.target, 'Deleting...');
+
+            // Delete from server's database
+            axios.delete('/oauth/clients/' + this.deleteCredentialsData.id).then(function (response) {
+                // Remove from local storage
+                _this4.clients.splice(index, 1);
+
+                // Update UI after deleting credentials
+                _this4.$nextTick(function () {
+                    $('#delete-credentials-modal').modal('close');
+
+                    _this4.enableButtons(deleteButtons, event.target, 'Delete');
+
+                    Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal({
+            dismissible: false
+        });
+
+        // Initialize data
+        this.getClients();
+    }
+});
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v("\n                Manage API Credentials\n                "), _c('i', {
+    staticClass: "material-icons tooltipped",
+    attrs: {
+      "id": "show-help-info-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Click for help"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showHelpInfo = !_vm.showHelpInfo
+      }
+    }
+  }, [_vm._v("\n                    info_outline\n                ")])])]), _vm._v(" "), (_vm.showHelpInfo) ? _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-help-info-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showHelpInfo = !_vm.showHelpInfo
+      }
+    }
+  }, [_vm._v("\n                    close\n                ")])]), _vm._v(" "), _vm._m(0)]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-credentials-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new Credentials"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddCredentialsContainer),
+      expression: "showAddCredentialsContainer"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-api-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-credentials-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
+      }
+    }
+  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addCredentialsData.name),
+      expression: "addCredentialsData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-credentials-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addCredentialsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addCredentialsData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-credentials-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addCredentialsData.redirect),
+      expression: "addCredentialsData.redirect"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-credentials-redirect",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addCredentialsData.redirect)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addCredentialsData, "redirect", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-credentials-redirect"
+    }
+  }, [_vm._v("Redirect")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn add-credentials-button z-depth-0",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                                Add Credentials\n                            ")])])])]), _vm._v(" "), (_vm.clients.length < 1) ? [_vm._m(2)] : _vm._l((_vm.clients), function(client, index) {
+    return _c('li', {
+      key: client.id,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(" " + _vm._s(client.name) + " ")])]), _vm._v(" "), _c('p', {
+      staticClass: "grey-text"
+    }, [_vm._v("\n                        CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                        CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                        Redirect: " + _vm._s(client.redirect) + "\n                    ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn edit-credentials-button \n                                custom-secondary-btn\n                                blue-text \n                                text-darken-1\n                                z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleEditCredentialsModal(index)
+        }
+      }
+    }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat delete-credentials-button custom-tertiary-btn",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleDeleteCredentialsModal(index)
+        }
+      }
+    }, [_vm._v("\n                            Delete\n                        ")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "edit-credentials-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editCredentialsData.name),
+      expression: "editCredentialsData.name"
+    }],
+    attrs: {
+      "id": "edit-credentials-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editCredentialsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editCredentialsData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-credentials-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editCredentialsData.redirect),
+      expression: "editCredentialsData.redirect"
+    }],
+    attrs: {
+      "id": "edit-credentials-redirect",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editCredentialsData.redirect)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editCredentialsData, "redirect", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-credentials-redirect"
+    }
+  }, [_vm._v("Redirect")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect btn-flat update-credentials-button",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action \n                        waves-effect \n                        btn\n                        update-credentials-button\n                        blue darken-1\n                        z-depth-0",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                    Update\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal modal-fixed-footer",
+    attrs: {
+      "id": "delete-credentials-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(6), _vm._v(" "), _c('p'), _c('blockquote', {
+    staticClass: "error"
+  }, [_vm._v("\n                            THIS ACTION CANNOT BE UNDONE.\n                        ")]), _vm._v("\n                        Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close waves-effect btn-flat delete-credentials-button",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action \n                    waves-effect \n                    btn \n                    delete-credentials-button\n                    red lighten-2\n                    z-depth-0",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deleteCredentials($event)
+      }
+    }
+  }, [_vm._v("\n                    Delete\n                ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('blockquote', {}, [_vm._v("\n                    Note that the API credentials are for machine-to-machine communication. "), _c('br'), _vm._v("\n                    See "), _c('a', {
+    attrs: {
+      "href": "https://oauth.net/2/grant-types/client-credentials/"
+    }
+  }, [_vm._v("Client Credentials Grant")]), _vm._v("\n                    for more information.\n                ")]), _vm._v(" "), _c('pre', [_c('code', [_vm._v("\n1. After the client credentials are created, get your access token\n    by making a POST request to 'http://breedregistry.test/oauth/token'\n    w/ the following body data:\n\n    {\n        grant_type: 'client_credentials',\n        client_id: <client_id>,\n        client_secret: <client_secret>\n    }\n\n2. Now when the access token is acquired, every request in our API should\n    include and Authorization header with the acquired access token.\n    For example, GET request to 'http://breedregistry.test/api/v1/swines'\n    should include the following the Authorization header:\n\n    {\n        Authorization: Bearer <access_token>\n    }\n")]), _vm._v("\n                ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('blockquote', {}, [_vm._v("\n                                Note that the Client ID and Secret will be sent to your email as well.\n                            ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    staticClass: "collection-item avatar center-align"
+  }, [_c('span', {
+    staticClass: "title"
+  }, [_vm._v(" No clients yet.")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Edit Credentials\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Delete Credentials\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-13cd11b7", module.exports)
+  }
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(85)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(87),
+  /* template */
+  __webpack_require__(118),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-ee7fd1e0",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ee7fd1e0", Component.options)
+  } else {
+    hotAPI.reload("data-v-ee7fd1e0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(86);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("eab6435a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 !important;\n}\n.tab.disabled a[data-v-ee7fd1e0] {\n    color: #9e9e9e !important;\n    cursor: not-allowed !important;\n}\n.tabs .indicator[data-v-ee7fd1e0] {\n    background-color: #c62828 !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__);
 //
 //
@@ -2484,19 +7488,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 58 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(59)
+  __webpack_require__(89)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(61),
+  __webpack_require__(91),
   /* template */
-  __webpack_require__(67),
+  __webpack_require__(97),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2528,13 +7532,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(90);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2554,7 +7558,7 @@ if(false) {
 }
 
 /***/ }),
-/* 60 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2568,17 +7572,13 @@ exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow
 
 
 /***/ }),
-/* 61 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
-//
-//
-//
-//
 //
 //
 //
@@ -2705,19 +7705,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 62 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(63)
+  __webpack_require__(93)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(65),
+  __webpack_require__(95),
   /* template */
-  __webpack_require__(66),
+  __webpack_require__(96),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2749,13 +7749,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 63 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(64);
+var content = __webpack_require__(94);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2775,7 +7775,7 @@ if(false) {
 }
 
 /***/ }),
-/* 64 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2789,7 +7789,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 65 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3626,7 +8626,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 66 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4481,7 +9481,7 @@ if (false) {
 }
 
 /***/ }),
-/* 67 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4514,9 +9514,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.collapsibleStatus.sire = !_vm.collapsibleStatus.sire
       }
     }
-  }, [_c('i', {
+  }, [(_vm.collapsibleStatus.sire) ? [_c('i', {
     staticClass: "material-icons"
-  }, [(_vm.collapsibleStatus.sire) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Sire\n                                ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v(" label_outline ")])] : [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v(" label ")])], _vm._v("\n                                    GP Sire\n                                ")], 2), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('register-swine-parents-properties-inputs', {
     attrs: {
@@ -4531,9 +9533,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.collapsibleStatus.dam = !_vm.collapsibleStatus.dam
       }
     }
-  }, [_c('i', {
+  }, [(_vm.collapsibleStatus.dam) ? [_c('i', {
     staticClass: "material-icons"
-  }, [(_vm.collapsibleStatus.dam) ? [_vm._v("\n                                            label_outline\n                                        ")] : [_vm._v("\n                                            label\n                                        ")]], 2), _vm._v("\n                                    GP Dam\n                                ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v(" label_outline ")])] : [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v(" label ")])], _vm._v("\n                                    GP Dam\n                                ")], 2), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('register-swine-parents-properties-inputs', {
     attrs: {
@@ -4586,19 +9590,19 @@ if (false) {
 }
 
 /***/ }),
-/* 68 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(69)
+  __webpack_require__(99)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(71),
+  __webpack_require__(101),
   /* template */
-  __webpack_require__(72),
+  __webpack_require__(102),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -4630,13 +9634,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 69 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(70);
+var content = __webpack_require__(100);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -4656,7 +9660,7 @@ if(false) {
 }
 
 /***/ }),
-/* 70 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -4670,7 +9674,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 71 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5201,7 +10205,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 72 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -5808,19 +10812,19 @@ if (false) {
 }
 
 /***/ }),
-/* 73 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(74)
+  __webpack_require__(104)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(76),
+  __webpack_require__(106),
   /* template */
-  __webpack_require__(77),
+  __webpack_require__(107),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -5852,13 +10856,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(75);
+var content = __webpack_require__(105);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -5878,7 +10882,7 @@ if(false) {
 }
 
 /***/ }),
-/* 75 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -5892,11 +10896,14 @@ exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;
 
 
 /***/ }),
-/* 76 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -6479,7 +11486,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 77 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6520,7 +11527,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('h6', {
     staticClass: "center-align"
-  }, [_c('b', [_vm._v("\n                                    GP Sire Information\n                                    "), (_vm.gpSireData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpSireData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
+  }, [(_vm.gpSireData.existingRegNo) ? [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (Registered)\n                                    ")])] : (_vm.gpSireData.imported.regNo) ? [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (Imported)\n                                    ")])] : [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (New)\n                                    ")])]], 2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
     staticClass: "striped summary-table"
   }, [_c('tbody', [(_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6",
@@ -6533,7 +11540,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('h6', {
     staticClass: "center-align"
-  }, [_c('b', [_vm._v("\n                                    GP Dam Information\n                                    "), (_vm.gpDamData.existingRegNo) ? [_vm._v("\n                                        (Registered)\n                                    ")] : (_vm.gpDamData.imported.regNo) ? [_vm._v("\n                                        (Imported)\n                                    ")] : [_vm._v("\n                                        (New)\n                                    ")]], 2)]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
+  }, [(_vm.gpDamData.existingRegNo) ? [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (Registered)\n                                    ")])] : (_vm.gpDamData.imported.regNo) ? [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (Imported)\n                                    ")])] : [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (New)\n                                    ")])]], 2), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
     staticClass: "striped summary-table"
   }, [_c('tbody', [(_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Genetic Information ID (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.geneticInfoId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 m12 l6 offset-l3",
@@ -6590,14 +11597,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "summary-card-action"
     }
-  }, [(!_vm.successfullyRegistered) ? _c('a', {
-    staticClass: "btn-flat waves-effect waves-light preview-cert black-text",
-    attrs: {
-      "href": _vm.tempRegistryCertificateLink,
-      "target": "_blank",
-      "name": "action"
-    }
-  }, [_vm._v("\n                Preview Certificate\n            ")]) : _vm._e(), _vm._v(" "), (!_vm.successfullyRegistered) ? _c('button', {
+  }, [(!_vm.successfullyRegistered) ? _c('button', {
     staticClass: "btn waves-effect waves-light register-and-generate-cert",
     attrs: {
       "href": "#!",
@@ -6657,19 +11657,19 @@ if (false) {
 }
 
 /***/ }),
-/* 78 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(79)
+  __webpack_require__(109)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(81),
+  __webpack_require__(111),
   /* template */
-  __webpack_require__(87),
+  __webpack_require__(117),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -6701,13 +11701,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(80);
+var content = __webpack_require__(110);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6727,7 +11727,7 @@ if(false) {
 }
 
 /***/ }),
-/* 80 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -6741,12 +11741,12 @@ exports.push([module.i, "\n#photos > .card[data-v-5bf32331] {\n    padding: 0;\n
 
 
 /***/ }),
-/* 81 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__);
 //
 //
@@ -6958,19 +11958,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 82 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(83)
+  __webpack_require__(113)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(85),
+  __webpack_require__(115),
   /* template */
-  __webpack_require__(86),
+  __webpack_require__(116),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7002,13 +12002,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 83 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(84);
+var content = __webpack_require__(114);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7028,7 +12028,7 @@ if(false) {
 }
 
 /***/ }),
-/* 84 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7042,7 +12042,7 @@ exports.push([module.i, "/* Custom style from vue-dropzone */\n.vue-dropzone[dat
 
 
 /***/ }),
-/* 85 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7145,7 +12145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 86 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7197,7 +12197,7 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7311,7 +12311,7 @@ if (false) {
 }
 
 /***/ }),
-/* 88 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7533,19 +12533,19 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(90)
+  __webpack_require__(120)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(92),
+  __webpack_require__(122),
   /* template */
-  __webpack_require__(93),
+  __webpack_require__(123),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7577,13 +12577,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 90 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(121);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7603,7 +12603,7 @@ if(false) {
 }
 
 /***/ }),
-/* 91 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7617,11 +12617,13 @@ exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    m
 
 
 /***/ }),
-/* 92 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -8054,7 +13056,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 93 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8196,7 +13198,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', {
     staticClass: "range-field"
   }, [_vm._l((_vm.farmoptions), function(farm) {
-    return [_c('input', {
+    return [_c('div', [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
@@ -8234,7 +13236,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": farm.text
       }
-    }, [_vm._v(" " + _vm._s(farm.text) + " ")]), _vm._v(" "), _c('br')]
+    }, [_vm._v(" " + _vm._s(farm.text) + " ")])])]
   })], 2)])]), _vm._v(" "), _c('li', [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('p', {
@@ -8315,7 +13317,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "search",
       "name": "q",
       "type": "search",
-      "placeholder": "Type swine registration no. to search",
+      "placeholder": "Type swine registration no. and press enter to search",
       "autocomplete": "off"
     },
     domProps: {
@@ -8616,29 +13618,29 @@ if (false) {
 }
 
 /***/ }),
-/* 94 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(95)
+  __webpack_require__(125)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(97),
+  __webpack_require__(127),
   /* template */
-  __webpack_require__(98),
+  __webpack_require__(128),
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-63d665c6",
+  "data-v-091d2757",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeds.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterLaboratoryResults.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageBreeds.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] RegisterLaboratoryResults.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -8647,9 +13649,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-63d665c6", Component.options)
+    hotAPI.createRecord("data-v-091d2757", Component.options)
   } else {
-    hotAPI.reload("data-v-63d665c6", Component.options)
+    hotAPI.reload("data-v-091d2757", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -8660,23 +13662,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 95 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(96);
+var content = __webpack_require__(126);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("84fa81c4", content, false);
+var update = __webpack_require__(2)("7f966660", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-091d2757\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterLaboratoryResults.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-091d2757\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterLaboratoryResults.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -8686,7 +13688,7 @@ if(false) {
 }
 
 /***/ }),
-/* 96 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -8694,13 +13696,13 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-button[data-v-63d665c6], #close-add-breed-container-button[data-v-63d665c6] {\n    cursor: pointer;\n}\n.collection-item[data-v-63d665c6] {\n    overflow: auto;\n}\n.collection-item .row[data-v-63d665c6] {\n    margin-bottom: 0;\n}\n#add-breed-container[data-v-63d665c6] {\n    padding-bottom: 2rem;\n}\n#edit-breed-modal[data-v-63d665c6] {\n    width: 30rem;\n    height: 30rem;\n}\n.custom-secondary-btn[data-v-63d665c6] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-63d665c6] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-63d665c6] {\n    border: 0;\n}\n.modal .modal-footer[data-v-63d665c6] {\n    padding-right: 2rem;\n}\n\n", ""]);
+exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n}\np.padded label[data-v-091d2757] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-091d2757] {\n    padding: 0;\n}\n.card-traits-container[data-v-091d2757] {\n    padding-bottom: 2rem;\n}\ndiv.card-action[data-v-091d2757] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#meat-and-growth-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#defects-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-091d2757] {\n    border-top: 4px solid #9a26a6;\n}\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 97 */
+/* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8827,115 +13829,733 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        initialBreeds: Array
+        farmoptions: Array
     },
 
     data: function data() {
         return {
-            breeds: this.initialBreeds,
-            showAddBreedInput: false,
-            addBreedData: {
-                title: '',
-                code: ''
+            successfullyRegistered: false,
+            showChoices: {
+                farm: 'registered',
+                esr: false,
+                prlr: false,
+                rbp4: false,
+                lif: false,
+                hfabp: false,
+                igf2: false,
+                lepr: false,
+                myog: false,
+                pss: false,
+                rn: false,
+                bax: false,
+                fut1: false,
+                mx1: false,
+                nramp: false,
+                bpi: false
             },
-            editBreedData: {
-                index: -1,
-                id: 0,
-                title: '',
-                code: ''
+            testChoices: {
+                esr: ['BB', 'Bb', 'bb'],
+                prlr: ['AA', 'Aa', 'aa'],
+                rbp4: ['BB', 'Bb', 'bb'],
+                lif: ['BB', 'Bb', 'bb'],
+                hfabp: ['AA', 'Aa', 'aa'],
+                igf2: ['CC', 'Cc', 'cc'],
+                lepr: ['BB', 'Bb', 'bb'],
+                myog: ['AA', 'Aa', 'aa'],
+                pss: ['Positive', 'Negative'],
+                rn: ['Positive', 'Negative'],
+                bax: ['Positive', 'Negative'],
+                fut1: ['AA', 'Aa', 'aa'],
+                mx1: ['Resistant', 'Non-resistant'],
+                nramp: ['BB', 'Bb', 'bb'],
+                bpi: ['GG', 'Gg', 'gg']
+
+            },
+            recordInfoData: {
+                laboratoryResultNo: '',
+                animalId: '',
+                sex: '',
+                farmId: '',
+                farmName: '',
+                dateResult: '',
+                dateSubmitted: '',
+                tests: {
+                    esr: '',
+                    prlr: '',
+                    rbp4: '',
+                    lif: '',
+                    hfabp: '',
+                    igf2: '',
+                    lepr: '',
+                    myog: '',
+                    pss: '',
+                    rn: '',
+                    bax: '',
+                    fut1: '',
+                    mx1: '',
+                    nramp: '',
+                    bpi: ''
+                }
             }
         };
     },
 
 
-    methods: {
-        toggleAddBreedContainer: function toggleAddBreedContainer() {
-            this.showAddBreedInput = !this.showAddBreedInput;
+    computed: {
+        tempPdfLink: function tempPdfLink() {
+            return '/genomics/temp-pdf-lab-results';
+        }
+    },
+
+    watch: {
+        // Check if test is not chosen/shown anymore
+        // then reset value of test to default
+        'showChoices.esr': function showChoicesEsr(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.esr = '';
         },
-        addBreed: function addBreed(event) {
+        'showChoices.prlr': function showChoicesPrlr(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.prlr = '';
+        },
+        'showChoices.rbp4': function showChoicesRbp4(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.rbp4 = '';
+        },
+        'showChoices.lif': function showChoicesLif(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.lif = '';
+        },
+        'showChoices.hfabp': function showChoicesHfabp(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.hfabp = '';
+        },
+        'showChoices.igf2': function showChoicesIgf2(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.igf2 = '';
+        },
+        'showChoices.lepr': function showChoicesLepr(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.lepr = '';
+        },
+        'showChoices.myog': function showChoicesMyog(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.myog = '';
+        },
+        'showChoices.pss': function showChoicesPss(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.pss = '';
+        },
+        'showChoices.rn': function showChoicesRn(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.rn = '';
+        },
+        'showChoices.bax': function showChoicesBax(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.bax = '';
+        },
+        'showChoices.fut1': function showChoicesFut1(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.fut1 = '';
+        },
+        'showChoices.mx1': function showChoicesMx1(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.mx1 = '';
+        },
+        'showChoices.nramp': function showChoicesNramp(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.nramp = '';
+        },
+        'showChoices.bpi': function showChoicesBpi(newValue, oldValue) {
+            if (newValue === false) this.recordInfoData.tests.bpi = '';
+        }
+    },
+
+    methods: {
+        goToTab: function goToTab(tabId) {
+            this.$nextTick(function () {
+                $('#add-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
+                // Scroll animation
+                $('html, body').animate({
+                    scrollTop: $('#add-lab-result-tabs').offset().top - 70 + "px"
+                }, 500);
+            });
+        },
+        saveLaboratoryResults: function saveLaboratoryResults(event) {
             var _this = this;
 
             var vm = this;
-            var addBreedButton = $('.add-breed-button');
+            var saveLabResultsButton = $('.save-btn');
 
-            this.disableButtons(addBreedButton, event.target, 'Adding...');
+            this.disableButtons(saveLabResultsButton, event.target, 'Saving...');
 
             // Add to server's database
-            axios.post('/admin/manage/breeds', {
-                title: vm.addBreedData.title,
-                code: vm.addBreedData.code
-            }).then(function (response) {
-                // Put response in local data storage and erase adding of breed data
-                vm.breeds.push(response.data);
-                vm.addBreedData.title = '';
-                vm.addBreedData.code = '';
+            axios.post('/genomics/manage/laboratory-results', vm.recordInfoData).then(function (response) {
+                // Reset registering of lab results to default values
+                vm.recordInfoData = {
+                    laboratoryResultNo: '',
+                    animalId: '',
+                    sex: '',
+                    farmId: '',
+                    farmName: '',
+                    dateResult: '',
+                    dateSubmitted: '',
+                    tests: {
+                        esr: '',
+                        prlr: '',
+                        rbp4: '',
+                        lif: '',
+                        hfabp: '',
+                        igf2: '',
+                        lepr: '',
+                        myog: '',
+                        pss: '',
+                        rn: '',
+                        bax: '',
+                        fut1: '',
+                        mx1: '',
+                        nramp: '',
+                        bpi: ''
+                    }
+                };
 
                 // Update UI after adding breed
                 vm.$nextTick(function () {
-                    $('#breed-title').removeClass('valid');
-                    $('#breed-code').removeClass('valid');
+                    _this.enableButtons(saveLabResultsButton, event.target, 'Save');
 
-                    _this.enableButtons(addBreedButton, event.target, 'Add Breed');
+                    Materialize.toast('Laboratory Results saved.', 2500, 'green lighten-1');
 
-                    Materialize.updateTextFields();
-                    Materialize.toast('Breed added', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        toggleEditBreedModal: function toggleEditBreedModal(index) {
-            // Initialize data for editing
-            this.editBreedData.index = index;
-            this.editBreedData.id = this.breeds[index].id;
-            this.editBreedData.title = this.breeds[index].title;
-            this.editBreedData.code = this.breeds[index].code;
-
-            $('#edit-breed-modal').modal('open');
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-        updateBreed: function updateBreed(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var index = this.editBreedData.index;
-            var updateBreedButton = $('.update-breed-btn');
-
-            this.disableButtons(updateBreedButton, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.patch('/admin/manage/breeds', {
-                breedId: vm.editBreedData.id,
-                title: vm.editBreedData.title,
-                code: vm.editBreedData.code
-            }).then(function (response) {
-                // Update local data storage and erase editing of breed data
-                if (response.data === 'OK') {
-                    vm.breeds[index].title = vm.editBreedData.title;
-                    vm.breeds[index].code = vm.editBreedData.code;
-                    vm.editBreedData = {
-                        index: -1,
-                        id: 0,
-                        title: '',
-                        code: ''
-                    };
-                }
-
-                // Update UI after updating breed
-                vm.$nextTick(function () {
-                    $('#edit-breed-modal').modal('close');
-                    $('#edit-breed-title').removeClass('valid');
-                    $('#edit-breed-code').removeClass('valid');
-
-                    _this2.enableButtons(updateBreedButton, event.target, 'Update');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Breed updated', 2000, 'green lighten-1');
+                    // Reload page
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2600);
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -8949,282 +14569,1728 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             buttons.removeClass('disabled');
             actionBtnElement.innerHTML = textToShow;
         }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
     }
+
 });
 
 /***/ }),
-/* 98 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    staticClass: "col s10 offset-s1"
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row",
     attrs: {
-      "href": "#!",
-      "id": "toggle-add-breed-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new breed"
+      "id": "general-information"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v(" General Information ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.recordInfoData.laboratoryResultNo),
+      expression: "recordInfoData.laboratoryResultNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "lab-result-no",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.recordInfoData.laboratoryResultNo)
     },
     on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.toggleAddBreedContainer()
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.recordInfoData, "laboratoryResultNo", $event.target.value)
       }
     }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "lab-result-no"
+    }
+  }, [_vm._v("Laboratory Result No.")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.recordInfoData.animalId),
+      expression: "recordInfoData.animalId"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "animal-id",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.recordInfoData.animalId)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.recordInfoData, "animalId", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "animal-id"
+    }
+  }, [_vm._v("Animal ID")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Sex",
+      "options": [{
+        text: 'Male',
+        value: 'male'
+      }, {
+        text: 'Female',
+        value: 'female'
+      }]
+    },
+    on: {
+      "select": function (val) {
+        _vm.recordInfoData.sex = val
+      }
+    },
+    model: {
+      value: (_vm.recordInfoData.sex),
+      callback: function($$v) {
+        _vm.$set(_vm.recordInfoData, "sex", $$v)
+      },
+      expression: "recordInfoData.sex"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.recordInfoData.dateResult = val
+      }
+    },
+    model: {
+      value: (_vm.recordInfoData.dateResult),
+      callback: function($$v) {
+        _vm.$set(_vm.recordInfoData, "dateResult", $$v)
+      },
+      expression: "recordInfoData.dateResult"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Date of Result")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.recordInfoData.dateSubmitted = val
+      }
+    },
+    model: {
+      value: (_vm.recordInfoData.dateSubmitted),
+      callback: function($$v) {
+        _vm.$set(_vm.recordInfoData, "dateSubmitted", $$v)
+      },
+      expression: "recordInfoData.dateSubmitted"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.farm),
+      expression: "showChoices.farm"
+    }],
+    attrs: {
+      "name": "yes",
+      "type": "radio",
+      "id": "yes",
+      "value": "registered"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.showChoices.farm, "registered")
+    },
+    on: {
+      "change": function($event) {
+        _vm.$set(_vm.showChoices, "farm", "registered")
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "yes"
+    }
+  }, [_vm._v("Yes")])]), _vm._v(" "), _c('p', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.farm),
+      expression: "showChoices.farm"
+    }],
+    attrs: {
+      "name": "no",
+      "type": "radio",
+      "id": "no",
+      "value": "not-registered"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.showChoices.farm, "not-registered")
+    },
+    on: {
+      "change": function($event) {
+        _vm.$set(_vm.showChoices, "farm", "not-registered")
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "no"
+    }
+  }, [_vm._v("No")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.showAddBreedInput),
-      expression: "showAddBreedInput"
+      value: (_vm.showChoices.farm === 'registered'),
+      expression: "showChoices.farm === 'registered'"
     }],
-    staticClass: "collection-item",
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-select', {
     attrs: {
-      "id": "add-breed-container"
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-breed-container-button"
+      "labelDescription": "Farm Of Origin",
+      "options": _vm.farmoptions
     },
     on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.toggleAddBreedContainer()
+      "select": function (val) {
+        _vm.recordInfoData.farmId = val
       }
-    }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addBreedData.title),
-      expression: "addBreedData.title"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "breed-title",
-      "type": "text"
     },
-    domProps: {
-      "value": (_vm.addBreedData.title)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addBreedData, "title", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "breed-title"
-    }
-  }, [_vm._v("Breed Title")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addBreedData.code),
-      expression: "addBreedData.code"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "breed-code",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addBreedData.code)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addBreedData, "code", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "breed-code"
-    }
-  }, [_vm._v("Breed Code")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn z-depth-0 add-breed-button",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addBreed($event)
-      }
-    }
-  }, [_vm._v("\n                            Add Breed\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.breeds), function(breed, index) {
-    return _c('li', {
-      key: breed.id,
-      staticClass: "collection-item"
-    }, [_c('b', [_vm._v(_vm._s(breed.title))]), _vm._v(" (" + _vm._s(breed.code) + ")\n                "), _c('span', [_c('a', {
-      staticClass: "secondary-content \n                            btn custom-secondary-btn \n                            edit-breed-button \n                            blue-text \n                            text-darken-1\n                            z-depth-0",
-      attrs: {
-        "href": "#"
+    model: {
+      value: (_vm.recordInfoData.farmId),
+      callback: function($$v) {
+        _vm.$set(_vm.recordInfoData, "farmId", $$v)
       },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.toggleEditBreedModal(index)
+      expression: "recordInfoData.farmId"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.farm === 'not-registered'),
+      expression: "showChoices.farm === 'not-registered'"
+    }],
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.recordInfoData.farmName),
+      expression: "recordInfoData.farmName"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.recordInfoData.farmName)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.recordInfoData, "farmName", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "farm-name"
+    }
+  }, [_vm._v("Farm Name")])]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.goToTab('genetic-information')
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "genetic-information"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v(" Genetic Information ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m6",
+    attrs: {
+      "id": "fertility-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.esr),
+      expression: "showChoices.esr"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "esr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.esr) ? _vm._i(_vm.showChoices.esr, null) > -1 : (_vm.showChoices.esr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.esr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "esr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "esr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "esr", $$c)
         }
       }
-    }, [_vm._v("\n                        Edit\n                    ")])])])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
+    }
+  }), _vm._v(" "), _vm._m(9)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.esr),
+      expression: "showChoices.esr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_vm._l((_vm.testChoices.esr), function(choice, index) {
+    return [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.esr),
+        expression: "recordInfoData.tests.esr"
+      }],
+      attrs: {
+        "name": "esr",
+        "type": "radio",
+        "id": ("esr-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.esr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "esr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("esr-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])]
+  })], 2)])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.prlr),
+      expression: "showChoices.prlr"
+    }],
+    staticClass: "filled-in",
     attrs: {
-      "id": "edit-breed-modal"
+      "type": "checkbox",
+      "id": "prlr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.prlr) ? _vm._i(_vm.showChoices.prlr, null) > -1 : (_vm.showChoices.prlr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.prlr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "prlr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "prlr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "prlr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.prlr),
+      expression: "showChoices.prlr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.prlr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.prlr),
+        expression: "recordInfoData.tests.prlr"
+      }],
+      attrs: {
+        "name": "prlr",
+        "type": "radio",
+        "id": ("prlr" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.prlr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "prlr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("prlr" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.rbp4),
+      expression: "showChoices.rbp4"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "rbp4-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.rbp4) ? _vm._i(_vm.showChoices.rbp4, null) > -1 : (_vm.showChoices.rbp4)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.rbp4,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "rbp4", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "rbp4", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "rbp4", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(11)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.rbp4),
+      expression: "showChoices.rbp4"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.rbp4), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.rbp4),
+        expression: "recordInfoData.tests.rbp4"
+      }],
+      attrs: {
+        "name": "rbp4",
+        "type": "radio",
+        "id": ("rbp4-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.rbp4, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "rbp4", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("rbp4-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.lif),
+      expression: "showChoices.lif"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "lif-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.lif) ? _vm._i(_vm.showChoices.lif, null) > -1 : (_vm.showChoices.lif)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.lif,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "lif", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "lif", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "lif", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(12)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.lif),
+      expression: "showChoices.lif"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.lif), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.lif),
+        expression: "recordInfoData.tests.lif"
+      }],
+      attrs: {
+        "name": "lif",
+        "type": "radio",
+        "id": ("lif-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.lif, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "lif", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("lif-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "meat-and-growth-container"
     }
   }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(13), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.editBreedData.title),
-      expression: "editBreedData.title"
+      value: (_vm.showChoices.hfabp),
+      expression: "showChoices.hfabp"
     }],
-    staticClass: "validate",
+    staticClass: "filled-in",
     attrs: {
-      "id": "edit-breed-title",
-      "type": "text"
+      "type": "checkbox",
+      "id": "hfabp-checkbox"
     },
     domProps: {
-      "value": (_vm.editBreedData.title)
+      "checked": Array.isArray(_vm.showChoices.hfabp) ? _vm._i(_vm.showChoices.hfabp, null) > -1 : (_vm.showChoices.hfabp)
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editBreedData, "title", $event.target.value)
+      "change": function($event) {
+        var $$a = _vm.showChoices.hfabp,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "hfabp", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "hfabp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "hfabp", $$c)
+        }
       }
     }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-breed-title"
-    }
-  }, [_vm._v("Breed Title")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
+  }), _vm._v(" "), _vm._m(14)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.hfabp),
+      expression: "showChoices.hfabp"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.hfabp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.hfabp),
+        expression: "recordInfoData.tests.hfabp"
+      }],
+      attrs: {
+        "name": "hfabp",
+        "type": "radio",
+        "id": ("hfabp-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.hfabp, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "hfabp", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("hfabp-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.editBreedData.code),
-      expression: "editBreedData.code"
+      value: (_vm.showChoices.igf2),
+      expression: "showChoices.igf2"
     }],
-    staticClass: "validate",
+    staticClass: "filled-in",
     attrs: {
-      "id": "edit-breed-code",
-      "type": "text"
+      "type": "checkbox",
+      "id": "igf2-checkbox"
     },
     domProps: {
-      "value": (_vm.editBreedData.code)
+      "checked": Array.isArray(_vm.showChoices.igf2) ? _vm._i(_vm.showChoices.igf2, null) > -1 : (_vm.showChoices.igf2)
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editBreedData, "code", $event.target.value)
+      "change": function($event) {
+        var $$a = _vm.showChoices.igf2,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "igf2", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "igf2", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "igf2", $$c)
+        }
       }
     }
-  }), _vm._v(" "), _c('label', {
+  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.igf2),
+      expression: "showChoices.igf2"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.igf2), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.igf2),
+        expression: "recordInfoData.tests.igf2"
+      }],
+      attrs: {
+        "name": "igf2",
+        "type": "radio",
+        "id": ("igf2-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.igf2, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "igf2", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("igf2-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.lepr),
+      expression: "showChoices.lepr"
+    }],
+    staticClass: "filled-in",
     attrs: {
-      "for": "edit-breed-code"
-    }
-  }, [_vm._v("Breed Code")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect btn-flat ",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action waves-effect btn blue darken-1 z-depth-0 update-breed-btn",
-    attrs: {
-      "href": "#!"
+      "type": "checkbox",
+      "id": "lepr-checkbox"
     },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.lepr) ? _vm._i(_vm.showChoices.lepr, null) > -1 : (_vm.showChoices.lepr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.lepr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "lepr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "lepr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "lepr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(16)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.lepr),
+      expression: "showChoices.lepr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.lepr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.lepr),
+        expression: "recordInfoData.tests.lepr"
+      }],
+      attrs: {
+        "name": "lepr",
+        "type": "radio",
+        "id": ("lepr-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.lepr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "lepr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("lepr-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.myog),
+      expression: "showChoices.myog"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "myog-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.myog) ? _vm._i(_vm.showChoices.myog, null) > -1 : (_vm.showChoices.myog)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.myog,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "myog", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "myog", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "myog", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.myog),
+      expression: "showChoices.myog"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.myog), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.myog),
+        expression: "recordInfoData.tests.myog"
+      }],
+      attrs: {
+        "name": "myog",
+        "type": "radio",
+        "id": ("myog-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.myog, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "myog", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("myog-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "defects-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(18), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.pss),
+      expression: "showChoices.pss"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "pss-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.pss) ? _vm._i(_vm.showChoices.pss, null) > -1 : (_vm.showChoices.pss)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.pss,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "pss", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "pss", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "pss", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.pss),
+      expression: "showChoices.pss"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.pss), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.pss),
+        expression: "recordInfoData.tests.pss"
+      }],
+      attrs: {
+        "name": "pss",
+        "type": "radio",
+        "id": ("pss-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.recordInfoData.tests.pss, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "pss", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("pss-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.rn),
+      expression: "showChoices.rn"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "rn-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.rn) ? _vm._i(_vm.showChoices.rn, null) > -1 : (_vm.showChoices.rn)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.rn,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "rn", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "rn", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "rn", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(20)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.rn),
+      expression: "showChoices.rn"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.rn), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.rn),
+        expression: "recordInfoData.tests.rn"
+      }],
+      attrs: {
+        "name": "rn",
+        "type": "radio",
+        "id": ("rn-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.recordInfoData.tests.rn, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "rn", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("rn-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.bax),
+      expression: "showChoices.bax"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "bax-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.bax) ? _vm._i(_vm.showChoices.bax, null) > -1 : (_vm.showChoices.bax)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.bax,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "bax", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "bax", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "bax", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(21)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.bax),
+      expression: "showChoices.bax"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.bax), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.bax),
+        expression: "recordInfoData.tests.bax"
+      }],
+      attrs: {
+        "name": "bax",
+        "type": "radio",
+        "id": ("bax-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.recordInfoData.tests.bax, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "bax", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("bax-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "diseases-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(22), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.fut1),
+      expression: "showChoices.fut1"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "fut1-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.fut1) ? _vm._i(_vm.showChoices.fut1, null) > -1 : (_vm.showChoices.fut1)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.fut1,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "fut1", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "fut1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "fut1", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(23)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.fut1),
+      expression: "showChoices.fut1"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.fut1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.fut1),
+        expression: "recordInfoData.tests.fut1"
+      }],
+      attrs: {
+        "name": "fut1",
+        "type": "radio",
+        "id": ("fut1-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.fut1, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "fut1", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("fut1-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.mx1),
+      expression: "showChoices.mx1"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "mx1-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.mx1) ? _vm._i(_vm.showChoices.mx1, null) > -1 : (_vm.showChoices.mx1)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.mx1,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "mx1", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "mx1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "mx1", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.mx1),
+      expression: "showChoices.mx1"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.mx1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.mx1),
+        expression: "recordInfoData.tests.mx1"
+      }],
+      attrs: {
+        "name": "mx1",
+        "type": "radio",
+        "id": ("mx1-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.recordInfoData.tests.mx1, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "mx1", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("mx1-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.nramp),
+      expression: "showChoices.nramp"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "nramp-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.nramp) ? _vm._i(_vm.showChoices.nramp, null) > -1 : (_vm.showChoices.nramp)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.nramp,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "nramp", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "nramp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "nramp", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(25)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.nramp),
+      expression: "showChoices.nramp"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.nramp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.nramp),
+        expression: "recordInfoData.tests.nramp"
+      }],
+      attrs: {
+        "name": "nramp",
+        "type": "radio",
+        "id": ("nramp-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.nramp, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "nramp", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("nramp-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.bpi),
+      expression: "showChoices.bpi"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "bpi-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.bpi) ? _vm._i(_vm.showChoices.bpi, null) > -1 : (_vm.showChoices.bpi)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.bpi,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "bpi", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "bpi", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "bpi", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.bpi),
+      expression: "showChoices.bpi"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.bpi), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.recordInfoData.tests.bpi),
+        expression: "recordInfoData.tests.bpi"
+      }],
+      attrs: {
+        "name": "bpi",
+        "type": "radio",
+        "id": ("bpi-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.recordInfoData.tests.bpi, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.recordInfoData.tests, "bpi", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("bpi-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action center-align"
+  }, [_c('button', {
+    staticClass: "btn save-btn",
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.updateBreed($event)
+        _vm.saveLaboratoryResults($event)
       }
     }
-  }, [_vm._v("\n                Update\n            ")])])])])
+  }, [_vm._v("\n                    Save\n                ")])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v(" Manage Breeds ")])])
+  }, [_vm._v(" Register Laboratory Results ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Edit Breed\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
+  return _c('div', {
+    staticClass: "row",
+    staticStyle: {
+      "margin-bottom": "0"
+    }
+  }, [_c('div', {
+    staticClass: "col s12",
+    staticStyle: {
+      "margin-top": "2rem",
+      "padding": "0"
+    },
+    attrs: {
+      "id": "add-lab-result-tabs"
+    }
+  }, [_c('ul', {
+    staticClass: "tabs tabs-fixed-width z-depth-2"
+  }, [_c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#general-information"
+    }
+  }, [_vm._v("General Information")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#genetic-information"
+    }
+  }, [_vm._v("Genetic Information")])])])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Is Farm registered in the system?")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                            *   -   Favorable genotype\n                        ")]), _vm._v(" "), _c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Fertility Traits")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "esr-checkbox"
+    }
+  }, [_c('b', [_vm._v("ESR")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "prlr-checkbox"
+    }
+  }, [_c('b', [_vm._v("PRLR")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "rbp4-checkbox"
+    }
+  }, [_c('b', [_vm._v("RBP4")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "lif-checkbox"
+    }
+  }, [_c('b', [_vm._v("LIF")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Meat Quality and Growth Rate")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "hfabp-checkbox"
+    }
+  }, [_c('b', [_vm._v("HFABP")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "igf2-checkbox"
+    }
+  }, [_c('b', [_vm._v("IGF2")]), _vm._v(" (CC)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "lepr-checkbox"
+    }
+  }, [_c('b', [_vm._v("LEPR")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "myog-checkbox"
+    }
+  }, [_c('b', [_vm._v("MYOG")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Genetic Defects")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "pss-checkbox"
+    }
+  }, [_c('b', [_vm._v("PSS")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "rn-checkbox"
+    }
+  }, [_c('b', [_vm._v("RN")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "bax-checkbox"
+    }
+  }, [_c('b', [_vm._v("BAX")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Diseases Resistance")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "fut1-checkbox"
+    }
+  }, [_c('b', [_vm._v("FUT1")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "mx1-checkbox"
+    }
+  }, [_c('b', [_vm._v("MX1")]), _vm._v(" (Resistant)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "nramp-checkbox"
+    }
+  }, [_c('b', [_vm._v("NRAMP")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "bpi-checkbox"
+    }
+  }, [_c('b', [_vm._v("BPI")]), _vm._v(" (GG)*")])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-63d665c6", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-091d2757", module.exports)
   }
 }
 
 /***/ }),
-/* 99 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(100)
+  __webpack_require__(130)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(102),
+  __webpack_require__(132),
   /* template */
-  __webpack_require__(108),
+  __webpack_require__(138),
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-2b3e0810",
+  "data-v-241c1815",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeders.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewLaboratoryResults.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageBreeders.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ViewLaboratoryResults.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -9233,9 +16299,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2b3e0810", Component.options)
+    hotAPI.createRecord("data-v-241c1815", Component.options)
   } else {
-    hotAPI.reload("data-v-2b3e0810", Component.options)
+    hotAPI.reload("data-v-241c1815", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -9246,23 +16312,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 100 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(101);
+var content = __webpack_require__(131);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("5af96e1a", content, false);
+var update = __webpack_require__(2)("17ae8e14", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3e0810\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeders.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2b3e0810\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeders.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-241c1815\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResults.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-241c1815\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResults.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -9272,7 +16338,7 @@ if(false) {
 }
 
 /***/ }),
-/* 101 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9280,19 +16346,178 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.card .card-action[data-v-2b3e0810] {\n    border: 0;\n}\n#toggle-register-breeder-btn-container[data-v-2b3e0810] {\n    padding: 2rem 0 1rem 0;\n}\n#toggle-register-breeder-btn[data-v-2b3e0810] {\n    border-radius: 20px;\n}\n.pagination-container[data-v-2b3e0810] {\n    padding-top: 2rem;\n    padding-bottom: 2rem;\n}\n\n/* Modal customizations */\n#add-breeder-modal[data-v-2b3e0810], #edit-breeder-modal[data-v-2b3e0810] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-2b3e0810] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-2b3e0810] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n.card-chosen-breeder[data-v-2b3e0810] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-2b3e0810] {\n    color: #26a65a;\n}\n\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n#download-confirmation-modal[data-v-241c1815] {\n    width: 40rem;\n}\n\n/* Modal customizations */\n.modal .modal-footer[data-v-241c1815] {\n    padding-right: 2rem;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-241c1815] {\n    transition: opacity .15s;\n}\n.edit-fade-enter-active[data-v-241c1815] {\n    transition: opacity 1.5s;\n}\n.edit-fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815],\n.view-fade-enter[data-v-241c1815], .view-fade-leave-to[data-v-241c1815],\n.edit-fade-enter[data-v-241c1815], .edit-fade-leave-to[data-v-241c1815] {\n    opacity: 0;\n}\n\n/* Search component overrides */\n.input-field label[for='search'][data-v-241c1815] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search[data-v-241c1815] {\n    color: black;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 102 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -9474,36 +16699,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        initialBreeders: Array,
-        provinceOptions: Array
+        customLabResults: Array,
+        currentSearchParameter: String,
+        farmoptions: Array,
+        viewUrl: String
     },
 
     components: {
-        ManageFarms: __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default.a
+        ViewLaboratoryResultsUpdateView: __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default.a
     },
 
     data: function data() {
         return {
+            searchParameter: this.currentSearchParameter,
             pageNumber: 0,
             paginationSize: 6,
-            breeders: this.initialBreeders,
-            addBreederData: {
-                name: '',
-                email: ''
-            },
-            editBreederData: {
-                index: 0,
-                userId: 0,
-                name: '',
-                email: ''
-            },
-            manageFarmsData: {
-                containerIndex: 0,
-                paginatedBreederIndex: -1,
-                breederIndex: -1,
-                breederId: 0,
-                name: '',
-                farms: []
+            showEditLabResult: false,
+            labResults: this.customLabResults,
+            editLabResultData: {},
+            downloadData: {
+                labResultIndex: -1,
+                labResultId: 0,
+                labResultNo: '',
+                canBeEdited: true
             }
         };
     },
@@ -9511,255 +16729,181 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         pageCount: function pageCount() {
-            var l = this.breeders.length;
+            var l = this.labResults.length;
             var s = this.paginationSize;
 
             return Math.ceil(l / s);
         },
-        paginatedBreeders: function paginatedBreeders() {
+        paginatedLabResults: function paginatedLabResults() {
             var start = this.pageNumber * this.paginationSize;
             var end = start + this.paginationSize;
 
-            return _.sortBy(this.breeders, ['name']).slice(start, end);
+            return this.labResults.slice(start, end);
         }
     },
 
     methods: {
-        previousPage: function previousPage() {
-            // For pagination
-            // Check if Manage Farms container is closed
-            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
-
-            if (this.pageNumber !== 0) this.pageNumber--;
-        },
-        nextPage: function nextPage() {
-            // For pagination
-            // Check if Manage Farms container is closed
-            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
-
-            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
-        },
-        goToPage: function goToPage(page) {
-            // For pagination
-            // Check if Manage Farms container is closed
-            this.closeManageFarmsContainer({ 'containerIndex': this.manageFarmsData.containerIndex });
-
-            this.pageNumber = page - 1;
-        },
-        showAddBreederModal: function showAddBreederModal() {
-            $('#add-breeder-modal').modal('open');
-        },
-        registerBreeder: function registerBreeder(event) {
-            var _this = this;
-
-            var vm = this;
-            var registerBreederButton = $('.register-breeder-btn');
-
-            this.disableButtons(registerBreederButton, event.target, 'Registering...');
-
-            // Add to server's database
-            axios.post('/admin/manage/breeders', {
-                name: vm.addBreederData.name,
-                email: vm.addBreederData.email
-            }).then(function (response) {
-                // Put response in local data storage and erase adding of breeder data
-                vm.breeders.push(response.data);
-                vm.addBreederData = {
-                    name: '',
-                    email: ''
-                };
-
-                // Update UI after adding breeder
-                vm.$nextTick(function () {
-                    $('#add-breeder-modal').modal('close');
-                    $('#add-breeder-name').removeClass('valid');
-                    $('#add-breeder-email').removeClass('valid');
-
-                    _this.enableButtons(registerBreederButton, event.target, 'Register');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast(response.data.name + ' added', 2500, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showEditBreederModal: function showEditBreederModal(breederId) {
-            // Initialize data for editing
-            var index = this.findBreederIndexById(breederId);
-            var breeder = this.breeders[index];
-
-            this.editBreederData.index = index;
-            this.editBreederData.userId = breeder.userId;
-            this.editBreederData.name = breeder.name;
-            this.editBreederData.email = breeder.email;
-
-            $('#edit-breeder-modal').modal('open');
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-        updateBreeder: function updateBreeder(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var updateBreederButton = $('.update-breeder-btn');
-
-            this.disableButtons(updateBreederButton, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.patch('/admin/manage/breeders', {
-                userId: vm.editBreederData.userId,
-                name: vm.editBreederData.name,
-                email: vm.editBreederData.email
-            }).then(function (response) {
-                // Put response in local data storage and erase editing of breeder data
-                if (response.data.updated) {
-                    var index = vm.editBreederData.index;
-
-                    vm.breeders[index].name = vm.editBreederData.name;
-                    vm.breeders[index].email = vm.editBreederData.email;
-                    vm.editBreederData = {
-                        index: 0,
-                        userId: 0,
-                        name: '',
-                        email: ''
-                    };
-
-                    // Update UI after updating breeder
-                    vm.$nextTick(function () {
-                        $('#edit-breeder-modal').modal('close');
-                        $('#edit-breeder-name').removeClass('valid');
-                        $('#edit-breeder-email').removeClass('valid');
-
-                        _this2.enableButtons(updateBreederButton, event.target, 'Update');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast(vm.breeders[index].name + ' updated', 2500, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showFarms: function showFarms(paginatedBreederIndex) {
-            // Initialize needed variables and conditions and compute for
-            // proper index placement of Manage Farms "container".
-            // Note that indices here are related to the 
-            // this.paginatedBreeders array and 
-            // not the this.breeders array
-            var currentContainerIndex = this.manageFarmsData.containerIndex;
-            var manageFarmsContainerIsOpen = currentContainerIndex > 0;
-
-            var increment = void 0,
-                newContainerIndex = void 0,
-                breederIndexIsGreaterThanBreedersLength = void 0;
-
-            // Check if Manage Farms "container" is open
-            if (manageFarmsContainerIsOpen) {
-                var breederIndexIsGreaterThanContainerIndex = paginatedBreederIndex > currentContainerIndex;
-
-                // Check if the computed index placement is greater than the "container" index
-                if (breederIndexIsGreaterThanContainerIndex) {
-                    var newBreederIndex = paginatedBreederIndex - 1;
-                    increment = newBreederIndex === 0 || newBreederIndex % 2 === 0 ? 2 : 1;
-                    breederIndexIsGreaterThanBreedersLength = newBreederIndex + increment > this.paginatedBreeders.length - 2;
-                    newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.paginatedBreeders.length - 1 : newBreederIndex + increment;
-
-                    // Remove first prior Manage Farms "container" from breeders array
-                    this.paginatedBreeders.splice(currentContainerIndex, 1);
-                    this.initializeManageFarmsData(newBreederIndex, newContainerIndex);
-                    this.insertManageFarmsContainer(newBreederIndex, newContainerIndex);
-                } else {
-                    increment = paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0 ? 2 : 1;
-                    newContainerIndex = paginatedBreederIndex + increment;
-
-                    // If Current Manage Farms "container" is the same with the new one
-                    if (currentContainerIndex === newContainerIndex) {
-                        this.initializeManageFarmsData(paginatedBreederIndex, currentContainerIndex);
-                    } else {
-                        // Remove current Manage Farms "container" first then 
-                        // initialize the new one
-                        this.paginatedBreeders.splice(currentContainerIndex, 1);
-                        this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
-                        this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
-                    }
-                }
-            } else {
-                increment = paginatedBreederIndex === 0 || paginatedBreederIndex % 2 === 0 ? 2 : 1;
-                breederIndexIsGreaterThanBreedersLength = paginatedBreederIndex + increment > this.paginatedBreeders.length - 1;
-                newContainerIndex = breederIndexIsGreaterThanBreedersLength ? this.paginatedBreeders.length : paginatedBreederIndex + increment;
-
-                this.initializeManageFarmsData(paginatedBreederIndex, newContainerIndex);
-                this.insertManageFarmsContainer(paginatedBreederIndex, newContainerIndex);
-            }
-        },
-        addBreederFarm: function addBreederFarm(data) {
-            // Insert new breeder farm data to breeders array
-            this.breeders[data.breederIndex].farms.push(data.farm);
-        },
-        updateBreederFarm: function updateBreederFarm(data) {
-            // Edit breeder farm
-            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
-
-            farm.name = data.farm.name;
-            farm.farm_code = data.farm.farmCode;
-            farm.farm_accreditation_date = data.farm.accreditationDate;
-            farm.farm_accreditation_no = data.farm.accreditationNo;
-            farm.address_line1 = data.farm.addressLine1;
-            farm.address_line2 = data.farm.addressLine2;
-            farm.province = data.farm.province;
-            farm.province_code = data.farm.provinceCode;
-        },
-        renewBreederFarm: function renewBreederFarm(data) {
-            // Renew breeder farm
-            var farm = this.breeders[data.breederIndex].farms[data.farmIndex];
-
-            farm.is_suspended = 0;
-            farm.farm_accreditation_date = data.newAccreditationDate;
-        },
-        initializeManageFarmsData: function initializeManageFarmsData(paginatedBreederIndex, containerIndex) {
-            // Initialize data and metadata of Manage Farms "container"
-            // Data should be mapped to the this.breeders array
-            var breederId = this.paginatedBreeders[paginatedBreederIndex].breederId;
-            var breederIndex = this.findBreederIndexById(breederId);
-
-            this.manageFarmsData.containerIndex = containerIndex;
-            this.manageFarmsData.paginatedBreederIndex = paginatedBreederIndex;
-            this.manageFarmsData.breederIndex = breederIndex;
-            this.manageFarmsData.breederId = this.breeders[breederIndex].breederId;
-            this.manageFarmsData.name = this.breeders[breederIndex].name;
-            this.manageFarmsData.farms = this.breeders[breederIndex].farms;
-        },
-        insertManageFarmsContainer: function insertManageFarmsContainer(paginatedBreederIndex, containerIndex) {
-            // Insert Manage Farms "container" to breeders array
-            this.paginatedBreeders.splice(containerIndex, 0, {
-                userId: -1,
-                breederId: -1,
-                name: this.paginatedBreeders[paginatedBreederIndex].name,
-                email: '',
-                farms: []
-            });
-        },
-        findBreederIndexById: function findBreederIndexById(id) {
-            for (var i = 0; i < this.breeders.length; i++) {
-                if (this.breeders[i].breederId === id) return i;
+        findLabResultIndexById: function findLabResultIndexById(id) {
+            for (var i = 0; i < this.labResults.length; i++) {
+                if (this.labResults[i].id === id) return i;
             }
 
             return -1;
         },
-        closeManageFarmsContainer: function closeManageFarmsContainer(data) {
-            if (data.containerIndex !== 0) this.paginatedBreeders.splice(data.containerIndex, 1);
+        previousPage: function previousPage() {
+            // For pagination
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            // For pagination
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            // For pagination
+            this.pageNumber = page - 1;
+        },
+        rewriteUrl: function rewriteUrl(searchParameter) {
+            /**
+             *  URL rewrite syntax: ?q=value
+             */
+            var url = this.viewUrl;
+            var parameters = [];
 
-            // Set manageFarmsData to default
-            this.manageFarmsData = {
-                containerIndex: 0,
-                paginatedBreederIndex: -1,
-                breederIndex: -1,
-                breederId: 0,
-                name: '',
-                farms: []
+            // Put search parameter in parameters if it is non-empty
+            if (searchParameter.length > 0) {
+                var qParameter = 'q=' + searchParameter;
+
+                parameters.push(qParameter);
+            }
+
+            // Redirect to new url
+            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
+        },
+        capitalizeFirstLetter: function capitalizeFirstLetter(string) {
+            return _.capitalize(string);
+        },
+        showGeneticInformation: function showGeneticInformation(id, category) {
+            var index = this.findLabResultIndexById(id);
+
+            var booleanValue = this.paginatedLabResults[index]['showTests'][category];
+            this.paginatedLabResults[index]['showTests'][category] = !booleanValue;
+        },
+        showEditLabResultsView: function showEditLabResultsView(id) {
+            var index = this.findLabResultIndexById(id);
+            var labResult = this.labResults[index];
+
+            // Customize lab result data
+            this.editLabResultData = {
+                index: index,
+                laboratoryResultId: labResult.id,
+                laboratoryResultNo: labResult.labResultNo,
+                animalId: labResult.animalId,
+                sex: labResult.sex,
+                farmId: labResult.farm.id ? labResult.farm.id.toString() : '',
+                farmName: labResult.farm.id ? '' : labResult.farm.name,
+                dateResult: labResult.dateResult,
+                dateSubmitted: labResult.dateSubmitted,
+                tests: labResult.tests
             };
+
+            this.showEditLabResult = true;
+
+            this.$nextTick(function () {
+                // Make sure UI is clean
+                $('#lab-result-no').removeClass('valid');
+                $('#animal-id').removeClass('valid');
+                $('#farm-name').removeClass('valid');
+            });
+        },
+        updateLabResult: function updateLabResult(_ref) {
+            var labResult = _ref.labResult;
+
+            var updatedLabResult = this.labResults[labResult.index];
+
+            // Update local data storage
+            updatedLabResult.labResultNo = labResult.laboratoryResultNo;
+            updatedLabResult.animalId = labResult.animalId;
+            updatedLabResult.sex = labResult.sex;
+            updatedLabResult.dateResult = labResult.dateResult;
+            updatedLabResult.dateSubmitted = labResult.dateSubmitted;
+            updatedLabResult.tests = labResult.tests;
+
+            // Check if farm is registered or not
+            if (labResult.farmId) {
+                updatedLabResult.farm.id = labResult.farmId;
+                updatedLabResult.farm.registered = true;
+                updatedLabResult.farm.name = labResult.farmName;
+            } else {
+                updatedLabResult.farm.id = null;
+                updatedLabResult.farm.registered = false;
+                updatedLabResult.farm.name = labResult.farmName;
+            }
+        },
+        openDownloadConfirmationModal: function openDownloadConfirmationModal(id) {
+            var index = this.findLabResultIndexById(id);
+            var labResult = this.labResults[index];
+
+            this.downloadData.labResultIndex = index;
+            this.downloadData.labResultId = labResult.id;
+            this.downloadData.labResultNo = labResult.labResultNo;
+            this.downloadData.canBeEdited = labResult.canBeEdited;
+
+            $('#download-confirmation-modal').modal('open');
+        },
+        downloadFinalLabResults: function downloadFinalLabResults(event) {
+            var _this = this;
+
+            var vm = this;
+            var downloadFinalLabResultsBtn = $('.download-btn');
+            var labResult = this.labResults[this.downloadData.labResultIndex];
+
+            this.disableButtons(downloadFinalLabResultsBtn, event.target, 'Downloading...');
+
+            // Add to server's database
+            axios.post('/genomics/pdf-lab-results/' + vm.downloadData.labResultId, {}, { responseType: 'arraybuffer' }).then(function (response) {
+                // Make BLOB then download then manually download the pdf file returned
+                // Try to find out the filename from the content 
+                // disposition `filename` value
+                var disposition = response.headers['content-disposition'];
+                var matches = /"([^"]*)"/.exec(disposition);
+                var filename = matches != null && matches[1] ? matches[1] : 'file.pdf';
+                var blob = new Blob([response.data], { type: 'application/pdf' });
+                var data = window.URL.createObjectURL(blob);
+
+                // IE doesn't allow using a blob object directly as link href
+                // instead it is necessary to use msSaveOrOpenBlob
+                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob);
+                    return;
+                }
+
+                // The actual download
+                var link = document.createElement('a');
+                link.href = data;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+
+                setTimeout(function () {
+                    // For Firefox it is necessary to delay revoking the ObjectURL
+                    window.URL.revokeObjectURL(data);
+                    document.body.removeChild(link);
+                }, 500);
+
+                // Update local storage data
+                labResult.canBeEdited = false;
+
+                // Update UI after downloading
+                vm.$nextTick(function () {
+                    _this.enableButtons(downloadFinalLabResultsBtn, event.target, 'Download');
+
+                    Materialize.toast('Laboratory Result No. ' + labResult.labResultNo + ' PDF downloaded', 1800, 'green lighten-1');
+
+                    $('#download-confirmation-modal').modal('close');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
@@ -9778,29 +16922,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 103 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(104)
+  __webpack_require__(134)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(106),
+  __webpack_require__(136),
   /* template */
-  __webpack_require__(107),
+  __webpack_require__(137),
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-6d46f7eb",
+  "data-v-615ddffa",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreedersManageFarm.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewLaboratoryResultsUpdateView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageBreedersManageFarm.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] ViewLaboratoryResultsUpdateView.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -9809,9 +16953,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6d46f7eb", Component.options)
+    hotAPI.createRecord("data-v-615ddffa", Component.options)
   } else {
-    hotAPI.reload("data-v-6d46f7eb", Component.options)
+    hotAPI.reload("data-v-615ddffa", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -9822,23 +16966,23 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 104 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(105);
+var content = __webpack_require__(135);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("27351926", content, false);
+var update = __webpack_require__(2)("63a7e8a0", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6d46f7eb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreedersManageFarm.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-615ddffa\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResultsUpdateView.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-615ddffa\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResultsUpdateView.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -9848,7 +16992,7 @@ if(false) {
 }
 
 /***/ }),
-/* 105 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9856,13 +17000,13 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspan.farm-title[data-v-6d46f7eb] {\n    font-size: 18px;\n}\n#toggle-add-farm-btn[data-v-6d46f7eb] {\n    margin-top: 1rem;\n    margin-left: 72px;\n    border-radius: 20px;\n}\n.custom-secondary-btn[data-v-6d46f7eb] {\n    border: 1px solid;\n    background-color: white;\n}\np.address-line[data-v-6d46f7eb] {\n    padding-top: 10px;\n}\n\n/* Modal customizations */\n#add-farm-modal[data-v-6d46f7eb], #edit-farm-modal[data-v-6d46f7eb] {\n    width: 50rem;\n}\n#renew-farm-modal[data-v-6d46f7eb] {\n    width: 40rem;\n    height:40rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-6d46f7eb] {\n    border: 0;\n}\n.modal .modal-footer[data-v-6d46f7eb] {\n    padding-right: 2rem;\n}\ndiv.modal-input-container[data-v-6d46f7eb] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n\n/* Override MaterializeCSS' collection styles */\nul.collection[data-v-6d46f7eb] {\n    border: 0;\n    margin-top: 1rem;\n}\nli.collection-item[data-v-6d46f7eb] {\n    border: 0;\n    padding-bottom: 2rem;\n    padding-left: 0px !important;\n    margin-right: 72px;\n    margin-left: 72px;\n}\n\n/* \n* Card highlights for chosen breeder \n* upon managing of farms\n*/\n#manage-farms-container.card[data-v-6d46f7eb] {\n    border-top: 8px solid #26a65a;\n}\n.name-chosen-breeder[data-v-6d46f7eb] {\n    color: #26a65a;\n}\n\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-615ddffa] {\n    border: 1px solid;\n    background-color: white !important;\n}\n#back-to-viewing-btn[data-v-615ddffa] {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\np.padded[data-v-615ddffa] {\n    padding-top: 1rem;\n}\np.padded label[data-v-615ddffa] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-615ddffa] {\n    padding: 0;\n}\n.card-traits-container[data-v-615ddffa] {\n    padding-bottom: 2rem;\n}\ndiv.card-action[data-v-615ddffa] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#meat-and-growth-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#defects-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 106 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10153,250 +17297,599 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        manageFarmsData: Object,
-        provinceOptions: Array
+        editLabResultData: Object,
+        farmoptions: Array
     },
 
     data: function data() {
         return {
-            addFarmData: {
-                breederId: 0,
-                name: '',
-                farmCode: '',
-                accreditationDate: '',
-                accreditationNo: '',
-                addressLine1: '',
-                addressLine2: '',
-                province: '',
-                provinceCode: ''
+            labResultData: {
+                laboratoryResultId: 0,
+                laboratoryResultNo: '',
+                animalId: '',
+                sex: '',
+                farmId: '',
+                farmName: '',
+                dateResult: '',
+                dateSubmitted: '',
+                tests: {
+                    esr: '',
+                    prlr: '',
+                    rbp4: '',
+                    lif: '',
+                    hfabp: '',
+                    igf2: '',
+                    lepr: '',
+                    myog: '',
+                    pss: '',
+                    rn: '',
+                    bax: '',
+                    fut1: '',
+                    mx1: '',
+                    nramp: '',
+                    bpi: ''
+                }
             },
-            editFarmData: {
-                farmId: 0,
-                farmIndex: -1,
-                name: '',
-                farmCode: '',
-                accreditationDate: '',
-                accreditationNo: '',
-                addressLine1: '',
-                addressLine2: '',
-                province: '',
-                provinceCode: ''
+            showChoices: {
+                farm: 'registered',
+                esr: false,
+                prlr: false,
+                rbp4: false,
+                lif: false,
+                hfabp: false,
+                igf2: false,
+                lepr: false,
+                myog: false,
+                pss: false,
+                rn: false,
+                bax: false,
+                fut1: false,
+                mx1: false,
+                nramp: false,
+                bpi: false
             },
-            renewFarmData: {
-                farmId: 0,
-                farmIndex: -1,
-                name: '',
-                newAccreditationDate: ''
+            testChoices: {
+                esr: ['BB', 'Bb', 'bb'],
+                prlr: ['AA', 'Aa', 'aa'],
+                rbp4: ['BB', 'Bb', 'bb'],
+                lif: ['BB', 'Bb', 'bb'],
+                hfabp: ['AA', 'Aa', 'aa'],
+                igf2: ['CC', 'Cc', 'cc'],
+                lepr: ['BB', 'Bb', 'bb'],
+                myog: ['AA', 'Aa', 'aa'],
+                pss: ['Positive', 'Negative'],
+                rn: ['Positive', 'Negative'],
+                bax: ['Positive', 'Negative'],
+                fut1: ['AA', 'Aa', 'aa'],
+                mx1: ['Resistant', 'Non-resistant'],
+                nramp: ['BB', 'Bb', 'bb'],
+                bpi: ['GG', 'Gg', 'gg']
             }
         };
     },
 
 
-    methods: {
-        convertToReadableDate: function convertToReadableDate(date) {
-            var dateObject = new Date(date);
-            var monthConversion = {
-                '0': 'January',
-                '1': 'February',
-                '2': 'March',
-                '3': 'April',
-                '4': 'May',
-                '5': 'June',
-                '6': 'July',
-                '7': 'August',
-                '8': 'September',
-                '9': 'October',
-                '10': 'November',
-                '11': 'December'
-            };
-
-            return monthConversion[dateObject.getMonth()] + ' ' + dateObject.getDate() + ', ' + dateObject.getFullYear();
-        },
-        toggleCloseFarmsDataContainerEvent: function toggleCloseFarmsDataContainerEvent() {
-            // Trigger event to ManageBreeders component
-            this.$emit('close-manage-farms-event', { 'containerIndex': this.manageFarmsData.containerIndex });
-        },
-        showAddFarmModal: function showAddFarmModal() {
-            $('#add-farm-modal').modal('open');
-        },
-        addFarm: function addFarm(event) {
+    watch: {
+        editLabResultData: function editLabResultData(newValue, oldValue) {
             var _this = this;
 
-            var vm = this;
-            var addFarmButton = $('.add-farm-btn');
-            // Parse input-date-select to get province and province code
-            var provinceWithItsCode = vm.addFarmData.province.split(';').map(function (x) {
-                return x.trim();
+            this.labResultData = newValue;
+
+            // Check if farm is existing or not
+            if (newValue.farmId) this.showChoices.farm = 'registered';else this.showChoices.farm = 'not-registered';
+
+            // Iterate through existing tests 
+            _.forIn(newValue.tests, function (value, key) {
+                _this.showChoices[key] = value ? true : false;
             });
 
-            this.disableButtons(addFarmButton, event.target, 'Adding...');
-
-            // Add to server's database
-            axios.post('/admin/manage/farms', {
-                breederId: vm.manageFarmsData.breederId,
-                name: vm.addFarmData.name,
-                farmCode: vm.addFarmData.farmCode,
-                accreditationDate: vm.addFarmData.accreditationDate,
-                accreditationNo: vm.addFarmData.accreditationNo,
-                addressLine1: vm.addFarmData.addressLine1,
-                addressLine2: vm.addFarmData.addressLine2,
-                province: provinceWithItsCode[0],
-                provinceCode: provinceWithItsCode[1]
-            }).then(function (response) {
-                // Put response in local data storage by emitting an event 
-                // to ManageBreeders component
-                vm.$emit('add-breeder-farm-event', {
-                    'breederIndex': vm.manageFarmsData.breederIndex,
-                    'farm': response.data
-                });
-
-                // Erase adding of breeder farm data
-                vm.addFarmData = {
-                    breederId: vm.manageFarmsData.breederId,
-                    name: '',
-                    farmCode: '',
-                    accreditationDate: '',
-                    accreditationNo: '',
-                    addressLine1: '',
-                    addressLine2: '',
-                    province: '',
-                    provinceCode: ''
-                };
-
-                // Update UI after adding breeder
-                vm.$nextTick(function () {
-                    $('#add-farm-modal').modal('close');
-                    $('#add-farm-name').removeClass('valid');
-                    $('#add-farm-code').removeClass('valid');
-                    $('#add-farm-accreditation-no').removeClass('valid');
-                    $('#add-farm-address-one').removeClass('valid');
-                    $('#add-farm-address-two').removeClass('valid');
-
-                    _this.enableButtons(addFarmButton, event.target, 'Add');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast(response.data.name + ' farm added', 3000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showEditFarmModal: function showEditFarmModal(index) {
-            // Initialize data for editing
-            var farm = this.manageFarmsData.farms[index];
-            this.editFarmData.farmId = farm.id;
-            this.editFarmData.farmIndex = index;
-            this.editFarmData.name = farm.name;
-            this.editFarmData.farmCode = farm.farm_code;
-            this.editFarmData.accreditationDate = this.convertToReadableDate(farm.farm_accreditation_date);
-            this.editFarmData.accreditationNo = farm.farm_accreditation_no;
-            this.editFarmData.addressLine1 = farm.address_line1;
-            this.editFarmData.addressLine2 = farm.address_line2;
-            this.editFarmData.province = farm.province + ' ; ' + farm.province_code;
-            this.editFarmData.provinceCode = farm.province_code;
-
-            $('#edit-farm-modal').modal('open');
+            // Update UI after data changes
             this.$nextTick(function () {
                 Materialize.updateTextFields();
-                $('#edit-farm-modal select').material_select();
+
+                $('ul.tabs').tabs();
+                $('ul.tabs').tabs('select_tab', 'general-information');
             });
         },
-        updateFarm: function updateFarm(event) {
+
+        // If farmId exists, find its corresponding farm name
+        'labResultData.farmId': function labResultDataFarmId(newValue, oldValue) {
+            var farmName = this.findFarmNameById(newValue);
+
+            if (farmName !== -1) this.labResultData.farmName = farmName;
+        },
+        // Check if test is not chosen/shown anymore
+        // then reset value of test to default
+        'showChoices.esr': function showChoicesEsr(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.esr = '';
+        },
+        'showChoices.prlr': function showChoicesPrlr(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.prlr = '';
+        },
+        'showChoices.rbp4': function showChoicesRbp4(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.rbp4 = '';
+        },
+        'showChoices.lif': function showChoicesLif(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.lif = '';
+        },
+        'showChoices.hfabp': function showChoicesHfabp(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.hfabp = '';
+        },
+        'showChoices.igf2': function showChoicesIgf2(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.igf2 = '';
+        },
+        'showChoices.lepr': function showChoicesLepr(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.lepr = '';
+        },
+        'showChoices.myog': function showChoicesMyog(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.myog = '';
+        },
+        'showChoices.pss': function showChoicesPss(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.pss = '';
+        },
+        'showChoices.rn': function showChoicesRn(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.rn = '';
+        },
+        'showChoices.bax': function showChoicesBax(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.bax = '';
+        },
+        'showChoices.fut1': function showChoicesFut1(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.fut1 = '';
+        },
+        'showChoices.mx1': function showChoicesMx1(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.mx1 = '';
+        },
+        'showChoices.nramp': function showChoicesNramp(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.nramp = '';
+        },
+        'showChoices.bpi': function showChoicesBpi(newValue, oldValue) {
+            if (newValue === false) this.labResultData.tests.bpi = '';
+        }
+    },
+
+    methods: {
+        findFarmNameById: function findFarmNameById(id) {
+            for (var i = 0; i < this.farmoptions.length; i++) {
+                if (this.farmoptions[i].value === parseInt(id)) {
+                    return this.farmoptions[i].text;
+                }
+            }
+
+            return -1;
+        },
+        goToTab: function goToTab(tabId) {
+            this.$nextTick(function () {
+                $('#edit-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
+                // Scroll animation
+                $('html, body').animate({
+                    scrollTop: $('#edit-lab-result-tabs').offset().top - 70 + "px"
+                }, 500);
+            });
+        },
+        hideEditLabResultsView: function hideEditLabResultsView() {
+            this.$emit('hideEditLabResultsViewEvent');
+        },
+        updateLabResults: function updateLabResults(event) {
             var _this2 = this;
 
             var vm = this;
-            var updateFarmButton = $('.update-farm-btn');
-            // Parse input-date-select to get province and province code
-            var provinceWithItsCode = vm.editFarmData.province.split(';').map(function (x) {
-                return x.trim();
-            });
+            var labResult = this.labResultData;
+            var updateLabResultsBtn = $('.update-lab-results-btn');
 
-            this.disableButtons(updateFarmButton, event.target, 'Updating...');
+            this.disableButtons(updateLabResultsBtn, event.target, 'Updating...');
 
             // Update to server's database
-            axios.patch('/admin/manage/farms', {
-                farmId: vm.editFarmData.farmId,
-                name: vm.editFarmData.name,
-                farmCode: vm.editFarmData.farmCode,
-                accreditationDate: vm.editFarmData.accreditationDate,
-                accreditationNo: vm.editFarmData.accreditationNo,
-                addressLine1: vm.editFarmData.addressLine1,
-                addressLine2: vm.editFarmData.addressLine2,
-                province: provinceWithItsCode[0],
-                provinceCode: provinceWithItsCode[1]
-            }).then(function (response) {
-                // Edit farm in local data storage by emitting an event 
-                // to ManageBreeders component
-                vm.editFarmData.province = provinceWithItsCode[0];
-                vm.editFarmData.provinceCode = provinceWithItsCode[1];
-                vm.$emit('update-breeder-farm-event', {
-                    'breederIndex': vm.manageFarmsData.breederIndex,
-                    'farmIndex': vm.editFarmData.farmIndex,
-                    'farm': vm.editFarmData
-                });
+            axios.patch('/genomics/manage/laboratory-results', labResult).then(function (response) {
+                // Update parent component for changes
+                if (response.data.updated) {
+                    _this2.$emit('updateLabResultEvent', { labResult: labResult });
+                }
 
-                // Update UI after updating breeder farm
+                // Update UI after updating lab result
                 vm.$nextTick(function () {
-                    $('#edit-farm-modal').modal('close');
-                    $('#edit-farm-name').removeClass('valid');
-                    $('#edit-farm-code').removeClass('valid');
-                    $('#edit-farm-accreditation-no').removeClass('valid');
-                    $('#edit-farm-address-one').removeClass('valid');
-                    $('#edit-farm-address-two').removeClass('valid');
+                    $('#lab-result-no').removeClass('valid');
+                    $('#animal-id').removeClass('valid');
+                    $('#farm-name').removeClass('valid');
 
-                    _this2.enableButtons(updateFarmButton, event.target, 'Update');
+                    _this2.enableButtons(updateLabResultsBtn, event.target, 'Update');
 
                     Materialize.updateTextFields();
-                    Materialize.toast(vm.editFarmData.name + ' farm updated', 3000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showRenewFarmModal: function showRenewFarmModal(index) {
-            // Initialize data for renewing
-            var farm = this.manageFarmsData.farms[index];
-            this.renewFarmData.farmId = farm.id;
-            this.renewFarmData.farmIndex = index;
-            this.renewFarmData.name = farm.name;
+                    Materialize.toast('Laboratory Result No. ' + labResult.laboratoryResultNo + ' updated', 1800, 'green lighten-1');
 
-            $('#renew-farm-modal').modal('open');
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-        renewFarm: function renewFarm(event) {
-            var _this3 = this;
-
-            var vm = this;
-            var renewFarmButton = $('.renew-farm-btn');
-
-            this.disableButtons(renewFarmButton, event.target, 'Renewing...');
-
-            // Update server's database
-            axios.patch('/admin/manage/farms/renew', {
-                farmId: vm.renewFarmData.farmId,
-                newAccreditationDate: vm.renewFarmData.newAccreditationDate
-            }).then(function (response) {
-                // Edit farm in local data storage by emitting an event 
-                // to ManageBreeders component
-                vm.$emit('renew-breeder-farm-event', {
-                    'breederIndex': vm.manageFarmsData.breederIndex,
-                    'farmIndex': vm.renewFarmData.farmIndex,
-                    'newAccreditationDate': vm.renewFarmData.newAccreditationDate
-                });
-
-                // Update UI after renewing breeder farm
-                vm.$nextTick(function () {
-                    $('#renew-farm-modal').modal('close');
-
-                    _this3.enableButtons(renewFarmButton, event.target, 'Renew');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast(vm.renewFarmData.name + ' farm renewed!', 3000, 'green lighten-1');
+                    // Call hiding of this view
+                    setTimeout(function () {
+                        vm.hideEditLabResultsView();
+                    }, 2000);
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -10410,551 +17903,1569 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             buttons.removeClass('disabled');
             actionBtnElement.innerHTML = textToShow;
         }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
     }
 });
 
 /***/ }),
-/* 107 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "card",
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
     attrs: {
-      "id": "manage-farms-container"
-    }
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('h5', [_c('b', {
-    staticClass: "name-chosen-breeder"
-  }, [_vm._v(_vm._s(_vm.manageFarmsData.name))]), _vm._v(" "), _c('i', {
-    staticClass: "material-icons right",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.toggleCloseFarmsDataContainerEvent($event)
-      }
-    }
-  }, [_vm._v("\n                close\n            ")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', {
-    staticClass: "center-align"
-  }, [_vm._v(" Manage Farms ")]), _vm._v(" "), _c('a', {
-    staticClass: "btn z-depth-0",
-    attrs: {
-      "id": "toggle-add-farm-btn",
+      "id": "back-to-viewing-btn",
       "href": "#!"
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        return _vm.showAddFarmModal($event)
+        return _vm.hideEditLabResultsView($event)
       }
     }
   }, [_c('i', {
     staticClass: "material-icons left"
-  }, [_vm._v("add")]), _vm._v(" Add Farm\n        ")]), _vm._v(" "), _c('ul', {
-    staticClass: "collection"
-  }, _vm._l((_vm.manageFarmsData.farms), function(farm, index) {
-    return _c('li', {
-      key: farm.id,
-      staticClass: "collection-item avatar"
-    }, [_c('span', {
-      staticClass: "farm-title",
-      class: {
-        'grey-text text-darken-2': farm.is_suspended
-      }
-    }, [_c('b', [_vm._v(_vm._s(farm.name) + " (" + _vm._s(farm.farm_code) + ")")])]), _vm._v(" "), _c('p', {
-      class: {
-        'grey-text text-darken-2': farm.is_suspended
-      }
-    }, [(farm.is_suspended) ? [_c('b', [_vm._v(" SUSPENDED ")]), _vm._v(" "), _c('br')] : _vm._e(), _vm._v("\n                    Accreditation No. : " + _vm._s(farm.farm_accreditation_no) + " "), _c('br'), _vm._v("\n                    Accreditation Date. : " + _vm._s(_vm.convertToReadableDate(farm.farm_accreditation_date)) + "  "), _c('br')], 2), _vm._v(" "), _c('p', {
-      staticClass: "grey-text text-darken-2 address-line"
-    }, [_c('i', {
-      staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                    " + _vm._s(farm.address_line1) + ", " + _vm._s(farm.address_line2) + ",\n                    " + _vm._s(farm.province) + " (" + _vm._s(farm.province_code) + ")\n                ")]), _vm._v(" "), (!farm.is_suspended) ? _c('a', {
-      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn blue-text text-darken-1",
-      attrs: {
-        "href": "#!"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showEditFarmModal(index)
-        }
-      }
-    }, [_vm._v(" \n                    Edit \n                ")]) : _c('a', {
-      staticClass: "secondary-content btn z-depth-0 custom-secondary-btn orange-text text-darken-4",
-      attrs: {
-        "href": "#!"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showRenewFarmModal(index)
-        }
-      }
-    }, [_vm._v(" \n                    Renew \n                ")])])
-  }))]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row",
     attrs: {
-      "id": "add-farm-modal"
+      "id": "general-information"
     }
   }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('h5', {
-    staticClass: "grey-text text-darken-2"
-  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " ")]), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s8"
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v(" General Information ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.addFarmData.name),
-      expression: "addFarmData.name"
+      value: (_vm.labResultData.laboratoryResultNo),
+      expression: "labResultData.laboratoryResultNo"
     }],
     staticClass: "validate",
     attrs: {
-      "id": "add-farm-name",
+      "id": "lab-result-no",
       "type": "text"
     },
     domProps: {
-      "value": (_vm.addFarmData.name)
+      "value": (_vm.labResultData.laboratoryResultNo)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.addFarmData, "name", $event.target.value)
+        _vm.$set(_vm.labResultData, "laboratoryResultNo", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "add-farm-name"
+      "for": "lab-result-no"
     }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4"
+  }, [_vm._v("Laboratory Result No.")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.addFarmData.farmCode),
-      expression: "addFarmData.farmCode"
+      value: (_vm.labResultData.animalId),
+      expression: "labResultData.animalId"
     }],
     staticClass: "validate",
     attrs: {
-      "id": "add-farm-code",
+      "id": "animal-id",
       "type": "text"
     },
     domProps: {
-      "value": (_vm.addFarmData.farmCode)
+      "value": (_vm.labResultData.animalId)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.addFarmData, "farmCode", $event.target.value)
+        _vm.$set(_vm.labResultData, "animalId", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "add-farm-code"
+      "for": "animal-id"
     }
-  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s8"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.addFarmData.accreditationDate = val
-      }
-    },
-    model: {
-      value: (_vm.addFarmData.accreditationDate),
-      callback: function($$v) {
-        _vm.$set(_vm.addFarmData, "accreditationDate", $$v)
-      },
-      expression: "addFarmData.accreditationDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addFarmData.accreditationNo),
-      expression: "addFarmData.accreditationNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-farm-accreditation-no",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addFarmData.accreditationNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addFarmData, "accreditationNo", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-farm-accreditation-no"
-    }
-  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addFarmData.addressLine1),
-      expression: "addFarmData.addressLine1"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-farm-address-one",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addFarmData.addressLine1)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addFarmData, "addressLine1", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-farm-address-one"
-    }
-  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addFarmData.addressLine2),
-      expression: "addFarmData.addressLine2"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-farm-address-two",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addFarmData.addressLine2)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addFarmData, "addressLine2", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-farm-address-two"
-    }
-  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
+  }, [_vm._v("Animal ID")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
   }, [_c('app-input-select', {
+    tag: "component",
     attrs: {
-      "labelDescription": "Province",
-      "options": _vm.provinceOptions
+      "labelDescription": "Sex",
+      "options": [{
+        text: 'Male',
+        value: 'male'
+      }, {
+        text: 'Female',
+        value: 'female'
+      }]
     },
     on: {
       "select": function (val) {
-        _vm.addFarmData.province = val
+        _vm.labResultData.sex = val
       }
     },
     model: {
-      value: (_vm.addFarmData.province),
+      value: (_vm.labResultData.sex),
       callback: function($$v) {
-        _vm.$set(_vm.addFarmData, "province", $$v)
+        _vm.$set(_vm.labResultData, "sex", $$v)
       },
-      expression: "addFarmData.province"
+      expression: "labResultData.sex"
     }
-  })], 1)])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn z-depth-0 add-farm-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addFarm($event)
-      }
-    }
-  }, [_vm._v("\n                Add\n            ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
-    attrs: {
-      "id": "edit-farm-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(4), _vm._v(" "), _c('h5', {
-    staticClass: "grey-text text-darken-2"
-  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.editFarmData.name) + " ")]), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s8"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editFarmData.name),
-      expression: "editFarmData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-farm-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editFarmData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editFarmData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-farm-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editFarmData.farmCode),
-      expression: "editFarmData.farmCode"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-farm-code",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editFarmData.farmCode)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editFarmData, "farmCode", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-farm-code"
-    }
-  }, [_vm._v("Farm Code")])]), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s8"
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-        _vm.editFarmData.accreditationDate = val
+        _vm.labResultData.dateResult = val
       }
     },
     model: {
-      value: (_vm.editFarmData.accreditationDate),
+      value: (_vm.labResultData.dateResult),
       callback: function($$v) {
-        _vm.$set(_vm.editFarmData, "accreditationDate", $$v)
+        _vm.$set(_vm.labResultData, "dateResult", $$v)
       },
-      expression: "editFarmData.accreditationDate"
+      expression: "labResultData.dateResult"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
       "for": ""
     }
-  }, [_vm._v(" Accreditation Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4"
-  }, [_c('input', {
+  }, [_vm._v("Date of Result")])], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s12 input-field"
+  }, [_c('app-input-date', {
+    on: {
+      "date-select": function (val) {
+        _vm.labResultData.dateSubmitted = val
+      }
+    },
+    model: {
+      value: (_vm.labResultData.dateSubmitted),
+      callback: function($$v) {
+        _vm.$set(_vm.labResultData, "dateSubmitted", $$v)
+      },
+      expression: "labResultData.dateSubmitted"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.editFarmData.accreditationNo),
-      expression: "editFarmData.accreditationNo"
+      value: (_vm.showChoices.farm),
+      expression: "showChoices.farm"
     }],
-    staticClass: "validate",
     attrs: {
-      "id": "edit-farm-accreditation-no",
-      "type": "text"
+      "name": "yes",
+      "type": "radio",
+      "id": "yes",
+      "value": "registered"
     },
     domProps: {
-      "value": (_vm.editFarmData.accreditationNo)
+      "checked": _vm._q(_vm.showChoices.farm, "registered")
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editFarmData, "accreditationNo", $event.target.value)
+      "change": function($event) {
+        _vm.$set(_vm.showChoices, "farm", "registered")
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "edit-farm-accreditation-no"
+      "for": "yes"
     }
-  }, [_vm._v("Accreditation No.")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
-  }, [_c('input', {
+  }, [_vm._v("Yes")])]), _vm._v(" "), _c('p', [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.editFarmData.addressLine1),
-      expression: "editFarmData.addressLine1"
+      value: (_vm.showChoices.farm),
+      expression: "showChoices.farm"
     }],
-    staticClass: "validate",
     attrs: {
-      "id": "edit-farm-address-one",
-      "type": "text"
+      "name": "no",
+      "type": "radio",
+      "id": "no",
+      "value": "not-registered"
     },
     domProps: {
-      "value": (_vm.editFarmData.addressLine1)
+      "checked": _vm._q(_vm.showChoices.farm, "not-registered")
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editFarmData, "addressLine1", $event.target.value)
+      "change": function($event) {
+        _vm.$set(_vm.showChoices, "farm", "not-registered")
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "edit-farm-address-one"
+      "for": "no"
     }
-  }, [_vm._v("Address Line 1")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
-  }, [_c('input', {
+  }, [_vm._v("No")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
     directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editFarmData.addressLine2),
-      expression: "editFarmData.addressLine2"
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.farm === 'registered'),
+      expression: "showChoices.farm === 'registered'"
     }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-farm-address-two",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editFarmData.addressLine2)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editFarmData, "addressLine2", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-farm-address-two"
-    }
-  }, [_vm._v("Address Line 2")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6"
+    staticClass: "col s12 input-field"
   }, [_c('app-input-select', {
+    tag: "component",
     attrs: {
-      "labelDescription": "Province",
-      "options": _vm.provinceOptions
+      "labelDescription": "Farm Of Origin",
+      "options": _vm.farmoptions
     },
     on: {
       "select": function (val) {
-        _vm.editFarmData.province = val
+        _vm.labResultData.farmId = val
       }
     },
     model: {
-      value: (_vm.editFarmData.province),
+      value: (_vm.labResultData.farmId),
       callback: function($$v) {
-        _vm.$set(_vm.editFarmData, "province", $$v)
+        _vm.$set(_vm.labResultData, "farmId", $$v)
       },
-      expression: "editFarmData.province"
+      expression: "labResultData.farmId"
     }
-  })], 1)])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
+  })], 1), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.farm === 'not-registered'),
+      expression: "showChoices.farm === 'not-registered'"
+    }],
+    staticClass: "col s12 input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.labResultData.farmName),
+      expression: "labResultData.farmName"
+    }],
+    staticClass: "validate",
     attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 update-farm-btn",
-    attrs: {
-      "href": "#!"
+      "id": "farm-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.labResultData.farmName)
     },
     on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.updateFarm($event)
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.labResultData, "farmName", $event.target.value)
       }
-    }
-  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
-    attrs: {
-      "id": "renew-farm-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(8), _vm._v(" "), _c('h5', {
-    staticClass: "grey-text text-darken-2"
-  }, [_vm._v(" " + _vm._s(_vm.manageFarmsData.name) + " > " + _vm._s(_vm.renewFarmData.name))]), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(9), _vm._v(" "), _vm._m(10), _vm._v(" "), _vm._m(11), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.renewFarmData.newAccreditationDate = val
-      }
-    },
-    model: {
-      value: (_vm.renewFarmData.newAccreditationDate),
-      callback: function($$v) {
-        _vm.$set(_vm.renewFarmData, "newAccreditationDate", $$v)
-      },
-      expression: "renewFarmData.newAccreditationDate"
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": ""
+      "for": "farm-name"
     }
-  }, [_vm._v(" New Accreditation Date ")])], 1)])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
+  }, [_vm._v("Farm Name")])]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
   }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn orange darken-4 z-depth-0 renew-farm-btn",
-    attrs: {
-      "href": "#!"
-    },
+    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.renewFarm($event)
+        _vm.goToTab('genetic-information')
       }
     }
-  }, [_vm._v("\n                Renew\n            ")])])])])
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "row",
+    attrs: {
+      "id": "genetic-information"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title center-align"
+  }, [_vm._v(" Genetic Information ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "col s12 m6",
+    attrs: {
+      "id": "fertility-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.esr),
+      expression: "showChoices.esr"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "esr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.esr) ? _vm._i(_vm.showChoices.esr, null) > -1 : (_vm.showChoices.esr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.esr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "esr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "esr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "esr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(9)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.esr),
+      expression: "showChoices.esr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.esr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.esr),
+        expression: "labResultData.tests.esr"
+      }],
+      attrs: {
+        "name": "esr",
+        "type": "radio",
+        "id": ("esr-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.esr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "esr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("esr-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.prlr),
+      expression: "showChoices.prlr"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "prlr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.prlr) ? _vm._i(_vm.showChoices.prlr, null) > -1 : (_vm.showChoices.prlr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.prlr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "prlr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "prlr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "prlr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.prlr),
+      expression: "showChoices.prlr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.prlr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.prlr),
+        expression: "labResultData.tests.prlr"
+      }],
+      attrs: {
+        "name": "prlr",
+        "type": "radio",
+        "id": ("prlr" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.prlr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "prlr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("prlr" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.rbp4),
+      expression: "showChoices.rbp4"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "rbp4-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.rbp4) ? _vm._i(_vm.showChoices.rbp4, null) > -1 : (_vm.showChoices.rbp4)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.rbp4,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "rbp4", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "rbp4", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "rbp4", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(11)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.rbp4),
+      expression: "showChoices.rbp4"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.rbp4), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.rbp4),
+        expression: "labResultData.tests.rbp4"
+      }],
+      attrs: {
+        "name": "rbp4",
+        "type": "radio",
+        "id": ("rbp4-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.rbp4, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "rbp4", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("rbp4-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.lif),
+      expression: "showChoices.lif"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "lif-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.lif) ? _vm._i(_vm.showChoices.lif, null) > -1 : (_vm.showChoices.lif)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.lif,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "lif", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "lif", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "lif", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(12)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.lif),
+      expression: "showChoices.lif"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.lif), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.lif),
+        expression: "labResultData.tests.lif"
+      }],
+      attrs: {
+        "name": "lif",
+        "type": "radio",
+        "id": ("lif-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.lif, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "lif", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("lif-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "meat-and-growth-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(13), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.hfabp),
+      expression: "showChoices.hfabp"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "hfabp-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.hfabp) ? _vm._i(_vm.showChoices.hfabp, null) > -1 : (_vm.showChoices.hfabp)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.hfabp,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "hfabp", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "hfabp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "hfabp", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(14)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.hfabp),
+      expression: "showChoices.hfabp"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.hfabp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.hfabp),
+        expression: "labResultData.tests.hfabp"
+      }],
+      attrs: {
+        "name": "hfabp",
+        "type": "radio",
+        "id": ("hfabp-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.hfabp, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "hfabp", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("hfabp-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.igf2),
+      expression: "showChoices.igf2"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "igf2-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.igf2) ? _vm._i(_vm.showChoices.igf2, null) > -1 : (_vm.showChoices.igf2)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.igf2,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "igf2", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "igf2", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "igf2", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.igf2),
+      expression: "showChoices.igf2"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.igf2), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.igf2),
+        expression: "labResultData.tests.igf2"
+      }],
+      attrs: {
+        "name": "igf2",
+        "type": "radio",
+        "id": ("igf2-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.igf2, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "igf2", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("igf2-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.lepr),
+      expression: "showChoices.lepr"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "lepr-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.lepr) ? _vm._i(_vm.showChoices.lepr, null) > -1 : (_vm.showChoices.lepr)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.lepr,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "lepr", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "lepr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "lepr", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(16)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.lepr),
+      expression: "showChoices.lepr"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.lepr), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.lepr),
+        expression: "labResultData.tests.lepr"
+      }],
+      attrs: {
+        "name": "lepr",
+        "type": "radio",
+        "id": ("lepr-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.lepr, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "lepr", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("lepr-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.myog),
+      expression: "showChoices.myog"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "myog-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.myog) ? _vm._i(_vm.showChoices.myog, null) > -1 : (_vm.showChoices.myog)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.myog,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "myog", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "myog", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "myog", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.myog),
+      expression: "showChoices.myog"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.myog), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.myog),
+        expression: "labResultData.tests.myog"
+      }],
+      attrs: {
+        "name": "myog",
+        "type": "radio",
+        "id": ("myog-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.myog, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "myog", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("myog-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "defects-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(18), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.pss),
+      expression: "showChoices.pss"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "pss-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.pss) ? _vm._i(_vm.showChoices.pss, null) > -1 : (_vm.showChoices.pss)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.pss,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "pss", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "pss", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "pss", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.pss),
+      expression: "showChoices.pss"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.pss), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.pss),
+        expression: "labResultData.tests.pss"
+      }],
+      attrs: {
+        "name": "pss",
+        "type": "radio",
+        "id": ("pss-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.pss, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "pss", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("pss-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.rn),
+      expression: "showChoices.rn"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "rn-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.rn) ? _vm._i(_vm.showChoices.rn, null) > -1 : (_vm.showChoices.rn)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.rn,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "rn", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "rn", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "rn", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(20)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.rn),
+      expression: "showChoices.rn"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.rn), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.rn),
+        expression: "labResultData.tests.rn"
+      }],
+      attrs: {
+        "name": "rn",
+        "type": "radio",
+        "id": ("rn-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.rn, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "rn", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("rn-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.bax),
+      expression: "showChoices.bax"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "bax-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.bax) ? _vm._i(_vm.showChoices.bax, null) > -1 : (_vm.showChoices.bax)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.bax,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "bax", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "bax", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "bax", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(21)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.bax),
+      expression: "showChoices.bax"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.bax), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.bax),
+        expression: "labResultData.tests.bax"
+      }],
+      attrs: {
+        "name": "bax",
+        "type": "radio",
+        "id": ("bax-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.bax, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "bax", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("bax-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s6",
+    attrs: {
+      "id": "diseases-container"
+    }
+  }, [_c('div', {
+    staticClass: "card col s12 card-traits-container"
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_vm._m(22), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.fut1),
+      expression: "showChoices.fut1"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "fut1-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.fut1) ? _vm._i(_vm.showChoices.fut1, null) > -1 : (_vm.showChoices.fut1)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.fut1,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "fut1", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "fut1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "fut1", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(23)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.fut1),
+      expression: "showChoices.fut1"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.fut1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.fut1),
+        expression: "labResultData.tests.fut1"
+      }],
+      attrs: {
+        "name": "fut1",
+        "type": "radio",
+        "id": ("fut1-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.fut1, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "fut1", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("fut1-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.mx1),
+      expression: "showChoices.mx1"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "mx1-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.mx1) ? _vm._i(_vm.showChoices.mx1, null) > -1 : (_vm.showChoices.mx1)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.mx1,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "mx1", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "mx1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "mx1", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.mx1),
+      expression: "showChoices.mx1"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.mx1), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.mx1),
+        expression: "labResultData.tests.mx1"
+      }],
+      attrs: {
+        "name": "mx1",
+        "type": "radio",
+        "id": ("mx1-" + index)
+      },
+      domProps: {
+        "value": choice.toUpperCase(),
+        "checked": _vm._q(_vm.labResultData.tests.mx1, choice.toUpperCase())
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "mx1", choice.toUpperCase())
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("mx1-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.nramp),
+      expression: "showChoices.nramp"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "nramp-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.nramp) ? _vm._i(_vm.showChoices.nramp, null) > -1 : (_vm.showChoices.nramp)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.nramp,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "nramp", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "nramp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "nramp", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(25)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.nramp),
+      expression: "showChoices.nramp"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.nramp), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.nramp),
+        expression: "labResultData.tests.nramp"
+      }],
+      attrs: {
+        "name": "nramp",
+        "type": "radio",
+        "id": ("nramp-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.nramp, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "nramp", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("nramp-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "col s5 m5"
+  }, [_c('p', {
+    staticClass: "padded"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.showChoices.bpi),
+      expression: "showChoices.bpi"
+    }],
+    staticClass: "filled-in",
+    attrs: {
+      "type": "checkbox",
+      "id": "bpi-checkbox"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.showChoices.bpi) ? _vm._i(_vm.showChoices.bpi, null) > -1 : (_vm.showChoices.bpi)
+    },
+    on: {
+      "change": function($event) {
+        var $$a = _vm.showChoices.bpi,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && (_vm.$set(_vm.showChoices, "bpi", $$a.concat([$$v])))
+          } else {
+            $$i > -1 && (_vm.$set(_vm.showChoices, "bpi", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+          }
+        } else {
+          _vm.$set(_vm.showChoices, "bpi", $$c)
+        }
+      }
+    }
+  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
+    staticClass: "col s7 m7"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showChoices.bpi),
+      expression: "showChoices.bpi"
+    }]
+  }, [_c('p', {
+    staticClass: "padded"
+  }, _vm._l((_vm.testChoices.bpi), function(choice, index) {
+    return _c('span', {
+      key: choice
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.labResultData.tests.bpi),
+        expression: "labResultData.tests.bpi"
+      }],
+      attrs: {
+        "name": "bpi",
+        "type": "radio",
+        "id": ("bpi-" + index)
+      },
+      domProps: {
+        "value": choice,
+        "checked": _vm._q(_vm.labResultData.tests.bpi, choice)
+      },
+      on: {
+        "change": function($event) {
+          _vm.$set(_vm.labResultData.tests, "bpi", choice)
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": ("bpi-" + index)
+      }
+    }, [_vm._v(" " + _vm._s(choice) + " ")])])
+  }))])])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "card-action center-align"
+  }, [_c('button', {
+    staticClass: "btn save-btn blue darken-1 update-lab-results-btn",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateLabResults($event)
+      }
+    }
+  }, [_vm._v("\n                    Update\n                ")])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Add Farm\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Edit Laboratory Results ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row",
+    staticStyle: {
+      "margin-bottom": "0"
+    }
+  }, [_c('div', {
+    staticClass: "col s12",
+    staticStyle: {
+      "margin-top": "2rem",
+      "padding": "0"
+    },
+    attrs: {
+      "id": "edit-lab-result-tabs"
+    }
+  }, [_c('ul', {
+    staticClass: "tabs tabs-fixed-width z-depth-2"
+  }, [_c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#general-information"
+    }
+  }, [_vm._v("General Information")])]), _vm._v(" "), _c('li', {
+    staticClass: "tab col s6"
+  }, [_c('a', {
+    attrs: {
+      "href": "#genetic-information"
+    }
+  }, [_vm._v("Genetic Information")])])])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -10962,15 +19473,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
+  }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Edit Farm\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
+  return _c('h6', [_c('b', [_vm._v("Is Farm registered in the system?")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -10978,121 +19483,450 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
-  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Accreditation")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br'), _vm._v(" "), _c('h6', [_c('b', [_vm._v("Farm Address")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Renew Farm\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br'), _c('br'), _c('br')])
+  }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('blockquote', {
     staticClass: "info"
-  }, [_vm._v("\n                        Input new accreditation date to renew farm.\n                    ")])])
+  }, [_vm._v("\n                            *   -   Favorable genotype\n                        ")]), _vm._v(" "), _c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Fertility Traits")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "esr-checkbox"
+    }
+  }, [_c('b', [_vm._v("ESR")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "prlr-checkbox"
+    }
+  }, [_c('b', [_vm._v("PRLR")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "rbp4-checkbox"
+    }
+  }, [_c('b', [_vm._v("RBP4")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "lif-checkbox"
+    }
+  }, [_c('b', [_vm._v("LIF")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Meat Quality and Growth Rate")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "hfabp-checkbox"
+    }
+  }, [_c('b', [_vm._v("HFABP")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "igf2-checkbox"
+    }
+  }, [_c('b', [_vm._v("IGF2")]), _vm._v(" (CC)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "lepr-checkbox"
+    }
+  }, [_c('b', [_vm._v("LEPR")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "myog-checkbox"
+    }
+  }, [_c('b', [_vm._v("MYOG")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Genetic Defects")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "pss-checkbox"
+    }
+  }, [_c('b', [_vm._v("PSS")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "rn-checkbox"
+    }
+  }, [_c('b', [_vm._v("RN")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "bax-checkbox"
+    }
+  }, [_c('b', [_vm._v("BAX")]), _vm._v(" (Negative)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticClass: "center-align"
+  }, [_c('b', [_vm._v("Diseases Resistance")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "fut1-checkbox"
+    }
+  }, [_c('b', [_vm._v("FUT1")]), _vm._v(" (AA)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "mx1-checkbox"
+    }
+  }, [_c('b', [_vm._v("MX1")]), _vm._v(" (Resistant)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "nramp-checkbox"
+    }
+  }, [_c('b', [_vm._v("NRAMP")]), _vm._v(" (BB)*")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "black-text",
+    attrs: {
+      "for": "bpi-checkbox"
+    }
+  }, [_c('b', [_vm._v("BPI")]), _vm._v(" (GG)*")])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6d46f7eb", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-615ddffa", module.exports)
   }
 }
 
 /***/ }),
-/* 108 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s10 offset-s1"
+  }, [_c('transition', {
+    attrs: {
+      "name": "view-fade"
+    }
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.showEditLabResult),
+      expression: "!showEditLabResult"
+    }]
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" View Laboratory Results ")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br')])]), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('div', {
-    staticClass: "col s12",
+    staticClass: "col s8 offset-s2"
+  }, [_c('nav', {
     attrs: {
-      "id": "toggle-register-breeder-btn-container"
+      "id": "search-container"
     }
-  }, [_c('a', {
-    staticClass: "btn",
+  }, [_c('div', {
+    staticClass: "nav-wrapper white",
     attrs: {
-      "id": "toggle-register-breeder-btn",
-      "href": "#!"
-    },
+      "id": "search-field"
+    }
+  }, [_c('div', {
+    staticStyle: {
+      "height": "1px"
+    }
+  }), _vm._v(" "), _c('form', {
     on: {
-      "click": function($event) {
+      "submit": function($event) {
         $event.preventDefault();
-        return _vm.showAddBreederModal($event)
+        _vm.rewriteUrl(_vm.searchParameter)
       }
     }
+  }, [_c('div', {
+    staticClass: "input-field"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.searchParameter),
+      expression: "searchParameter"
+    }],
+    attrs: {
+      "id": "search",
+      "name": "q",
+      "type": "search",
+      "placeholder": "Type laboratory result no. and press enter to search",
+      "autocomplete": "off"
+    },
+    domProps: {
+      "value": (_vm.searchParameter)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.searchParameter = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    staticClass: "label-icon",
+    attrs: {
+      "for": "search"
+    }
   }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("add")]), _vm._v(" Register Breeder\n            ")])]), _vm._v(" "), _vm._l((_vm.paginatedBreeders), function(breeder, index) {
-    return [(breeder.userId !== -1) ? _c('div', {
-      key: breeder.userId,
-      staticClass: "col s6"
-    }, [_c('div', {
-      staticClass: "card",
-      class: (_vm.manageFarmsData.paginatedBreederIndex === index) ? 'card-chosen-breeder' : ''
-    }, [_c('div', {
-      staticClass: "card-content"
-    }, [_c('span', {
-      staticClass: "card-title",
-      class: (_vm.manageFarmsData.paginatedBreederIndex === index) ? 'name-chosen-breeder' : ''
-    }, [_c('b', [_vm._v(_vm._s(breeder.name))])]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text text-darken-2"
-    }, [_vm._v(" \n                            " + _vm._s(breeder.status) + " • " + _vm._s(breeder.email) + "\n                        ")]), _vm._v(" "), _c('p', [_c('br'), _vm._v(" "), _c('a', {
-      staticClass: "black-text",
+    staticClass: "material-icons teal-text"
+  }, [_vm._v("search")])]), _vm._v(" "), _c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("close")])])])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_c('br')])]), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('table', {
+    staticClass: "z-depth-1 striped white"
+  }, [_c('thead', [_c('tr', [_c('th', [_vm._v("General Information")]), _vm._v(" "), _c('th', [_vm._v("Genetic Information")]), _vm._v(" "), _c('th', [_vm._v("Action")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.paginatedLabResults), function(result, index) {
+    return _c('tr', {
+      key: result.id
+    }, [_c('td', [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(_vm._s(result.labResultNo))])]), _vm._v(" "), _c('p', {
+      staticClass: "primary-details"
+    }, [_vm._v("\n                                " + _vm._s(_vm.capitalizeFirstLetter(result.sex)) + " • " + _vm._s(result.animalId) + "\n                            ")]), _vm._v(" "), _c('p', {
+      staticClass: "secondary-details grey-text text-darken-2"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left tooltipped",
       attrs: {
-        "href": "#!"
-      },
+        "data-position": "top",
+        "data-delay": "50",
+        "data-tooltip": "Farm Name"
+      }
+    }, [_vm._v("\n                                        location_on\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.farm.name) + "\n                                ")])]), _vm._v(" "), _c('p', {
+      staticClass: "secondary-details grey-text text-darken-2"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left tooltipped",
+      attrs: {
+        "data-position": "top",
+        "data-delay": "50",
+        "data-tooltip": "Date Submitted"
+      }
+    }, [_vm._v("\n                                        event_note\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.dateSubmitted) + "\n                                ")])]), _vm._v(" "), _c('p', {
+      staticClass: "secondary-details grey-text text-darken-2"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left tooltipped",
+      attrs: {
+        "data-position": "top",
+        "data-delay": "50",
+        "data-tooltip": "Date of Result"
+      }
+    }, [_vm._v("\n                                        event_available\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.dateResult) + "\n                                ")])])]), _vm._v(" "), _c('td', [_c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showFarms(index)
+          _vm.showGeneticInformation(result.id, 'fertility')
         }
       }
     }, [_c('i', {
-      staticClass: "material-icons left view-farm-btn"
-    }, [_vm._v(" store ")]), _vm._v("\n                                Manage Farms\n                            ")])])]), _vm._v(" "), _c('div', {
-      staticClass: "card-action grey lighten-3"
-    }, [_c('a', {
-      staticClass: "btn blue darken-1 toggle-edit-breeder-btn z-depth-0",
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.fertility),
+        expression: "!result.showTests.fertility"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.fertility),
+        expression: "result.showTests.fertility"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Fertility\n                                ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.fertility),
+        expression: "result.showTests.fertility"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("ESR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.esr) ? result.tests.esr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("PRLR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.prlr) ? result.tests.prlr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("RBP4")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.rbp4) ? result.tests.rbp4 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("LIF")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.lif) ? result.tests.lif : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showGeneticInformation(result.id, 'meatAndGrowth')
+        }
+      }
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.meatAndGrowth),
+        expression: "!result.showTests.meatAndGrowth"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.meatAndGrowth),
+        expression: "result.showTests.meatAndGrowth"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Meat Quality and Growth Rate\n                                ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.meatAndGrowth),
+        expression: "result.showTests.meatAndGrowth"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("HFABP")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.hfabp) ? result.tests.hfabp : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("IGF2")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.igf2) ? result.tests.igf2 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("LEPR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.lepr) ? result.tests.lepr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("MYOG")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.myog) ? result.tests.myog : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showGeneticInformation(result.id, 'defects')
+        }
+      }
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.defects),
+        expression: "!result.showTests.defects"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.defects),
+        expression: "result.showTests.defects"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Genetic Defects\n                                ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.defects),
+        expression: "result.showTests.defects"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("PSS")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.pss) ? result.tests.pss : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("RN")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.rn) ? result.tests.rn : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("BAX")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.bax) ? result.tests.bax : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
+      staticClass: "genetic-details"
+    }, [_c('span', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showGeneticInformation(result.id, 'diseases')
+        }
+      }
+    }, [_c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!result.showTests.diseases),
+        expression: "!result.showTests.diseases"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.diseases),
+        expression: "result.showTests.diseases"
+      }],
+      staticClass: "material-icons left"
+    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Diseases Resistance\n                                ")]), _vm._v(" "), _c('transition', {
+      attrs: {
+        "name": "fade"
+      }
+    }, [_c('table', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (result.showTests.diseases),
+        expression: "result.showTests.diseases"
+      }]
+    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("FUT1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.fut1) ? result.tests.fut1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("MX1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.mx1) ? result.tests.mx1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("NRAMP")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.nramp) ? result.tests.nramp : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("BPI")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.bpi) ? result.tests.bpi : '---'))])])])])])])], 1)]), _vm._v(" "), _c('td', [_c('a', {
+      staticClass: "btn blue darken-1 z-depth-0",
+      attrs: {
+        "target": "_blank"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.openDownloadConfirmationModal(result.id)
+        }
+      }
+    }, [_vm._v("\n                                Download PDF\n                            ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (result.canBeEdited) ? _c('a', {
+      staticClass: "btn custom-secondary-btn teal-text text-darken-1 z-depth-0",
+      attrs: {
+        "href": ("/genomics/pdf-lab-results/" + (result.id)),
+        "target": "_blank"
+      }
+    }, [_vm._v("\n                                View PDF\n                            ")]) : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (result.canBeEdited) ? _c('a', {
+      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
       attrs: {
         "href": "#!"
       },
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showEditBreederModal(breeder.breederId)
+          _vm.showEditLabResultsView(result.id)
         }
       }
-    }, [_vm._v("\n                            Edit\n                        ")])])])]) : _c('div', {
-      staticClass: "col s12"
-    }, [_c('manage-farms', {
-      attrs: {
-        "manage-farms-data": _vm.manageFarmsData,
-        "province-options": _vm.provinceOptions
-      },
-      on: {
-        "close-manage-farms-event": _vm.closeManageFarmsContainer,
-        "add-breeder-farm-event": _vm.addBreederFarm,
-        "update-breeder-farm-event": _vm.updateBreederFarm,
-        "renew-breeder-farm-event": _vm.renewBreederFarm
-      }
-    })], 1)]
-  }), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                                Edit\n                            ")]) : _vm._e()])])
+  }))])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.paginatedLabResults.length === 0),
+      expression: "paginatedLabResults.length === 0"
+    }],
+    staticClass: "col s12 center-align",
+    attrs: {
+      "id": "empty-lab-results-container"
+    }
+  }, [_c('p', [_c('br'), _vm._v(" "), _c('b', [_vm._v("Sorry, no laboratory results found.")]), _vm._v(" "), _c('br')])]), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
     staticClass: "pagination"
@@ -11130,70 +19964,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)])], 2), _vm._v(" "), _c('div', {
+  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
-      "id": "add-breeder-modal"
+      "id": "download-confirmation-modal"
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_c('h4', [_vm._v("\n                    Download PDF Confirmation\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('br')]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addBreederData.name),
-      expression: "addBreederData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-breeder-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addBreederData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addBreederData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-breeder-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addBreederData.email),
-      expression: "addBreederData.email"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-breeder-email",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addBreederData.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addBreederData, "email", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-breeder-email"
-    }
-  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to download final PDF for\n                            laboratory result "), _c('b', [_vm._v(_vm._s(_vm.downloadData.labResultNo))]), _vm._v(" ? \n                            "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (_vm.downloadData.canBeEdited) ? _c('b', [_vm._v("\n                                Note that this laboratory result CANNOT be edited \n                                anymore after downloading.\n                            ")]) : _c('b', [_vm._v("\n                                This laboratory result CANNOT be edited \n                                anymore.\n                            ")])])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",
@@ -11201,2403 +19987,49 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#!"
     }
   }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn z-depth-0 register-breeder-btn",
+    staticClass: "modal-action btn blue lighten-2 z-depth-0 download-btn",
     attrs: {
       "href": "#!"
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.registerBreeder($event)
+        _vm.downloadFinalLabResults($event)
       }
     }
-  }, [_vm._v("\n                Register\n            ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
+  }, [_vm._v("\n                    Download\n                ")])])])])]), _vm._v(" "), _c('transition', {
     attrs: {
-      "id": "edit-breeder-modal"
+      "name": "edit-fade"
     }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editBreederData.name),
-      expression: "editBreederData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-breeder-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editBreederData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editBreederData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-breeder-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editBreederData.email),
-      expression: "editBreederData.email"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-breeder-email",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editBreederData.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editBreederData, "email", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-breeder-email"
-    }
-  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 update-breeder-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.updateBreeder($event)
-      }
-    }
-  }, [_vm._v("\n                Update\n            ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Manage Breeders ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Register Breeder\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Edit Breeder\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2b3e0810", module.exports)
-  }
-}
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(110)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(112),
-  /* template */
-  __webpack_require__(113),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-0298ef7c",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageEvaluators.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageEvaluators.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0298ef7c", Component.options)
-  } else {
-    hotAPI.reload("data-v-0298ef7c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(111);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("68e89ca6", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0298ef7c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageEvaluators.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0298ef7c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageEvaluators.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-evaluator-container-button[data-v-0298ef7c] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0298ef7c] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0298ef7c] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-0298ef7c] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-0298ef7c]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-evaluator-container[data-v-0298ef7c] {\n    padding-bottom: 2rem;\n}\n#edit-evaluator-modal[data-v-0298ef7c] {\n    width: 40rem;\n}\n#delete-evaluator-modal[data-v-0298ef7c] {\n    width: 30rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0298ef7c] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0298ef7c] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0298ef7c] {\n    padding-right: 2rem;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 112 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        initialEvaluators: Array
-    },
-
-    data: function data() {
-        return {
-            evaluators: this.initialEvaluators,
-            showAddEvaluatorContainer: false,
-            addEvaluatorData: {
-                name: '',
-                email: ''
-            },
-            editEvaluatorData: {
-                index: 0,
-                userId: 0,
-                name: '',
-                email: ''
-            },
-            deleteEvaluatorData: {
-                index: 0,
-                userId: 0,
-                name: ''
-            }
-        };
-    },
-
-
-    computed: {
-        sortedEvaluators: function sortedEvaluators() {
-            return _.sortBy(this.evaluators, ['name']);
-        }
-    },
-
-    methods: {
-        findEvaluatorIndexById: function findEvaluatorIndexById(id) {
-            for (var i = 0; i < this.evaluators.length; i++) {
-                if (this.evaluators[i].evaluatorId === id) return i;
-            }
-
-            return -1;
-        },
-        addEvaluator: function addEvaluator(event) {
-            var _this = this;
-
-            var vm = this;
-            var addEvaluatorButton = $('.add-evaluator-btn');
-
-            this.disableButtons(addEvaluatorButton, event.target, 'Adding...');
-
-            // Add to server's database
-            axios.post('/admin/manage/evaluators', {
-                name: vm.addEvaluatorData.name,
-                email: vm.addEvaluatorData.email
-            }).then(function (response) {
-                // Put response in local data storage and erase adding of evaluator data
-                vm.evaluators.push(response.data);
-                vm.addEvaluatorData = {
-                    name: '',
-                    email: ''
-                };
-
-                // Update UI after adding evaluator
-                vm.$nextTick(function () {
-                    $('#add-name').removeClass('valid');
-                    $('#add-email').removeClass('valid');
-
-                    _this.enableButtons(addEvaluatorButton, event.target, 'Add Evaluator');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Evaluator ' + response.data.name + ' added', 3000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showEditEvaluatorModal: function showEditEvaluatorModal(evaluatorId) {
-            // Initialize data for editing
-            var index = this.findEvaluatorIndexById(evaluatorId);
-            var evaluator = this.evaluators[index];
-
-            this.editEvaluatorData.index = index;
-            this.editEvaluatorData.userId = evaluator.userId;
-            this.editEvaluatorData.name = evaluator.name;
-            this.editEvaluatorData.email = evaluator.email;
-
-            $('#edit-evaluator-modal').modal('open');
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-        updateEvaluator: function updateEvaluator(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var updateEvaluatorButton = $('.update-evaluator-btn');
-
-            this.disableButtons(updateEvaluatorButton, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.patch('/admin/manage/evaluators', {
-                userId: vm.editEvaluatorData.userId,
-                name: vm.editEvaluatorData.name,
-                email: vm.editEvaluatorData.email
-            }).then(function (response) {
-                // Put response in local data storage and erase editing of evaluator data
-                if (response.data.updated) {
-                    var index = vm.editEvaluatorData.index;
-
-                    vm.evaluators[index].name = vm.editEvaluatorData.name;
-                    vm.evaluators[index].email = vm.editEvaluatorData.email;
-                    vm.editEvaluatorData = {
-                        index: 0,
-                        userId: 0,
-                        name: '',
-                        email: ''
-                    };
-
-                    // Update UI after updating breeder
-                    vm.$nextTick(function () {
-                        $('#edit-evaluator-modal').modal('close');
-                        $('#edit-name').removeClass('valid');
-                        $('#edit-email').removeClass('valid');
-
-                        _this2.enableButtons(updateEvaluatorButton, event.target, 'Update');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast(vm.evaluators[index].name + ' updated', 2500, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showDeleteEvaluatorModal: function showDeleteEvaluatorModal(evaluatorId) {
-            // Initialize data for deleting
-            var index = this.findEvaluatorIndexById(evaluatorId);
-            var evaluator = this.evaluators[index];
-
-            this.deleteEvaluatorData.index = index;
-            this.deleteEvaluatorData.userId = evaluator.userId;
-            this.deleteEvaluatorData.name = evaluator.name;
-
-            $('#delete-evaluator-modal').modal('open');
-        },
-        deleteEvaluator: function deleteEvaluator(event) {
-            var _this3 = this;
-
-            var vm = this;
-            var deleteEvaluatorButton = $('.delete-evaluator-btn');
-
-            this.disableButtons(deleteEvaluatorButton, event.target, 'Deleting...');
-
-            // Remove from server's database
-            axios.delete('/admin/manage/evaluators/' + vm.deleteEvaluatorData.userId).then(function (response) {
-                // Remove evaluator details on local storage and erase
-                // deleting of evaluator data
-                if (response.data.deleted) {
-                    var evaluatorName = vm.deleteEvaluatorData.name;
-
-                    vm.evaluators.splice(vm.deleteEvaluatorData.index, 1);
-                    vm.deleteEvaluatorData = {
-                        index: 0,
-                        userId: 0,
-                        name: ''
-                    };
-
-                    // Update UI after deleting evaluator
-                    vm.$nextTick(function () {
-                        $('#delete-evaluator-modal').modal('close');
-
-                        _this3.enableButtons(deleteEvaluatorButton, event.target, 'Delete');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast('Evaluator ' + evaluatorName + ' deleted', 3000, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
-    }
-});
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
-    attrs: {
-      "href": "#!",
-      "id": "toggle-add-evaluator-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new evaluator"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddEvaluatorContainer = !_vm.showAddEvaluatorContainer
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+  }, [_c('view-laboratory-results-update-view', {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.showAddEvaluatorContainer),
-      expression: "showAddEvaluatorContainer"
+      value: (_vm.showEditLabResult),
+      expression: "showEditLabResult"
     }],
-    staticClass: "collection-item",
     attrs: {
-      "id": "add-evaluator-container"
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-evaluator-container-button"
+      "edit-lab-result-data": _vm.editLabResultData,
+      "farmoptions": _vm.farmoptions
     },
     on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddEvaluatorContainer = !_vm.showAddEvaluatorContainer
-      }
-    }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addEvaluatorData.name),
-      expression: "addEvaluatorData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addEvaluatorData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addEvaluatorData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addEvaluatorData.email),
-      expression: "addEvaluatorData.email"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-email",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addEvaluatorData.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addEvaluatorData, "email", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-email"
-    }
-  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn z-depth-0 add-evaluator-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addEvaluator($event)
-      }
-    }
-  }, [_vm._v("\n                            Add Evaluator\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedEvaluators), function(evaluator) {
-    return _c('li', {
-      key: evaluator.userId,
-      staticClass: "collection-item avatar"
-    }, [_c('span', {
-      staticClass: "title"
-    }, [_c('b', [_vm._v(_vm._s(evaluator.name))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(evaluator.email) + "\n                ")]), _vm._v(" "), _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn custom-secondary-btn\n                            edit-evaluator-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
-      attrs: {
-        "href": "#"
+      "hideEditLabResultsViewEvent": function($event) {
+        _vm.showEditLabResult = false
       },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showEditEvaluatorModal(evaluator.evaluatorId)
-        }
-      }
-    }, [_vm._v("\n                        Edit\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat delete-evaluator-button custom-tertiary-btn",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showDeleteEvaluatorModal(evaluator.evaluatorId)
-        }
-      }
-    }, [_vm._v("\n                        Delete\n                    ")])])])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "edit-evaluator-modal"
+      "updateLabResultEvent": _vm.updateLabResult
     }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editEvaluatorData.name),
-      expression: "editEvaluatorData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editEvaluatorData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editEvaluatorData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editEvaluatorData.email),
-      expression: "editEvaluatorData.email"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-email",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editEvaluatorData.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editEvaluatorData, "email", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-email"
-    }
-  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 update-evaluator-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.updateEvaluator($event)
-      }
-    }
-  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "delete-evaluator-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteEvaluatorData.name))]), _vm._v(" ?\n                    ")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn red lighten-2 z-depth-0 delete-evaluator-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.deleteEvaluator($event)
-      }
-    }
-  }, [_vm._v("\n                Delete\n            ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Manage Evaluators ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Edit Evaluator\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Delete Evaluator\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
+  })], 1)], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0298ef7c", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-241c1815", module.exports)
   }
 }
 
 /***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(115)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(117),
-  /* template */
-  __webpack_require__(118),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-0e4e505e",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageProperties.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageProperties.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0e4e505e", Component.options)
-  } else {
-    hotAPI.reload("data-v-0e4e505e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(116);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("64529a3a", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0e4e505e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageProperties.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.collection-header a[data-v-0e4e505e], .edit-property-button[data-v-0e4e505e], #close-add-property-container-button[data-v-0e4e505e] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-0e4e505e] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-0e4e505e] {\n    padding-left: 20px !important;\n}\n#add-property-container[data-v-0e4e505e] {\n    padding-bottom: 2rem;\n}\n#edit-property-modal[data-v-0e4e505e] {\n    width: 30rem;\n    height: 35rem;\n}\n.custom-secondary-btn[data-v-0e4e505e] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-0e4e505e] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-0e4e505e] {\n    border: 0;\n}\n.modal .modal-footer[data-v-0e4e505e] {\n    padding-right: 2rem;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 117 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        initialProperties: Array
-    },
-
-    data: function data() {
-        return {
-            properties: this.initialProperties,
-            showAddPropertyContainer: false,
-            addPropertyData: {
-                slug: '',
-                property: '',
-                definition: ''
-            },
-            editPropertyData: {
-                index: -1,
-                id: 0,
-                slug: '',
-                property: '',
-                definition: ''
-            }
-        };
-    },
-
-
-    methods: {
-        addProperty: function addProperty(event) {
-            var _this = this;
-
-            var vm = this;
-            var addPropertyButton = $('.add-property-btn');
-
-            this.disableButtons(addPropertyButton, event.target, 'Adding...');
-
-            // Add to server's database
-            axios.post('/admin/manage/properties', {
-                slug: vm.addPropertyData.slug,
-                property: vm.addPropertyData.property,
-                definition: vm.addPropertyData.definition
-            }).then(function (response) {
-                // Put response in local data storage and erase adding of property data
-                vm.properties.push(response.data);
-                vm.addPropertyData = {
-                    slug: '',
-                    property: '',
-                    definition: ''
-                };
-
-                // Update UI after adding property
-                vm.$nextTick(function () {
-                    $('#add-property').removeClass('valid');
-                    $('#add-slug').removeClass('valid');
-                    $('#add-definition').removeClass('valid');
-
-                    _this.enableButtons(addPropertyButton, event.target, 'Add Property');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Property added', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        toggleEditPropertyModal: function toggleEditPropertyModal(index) {
-            // Initialize data for editing
-            this.editPropertyData.index = index;
-            this.editPropertyData.id = this.properties[index].id;
-            this.editPropertyData.slug = this.properties[index].slug;
-            this.editPropertyData.property = this.properties[index].property;
-            this.editPropertyData.definition = this.properties[index].definition;
-
-            $('#edit-property-modal').modal('open');
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-        updateProperty: function updateProperty(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var index = this.editPropertyData.index;
-            var updatePropertyButton = $('.update-property-btn');
-
-            this.disableButtons(updatePropertyButton, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.patch('/admin/manage/properties', {
-                propertyId: vm.editPropertyData.id,
-                definition: vm.editPropertyData.definition
-            }).then(function (response) {
-                // Update local data storage and erase editing of property data
-                if (response.data === 'OK') {
-                    vm.properties[index].definition = vm.editPropertyData.definition;
-                    vm.editPropertyData = {
-                        index: -1,
-                        id: 0,
-                        slug: '',
-                        property: '',
-                        definition: ''
-                    };
-                }
-
-                // Update UI after updating property
-                vm.$nextTick(function () {
-                    $('#edit-property-modal').modal('close');
-                    $('#add-property').removeClass('valid');
-                    $('#add-slug').removeClass('valid');
-                    $('#add-definition').removeClass('valid');
-
-                    _this2.enableButtons(updatePropertyButton, event.target, 'Update');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Property updated', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    mounted: function mounted() {
-        var _this3 = this;
-
-        // Materialize component initializations
-        $('.modal').modal();
-
-        // Watch the respective property to produce a default slug
-        this.$watch('addPropertyData.property', function (newValue) {
-            _this3.addPropertyData.slug = _.snakeCase(newValue);
-            _this3.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        });
-    }
-});
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
-    attrs: {
-      "href": "#!",
-      "id": "toggle-add-property-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new property"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showAddPropertyContainer),
-      expression: "showAddPropertyContainer"
-    }],
-    staticClass: "collection-item",
-    attrs: {
-      "id": "add-property-container"
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-property-container-button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddPropertyContainer = !_vm.showAddPropertyContainer
-      }
-    }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addPropertyData.property),
-      expression: "addPropertyData.property"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-property",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addPropertyData.property)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addPropertyData, "property", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-property"
-    }
-  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addPropertyData.slug),
-      expression: "addPropertyData.slug"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-slug",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addPropertyData.slug)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addPropertyData, "slug", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-slug"
-    }
-  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addPropertyData.definition),
-      expression: "addPropertyData.definition"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-definition",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addPropertyData.definition)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addPropertyData, "definition", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-definition"
-    }
-  }, [_vm._v("Definition")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn z-depth-0 add-property-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addProperty($event)
-      }
-    }
-  }, [_vm._v("\n                            Add Property\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.properties), function(property, index) {
-    return _c('li', {
-      staticClass: "collection-item avatar"
-    }, [_c('span', {
-      staticClass: "title"
-    }, [_c('b', [_vm._v(_vm._s(property.property))])]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text"
-    }, [_vm._v("\n                    Slug: " + _vm._s(property.slug) + " "), _c('br'), _vm._v("\n                    Definition: " + _vm._s(property.definition) + "\n                ")]), _vm._v(" "), _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn custom-secondary-btn\n                            edit-property-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.toggleEditPropertyModal(index)
-        }
-      }
-    }, [_vm._v("\n                        Edit\n                    ")])])])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
-    attrs: {
-      "id": "edit-property-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editPropertyData.property),
-      expression: "editPropertyData.property"
-    }],
-    attrs: {
-      "id": "edit-property",
-      "type": "text",
-      "disabled": ""
-    },
-    domProps: {
-      "value": (_vm.editPropertyData.property)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editPropertyData, "property", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-property"
-    }
-  }, [_vm._v("Property")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editPropertyData.slug),
-      expression: "editPropertyData.slug"
-    }],
-    attrs: {
-      "id": "edit-slug",
-      "type": "text",
-      "disabled": ""
-    },
-    domProps: {
-      "value": (_vm.editPropertyData.slug)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editPropertyData, "slug", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-slug"
-    }
-  }, [_vm._v("Slug")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editPropertyData.definition),
-      expression: "editPropertyData.definition"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-definition",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editPropertyData.definition)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editPropertyData, "definition", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-definition"
-    }
-  }, [_vm._v("Definition")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect btn-flat ",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action waves-effect btn blue darken-1 z-depth-0 update-property-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.updateProperty($event)
-      }
-    }
-  }, [_vm._v("\n                Update\n            ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Manage Properties ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('blockquote', {}, [_vm._v("\n                            Note that Property and Slug fields cannot be edited once\n                            it has been submitted already.\n                        ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Edit Property\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0e4e505e", module.exports)
-  }
-}
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(120)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(122),
-  /* template */
-  __webpack_require__(123),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-13cd11b7",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageAPIs.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageAPIs.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-13cd11b7", Component.options)
-  } else {
-    hotAPI.reload("data-v-13cd11b7", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(121);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("8717e40a", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-13cd11b7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageAPIs.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 121 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-property-button[data-v-13cd11b7],\n#close-add-credentials-container-button[data-v-13cd11b7],\n#show-help-info-button[data-v-13cd11b7],\n#close-help-info-button[data-v-13cd11b7] {\n    cursor: pointer;\n}\n.collection-item.avatar[data-v-13cd11b7] {\n    padding-left: 20px !important;\n}\n#add-api-container[data-v-13cd11b7] {\n    padding-bottom: 2rem;\n}\n#edit-credentials-modal[data-v-13cd11b7] {\n    width: 50rem;\n    height: 25rem;\n}\n#delete-credentials-modal[data-v-13cd11b7] {\n    width: 40rem;\n    height: 23rem;\n}\n.custom-secondary-btn[data-v-13cd11b7] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-13cd11b7]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-13cd11b7] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-13cd11b7] {\n    border: 0;\n}\n.modal .modal-footer[data-v-13cd11b7] {\n    padding-right: 2rem;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 122 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            clients: [],
-            showHelpInfo: false,
-            showAddCredentialsContainer: false,
-            addCredentialsData: {
-                name: '',
-                redirect: 'http://localhost/callback'
-            },
-            editCredentialsData: {
-                index: -1,
-                id: 0,
-                name: '',
-                redirect: ''
-            },
-            deleteCredentialsData: {
-                index: -1,
-                id: 0,
-                name: ''
-            }
-        };
-    },
-
-
-    methods: {
-        getClients: function getClients() {
-            var _this = this;
-
-            axios.get('/oauth/clients').then(function (response) {
-                _this.clients = response.data;
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        addCredentials: function addCredentials(event) {
-            var _this2 = this;
-
-            var addButtons = $('.add-credentials-button');
-
-            this.disableButtons(addButtons, event.target, 'Adding...');
-
-            // Add to server's database
-            axios.post('/oauth/clients', {
-                name: this.addCredentialsData.name,
-                redirect: this.addCredentialsData.redirect
-            }).then(function (response) {
-                // Put response in local data storage and erase adding of property data
-                _this2.clients.unshift(response.data);
-                _this2.addCredentialsData = {
-                    name: '',
-                    redirect: ''
-                };
-
-                // Update UI after adding credentials
-                _this2.$nextTick(function () {
-                    $('#add-credentials-name').removeClass('valid');
-                    $('#add-credentials-redirect').removeClass('valid');
-
-                    _this2.enableButtons(addButtons, event.target, 'Add Credentials');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Credentials added', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        toggleEditCredentialsModal: function toggleEditCredentialsModal(index) {
-            // Initialize data for editing
-            this.editCredentialsData.index = index;
-            this.editCredentialsData.id = this.clients[index].id;
-            this.editCredentialsData.name = this.clients[index].name;
-            this.editCredentialsData.redirect = this.clients[index].redirect;
-
-            $('#edit-credentials-modal').modal('open');
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-        updateCredentials: function updateCredentials(event) {
-            var _this3 = this;
-
-            var index = this.editCredentialsData.index;
-            var updateButtons = $('.update-credentials-button');
-
-            this.disableButtons(updateButtons, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.put('/oauth/clients/' + this.editCredentialsData.id, {
-                name: this.editCredentialsData.name,
-                redirect: this.editCredentialsData.redirect
-            }).then(function (response) {
-                var data = response.data;
-
-                _this3.clients[index].name = data.name;
-                _this3.clients[index].redirect = data.redirect;
-                _this3.editCredentialsData = {
-                    index: -1,
-                    id: 0,
-                    name: '',
-                    redirect: ''
-                };
-
-                // Update UI after updating credentials
-                _this3.$nextTick(function () {
-                    $('#edit-credentials-modal').modal('close');
-                    $('#add-credentials-name').removeClass('valid');
-                    $('#add-credentials-redirect').removeClass('valid');
-
-                    _this3.enableButtons(updateButtons, event.target, 'Update');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Credentials updated', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        toggleDeleteCredentialsModal: function toggleDeleteCredentialsModal(index) {
-            // Initialize data for deleting
-            this.deleteCredentialsData.index = index;
-            this.deleteCredentialsData.id = this.clients[index].id;
-            this.deleteCredentialsData.name = this.clients[index].name;
-
-            $('#delete-credentials-modal').modal('open');
-        },
-        deleteCredentials: function deleteCredentials(event) {
-            var _this4 = this;
-
-            var index = this.deleteCredentialsData.index;
-            var deleteButtons = $('.delete-credentials-button');
-
-            this.disableButtons(deleteButtons, event.target, 'Deleting...');
-
-            // Delete from server's database
-            axios.delete('/oauth/clients/' + this.deleteCredentialsData.id).then(function (response) {
-                // Remove from local storage
-                _this4.clients.splice(index, 1);
-
-                // Update UI after deleting credentials
-                _this4.$nextTick(function () {
-                    $('#delete-credentials-modal').modal('close');
-
-                    _this4.enableButtons(deleteButtons, event.target, 'Delete');
-
-                    Materialize.toast('Credentials revoked', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal({
-            dismissible: false
-        });
-
-        // Initialize data
-        this.getClients();
-    }
-});
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v("\n                Manage API Credentials\n                "), _c('i', {
-    staticClass: "material-icons tooltipped",
-    attrs: {
-      "id": "show-help-info-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Click for help"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showHelpInfo = !_vm.showHelpInfo
-      }
-    }
-  }, [_vm._v("\n                    info_outline\n                ")])])]), _vm._v(" "), (_vm.showHelpInfo) ? _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-help-info-button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showHelpInfo = !_vm.showHelpInfo
-      }
-    }
-  }, [_vm._v("\n                    close\n                ")])]), _vm._v(" "), _vm._m(0)]) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
-    attrs: {
-      "href": "#!",
-      "id": "toggle-add-credentials-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new Credentials"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showAddCredentialsContainer),
-      expression: "showAddCredentialsContainer"
-    }],
-    staticClass: "collection-item",
-    attrs: {
-      "id": "add-api-container"
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-credentials-container-button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddCredentialsContainer = !_vm.showAddCredentialsContainer
-      }
-    }
-  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addCredentialsData.name),
-      expression: "addCredentialsData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-credentials-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addCredentialsData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addCredentialsData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-credentials-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addCredentialsData.redirect),
-      expression: "addCredentialsData.redirect"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-credentials-redirect",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addCredentialsData.redirect)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addCredentialsData, "redirect", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-credentials-redirect"
-    }
-  }, [_vm._v("Redirect")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn add-credentials-button z-depth-0",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addCredentials($event)
-      }
-    }
-  }, [_vm._v("\n                                Add Credentials\n                            ")])])])]), _vm._v(" "), (_vm.clients.length < 1) ? [_vm._m(2)] : _vm._l((_vm.clients), function(client, index) {
-    return _c('li', {
-      key: client.id,
-      staticClass: "collection-item avatar"
-    }, [_c('span', {
-      staticClass: "title"
-    }, [_c('b', [_vm._v(" " + _vm._s(client.name) + " ")])]), _vm._v(" "), _c('p', {
-      staticClass: "grey-text"
-    }, [_vm._v("\n                        CLIENT_ID: " + _vm._s(client.id) + " "), _c('br'), _vm._v("\n                        CLIENT_SECRET: " + _vm._s(client.secret) + " "), _c('br'), _vm._v("\n                        Redirect: " + _vm._s(client.redirect) + "\n                    ")]), _vm._v(" "), _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn edit-credentials-button \n                                custom-secondary-btn\n                                blue-text \n                                text-darken-1\n                                z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.toggleEditCredentialsModal(index)
-        }
-      }
-    }, [_vm._v("\n                            Edit\n                        ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat delete-credentials-button custom-tertiary-btn",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.toggleDeleteCredentialsModal(index)
-        }
-      }
-    }, [_vm._v("\n                            Delete\n                        ")])])])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
-    attrs: {
-      "id": "edit-credentials-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editCredentialsData.name),
-      expression: "editCredentialsData.name"
-    }],
-    attrs: {
-      "id": "edit-credentials-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editCredentialsData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editCredentialsData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-credentials-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editCredentialsData.redirect),
-      expression: "editCredentialsData.redirect"
-    }],
-    attrs: {
-      "id": "edit-credentials-redirect",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editCredentialsData.redirect)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editCredentialsData, "redirect", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-credentials-redirect"
-    }
-  }, [_vm._v("Redirect")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect btn-flat update-credentials-button",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action \n                        waves-effect \n                        btn\n                        update-credentials-button\n                        blue darken-1\n                        z-depth-0",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.updateCredentials($event)
-      }
-    }
-  }, [_vm._v("\n                    Update\n                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal modal-fixed-footer",
-    attrs: {
-      "id": "delete-credentials-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(6), _vm._v(" "), _c('p'), _c('blockquote', {
-    staticClass: "error"
-  }, [_vm._v("\n                            THIS ACTION CANNOT BE UNDONE.\n                        ")]), _vm._v("\n                        Are you sure you want to delete credentials for "), _c('b', [_vm._v(_vm._s(_vm.deleteCredentialsData.name))]), _vm._v("? "), _c('br'), _vm._v(" "), _c('p')])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close waves-effect btn-flat delete-credentials-button",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Close")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action \n                    waves-effect \n                    btn \n                    delete-credentials-button\n                    red lighten-2\n                    z-depth-0",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.deleteCredentials($event)
-      }
-    }
-  }, [_vm._v("\n                    Delete\n                ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('blockquote', {}, [_vm._v("\n                    Note that the API credentials are for machine-to-machine communication. "), _c('br'), _vm._v("\n                    See "), _c('a', {
-    attrs: {
-      "href": "https://oauth.net/2/grant-types/client-credentials/"
-    }
-  }, [_vm._v("Client Credentials Grant")]), _vm._v("\n                    for more information.\n                ")]), _vm._v(" "), _c('pre', [_c('code', [_vm._v("\n1. After the client credentials are created, get your access token\n    by making a POST request to 'http://breedregistry.test/oauth/token'\n    w/ the following body data:\n\n    {\n        grant_type: 'client_credentials',\n        client_id: <client_id>,\n        client_secret: <client_secret>\n    }\n\n2. Now when the access token is acquired, every request in our API should\n    include and Authorization header with the acquired access token.\n    For example, GET request to 'http://breedregistry.test/api/v1/swines'\n    should include the following the Authorization header:\n\n    {\n        Authorization: Bearer <access_token>\n    }\n")]), _vm._v("\n                ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('blockquote', {}, [_vm._v("\n                                Note that the Client ID and Secret will be sent to your email as well.\n                            ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', {
-    staticClass: "collection-item avatar center-align"
-  }, [_c('span', {
-    staticClass: "title"
-  }, [_vm._v(" No clients yet.")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Edit Credentials\n                    "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Delete Credentials\n                    "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-13cd11b7", module.exports)
-  }
-}
-
-/***/ }),
-/* 124 */
+/* 139 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

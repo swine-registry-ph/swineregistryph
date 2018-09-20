@@ -30,7 +30,7 @@
                     </span>
                     <p :class="{ 'grey-text text-darken-2': farm.is_suspended }">
                         <template v-if="farm.is_suspended">
-                            <b> SUSPENDED </b> <br/>
+                            <b class="red-text text-lighten-1"> SUSPENDED • ACCREDITATION EXPIRED </b> <br/>
                         </template>
                         Accreditation No. : {{ farm.farm_accreditation_no }} <br/>
                         Accreditation Date. : {{ convertToReadableDate(farm.farm_accreditation_date) }}  <br/>
