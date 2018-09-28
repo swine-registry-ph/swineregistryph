@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Swine;
 use Illuminate\Http\Request;
 
-use Auth;
-
-class BreederController extends Controller
+class InspectionController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,9 +21,8 @@ class BreederController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function breederView()
     {
-        return view('users.breeder.home');
+        return view('users.breeder.inspectionRequests');
     }
-
 }

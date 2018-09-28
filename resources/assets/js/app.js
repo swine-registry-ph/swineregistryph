@@ -30,6 +30,7 @@ Vue.component('manage-properties', require('./components/ManageProperties.vue'))
 Vue.component('manage-apis', require('./components/ManageAPIs.vue'));
 
 // Breeder
+Vue.component('inspection-requests-breeder', require('./components/InspectionRequestsBreeder.vue'));
 Vue.component('register-swine', require('./components/RegisterSwine.vue'));
 Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
 
@@ -62,6 +63,7 @@ const nav = new Vue({
                 showRegForm: false,
                 viewRegdSwine: false,
                 viewSwinePedigree: false,
+                showInspection: false, 
                 manageFarms: false,
                 reports: false
             },
@@ -129,6 +131,10 @@ const nav = new Vue({
 
             case '/breeder/manage-swine/view':
                 this.currentRoute.breeder.viewRegdSwine = true;
+                break;
+
+            case '/breeder/inspection':
+                this.currentRoute.breeder.showInspection = true;
                 break;
 
             case '/breeder/pedigree':
