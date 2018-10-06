@@ -20,8 +20,11 @@ class CreateInspectionRequestsTable extends Migration
             $table->foreign('breeder_id')->references('id')->on('breeders');
             $table->integer('farm_id')->unsigned();
             $table->foreign('farm_id')->references('id')->on('farms');
-            $table->date('date_requested');
-            $table->date('date_inspection');
+            $table->date('date_requested')->nullable();
+            $table->date('date_inspection')->nullable();
+            $table->enum('status', [
+                'draft', 'requested', 'for_inspection', 'approved'
+            ])->default('draft');
             $table->timestamps();
         });
     }

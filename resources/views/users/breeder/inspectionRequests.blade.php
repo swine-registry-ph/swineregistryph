@@ -8,7 +8,12 @@
 
 <div class="">
     <div class="row">
-        <inspection-requests-breeder> </inspection-requests-breeder>
+        <inspection-requests-breeder 
+            :inspection-requests="{{ $customInspectionRequests }}"
+            :current-filter-options="{{ $currentFilterOptions }}"
+            :view-url="'{{ route('breederInspection') }}'"
+        >  
+        </inspection-requests-breeder>
     </div>
 </div>
 
