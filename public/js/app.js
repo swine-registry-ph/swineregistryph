@@ -7229,7 +7229,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
+exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -7373,19 +7373,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
+        user: Object,
         currentFilterOptions: Object,
-        inspectionRequests: Array,
+        customInspectionRequests: Array,
+        farmOptions: Array,
         viewUrl: String
     },
 
     data: function data() {
         return {
+            showAddRequestInput: false,
             pageNumber: 0,
             paginationSize: 15,
             filterOptions: this.currentFilterOptions,
+            inspectionRequests: this.customInspectionRequests,
             statuses: [{
                 text: 'Draft',
                 value: 'draft'
@@ -7398,7 +7432,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, {
                 text: 'Approved',
                 value: 'approved'
-            }]
+            }],
+            addRequestData: {
+                breederId: this.user.id,
+                farmId: ''
+            }
         };
     },
 
@@ -7464,6 +7502,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // Redirect to new url
             if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
+        },
+        addInspectionRequest: function addInspectionRequest(event) {
+            var _this = this;
+
+            var vm = this;
+            var addInspectionRequestBtn = $('.add-request-button');
+
+            this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/breeder/inspection', {
+                breederId: vm.addRequestData.breederId,
+                farmId: vm.addRequestData.farmId
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of request data
+                vm.inspectionRequests.push(response.data);
+                vm.addRequestData.farmId = '';
+
+                // Update UI after adding inspection request
+                vm.$nextTick(function () {
+                    _this.enableButtons(addInspectionRequestBtn, event.target, 'Add Inspection Request');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Inspection request added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
     }
 });
@@ -7544,17 +7618,75 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.toggleAddRequestContainer()
+        _vm.showAddRequestInput = !_vm.showAddRequestInput
       }
     }
   }, [_c('i', {
     staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(request, index) {
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddRequestInput),
+      expression: "showAddRequestInput"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-request-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-request-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddRequestInput = !_vm.showAddRequestInput
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Farm",
+      "options": _vm.farmOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.addRequestData.farmId = val
+      }
+    },
+    model: {
+      value: (_vm.addRequestData.farmId),
+      callback: function($$v) {
+        _vm.$set(_vm.addRequestData, "farmId", $$v)
+      },
+      expression: "addRequestData.farmId"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-request-button",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addInspectionRequest($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Inspection Request\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(request, index) {
     return _c('li', {
       staticClass: "collection-item avatar"
     }, [_c('span', [_c('b', [_vm._v("Request ID : " + _vm._s(request.id))]), _vm._v(" "), _c('i', {
       staticClass: "material-icons"
-    }), _vm._v(" "), _c('br'), _vm._v("\n                    " + _vm._s(request.farmName) + " "), _c('br'), _vm._v(" "), (request.status === 'draft') ? [_c('span', [_vm._v("Draft")])] : _vm._e(), _vm._v(" "), (request.status === 'requested') ? [_c('span', [_vm._v("Requested")])] : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? [_c('span', [_vm._v("For Inspection")])] : _vm._e(), _vm._v(" "), (request.status === 'approved') ? [_c('span', [_vm._v("Approved")])] : _vm._e()], 2), _vm._v(" "), (request.status === 'draft') ? _c('span', {
+    }), _vm._v(" "), _c('br'), _vm._v(" "), (request.status === 'draft') ? [_c('span', [_vm._v("(Draft)")])] : _vm._e(), _vm._v(" "), (request.status === 'requested') ? [_c('span', [_vm._v("(Requested)")])] : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? [_c('span', [_vm._v("(For Inspection)")])] : _vm._e(), _vm._v(" "), (request.status === 'approved') ? [_c('span', [_vm._v("(Approved)")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v("\n                    " + _vm._s(request.farmName) + "\n                ")], 2), _vm._v(" "), (request.status === 'draft') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "btn\n                            add-swine-button\n                            blue darken-1\n                            z-depth-0",

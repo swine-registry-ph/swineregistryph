@@ -31,7 +31,7 @@
             <ul class="collection with-header">
                 <!-- Toggle add inspection request container button -->
                 <li class="collection-header">
-                    <a @click.prevent="toggleAddRequestContainer()"
+                    <a @click.prevent="showAddRequestInput = !showAddRequestInput"
                         href="#!"
                         id="toggle-add-request-container-button"
                         class="btn-floating waves-effect waves-light tooltipped"
@@ -42,6 +42,36 @@
                         <i class="material-icons right">add</i>
                     </a>
                 </li>
+                <!-- Add inspection request container -->
+                <li v-show="showAddRequestInput" id="add-request-container" class="collection-item">
+                    <div class="row">
+                        <div class="col s12">
+                            <i @click.prevent="showAddRequestInput = !showAddRequestInput"
+                                id="close-add-request-container-button"
+                                class="material-icons right"
+                            >
+                                close
+                            </i>
+                        </div>
+                        <div class="input-field col s4 offset-s4">
+                             <app-input-select
+                                labelDescription="Farm"
+                                v-model="addRequestData.farmId"
+                                :options="farmOptions"
+                                @select="val => {addRequestData.farmId = val}"
+                            >
+                            </app-input-select>
+                        </div>
+                        <div class="col s4 offset-s4">
+                            <a @click.prevent="addInspectionRequest($event)"
+                                href="#!"
+                                class="right btn z-depth-0 add-request-button"
+                            >
+                                Add Inspection Request
+                            </a>
+                        </div>
+                    </div>
+                </li>
                 <!-- Existing Inspection Requests container -->
                 <li v-for="(request, index) in paginatedRequests" 
                     class="collection-item avatar"
@@ -50,19 +80,19 @@
                     <span>
                         <b>Request ID : {{ request.id }}</b> 
                         <i class="material-icons"></i> <br>
-                        {{ request.farmName }} <br>
                         <template v-if="request.status === 'draft'">
-                            <span>Draft</span>
+                            <span>(Draft)</span>
                         </template>
                         <template v-if="request.status === 'requested'">
-                            <span>Requested</span>
+                            <span>(Requested)</span>
                         </template>
                         <template v-if="request.status === 'for_inspection'">
-                            <span>For Inspection</span>
+                            <span>(For Inspection)</span>
                         </template>
                         <template v-if="request.status === 'approved'">
-                            <span>Approved</span>
-                        </template>
+                            <span>(Approved)</span>
+                        </template> <br>
+                        {{ request.farmName }}
                     </span>
                     <span v-if="request.status === 'draft'" 
                         class="secondary-content"
@@ -134,16 +164,20 @@
 <script>
     export default {
         props: {
+            user: Object,
             currentFilterOptions: Object,
-            inspectionRequests: Array,
+            customInspectionRequests: Array,
+            farmOptions: Array,
             viewUrl: String
         },
 
         data() {
             return {
+                showAddRequestInput: false,
                 pageNumber: 0,
                 paginationSize: 15,
                 filterOptions: this.currentFilterOptions,
+                inspectionRequests: this.customInspectionRequests,
                 statuses: [
                     {
                         text: 'Draft',
@@ -161,7 +195,11 @@
                         text: 'Approved',
                         value: 'approved'
                     }
-                ]
+                ],
+                addRequestData: {
+                    breederId: this.user.id,
+                    farmId: ''
+                }
             }
         },
 
@@ -233,6 +271,45 @@
                 else window.location = url;
             },
 
+            addInspectionRequest(event) {
+                const vm = this;
+                const addInspectionRequestBtn = $('.add-request-button');
+
+                this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
+
+                // Add to server's database
+                axios.post('/breeder/inspection', {
+                    breederId: vm.addRequestData.breederId,
+                    farmId: vm.addRequestData.farmId
+                })
+                .then((response) => {
+                    // Put response in local data storage and erase adding of request data
+                    vm.inspectionRequests.push(response.data);
+                    vm.addRequestData.farmId = '';
+
+                    // Update UI after adding inspection request
+                    vm.$nextTick(() => {
+                        this.enableButtons(addInspectionRequestBtn, event.target, 'Add Inspection Request');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Inspection request added', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            disableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.addClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            },
+
+            enableButtons(buttons, actionBtnElement, textToShow) {
+                buttons.removeClass('disabled');
+                actionBtnElement.innerHTML = textToShow;
+            }
+
         }
     }
 </script>
@@ -240,6 +317,15 @@
 <style scoped lang="css">
     .add-swine-button {
         margin-right: .5rem;
+    }
+
+    #add-request-container .input-field {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    #close-add-request-container-button {
+        cursor: pointer;
     }
 
     .custom-secondary-btn {

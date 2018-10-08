@@ -8,9 +8,11 @@
 
 <div class="">
     <div class="row">
-        <inspection-requests-breeder 
-            :inspection-requests="{{ $customInspectionRequests }}"
+        <inspection-requests-breeder
+            :user="{{ Auth::user()->userable()->first() }}" 
+            :custom-inspection-requests="{{ $customInspectionRequests }}"
             :current-filter-options="{{ $currentFilterOptions }}"
+            :farm-options="{{ $farmOptions }}"
             :view-url="'{{ route('breederInspection') }}'"
         >  
         </inspection-requests-breeder>
