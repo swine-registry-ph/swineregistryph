@@ -1,183 +1,198 @@
 <template lang="html">
     <div class="col s10 offset-s1">
+        
+        <transition name="view-fade">
+        <div v-if="!showAddSwine">
+            <div class="col s12">
+                <h4 class="title-page"> Inspection Requests </h4>
+            </div>
 
-        <div class="col s12">
-            <h4 class="title-page"> Inspection Requests </h4>
-        </div>
-
-        <div class="col s4 m3 l2">
-            <ul class="collapsible" data-collapsible="expandable">
-                <li>
-                    <!-- Status filter -->
-                    <div class="collapsible-header active"><b>Status</b></div>
-                    <div class="collapsible-body">
-                        <p class="range-field">
-                            <template v-for="status in statuses">
-                                <input v-model="filterOptions.status"
-                                    type="checkbox" 
-                                    class="filled-in" 
-                                    :value="status.value" 
-                                    :id="status.value"
-                                />
-                                <label :for="status.value"> {{status.text}} </label> <br>
-                            </template>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="col s8 m9 l10">
-            <ul class="collection with-header">
-                <!-- Toggle add inspection request container button -->
-                <li class="collection-header">
-                    <a @click.prevent="showAddRequestInput = !showAddRequestInput"
-                        href="#!"
-                        id="toggle-add-request-container-button"
-                        class="btn-floating waves-effect waves-light tooltipped"
-                        data-position="right"
-                        data-delay="50"
-                        data-tooltip="Add new inspection request"
-                    >
-                        <i class="material-icons right">add</i>
-                    </a>
-                </li>
-                <!-- Add inspection request container -->
-                <li v-show="showAddRequestInput" id="add-request-container" class="collection-item">
-                    <div class="row">
-                        <div class="col s12">
-                            <i @click.prevent="showAddRequestInput = !showAddRequestInput"
-                                id="close-add-request-container-button"
-                                class="material-icons right"
-                            >
-                                close
-                            </i>
+            <div class="col s4 m3 l2">
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <!-- Status filter -->
+                        <div class="collapsible-header active"><b>Status</b></div>
+                        <div class="collapsible-body">
+                            <p class="range-field">
+                                <template v-for="status in statuses">
+                                    <input v-model="filterOptions.status"
+                                        type="checkbox" 
+                                        class="filled-in" 
+                                        :value="status.value" 
+                                        :id="status.value"
+                                    />
+                                    <label :for="status.value"> {{status.text}} </label> <br>
+                                </template>
+                            </p>
                         </div>
-                        <div class="input-field col s4 offset-s4">
-                             <app-input-select
-                                labelDescription="Farm"
-                                v-model="addRequestData.farmId"
-                                :options="farmOptions"
-                                @select="val => {addRequestData.farmId = val}"
-                            >
-                            </app-input-select>
-                        </div>
-                        <div class="col s4 offset-s4">
-                            <a @click.prevent="addInspectionRequest($event)"
-                                href="#!"
-                                class="right btn z-depth-0 add-request-button"
-                            >
-                                Add Inspection Request
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- Existing Inspection Requests container -->
-                <li v-for="(request, index) in paginatedRequests" 
-                    class="collection-item avatar"
-                    :key="request.id"
-                >
-                    <span>
-                        <b>Request ID : {{ request.id }}</b> <br>
-                        <template v-if="request.status === 'draft'">
-                            <span><b>(Draft)</b></span>
-                        </template>
-                        <template v-if="request.status === 'requested'">
-                            <span>
-                                <b>(Requested)</b> <br>
-                                {{ request.dateRequested }}
-                            </span>
-                        </template>
-                        <template v-if="request.status === 'for_inspection'">
-                            <span>
-                                <b>(For Inspection)</b> <br>
-                                {{ request.dateInspection }}
-                            </span>
-                        </template>
-                        <template v-if="request.status === 'approved'">
-                            <span>
-                                <b>(Approved)</b> <br>
-                                {{ request.dateApproved }}
-                            </span>
-                        </template> <br> <br>
-                        <span class="grey-text text-darken-1">
-                            <i class="material-icons left">location_on</i>
-                            {{ request.farmName }}
-                        </span>
-                    </span>
-                    <span v-if="request.status === 'draft'" 
-                        class="secondary-content"
-                    >
-                        <a @click.prevent=""
-                            href="#"
-                            class="btn
-                                add-swine-button
-                                blue darken-1
-                                z-depth-0"
-                        >
-                            Add Swine
-                        </a>
-                        <a @click.prevent=""
-                            href="#"
-                            class="btn btn-flat 
-                                blue-text
-                                text-darken-1 
-                                custom-secondary-btn"
-                        >
-                            Request for Inspection
-                        </a>
-                    </span>
-                    <span v-else
-                        class="secondary-content"
-                    >
-                        <a @click.prevent=""
-                            href="#"
-                            class="btn
-                                add-swine-button
-                                blue darken-1
-                                z-depth-0"
-                        >
-                            View Swine
-                        </a>
-                    </span>
-                </li>
-                <!-- Empty Inspection Requests container -->
-                <li v-show="paginatedRequests.length === 0"
-                    class="collection-item avatar center-align"
-                >
-                    <p>
-                        <b>Sorry, no request inspections found.</b>
-                    </p>
-                </li>
-            </ul>
-
-            <!-- Pagination -->
-            <div class="col s12 center-align pagination-container">
-                <ul class="pagination">
-                    <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
-                        <a @click.prevent="previousPage()">
-                            <i class="material-icons">chevron_left</i>
-                        </a>
-                    </li>
-                    <li v-for="i in pageCount"
-                        class="waves-effect"
-                        :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
-                    >
-                        <a @click.prevent="goToPage(i)"> {{ i }} </a>
-                    </li>
-                    <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
-                        <a @click.prevent="nextPage()">
-                            <i class="material-icons">chevron_right</i>
-                        </a>
                     </li>
                 </ul>
             </div>
+
+            <div class="col s8 m9 l10">
+                <ul class="collection with-header">
+                    <!-- Toggle add inspection request container button -->
+                    <li class="collection-header">
+                        <a @click.prevent="showAddRequestInput = !showAddRequestInput"
+                            href="#!"
+                            id="toggle-add-request-container-button"
+                            class="btn-floating waves-effect waves-light tooltipped"
+                            data-position="right"
+                            data-delay="50"
+                            data-tooltip="Add new inspection request"
+                        >
+                            <i class="material-icons right">add</i>
+                        </a>
+                    </li>
+                    <!-- Add inspection request container -->
+                    <li v-show="showAddRequestInput" id="add-request-container" class="collection-item">
+                        <div class="row">
+                            <div class="col s12">
+                                <i @click.prevent="showAddRequestInput = !showAddRequestInput"
+                                    id="close-add-request-container-button"
+                                    class="material-icons right"
+                                >
+                                    close
+                                </i>
+                            </div>
+                            <div class="input-field col s4 offset-s4">
+                                <app-input-select
+                                    labelDescription="Farm"
+                                    v-model="addRequestData.farmId"
+                                    :options="farmOptions"
+                                    @select="val => {addRequestData.farmId = val}"
+                                >
+                                </app-input-select>
+                            </div>
+                            <div class="col s4 offset-s4">
+                                <a @click.prevent="addInspectionRequest($event)"
+                                    href="#!"
+                                    class="right btn z-depth-0 add-request-button"
+                                >
+                                    Add Inspection Request
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Existing Inspection Requests container -->
+                    <li v-for="(request, index) in paginatedRequests" 
+                        class="collection-item avatar"
+                        :key="request.id"
+                    >
+                        <span>
+                            <b>Request ID : {{ request.id }}</b> <br>
+                            <template v-if="request.status === 'draft'">
+                                <span><b>(Draft)</b></span>
+                            </template>
+                            <template v-if="request.status === 'requested'">
+                                <span>
+                                    <b>(Requested)</b> <br>
+                                    {{ request.dateRequested }}
+                                </span>
+                            </template>
+                            <template v-if="request.status === 'for_inspection'">
+                                <span>
+                                    <b>(For Inspection)</b> <br>
+                                    {{ request.dateInspection }}
+                                </span>
+                            </template>
+                            <template v-if="request.status === 'approved'">
+                                <span>
+                                    <b>(Approved)</b> <br>
+                                    {{ request.dateApproved }}
+                                </span>
+                            </template> <br> <br>
+                            <span class="grey-text text-darken-1">
+                                <i class="material-icons left">location_on</i>
+                                {{ request.farmName }}
+                            </span>
+                        </span>
+                        <span v-if="request.status === 'draft'" 
+                            class="secondary-content"
+                        >
+                            <a @click.prevent="showAddSwineToInspectionRequestView(request.id)"
+                                href="#"
+                                class="btn
+                                    add-swine-button
+                                    blue darken-1
+                                    z-depth-0"
+                            >
+                                Add Swine
+                            </a>
+                            <a @click.prevent=""
+                                href="#"
+                                class="btn btn-flat 
+                                    blue-text
+                                    text-darken-1 
+                                    custom-secondary-btn"
+                            >
+                                Request for Inspection
+                            </a>
+                        </span>
+                        <span v-else
+                            class="secondary-content"
+                        >
+                            <a @click.prevent=""
+                                href="#"
+                                class="btn
+                                    add-swine-button
+                                    blue darken-1
+                                    z-depth-0"
+                            >
+                                View Swine
+                            </a>
+                        </span>
+                    </li>
+                    <!-- Empty Inspection Requests container -->
+                    <li v-show="paginatedRequests.length === 0"
+                        class="collection-item avatar center-align"
+                    >
+                        <p>
+                            <b>Sorry, no request inspections found.</b>
+                        </p>
+                    </li>
+                </ul>
+
+                <!-- Pagination -->
+                <div class="col s12 center-align pagination-container">
+                    <ul class="pagination">
+                        <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
+                            <a @click.prevent="previousPage()">
+                                <i class="material-icons">chevron_left</i>
+                            </a>
+                        </li>
+                        <li v-for="i in pageCount"
+                            class="waves-effect"
+                            :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
+                        >
+                            <a @click.prevent="goToPage(i)"> {{ i }} </a>
+                        </li>
+                        <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
+                            <a @click.prevent="nextPage()">
+                                <i class="material-icons">chevron_right</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        </transition>
+
+        <!-- Add Swine to Inspection Request View -->
+        <transition name="add-fade">
+            <inspection-requests-breeder-add-swine
+                v-show="showAddSwine"
+                v-on:hideAddSwineViewEvent="hideAddSwineView"
+            >
+            </inspection-requests-breeder-add-swine>
+        </transition>
   
     </div>
 </template>
 
 <script>
+    import InspectionRequestsBreederAddSwine from './InspectionRequestsBreederAddSwine.vue';
+
     export default {
         props: {
             user: Object,
@@ -187,9 +202,14 @@
             viewUrl: String
         },
 
+        components: {
+            InspectionRequestsBreederAddSwine
+        },
+
         data() {
             return {
                 showAddRequestInput: false,
+                showAddSwine: false,
                 pageNumber: 0,
                 paginationSize: 15,
                 filterOptions: this.currentFilterOptions,
@@ -316,6 +336,19 @@
                 });
             },
 
+            showAddSwineToInspectionRequestView(inspectionId) {
+                this.showAddSwine = true;
+            },
+
+            hideAddSwineView() {
+                this.showAddSwine = false;
+            
+                // Re-initialize collapsbile component
+                this.$nextTick(() => {
+                    $('.collapsible').collapsible();
+                });
+            },
+
             disableButtons(buttons, actionBtnElement, textToShow) {
                 buttons.addClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
@@ -327,6 +360,7 @@
             }
 
         }
+
     }
 </script>
 
@@ -351,6 +385,34 @@
 
     .custom-tertiary-btn:hover {
         background-color: rgba(173, 173, 173, 0.3);
+    }
+
+    /* Fade animations */
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .view-fade-enter-active {
+        transition: opacity .5s;
+    }
+
+    .view-fade-leave-active {
+        transition: opacity .15s;
+    }
+
+    .add-fade-enter-active {
+        transition: opacity 1.5s;
+    }
+
+    .add-fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    /* .fade-leave-active below version 2.1.8 */
+    .fade-enter, .fade-leave-to,
+    .view-fade-enter, .view-fade-leave-to,
+    .add-fade-enter, .add-fade-leave-to {
+        opacity: 0;
     }
 
     /* Collection customizations */

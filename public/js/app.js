@@ -7229,7 +7229,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
+exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-649d4b20], .fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-649d4b20] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-649d4b20], .fade-leave-to[data-v-649d4b20],\n.view-fade-enter[data-v-649d4b20], .view-fade-leave-to[data-v-649d4b20],\n.add-fade-enter[data-v-649d4b20], .add-fade-leave-to[data-v-649d4b20] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -7240,6 +7240,8 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__);
 //
 //
 //
@@ -7419,6 +7421,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -7429,9 +7446,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         viewUrl: String
     },
 
+    components: {
+        InspectionRequestsBreederAddSwine: __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default.a
+    },
+
     data: function data() {
         return {
             showAddRequestInput: false,
+            showAddSwine: false,
             pageNumber: 0,
             paginationSize: 15,
             filterOptions: this.currentFilterOptions,
@@ -7547,6 +7569,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
+        showAddSwineToInspectionRequestView: function showAddSwineToInspectionRequestView(inspectionId) {
+            this.showAddSwine = true;
+        },
+        hideAddSwineView: function hideAddSwineView() {
+            this.showAddSwine = false;
+
+            // Re-initialize collapsbile component
+            this.$nextTick(function () {
+                $('.collapsible').collapsible();
+            });
+        },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
             actionBtnElement.innerHTML = textToShow;
@@ -7556,6 +7589,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             actionBtnElement.innerHTML = textToShow;
         }
     }
+
 });
 
 /***/ }),
@@ -7565,14 +7599,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s10 offset-s1"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('transition', {
+    attrs: {
+      "name": "view-fade"
+    }
+  }, [(!_vm.showAddSwine) ? _c('div', [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Inspection Requests ")])]), _vm._v(" "), _c('div', {
     staticClass: "col s4 m3 l2"
   }, [_c('ul', {
     staticClass: "collapsible",
     attrs: {
       "data-collapsible": "expandable"
     }
-  }, [_c('li', [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_c('li', [_c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('b', [_vm._v("Status")])]), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('p', {
     staticClass: "range-field"
@@ -7665,7 +7709,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showAddRequestInput = !_vm.showAddRequestInput
       }
     }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s4 offset-s4"
   }, [_c('app-input-select', {
     attrs: {
@@ -7697,18 +7741,29 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addInspectionRequest($event)
       }
     }
-  }, [_vm._v("\n                            Add Inspection Request\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(request, index) {
+  }, [_vm._v("\n                                Add Inspection Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(request, index) {
     return _c('li', {
       key: request.id,
       staticClass: "collection-item avatar"
-    }, [_c('span', [_c('b', [_vm._v("Request ID : " + _vm._s(request.id))]), _vm._v(" "), _c('br'), _vm._v(" "), (request.status === 'draft') ? [_vm._m(2, true)] : _vm._e(), _vm._v(" "), (request.status === 'requested') ? [_c('span', [_c('b', [_vm._v("(Requested)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(request.dateRequested) + "\n                        ")])] : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? [_c('span', [_c('b', [_vm._v("(For Inspection)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(request.dateInspection) + "\n                        ")])] : _vm._e(), _vm._v(" "), (request.status === 'approved') ? [_c('span', [_c('b', [_vm._v("(Approved)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(request.dateApproved) + "\n                        ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_c('span', [_c('b', [_vm._v("Request ID : " + _vm._s(request.id))]), _vm._v(" "), _c('br'), _vm._v(" "), (request.status === 'draft') ? [_c('span', [_c('b', [_vm._v("(Draft)")])])] : _vm._e(), _vm._v(" "), (request.status === 'requested') ? [_c('span', [_c('b', [_vm._v("(Requested)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(request.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? [_c('span', [_c('b', [_vm._v("(For Inspection)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(request.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (request.status === 'approved') ? [_c('span', [_c('b', [_vm._v("(Approved)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(request.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                        " + _vm._s(request.farmName) + "\n                    ")])], 2), _vm._v(" "), (request.status === 'draft') ? _c('span', {
+    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(request.farmName) + "\n                        ")])], 2), _vm._v(" "), (request.status === 'draft') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn\n                            add-swine-button\n                            blue darken-1\n                            z-depth-0",
+      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showAddSwineToInspectionRequestView(request.id)
+        }
+      }
+    }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn",
       attrs: {
         "href": "#"
       },
@@ -7717,20 +7772,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           $event.preventDefault();
         }
       }
-    }, [_vm._v("\n                        Add Swine\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-        }
-      }
-    }, [_vm._v("\n                        Request for Inspection\n                    ")])]) : _c('span', {
+    }, [_vm._v("\n                            Request for Inspection\n                        ")])]) : _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn\n                            add-swine-button\n                            blue darken-1\n                            z-depth-0",
+      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
       attrs: {
         "href": "#"
       },
@@ -7739,7 +7784,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           $event.preventDefault();
         }
       }
-    }, [_vm._v("\n                        View Swine\n                    ")])])])
+    }, [_vm._v("\n                            View Swine\n                        ")])])])
   }), _vm._v(" "), _c('li', {
     directives: [{
       name: "show",
@@ -7748,7 +7793,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "paginatedRequests.length === 0"
     }],
     staticClass: "collection-item avatar center-align"
-  }, [_vm._m(3)])], 2), _vm._v(" "), _c('div', {
+  }, [_c('p', [_c('b', [_vm._v("Sorry, no request inspections found.")])])])], 2), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
     staticClass: "pagination"
@@ -7786,22 +7831,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Inspection Requests ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "collapsible-header active"
-  }, [_c('b', [_vm._v("Status")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', [_c('b', [_vm._v("(Draft)")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('b', [_vm._v("Sorry, no request inspections found.")])])
-}]}
+  }, [_vm._v("chevron_right")])])])], 2)])])]) : _vm._e()]), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "add-fade"
+    }
+  }, [_c('inspection-requests-breeder-add-swine', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddSwine),
+      expression: "showAddSwine"
+    }],
+    on: {
+      "hideAddSwineViewEvent": _vm.hideAddSwineView
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -20699,6 +20744,189 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(165)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(163),
+  /* template */
+  __webpack_require__(167),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-3e8fc49b",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/InspectionRequestsBreederAddSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] InspectionRequestsBreederAddSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3e8fc49b", Component.options)
+  } else {
+    hotAPI.reload("data-v-3e8fc49b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 161 */,
+/* 162 */,
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {},
+
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {
+        hideAddSwineView: function hideAddSwineView() {
+            this.$emit('hideAddSwineViewEvent');
+        }
+    }
+});
+
+/***/ }),
+/* 164 */,
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(166);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("352d75b5", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3e8fc49b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsBreederAddSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3e8fc49b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsBreederAddSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
+    attrs: {
+      "id": "back-to-viewing-btn",
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideAddSwineView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Add Swine to Inspection Request ")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3e8fc49b", module.exports)
+  }
+}
 
 /***/ })
 ],[19]);
