@@ -22,6 +22,7 @@ class CreateInspectionRequestsTable extends Migration
             $table->foreign('farm_id')->references('id')->on('farms');
             $table->date('date_requested')->nullable();
             $table->date('date_inspection')->nullable();
+            $table->date('date_approved')->nullable();
             $table->enum('status', [
                 'draft', 'requested', 'for_inspection', 'approved'
             ])->default('draft');

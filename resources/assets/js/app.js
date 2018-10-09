@@ -133,7 +133,7 @@ const nav = new Vue({
                 this.currentRoute.breeder.viewRegdSwine = true;
                 break;
 
-            case '/breeder/inspection':
+            case '/breeder/inspections':
                 this.currentRoute.breeder.showInspection = true;
                 break;
 

@@ -19,7 +19,7 @@ class CreateInspectionItemsTable extends Migration
             $table->foreign('inspection_request_id')->references('id')->on('inspection_requests');
             $table->integer('swine_id')->unsigned();
             $table->foreign('swine_id')->references('id')->on('swines');
-            $table->date('date_approved');
+            $table->boolean('is_approved')->default('0');
             $table->timestamps();
         });
     }

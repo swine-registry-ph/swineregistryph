@@ -75,24 +75,35 @@
                 <!-- Existing Inspection Requests container -->
                 <li v-for="(request, index) in paginatedRequests" 
                     class="collection-item avatar"
-                    :key=""
+                    :key="request.id"
                 >
                     <span>
-                        <b>Request ID : {{ request.id }}</b> 
-                        <i class="material-icons"></i> <br>
+                        <b>Request ID : {{ request.id }}</b> <br>
                         <template v-if="request.status === 'draft'">
-                            <span>(Draft)</span>
+                            <span><b>(Draft)</b></span>
                         </template>
                         <template v-if="request.status === 'requested'">
-                            <span>(Requested)</span>
+                            <span>
+                                <b>(Requested)</b> <br>
+                                {{ request.dateRequested }}
+                            </span>
                         </template>
                         <template v-if="request.status === 'for_inspection'">
-                            <span>(For Inspection)</span>
+                            <span>
+                                <b>(For Inspection)</b> <br>
+                                {{ request.dateInspection }}
+                            </span>
                         </template>
                         <template v-if="request.status === 'approved'">
-                            <span>(Approved)</span>
-                        </template> <br>
-                        {{ request.farmName }}
+                            <span>
+                                <b>(Approved)</b> <br>
+                                {{ request.dateApproved }}
+                            </span>
+                        </template> <br> <br>
+                        <span class="grey-text text-darken-1">
+                            <i class="material-icons left">location_on</i>
+                            {{ request.farmName }}
+                        </span>
                     </span>
                     <span v-if="request.status === 'draft'" 
                         class="secondary-content"
@@ -116,19 +127,24 @@
                             Request for Inspection
                         </a>
                     </span>
-                    <span v-if="request.status === 'requested'"
+                    <span v-else
                         class="secondary-content"
                     >
-                        {{ request.dateRequested }}
-                    </span>
-                    <span v-if="request.status === 'for_inspection'"
-                        class="secondary-content"
-                    >
-                        {{ request.dateInspection }}
+                        <a @click.prevent=""
+                            href="#"
+                            class="btn
+                                add-swine-button
+                                blue darken-1
+                                z-depth-0"
+                        >
+                            View Swine
+                        </a>
                     </span>
                 </li>
                 <!-- Empty Inspection Requests container -->
-                <li v-show="paginatedRequests.length === 0">
+                <li v-show="paginatedRequests.length === 0"
+                    class="collection-item avatar center-align"
+                >
                     <p>
                         <b>Sorry, no request inspections found.</b>
                     </p>
@@ -278,7 +294,7 @@
                 this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
 
                 // Add to server's database
-                axios.post('/breeder/inspection', {
+                axios.post('/breeder/inspections', {
                     breederId: vm.addRequestData.breederId,
                     farmId: vm.addRequestData.farmId
                 })
@@ -340,6 +356,7 @@
     /* Collection customizations */
     .collection-item.avatar {
         padding-left: 20px !important;
+        padding-bottom: 1.5rem;
     }
 
     /* Collapsible customizations */

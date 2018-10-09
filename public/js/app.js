@@ -564,7 +564,7 @@ var nav = new Vue({
                 this.currentRoute.breeder.viewRegdSwine = true;
                 break;
 
-            case '/breeder/inspection':
+            case '/breeder/inspections':
                 this.currentRoute.breeder.showInspection = true;
                 break;
 
@@ -7229,7 +7229,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
+exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -7240,6 +7240,22 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7512,7 +7528,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
 
             // Add to server's database
-            axios.post('/breeder/inspection', {
+            axios.post('/breeder/inspections', {
                 breederId: vm.addRequestData.breederId,
                 farmId: vm.addRequestData.farmId
             }).then(function (response) {
@@ -7683,10 +7699,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n                            Add Inspection Request\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(request, index) {
     return _c('li', {
+      key: request.id,
       staticClass: "collection-item avatar"
-    }, [_c('span', [_c('b', [_vm._v("Request ID : " + _vm._s(request.id))]), _vm._v(" "), _c('i', {
-      staticClass: "material-icons"
-    }), _vm._v(" "), _c('br'), _vm._v(" "), (request.status === 'draft') ? [_c('span', [_vm._v("(Draft)")])] : _vm._e(), _vm._v(" "), (request.status === 'requested') ? [_c('span', [_vm._v("(Requested)")])] : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? [_c('span', [_vm._v("(For Inspection)")])] : _vm._e(), _vm._v(" "), (request.status === 'approved') ? [_c('span', [_vm._v("(Approved)")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v("\n                    " + _vm._s(request.farmName) + "\n                ")], 2), _vm._v(" "), (request.status === 'draft') ? _c('span', {
+    }, [_c('span', [_c('b', [_vm._v("Request ID : " + _vm._s(request.id))]), _vm._v(" "), _c('br'), _vm._v(" "), (request.status === 'draft') ? [_vm._m(2, true)] : _vm._e(), _vm._v(" "), (request.status === 'requested') ? [_c('span', [_c('b', [_vm._v("(Requested)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(request.dateRequested) + "\n                        ")])] : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? [_c('span', [_c('b', [_vm._v("(For Inspection)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(request.dateInspection) + "\n                        ")])] : _vm._e(), _vm._v(" "), (request.status === 'approved') ? [_c('span', [_c('b', [_vm._v("(Approved)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(request.dateApproved) + "\n                        ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text text-darken-1"
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("location_on")]), _vm._v("\n                        " + _vm._s(request.farmName) + "\n                    ")])], 2), _vm._v(" "), (request.status === 'draft') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "btn\n                            add-swine-button\n                            blue darken-1\n                            z-depth-0",
@@ -7708,19 +7727,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           $event.preventDefault();
         }
       }
-    }, [_vm._v("\n                        Request for Inspection\n                    ")])]) : _vm._e(), _vm._v(" "), (request.status === 'requested') ? _c('span', {
+    }, [_vm._v("\n                        Request for Inspection\n                    ")])]) : _c('span', {
       staticClass: "secondary-content"
-    }, [_vm._v("\n                    " + _vm._s(request.dateRequested) + "\n                ")]) : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? _c('span', {
-      staticClass: "secondary-content"
-    }, [_vm._v("\n                    " + _vm._s(request.dateInspection) + "\n                ")]) : _vm._e()])
+    }, [_c('a', {
+      staticClass: "btn\n                            add-swine-button\n                            blue darken-1\n                            z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+        }
+      }
+    }, [_vm._v("\n                        View Swine\n                    ")])])])
   }), _vm._v(" "), _c('li', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.paginatedRequests.length === 0),
       expression: "paginatedRequests.length === 0"
-    }]
-  }, [_vm._m(2)])], 2), _vm._v(" "), _c('div', {
+    }],
+    staticClass: "collection-item avatar center-align"
+  }, [_vm._m(3)])], 2), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
     staticClass: "pagination"
@@ -7769,6 +7797,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "collapsible-header active"
   }, [_c('b', [_vm._v("Status")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', [_c('b', [_vm._v("(Draft)")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('b', [_vm._v("Sorry, no request inspections found.")])])
 }]}

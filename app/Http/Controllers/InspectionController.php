@@ -13,6 +13,8 @@ class InspectionController extends Controller
 {
     use CustomHelpers;
 
+    protected $evaluatorUser, $breederUser;
+
     /**
      * Create a new controller instance.
      *
@@ -26,11 +28,12 @@ class InspectionController extends Controller
     /**
      * Show Breeder's homepage view
      *
-     * @return void
+     * @return  View
      */
-    public function breederView(Request $request)
+    public function breederViewAll(Request $request)
     {
-        $breeder = Auth::user()->userable()->first();
+        $this->breederUser = Auth::user();
+        $breeder = $this->breederUser->userable()->first();
 
         $inspectionRequests = $breeder->inspectionRequests;
         $customInspectionRequests = [];
@@ -62,6 +65,7 @@ class InspectionController extends Controller
                 'evaluatorName'  => $evaluatorName,
                 'dateRequested'  => $this->changeDateFormat($inspectionRequest->date_requested),
                 'dateInspection' => $this->changeDateFormat($inspectionRequest->date_inspection),
+                'dateApproved'   => $this->changeDateFormat($inspectionRequest->date_approved),
                 'status'         => $inspectionRequest->status
             ];
         }
@@ -90,6 +94,19 @@ class InspectionController extends Controller
     }
 
     /**
+     * Show view of respective inspection request
+     *
+     * @param   integer $inspectionId
+     * @return  void
+     */
+    public function breederViewInspectionRequest(int $inspectionId)
+    {
+        if($request->ajax()) {
+
+        }
+    }
+
+    /**
      * Create an Inspection Request
      *
      * @param   Request     $request
@@ -112,6 +129,7 @@ class InspectionController extends Controller
                 'evaluatorName'  => '',
                 'dateRequested'  => '',
                 'dateInspection' => '',
+                'dateApproved'   => '',
                 'status'         => 'draft'
             ];
         }

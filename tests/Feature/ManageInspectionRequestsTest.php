@@ -46,7 +46,7 @@ class ManageInspectionRequestsTest extends TestCase
             ->withHeaders([
                 'HTTP_X-Requested-With' => 'XMLHttpRequest'
             ])
-            ->json('POST', '/breeder/inspection',
+            ->json('POST', '/breeder/inspections',
                 [
                     'breederId'         => 1,
                     'farmId'            => 1,
@@ -60,6 +60,7 @@ class ManageInspectionRequestsTest extends TestCase
                 'evaluatorName'  => '',
                 'dateRequested'  => '',
                 'dateInspection' => '',
+                'dateApproved'   => '',
                 'status'         => 'draft'                   
             ]);
     }

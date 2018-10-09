@@ -35,8 +35,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/registry-certificate/{swineId}', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
         Route::get('/pedigree', 'PedigreeController@index')->name('viewSwinePedigreePage');
         Route::get('/pedigree/reg/{regNo}/gen/{generation}', 'PedigreeController@getSwinePedigree')->name('getSwinePedigree');
-        Route::get('/inspection', 'InspectionController@breederView')->name('breederInspection');
-        Route::post('/inspection', 'InspectionController@createInspectionRequest')->name('createInspectionRequest');
+        Route::get('/inspections', 'InspectionController@breederViewAll')->name('breederInspection');
+        Route::get('/inspections/{inspectionId}', 'InspectionController@breederViewInspectionRequest')->name('breederAnInspection');
+        Route::post('/inspections', 'InspectionController@createInspectionRequest')->name('createInspectionRequest');
     });
 
     // Admin-related
