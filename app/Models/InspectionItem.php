@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 class InspectionItem extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['swine_id'];
+
+    /**
      * Get respective inspection request of 
      * the inspection item
      */

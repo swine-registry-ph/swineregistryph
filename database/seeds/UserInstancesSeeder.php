@@ -340,7 +340,7 @@ class UserInstancesSeeder extends Seeder
                     'birthYear' => \Carbon\Carbon::now()->subYear()->year,
                     'sex' => 'F',
                     'houseType' => $houseTypes[$swineHouseTypeIndex],
-                    'farmSwineId' => random_int(1000, 3000)
+                    'farmSwineId' => $farmGpDamId
                 ];
 
                 $gpDam = factory(App\Models\Swine::class)->create([

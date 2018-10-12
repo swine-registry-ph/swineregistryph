@@ -7434,6 +7434,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -7474,6 +7475,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             addRequestData: {
                 breederId: this.user.id,
                 farmId: ''
+            },
+            addSwineInspectionData: {
+                inspectionId: 0,
+                farmName: ''
             }
         };
     },
@@ -7569,8 +7574,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        showAddSwineToInspectionRequestView: function showAddSwineToInspectionRequestView(inspectionId) {
+        showAddSwineToInspectionRequestView: function showAddSwineToInspectionRequestView(inspectionId, farmName) {
             this.showAddSwine = true;
+            this.addSwineInspectionData = {
+                inspectionId: inspectionId,
+                farmName: farmName
+            };
         },
         hideAddSwineView: function hideAddSwineView() {
             this.showAddSwine = false;
@@ -7741,15 +7750,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addInspectionRequest($event)
       }
     }
-  }, [_vm._v("\n                                Add Inspection Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(request, index) {
+  }, [_vm._v("\n                                Add Inspection Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(inspection, index) {
     return _c('li', {
-      key: request.id,
+      key: inspection.id,
       staticClass: "collection-item avatar"
-    }, [_c('span', [_c('b', [_vm._v("Request ID : " + _vm._s(request.id))]), _vm._v(" "), _c('br'), _vm._v(" "), (request.status === 'draft') ? [_c('span', [_c('b', [_vm._v("(Draft)")])])] : _vm._e(), _vm._v(" "), (request.status === 'requested') ? [_c('span', [_c('b', [_vm._v("(Requested)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(request.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (request.status === 'for_inspection') ? [_c('span', [_c('b', [_vm._v("(For Inspection)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(request.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (request.status === 'approved') ? [_c('span', [_c('b', [_vm._v("(Approved)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(request.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_c('span', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))]), _vm._v(" "), _c('br'), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', [_vm._v("(Draft)")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', [_vm._v("(Requested)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', [_vm._v("(For Inspection)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', [_vm._v("(Approved)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(request.farmName) + "\n                        ")])], 2), _vm._v(" "), (request.status === 'draft') ? _c('span', {
+    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(inspection.farmName) + "\n                        ")])], 2), _vm._v(" "), (inspection.status === 'draft') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
@@ -7759,7 +7768,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showAddSwineToInspectionRequestView(request.id)
+          _vm.showAddSwineToInspectionRequestView(inspection.id, inspection.farmName)
         }
       }
     }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
@@ -7793,7 +7802,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "paginatedRequests.length === 0"
     }],
     staticClass: "collection-item avatar center-align"
-  }, [_c('p', [_c('b', [_vm._v("Sorry, no request inspections found.")])])])], 2), _vm._v(" "), _c('div', {
+  }, [_c('p', [_c('b', [_vm._v("Sorry, no inspection requests found.")])])])], 2), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
     staticClass: "pagination"
@@ -7842,6 +7851,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.showAddSwine),
       expression: "showAddSwine"
     }],
+    attrs: {
+      "inspection-data": _vm.addSwineInspectionData
+    },
     on: {
       "hideAddSwineViewEvent": _vm.hideAddSwineView
     }
@@ -20832,18 +20844,185 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: {},
+    props: {
+        inspectionData: Object
+    },
 
     data: function data() {
-        return {};
+        return {
+            loading: true,
+            availableSwines: [],
+            includedSwines: [],
+            swineIdsToAdd: []
+        };
     },
 
 
+    watch: {
+        inspectionData: {
+            handler: function handler(newValue, oldValue) {
+                if (newValue.inspectionId !== 0) {
+                    this.fetchSwinesWithInspection(newValue);
+                }
+            },
+            deep: true
+        }
+    },
+
     methods: {
         hideAddSwineView: function hideAddSwineView() {
+            this.loading = true;
             this.$emit('hideAddSwineViewEvent');
+        },
+        fetchSwinesWithInspection: function fetchSwinesWithInspection(inspectionData) {
+            var _this = this;
+
+            var inspectionId = inspectionData.inspectionId;
+
+            axios.get('/breeder/inspections/' + inspectionId + '/swines').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.availableSwines = data.available;
+                _this.includedSwines = data.included;
+
+                setTimeout(function () {
+                    _this.loading = false;
+                }, 1000);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addSwines: function addSwines(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var addSwinesBtn = $('.add-swines-btn');
+            var inspectionId = this.inspectionData.inspectionId;
+
+            this.disableButtons(addSwinesBtn, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/breeder/inspections/' + inspectionId + '/swines', {
+                swineIds: vm.swineIdsToAdd
+            }).then(function (_ref2) {
+                var data = _ref2.data;
+
+                // Put response in local data storage
+                vm.availableSwines = data.available;
+                vm.includedSwines = data.included;
+
+                // Update UI after adding swines to inspection request
+                vm.$nextTick(function () {
+                    _this2.enableButtons(addSwinesBtn, event.target, 'Add Chosen Swines');
+
+                    Materialize.toast('Swines successfully added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
         }
     }
 });
@@ -20884,7 +21063,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n#back-to-viewing-btn[data-v-3e8fc49b] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-3e8fc49b], #available-swines-container[data-v-3e8fc49b] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-3e8fc49b], .included-swine-container[data-v-3e8fc49b] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-3e8fc49b] {\n    padding: 2rem 0 0 0;\n}\n", ""]);
 
 // exports
 
@@ -20912,13 +21091,138 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons left"
-  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])])])
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(1)]) : _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card z-depth-0",
+    attrs: {
+      "id": "inspection-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))])]), _vm._v(" "), _c('p', {
+    staticClass: "grey-text"
+  }, [_vm._v("\n                    " + _vm._s(_vm.inspectionData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "included-swines-container"
+    }
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
+    return _c('div', {
+      key: swine.id,
+      staticClass: "col s6 m3 included-swine-container"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("label")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + "\n                            ")])])
+  })], 2), _vm._v(" "), _c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "available-swines-container"
+    }
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.availableSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(5)]) : _vm._l((_vm.availableSwines), function(swine) {
+    return _c('div', {
+      key: swine.id,
+      staticClass: "col s6 m3 checkbox-container"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.swineIdsToAdd),
+        expression: "swineIdsToAdd"
+      }],
+      staticClass: "filled-in",
+      attrs: {
+        "id": ("swine-" + (swine.id)),
+        "type": "checkbox"
+      },
+      domProps: {
+        "value": swine.id,
+        "checked": Array.isArray(_vm.swineIdsToAdd) ? _vm._i(_vm.swineIdsToAdd, swine.id) > -1 : (_vm.swineIdsToAdd)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.swineIdsToAdd,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = swine.id,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.swineIdsToAdd = $$a.concat([$$v]))
+            } else {
+              $$i > -1 && (_vm.swineIdsToAdd = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            _vm.swineIdsToAdd = $$c
+          }
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      staticClass: "black-text",
+      attrs: {
+        "for": ("swine-" + (swine.id))
+      }
+    }, [_vm._v(_vm._s(swine.registrationNo))])])
+  }), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align",
+    attrs: {
+      "id": "add-swine-btn-container"
+    }
+  }, [_c('button', {
+    staticClass: "btn z-depth-0 add-swines-btn",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addSwines($event)
+      }
+    }
+  }, [_vm._v("\n                                Add Chosen Swines\n                            ")])])], 2)])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Add Swine to Inspection Request ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "preloader-wrapper active"
+  }, [_c('div', {
+    staticClass: "spinner-layer spinner-blue-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Available Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no available swines.")])
 }]}
 module.exports.render._withStripped = true
 if (false) {

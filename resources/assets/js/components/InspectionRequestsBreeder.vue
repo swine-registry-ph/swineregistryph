@@ -75,42 +75,42 @@
                         </div>
                     </li>
                     <!-- Existing Inspection Requests container -->
-                    <li v-for="(request, index) in paginatedRequests" 
+                    <li v-for="(inspection, index) in paginatedRequests" 
                         class="collection-item avatar"
-                        :key="request.id"
+                        :key="inspection.id"
                     >
                         <span>
-                            <b>Request ID : {{ request.id }}</b> <br>
-                            <template v-if="request.status === 'draft'">
+                            <b>Inspection #{{ inspection.id }}</b> <br>
+                            <template v-if="inspection.status === 'draft'">
                                 <span><b>(Draft)</b></span>
                             </template>
-                            <template v-if="request.status === 'requested'">
+                            <template v-if="inspection.status === 'requested'">
                                 <span>
                                     <b>(Requested)</b> <br>
-                                    {{ request.dateRequested }}
+                                    {{ inspection.dateRequested }}
                                 </span>
                             </template>
-                            <template v-if="request.status === 'for_inspection'">
+                            <template v-if="inspection.status === 'for_inspection'">
                                 <span>
                                     <b>(For Inspection)</b> <br>
-                                    {{ request.dateInspection }}
+                                    {{ inspection.dateInspection }}
                                 </span>
                             </template>
-                            <template v-if="request.status === 'approved'">
+                            <template v-if="inspection.status === 'approved'">
                                 <span>
                                     <b>(Approved)</b> <br>
-                                    {{ request.dateApproved }}
+                                    {{ inspection.dateApproved }}
                                 </span>
                             </template> <br> <br>
                             <span class="grey-text text-darken-1">
                                 <i class="material-icons left">location_on</i>
-                                {{ request.farmName }}
+                                {{ inspection.farmName }}
                             </span>
                         </span>
-                        <span v-if="request.status === 'draft'" 
+                        <span v-if="inspection.status === 'draft'" 
                             class="secondary-content"
                         >
-                            <a @click.prevent="showAddSwineToInspectionRequestView(request.id)"
+                            <a @click.prevent="showAddSwineToInspectionRequestView(inspection.id, inspection.farmName)"
                                 href="#"
                                 class="btn
                                     add-swine-button
@@ -148,7 +148,7 @@
                         class="collection-item avatar center-align"
                     >
                         <p>
-                            <b>Sorry, no request inspections found.</b>
+                            <b>Sorry, no inspection requests found.</b>
                         </p>
                     </li>
                 </ul>
@@ -183,6 +183,7 @@
             <inspection-requests-breeder-add-swine
                 v-show="showAddSwine"
                 v-on:hideAddSwineViewEvent="hideAddSwineView"
+                :inspection-data="addSwineInspectionData"
             >
             </inspection-requests-breeder-add-swine>
         </transition>
@@ -235,6 +236,10 @@
                 addRequestData: {
                     breederId: this.user.id,
                     farmId: ''
+                },
+                addSwineInspectionData: {
+                    inspectionId: 0,
+                    farmName: ''
                 }
             }
         },
@@ -336,8 +341,12 @@
                 });
             },
 
-            showAddSwineToInspectionRequestView(inspectionId) {
+            showAddSwineToInspectionRequestView(inspectionId, farmName) {
                 this.showAddSwine = true;
+                this.addSwineInspectionData = {
+                    inspectionId,
+                    farmName
+                };
             },
 
             hideAddSwineView() {
