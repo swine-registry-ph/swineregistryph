@@ -60,11 +60,19 @@
 
                             <!-- Non-empty -->
                             <div v-else v-for="swine in includedSwines" 
-                                :key="swine.id"
+                                :key="swine.swineId"
                                 class="col s6 m3 included-swine-container"
                             >
                                 <span>
-                                    <i class="material-icons left">label</i>
+                                    <i @click.prevent="toggleRemoveSwineModal({
+                                            inspectionId: inspectionData.inspectionId,
+                                            itemId: swine.itemId,
+                                            registrationNo: swine.registrationNo
+                                        })"
+                                        class="material-icons left cancel-swine-icon"
+                                    >
+                                        cancel
+                                    </i>
                                     {{ swine.registrationNo }}
                                 </span>
                             </div>
@@ -82,16 +90,16 @@
 
                             <!-- Non-empty -->
                             <div v-else v-for="swine in availableSwines"
-                                :key="swine.id"
+                                :key="swine.swineId"
                                 class="col s6 m3 checkbox-container"
                             >
                                 <input v-model="swineIdsToAdd"
-                                    :value="swine.id"
-                                    :id="`swine-${swine.id}`"
+                                    :value="swine.swineId"
+                                    :id="`swine-${swine.swineId}`"
                                     type="checkbox" 
                                     class="filled-in" 
                                 />
-                                <label :for="`swine-${swine.id}`" class="black-text">{{ swine.registrationNo }}</label>
+                                <label :for="`swine-${swine.swineId}`" class="black-text">{{ swine.registrationNo }}</label>
                             </div>
 
                             <!-- Add Swines button container -->
@@ -105,6 +113,35 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+
+            <!-- Remove Swine Modal -->
+            <div id="remove-swine-modal" class="modal">
+                <div class="modal-content">
+                    <h4>
+                        Remove Swine
+                        <i class="material-icons right modal-close">close</i>
+                    </h4>
+
+                    <div class="row modal-input-container">
+                        <div class="col s12"><br/></div>
+                        <div class="col s12">
+                            <p>
+                                Are you sure you want to remove <b>{{ removeSwineData.registrationNo }}</b> 
+                                from <b>Inspection #{{ removeSwineData.inspectionId }}</b>?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer grey lighten-3">
+                    <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                    <a @click.prevent="removeSwine($event)" 
+                        href="#!" 
+                        class="modal-action btn red lighten-2 z-depth-0 remove-swine-btn"
+                    >
+                        Remove
+                    </a>
                 </div>
             </div>
         </div>
@@ -122,7 +159,12 @@
                 loading: true,
                 availableSwines: [],
                 includedSwines: [],
-                swineIdsToAdd: []
+                swineIdsToAdd: [],
+                removeSwineData: {
+                    inspectionId: 0,
+                    itemId: 0,
+                    registrationNo: '',
+                }
             }
         },
 
@@ -188,6 +230,51 @@
                 });
             },
 
+            toggleRemoveSwineModal(removeSwineData) {
+                this.removeSwineData = removeSwineData;
+
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#remove-swine-modal').modal('open');
+            },
+
+            removeSwine(event) {
+                const vm = this;
+                const removeSwineBtn = $('.remove-swine-btn');
+                const inspectionId = this.removeSwineData.inspectionId;
+                const itemId = this.removeSwineData.itemId;
+
+                this.disableButtons(removeSwineBtn, event.target, 'Removing...');
+
+                // Remove from server's database
+                axios.delete(`/breeder/inspections/${inspectionId}/item/${itemId}`)
+                .then(({data}) => {
+                    const registrationNo = vm.removeSwineData.registrationNo;
+
+                    // Put response in local data storage
+                    vm.availableSwines = data.available;
+                    vm.includedSwines = data.included;
+
+                    vm.removeSwineData = {
+                        inspectionId: 0,
+                        itemId: 0,
+                        registrationNo: '',
+                    };
+
+                    // Update UI after removing swine from inspection
+                    vm.$nextTick(() => {
+                        $('#remove-swine-modal').modal('close');
+
+                        this.enableButtons(removeSwineBtn, event.target, 'Remove');
+
+                        Materialize.toast(`Swine ${registrationNo} removed`, 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
             disableButtons(buttons, actionBtnElement, textToShow) {
                 buttons.addClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
@@ -222,5 +309,18 @@
 
     #add-swine-btn-container {
         padding: 2rem 0 0 0;
+    }
+
+    .cancel-swine-icon {
+        cursor: pointer;
+    }
+
+    /* Modal customizations */
+    #remove-swine-modal {
+        width: 40rem;
+    }
+
+    .modal .modal-footer {
+        padding-right: 2rem;
     }
 </style>

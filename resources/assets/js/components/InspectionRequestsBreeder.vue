@@ -355,6 +355,7 @@
                 // Re-initialize collapsbile component
                 this.$nextTick(() => {
                     $('.collapsible').collapsible();
+                    $('.tooltipped').tooltip({delay: 50});
                 });
             },
 

@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/inspections', 'InspectionController@createInspectionRequest')->name('createInspectionRequest');
         Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspection');
         Route::post('/inspections/{inspectionId}/swines', 'InspectionController@addSwinesToInspectionRequest')->name('addSwinesToInspection');
-        Route::delete('/inspections/{inspectionId}/swines', 'InspectionController@getSwineOfInspectionRequest')->name('getSwineOfInspection');
+        Route::delete('/inspections/{inspectionId}/item/{itemId}', 'InspectionController@removeInspectionItem')->name('removeInspectionItem');
     });
 
     // Admin-related
