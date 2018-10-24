@@ -2,7 +2,7 @@
     <div class="col s10 offset-s1">
         
         <transition name="view-fade">
-        <div v-if="!showAddSwine">
+        <div v-if="!showAddSwine && !showViewSwine">
             <div class="col s12">
                 <h4 class="title-page"> Inspection Requests </h4>
             </div>
@@ -110,7 +110,7 @@
                         <span v-if="inspection.status === 'draft'" 
                             class="secondary-content"
                         >
-                            <a @click.prevent="showAddSwineToInspectionRequestView(inspection.id, inspection.farmName)"
+                            <a @click.prevent="showSwineView('add', inspection.id, inspection.farmName)"
                                 href="#"
                                 class="btn
                                     add-swine-button
@@ -131,7 +131,7 @@
                         <span v-else
                             class="secondary-content"
                         >
-                            <a @click.prevent=""
+                            <a @click.prevent="showSwineView('view', inspection.id, inspection.farmName)"
                                 href="#"
                                 class="btn
                                     add-swine-button
@@ -212,11 +212,22 @@
         <transition name="add-fade">
             <inspection-requests-breeder-add-swine
                 v-show="showAddSwine"
-                v-on:hideAddSwineViewEvent="hideAddSwineView"
+                v-on:hideSwineViewEvent="hideSwineView"
                 v-on:inspectionForRequestEvent="inspectionForRequest"
-                :inspection-data="addSwineInspectionData"
+                :inspection-data="inspectionData"
             >
             </inspection-requests-breeder-add-swine>
+        </transition>
+
+        <!-- Included Swine View -->
+        <transition name="included-fade">
+            <inspection-requests-breeder-view-swine
+                v-show="showViewSwine"
+                v-on:hideSwineViewEvent="hideSwineView"
+                v-on:inspectionForRequestEvent="inspectionForRequest"
+                :inspection-data="inspectionData"
+            >
+            </inspection-requests-breeder-view-swine>
         </transition>
   
     </div>
@@ -224,6 +235,7 @@
 
 <script>
     import InspectionRequestsBreederAddSwine from './InspectionRequestsBreederAddSwine.vue';
+    import InspectionRequestsBreederViewSwine from './InspectionRequestsBreederViewSwine.vue';
 
     export default {
         props: {
@@ -235,13 +247,15 @@
         },
 
         components: {
-            InspectionRequestsBreederAddSwine
+            InspectionRequestsBreederAddSwine,
+            InspectionRequestsBreederViewSwine
         },
 
         data() {
             return {
                 showAddRequestInput: false,
                 showAddSwine: false,
+                showViewSwine: false,
                 pageNumber: 0,
                 paginationSize: 15,
                 filterOptions: this.currentFilterOptions,
@@ -268,7 +282,7 @@
                     breederId: this.user.id,
                     farmId: ''
                 },
-                addSwineInspectionData: {
+                inspectionData: {
                     inspectionId: 0,
                     farmName: ''
                 },
@@ -376,9 +390,11 @@
                 });
             },
 
-            showAddSwineToInspectionRequestView(inspectionId, farmName) {
-                this.showAddSwine = true;
-                this.addSwineInspectionData = {
+            showSwineView(type, inspectionId, farmName) {
+                if (type === 'add') this.showAddSwine = true;
+                else if (type === 'view') this.showViewSwine = true;
+
+                this.inspectionData = {
                     inspectionId,
                     farmName
                 };
@@ -389,6 +405,8 @@
                 this.requestData.farmName = farmName;
 
                 this.$nextTick(() => {
+                    // Materialize component initializations
+                    $('.modal').modal();
                     $('#request-for-inspection-modal').modal('open');
                 });
             },
@@ -434,8 +452,9 @@
                 inspectionRequest.dateRequested = data.dateRequested;
             },
 
-            hideAddSwineView() {
-                this.showAddSwine = false;
+            hideSwineView(type) {
+                if(type === 'add') this.showAddSwine = false;
+                else if(type === 'view') this.showViewSwine = false;
             
                 // Re-initialize collapsbile component
                 this.$nextTick(() => {
@@ -509,18 +528,19 @@
         transition: opacity .15s;
     }
 
-    .add-fade-enter-active {
+    .add-fade-enter-active, .included-fade-enter-active {
         transition: opacity 1.5s;
     }
 
-    .add-fade-leave-active {
+    .add-fade-leave-active, .included-fade-leave-active {
         transition: opacity .5s;
     }
 
     /* .fade-leave-active below version 2.1.8 */
     .fade-enter, .fade-leave-to,
     .view-fade-enter, .view-fade-leave-to,
-    .add-fade-enter, .add-fade-leave-to {
+    .add-fade-enter, .add-fade-leave-to,
+    .included-fade-enter, .included-fade-leave-to {
         opacity: 0;
     }
 

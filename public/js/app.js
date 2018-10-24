@@ -7229,7 +7229,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-649d4b20] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-649d4b20] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-649d4b20], .fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-649d4b20] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-649d4b20], .fade-leave-to[data-v-649d4b20],\n.view-fade-enter[data-v-649d4b20], .view-fade-leave-to[data-v-649d4b20],\n.add-fade-enter[data-v-649d4b20], .add-fade-leave-to[data-v-649d4b20] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
+exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-649d4b20] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-649d4b20] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-649d4b20], .fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-649d4b20], .included-fade-enter-active[data-v-649d4b20] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-649d4b20], .included-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-649d4b20], .fade-leave-to[data-v-649d4b20],\n.view-fade-enter[data-v-649d4b20], .view-fade-leave-to[data-v-649d4b20],\n.add-fade-enter[data-v-649d4b20], .add-fade-leave-to[data-v-649d4b20],\n.included-fade-enter[data-v-649d4b20], .included-fade-leave-to[data-v-649d4b20] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -7242,6 +7242,8 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__);
 //
 //
 //
@@ -7466,6 +7468,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -7479,13 +7493,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     components: {
-        InspectionRequestsBreederAddSwine: __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default.a
+        InspectionRequestsBreederAddSwine: __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default.a,
+        InspectionRequestsBreederViewSwine: __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue___default.a
     },
 
     data: function data() {
         return {
             showAddRequestInput: false,
             showAddSwine: false,
+            showViewSwine: false,
             pageNumber: 0,
             paginationSize: 15,
             filterOptions: this.currentFilterOptions,
@@ -7507,7 +7523,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 breederId: this.user.id,
                 farmId: ''
             },
-            addSwineInspectionData: {
+            inspectionData: {
                 inspectionId: 0,
                 farmName: ''
             },
@@ -7609,9 +7625,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        showAddSwineToInspectionRequestView: function showAddSwineToInspectionRequestView(inspectionId, farmName) {
-            this.showAddSwine = true;
-            this.addSwineInspectionData = {
+        showSwineView: function showSwineView(type, inspectionId, farmName) {
+            if (type === 'add') this.showAddSwine = true;else if (type === 'view') this.showViewSwine = true;
+
+            this.inspectionData = {
                 inspectionId: inspectionId,
                 farmName: farmName
             };
@@ -7621,6 +7638,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.requestData.farmName = farmName;
 
             this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
                 $('#request-for-inspection-modal').modal('open');
             });
         },
@@ -7663,8 +7682,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             inspectionRequest.status = 'requested';
             inspectionRequest.dateRequested = data.dateRequested;
         },
-        hideAddSwineView: function hideAddSwineView() {
-            this.showAddSwine = false;
+        hideSwineView: function hideSwineView(type) {
+            if (type === 'add') this.showAddSwine = false;else if (type === 'view') this.showViewSwine = false;
 
             // Re-initialize collapsbile component
             this.$nextTick(function () {
@@ -7767,7 +7786,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n#back-to-viewing-btn[data-v-3e8fc49b] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-3e8fc49b], #available-swines-container[data-v-3e8fc49b] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-3e8fc49b], .included-swine-container[data-v-3e8fc49b] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-3e8fc49b] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-3e8fc49b] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-3e8fc49b], #request-for-inspection-modal-2[data-v-3e8fc49b] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-3e8fc49b] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-3e8fc49b], #available-swines-container[data-v-3e8fc49b] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-3e8fc49b], .included-swine-container[data-v-3e8fc49b] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-3e8fc49b] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-3e8fc49b] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-3e8fc49b], #request-for-inspection-modal-2[data-v-3e8fc49b] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -7778,7 +7797,6 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border:
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -8009,7 +8027,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         hideAddSwineView: function hideAddSwineView() {
             this.loading = true;
-            this.$emit('hideAddSwineViewEvent');
+            this.$emit('hideSwineViewEvent', 'add');
         },
         fetchSwinesWithInspection: function fetchSwinesWithInspection(inspectionData) {
             var _this = this;
@@ -8169,9 +8187,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('a', {
-    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
     attrs: {
-      "id": "back-to-viewing-btn",
       "href": "#!"
     },
     on: {
@@ -8429,7 +8446,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "view-fade"
     }
-  }, [(!_vm.showAddSwine) ? _c('div', [_c('div', {
+  }, [(!_vm.showAddSwine && !_vm.showViewSwine) ? _c('div', [_c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
@@ -8585,7 +8602,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showAddSwineToInspectionRequestView(inspection.id, inspection.farmName)
+          _vm.showSwineView('add', inspection.id, inspection.farmName)
         }
       }
     }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
@@ -8606,6 +8623,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
+          _vm.showSwineView('view', inspection.id, inspection.farmName)
         }
       }
     }, [_vm._v("\n                            View Swine\n                        ")])])])
@@ -8700,10 +8718,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "showAddSwine"
     }],
     attrs: {
-      "inspection-data": _vm.addSwineInspectionData
+      "inspection-data": _vm.inspectionData
     },
     on: {
-      "hideAddSwineViewEvent": _vm.hideAddSwineView,
+      "hideSwineViewEvent": _vm.hideSwineView,
+      "inspectionForRequestEvent": _vm.inspectionForRequest
+    }
+  })], 1), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "included-fade"
+    }
+  }, [_c('inspection-requests-breeder-view-swine', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showViewSwine),
+      expression: "showViewSwine"
+    }],
+    attrs: {
+      "inspection-data": _vm.inspectionData
+    },
+    on: {
+      "hideSwineViewEvent": _vm.hideSwineView,
       "inspectionForRequestEvent": _vm.inspectionForRequest
     }
   })], 1)], 1)
@@ -21605,6 +21641,366 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(166)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(168),
+  /* template */
+  __webpack_require__(169),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-184cd2c7",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/InspectionRequestsBreederViewSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] InspectionRequestsBreederViewSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-184cd2c7", Component.options)
+  } else {
+    hotAPI.reload("data-v-184cd2c7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(167);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("2c52754b", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-184cd2c7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsBreederViewSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-184cd2c7\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsBreederViewSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-184cd2c7] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-184cd2c7] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-184cd2c7] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-184cd2c7], .included-swine-container[data-v-184cd2c7] {\n    padding: 1rem 0 0 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        inspectionData: Object
+    },
+
+    data: function data() {
+        return {
+            loading: true,
+            includedSwines: []
+        };
+    },
+
+
+    watch: {
+        inspectionData: {
+            handler: function handler(newValue, oldValue) {
+                if (newValue.inspectionId !== 0) {
+                    this.fetchIncludedSwinesWithInspection(newValue);
+                }
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        hideAddSwineView: function hideAddSwineView() {
+            this.loading = true;
+            this.$emit('hideSwineViewEvent', 'view');
+        },
+        fetchIncludedSwinesWithInspection: function fetchIncludedSwinesWithInspection(inspectionData) {
+            var _this = this;
+
+            var inspectionId = inspectionData.inspectionId;
+
+            axios.get('/breeder/inspections/' + inspectionId + '/swines').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.includedSwines = data.included;
+
+                setTimeout(function () {
+                    _this.loading = false;
+                }, 1000);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideAddSwineView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(1)]) : _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card z-depth-0",
+    attrs: {
+      "id": "inspection-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))]), _vm._v(" "), _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        Requested - Waiting Confirmation\n                    ")])]), _vm._v(" "), _c('p', {
+    staticClass: "grey-text"
+  }, [_vm._v("\n                    " + _vm._s(_vm.inspectionData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "included-swines-container"
+    }
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 included-swine-container"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showRemoveSwineModal({
+            inspectionId: _vm.inspectionData.inspectionId,
+            itemId: swine.itemId,
+            registrationNo: swine.registrationNo
+          })
+        }
+      }
+    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + "\n                            ")])])
+  })], 2)])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Add Swine to Inspection Request ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "preloader-wrapper active"
+  }, [_c('div', {
+    staticClass: "spinner-layer spinner-blue-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-184cd2c7", module.exports)
+  }
+}
 
 /***/ })
 ],[19]);

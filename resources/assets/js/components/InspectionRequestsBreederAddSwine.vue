@@ -8,9 +8,8 @@
         <!-- Back to Viewing button container -->
         <div class="col s12">
             <a @click.prevent="hideAddSwineView"
-                id="back-to-viewing-btn"
                 href="#!"
-                class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0"
+                class="btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn"
             >
                 <i class="material-icons left">keyboard_arrow_left</i>
                 Back To Viewing
@@ -228,7 +227,7 @@
         methods: {
             hideAddSwineView() {
                 this.loading = true;
-                this.$emit('hideAddSwineViewEvent');
+                this.$emit('hideSwineViewEvent', 'add');
             },
 
             fetchSwinesWithInspection(inspectionData) {
@@ -385,7 +384,7 @@
         background-color: white !important;
     }
 
-    #back-to-viewing-btn {
+    .back-to-viewing-btn {
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
