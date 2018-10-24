@@ -119,8 +119,7 @@
                             >
                                 Add Swine
                             </a>
-                            <a @click.prevent=""
-                                href="#"
+                            <a @click.prevent="showRequestModal(inspection.id, inspection.farmName)"
                                 class="btn btn-flat 
                                     blue-text
                                     text-darken-1 
@@ -174,6 +173,37 @@
                         </li>
                     </ul>
                 </div>
+
+                <!-- Request for Inspection Modal -->
+                <div id="request-for-inspection-modal" class="modal">
+                    <div class="modal-content">
+                        <h4>
+                            Request for Inspection
+                            <i class="material-icons right modal-close">close</i>
+                        </h4>
+
+                        <div class="row modal-input-container">
+                            <div class="col s12"><br/></div>
+                            <div class="input-field col s12">
+                                <p>
+                                    Are you sure you want to request 
+                                    <b>Inspection #{{ requestData.inspectionId }}</b>
+                                    from <b>{{ requestData.farmName }}</b>
+                                    for inspection?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer grey lighten-3">
+                        <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                        <a @click.prevent="requestForInspection($event)" 
+                            href="#!" 
+                            class="modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn"
+                        >
+                            Request
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         </transition>
@@ -183,6 +213,7 @@
             <inspection-requests-breeder-add-swine
                 v-show="showAddSwine"
                 v-on:hideAddSwineViewEvent="hideAddSwineView"
+                v-on:inspectionForRequestEvent="inspectionForRequest"
                 :inspection-data="addSwineInspectionData"
             >
             </inspection-requests-breeder-add-swine>
@@ -238,6 +269,10 @@
                     farmId: ''
                 },
                 addSwineInspectionData: {
+                    inspectionId: 0,
+                    farmName: ''
+                },
+                requestData: {
                     inspectionId: 0,
                     farmName: ''
                 }
@@ -349,6 +384,56 @@
                 };
             },
 
+            showRequestModal(inspectionId, farmName) {
+                this.requestData.inspectionId = inspectionId;
+                this.requestData.farmName = farmName;
+
+                this.$nextTick(() => {
+                    $('#request-for-inspection-modal').modal('open');
+                });
+            },
+
+            requestForInspection(event) {
+                const vm = this;
+                const requestForInspectionBtn = $('.request-for-inspection-btn');
+                const inspectionId = this.requestData.inspectionId;
+
+                this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+
+                // Update from server's database
+                axios.patch(`/breeder/inspections/${inspectionId}`, {})
+                .then(({data}) => {
+                    if(data.requested) {
+                        // Update local data storage
+                        this.inspectionForRequest({
+                            inspectionId: inspectionId,
+                            dateRequested: data.dateRequested
+                        });
+
+                        // Update UI after requesting the inspection
+                        vm.$nextTick(() => {
+                            $('#request-for-inspection-modal').modal('close');
+                            this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+    
+                            Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            inspectionForRequest(data) {
+                const index = _.findIndex(this.customInspectionRequests, 
+                    ['id', data.inspectionId]
+                );
+
+                const inspectionRequest = this.customInspectionRequests[index];
+                inspectionRequest.status = 'requested';
+                inspectionRequest.dateRequested = data.dateRequested;
+            },
+
             hideAddSwineView() {
                 this.showAddSwine = false;
             
@@ -369,6 +454,11 @@
                 actionBtnElement.innerHTML = textToShow;
             }
 
+        },
+
+        mounted() {
+            // Materialize component initializations
+            $('.modal').modal();
         }
 
     }
@@ -395,6 +485,15 @@
 
     .custom-tertiary-btn:hover {
         background-color: rgba(173, 173, 173, 0.3);
+    }
+
+    /* Modal customizations */
+    #request-for-inspection-modal {
+        width: 40rem;
+    }
+
+    .modal .modal-footer {
+        padding-right: 2rem;
     }
 
     /* Fade animations */

@@ -6,6 +6,7 @@ use App\Models\Farm;
 use App\Models\InspectionItem;
 use App\Models\InspectionRequest;
 use App\Repositories\CustomHelpers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Auth;
@@ -159,7 +160,7 @@ class InspectionController extends Controller
                 // Only include swine that's not part of any inspection request
                 if(!$swine->inspectionItem) {
                     $availableSwines[] = [
-                        'itemId'         => $item->id,
+                        'itemId'         => 0,
                         'swineId'        => $swine->id,
                         'registrationNo' => $swine->registration_no,
                         'farmSwineId'    => $swine->swineProperties
@@ -230,6 +231,28 @@ class InspectionController extends Controller
             // Return updated included and available swine
             // for the respective inspection request
             return $this->getSwinesOfInspectionRequest($request, $inspectionRequestId);
+        }
+    }
+
+    /**
+     * Request inspection
+     *
+     * @param  Request $request
+     * @param  integer $inspectionRequestId
+     * @return JSON
+     */
+    public function requestForInspection(Request $request, int $inspectionRequestId)
+    {
+        if($request->ajax()) {
+            $inspectionRequest = InspectionRequest::find($inspectionRequestId);
+            $inspectionRequest->date_requested = Carbon::now()->format('Y-m-d');
+            $inspectionRequest->status = 'requested';
+            $inspectionRequest->save();
+
+            return [
+                'dateRequested' => $this->changeDateFormat($inspectionRequest->date_requested),
+                'requested' => true
+            ];
         }
     }
 

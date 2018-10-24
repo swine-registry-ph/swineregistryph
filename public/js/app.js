@@ -7229,7 +7229,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-649d4b20], .fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-649d4b20] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-649d4b20], .fade-leave-to[data-v-649d4b20],\n.view-fade-enter[data-v-649d4b20], .view-fade-leave-to[data-v-649d4b20],\n.add-fade-enter[data-v-649d4b20], .add-fade-leave-to[data-v-649d4b20] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
+exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-649d4b20] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-649d4b20] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-649d4b20], .fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-649d4b20] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-649d4b20], .fade-leave-to[data-v-649d4b20],\n.view-fade-enter[data-v-649d4b20], .view-fade-leave-to[data-v-649d4b20],\n.add-fade-enter[data-v-649d4b20], .add-fade-leave-to[data-v-649d4b20] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -7242,6 +7242,37 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7479,6 +7510,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             addSwineInspectionData: {
                 inspectionId: 0,
                 farmName: ''
+            },
+            requestData: {
+                inspectionId: 0,
+                farmName: ''
             }
         };
     },
@@ -7581,6 +7616,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 farmName: farmName
             };
         },
+        showRequestModal: function showRequestModal(inspectionId, farmName) {
+            this.requestData.inspectionId = inspectionId;
+            this.requestData.farmName = farmName;
+
+            this.$nextTick(function () {
+                $('#request-for-inspection-modal').modal('open');
+            });
+        },
+        requestForInspection: function requestForInspection(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var requestForInspectionBtn = $('.request-for-inspection-btn');
+            var inspectionId = this.requestData.inspectionId;
+
+            this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+
+            // Update from server's database
+            axios.patch('/breeder/inspections/' + inspectionId, {}).then(function (_ref) {
+                var data = _ref.data;
+
+                if (data.requested) {
+                    // Update local data storage
+                    _this2.inspectionForRequest({
+                        inspectionId: inspectionId,
+                        dateRequested: data.dateRequested
+                    });
+
+                    // Update UI after requesting the inspection
+                    vm.$nextTick(function () {
+                        $('#request-for-inspection-modal').modal('close');
+                        _this2.enableButtons(requestForInspectionBtn, event.target, 'Request');
+
+                        Materialize.toast('Inspection #' + inspectionId + ' successfully requested.', 2000, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        inspectionForRequest: function inspectionForRequest(data) {
+            var index = _.findIndex(this.customInspectionRequests, ['id', data.inspectionId]);
+
+            var inspectionRequest = this.customInspectionRequests[index];
+            inspectionRequest.status = 'requested';
+            inspectionRequest.dateRequested = data.dateRequested;
+        },
         hideAddSwineView: function hideAddSwineView() {
             this.showAddSwine = false;
 
@@ -7598,8 +7680,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             buttons.removeClass('disabled');
             actionBtnElement.innerHTML = textToShow;
         }
-    }
+    },
 
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
 });
 
 /***/ }),
@@ -7681,7 +7767,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n#back-to-viewing-btn[data-v-3e8fc49b] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-3e8fc49b], #available-swines-container[data-v-3e8fc49b] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-3e8fc49b], .included-swine-container[data-v-3e8fc49b] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-3e8fc49b] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-3e8fc49b] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-3e8fc49b] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n#back-to-viewing-btn[data-v-3e8fc49b] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-3e8fc49b], #available-swines-container[data-v-3e8fc49b] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-3e8fc49b], .included-swine-container[data-v-3e8fc49b] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-3e8fc49b] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-3e8fc49b] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-3e8fc49b], #request-for-inspection-modal-2[data-v-3e8fc49b] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -7692,6 +7778,48 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border:
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7858,6 +7986,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 inspectionId: 0,
                 itemId: 0,
                 registrationNo: ''
+            },
+            requestData: {
+                inspectionId: 0,
+                farmName: ''
             }
         };
     },
@@ -7926,7 +8058,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        toggleRemoveSwineModal: function toggleRemoveSwineModal(removeSwineData) {
+        showRemoveSwineModal: function showRemoveSwineModal(removeSwineData) {
             this.removeSwineData = removeSwineData;
 
             // Materialize component initializations
@@ -7967,6 +8099,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     Materialize.toast('Swine ' + registrationNo + ' removed', 2000, 'green lighten-1');
                 });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRequestModal: function showRequestModal() {
+            this.requestData.inspectionId = this.inspectionData.inspectionId;
+            this.requestData.farmName = this.inspectionData.farmName;
+
+            this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#request-for-inspection-modal-2').modal('open');
+            });
+        },
+        requestForInspection: function requestForInspection(event) {
+            var _this4 = this;
+
+            var vm = this;
+            var requestForInspectionBtn = $('.request-for-inspection-btn');
+            var addSwinesBtn = $('.add-swines-btn');
+            var inspectionId = this.inspectionData.inspectionId;
+
+            this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+            this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
+
+            // Update from server's database
+            axios.patch('/breeder/inspections/' + inspectionId, {}).then(function (_ref4) {
+                var data = _ref4.data;
+
+                if (data.requested) {
+                    // Update UI after requesting the inspection
+                    vm.$nextTick(function () {
+                        $('#request-for-inspection-modal-2').modal('close');
+
+                        _this4.enableButtons(requestForInspectionBtn, event.target, 'Requested');
+
+                        Materialize.toast('Inspection #' + inspectionId + ' successfully requested.', 2000, 'green lighten-1');
+
+                        _this4.$emit('inspectionForRequestEvent', {
+                            inspectionId: inspectionId,
+                            dateRequested: data.dateRequested
+                        });
+                        _this4.hideAddSwineView();
+                    });
+                }
             }).catch(function (error) {
                 console.log(error);
             });
@@ -8018,7 +8195,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title"
-  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))])]), _vm._v(" "), _c('p', {
+  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))]), _vm._v(" "), _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showRequestModal()
+      }
+    }
+  }, [_vm._v("\n                        Request for Inspection\n                    ")])]), _vm._v(" "), _c('p', {
     staticClass: "grey-text"
   }, [_vm._v("\n                    " + _vm._s(_vm.inspectionData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
     staticClass: "row"
@@ -8040,7 +8228,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.toggleRemoveSwineModal({
+          _vm.showRemoveSwineModal({
             inspectionId: _vm.inspectionData.inspectionId,
             itemId: swine.itemId,
             registrationNo: swine.registrationNo
@@ -8117,13 +8305,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n                                Add Chosen Swines\n                            ")])])], 2)])])]), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
-      "id": "remove-swine-modal"
+      "id": "request-for-inspection-modal-2"
     }
   }, [_c('div', {
     staticClass: "modal-content"
   }, [_vm._m(6), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
   }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                            for inspection?\n                        ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.requestForInspection($event)
+      }
+    }
+  }, [_vm._v("\n                    Request\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "remove-swine-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(9), _vm._v(" "), _c('div', {
     staticClass: "col s12"
   }, [_c('p', [_vm._v("\n                            Are you sure you want to remove "), _c('b', [_vm._v(_vm._s(_vm.removeSwineData.registrationNo))]), _vm._v(" \n                            from "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.removeSwineData.inspectionId))]), _vm._v("?\n                        ")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
@@ -8176,6 +8393,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('h6', [_c('b', [_vm._v("Available Swines")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('br'), _vm._v("Sorry, there are no available swines.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Request for Inspection\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                    Remove Swine\n                    "), _c('i', {
     staticClass: "material-icons right modal-close"
@@ -8365,12 +8590,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
       staticClass: "btn btn-flat \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn",
-      attrs: {
-        "href": "#"
-      },
       on: {
         "click": function($event) {
           $event.preventDefault();
+          _vm.showRequestModal(inspection.id, inspection.farmName)
         }
       }
     }, [_vm._v("\n                            Request for Inspection\n                        ")])]) : _c('span', {
@@ -8432,7 +8655,40 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)])])]) : _vm._e()]), _vm._v(" "), _c('transition', {
+  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "request-for-inspection-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("\n                        Request for Inspection\n                        "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('br')]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                                for inspection?\n                            ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.requestForInspection($event)
+      }
+    }
+  }, [_vm._v("\n                        Request\n                    ")])])])])]) : _vm._e()]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "add-fade"
     }
@@ -8447,7 +8703,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "inspection-data": _vm.addSwineInspectionData
     },
     on: {
-      "hideAddSwineViewEvent": _vm.hideAddSwineView
+      "hideAddSwineViewEvent": _vm.hideAddSwineView,
+      "inspectionForRequestEvent": _vm.inspectionForRequest
     }
   })], 1)], 1)
 },staticRenderFns: []}

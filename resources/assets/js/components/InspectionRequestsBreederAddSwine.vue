@@ -42,6 +42,17 @@
                 <div class="card-content">
                     <span class="card-title">
                         <b>Inspection #{{ inspectionData.inspectionId }}</b>
+                        <a @click.prevent="showRequestModal()"
+                            href="#"
+                            class="btn right 
+                                blue-text
+                                text-darken-1 
+                                custom-secondary-btn
+                                z-depth-0
+                                request-for-inspection-btn"
+                        >
+                            Request for Inspection
+                        </a>
                     </span>
                     <p class="grey-text">
                         {{ inspectionData.farmName }}
@@ -64,7 +75,7 @@
                                 class="col s6 m3 included-swine-container"
                             >
                                 <span>
-                                    <i @click.prevent="toggleRemoveSwineModal({
+                                    <i @click.prevent="showRemoveSwineModal({
                                             inspectionId: inspectionData.inspectionId,
                                             itemId: swine.itemId,
                                             registrationNo: swine.registrationNo
@@ -116,6 +127,37 @@
                 </div>
             </div>
 
+            <!-- Request for Inspection Modal -->
+            <div id="request-for-inspection-modal-2" class="modal">
+                <div class="modal-content">
+                    <h4>
+                        Request for Inspection
+                        <i class="material-icons right modal-close">close</i>
+                    </h4>
+
+                    <div class="row modal-input-container">
+                        <div class="col s12"><br/></div>
+                        <div class="input-field col s12">
+                            <p>
+                                Are you sure you want to request 
+                                <b>Inspection #{{ requestData.inspectionId }}</b>
+                                from <b>{{ requestData.farmName }}</b>
+                                for inspection?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer grey lighten-3">
+                    <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                    <a @click.prevent="requestForInspection($event)" 
+                        href="#!" 
+                        class="modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn"
+                    >
+                        Request
+                    </a>
+                </div>
+            </div>
+
             <!-- Remove Swine Modal -->
             <div id="remove-swine-modal" class="modal">
                 <div class="modal-content">
@@ -164,6 +206,10 @@
                     inspectionId: 0,
                     itemId: 0,
                     registrationNo: '',
+                },
+                requestData: {
+                    inspectionId: 0,
+                    farmName: ''
                 }
             }
         },
@@ -230,7 +276,7 @@
                 });
             },
 
-            toggleRemoveSwineModal(removeSwineData) {
+            showRemoveSwineModal(removeSwineData) {
                 this.removeSwineData = removeSwineData;
 
                 // Materialize component initializations
@@ -269,6 +315,51 @@
 
                         Materialize.toast(`Swine ${registrationNo} removed`, 2000, 'green lighten-1');
                     });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
+            showRequestModal() {
+                this.requestData.inspectionId = this.inspectionData.inspectionId;
+                this.requestData.farmName = this.inspectionData.farmName;
+
+                this.$nextTick(() => {
+                    // Materialize component initializations
+                    $('.modal').modal();
+                    $('#request-for-inspection-modal-2').modal('open');
+                });
+            },
+
+            requestForInspection(event) {
+                const vm = this;
+                const requestForInspectionBtn = $('.request-for-inspection-btn');
+                const addSwinesBtn = $('.add-swines-btn');
+                const inspectionId = this.inspectionData.inspectionId;
+
+                this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+                this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
+
+                // Update from server's database
+                axios.patch(`/breeder/inspections/${inspectionId}`, {})
+                .then(({data}) => {
+                    if(data.requested) {
+                        // Update UI after requesting the inspection
+                        vm.$nextTick(() => {
+                            $('#request-for-inspection-modal-2').modal('close');
+
+                            this.enableButtons(requestForInspectionBtn, event.target, 'Requested');
+    
+                            Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
+
+                            this.$emit('inspectionForRequestEvent', {
+                                inspectionId: inspectionId,
+                                dateRequested: data.dateRequested
+                            });
+                            this.hideAddSwineView();
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -316,8 +407,12 @@
     }
 
     /* Modal customizations */
-    #remove-swine-modal {
+    #remove-swine-modal, #request-for-inspection-modal-2 {
         width: 40rem;
+    }
+
+    .modal .modal-footer {
+        padding-right: 2rem;
     }
 
     .modal .modal-footer {
