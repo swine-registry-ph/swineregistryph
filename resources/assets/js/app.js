@@ -34,6 +34,9 @@ Vue.component('inspection-requests-breeder', require('./components/InspectionReq
 Vue.component('register-swine', require('./components/RegisterSwine.vue'));
 Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
 
+// Evaluator
+Vue.component('inspection-requests-evaluator', require('./components/InspectionRequestsEvaluator.vue')); 
+
 // Genomics
 Vue.component('register-laboratory-results', require('./components/RegisterLaboratoryResults.vue'));
 Vue.component('view-laboratory-results', require('./components/ViewLaboratoryResults.vue'));
@@ -66,6 +69,9 @@ const nav = new Vue({
                 showInspection: false, 
                 manageFarms: false,
                 reports: false
+            },
+            evaluator: {
+                manageInspections: false,
             },
             genomics: {
                 regLabResults: false,
@@ -139,6 +145,10 @@ const nav = new Vue({
 
             case '/breeder/pedigree':
                 this.currentRoute.breeder.viewSwinePedigree = true;
+                break;
+
+            case '/evaluator/manage/inspections':
+                this.currentRoute.evaluator.manageInspections = true;
                 break;
 
             case '/genomics/register':

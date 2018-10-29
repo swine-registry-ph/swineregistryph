@@ -509,6 +509,7 @@
     /* Modal customizations */
     #request-for-inspection-modal {
         width: 40rem;
+        height: 100rem;
     }
 
     .modal .modal-footer {

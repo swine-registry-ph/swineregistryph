@@ -83,6 +83,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'evaluator'], function(){
 
         Route::get('/home', 'EvaluatorController@index')->name('evaluatorHome');
+        Route::get('/manage/inspections', 'InspectionController@evaluatorViewAll')->name('evaluatorInspection');
     });
 
     // Override Laravel Passport routes
