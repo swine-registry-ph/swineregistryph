@@ -361,7 +361,20 @@ class InspectionController extends Controller
                 ];
             
             case 'approved':
-                return;
+                $inspectionRequest = InspectionRequest::find($request->inspectionId);
+                $inspectionRequest->date_approved = Carbon::now()->toDateString();
+                $inspectionRequest->status = 'approved';
+                $inspectionRequest->save();
+
+                // Update respective inspection items as well
+                $inspectionRequest->inspectionItems()->update([
+                    'is_approved' => 1
+                ]);
+
+                return [
+                    'dateApproved' => $this->changeDateFormat($inspectionRequest->date_inspection),
+                    'approved' => true
+                ];
             
             default:
                 return response('Invalid operation', 401);

@@ -34,25 +34,25 @@
                     :key="inspection.id"
                 >
                     <span>
-                        <b>Inspection #{{ inspection.id }}</b> <br>
+                        <h5><b>Inspection #{{ inspection.id }}</b></h5>
                         <template v-if="inspection.status === 'draft'">
                             <span><b>(Draft)</b></span>
                         </template>
                         <template v-if="inspection.status === 'requested'">
                             <span>
-                                <b>(Requested)</b> <br>
+                                <b class="orange-text text-darken-2">Requested</b> <br>
                                 {{ inspection.dateRequested }}
                             </span>
                         </template>
                         <template v-if="inspection.status === 'for_inspection'">
                             <span>
-                                <b>(For Inspection)</b> <br>
+                                <b class="blue-text text-darken-2">For Inspection</b> <br>
                                 {{ inspection.dateInspection }}
                             </span>
                         </template>
                         <template v-if="inspection.status === 'approved'">
                             <span>
-                                <b>(Approved)</b> <br>
+                                <b class="green-text text-darken-2">Approved</b> <br>
                                 {{ inspection.dateApproved }}
                             </span>
                         </template> <br> <br>
@@ -87,11 +87,14 @@
                     <span v-if="inspection.status === 'for_inspection'"
                         class="secondary-content"
                     >
-                        <a
+                        <a @click.prevent="showApproveInspectionModal(
+                                inspection.id,
+                                inspection.farmName
+                            )"
                             href="#"
                             class="btn
                                 approve-inspection-button
-                                blue darken-1
+                                green darken-1
                                 z-depth-0"
                         >
                             Approve
@@ -110,6 +113,17 @@
                                 custom-tertiary-btn"
                         >
                             Edit Data
+                        </a>
+                    </span>
+                    <span v-if="inspection.status === 'approved'" 
+                        class="secondary-content"
+                    >
+                        <a class="btn
+                                blue
+                                darken-1
+                                z-depth-0"
+                        >
+                            View Swine
                         </a>
                     </span>
                 </li>
@@ -185,6 +199,37 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Approve Inspection Modal -->
+            <div id="approve-inspection-modal" class="modal">
+                <div class="modal-content">
+                    <h4>
+                        Approve Inspection
+                        <i class="material-icons right modal-close">close</i>
+                    </h4>
+
+                    <div class="row modal-input-container">
+                        <div class="col s12"><br/></div>
+                        <div class="input-field col s12">
+                            <p>
+                                Are you sure you want to approve 
+                                <b>Inspection #{{ approveInspectionData.inspectionId }}</b>
+                                from <b>{{ approveInspectionData.farmName }}</b>
+                                implying that its swine data are correct?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer grey lighten-3">
+                    <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                    <a @click.prevent="approveInspection($event)" 
+                        href="#!" 
+                        class="modal-action btn green darken-1 z-depth-0 approve-inspection-btn"
+                    >
+                        Approve
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -225,6 +270,10 @@
                     inspectionId: 0,
                     farmName: '',
                     dateInspection: '',
+                },
+                approveInspectionData: {
+                    inspectionId: 0,
+                    farmName: ''
                 }
             }
         },
@@ -321,7 +370,7 @@
                 // Update from server's database
                 axios.patch(`/evaluator/manage/inspections/${inspectionId}`, 
                     {
-                        inspectionId: vm.markInspectionData.inspectionId,
+                        inspectionId: inspectionId,
                         dateInspection: vm.markInspectionData.dateInspection,
                         status: 'for_inspection'
                     }
@@ -359,6 +408,60 @@
                 });
             },
 
+            showApproveInspectionModal(inspectionId, farmName) {
+                this.approveInspectionData.inspectionId = inspectionId;
+                this.approveInspectionData.farmName = farmName;
+
+                this.$nextTick(() => {
+                    // Materialize component initializations
+                    $('.modal').modal();
+                    $('#approve-inspection-modal').modal('open');
+                });
+            },
+
+            approveInspection(event) {
+                const vm = this;
+                const approveInspectionBtn = $('.approve-inspection-btn');
+                const inspectionId = this.approveInspectionData.inspectionId;
+
+                this.disableButtons(approveInspectionBtn, event.target, 'Approving...');
+
+                // Update from server's database
+                axios.patch(`/evaluator/manage/inspections/${inspectionId}`, 
+                    {
+                        inspectionId: inspectionId,
+                        status: 'approved'
+                    }
+                )
+                .then(({data}) => {
+                    if(data.approved) {
+                        // Update local data storage
+                        const index = _.findIndex(vm.customInspectionRequests, 
+                            ['id', inspectionId]
+                        );
+
+                        const inspectionRequest = vm.customInspectionRequests[index];
+                        inspectionRequest.status = 'approved';
+                        inspectionRequest.dateApproved = data.dateApproved;
+
+                        // Update UI after requesting the inspection
+                        vm.$nextTick(() => {
+                            $('#approve-inspection-modal').modal('close');
+                            this.enableButtons(approveInspectionBtn, event.target, 'Approve');
+
+                            Materialize.toast(
+                                `Inspection #${inspectionId} successfully approved.`, 
+                                2000, 
+                                'green lighten-1'
+                            );
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
+
             disableButtons(buttons, actionBtnElement, textToShow) {
                 buttons.addClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
@@ -373,7 +476,10 @@
 </script>
 
 <style scoped>
-    .approve-inspection-button, .mark-inspection-button, .view-pdf-button {
+    .approve-inspection-button, 
+    .mark-inspection-button, 
+    .view-pdf-button,
+    .approved-disabled-button {
         margin-right: .5rem;
     }
 
@@ -406,11 +512,11 @@
     }
 
     /* Modal customizations */
-    #mark-for-inspection-modal {
+    #mark-for-inspection-modal, #approve-inspection-modal {
         width: 40rem;
     }
 
-    .modal-input-container {
+    #mark-for-inspection-modal .modal-input-container {
         padding-bottom: 10rem;
     }
 

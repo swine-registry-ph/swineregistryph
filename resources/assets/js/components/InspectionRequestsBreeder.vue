@@ -80,25 +80,27 @@
                         :key="inspection.id"
                     >
                         <span>
-                            <b>Inspection #{{ inspection.id }}</b> <br>
+                            <h5><b>Inspection #{{ inspection.id }}</b></h5>
                             <template v-if="inspection.status === 'draft'">
-                                <span><b>(Draft)</b></span>
+                                <span>
+                                    <b class="grey-text text-darken-2">Draft</b>
+                                </span>
                             </template>
                             <template v-if="inspection.status === 'requested'">
                                 <span>
-                                    <b>(Requested)</b> <br>
+                                    <b class="orange-text text-darken-2">Requested</b> <br>
                                     {{ inspection.dateRequested }}
                                 </span>
                             </template>
                             <template v-if="inspection.status === 'for_inspection'">
                                 <span>
-                                    <b>(For Inspection)</b> <br>
+                                    <b class="blue-text text-darken-2">For Inspection</b> <br>
                                     {{ inspection.dateInspection }}
                                 </span>
                             </template>
                             <template v-if="inspection.status === 'approved'">
                                 <span>
-                                    <b>(Approved)</b> <br>
+                                    <b class="green-text text-darken-2">Approved</b> <br>
                                     {{ inspection.dateApproved }}
                                 </span>
                             </template> <br> <br>

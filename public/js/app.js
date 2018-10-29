@@ -7493,6 +7493,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -8947,7 +8949,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       key: inspection.id,
       staticClass: "collection-item avatar"
-    }, [_c('span', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))]), _vm._v(" "), _c('br'), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', [_vm._v("(Draft)")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', [_vm._v("(Requested)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', [_vm._v("(For Inspection)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', [_vm._v("(Approved)")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', {
+      staticClass: "grey-text text-darken-2"
+    }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
+      staticClass: "orange-text text-darken-2"
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
+      staticClass: "blue-text text-darken-2"
+    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
+      staticClass: "green-text text-darken-2"
+    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
@@ -15663,7 +15673,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], .mark-inspection-button[data-v-089bc56e], .view-pdf-button[data-v-089bc56e] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-089bc56e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-089bc56e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-089bc56e] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-089bc56e] {\n    margin: 0;\n}\np.range-field label[data-v-089bc56e] {\n    color: black;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-089bc56e] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal[data-v-089bc56e] {\n    width: 40rem;\n}\n.modal-input-container[data-v-089bc56e] {\n    padding-bottom: 10rem;\n}\n.modal .modal-footer[data-v-089bc56e] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-inspection-button[data-v-089bc56e], \n.view-pdf-button[data-v-089bc56e],\n.approved-disabled-button[data-v-089bc56e] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-089bc56e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-089bc56e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-089bc56e] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-089bc56e] {\n    margin: 0;\n}\np.range-field label[data-v-089bc56e] {\n    color: black;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-089bc56e] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal[data-v-089bc56e], #approve-inspection-modal[data-v-089bc56e] {\n    width: 40rem;\n}\n#mark-for-inspection-modal .modal-input-container[data-v-089bc56e] {\n    padding-bottom: 10rem;\n}\n.modal .modal-footer[data-v-089bc56e] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -15674,6 +15684,51 @@ exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], .mark-in
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15895,6 +15950,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 inspectionId: 0,
                 farmName: '',
                 dateInspection: ''
+            },
+            approveInspectionData: {
+                inspectionId: 0,
+                farmName: ''
             }
         };
     },
@@ -15986,7 +16045,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // Update from server's database
             axios.patch('/evaluator/manage/inspections/' + inspectionId, {
-                inspectionId: vm.markInspectionData.inspectionId,
+                inspectionId: inspectionId,
                 dateInspection: vm.markInspectionData.dateInspection,
                 status: 'for_inspection'
             }).then(function (_ref) {
@@ -16010,6 +16069,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                         Materialize.updateTextFields();
                         Materialize.toast('Inspection #' + inspectionId + ' successfully marked for inspection.', 2000, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showApproveInspectionModal: function showApproveInspectionModal(inspectionId, farmName) {
+            this.approveInspectionData.inspectionId = inspectionId;
+            this.approveInspectionData.farmName = farmName;
+
+            this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#approve-inspection-modal').modal('open');
+            });
+        },
+        approveInspection: function approveInspection(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var approveInspectionBtn = $('.approve-inspection-btn');
+            var inspectionId = this.approveInspectionData.inspectionId;
+
+            this.disableButtons(approveInspectionBtn, event.target, 'Approving...');
+
+            // Update from server's database
+            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
+                inspectionId: inspectionId,
+                status: 'approved'
+            }).then(function (_ref2) {
+                var data = _ref2.data;
+
+                if (data.approved) {
+                    // Update local data storage
+                    var index = _.findIndex(vm.customInspectionRequests, ['id', inspectionId]);
+
+                    var inspectionRequest = vm.customInspectionRequests[index];
+                    inspectionRequest.status = 'approved';
+                    inspectionRequest.dateApproved = data.dateApproved;
+
+                    // Update UI after requesting the inspection
+                    vm.$nextTick(function () {
+                        $('#approve-inspection-modal').modal('close');
+                        _this2.enableButtons(approveInspectionBtn, event.target, 'Approve');
+
+                        Materialize.toast('Inspection #' + inspectionId + ' successfully approved.', 2000, 'green lighten-1');
                     });
                 }
             }).catch(function (error) {
@@ -16093,7 +16198,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       key: inspection.id,
       staticClass: "collection-item avatar"
-    }, [_c('span', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))]), _vm._v(" "), _c('br'), _vm._v(" "), (inspection.status === 'draft') ? [_vm._m(2, true)] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', [_vm._v("(Requested)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateRequested) + "\n                        ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', [_vm._v("(For Inspection)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateInspection) + "\n                        ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', [_vm._v("(Approved)")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateApproved) + "\n                        ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_vm._m(2, true)] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
+      staticClass: "orange-text text-darken-2"
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateRequested) + "\n                        ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
+      staticClass: "blue-text text-darken-2"
+    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateInspection) + "\n                        ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
+      staticClass: "green-text text-darken-2"
+    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateApproved) + "\n                        ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
@@ -16118,15 +16229,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("\n                        View Swine\n                    ")])]) : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn\n                            approve-inspection-button\n                            blue darken-1\n                            z-depth-0",
+      staticClass: "btn\n                            approve-inspection-button\n                            green darken-1\n                            z-depth-0",
       attrs: {
         "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showApproveInspectionModal(
+            inspection.id,
+            inspection.farmName
+          )
+        }
       }
     }, [_vm._v("\n                        Approve\n                    ")]), _vm._v(" "), _c('a', {
       staticClass: "btn btn-flat\n                            view-pdf-button \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn"
     }, [_vm._v("\n                        View PDF\n                    ")]), _vm._v(" "), _c('a', {
       staticClass: "btn btn-flat\n                            blue-text\n                            text-darken-1 \n                            custom-tertiary-btn"
-    }, [_vm._v("\n                        Edit Data\n                    ")])]) : _vm._e()])
+    }, [_vm._v("\n                        Edit Data\n                    ")])]) : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn\n                            blue\n                            darken-1\n                            z-depth-0"
+    }, [_vm._v("\n                        View Swine\n                    ")])]) : _vm._e()])
   }), _vm._v(" "), _c('li', {
     directives: [{
       name: "show",
@@ -16224,7 +16348,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.markForInspection($event)
       }
     }
-  }, [_vm._v("\n                    Mark\n                ")])])])])])
+  }, [_vm._v("\n                    Mark\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "approve-inspection-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to approve \n                            "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.approveInspectionData.inspectionId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.approveInspectionData.farmName))]), _vm._v("\n                            implying that its swine data are correct?\n                        ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn green darken-1 z-depth-0 approve-inspection-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.approveInspection($event)
+      }
+    }
+  }, [_vm._v("\n                    Approve\n                ")])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -16241,6 +16394,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('p', [_c('br'), _vm._v(" "), _c('b', [_vm._v("Sorry, no inspection requests found.")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('h4', [_vm._v("\n                    Mark for Inspection\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Approve Inspection\n                    "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
