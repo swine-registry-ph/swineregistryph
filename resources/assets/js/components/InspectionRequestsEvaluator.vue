@@ -167,6 +167,7 @@
                         <div class="input-field col s12">
                             <app-input-date
                                 v-model="markInspectionData.dateInspection"
+                                :min="true"
                                 @date-select="val => {markInspectionData.dateInspection = val}"
                             >
                             </app-input-date>
@@ -309,27 +310,47 @@
 
             markForInspection(event) {
                 const vm = this;
-                const requestForInspectionBtn = $('.request-for-inspection-btn');
-                const inspectionId = this.requestData.inspectionId;
+                const markForInspectionBtn = $('.mark-for-inspection-btn');
+                const inspectionId = this.markInspectionData.inspectionId;
 
-                this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+                // Make sure dateInspection is filled out
+                if(!vm.markInspectionData.dateInspection) return;
+
+                this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
 
                 // Update from server's database
-                axios.patch(`/breeder/inspections/${inspectionId}`, {})
+                axios.patch(`/evaluator/manage/inspections/${inspectionId}`, 
+                    {
+                        inspectionId: vm.markInspectionData.inspectionId,
+                        dateInspection: vm.markInspectionData.dateInspection,
+                        status: 'for_inspection'
+                    }
+                )
                 .then(({data}) => {
-                    if(data.requested) {
+                    if(data.marked) {
                         // Update local data storage
-                        this.inspectionForRequest({
-                            inspectionId: inspectionId,
-                            dateRequested: data.dateRequested
-                        });
+                        const index = _.findIndex(vm.customInspectionRequests, 
+                            ['id', inspectionId]
+                        );
+
+                        const inspectionRequest = vm.customInspectionRequests[index];
+                        inspectionRequest.status = 'for_inspection';
+                        inspectionRequest.dateInspection = data.dateInspection;
+
+                        // Clear markInspectionData
+                        vm.markInspectionData.dateInspection = '';
 
                         // Update UI after requesting the inspection
                         vm.$nextTick(() => {
-                            $('#request-for-inspection-modal').modal('close');
-                            this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                            $('#mark-for-inspection-modal').modal('close');
+                            this.enableButtons(markForInspectionBtn, event.target, 'Mark');
     
-                            Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
+                            Materialize.updateTextFields();
+                            Materialize.toast(
+                                `Inspection #${inspectionId} successfully marked for inspection.`, 
+                                2000, 
+                                'green lighten-1'
+                            );
                         });
                     }
                 })
@@ -387,6 +408,10 @@
     /* Modal customizations */
     #mark-for-inspection-modal {
         width: 40rem;
+    }
+
+    .modal-input-container {
+        padding-bottom: 10rem;
     }
 
     .modal .modal-footer {

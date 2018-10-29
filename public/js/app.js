@@ -1950,15 +1950,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        value: String
+        value: String,
+        min: Boolean
     },
 
     mounted: function mounted() {
         var _this = this;
 
+        var customMinimun = this.min ? true : false;
+
         // Initialize datepicker
         $(this.$refs.dateSelect).pickadate({
-            max: true,
+            min: customMinimun,
+            max: customMinimun ? false : true,
             selectMonths: true,
             selectYears: 3,
             format: 'mmmm d, yyyy'
@@ -15659,7 +15663,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], .mark-inspection-button[data-v-089bc56e], .view-pdf-button[data-v-089bc56e] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-089bc56e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-089bc56e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-089bc56e] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-089bc56e] {\n    margin: 0;\n}\np.range-field label[data-v-089bc56e] {\n    color: black;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-089bc56e] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal[data-v-089bc56e] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-089bc56e] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], .mark-inspection-button[data-v-089bc56e], .view-pdf-button[data-v-089bc56e] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-089bc56e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-089bc56e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-089bc56e] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-089bc56e] {\n    margin: 0;\n}\np.range-field label[data-v-089bc56e] {\n    color: black;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-089bc56e] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal[data-v-089bc56e] {\n    width: 40rem;\n}\n.modal-input-container[data-v-089bc56e] {\n    padding-bottom: 10rem;\n}\n.modal .modal-footer[data-v-089bc56e] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -15670,6 +15674,7 @@ exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], .mark-in
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -15971,28 +15976,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var vm = this;
-            var requestForInspectionBtn = $('.request-for-inspection-btn');
-            var inspectionId = this.requestData.inspectionId;
+            var markForInspectionBtn = $('.mark-for-inspection-btn');
+            var inspectionId = this.markInspectionData.inspectionId;
 
-            this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+            // Make sure dateInspection is filled out
+            if (!vm.markInspectionData.dateInspection) return;
+
+            this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
 
             // Update from server's database
-            axios.patch('/breeder/inspections/' + inspectionId, {}).then(function (_ref) {
+            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
+                inspectionId: vm.markInspectionData.inspectionId,
+                dateInspection: vm.markInspectionData.dateInspection,
+                status: 'for_inspection'
+            }).then(function (_ref) {
                 var data = _ref.data;
 
-                if (data.requested) {
+                if (data.marked) {
                     // Update local data storage
-                    _this.inspectionForRequest({
-                        inspectionId: inspectionId,
-                        dateRequested: data.dateRequested
-                    });
+                    var index = _.findIndex(vm.customInspectionRequests, ['id', inspectionId]);
+
+                    var inspectionRequest = vm.customInspectionRequests[index];
+                    inspectionRequest.status = 'for_inspection';
+                    inspectionRequest.dateInspection = data.dateInspection;
+
+                    // Clear markInspectionData
+                    vm.markInspectionData.dateInspection = '';
 
                     // Update UI after requesting the inspection
                     vm.$nextTick(function () {
-                        $('#request-for-inspection-modal').modal('close');
-                        _this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                        $('#mark-for-inspection-modal').modal('close');
+                        _this.enableButtons(markForInspectionBtn, event.target, 'Mark');
 
-                        Materialize.toast('Inspection #' + inspectionId + ' successfully requested.', 2000, 'green lighten-1');
+                        Materialize.updateTextFields();
+                        Materialize.toast('Inspection #' + inspectionId + ' successfully marked for inspection.', 2000, 'green lighten-1');
                     });
                 }
             }).catch(function (error) {
@@ -16170,6 +16187,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', [_vm._v("\n                            Are you sure you want to mark \n                            "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.markInspectionData.inspectionId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.markInspectionData.farmName))]), _vm._v("\n                            for inspection?\n                        ")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('app-input-date', {
+    attrs: {
+      "min": true
+    },
     on: {
       "date-select": function (val) {
         _vm.markInspectionData.dateInspection = val

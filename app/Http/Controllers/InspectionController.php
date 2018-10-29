@@ -337,4 +337,36 @@ class InspectionController extends Controller
         );
     }
 
+    /**
+     * Mark inspection request for inspection
+     *
+     * @param   Request $request
+     * @return  JSON
+     */
+    public function changeStatusOfInspection(Request $request)
+    {
+        switch ($request->status) {
+            case 'for_inspection':
+                $inspectionRequest = InspectionRequest::find($request->inspectionId);
+                $inspectionRequest->date_inspection = Carbon::createFromFormat(
+                        'F d, Y', 
+                        $request->dateInspection
+                    )->toDateString();
+                $inspectionRequest->status = 'for_inspection';
+                $inspectionRequest->save();
+
+                return [
+                    'dateInspection' => $this->changeDateFormat($inspectionRequest->date_inspection),
+                    'marked' => true
+                ];
+            
+            case 'approved':
+                return;
+            
+            default:
+                return response('Invalid operation', 401);
+        }
+
+    }
+
 }
