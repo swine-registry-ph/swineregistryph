@@ -7494,7 +7494,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -7802,7 +7801,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-3e8fc49b] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-3e8fc49b], #available-swines-container[data-v-3e8fc49b] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-3e8fc49b], .included-swine-container[data-v-3e8fc49b] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-3e8fc49b] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-3e8fc49b] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-3e8fc49b], #request-for-inspection-modal-2[data-v-3e8fc49b] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-3e8fc49b] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-3e8fc49b], #available-swines-container[data-v-3e8fc49b] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-3e8fc49b], .included-swine-container[data-v-3e8fc49b] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-3e8fc49b] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-3e8fc49b] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-3e8fc49b], #request-for-inspection-modal-2[data-v-3e8fc49b] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-3e8fc49b] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -7813,6 +7812,10 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border:
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -8268,7 +8271,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           })
         }
       }
-    }, [_vm._v("\n                                    cancel\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + "\n                            ")])])
+    }, [_vm._v("\n                                    cancel\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
   })], 2), _vm._v(" "), _c('div', {
     staticClass: "col s12",
     attrs: {
@@ -8321,7 +8326,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "for": ("swine-" + (swine.swineId))
       }
-    }, [_vm._v(_vm._s(swine.registrationNo))])])
+    }, [_vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
   }), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align",
     attrs: {
@@ -8633,11 +8640,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -8746,25 +8748,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: swine.swineId,
       staticClass: "col s6 m3 included-swine-container"
     }, [_c('span', [_c('i', {
-      staticClass: "material-icons left",
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showRemoveSwineModal({
-            inspectionId: _vm.inspectionData.inspectionId,
-            itemId: swine.itemId,
-            registrationNo: swine.registrationNo
-          })
-        }
-      }
-    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + "\n                            ")])])
+      staticClass: "material-icons left"
+    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
   })], 2)])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v(" Add Swine to Inspection Request ")])])
+  }, [_vm._v(" Inspection Request Swines ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "preloader-wrapper active"
@@ -8952,9 +8946,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', {
       staticClass: "grey-text text-darken-2"
     }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
-      staticClass: "orange-text text-darken-2"
+      staticClass: "lime-text text-darken-2"
     }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
-      staticClass: "blue-text text-darken-2"
+      staticClass: "purple-text text-darken-2"
     }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
       staticClass: "green-text text-darken-2"
     }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
@@ -9108,8 +9102,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "inspection-data": _vm.inspectionData
     },
     on: {
-      "hideSwineViewEvent": _vm.hideSwineView,
-      "inspectionForRequestEvent": _vm.inspectionForRequest
+      "hideSwineViewEvent": _vm.hideSwineView
     }
   })], 1)], 1)
 },staticRenderFns: []}
@@ -15673,7 +15666,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-inspection-button[data-v-089bc56e], \n.view-pdf-button[data-v-089bc56e],\n.approved-disabled-button[data-v-089bc56e] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-089bc56e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-089bc56e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-089bc56e] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-089bc56e] {\n    margin: 0;\n}\np.range-field label[data-v-089bc56e] {\n    color: black;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-089bc56e] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal[data-v-089bc56e], #approve-inspection-modal[data-v-089bc56e] {\n    width: 40rem;\n}\n#mark-for-inspection-modal .modal-input-container[data-v-089bc56e] {\n    padding-bottom: 10rem;\n}\n.modal .modal-footer[data-v-089bc56e] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-inspection-button[data-v-089bc56e], \n.view-pdf-button[data-v-089bc56e],\n.approved-disabled-button[data-v-089bc56e] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-089bc56e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-089bc56e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-089bc56e] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-089bc56e] {\n    margin: 0;\n}\np.range-field label[data-v-089bc56e] {\n    color: black;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-089bc56e] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal[data-v-089bc56e], #approve-inspection-modal[data-v-089bc56e] {\n    width: 40rem;\n}\n#mark-for-inspection-modal .modal-input-container[data-v-089bc56e] {\n    padding-bottom: 10rem;\n}\n.modal .modal-footer[data-v-089bc56e] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-089bc56e], .fade-leave-active[data-v-089bc56e] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-089bc56e] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-089bc56e] {\n    transition: opacity .15s;\n}\n.included-fade-enter-active[data-v-089bc56e] {\n    transition: opacity 1.5s;\n}\n.included-fade-leave-active[data-v-089bc56e] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-089bc56e], .fade-leave-to[data-v-089bc56e],\n.view-fade-enter[data-v-089bc56e], .view-fade-leave-to[data-v-089bc56e],\n.included-fade-enter[data-v-089bc56e], .included-fade-leave-to[data-v-089bc56e] {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -15684,6 +15677,8 @@ exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__);
 //
 //
 //
@@ -15920,6 +15915,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -15928,10 +15953,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         viewUrl: String
     },
 
-    components: {},
+    components: {
+        InspectionRequestsEvaluatorViewSwine: __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue___default.a
+    },
 
     data: function data() {
         return {
+            showViewSwine: false,
             pageNumber: 0,
             paginationSize: 15,
             filterOptions: this.currentFilterOptions,
@@ -15946,6 +15974,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 text: 'Approved',
                 value: 'approved'
             }],
+            inspectionData: {
+                inspectionId: 0,
+                farmName: '',
+                status: ''
+            },
             markInspectionData: {
                 inspectionId: 0,
                 farmName: '',
@@ -16075,6 +16108,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
+        inspectionForMarking: function inspectionForMarking(data) {
+            var index = _.findIndex(this.inspectionRequests, ['id', data.inspectionId]);
+
+            var inspectionRequest = this.customInspectionRequests[index];
+            inspectionRequest.status = 'for_inspection';
+            inspectionRequest.dateInspection = data.dateInspection;
+        },
         showApproveInspectionModal: function showApproveInspectionModal(inspectionId, farmName) {
             this.approveInspectionData.inspectionId = inspectionId;
             this.approveInspectionData.farmName = farmName;
@@ -16121,6 +16161,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
+        showSwineView: function showSwineView(type, inspectionId, farmName, status) {
+            if (type === 'edit') this.showEditSwine = true;else if (type === 'view') this.showViewSwine = true;
+
+            this.inspectionData = {
+                inspectionId: inspectionId,
+                farmName: farmName,
+                status: status
+            };
+        },
+        hideSwineView: function hideSwineView(type) {
+            if (type === 'edit') this.showEditSwine = false;else if (type === 'view') this.showViewSwine = false;
+
+            // Re-initialize collapsbile component
+            this.$nextTick(function () {
+                $('.collapsible').collapsible();
+                $('.tooltipped').tooltip({ delay: 50 });
+            });
+        },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
             actionBtnElement.innerHTML = textToShow;
@@ -16139,14 +16197,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s10 offset-s1"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('transition', {
+    attrs: {
+      "name": "view-fade"
+    }
+  }, [(!_vm.showViewSwine) ? _c('div', [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Inspection Requests ")])]), _vm._v(" "), _c('div', {
     staticClass: "col s4 m3 l2"
   }, [_c('ul', {
     staticClass: "collapsible",
     attrs: {
       "data-collapsible": "expandable"
     }
-  }, [_c('li', [_vm._m(1), _vm._v(" "), _c('div', {
+  }, [_c('li', [_c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('b', [_vm._v("Status")])]), _vm._v(" "), _c('div', {
     staticClass: "collapsible-body"
   }, [_c('p', {
     staticClass: "range-field"
@@ -16198,20 +16266,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       key: inspection.id,
       staticClass: "collection-item avatar"
-    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_vm._m(2, true)] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
-      staticClass: "orange-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateRequested) + "\n                        ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
-      staticClass: "blue-text text-darken-2"
-    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateInspection) + "\n                        ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
+    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', [_vm._v("(Draft)")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
+      staticClass: "lime-text text-darken-2"
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
+      staticClass: "purple-text text-darken-2"
+    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
       staticClass: "green-text text-darken-2"
-    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                            " + _vm._s(inspection.dateApproved) + "\n                        ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                        " + _vm._s(inspection.farmName) + "\n                    ")])], 2), _vm._v(" "), (inspection.status === 'requested') ? _c('span', {
+    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(inspection.farmName) + "\n                        ")])], 2), _vm._v(" "), (inspection.status === 'requested') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn\n                            mark-inspection-button\n                            blue darken-1\n                            z-depth-0",
+      staticClass: "btn\n                                mark-inspection-button\n                                blue darken-1\n                                z-depth-0",
       attrs: {
         "href": "#"
       },
@@ -16224,12 +16292,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           )
         }
       }
-    }, [_vm._v("\n                        Mark for Inspection\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn"
-    }, [_vm._v("\n                        View Swine\n                    ")])]) : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? _c('span', {
+    }, [_vm._v("\n                            Mark for Inspection\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showSwineView(
+            'view',
+            inspection.id,
+            inspection.farmName,
+            inspection.status
+          )
+        }
+      }
+    }, [_vm._v("\n                            View Swine\n                        ")])]) : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn\n                            approve-inspection-button\n                            green darken-1\n                            z-depth-0",
+      staticClass: "btn\n                                approve-inspection-button\n                                blue darken-1\n                                z-depth-0",
       attrs: {
         "href": "#"
       },
@@ -16242,15 +16321,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           )
         }
       }
-    }, [_vm._v("\n                        Approve\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat\n                            view-pdf-button \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn"
-    }, [_vm._v("\n                        View PDF\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat\n                            blue-text\n                            text-darken-1 \n                            custom-tertiary-btn"
-    }, [_vm._v("\n                        Edit Data\n                    ")])]) : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? _c('span', {
+    }, [_vm._v("\n                            Approve\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat\n                                view-pdf-button \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn"
+    }, [_vm._v("\n                            View PDF\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat\n                                blue-text\n                                text-darken-1 \n                                custom-tertiary-btn"
+    }, [_vm._v("\n                            Edit Data\n                        ")])]) : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
-      staticClass: "btn\n                            blue\n                            darken-1\n                            z-depth-0"
-    }, [_vm._v("\n                        View Swine\n                    ")])]) : _vm._e()])
+      staticClass: "btn\n                                blue\n                                darken-1\n                                z-depth-0",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showSwineView(
+            'view',
+            inspection.id,
+            inspection.farmName,
+            inspection.status
+          )
+        }
+      }
+    }, [_vm._v("\n                            View Swine\n                        ")])]) : _vm._e()])
   }), _vm._v(" "), _c('li', {
     directives: [{
       name: "show",
@@ -16259,7 +16349,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "paginatedRequests.length === 0"
     }],
     staticClass: "collection-item avatar center-align"
-  }, [_vm._m(3)])], 2), _vm._v(" "), _c('div', {
+  }, [_c('p', [_c('br'), _vm._v(" "), _c('b', [_vm._v("Sorry, no inspection requests found.")])])])], 2), _vm._v(" "), _c('div', {
     staticClass: "col s12 center-align pagination-container"
   }, [_c('ul', {
     staticClass: "pagination"
@@ -16304,11 +16394,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
+  }, [_c('h4', [_vm._v("\n                        Mark for Inspection\n                        "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('br')]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to mark \n                            "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.markInspectionData.inspectionId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.markInspectionData.farmName))]), _vm._v("\n                            for inspection?\n                        ")])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                                Are you sure you want to mark \n                                "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.markInspectionData.inspectionId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.markInspectionData.farmName))]), _vm._v("\n                                for inspection?\n                            ")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('app-input-date', {
     attrs: {
@@ -16348,18 +16442,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.markForInspection($event)
       }
     }
-  }, [_vm._v("\n                    Mark\n                ")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                        Mark\n                    ")])])]), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
       "id": "approve-inspection-modal"
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_vm._m(6), _vm._v(" "), _c('div', {
+  }, [_c('h4', [_vm._v("\n                        Approve Inspection\n                        "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('br')]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to approve \n                            "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.approveInspectionData.inspectionId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.approveInspectionData.farmName))]), _vm._v("\n                            implying that its swine data are correct?\n                        ")])])])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                                Are you sure you want to approve \n                                "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.approveInspectionData.inspectionId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.approveInspectionData.farmName))]), _vm._v("\n                                implying that its swine data are correct?\n                            ")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",
@@ -16377,38 +16475,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.approveInspection($event)
       }
     }
-  }, [_vm._v("\n                    Approve\n                ")])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Inspection Requests ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "collapsible-header active"
-  }, [_c('b', [_vm._v("Status")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', [_c('b', [_vm._v("(Draft)")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br'), _vm._v(" "), _c('b', [_vm._v("Sorry, no inspection requests found.")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Mark for Inspection\n                    "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Approve Inspection\n                    "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
+  }, [_vm._v("\n                        Approve\n                    ")])])])])]) : _vm._e()]), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "included-fade"
+    }
+  }, [_c('inspection-requests-evaluator-view-swine', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showViewSwine),
+      expression: "showViewSwine"
+    }],
+    attrs: {
+      "inspection-data": _vm.inspectionData
+    },
+    on: {
+      "hideSwineViewEvent": _vm.hideSwineView,
+      "markInspectionEvent": _vm.inspectionForMarking
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -22833,6 +22919,540 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(176)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(178),
+  /* template */
+  __webpack_require__(179),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-ff4fdf8e",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/InspectionRequestsEvaluatorViewSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] InspectionRequestsEvaluatorViewSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ff4fdf8e", Component.options)
+  } else {
+    hotAPI.reload("data-v-ff4fdf8e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 176 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(177);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4f2962a2", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ff4fdf8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsEvaluatorViewSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ff4fdf8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsEvaluatorViewSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 177 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-ff4fdf8e] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-ff4fdf8e] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-ff4fdf8e] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-ff4fdf8e], .included-swine-container[data-v-ff4fdf8e] {\n    padding: 1rem 0 0 0;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal-2[data-v-ff4fdf8e] {\n    width: 40rem;\n}\n#mark-for-inspection-modal-2 .modal-input-container[data-v-ff4fdf8e] {\n    padding-bottom: 10rem;\n}\n.modal .modal-footer[data-v-ff4fdf8e] {\n    padding-right: 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 178 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        inspectionData: Object
+    },
+
+    data: function data() {
+        return {
+            loading: true,
+            includedSwines: [],
+            markInspectionData: {
+                inspectionId: 0,
+                farmName: '',
+                dateInspection: ''
+            }
+        };
+    },
+
+
+    watch: {
+        inspectionData: {
+            handler: function handler(newValue, oldValue) {
+                if (newValue.inspectionId !== 0) {
+                    this.fetchIncludedSwinesWithInspection(newValue);
+                }
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        hideAddSwineView: function hideAddSwineView() {
+            this.loading = true;
+            this.$emit('hideSwineViewEvent', 'view');
+        },
+        fetchIncludedSwinesWithInspection: function fetchIncludedSwinesWithInspection(inspectionData) {
+            var _this = this;
+
+            var inspectionId = inspectionData.inspectionId;
+
+            axios.get('/evaluator/inspections/' + inspectionId + '/swines').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.includedSwines = data.included;
+
+                setTimeout(function () {
+                    _this.loading = false;
+                }, 1000);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showMarkInspectionModal: function showMarkInspectionModal() {
+            this.markInspectionData.inspectionId = this.inspectionData.inspectionId;
+            this.markInspectionData.farmName = this.inspectionData.farmName;
+
+            this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#mark-for-inspection-modal-2').modal('open');
+            });
+        },
+        markForInspection: function markForInspection(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var markForInspectionBtn = $('.mark-for-inspection-btn');
+            var inspectionId = this.markInspectionData.inspectionId;
+
+            // Make sure dateInspection is filled out
+            if (!vm.markInspectionData.dateInspection) return;
+
+            this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
+
+            // Update from server's database
+            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
+                inspectionId: inspectionId,
+                dateInspection: vm.markInspectionData.dateInspection,
+                status: 'for_inspection'
+            }).then(function (_ref2) {
+                var data = _ref2.data;
+
+                if (data.marked) {
+                    // Clear markInspectionData
+                    vm.markInspectionData.dateInspection = '';
+
+                    // Update UI after requesting the inspection
+                    vm.$nextTick(function () {
+                        $('#mark-for-inspection-modal-2').modal('close');
+                        _this2.enableButtons(markForInspectionBtn, event.target, 'Mark');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Inspection #' + inspectionId + ' successfully marked for inspection.', 2000, 'green lighten-1');
+
+                        _this2.$emit('markInspectionEvent', {
+                            inspectionId: inspectionId,
+                            dateInspection: data.dateInspection
+                        });
+                        _this2.hideAddSwineView();
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    }
+});
+
+/***/ }),
+/* 179 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideAddSwineView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(1)]) : _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card z-depth-0",
+    attrs: {
+      "id": "inspection-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))]), _vm._v(" "), (_vm.inspectionData.status === 'requested') ? _c('a', {
+    staticClass: "btn right \n                            blue\n                            darken-1\n                            z-depth-0\n                            mark-inspection-btn",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showMarkInspectionModal()
+      }
+    }
+  }, [_vm._v("\n                        Mark for Inspection\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.inspectionData.status === 'approved') ? _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        Approved\n                    ")]) : _vm._e()]), _vm._v(" "), _c('p', {
+    staticClass: "grey-text"
+  }, [_vm._v("\n                    " + _vm._s(_vm.inspectionData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "included-swines-container"
+    }
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 included-swine-container"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
+  })], 2)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "mark-for-inspection-modal-2"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                        Are you sure you want to mark \n                        "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.markInspectionData.inspectionId))]), _vm._v("\n                        from "), _c('b', [_vm._v(_vm._s(_vm.markInspectionData.farmName))]), _vm._v("\n                        for inspection?\n                    ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('app-input-date', {
+    attrs: {
+      "min": true
+    },
+    on: {
+      "date-select": function (val) {
+        _vm.markInspectionData.dateInspection = val
+      }
+    },
+    model: {
+      value: (_vm.markInspectionData.dateInspection),
+      callback: function($$v) {
+        _vm.$set(_vm.markInspectionData, "dateInspection", $$v)
+      },
+      expression: "markInspectionData.dateInspection"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date of Inspection ")])], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 mark-for-inspection-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.markForInspection($event)
+      }
+    }
+  }, [_vm._v("\n                Mark\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Inspection Request Swines ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "preloader-wrapper active"
+  }, [_c('div', {
+    staticClass: "spinner-layer spinner-blue-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Mark for Inspection\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-ff4fdf8e", module.exports)
+  }
+}
 
 /***/ })
 ],[19]);

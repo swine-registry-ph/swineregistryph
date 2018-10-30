@@ -2,7 +2,7 @@
     <div class="col s12">
 
         <div class="col s12">
-            <h4 class="title-page"> Add Swine to Inspection Request </h4>
+            <h4 class="title-page"> Inspection Request Swines </h4>
         </div>
 
         <!-- Back to Viewing button container -->
@@ -74,16 +74,11 @@
                                 class="col s6 m3 included-swine-container"
                             >
                                 <span>
-                                    <i @click.prevent="showRemoveSwineModal({
-                                            inspectionId: inspectionData.inspectionId,
-                                            itemId: swine.itemId,
-                                            registrationNo: swine.registrationNo
-                                        })"
-                                        class="material-icons left"
-                                    >
+                                    <i class="material-icons left">
                                         check
                                     </i>
-                                    {{ swine.registrationNo }}
+                                    {{ swine.registrationNo }} <br>
+                                    <span class="grey-text">{{ swine.breedTitle }}</span>
                                 </span>
                             </div>
                         </div>

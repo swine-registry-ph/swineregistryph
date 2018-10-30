@@ -28,7 +28,6 @@ class InspectionController extends Controller
             ->only([
                 'breederViewAll',
                 'createInspectionRequest',
-                'getSwinesOfInspectionRequest',
                 'addSwinesToInspectionRequest',
                 'removeInspectionItem',
                 'requestForInspection'
@@ -140,64 +139,6 @@ class InspectionController extends Controller
                 'dateApproved'   => '',
                 'status'         => 'draft'
             ];
-        }
-    }
-
-    /**
-     * Get included swines and available swines to add
-     * for respective inspection request
-     *
-     * @param   Request $request
-     * @param   integer $inspectionRequestId
-     * @return  Collection
-     */
-    public function getSwinesOfInspectionRequest(Request $request, int $inspectionRequestId)
-    {
-        if($request->ajax()) {
-            $inspectionRequest = InspectionRequest::where('id',$inspectionRequestId)
-                ->with('inspectionItems.swine.swineProperties')->first();
-            $farm = Farm::find($inspectionRequest->farm_id);
-            $relatedSwines = $farm->swines()->with(['inspectionItem', 'swineProperties'])->get();
-            $availableSwines = [];
-            $includedSwines = [];
-
-            // Transform swine data already included in the inspection request
-            foreach ($inspectionRequest->inspectionItems as $item) {
-                $swine = $item->swine;
-
-                $includedSwines[] = [
-                    'itemId'         => $item->id,
-                    'swineId'        => $swine->id,
-                    'registrationNo' => $swine->registration_no,
-                    'farmSwineId'    => $swine->swineProperties
-                                        ->where('property_id', 24)->first()->value
-                ];
-            }
-
-            // Transform swine data available to be included in the inspection request
-            foreach ($relatedSwines as $swine) {
-                // Only include swine that's not part of any inspection request
-                if(!$swine->inspectionItem) {
-                    $availableSwines[] = [
-                        'itemId'         => 0,
-                        'swineId'        => $swine->id,
-                        'registrationNo' => $swine->registration_no,
-                        'farmSwineId'    => $swine->swineProperties
-                                            ->where('property_id', 24)->first()->value
-                    ];
-                }
-            }
-
-            // Sort data according to farmSwineId
-            $availableSwines = collect($availableSwines)
-                ->sortBy('farmSwineId')->values()->all();
-            $includedSwines = collect($includedSwines)
-                ->sortBy('farmSwineId')->values()->all();
-
-            return collect([
-                'included'  => $includedSwines,
-                'available' => $availableSwines 
-            ]);
         }
     }
 
@@ -380,6 +321,72 @@ class InspectionController extends Controller
                 return response('Invalid operation', 401);
         }
 
+    }
+
+    /**
+     * ------------------------------------------
+     * COMMON METHODS
+     * ------------------------------------------
+     */
+
+    /**
+     * Get included swines and available swines to add
+     * for respective inspection request
+     *
+     * @param   Request $request
+     * @param   integer $inspectionRequestId
+     * @return  Collection
+     */
+    public function getSwinesOfInspectionRequest(Request $request, int $inspectionRequestId)
+    {
+        if($request->ajax()) {
+            $inspectionRequest = InspectionRequest::where('id',$inspectionRequestId)
+                ->with('inspectionItems.swine.swineProperties')->first();
+            $farm = Farm::find($inspectionRequest->farm_id);
+            $relatedSwines = $farm->swines()->with(['inspectionItem', 'swineProperties'])->get();
+            $availableSwines = [];
+            $includedSwines = [];
+
+            // Transform swine data already included in the inspection request
+            foreach ($inspectionRequest->inspectionItems as $item) {
+                $swine = $item->swine;
+
+                $includedSwines[] = [
+                    'itemId'         => $item->id,
+                    'swineId'        => $swine->id,
+                    'breedTitle'     => $swine->breed->title,
+                    'registrationNo' => $swine->registration_no,
+                    'farmSwineId'    => $swine->swineProperties
+                                        ->where('property_id', 24)->first()->value
+                ];
+            }
+
+            // Transform swine data available to be included in the inspection request
+            foreach ($relatedSwines as $swine) {
+                // Only include swine that's not part of any inspection request
+                if(!$swine->inspectionItem) {
+                    $availableSwines[] = [
+                        'itemId'         => 0,
+                        'swineId'        => $swine->id,
+                        'breedTitle'     => $swine->breed->title,
+                        'registrationNo' => $swine->registration_no,
+                        'farmSwineId'    => $swine->swineProperties
+                                            ->where('property_id', 24)->first()->value
+                    ];
+                }
+            }
+
+            // Sort data according to farmSwineId
+            $availableSwines = collect($availableSwines)
+                ->sortBy('farmSwineId')->values()->all();
+            $includedSwines = collect($includedSwines)
+                ->sortBy('farmSwineId')->values()->all();
+
+            return collect([
+                'included'  => $includedSwines,
+                'available' => $availableSwines 
+            ]);
+        }
     }
 
 }

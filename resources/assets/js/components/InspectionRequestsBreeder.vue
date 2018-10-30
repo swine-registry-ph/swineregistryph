@@ -88,13 +88,13 @@
                             </template>
                             <template v-if="inspection.status === 'requested'">
                                 <span>
-                                    <b class="orange-text text-darken-2">Requested</b> <br>
+                                    <b class="lime-text text-darken-2">Requested</b> <br>
                                     {{ inspection.dateRequested }}
                                 </span>
                             </template>
                             <template v-if="inspection.status === 'for_inspection'">
                                 <span>
-                                    <b class="blue-text text-darken-2">For Inspection</b> <br>
+                                    <b class="purple-text text-darken-2">For Inspection</b> <br>
                                     {{ inspection.dateInspection }}
                                 </span>
                             </template>
@@ -226,7 +226,6 @@
             <inspection-requests-breeder-view-swine
                 v-show="showViewSwine"
                 v-on:hideSwineViewEvent="hideSwineView"
-                v-on:inspectionForRequestEvent="inspectionForRequest"
                 :inspection-data="inspectionData"
             >
             </inspection-requests-breeder-view-swine>

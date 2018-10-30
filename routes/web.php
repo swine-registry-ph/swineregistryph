@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/inspections', 'InspectionController@breederViewAll')->name('breederInspection');
         Route::post('/inspections', 'InspectionController@createInspectionRequest')->name('createInspectionRequest');
         Route::patch('/inspections/{inspectionId}', 'InspectionController@requestForInspection')->name('requestForInspection');
-        Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspection');
+        Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionB');
         Route::post('/inspections/{inspectionId}/swines', 'InspectionController@addSwinesToInspectionRequest')->name('addSwinesToInspection');
         Route::delete('/inspections/{inspectionId}/item/{itemId}', 'InspectionController@removeInspectionItem')->name('removeInspectionItem');
     });
@@ -85,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/home', 'EvaluatorController@index')->name('evaluatorHome');
         Route::get('/manage/inspections', 'InspectionController@evaluatorViewAll')->name('evaluatorInspection');
         Route::patch('/manage/inspections/{inspectionId}', 'InspectionController@changeStatusOfInspection')->name('changeInspectionStatus');
+        Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionE');
     });
 
     // Override Laravel Passport routes

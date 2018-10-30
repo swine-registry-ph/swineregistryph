@@ -1,240 +1,270 @@
 <template lang="html">
     <div class="col s10 offset-s1">
-        <div class="col s12">
-            <h4 class="title-page"> Inspection Requests </h4>
-        </div>
 
-        <div class="col s4 m3 l2">
-            <ul class="collapsible" data-collapsible="expandable">
-                <li>
-                    <!-- Status filter -->
-                    <div class="collapsible-header active"><b>Status</b></div>
-                    <div class="collapsible-body">
-                        <p class="range-field">
-                            <template v-for="status in statuses">
-                                <input v-model="filterOptions.status"
-                                    type="checkbox" 
-                                    class="filled-in" 
-                                    :value="status.value" 
-                                    :id="status.value"
-                                />
-                                <label :for="status.value"> {{status.text}} </label> <br>
-                            </template>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <transition name="view-fade">
+        <div v-if="!showViewSwine">
+            <div class="col s12">
+                <h4 class="title-page"> Inspection Requests </h4>
+            </div>
 
-        <div class="col s8 m9 l10">
-            <ul class="collection with-header">
-                <!-- Existing Inspection Requests container -->
-                <li v-for="(inspection, index) in paginatedRequests" 
-                    class="collection-item avatar"
-                    :key="inspection.id"
-                >
-                    <span>
-                        <h5><b>Inspection #{{ inspection.id }}</b></h5>
-                        <template v-if="inspection.status === 'draft'">
-                            <span><b>(Draft)</b></span>
-                        </template>
-                        <template v-if="inspection.status === 'requested'">
-                            <span>
-                                <b class="orange-text text-darken-2">Requested</b> <br>
-                                {{ inspection.dateRequested }}
-                            </span>
-                        </template>
-                        <template v-if="inspection.status === 'for_inspection'">
-                            <span>
-                                <b class="blue-text text-darken-2">For Inspection</b> <br>
-                                {{ inspection.dateInspection }}
-                            </span>
-                        </template>
-                        <template v-if="inspection.status === 'approved'">
-                            <span>
-                                <b class="green-text text-darken-2">Approved</b> <br>
-                                {{ inspection.dateApproved }}
-                            </span>
-                        </template> <br> <br>
-                        <span class="grey-text text-darken-1">
-                            <i class="material-icons left">location_on</i>
-                            {{ inspection.farmName }}
-                        </span>
-                    </span>
-                    <span v-if="inspection.status === 'requested'" 
-                        class="secondary-content"
-                    >
-                        <a @click.prevent="showMarkInspectionModal(
-                                inspection.id,
-                                inspection.farmName
-                            )"
-                            href="#"
-                            class="btn
-                                mark-inspection-button
-                                blue darken-1
-                                z-depth-0"
-                        >
-                            Mark for Inspection
-                        </a>
-                        <a class="btn btn-flat 
-                                blue-text
-                                text-darken-1 
-                                custom-secondary-btn"
-                        >
-                            View Swine
-                        </a>
-                    </span>
-                    <span v-if="inspection.status === 'for_inspection'"
-                        class="secondary-content"
-                    >
-                        <a @click.prevent="showApproveInspectionModal(
-                                inspection.id,
-                                inspection.farmName
-                            )"
-                            href="#"
-                            class="btn
-                                approve-inspection-button
-                                green darken-1
-                                z-depth-0"
-                        >
-                            Approve
-                        </a>
-                        <a class="btn btn-flat
-                                view-pdf-button 
-                                blue-text
-                                text-darken-1 
-                                custom-secondary-btn"
-                        >
-                            View PDF
-                        </a>
-                        <a class="btn btn-flat
-                                blue-text
-                                text-darken-1 
-                                custom-tertiary-btn"
-                        >
-                            Edit Data
-                        </a>
-                    </span>
-                    <span v-if="inspection.status === 'approved'" 
-                        class="secondary-content"
-                    >
-                        <a class="btn
-                                blue
-                                darken-1
-                                z-depth-0"
-                        >
-                            View Swine
-                        </a>
-                    </span>
-                </li>
-                <!-- Empty Inspection Requests container -->
-                <li v-show="paginatedRequests.length === 0"
-                    class="collection-item avatar center-align"
-                >
-                    <p>
-                        <br>
-                        <b>Sorry, no inspection requests found.</b>
-                    </p>
-                </li>
-            </ul>
-
-            <!-- Pagination -->
-            <div class="col s12 center-align pagination-container">
-                <ul class="pagination">
-                    <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
-                        <a @click.prevent="previousPage()">
-                            <i class="material-icons">chevron_left</i>
-                        </a>
-                    </li>
-                    <li v-for="i in pageCount"
-                        class="waves-effect"
-                        :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
-                    >
-                        <a @click.prevent="goToPage(i)"> {{ i }} </a>
-                    </li>
-                    <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
-                        <a @click.prevent="nextPage()">
-                            <i class="material-icons">chevron_right</i>
-                        </a>
+            <div class="col s4 m3 l2">
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li>
+                        <!-- Status filter -->
+                        <div class="collapsible-header active"><b>Status</b></div>
+                        <div class="collapsible-body">
+                            <p class="range-field">
+                                <template v-for="status in statuses">
+                                    <input v-model="filterOptions.status"
+                                        type="checkbox" 
+                                        class="filled-in" 
+                                        :value="status.value" 
+                                        :id="status.value"
+                                    />
+                                    <label :for="status.value"> {{status.text}} </label> <br>
+                                </template>
+                            </p>
+                        </div>
                     </li>
                 </ul>
             </div>
 
-            <!-- Mark for Inspection Modal -->
-            <div id="mark-for-inspection-modal" class="modal">
-                <div class="modal-content">
-                    <h4>
-                        Mark for Inspection
-                        <i class="material-icons right modal-close">close</i>
-                    </h4>
-
-                    <div class="row modal-input-container">
-                        <div class="col s12"><br/></div>
-                        <div class="input-field col s12">
-                            <p>
-                                Are you sure you want to mark 
-                                <b>Inspection #{{ markInspectionData.inspectionId }}</b>
-                                from <b>{{ markInspectionData.farmName }}</b>
-                                for inspection?
-                            </p>
-                        </div>
-                        <div class="input-field col s12">
-                            <app-input-date
-                                v-model="markInspectionData.dateInspection"
-                                :min="true"
-                                @date-select="val => {markInspectionData.dateInspection = val}"
+            <div class="col s8 m9 l10">
+                <ul class="collection with-header">
+                    <!-- Existing Inspection Requests container -->
+                    <li v-for="(inspection, index) in paginatedRequests" 
+                        class="collection-item avatar"
+                        :key="inspection.id"
+                    >
+                        <span>
+                            <h5><b>Inspection #{{ inspection.id }}</b></h5>
+                            <template v-if="inspection.status === 'draft'">
+                                <span><b>(Draft)</b></span>
+                            </template>
+                            <template v-if="inspection.status === 'requested'">
+                                <span>
+                                    <b class="lime-text text-darken-2">Requested</b> <br>
+                                    {{ inspection.dateRequested }}
+                                </span>
+                            </template>
+                            <template v-if="inspection.status === 'for_inspection'">
+                                <span>
+                                    <b class="purple-text text-darken-2">For Inspection</b> <br>
+                                    {{ inspection.dateInspection }}
+                                </span>
+                            </template>
+                            <template v-if="inspection.status === 'approved'">
+                                <span>
+                                    <b class="green-text text-darken-2">Approved</b> <br>
+                                    {{ inspection.dateApproved }}
+                                </span>
+                            </template> <br> <br>
+                            <span class="grey-text text-darken-1">
+                                <i class="material-icons left">location_on</i>
+                                {{ inspection.farmName }}
+                            </span>
+                        </span>
+                        <span v-if="inspection.status === 'requested'" 
+                            class="secondary-content"
+                        >
+                            <a @click.prevent="showMarkInspectionModal(
+                                    inspection.id,
+                                    inspection.farmName
+                                )"
+                                href="#"
+                                class="btn
+                                    mark-inspection-button
+                                    blue darken-1
+                                    z-depth-0"
                             >
-                            </app-input-date>
-                            <label for=""> Date of Inspection </label>
+                                Mark for Inspection
+                            </a>
+                            <a @click.prevent="showSwineView(
+                                    'view', 
+                                    inspection.id, 
+                                    inspection.farmName,
+                                    inspection.status
+                                )"
+                                class="btn btn-flat 
+                                    blue-text
+                                    text-darken-1 
+                                    custom-secondary-btn"
+                            >
+                                View Swine
+                            </a>
+                        </span>
+                        <span v-if="inspection.status === 'for_inspection'"
+                            class="secondary-content"
+                        >
+                            <a @click.prevent="showApproveInspectionModal(
+                                    inspection.id,
+                                    inspection.farmName
+                                )"
+                                href="#"
+                                class="btn
+                                    approve-inspection-button
+                                    blue darken-1
+                                    z-depth-0"
+                            >
+                                Approve
+                            </a>
+                            <a class="btn btn-flat
+                                    view-pdf-button 
+                                    blue-text
+                                    text-darken-1 
+                                    custom-secondary-btn"
+                            >
+                                View PDF
+                            </a>
+                            <a class="btn btn-flat
+                                    blue-text
+                                    text-darken-1 
+                                    custom-tertiary-btn"
+                            >
+                                Edit Data
+                            </a>
+                        </span>
+                        <span v-if="inspection.status === 'approved'" 
+                            class="secondary-content"
+                        >
+                            <a @click.prevent="showSwineView(
+                                    'view', 
+                                    inspection.id, 
+                                    inspection.farmName,
+                                    inspection.status
+                                )"
+                                class="btn
+                                    blue
+                                    darken-1
+                                    z-depth-0"
+                            >
+                                View Swine
+                            </a>
+                        </span>
+                    </li>
+                    <!-- Empty Inspection Requests container -->
+                    <li v-show="paginatedRequests.length === 0"
+                        class="collection-item avatar center-align"
+                    >
+                        <p>
+                            <br>
+                            <b>Sorry, no inspection requests found.</b>
+                        </p>
+                    </li>
+                </ul>
+
+                <!-- Pagination -->
+                <div class="col s12 center-align pagination-container">
+                    <ul class="pagination">
+                        <li :class="(pageNumber === 0) ? 'disabled' : 'waves-effect'">
+                            <a @click.prevent="previousPage()">
+                                <i class="material-icons">chevron_left</i>
+                            </a>
+                        </li>
+                        <li v-for="i in pageCount"
+                            class="waves-effect"
+                            :class="(i === pageNumber + 1) ? 'active' : 'waves-effect'"
+                        >
+                            <a @click.prevent="goToPage(i)"> {{ i }} </a>
+                        </li>
+                        <li :class="(pageNumber >= pageCount - 1) ? 'disabled' : 'waves-effect'">
+                            <a @click.prevent="nextPage()">
+                                <i class="material-icons">chevron_right</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mark for Inspection Modal -->
+                <div id="mark-for-inspection-modal" class="modal">
+                    <div class="modal-content">
+                        <h4>
+                            Mark for Inspection
+                            <i class="material-icons right modal-close">close</i>
+                        </h4>
+
+                        <div class="row modal-input-container">
+                            <div class="col s12"><br/></div>
+                            <div class="input-field col s12">
+                                <p>
+                                    Are you sure you want to mark 
+                                    <b>Inspection #{{ markInspectionData.inspectionId }}</b>
+                                    from <b>{{ markInspectionData.farmName }}</b>
+                                    for inspection?
+                                </p>
+                            </div>
+                            <div class="input-field col s12">
+                                <app-input-date
+                                    v-model="markInspectionData.dateInspection"
+                                    :min="true"
+                                    @date-select="val => {markInspectionData.dateInspection = val}"
+                                >
+                                </app-input-date>
+                                <label for=""> Date of Inspection </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer grey lighten-3">
-                    <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
-                    <a @click.prevent="markForInspection($event)" 
-                        href="#!" 
-                        class="modal-action btn blue darken-1 z-depth-0 mark-for-inspection-btn"
-                    >
-                        Mark
-                    </a>
-                </div>
-            </div>
-
-            <!-- Approve Inspection Modal -->
-            <div id="approve-inspection-modal" class="modal">
-                <div class="modal-content">
-                    <h4>
-                        Approve Inspection
-                        <i class="material-icons right modal-close">close</i>
-                    </h4>
-
-                    <div class="row modal-input-container">
-                        <div class="col s12"><br/></div>
-                        <div class="input-field col s12">
-                            <p>
-                                Are you sure you want to approve 
-                                <b>Inspection #{{ approveInspectionData.inspectionId }}</b>
-                                from <b>{{ approveInspectionData.farmName }}</b>
-                                implying that its swine data are correct?
-                            </p>
-                        </div>
+                    <div class="modal-footer grey lighten-3">
+                        <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                        <a @click.prevent="markForInspection($event)" 
+                            href="#!" 
+                            class="modal-action btn blue darken-1 z-depth-0 mark-for-inspection-btn"
+                        >
+                            Mark
+                        </a>
                     </div>
                 </div>
-                <div class="modal-footer grey lighten-3">
-                    <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
-                    <a @click.prevent="approveInspection($event)" 
-                        href="#!" 
-                        class="modal-action btn green darken-1 z-depth-0 approve-inspection-btn"
-                    >
-                        Approve
-                    </a>
+
+                <!-- Approve Inspection Modal -->
+                <div id="approve-inspection-modal" class="modal">
+                    <div class="modal-content">
+                        <h4>
+                            Approve Inspection
+                            <i class="material-icons right modal-close">close</i>
+                        </h4>
+
+                        <div class="row modal-input-container">
+                            <div class="col s12"><br/></div>
+                            <div class="input-field col s12">
+                                <p>
+                                    Are you sure you want to approve 
+                                    <b>Inspection #{{ approveInspectionData.inspectionId }}</b>
+                                    from <b>{{ approveInspectionData.farmName }}</b>
+                                    implying that its swine data are correct?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer grey lighten-3">
+                        <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+                        <a @click.prevent="approveInspection($event)" 
+                            href="#!" 
+                            class="modal-action btn green darken-1 z-depth-0 approve-inspection-btn"
+                        >
+                            Approve
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        </transition>
+
+        <!-- Included Swine View -->
+        <transition name="included-fade">
+            <inspection-requests-evaluator-view-swine
+                v-show="showViewSwine"
+                v-on:hideSwineViewEvent="hideSwineView"
+                v-on:markInspectionEvent="inspectionForMarking"
+                :inspection-data="inspectionData"
+            >
+            </inspection-requests-evaluator-view-swine>
+        </transition>
     </div>
 </template>
 
 <script>
+    import InspectionRequestsEvaluatorViewSwine from './InspectionRequestsEvaluatorViewSwine.vue';
+    
     export default {
         props: {
             currentFilterOptions: Object,
@@ -243,11 +273,12 @@
         },
 
         components: {
-
+            InspectionRequestsEvaluatorViewSwine
         },
 
         data() {
             return {
+                showViewSwine: false,
                 pageNumber: 0,
                 paginationSize: 15,
                 filterOptions: this.currentFilterOptions,
@@ -266,6 +297,11 @@
                         value: 'approved'
                     }
                 ],
+                inspectionData: {
+                    inspectionId: 0,
+                    farmName: '',
+                    status: ''
+                },
                 markInspectionData: {
                     inspectionId: 0,
                     farmName: '',
@@ -408,6 +444,16 @@
                 });
             },
 
+            inspectionForMarking(data) {
+                const index = _.findIndex(this.inspectionRequests, 
+                    ['id', data.inspectionId]
+                );
+
+                const inspectionRequest = this.customInspectionRequests[index];
+                inspectionRequest.status = 'for_inspection';
+                inspectionRequest.dateInspection = data.dateInspection;
+            },
+
             showApproveInspectionModal(inspectionId, farmName) {
                 this.approveInspectionData.inspectionId = inspectionId;
                 this.approveInspectionData.farmName = farmName;
@@ -459,6 +505,28 @@
                 })
                 .catch((error) => {
                     console.log(error);
+                });
+            },
+
+            showSwineView(type, inspectionId, farmName, status) {
+                if (type === 'edit') this.showEditSwine = true;
+                else if (type === 'view') this.showViewSwine = true;
+
+                this.inspectionData = {
+                    inspectionId,
+                    farmName,
+                    status
+                };
+            },
+
+            hideSwineView(type) {
+                if(type === 'edit') this.showEditSwine = false;
+                else if(type === 'view') this.showViewSwine = false;
+            
+                // Re-initialize collapsbile component
+                this.$nextTick(() => {
+                    $('.collapsible').collapsible();
+                    $('.tooltipped').tooltip({delay: 50});
                 });
             },
 
@@ -522,5 +590,33 @@
 
     .modal .modal-footer {
         padding-right: 2rem;
+    }
+
+    /* Fade animations */
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .view-fade-enter-active {
+        transition: opacity .5s;
+    }
+
+    .view-fade-leave-active {
+        transition: opacity .15s;
+    }
+
+    .included-fade-enter-active {
+        transition: opacity 1.5s;
+    }
+
+    .included-fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    /* .fade-leave-active below version 2.1.8 */
+    .fade-enter, .fade-leave-to,
+    .view-fade-enter, .view-fade-leave-to,
+    .included-fade-enter, .included-fade-leave-to {
+        opacity: 0;
     }
 </style>

@@ -83,7 +83,8 @@
                                     >
                                         cancel
                                     </i>
-                                    {{ swine.registrationNo }}
+                                    {{ swine.registrationNo }} <br>
+                                    <span class="grey-text">{{ swine.breedTitle }}</span>
                                 </span>
                             </div>
                         </div>
@@ -109,7 +110,10 @@
                                     type="checkbox" 
                                     class="filled-in" 
                                 />
-                                <label :for="`swine-${swine.swineId}`" class="black-text">{{ swine.registrationNo }}</label>
+                                <label :for="`swine-${swine.swineId}`" class="black-text">
+                                    {{ swine.registrationNo }} <br>
+                                    <span class="grey-text">{{ swine.breedTitle }}</span>
+                                </label>
                             </div>
 
                             <!-- Add Swines button container -->
@@ -408,10 +412,6 @@
     /* Modal customizations */
     #remove-swine-modal, #request-for-inspection-modal-2 {
         width: 40rem;
-    }
-
-    .modal .modal-footer {
-        padding-right: 2rem;
     }
 
     .modal .modal-footer {
