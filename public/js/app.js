@@ -1799,11 +1799,18 @@ var getters = {
 
     computedFeedEfficiency: function computedFeedEfficiency(state, getters) {
         return function (instance) {
-            // Feed efficiency is computed as feedIntake / adgOnTest
+            // Feed efficiency is computed as feedIntake / (endWeight - startWeight)
             var feedIntake = state[instance].feedIntake;
-            var adgOnTest = getters.computedAdgOnTest(instance);
+            var endDateInDays = getters.msToDays(state[instance].adgTestEndDate);
+            var startDateInDays = getters.msToDays(state[instance].adgTestStartDate);
+            var birthDateInDays = getters.msToDays(state[instance].birthDate);
+            var endToBirthDays = endDateInDays - birthDateInDays;
+            var startToBirthDays = startDateInDays - birthDateInDays;
+            var adjWeightAt150 = getters.adjustedWeight(state[instance].adgTestEndWeight, endToBirthDays, 150);
+            var adjWeightAt90 = getters.adjustedWeight(state[instance].adgTestStartWeight, startToBirthDays, 90);
+            var divisor = adjWeightAt150 - adjWeightAt90;
 
-            return adgOnTest > 0 ? getters.customRound(feedIntake / adgOnTest, 2) : 0;
+            return divisor > 0 ? getters.customRound(feedIntake / divisor, 2) : 0;
         };
     },
 

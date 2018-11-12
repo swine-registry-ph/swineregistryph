@@ -145,11 +145,18 @@ const getters = {
     },
 
     computedFeedEfficiency: (state, getters) => (instance) => {
-        // Feed efficiency is computed as feedIntake / adgOnTest
+        // Feed efficiency is computed as feedIntake / (endWeight - startWeight)
         const feedIntake = state[instance].feedIntake;
-        const adgOnTest = getters.computedAdgOnTest(instance);
-
-        return (adgOnTest > 0) ? getters.customRound(feedIntake/adgOnTest, 2) : 0;
+        const endDateInDays = getters.msToDays(state[instance].adgTestEndDate);
+        const startDateInDays = getters.msToDays(state[instance].adgTestStartDate);
+        const birthDateInDays = getters.msToDays(state[instance].birthDate);
+        const endToBirthDays = endDateInDays - birthDateInDays;
+        const startToBirthDays = startDateInDays - birthDateInDays;
+        const adjWeightAt150 = getters.adjustedWeight(state[instance].adgTestEndWeight, endToBirthDays, 150);
+        const adjWeightAt90 = getters.adjustedWeight(state[instance].adgTestStartWeight, startToBirthDays, 90);
+        const divisor = adjWeightAt150 - adjWeightAt90;
+        
+        return (divisor > 0) ? getters.customRound(feedIntake/divisor, 2) : 0;
     },
 
     adjustedWeight: (state, getters) => (weight, days, toDays) => {
