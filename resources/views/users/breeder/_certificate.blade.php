@@ -104,7 +104,7 @@
                     <tr>
                         <th colspan="4"><b>*{{ $swineInfo['registrationNo'] }}</b> means the ff: </th>
                         <th colspan="1"></th>
-                        <th colspan="5"><b>Breeding Values</b></th>
+                        <th colspan="5"><b>Performance Values</b></th>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -155,26 +155,26 @@
                                     <tr>
                                         <td>ADG from Birth</td>
                                         <td><b>{{ $swineInfo['adgFromBirth'] }} kg/day</b></td>
-                                        <td>Trait</td>
-                                        <td><b>9.99</b> </td>
+                                        <td>ESR</td>
+                                        <td><b>BB</b> </td>
                                     </tr>
                                     <tr>
                                         <td>ADG on Test</td>
                                         <td><b>{{ $swineInfo['adgOnTest'] }} kg/day</b> </td>
-                                        <td>Trait</td>
-                                        <td><b>9.99</b></td>
+                                        <td>PRLR</td>
+                                        <td><b>AA</b></td>
                                     </tr>
                                     <tr>
                                         <td>Feed Efficiency </td>
                                         <td><b>{{ $swineInfo['feedEfficiency'] }}</b> </td>
-                                        <td>Trait</td>
-                                        <td><b>9.99</b></td>
+                                        <td>LIF</td>
+                                        <td><b>BB</b></td>
                                     </tr>
                                     <tr>
                                         <td>Backfat</td>
                                         <td><b>{{ $swineInfo['bft'] }} mm</b> </td>
-                                        <td>Trait</td>
-                                        <td><b>9.99</b></td>
+                                        <td>MYOG</td>
+                                        <td><b>AA</b></td>
                                     </tr>
                                     <tr>
                                         <td></td> <td></td> <td></td> <td></td>
