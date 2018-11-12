@@ -7,7 +7,7 @@ const state = {
         sex: '',
         birthDate: '',
         farmFromId: '',
-        geneticInfoId: '',
+        labResultNo: '',
         farmSwineId: '',
         houseType: '',
         teatNo: '',
@@ -37,7 +37,7 @@ const state = {
             countryOfOrigin: ''
         },
         sex: 'male',
-        geneticInfoId: '',
+        labResultNo: '',
         farmSwineId: '',
         farmFromId: '',
         birthDate: '',
@@ -68,7 +68,7 @@ const state = {
             countryOfOrigin: ''
         },
         sex: 'female',
-        geneticInfoId: '',
+        labResultNo: '',
         farmSwineId: '',
         farmFromId: '',
         birthDate: '',
@@ -155,7 +155,7 @@ const getters = {
         const adjWeightAt150 = getters.adjustedWeight(state[instance].adgTestEndWeight, endToBirthDays, 150);
         const adjWeightAt90 = getters.adjustedWeight(state[instance].adgTestStartWeight, startToBirthDays, 90);
         const divisor = adjWeightAt150 - adjWeightAt90;
-        
+
         return (divisor > 0) ? getters.customRound(feedIntake/divisor, 2) : 0;
     },
 

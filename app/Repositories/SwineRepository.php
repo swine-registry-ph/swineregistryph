@@ -183,8 +183,8 @@ class SwineRepository
                         'value'       => $swine['farmSwineId']
                     ]),
                     new SwineProperty([
-                        'property_id' => 25, // genetic info id
-                        'value'       => $swine['geneticInfoId']
+                        'property_id' => 25, // lab result no
+                        'value'       => $swine['labResultNo']
                     ])
                 ]
             );
@@ -327,8 +327,8 @@ class SwineRepository
                     'value'       => $swine['farmSwineId']
                 ]),
                 new SwineProperty([
-                    'property_id' => 25, // genetic info id
-                    'value'       => $swine['geneticInfoId']
+                    'property_id' => 25, // lab result no
+                    'value'       => $swine['labResultNo']
                 ])
             ]
         );

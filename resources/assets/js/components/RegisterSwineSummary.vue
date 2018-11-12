@@ -22,8 +22,8 @@
                                 <table class="striped summary-table">
                                     <tbody>
                                         <tr>
-                                            <td> Genetic Information ID (optional) </td>
-                                            <td> {{ gpOneData.geneticInfoId }} </td>
+                                            <td> Laboratory Result No. (optional) </td>
+                                            <td> {{ gpOneData.labResultNo }} </td>
                                         </tr>
                                         <tr>
                                             <td> Farm Of Origin </td>
@@ -160,8 +160,8 @@
                                             </template>
                                             <!-- For new GP Sire -->
                                             <tr>
-                                                <td> Genetic Information ID (optional) </td>
-                                                <td> {{ gpSireData.geneticInfoId }} </td>
+                                                <td> Laboratory Result No. (optional) </td>
+                                                <td> {{ gpSireData.labResultNo }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Farm Of Origin </td>
@@ -288,8 +288,8 @@
                                             </template>
                                             <!-- For new GP Dam -->
                                             <tr>
-                                                <td> Genetic Information ID (optional) </td>
-                                                <td> {{ gpDamData.geneticInfoId }} </td>
+                                                <td> Laboratory Result No. (optional) </td>
+                                                <td> {{ gpDamData.labResultNo }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Farm Of Origin </td>

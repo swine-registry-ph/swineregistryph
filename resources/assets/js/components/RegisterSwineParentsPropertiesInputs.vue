@@ -125,12 +125,12 @@
 
                 <!-- GP Parent: properties for not imported -->
                 <div class="col s12 input-field">
-                    <input v-model="gpParentGeneticInfoId"
-                        :id="parentIdPrefix + 'genetic-info-id'"
+                    <input v-model="gpParentLabResultNo"
+                        :id="parentIdPrefix + 'lab-result-no'"
                         type="text"
                         class="validate"
                     >
-                    <label :for="parentIdPrefix + 'genetic-info-id'">Genetic Information ID (optional)</label>
+                    <label :for="parentIdPrefix + 'lab-result-no'">Laboratory Result No. (optional)</label>
                 </div>
                 <div class="input-field col s12">
                     <app-input-select
@@ -347,7 +347,7 @@
             </template>
 
             <div class="col s12">
-                <br/>
+                <br>
             </div>
 
         </template>
@@ -434,13 +434,13 @@
                     });
                 }
             },
-            gpParentGeneticInfoId: {
+            gpParentLabResultNo: {
                 // get and set value from vuex store
-                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].geneticInfoId; },
+                get() { return this.$store.state.registerSwine[`${this.prefixedGender}`].labResultNo; },
                 set(value) {
                     this.$store.commit('updateValue', {
                         instance: this.prefixedGender,
-                        property: 'geneticInfoId',
+                        property: 'labResultNo',
                         value: value
                     });
                 }
