@@ -7243,7 +7243,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-649d4b20] {\n    width: 40rem;\n    height: 100rem;\n}\n.modal .modal-footer[data-v-649d4b20] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-649d4b20], .fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-649d4b20], .included-fade-enter-active[data-v-649d4b20] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-649d4b20], .included-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-649d4b20], .fade-leave-to[data-v-649d4b20],\n.view-fade-enter[data-v-649d4b20], .view-fade-leave-to[data-v-649d4b20],\n.add-fade-enter[data-v-649d4b20], .add-fade-leave-to[data-v-649d4b20],\n.included-fade-enter[data-v-649d4b20], .included-fade-leave-to[data-v-649d4b20] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
+exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-649d4b20] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-649d4b20] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-649d4b20] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-649d4b20]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-649d4b20] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-649d4b20] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-649d4b20], .fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-649d4b20], .included-fade-enter-active[data-v-649d4b20] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-649d4b20], .included-fade-leave-active[data-v-649d4b20] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-649d4b20], .fade-leave-to[data-v-649d4b20],\n.view-fade-enter[data-v-649d4b20], .view-fade-leave-to[data-v-649d4b20],\n.add-fade-enter[data-v-649d4b20], .add-fade-leave-to[data-v-649d4b20],\n.included-fade-enter[data-v-649d4b20], .included-fade-leave-to[data-v-649d4b20] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-649d4b20] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-649d4b20] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-649d4b20] {\n    margin: 0;\n}\np.range-field label[data-v-649d4b20] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -7684,6 +7684,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this2.enableButtons(requestForInspectionBtn, event.target, 'Request');
 
                         Materialize.toast('Inspection #' + inspectionId + ' successfully requested.', 2000, 'green lighten-1');
+                    });
+                } else {
+                    // Make sure there are included swines before requesting
+                    vm.$nextTick(function () {
+                        $('#request-for-inspection-modal').modal('close');
+                        _this2.enableButtons(requestForInspectionBtn, event.target, 'Request');
+
+                        Materialize.toast('Please include swines to request.', 2000);
                     });
                 }
             }).catch(function (error) {
@@ -8179,6 +8187,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             dateRequested: data.dateRequested
                         });
                         _this4.hideAddSwineView();
+                    });
+                } else {
+                    // Make sure there are included swines before requesting
+                    vm.$nextTick(function () {
+                        $('#request-for-inspection-modal-2').modal('close');
+                        _this4.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                        _this4.enableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
+
+                        Materialize.toast('Please include swines to request.', 2000);
                     });
                 }
             }).catch(function (error) {

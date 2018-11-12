@@ -208,13 +208,20 @@ class InspectionController extends Controller
     {
         if($request->ajax()) {
             $inspectionRequest = InspectionRequest::find($inspectionRequestId);
-            $inspectionRequest->date_requested = Carbon::now()->format('Y-m-d');
-            $inspectionRequest->status = 'requested';
-            $inspectionRequest->save();
 
-            return [
-                'dateRequested' => $this->changeDateFormat($inspectionRequest->date_requested),
-                'requested' => true
+            // Check first if there are items to request
+            if(count($inspectionRequest->inspectionItems) > 0) {
+                $inspectionRequest->date_requested = Carbon::now()->format('Y-m-d');
+                $inspectionRequest->status = 'requested';
+                $inspectionRequest->save();
+    
+                return [
+                    'dateRequested' => $this->changeDateFormat($inspectionRequest->date_requested),
+                    'requested'     => true
+                ];
+            }
+            else return [
+                'requested' => false
             ];
         }
     }

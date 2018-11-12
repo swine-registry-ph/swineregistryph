@@ -363,6 +363,16 @@
                             this.hideAddSwineView();
                         });
                     }
+                    else {
+                        // Make sure there are included swines before requesting
+                        vm.$nextTick(() => {
+                            $('#request-for-inspection-modal-2').modal('close');
+                            this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                            this.enableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
+    
+                            Materialize.toast('Please include swines to request.', 2000);
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.log(error);

@@ -437,6 +437,15 @@
                             Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
                         });
                     }
+                    else {
+                        // Make sure there are included swines before requesting
+                        vm.$nextTick(() => {
+                            $('#request-for-inspection-modal').modal('close');
+                            this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+    
+                            Materialize.toast('Please include swines to request.', 2000);
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -510,7 +519,6 @@
     /* Modal customizations */
     #request-for-inspection-modal {
         width: 40rem;
-        height: 100rem;
     }
 
     .modal .modal-footer {
