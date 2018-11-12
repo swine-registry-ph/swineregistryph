@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Farm;
 use App\Models\InspectionItem;
 use App\Models\InspectionRequest;
+use App\Models\Swine;
 use App\Repositories\CustomHelpers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Auth;
+use PDF;
 
 class InspectionController extends Controller
 {
@@ -36,6 +38,7 @@ class InspectionController extends Controller
         $this->middleware('role:evaluator')
             ->only([
                 'evaluatorViewAll',
+                'viewPDF'
             ]);
     }
 
@@ -324,6 +327,79 @@ class InspectionController extends Controller
     }
 
     /**
+     * View swines included in inspection through PDF form
+     *
+     * @param   integer $request
+     * @return  PDF
+     */
+    public function viewPDF($inspectionId)
+    {
+        $inspection = InspectionRequest::where('id', $inspectionId)
+            ->with('inspectionItems.swine.breed')
+            ->first();
+
+        if($inspection){
+
+            $tagvs = [
+                'h1' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'h2' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'p' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'table' => [
+                    ['h' => 0, 'n' => 0]
+                ]
+            ];
+
+            // Set configuration and show pdf
+            PDF::setPageOrientation('L');
+            PDF::SetCellPadding(0);
+            PDF::setHtmlVSpace($tagvs);
+            PDF::setFont('dejavusanscondensed', '', 10);
+            PDF::SetTitle("Inspection #{$inspection->id}");
+
+            // Set margins
+            PDF::SetMargins(5, 3, 6);
+
+            foreach($inspection->inspectionItems as $item) {
+                $swineInfo = $this->getSwineInfo($item->swine->id);
+                $sireInfo = $this->getSwineInfo($item->swine->gpSire_id);
+                $damInfo = $this->getSwineInfo($item->swine->gpDam_id);
+                $inspectionId = $inspection->id;
+
+                // Evaluator's copy
+                $userType = 'Evaluator';
+                $view = \View::make(
+                    'users.evaluator._viewInspectionSwines',
+                    compact('swineInfo', 'sireInfo', 'damInfo', 'inspectionId', 'userType')
+                );
+                $html = $view->render();
+    
+                PDF::AddPage();
+                PDF::WriteHTML($html, true, false, true, false, '');
+
+                // Breeder's copy
+                $userType = 'Breeder';
+                $view = \View::make(
+                    'users.evaluator._viewInspectionSwines',
+                    compact('swineInfo', 'sireInfo', 'damInfo', 'inspectionId', 'userType')
+                );
+                $html = $view->render();
+    
+                PDF::AddPage();
+                PDF::WriteHTML($html, true, false, true, false, '');
+            }
+
+            PDF::Output("Inspection_{$inspection->id}.pdf");
+        }
+        else return abort(404);
+    }
+
+    /**
      * ------------------------------------------
      * COMMON METHODS
      * ------------------------------------------
@@ -387,6 +463,50 @@ class InspectionController extends Controller
                 'available' => $availableSwines 
             ]);
         }
+    }
+
+    /**
+     * Get essential info for swine.
+     *
+     * @param   integer $swineId
+     * @return  Array
+     */
+    private function getSwineInfo(int $swineId=null)
+    {
+        if(!$swineId) return [];
+
+        $swine = Swine::find($swineId);
+        $farm = $swine->farm;
+
+        return [
+            'registrationNo'            => $swine->registration_no,
+            'breed'                     => $swine->breed->title,
+            'breederName'               => $swine->breeder->users()->first()->name,
+            'farmName'                  => $farm->name,
+            'farmProvince'              => $farm->province,
+            'farmAccreditationNo'       => $farm->farm_accreditation_no,
+            'sex'                       => $this->getSwinePropValue($swine, 1),
+            'birthDate'                 => $this->changeDateFormat($this->getSwinePropValue($swine, 2)),
+            'birthWeight'               => $this->getSwinePropValue($swine, 3),
+            'adgBirthEndDate'           => $this->changeDateFormat($this->getSwinePropValue($swine, 5)),
+            'adgBirthEndWeight'         => $this->getSwinePropValue($swine, 6),
+            'adgTestStartDate'          => $this->changeDateFormat($this->getSwinePropValue($swine, 8)),
+            'adgTestStartWeight'        => $this->getSwinePropValue($swine, 9),
+            'adgTestEndDate'            => $this->changeDateFormat($this->getSwinePropValue($swine, 10)),
+            'adgTestEndWeight'          => $this->getSwinePropValue($swine, 11),
+            'houseType'                 => $this->getSwinePropValue($swine, 12),
+            'bft'                       => $this->getSwinePropValue($swine, 13),
+            'bftCollected'              => $this->changeDateFormat($this->getSwinePropValue($swine, 14)),
+            'feedIntake'                => $this->getSwinePropValue($swine, 15),
+            'teatNo'                    => $this->getSwinePropValue($swine, 17),
+            'parity'                    => $this->getSwinePropValue($swine, 18),
+            'littersizeAliveMale'       => $this->getSwinePropValue($swine, 19),
+            'littersizeAliveFemale'     => $this->getSwinePropValue($swine, 20),
+            'littersizeWeaning'         => $this->getSwinePropValue($swine, 21),
+            'litterweightWeaning'       => $this->getSwinePropValue($swine, 22),
+            'dateWeaning'               => $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
+            'farmSwineId'               => $this->getSwinePropValue($swine, 24)
+        ];
     }
 
 }

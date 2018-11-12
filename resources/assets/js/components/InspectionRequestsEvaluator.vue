@@ -108,7 +108,9 @@
                             >
                                 Approve
                             </a>
-                            <a class="btn btn-flat
+                            <a :href="`/evaluator/manage/inspections/${inspection.id}/view-pdf`" 
+                                target="_blank"
+                                class="btn btn-flat
                                     view-pdf-button 
                                     blue-text
                                     text-darken-1 

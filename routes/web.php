@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage/inspections', 'InspectionController@evaluatorViewAll')->name('evaluatorInspection');
         Route::patch('/manage/inspections/{inspectionId}', 'InspectionController@changeStatusOfInspection')->name('changeInspectionStatus');
         Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionE');
+        Route::get('/manage/inspections/{inspectionId}/view-pdf', 'InspectionController@viewPDF')->name('viewInspectionPDF');
     });
 
     // Override Laravel Passport routes
