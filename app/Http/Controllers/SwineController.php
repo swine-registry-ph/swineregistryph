@@ -282,7 +282,8 @@ class SwineController extends Controller
                         'litterweightWeaning'       => $this->getSwinePropValue($swine, 22),
                         'dateWeaning'               => $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
                         'farmSwineId'               => $this->getSwinePropValue($swine, 24),
-                        'geneticInfoId'             => $this->getSwinePropValue($swine, 25)
+                        'labResultNo'               => $this->getSwinePropValue($swine, 25),
+                        'selectionIndex'            => $this->getSwinePropValue($swine, 28)
                     ];
                 }
                 else return 'Swine with registration no. ' . $regNo . ' is not '. $sex . '.';
@@ -348,7 +349,8 @@ class SwineController extends Controller
             'littersizeAliveMale'       => $this->getSwinePropValue($swine, 19),
             'littersizeAliveFemale'     => $this->getSwinePropValue($swine, 20),
             'farmSwineId'               => $this->getSwinePropValue($swine, 24),
-            'geneticInfoId'             => $this->getSwinePropValue($swine, 25)
+            'labResultNo'               => $this->getSwinePropValue($swine, 25),
+            'selectionIndex'            => $this->getSwinePropValue($swine, 28)
         ];
     }
 }

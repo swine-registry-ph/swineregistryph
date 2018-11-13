@@ -185,6 +185,10 @@ class SwineRepository
                     new SwineProperty([
                         'property_id' => 25, // lab result no
                         'value'       => $swine['labResultNo']
+                    ]),
+                    new SwineProperty([
+                        'property_id' => 28, // selection index
+                        'value'       => $swine['selectionIndex']
                     ])
                 ]
             );
@@ -329,6 +333,10 @@ class SwineRepository
                 new SwineProperty([
                     'property_id' => 25, // lab result no
                     'value'       => $swine['labResultNo']
+                ]),
+                new SwineProperty([
+                    'property_id' => 28, // selection index
+                    'value'       => $swine['selectionIndex']
                 ])
             ]
         );

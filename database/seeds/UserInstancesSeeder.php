@@ -175,7 +175,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 16, // feed efficiency
-                            'value' => random_int(10,60)/10.0
+                            'value' => random_int(15,25)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 17, // teat number
@@ -208,6 +208,10 @@ class UserInstancesSeeder extends Seeder
                         new App\Models\SwineProperty([
                             'property_id' => 24, // farm swine id / ear mark
                             'value' => $farmSwineId
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 28, // selection index
+                            'value' => random_int(180, 220)
                         ])
                     ]
                 );
@@ -295,7 +299,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 16, // feed efficiency
-                            'value' => random_int(10,60)/10.0
+                            'value' => random_int(15,25)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 17, // teat number
@@ -328,6 +332,10 @@ class UserInstancesSeeder extends Seeder
                         new App\Models\SwineProperty([
                             'property_id' => 24, // farm swine id / ear mark
                             'value' => $farmGpSireId
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 28, // selection index
+                            'value' => random_int(180, 220)
                         ])
                     ]
                 );
@@ -415,7 +423,7 @@ class UserInstancesSeeder extends Seeder
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 16, // feed efficiency
-                            'value' => random_int(10,60)/10.0
+                            'value' => random_int(15,25)/10.0
                         ]),
                         new App\Models\SwineProperty([
                             'property_id' => 17, // teat number
@@ -448,6 +456,10 @@ class UserInstancesSeeder extends Seeder
                         new App\Models\SwineProperty([
                             'property_id' => 24, // farm swine id / ear mark
                             'value' => $farmGpDamId
+                        ]),
+                        new App\Models\SwineProperty([
+                            'property_id' => 28, // selection index
+                            'value' => random_int(180, 220)
                         ])
                     ]
                 );

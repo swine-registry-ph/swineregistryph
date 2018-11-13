@@ -27,6 +27,7 @@ const state = {
         littersizeWeaning: '',
         litterweightWeaning: '',
         dateWeaning: '',
+        selectionIndex: '',
         swinecart: false
     },
     gpSire: {
@@ -58,7 +59,8 @@ const state = {
         parity: '',
         littersizeWeaning: '',
         litterweightWeaning: '',
-        dateWeaning: ''
+        dateWeaning: '',
+        selectionIndex: ''
     },
     gpDam: {
         existingRegNo: '',
@@ -89,7 +91,8 @@ const state = {
         parity: '',
         littersizeWeaning: '',
         litterweightWeaning: '',
-        dateWeaning: ''
+        dateWeaning: '',
+        selectionIndex: ''
     },
     imageFiles: {
         side: {},
@@ -157,6 +160,16 @@ const getters = {
         const divisor = adjWeightAt150 - adjWeightAt90;
 
         return (divisor > 0) ? getters.customRound(feedIntake/divisor, 2) : 0;
+    },
+
+    computedSelectionIndex: (state, getters) => (instance) => {
+        const $bft = state[instance].bft * 0.1;
+        const $adgOnTest = getters.computedAdgOnTest(instance);
+        const $feedEfficiency = getters.computedFeedEfficiency(instance);
+
+        return ($bft > 0 && $adgOnTest > 0 &&  $feedEfficiency > 0)
+            ? parseInt(245 + (130*$adgOnTest) - (40*$bft) - (40*$feedEfficiency))
+            : 0;
     },
 
     adjustedWeight: (state, getters) => (weight, days, toDays) => {

@@ -134,9 +134,9 @@ class PropertyInstancesSeeder extends Seeder
                 'slug' => 'farmSwine_id'
             ],
             [
-                'property' => 'Genetic Information ID',
-                'definition' => 'Genetic information ID of swine',
-                'slug' => 'geneticInfo_id'
+                'property' => 'Laboratory Result No.',
+                'definition' => 'Laboratory Result No.',
+                'slug' => 'laboratoryResult_no'
             ],
             [
                 'property' => 'Farm of Origin (Imported Swine)',
@@ -147,6 +147,11 @@ class PropertyInstancesSeeder extends Seeder
                 'property' => 'Country of Origin (Imported Swine)',
                 'definition' => 'Country of origin of imported swine',
                 'slug' => 'imported_countryOfOrigin'
+            ],
+            [
+                'property' => 'Selection Index',
+                'definition' => 'Selection Index',
+                'slug' => 'selection_index'
             ]
         ];
 
