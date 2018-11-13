@@ -167,8 +167,8 @@
                                     <tr>
                                         <td>Feed Efficiency </td>
                                         <td><b>{{ $swineInfo['feedEfficiency'] }}</b> </td>
-                                        <td>LIF</td>
-                                        <td><b>BB</b></td>
+                                        <td>PSS</td>
+                                        <td><b>NN</b></td>
                                     </tr>
                                     <tr>
                                         <td>Backfat</td>
