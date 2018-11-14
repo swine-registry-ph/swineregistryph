@@ -510,11 +510,15 @@
 
         methods: {
             transformFarmId(id) {
-                return (id > 0) ? this.farmoptions[id-1].text : '';
+                const index = _.findIndex(this.farmoptions, ['value', parseInt(id)]);
+
+                return (id > 0) ? this.farmoptions[index].text : '';
             },
 
             transformBreedId(id) {
-                return (id > 0) ? this.breeds[id-1].text : '';
+                const index = _.findIndex(this.breeds, ['value', parseInt(id)]);
+
+                return (id > 0) ? this.breeds[index].text : '';
             },
 
             capitalize(string) {

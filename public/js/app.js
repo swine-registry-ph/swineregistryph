@@ -13424,10 +13424,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         transformFarmId: function transformFarmId(id) {
-            return id > 0 ? this.farmoptions[id - 1].text : '';
+            var index = _.findIndex(this.farmoptions, ['value', parseInt(id)]);
+
+            return id > 0 ? this.farmoptions[index].text : '';
         },
         transformBreedId: function transformBreedId(id) {
-            return id > 0 ? this.breeds[id - 1].text : '';
+            var index = _.findIndex(this.breeds, ['value', parseInt(id)]);
+
+            return id > 0 ? this.breeds[index].text : '';
         },
         capitalize: function capitalize(string) {
             return _.capitalize(string);
