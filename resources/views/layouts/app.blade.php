@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }} @yield('title') </title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('customStyle')
 </head>
 <body>
@@ -97,9 +97,9 @@
     @endguest
 
     <!-- Scripts -->
-    <script src="{{ asset('js/manifest.js') }}"></script>
-    <script src="{{ asset('js/vendor.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
     @yield('customScript')
 
 </body>
