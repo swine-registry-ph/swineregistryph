@@ -41,7 +41,7 @@
                 <div class="card-content">
                     <span class="card-title">
                         <b>Inspection #{{ inspectionData.inspectionId }}</b>
-                        <a href="#"
+                        <a v-if="inspectionData.status === 'requested'" href="#"
                             class="btn right 
                                 blue-text
                                 text-darken-1 
@@ -51,6 +51,28 @@
                                 disabled"
                         >
                             Requested - Waiting Confirmation
+                        </a>
+                        <a v-if="inspectionData.status === 'for_inspection'" href="#"
+                            class="btn right 
+                                blue-text
+                                text-darken-1 
+                                custom-secondary-btn
+                                z-depth-0
+                                request-for-inspection-btn
+                                disabled"
+                        >
+                            For Inspection
+                        </a>
+                        <a v-if="inspectionData.status === 'approved'"
+                            href="#"
+                            class="btn right 
+                                blue-text
+                                text-darken-1 
+                                custom-secondary-btn
+                                z-depth-0
+                                disabled"
+                        >
+                            Approved
                         </a>
                     </span>
                     <p class="grey-text">

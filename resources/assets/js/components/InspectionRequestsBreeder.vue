@@ -133,7 +133,12 @@
                         <span v-else
                             class="secondary-content"
                         >
-                            <a @click.prevent="showSwineView('view', inspection.id, inspection.farmName)"
+                            <a @click.prevent="showSwineView(
+                                    'view', 
+                                    inspection.id, 
+                                    inspection.farmName,
+                                    inspection.status
+                                )"
                                 href="#"
                                 class="btn
                                     add-swine-button
@@ -391,13 +396,14 @@
                 });
             },
 
-            showSwineView(type, inspectionId, farmName) {
+            showSwineView(type, inspectionId, farmName, status) {
                 if (type === 'add') this.showAddSwine = true;
                 else if (type === 'view') this.showViewSwine = true;
 
                 this.inspectionData = {
                     inspectionId,
-                    farmName
+                    farmName,
+                    status
                 };
             },
 

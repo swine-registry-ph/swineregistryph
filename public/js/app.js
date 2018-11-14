@@ -7514,6 +7514,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -7660,12 +7665,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        showSwineView: function showSwineView(type, inspectionId, farmName) {
+        showSwineView: function showSwineView(type, inspectionId, farmName, status) {
             if (type === 'add') this.showAddSwine = true;else if (type === 'view') this.showViewSwine = true;
 
             this.inspectionData = {
                 inspectionId: inspectionId,
-                farmName: farmName
+                farmName: farmName,
+                status: status
             };
         },
         showRequestModal: function showRequestModal(inspectionId, farmName) {
@@ -8677,6 +8683,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -8762,12 +8790,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title"
-  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))]), _vm._v(" "), _c('a', {
+  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))]), _vm._v(" "), (_vm.inspectionData.status === 'requested') ? _c('a', {
     staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn\n                            disabled",
     attrs: {
       "href": "#"
     }
-  }, [_vm._v("\n                        Requested - Waiting Confirmation\n                    ")])]), _vm._v(" "), _c('p', {
+  }, [_vm._v("\n                        Requested - Waiting Confirmation\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.inspectionData.status === 'for_inspection') ? _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        For Inspection\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.inspectionData.status === 'approved') ? _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        Approved\n                    ")]) : _vm._e()]), _vm._v(" "), _c('p', {
     staticClass: "grey-text"
   }, [_vm._v("\n                    " + _vm._s(_vm.inspectionData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
     staticClass: "row"
@@ -9023,7 +9061,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showSwineView('view', inspection.id, inspection.farmName)
+          _vm.showSwineView(
+            'view',
+            inspection.id,
+            inspection.farmName,
+            inspection.status
+          )
         }
       }
     }, [_vm._v("\n                            View Swine\n                        ")])])])
