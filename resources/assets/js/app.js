@@ -30,8 +30,12 @@ Vue.component('manage-properties', require('./components/ManageProperties.vue'))
 Vue.component('manage-apis', require('./components/ManageAPIs.vue'));
 
 // Breeder
+Vue.component('inspection-requests-breeder', require('./components/InspectionRequestsBreeder.vue'));
 Vue.component('register-swine', require('./components/RegisterSwine.vue'));
 Vue.component('view-registered-swine', require('./components/ViewRegisteredSwine.vue'));
+
+// Evaluator
+Vue.component('inspection-requests-evaluator', require('./components/InspectionRequestsEvaluator.vue')); 
 
 // Genomics
 Vue.component('register-laboratory-results', require('./components/RegisterLaboratoryResults.vue'));
@@ -62,8 +66,12 @@ const nav = new Vue({
                 showRegForm: false,
                 viewRegdSwine: false,
                 viewSwinePedigree: false,
+                showInspection: false, 
                 manageFarms: false,
                 reports: false
+            },
+            evaluator: {
+                manageInspections: false,
             },
             genomics: {
                 regLabResults: false,
@@ -131,8 +139,16 @@ const nav = new Vue({
                 this.currentRoute.breeder.viewRegdSwine = true;
                 break;
 
+            case '/breeder/inspections':
+                this.currentRoute.breeder.showInspection = true;
+                break;
+
             case '/breeder/pedigree':
                 this.currentRoute.breeder.viewSwinePedigree = true;
+                break;
+
+            case '/evaluator/manage/inspections':
+                this.currentRoute.evaluator.manageInspections = true;
                 break;
 
             case '/genomics/register':

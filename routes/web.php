@@ -35,7 +35,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/registry-certificate/{swineId}', 'SwineController@viewRegistryCertificate')->name('viewRegistryCert');
         Route::get('/pedigree', 'PedigreeController@index')->name('viewSwinePedigreePage');
         Route::get('/pedigree/reg/{regNo}/gen/{generation}', 'PedigreeController@getSwinePedigree')->name('getSwinePedigree');
-        Route::get('/swinecart', 'BreederController@viewSwineCartPage')->name('viewSwineCartPage');
+        Route::get('/inspections', 'InspectionController@breederViewAll')->name('breederInspection');
+        Route::post('/inspections', 'InspectionController@createInspectionRequest')->name('createInspectionRequest');
+        Route::patch('/inspections/{inspectionId}', 'InspectionController@requestForInspection')->name('requestForInspection');
+        Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionB');
+        Route::post('/inspections/{inspectionId}/swines', 'InspectionController@addSwinesToInspectionRequest')->name('addSwinesToInspection');
+        Route::delete('/inspections/{inspectionId}/item/{itemId}', 'InspectionController@removeInspectionItem')->name('removeInspectionItem');
     });
 
     // Admin-related
@@ -78,6 +83,10 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'evaluator'], function(){
 
         Route::get('/home', 'EvaluatorController@index')->name('evaluatorHome');
+        Route::get('/manage/inspections', 'InspectionController@evaluatorViewAll')->name('evaluatorInspection');
+        Route::patch('/manage/inspections/{inspectionId}', 'InspectionController@changeStatusOfInspection')->name('changeInspectionStatus');
+        Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionE');
+        Route::get('/manage/inspections/{inspectionId}/view-pdf', 'InspectionController@viewPDF')->name('viewInspectionPDF');
     });
 
     // Override Laravel Passport routes

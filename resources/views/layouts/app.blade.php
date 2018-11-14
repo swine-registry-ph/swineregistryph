@@ -60,59 +60,37 @@
         </main>
     @endguest
 
-    {{-- Footer for authenticated users --}}
-    @auth
-        <footer class="page-footer footer-logged-in">
-            <div class="">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Footer Content</h5>
-                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-                    </div>
-                    <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-          <div class="footer-copyright">
-            <div class="row">
-                © 2018 Purebred Swine Registry PH
-                {{-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> --}}
-            </div>
-          </div>
-        </footer>
-    @endauth
-
     {{-- Footer for guest users --}}
     @guest
-        <footer class="page-footer">
+        <footer class="page-footer" style="background-color:white;">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Footer Content</h5>
-                        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                        <h5 class="black-text">Swine Breed Registry PH</h5>
+                        <p class="grey-text text-darken-2">
+                            Swine Breed Registry PH is a project of the UPLB Institute of Animal Science. 
+                            It is funded by Department of Science and Technology - Philippine Council for Agriculture, 
+                            Forestry and Natural Resources Research and Development (DOST-PCAARRD) 
+                            and in cooperation with Accredited Swine Breeders Association of the Philippines (ASBAP).
+                        </p>
                     </div>
                     <div class="col l4 offset-l2 s12">
-                        <h5 class="white-text">Links</h5>
-                        <ul>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                        </ul>
+                        <h5 class="black-text">Participating Agencies</h5>
+                        <div class="col s4">
+                            <img style="height:auto; width:100%;" src="{{ asset('storage/images/default/ias-logo.jpg') }}">
+                        </div>
+                        <div class="col s4">
+                            <img style="height:auto; width:100%;" src="{{ asset('storage/images/default/up-logo.png') }}">
+                        </div>
+                        <div class="col s4">
+                            <img style="height:auto; width:100%;" src="{{ asset('storage/images/default/pcaarrd-logo.png') }}">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer-copyright">
-                <div class="container">
-                    © 2017 Purebred Swine Registry PH
-                    {{-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> --}}
+                <div class="container black-text">
+                    © 2018 Purebred Swine Registry PH
                 </div>
             </div>
         </footer>

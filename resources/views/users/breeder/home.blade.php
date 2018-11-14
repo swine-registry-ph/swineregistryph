@@ -25,6 +25,9 @@
         <li :class="{ active : currentRoute.breeder.viewSwinePedigree }">
             <a href="{{ route('viewSwinePedigreePage') }}"> <i class="material-icons">line_style</i> View Swine Pedigree </a>
         </li>
+        <li :class="{ active : currentRoute.breeder.showInspection }">
+            <a href="{{ route('breederInspection') }}"> <i class="material-icons">highlight</i> Inspection Requests </a>
+        </li>
         <li :class="{ active : currentRoute.breeder.manageFarms }">
             <a href="#!"> <i class="material-icons">store</i> Manage Farms </a>
         </li>
