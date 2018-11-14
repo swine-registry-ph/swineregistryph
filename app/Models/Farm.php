@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Breeder;
 use App\Models\FarmCode;
+use App\Models\InspectionRequest;
 use App\Models\Swine;
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,5 +40,13 @@ class Farm extends Model
     public function breeder()
     {
         return $this->belongsTo(Breeder::class);
+    }
+
+    /**
+     * Get the inspection requests related to the farm
+     */
+    public function inspectionRequests()
+    {
+        return $this->hasMany(InspectionRequest::class);
     }
 }

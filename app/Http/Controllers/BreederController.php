@@ -29,14 +29,4 @@ class BreederController extends Controller
         return view('users.breeder.home');
     }
 
-    /**
-     * Show Breeder's swines connected to the
-     * SwineCart application
-     *
-     * @return void
-     */
-    public function viewSwineCartPage()
-    {
-        return view('users.breeder.swinecart');
-    }
 }

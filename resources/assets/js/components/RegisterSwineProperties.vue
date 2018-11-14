@@ -13,12 +13,12 @@
 
                         <!-- More info for GP 1 -->
                         <div class="col s12 input-field">
-                            <input v-model="gpOneGeneticInfoId"
-                                :id="gpOneIdPrefix + 'genetic-info-id'"
+                            <input v-model="gpOneLabResultNo"
+                                :id="gpOneIdPrefix + 'lab-result-no'"
                                 type="text"
                                 class="validate"
                             >
-                            <label :for="gpOneIdPrefix + 'genetic-info-id'">Genetic Information ID (optional)</label>
+                            <label :for="gpOneIdPrefix + 'lab-result-no'">Laboratory Result No. (optional)</label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOneFarmSwineId"
@@ -249,13 +249,13 @@
         },
 
         computed: {
-            gpOneGeneticInfoId: {
+            gpOneLabResultNo: {
                 // get and set value from vuex store
-                get() { return this.$store.state.registerSwine.gpOne.geneticInfoId; },
+                get() { return this.$store.state.registerSwine.gpOne.labResultNo; },
                 set(value) {
                     this.$store.commit('updateValue', {
                         instance: 'gpOne',
-                        property: 'geneticInfoId',
+                        property: 'labResultNo',
                         value: value
                     });
                 }

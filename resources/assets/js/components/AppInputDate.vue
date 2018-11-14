@@ -5,13 +5,18 @@
 <script>
     export default {
         props: {
-            value: String
+            value: String,
+            min: Boolean
         },
 
         mounted() {
+
+            const customMinimun = (this.min) ? true : false;
+
             // Initialize datepicker
             $(this.$refs.dateSelect).pickadate({
-                max: true,
+                min: customMinimun,
+                max: (customMinimun) ? false: true,
                 selectMonths: true,
                 selectYears: 3,
                 format: 'mmmm d, yyyy'

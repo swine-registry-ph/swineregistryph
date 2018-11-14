@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Breed;
 use App\Models\Breeder;
 use App\Models\Farm;
+use App\Models\InspectionItem;
 use App\Models\Photo;
 use App\Models\SwineProperty;
 use Illuminate\Database\Eloquent\Model;
@@ -65,5 +66,13 @@ class Swine extends Model
     public function photos()
     {
         return $this->morphMany(Photo::class, 'photoable');
+    }
+
+    /**
+     * Get the inspection item of the swine
+     */
+    public function inspectionItem()
+    {
+        return $this->hasOne(InspectionItem::class);
     }
 }

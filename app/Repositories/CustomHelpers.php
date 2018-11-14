@@ -19,17 +19,20 @@ trait CustomHelpers
      */
     public function changeDateFormat($originalFormat, $toFormat = '')
     {
-        switch ($toFormat) {
-            case 'year':
-            return ($originalFormat)
-            ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('Y')
-            : '';
-            
-            default:
-            return ($originalFormat)
-            ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('F d, Y')
-            : '';
+        if($originalFormat) {
+            switch ($toFormat) {
+                case 'year':
+                    return ($originalFormat)
+                        ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('Y')
+                        : '';
+                
+                default:
+                    return ($originalFormat)
+                        ? Carbon::createFromFormat('Y-m-d', $originalFormat)->format('F d, Y')
+                        : '';
+            }
         }
+        else return '';
     }
     
     /**
@@ -55,13 +58,13 @@ trait CustomHelpers
     public function generateRegistrationNumber($requiredData)
     {
         return "{$requiredData['farmProvinceCode']}"
-        . "{$requiredData['farmCode']}"
-        . "{$requiredData['breedCode']}"
-        . "{$requiredData['birthYear']}"
-        . "{$this->firstLetterUpper($requiredData['sex'])}"
-        . "{$this->firstLetterUpper($requiredData['houseType'])}"
-        . "-"
-        . "{$requiredData['farmSwineId']}";
+            . "{$requiredData['farmCode']}"
+            . "{$requiredData['breedCode']}"
+            . "{$requiredData['birthYear']}"
+            . "{$this->firstLetterUpper($requiredData['sex'])}"
+            . "{$this->firstLetterUpper($requiredData['houseType'])}"
+            . "-"
+            . "{$requiredData['farmSwineId']}";
     }
     
     /**

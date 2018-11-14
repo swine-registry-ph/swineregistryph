@@ -22,8 +22,8 @@
                                 <table class="striped summary-table">
                                     <tbody>
                                         <tr>
-                                            <td> Genetic Information ID (optional) </td>
-                                            <td> {{ gpOneData.geneticInfoId }} </td>
+                                            <td> Laboratory Result No. (optional) </td>
+                                            <td> {{ gpOneData.labResultNo }} </td>
                                         </tr>
                                         <tr>
                                             <td> Farm Of Origin </td>
@@ -97,6 +97,10 @@
                                             <td> Date of BFT Collection </td>
                                             <td> {{ gpOneData.bftCollected }} </td>
                                         </tr>
+                                        <tr>
+                                            <td> Selection Index </td>
+                                            <td> {{ gpOneSelectionIndex }} </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -160,8 +164,8 @@
                                             </template>
                                             <!-- For new GP Sire -->
                                             <tr>
-                                                <td> Genetic Information ID (optional) </td>
-                                                <td> {{ gpSireData.geneticInfoId }} </td>
+                                                <td> Laboratory Result No. (optional) </td>
+                                                <td> {{ gpSireData.labResultNo }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Farm Of Origin </td>
@@ -227,6 +231,10 @@
                                                 <td> Date of BFT Collection </td>
                                                 <td> {{ gpSireData.bftCollected }} </td>
                                             </tr>
+                                            <tr>
+                                                <td> Selection Index </td>
+                                                <td> {{ gpSireSelectionIndex }} </td>
+                                            </tr>
                                         </template>
                                     </tbody>
                                 </table>
@@ -288,8 +296,8 @@
                                             </template>
                                             <!-- For new GP Dam -->
                                             <tr>
-                                                <td> Genetic Information ID (optional) </td>
-                                                <td> {{ gpDamData.geneticInfoId }} </td>
+                                                <td> Laboratory Result No. (optional) </td>
+                                                <td> {{ gpDamData.labResultNo }} </td>
                                             </tr>
                                             <tr>
                                                 <td> Farm Of Origin </td>
@@ -354,6 +362,10 @@
                                             <tr>
                                                 <td> Date of BFT Collection </td>
                                                 <td> {{ gpDamData.bftCollected }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td> Selection Index </td>
+                                                <td> {{ gpDamSelectionIndex }} </td>
                                             </tr>
                                         </template>
                                     </tbody>
@@ -450,6 +462,9 @@
             gpOneComputedFeedEfficiency() {
                 return this.$store.getters.computedFeedEfficiency('gpOne');
             },
+            gpOneSelectionIndex() {
+                return this.$store.getters.computedSelectionIndex('gpOne');
+            },
             gpSireData() {
                 return this.$store.getters.gpSireData;
             },
@@ -462,6 +477,9 @@
             gpSireComputedFeedEfficiency() {
                 return this.$store.getters.computedFeedEfficiency('gpSire');
             },
+            gpSireSelectionIndex() {
+                return this.$store.getters.computedSelectionIndex('gpSire');
+            },
             gpDamData() {
                 return this.$store.getters.gpDamData;
             },
@@ -473,6 +491,9 @@
             },
             gpDamComputedFeedEfficiency() {
                 return this.$store.getters.computedFeedEfficiency('gpDam');
+            },
+            gpDamSelectionIndex() {
+                return this.$store.getters.computedSelectionIndex('gpDam');
             },
             gpOneSwinecart: {
                 // get and set value from vuex store
@@ -508,19 +529,22 @@
 
                 this.disableButtons(submitButton, event.target, 'Registering...')
 
-                // Attach derived values such as ADG, FE, and breedId
-                // for parents to original object before submit
+                // Attach derived values such as ADG, FE, Selection index, and 
+                // breedId for parents to original object before submit
                 gpOneData.adgBirth = this.gpOneComputedAdgFromBirth;
                 gpOneData.adgTest = this.gpOneComputedAdgOnTest;
                 gpOneData.feedEfficiency = this.gpOneComputedFeedEfficiency;
+                gpOneData.selectionIndex = this.gpOneSelectionIndex;
                 gpSireData.adgBirth = this.gpSireComputedAdgFromBirth;
                 gpSireData.adgTest = this.gpSireComputedAdgOnTest;
                 gpSireData.feedEfficiency = this.gpSireComputedFeedEfficiency;
+                gpSireData.selectionIndex = this.gpSireSelectionIndex;
                 gpSireData.breedId = gpOneData.breedId;
                 gpSireData.status = this.determineStatus(gpSireData);
                 gpDamData.adgBirth = this.gpDamComputedAdgFromBirth;
                 gpDamData.adgTest = this.gpDamComputedAdgOnTest;
                 gpDamData.feedEfficiency = this.gpDamComputedFeedEfficiency;
+                gpDamData.selectionIndex = this.gpDamSelectionIndex;
                 gpDamData.breedId = this.gpOneData.breedId;
                 gpDamData.status = this.determineStatus(gpDamData);
 
