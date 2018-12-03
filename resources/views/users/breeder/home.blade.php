@@ -28,6 +28,9 @@
         <li :class="{ active : currentRoute.breeder.showInspection }">
             <a href="{{ route('breederInspection') }}"> <i class="material-icons">highlight</i> Inspection Requests </a>
         </li>
+        <li :class="{ active : currentRoute.breeder.showCertificates }">
+            <a href="{{ route('breederCertificate') }}"> <i class="material-icons">picture_in_picture</i> Certificate Requests </a>
+        </li>
         <li :class="{ active : currentRoute.breeder.manageFarms }">
             <a href="#!"> <i class="material-icons">store</i> Manage Farms </a>
         </li>
