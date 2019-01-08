@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionB');
         Route::post('/inspections/{inspectionId}/swines', 'InspectionController@addSwinesToInspectionRequest')->name('addSwinesToInspection');
         Route::delete('/inspections/{inspectionId}/item/{itemId}', 'InspectionController@removeInspectionItem')->name('removeInspectionItem');
+        Route::get('/certificates', 'CertificateController@breederViewAll')->name('breederCertificate');
     });
 
     // Admin-related
