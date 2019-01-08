@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(164);
+module.exports = __webpack_require__(169);
 
 
 /***/ }),
@@ -461,17 +461,17 @@ Vue.component('manage-properties', __webpack_require__(74));
 Vue.component('manage-apis', __webpack_require__(79));
 
 // Breeder
-Vue.component('certificate-requests-breeder', __webpack_require__(180));
-Vue.component('inspection-requests-breeder', __webpack_require__(84));
-Vue.component('register-swine', __webpack_require__(99));
-Vue.component('view-registered-swine', __webpack_require__(134));
+Vue.component('certificate-requests-breeder', __webpack_require__(84));
+Vue.component('inspection-requests-breeder', __webpack_require__(89));
+Vue.component('register-swine', __webpack_require__(104));
+Vue.component('view-registered-swine', __webpack_require__(139));
 
 // Evaluator
-Vue.component('inspection-requests-evaluator', __webpack_require__(139));
+Vue.component('inspection-requests-evaluator', __webpack_require__(144));
 
 // Genomics
-Vue.component('register-laboratory-results', __webpack_require__(149));
-Vue.component('view-laboratory-results', __webpack_require__(154));
+Vue.component('register-laboratory-results', __webpack_require__(154));
+Vue.component('view-laboratory-results', __webpack_require__(159));
 
 // For main container
 var app = new Vue({
@@ -7203,7 +7203,880 @@ var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(87),
   /* template */
-  __webpack_require__(98),
+  __webpack_require__(88),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-648b893f",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreeder.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreeder.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-648b893f", Component.options)
+  } else {
+    hotAPI.reload("data-v-648b893f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(86);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("21614512", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-648b893f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreeder.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-648b893f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreeder.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-648b893f] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-648b893f] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-648b893f] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-648b893f]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-648b893f] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-648b893f] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-648b893f], .fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-648b893f] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-648b893f], .included-fade-enter-active[data-v-648b893f] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-648b893f], .included-fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-648b893f], .fade-leave-to[data-v-648b893f],\n.view-fade-enter[data-v-648b893f], .view-fade-leave-to[data-v-648b893f],\n.add-fade-enter[data-v-648b893f], .add-fade-leave-to[data-v-648b893f],\n.included-fade-enter[data-v-648b893f], .included-fade-leave-to[data-v-648b893f] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-648b893f] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-648b893f] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-648b893f] {\n    margin: 0;\n}\np.range-field label[data-v-648b893f] {\n    color: black;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// import InspectionRequestsBreederAddSwine from './InspectionRequestsBreederAddSwine.vue';
+// import InspectionRequestsBreederViewSwine from './InspectionRequestsBreederViewSwine.vue';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: Object,
+        currentFilterOptions: Object,
+        approvedSwines: Array,
+        farmOptions: Array,
+        viewUrl: String
+    },
+
+    // components: {
+    //     InspectionRequestsBreederAddSwine,
+    //     InspectionRequestsBreederViewSwine
+    // },
+
+    data: function data() {
+        return {
+            showAddRequestInput: false,
+            showAddSwine: false,
+            showViewSwine: false,
+            pageNumber: 0,
+            paginationSize: 15,
+            filterOptions: this.currentFilterOptions,
+            inspectionRequests: this.customInspectionRequests,
+            statuses: [{
+                text: 'Draft',
+                value: 'draft'
+            }, {
+                text: 'Requested',
+                value: 'requested'
+            }, {
+                text: 'For Payment',
+                value: 'for_payment'
+            }, {
+                text: 'On Delivery',
+                value: 'on_delivery'
+            }],
+            addRequestData: {
+                breederId: this.user.id,
+                farmId: ''
+            },
+            certificateData: {
+                certRequestId: 0,
+                farmName: ''
+            },
+            requestData: {
+                certRequestId: 0,
+                farmName: ''
+            }
+        };
+    },
+
+
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.approvedSwines.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedRequests: function paginatedRequests() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return _.sortBy(this.inspectionRequests, ['id']).slice(start, end);
+        }
+    },
+
+    watch: {
+        filterOptions: {
+            handler: function handler(oldValue, newValue) {
+                // Watch filterOptions object for url rewrite
+                this.rewriteUrl(newValue, '');
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        previousPage: function previousPage() {
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            this.pageNumber = page - 1;
+        },
+        rewriteUrl: function rewriteUrl(filterOptions, searchParameter) {
+            /**
+             *  URL rewrite syntax: 
+             *  ?q=value*
+             *  &status=value[+value]*
+             */
+            var url = this.viewUrl;
+            var parameters = [];
+
+            // Put search parameter in parameters if it is non-empty
+            if (searchParameter.length > 0) {
+                var qParameter = 'q=' + searchParameter;
+
+                parameters.push(qParameter);
+            }
+
+            // Put status parameter in parameters if filter is chosen
+            if (filterOptions.status.length > 0) {
+                var statusParameter = 'status=';
+                statusParameter += filterOptions.status.join('+');
+
+                parameters.push(statusParameter);
+            }
+
+            // Redirect to new url
+            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
+        },
+
+
+        // addInspectionRequest(event) {
+        //     const vm = this;
+        //     const addInspectionRequestBtn = $('.add-request-button');
+
+        //     this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
+
+        //     // Add to server's database
+        //     axios.post('/breeder/inspections', {
+        //         breederId: vm.addRequestData.breederId,
+        //         farmId: vm.addRequestData.farmId
+        //     })
+        //     .then((response) => {
+        //         // Put response in local data storage and erase adding of request data
+        //         vm.inspectionRequests.push(response.data);
+        //         vm.addRequestData.farmId = '';
+
+        //         // Update UI after adding inspection request
+        //         vm.$nextTick(() => {
+        //             this.enableButtons(addInspectionRequestBtn, event.target, 'Add Inspection Request');
+
+        //             Materialize.updateTextFields();
+        //             Materialize.toast('Inspection request added', 2000, 'green lighten-1');
+        //         });
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+        // },
+
+        // showSwineView(type, inspectionId, farmName, status) {
+        //     if (type === 'add') this.showAddSwine = true;
+        //     else if (type === 'view') this.showViewSwine = true;
+
+        //     this.inspectionData = {
+        //         inspectionId,
+        //         farmName,
+        //         status
+        //     };
+        // },
+
+        // showRequestModal(inspectionId, farmName) {
+        //     this.requestData.inspectionId = inspectionId;
+        //     this.requestData.farmName = farmName;
+
+        //     this.$nextTick(() => {
+        //         // Materialize component initializations
+        //         $('.modal').modal();
+        //         $('#request-for-inspection-modal').modal('open');
+        //     });
+        // },
+
+        // requestForInspection(event) {
+        //     const vm = this;
+        //     const requestForInspectionBtn = $('.request-for-inspection-btn');
+        //     const inspectionId = this.requestData.inspectionId;
+
+        //     this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+
+        //     // Update from server's database
+        //     axios.patch(`/breeder/inspections/${inspectionId}`, {})
+        //     .then(({data}) => {
+        //         if(data.requested) {
+        //             // Update local data storage
+        //             this.inspectionForRequest({
+        //                 inspectionId: inspectionId,
+        //                 dateRequested: data.dateRequested
+        //             });
+
+        //             // Update UI after requesting the inspection
+        //             vm.$nextTick(() => {
+        //                 $('#request-for-inspection-modal').modal('close');
+        //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+
+        //                 Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
+        //             });
+        //         }
+        //         else {
+        //             // Make sure there are included swines before requesting
+        //             vm.$nextTick(() => {
+        //                 $('#request-for-inspection-modal').modal('close');
+        //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+
+        //                 Materialize.toast('Please include swines to request.', 2000);
+        //             });
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+        // },
+
+        // inspectionForRequest(data) {
+        //     const index = _.findIndex(this.customInspectionRequests, 
+        //         ['id', data.inspectionId]
+        //     );
+
+        //     const inspectionRequest = this.customInspectionRequests[index];
+        //     inspectionRequest.status = 'requested';
+        //     inspectionRequest.dateRequested = data.dateRequested;
+        // },
+
+        // hideSwineView(type) {
+        //     if(type === 'add') this.showAddSwine = false;
+        //     else if(type === 'view') this.showViewSwine = false;
+
+        //     // Re-initialize collapsbile component
+        //     this.$nextTick(() => {
+        //         $('.collapsible').collapsible();
+        //         $('.tooltipped').tooltip({delay: 50});
+        //     });
+        // },
+
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s10 offset-s1"
+  }, [_c('transition', {
+    attrs: {
+      "name": "view-fade"
+    }
+  }, [(!_vm.showAddSwine && !_vm.showViewSwine) ? _c('div', [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Certificate Requests ")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 m3 l2"
+  }, [_c('ul', {
+    staticClass: "collapsible",
+    attrs: {
+      "data-collapsible": "expandable"
+    }
+  }, [_c('li', [_c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('b', [_vm._v("Status")])]), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('p', {
+    staticClass: "range-field"
+  }, [_vm._l((_vm.statuses), function(status) {
+    return [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.filterOptions.status),
+        expression: "filterOptions.status"
+      }],
+      staticClass: "filled-in",
+      attrs: {
+        "type": "checkbox",
+        "id": status.value
+      },
+      domProps: {
+        "value": status.value,
+        "checked": Array.isArray(_vm.filterOptions.status) ? _vm._i(_vm.filterOptions.status, status.value) > -1 : (_vm.filterOptions.status)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.filterOptions.status,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = status.value,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.$set(_vm.filterOptions, "status", $$a.concat([$$v])))
+            } else {
+              $$i > -1 && (_vm.$set(_vm.filterOptions, "status", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+            }
+          } else {
+            _vm.$set(_vm.filterOptions, "status", $$c)
+          }
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": status.value
+      }
+    }, [_vm._v(" " + _vm._s(status.text) + " ")]), _vm._v(" "), _c('br')]
+  })], 2)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s8 m9 l10"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-request-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new certificate request"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddRequestInput = !_vm.showAddRequestInput
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddRequestInput),
+      expression: "showAddRequestInput"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-request-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-request-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddRequestInput = !_vm.showAddRequestInput
+      }
+    }
+  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('app-input-select', {
+    attrs: {
+      "labelDescription": "Farm",
+      "options": _vm.farmOptions
+    },
+    on: {
+      "select": function (val) {
+        _vm.addRequestData.farmId = val
+      }
+    },
+    model: {
+      value: (_vm.addRequestData.farmId),
+      callback: function($$v) {
+        _vm.$set(_vm.addRequestData, "farmId", $$v)
+      },
+      expression: "addRequestData.farmId"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-request-button",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addInspectionRequest($event)
+      }
+    }
+  }, [_vm._v("\n                                Add Certificate Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(inspection, index) {
+    return _c('li', {
+      key: inspection.id,
+      staticClass: "collection-item avatar"
+    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', {
+      staticClass: "grey-text text-darken-2"
+    }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
+      staticClass: "lime-text text-darken-2"
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
+      staticClass: "purple-text text-darken-2"
+    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
+      staticClass: "green-text text-darken-2"
+    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text text-darken-1"
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(inspection.farmName) + "\n                        ")])], 2), _vm._v(" "), (inspection.status === 'draft') ? _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showSwineView('add', inspection.id, inspection.farmName)
+        }
+      }
+    }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showRequestModal(inspection.id, inspection.farmName)
+        }
+      }
+    }, [_vm._v("\n                            Request for Inspection\n                        ")])]) : _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showSwineView(
+            'view',
+            inspection.id,
+            inspection.farmName,
+            inspection.status
+          )
+        }
+      }
+    }, [_vm._v("\n                            View Swine\n                        ")])])])
+  }), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.paginatedRequests.length === 0),
+      expression: "paginatedRequests.length === 0"
+    }],
+    staticClass: "collection-item avatar center-align"
+  }, [_c('p', [_c('b', [_vm._v("Sorry, no certificate requests found.")])])])], 2), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align pagination-container"
+  }, [_c('ul', {
+    staticClass: "pagination"
+  }, [_c('li', {
+    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.previousPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
+    return _c('li', {
+      staticClass: "waves-effect",
+      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
+    }, [_c('a', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.goToPage(i)
+        }
+      }
+    }, [_vm._v(" " + _vm._s(i) + " ")])])
+  }), _vm._v(" "), _c('li', {
+    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.nextPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "request-for-inspection-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("\n                        Request for Inspection\n                        "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('br')]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                                for inspection?\n                            ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.requestForInspection($event)
+      }
+    }
+  }, [_vm._v("\n                        Request\n                    ")])])])])]) : _vm._e()])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-648b893f", module.exports)
+  }
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(90)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(92),
+  /* template */
+  __webpack_require__(103),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7235,13 +8108,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 85 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(86);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7261,7 +8134,7 @@ if(false) {
 }
 
 /***/ }),
-/* 86 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7275,14 +8148,14 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 
 
 /***/ }),
-/* 87 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__);
 //
 //
@@ -7763,19 +8636,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(89)
+  __webpack_require__(94)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(91),
+  __webpack_require__(96),
   /* template */
-  __webpack_require__(92),
+  __webpack_require__(97),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7807,13 +8680,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 89 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(90);
+var content = __webpack_require__(95);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7833,7 +8706,7 @@ if(false) {
 }
 
 /***/ }),
-/* 90 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7847,7 +8720,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border:
 
 
 /***/ }),
-/* 91 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8246,7 +9119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 92 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8508,19 +9381,19 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(94)
+  __webpack_require__(99)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(96),
+  __webpack_require__(101),
   /* template */
-  __webpack_require__(97),
+  __webpack_require__(102),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8552,13 +9425,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 94 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(95);
+var content = __webpack_require__(100);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8578,7 +9451,7 @@ if(false) {
 }
 
 /***/ }),
-/* 95 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -8592,7 +9465,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-184cd2c7] {\n    border:
 
 
 /***/ }),
-/* 96 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8762,7 +9635,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 97 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8872,7 +9745,7 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9201,19 +10074,19 @@ if (false) {
 }
 
 /***/ }),
-/* 99 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(100)
+  __webpack_require__(105)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(102),
+  __webpack_require__(107),
   /* template */
-  __webpack_require__(133),
+  __webpack_require__(138),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9245,13 +10118,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 100 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(101);
+var content = __webpack_require__(106);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9271,7 +10144,7 @@ if(false) {
 }
 
 /***/ }),
-/* 101 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9285,18 +10158,18 @@ exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 
 
 
 /***/ }),
-/* 102 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__);
 //
 //
@@ -9440,7 +10313,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             tabDisables: {
                 summary: true,
-                photos: true
+                photos: false
             }
         };
     },
@@ -9544,19 +10417,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 103 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(104)
+  __webpack_require__(109)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(106),
+  __webpack_require__(111),
   /* template */
-  __webpack_require__(112),
+  __webpack_require__(117),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9588,13 +10461,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 104 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(105);
+var content = __webpack_require__(110);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9614,7 +10487,7 @@ if(false) {
 }
 
 /***/ }),
-/* 105 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9628,12 +10501,12 @@ exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow
 
 
 /***/ }),
-/* 106 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
 //
 //
@@ -9761,19 +10634,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 107 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(108)
+  __webpack_require__(113)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(110),
+  __webpack_require__(115),
   /* template */
-  __webpack_require__(111),
+  __webpack_require__(116),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9805,13 +10678,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 108 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(109);
+var content = __webpack_require__(114);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9831,7 +10704,7 @@ if(false) {
 }
 
 /***/ }),
-/* 109 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9845,7 +10718,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 110 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10682,7 +11555,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 111 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11537,7 +12410,7 @@ if (false) {
 }
 
 /***/ }),
-/* 112 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11646,19 +12519,19 @@ if (false) {
 }
 
 /***/ }),
-/* 113 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(114)
+  __webpack_require__(119)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(116),
+  __webpack_require__(121),
   /* template */
-  __webpack_require__(117),
+  __webpack_require__(122),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -11690,13 +12563,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(115);
+var content = __webpack_require__(120);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -11716,7 +12589,7 @@ if(false) {
 }
 
 /***/ }),
-/* 115 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -11730,7 +12603,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 116 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12261,7 +13134,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 117 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -12868,19 +13741,19 @@ if (false) {
 }
 
 /***/ }),
-/* 118 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(119)
+  __webpack_require__(124)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(121),
+  __webpack_require__(126),
   /* template */
-  __webpack_require__(122),
+  __webpack_require__(127),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -12912,13 +13785,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 119 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(120);
+var content = __webpack_require__(125);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -12938,7 +13811,7 @@ if(false) {
 }
 
 /***/ }),
-/* 120 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -12952,7 +13825,7 @@ exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;
 
 
 /***/ }),
-/* 121 */
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13570,7 +14443,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 122 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13741,19 +14614,19 @@ if (false) {
 }
 
 /***/ }),
-/* 123 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(124)
+  __webpack_require__(129)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(126),
+  __webpack_require__(131),
   /* template */
-  __webpack_require__(132),
+  __webpack_require__(137),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -13785,13 +14658,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 124 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(125);
+var content = __webpack_require__(130);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -13811,7 +14684,7 @@ if(false) {
 }
 
 /***/ }),
-/* 125 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -13825,12 +14698,12 @@ exports.push([module.i, "\n#photos > .card[data-v-5bf32331] {\n    padding: 0;\n
 
 
 /***/ }),
-/* 126 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__);
 //
 //
@@ -14042,19 +14915,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 127 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(128)
+  __webpack_require__(133)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(130),
+  __webpack_require__(135),
   /* template */
-  __webpack_require__(131),
+  __webpack_require__(136),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14086,13 +14959,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 128 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(129);
+var content = __webpack_require__(134);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14112,7 +14985,7 @@ if(false) {
 }
 
 /***/ }),
-/* 129 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -14126,7 +14999,7 @@ exports.push([module.i, "/* Custom style from vue-dropzone */\n.vue-dropzone[dat
 
 
 /***/ }),
-/* 130 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14229,7 +15102,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 131 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14281,7 +15154,7 @@ if (false) {
 }
 
 /***/ }),
-/* 132 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14395,7 +15268,7 @@ if (false) {
 }
 
 /***/ }),
-/* 133 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14617,19 +15490,19 @@ if (false) {
 }
 
 /***/ }),
-/* 134 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(135)
+  __webpack_require__(140)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(137),
+  __webpack_require__(142),
   /* template */
-  __webpack_require__(138),
+  __webpack_require__(143),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14661,13 +15534,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 135 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(136);
+var content = __webpack_require__(141);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14687,7 +15560,7 @@ if(false) {
 }
 
 /***/ }),
-/* 136 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -14701,7 +15574,7 @@ exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    m
 
 
 /***/ }),
-/* 137 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15140,7 +16013,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 138 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15702,19 +16575,19 @@ if (false) {
 }
 
 /***/ }),
-/* 139 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(140)
+  __webpack_require__(145)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(142),
+  __webpack_require__(147),
   /* template */
-  __webpack_require__(148),
+  __webpack_require__(153),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -15746,13 +16619,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 140 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(141);
+var content = __webpack_require__(146);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15772,7 +16645,7 @@ if(false) {
 }
 
 /***/ }),
-/* 141 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -15786,12 +16659,12 @@ exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-
 
 
 /***/ }),
-/* 142 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__);
 //
 //
@@ -16307,19 +17180,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 143 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(144)
+  __webpack_require__(149)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(146),
+  __webpack_require__(151),
   /* template */
-  __webpack_require__(147),
+  __webpack_require__(152),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -16351,13 +17224,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 144 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(145);
+var content = __webpack_require__(150);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16377,7 +17250,7 @@ if(false) {
 }
 
 /***/ }),
-/* 145 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -16391,7 +17264,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-ff4fdf8e] {\n    border:
 
 
 /***/ }),
-/* 146 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16656,7 +17529,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 147 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -16826,7 +17699,7 @@ if (false) {
 }
 
 /***/ }),
-/* 148 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -17143,19 +18016,19 @@ if (false) {
 }
 
 /***/ }),
-/* 149 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(150)
+  __webpack_require__(155)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(152),
+  __webpack_require__(157),
   /* template */
-  __webpack_require__(153),
+  __webpack_require__(158),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -17187,13 +18060,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 150 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(151);
+var content = __webpack_require__(156);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -17213,7 +18086,7 @@ if(false) {
 }
 
 /***/ }),
-/* 151 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -17227,7 +18100,7 @@ exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n
 
 
 /***/ }),
-/* 152 */
+/* 157 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18099,7 +18972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 153 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -19793,19 +20666,19 @@ if (false) {
 }
 
 /***/ }),
-/* 154 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(155)
+  __webpack_require__(160)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(157),
+  __webpack_require__(162),
   /* template */
-  __webpack_require__(163),
+  __webpack_require__(168),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -19837,13 +20710,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 155 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(156);
+var content = __webpack_require__(161);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -19863,7 +20736,7 @@ if(false) {
 }
 
 /***/ }),
-/* 156 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -19877,12 +20750,12 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border:
 
 
 /***/ }),
-/* 157 */
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
 //
 //
@@ -20447,19 +21320,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 158 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(159)
+  __webpack_require__(164)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(161),
+  __webpack_require__(166),
   /* template */
-  __webpack_require__(162),
+  __webpack_require__(167),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -20491,13 +21364,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 159 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(160);
+var content = __webpack_require__(165);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -20517,7 +21390,7 @@ if(false) {
 }
 
 /***/ }),
-/* 160 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -20531,7 +21404,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-615ddffa] {\n    border:
 
 
 /***/ }),
-/* 161 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21432,7 +22305,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 162 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -23146,7 +24019,7 @@ if (false) {
 }
 
 /***/ }),
-/* 163 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -23554,898 +24427,10 @@ if (false) {
 }
 
 /***/ }),
-/* 164 */
+/* 169 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(181)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(183),
-  /* template */
-  __webpack_require__(184),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-648b893f",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreeder.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreeder.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-648b893f", Component.options)
-  } else {
-    hotAPI.reload("data-v-648b893f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(182);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("21614512", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-648b893f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreeder.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-648b893f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreeder.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 182 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-648b893f] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-648b893f] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-648b893f] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-648b893f]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-648b893f] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-648b893f] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-648b893f], .fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-648b893f] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-648b893f], .included-fade-enter-active[data-v-648b893f] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-648b893f], .included-fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-648b893f], .fade-leave-to[data-v-648b893f],\n.view-fade-enter[data-v-648b893f], .view-fade-leave-to[data-v-648b893f],\n.add-fade-enter[data-v-648b893f], .add-fade-leave-to[data-v-648b893f],\n.included-fade-enter[data-v-648b893f], .included-fade-leave-to[data-v-648b893f] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-648b893f] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-648b893f] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-648b893f] {\n    margin: 0;\n}\np.range-field label[data-v-648b893f] {\n    color: black;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 183 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-// import InspectionRequestsBreederAddSwine from './InspectionRequestsBreederAddSwine.vue';
-// import InspectionRequestsBreederViewSwine from './InspectionRequestsBreederViewSwine.vue';
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        user: Object,
-        currentFilterOptions: Object,
-        approvedSwines: Array,
-        farmOptions: Array,
-        viewUrl: String
-    },
-
-    // components: {
-    //     InspectionRequestsBreederAddSwine,
-    //     InspectionRequestsBreederViewSwine
-    // },
-
-    data: function data() {
-        return {
-            showAddRequestInput: false,
-            showAddSwine: false,
-            showViewSwine: false,
-            pageNumber: 0,
-            paginationSize: 15,
-            filterOptions: this.currentFilterOptions,
-            inspectionRequests: this.customInspectionRequests,
-            statuses: [{
-                text: 'Draft',
-                value: 'draft'
-            }, {
-                text: 'Requested',
-                value: 'requested'
-            }, {
-                text: 'For Payment',
-                value: 'for_payment'
-            }, {
-                text: 'On Delivery',
-                value: 'on_delivery'
-            }],
-            addRequestData: {
-                breederId: this.user.id,
-                farmId: ''
-            },
-            certificateData: {
-                certRequestId: 0,
-                farmName: ''
-            },
-            requestData: {
-                certRequestId: 0,
-                farmName: ''
-            }
-        };
-    },
-
-
-    computed: {
-        pageCount: function pageCount() {
-            var l = this.approvedSwines.length;
-            var s = this.paginationSize;
-
-            return Math.ceil(l / s);
-        },
-        paginatedRequests: function paginatedRequests() {
-            var start = this.pageNumber * this.paginationSize;
-            var end = start + this.paginationSize;
-
-            return _.sortBy(this.inspectionRequests, ['id']).slice(start, end);
-        }
-    },
-
-    watch: {
-        filterOptions: {
-            handler: function handler(oldValue, newValue) {
-                // Watch filterOptions object for url rewrite
-                this.rewriteUrl(newValue, '');
-            },
-            deep: true
-        }
-    },
-
-    methods: {
-        previousPage: function previousPage() {
-            if (this.pageNumber !== 0) this.pageNumber--;
-        },
-        nextPage: function nextPage() {
-            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
-        },
-        goToPage: function goToPage(page) {
-            this.pageNumber = page - 1;
-        },
-        rewriteUrl: function rewriteUrl(filterOptions, searchParameter) {
-            /**
-             *  URL rewrite syntax: 
-             *  ?q=value*
-             *  &status=value[+value]*
-             */
-            var url = this.viewUrl;
-            var parameters = [];
-
-            // Put search parameter in parameters if it is non-empty
-            if (searchParameter.length > 0) {
-                var qParameter = 'q=' + searchParameter;
-
-                parameters.push(qParameter);
-            }
-
-            // Put status parameter in parameters if filter is chosen
-            if (filterOptions.status.length > 0) {
-                var statusParameter = 'status=';
-                statusParameter += filterOptions.status.join('+');
-
-                parameters.push(statusParameter);
-            }
-
-            // Redirect to new url
-            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
-        },
-
-
-        // addInspectionRequest(event) {
-        //     const vm = this;
-        //     const addInspectionRequestBtn = $('.add-request-button');
-
-        //     this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
-
-        //     // Add to server's database
-        //     axios.post('/breeder/inspections', {
-        //         breederId: vm.addRequestData.breederId,
-        //         farmId: vm.addRequestData.farmId
-        //     })
-        //     .then((response) => {
-        //         // Put response in local data storage and erase adding of request data
-        //         vm.inspectionRequests.push(response.data);
-        //         vm.addRequestData.farmId = '';
-
-        //         // Update UI after adding inspection request
-        //         vm.$nextTick(() => {
-        //             this.enableButtons(addInspectionRequestBtn, event.target, 'Add Inspection Request');
-
-        //             Materialize.updateTextFields();
-        //             Materialize.toast('Inspection request added', 2000, 'green lighten-1');
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-        // },
-
-        // showSwineView(type, inspectionId, farmName, status) {
-        //     if (type === 'add') this.showAddSwine = true;
-        //     else if (type === 'view') this.showViewSwine = true;
-
-        //     this.inspectionData = {
-        //         inspectionId,
-        //         farmName,
-        //         status
-        //     };
-        // },
-
-        // showRequestModal(inspectionId, farmName) {
-        //     this.requestData.inspectionId = inspectionId;
-        //     this.requestData.farmName = farmName;
-
-        //     this.$nextTick(() => {
-        //         // Materialize component initializations
-        //         $('.modal').modal();
-        //         $('#request-for-inspection-modal').modal('open');
-        //     });
-        // },
-
-        // requestForInspection(event) {
-        //     const vm = this;
-        //     const requestForInspectionBtn = $('.request-for-inspection-btn');
-        //     const inspectionId = this.requestData.inspectionId;
-
-        //     this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
-
-        //     // Update from server's database
-        //     axios.patch(`/breeder/inspections/${inspectionId}`, {})
-        //     .then(({data}) => {
-        //         if(data.requested) {
-        //             // Update local data storage
-        //             this.inspectionForRequest({
-        //                 inspectionId: inspectionId,
-        //                 dateRequested: data.dateRequested
-        //             });
-
-        //             // Update UI after requesting the inspection
-        //             vm.$nextTick(() => {
-        //                 $('#request-for-inspection-modal').modal('close');
-        //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
-
-        //                 Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
-        //             });
-        //         }
-        //         else {
-        //             // Make sure there are included swines before requesting
-        //             vm.$nextTick(() => {
-        //                 $('#request-for-inspection-modal').modal('close');
-        //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
-
-        //                 Materialize.toast('Please include swines to request.', 2000);
-        //             });
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-        // },
-
-        // inspectionForRequest(data) {
-        //     const index = _.findIndex(this.customInspectionRequests, 
-        //         ['id', data.inspectionId]
-        //     );
-
-        //     const inspectionRequest = this.customInspectionRequests[index];
-        //     inspectionRequest.status = 'requested';
-        //     inspectionRequest.dateRequested = data.dateRequested;
-        // },
-
-        // hideSwineView(type) {
-        //     if(type === 'add') this.showAddSwine = false;
-        //     else if(type === 'view') this.showViewSwine = false;
-
-        //     // Re-initialize collapsbile component
-        //     this.$nextTick(() => {
-        //         $('.collapsible').collapsible();
-        //         $('.tooltipped').tooltip({delay: 50});
-        //     });
-        // },
-
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
-    }
-});
-
-/***/ }),
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s10 offset-s1"
-  }, [_c('transition', {
-    attrs: {
-      "name": "view-fade"
-    }
-  }, [(!_vm.showAddSwine && !_vm.showViewSwine) ? _c('div', [_c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Certificate Requests ")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 m3 l2"
-  }, [_c('ul', {
-    staticClass: "collapsible",
-    attrs: {
-      "data-collapsible": "expandable"
-    }
-  }, [_c('li', [_c('div', {
-    staticClass: "collapsible-header active"
-  }, [_c('b', [_vm._v("Status")])]), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
-  }, [_c('p', {
-    staticClass: "range-field"
-  }, [_vm._l((_vm.statuses), function(status) {
-    return [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.filterOptions.status),
-        expression: "filterOptions.status"
-      }],
-      staticClass: "filled-in",
-      attrs: {
-        "type": "checkbox",
-        "id": status.value
-      },
-      domProps: {
-        "value": status.value,
-        "checked": Array.isArray(_vm.filterOptions.status) ? _vm._i(_vm.filterOptions.status, status.value) > -1 : (_vm.filterOptions.status)
-      },
-      on: {
-        "change": function($event) {
-          var $$a = _vm.filterOptions.status,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = status.value,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (_vm.$set(_vm.filterOptions, "status", $$a.concat([$$v])))
-            } else {
-              $$i > -1 && (_vm.$set(_vm.filterOptions, "status", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-            }
-          } else {
-            _vm.$set(_vm.filterOptions, "status", $$c)
-          }
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": status.value
-      }
-    }, [_vm._v(" " + _vm._s(status.text) + " ")]), _vm._v(" "), _c('br')]
-  })], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s8 m9 l10"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
-    attrs: {
-      "href": "#!",
-      "id": "toggle-add-request-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new certificate request"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddRequestInput = !_vm.showAddRequestInput
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showAddRequestInput),
-      expression: "showAddRequestInput"
-    }],
-    staticClass: "collection-item",
-    attrs: {
-      "id": "add-request-container"
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-request-container-button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddRequestInput = !_vm.showAddRequestInput
-      }
-    }
-  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Farm",
-      "options": _vm.farmOptions
-    },
-    on: {
-      "select": function (val) {
-        _vm.addRequestData.farmId = val
-      }
-    },
-    model: {
-      value: (_vm.addRequestData.farmId),
-      callback: function($$v) {
-        _vm.$set(_vm.addRequestData, "farmId", $$v)
-      },
-      expression: "addRequestData.farmId"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn z-depth-0 add-request-button",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addInspectionRequest($event)
-      }
-    }
-  }, [_vm._v("\n                                Add Certificate Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(inspection, index) {
-    return _c('li', {
-      key: inspection.id,
-      staticClass: "collection-item avatar"
-    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', {
-      staticClass: "grey-text text-darken-2"
-    }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
-      staticClass: "lime-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
-      staticClass: "purple-text text-darken-2"
-    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
-      staticClass: "green-text text-darken-2"
-    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
-      staticClass: "grey-text text-darken-1"
-    }, [_c('i', {
-      staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(inspection.farmName) + "\n                        ")])], 2), _vm._v(" "), (inspection.status === 'draft') ? _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showSwineView('add', inspection.id, inspection.farmName)
-        }
-      }
-    }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn",
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showRequestModal(inspection.id, inspection.farmName)
-        }
-      }
-    }, [_vm._v("\n                            Request for Inspection\n                        ")])]) : _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showSwineView(
-            'view',
-            inspection.id,
-            inspection.farmName,
-            inspection.status
-          )
-        }
-      }
-    }, [_vm._v("\n                            View Swine\n                        ")])])])
-  }), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.paginatedRequests.length === 0),
-      expression: "paginatedRequests.length === 0"
-    }],
-    staticClass: "collection-item avatar center-align"
-  }, [_c('p', [_c('b', [_vm._v("Sorry, no certificate requests found.")])])])], 2), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align pagination-container"
-  }, [_c('ul', {
-    staticClass: "pagination"
-  }, [_c('li', {
-    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.previousPage()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
-    return _c('li', {
-      staticClass: "waves-effect",
-      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
-    }, [_c('a', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.goToPage(i)
-        }
-      }
-    }, [_vm._v(" " + _vm._s(i) + " ")])])
-  }), _vm._v(" "), _c('li', {
-    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.nextPage()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "request-for-inspection-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("\n                        Request for Inspection\n                        "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('br')]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                                for inspection?\n                            ")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.requestForInspection($event)
-      }
-    }
-  }, [_vm._v("\n                        Request\n                    ")])])])])]) : _vm._e()])], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-648b893f", module.exports)
-  }
-}
 
 /***/ })
 ],[19]);
