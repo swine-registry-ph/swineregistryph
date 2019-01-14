@@ -83,4 +83,34 @@ class CertificateController extends Controller
             )
         );
     }
+
+    /**
+     * Create a Certificate Request
+     *
+     * @param   Request $request
+     * @return  Array
+     */
+    public function createCertificateRequest(Request $request)
+    {
+        if ($request->ajax()) {
+            $farm = Farm::find($request->farmId);
+
+            $certificateRequest = new CertificateRequest;
+            $certificateRequest->breeder_id = $request->breederId;
+            $certificateRequest->farm_id = $request->farmId;
+            $certificateRequest->save();
+
+            // Return custom data
+            return [
+                'id'             => $certificateRequest->id,
+                'farmName'       => "{$farm->name}, {$farm->province}",
+                'adminName'      => '',
+                'dateRequested'  => '',
+                'datePayment'    => '',
+                'dateDelivery'   => '',
+                'receiptNo'      => '',
+                'status'         => 'draft'
+            ];
+        }
+    }
 }
