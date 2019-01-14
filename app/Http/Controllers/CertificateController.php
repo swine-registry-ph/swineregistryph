@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CertificateItem;
 use App\Models\CertificateRequest;
 use App\Models\Farm;
-use App\Models\InspectionItem;
-use App\Models\InspectionRequest;
 use App\Models\Swine;
 use App\Repositories\CustomHelpers;
 use Carbon\Carbon;
@@ -28,9 +27,9 @@ class CertificateController extends Controller
             ->only([
                 'breederViewAll',
                 'createCertificateRequest',
-                // 'addSwinesToInspectionRequest',
-                // 'removeInspectionItem',
-                // 'requestForInspection'
+                'addSwinesToCertificateRequest',
+                'removeCertificateItem',
+                // 'requestForApproval'
             ]);
         
         $this->middleware('role:evaluator')
@@ -46,7 +45,7 @@ class CertificateController extends Controller
      */
 
     /**
-     * Show Breeder's inspection requests
+     * Show Breeder's certificate requests
      *
      * @return  View
      */
@@ -145,6 +144,58 @@ class CertificateController extends Controller
     }
 
     /**
+     * Add swines to respective certificate request. Adding swines
+     * is the same as adding certificate items to 
+     * respective certificate request
+     *
+     * @param   Request $request
+     * @param   integer $certificateRequestId
+     * @return  Collection
+     */
+    public function addSwinesToCertificateRequest(Request $request, int $certificateRequestId)
+    {
+        if ($request->ajax()) {
+            $certificateRequest = CertificateRequest::find($certificateRequestId);
+            $certificateItemsArray = [];
+            $includedSwines = [];
+
+            foreach ($request->swineIds as $swineId) {
+                $certificateItemsArray[] = [
+                    'swine_id' => $swineId
+                ];
+            }
+
+            $certificateRequest->certificateItems()->createMany($certificateItemsArray);
+
+            // Return updated included and available swine
+            // for the respective certificate request
+            return $this->getSwinesOfCertificateRequest($request, $certificateRequestId);
+        }
+    }
+
+    /**
+     * Remove certificate item from respective certificate request.
+     * Removing a certificate item is the same as removing
+     * a swine from respective certificate request
+     *
+     * @param   Request $request
+     * @param   integer $certificateRequestId
+     * @param   integer $itemId
+     * @return  Collection
+     */
+    public function removeCertificateItem(Request $request, int $certificateRequestId, int $itemId)
+    {
+        if ($request->ajax()) {
+            $certificateRequestItem = CertificateItem::find($itemId);
+            $certificateRequestItem->delete();
+
+            // Return updated included and available swine
+            // for the respective certificate request
+            return $this->getSwinesOfCertificateRequest($request, $certificateRequestId);
+        }
+    }
+
+    /**
      * ------------------------------------------
      * COMMON METHODS
      * ------------------------------------------
@@ -185,7 +236,9 @@ class CertificateController extends Controller
             // Transform swine data available to be included in the certificate request
             foreach ($relatedSwines as $swine) {
                 // Only include swine that's approved by inspection
+                // and not included in other certificate request
                 if ($swine->inspectionItem && $swine->inspectionItem->is_approved) {
+                    if ($swine->certificateItem) continue;
                     $availableSwines[] = [
                         'itemId'         => 0,
                         'swineId'        => $swine->id,

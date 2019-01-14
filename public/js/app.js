@@ -9017,6 +9017,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var addSwinesBtn = $('.add-swines-btn');
             var inspectionId = this.inspectionData.inspectionId;
 
+            if (this.swineIdsToAdd.length < 1) {
+                Materialize.toast('Please choose swines to add', 2000);
+                return;
+            }
+
             this.disableButtons(addSwinesBtn, event.target, 'Adding...');
 
             // Add to server's database
@@ -24827,12 +24832,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var vm = this;
             var addSwinesBtn = $('.add-swines-btn');
-            var certificateRequestId = this.certificate.certificateRequestId;
+            var certificateRequestId = this.certificateData.certificateRequestId;
+
+            if (this.swineIdsToAdd.length < 1) {
+                Materialize.toast('Please choose swines to add', 2000);
+                return;
+            }
 
             this.disableButtons(addSwinesBtn, event.target, 'Adding...');
 
             // Add to server's database
-            axios.post('/breeder/inspections/' + certificateRequestId + '/swines', {
+            axios.post('/breeder/certificates/' + certificateRequestId + '/swines', {
                 swineIds: vm.swineIdsToAdd
             }).then(function (_ref2) {
                 var data = _ref2.data;
@@ -24869,7 +24879,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.disableButtons(removeSwineBtn, event.target, 'Removing...');
 
             // Remove from server's database
-            axios.delete('/breeder/inspections/' + certificateRequestId + '/item/' + itemId).then(function (_ref3) {
+            axios.delete('/breeder/certificates/' + certificateRequestId + '/item/' + itemId).then(function (_ref3) {
                 var data = _ref3.data;
 
                 var registrationNo = vm.removeSwineData.registrationNo;
@@ -25147,7 +25157,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row modal-input-container"
   }, [_vm._m(9), _vm._v(" "), _c('div', {
     staticClass: "col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to remove "), _c('b', [_vm._v(_vm._s(_vm.removeSwineData.registrationNo))]), _vm._v(" \n                            from "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.removeSwineData.inspectionId))]), _vm._v("?\n                        ")])])])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to remove "), _c('b', [_vm._v(_vm._s(_vm.removeSwineData.registrationNo))]), _vm._v(" \n                            from "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.removeSwineData.certificateRequestId))]), _vm._v("?\n                        ")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",

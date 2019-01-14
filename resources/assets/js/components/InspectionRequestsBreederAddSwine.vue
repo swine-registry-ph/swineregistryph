@@ -256,6 +256,11 @@
                 const addSwinesBtn = $('.add-swines-btn');
                 const inspectionId = this.inspectionData.inspectionId;
 
+                if (this.swineIdsToAdd.length < 1) {
+                    Materialize.toast('Please choose swines to add', 2000);
+                    return;
+                }
+
                 this.disableButtons(addSwinesBtn, event.target, 'Adding...');
 
                 // Add to server's database

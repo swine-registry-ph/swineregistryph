@@ -174,7 +174,7 @@
                         <div class="col s12">
                             <p>
                                 Are you sure you want to remove <b>{{ removeSwineData.registrationNo }}</b> 
-                                from <b>Inspection #{{ removeSwineData.inspectionId }}</b>?
+                                from <b>Certificate Request #{{ removeSwineData.certificateRequestId }}</b>?
                             </p>
                         </div>
                     </div>
@@ -254,12 +254,17 @@
             addSwines(event) {
                 const vm = this;
                 const addSwinesBtn = $('.add-swines-btn');
-                const certificateRequestId = this.certificate.certificateRequestId;
+                const certificateRequestId = this.certificateData.certificateRequestId;
+
+                if (this.swineIdsToAdd.length < 1) {
+                    Materialize.toast('Please choose swines to add', 2000);
+                    return;
+                }
 
                 this.disableButtons(addSwinesBtn, event.target, 'Adding...');
 
                 // Add to server's database
-                axios.post(`/breeder/inspections/${certificateRequestId}/swines`, {
+                axios.post(`/breeder/certificates/${certificateRequestId}/swines`, {
                     swineIds: vm.swineIdsToAdd
                 })
                 .then(({data}) => {
@@ -296,7 +301,7 @@
                 this.disableButtons(removeSwineBtn, event.target, 'Removing...');
 
                 // Remove from server's database
-                axios.delete(`/breeder/inspections/${certificateRequestId}/item/${itemId}`)
+                axios.delete(`/breeder/certificates/${certificateRequestId}/item/${itemId}`)
                 .then(({data}) => {
                     const registrationNo = vm.removeSwineData.registrationNo;
 
