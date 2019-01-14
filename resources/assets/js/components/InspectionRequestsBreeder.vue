@@ -290,7 +290,8 @@
                 },
                 inspectionData: {
                     inspectionId: 0,
-                    farmName: ''
+                    farmName: '',
+                    status: ''
                 },
                 requestData: {
                     inspectionId: 0,

@@ -16,7 +16,35 @@ use Auth;
 class CertificateController extends Controller
 {
     use CustomHelpers;
-    
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('role:breeder')
+            ->only([
+                'breederViewAll',
+                'createCertificateRequest',
+                // 'addSwinesToInspectionRequest',
+                // 'removeInspectionItem',
+                // 'requestForInspection'
+            ]);
+        
+        $this->middleware('role:evaluator')
+            ->only([
+                // 'evaluatorViewAll'
+            ]);
+    }
+
+    /**
+     * ------------------------------------------
+     * BREEDER-SPECIFIC METHODS
+     * ------------------------------------------
+     */
+
     /**
      * Show Breeder's inspection requests
      *
@@ -113,6 +141,73 @@ class CertificateController extends Controller
                 'receiptNo'      => '',
                 'status'         => 'draft'
             ];
+        }
+    }
+
+    /**
+     * ------------------------------------------
+     * COMMON METHODS
+     * ------------------------------------------
+     */
+
+    /**
+     * Get included swines and available swines to add
+     * for respective certificate request
+     *
+     * @param   Request $request
+     * @param   integer $certificateRequestId
+     * @return  Collection
+     */
+    public function getSwinesOfCertificateRequest(Request $request, int $certificateRequestId)
+    {
+        if ($request->ajax()) {
+            $certificateRequest = CertificateRequest::where('id', $certificateRequestId)
+                ->with('certificateItems.swine.swineProperties')->first();
+            $farm = Farm::find($certificateRequest->farm_id);
+            $relatedSwines = $farm->swines()->with(['inspectionItem', 'swineProperties'])->get();
+            $availableSwines = [];
+            $includedSwines = [];
+
+            // Transform swine data already included in the certificate request
+            foreach ($certificateRequest->certificateItems as $item) {
+                $swine = $item->swine;
+
+                $includedSwines[] = [
+                    'itemId'         => $item->id,
+                    'swineId'        => $swine->id,
+                    'breedTitle'     => $swine->breed->title,
+                    'registrationNo' => $swine->registration_no,
+                    'farmSwineId'    => $swine->swineProperties
+                                        ->where('property_id', 24)->first()->value
+                ];
+            }
+
+            // Transform swine data available to be included in the certificate request
+            foreach ($relatedSwines as $swine) {
+                // Only include swine that's approved by inspection
+                if ($swine->inspectionItem && $swine->inspectionItem->is_approved) {
+                    $availableSwines[] = [
+                        'itemId'         => 0,
+                        'swineId'        => $swine->id,
+                        'breedTitle'     => $swine->breed->title,
+                        'registrationNo' => $swine->registration_no,
+                        'farmSwineId'    => $swine->swineProperties
+                                            ->where('property_id', 24)->first()->value
+                    ];
+                }
+
+            }
+
+            // Sort data according to farmSwineId
+            $availableSwines = collect($availableSwines)
+                ->sortBy('farmSwineId')->values()->all();
+            $includedSwines = collect($includedSwines)
+                ->sortBy('farmSwineId')->values()->all();
+
+            return collect([
+                'included'  => $includedSwines,
+                'available' => $availableSwines 
+            ]);
         }
     }
 }

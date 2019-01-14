@@ -7280,6 +7280,13 @@ exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-righ
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7516,8 +7523,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-// import InspectionRequestsBreederAddSwine from './InspectionRequestsBreederAddSwine.vue';
-// import InspectionRequestsBreederViewSwine from './InspectionRequestsBreederViewSwine.vue';
+
+// import CertificateRequestsBreederViewSwine from './CertificateRequestsBreederViewSwine.vue';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -7528,10 +7535,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         viewUrl: String
     },
 
-    // components: {
-    //     InspectionRequestsBreederAddSwine,
-    //     InspectionRequestsBreederViewSwine
-    // },
+    components: {
+        CertificateRequestsBreederAddSwine: __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default.a
+        // CertificateRequestsBreederViewSwine
+    },
 
     data: function data() {
         return {
@@ -7560,8 +7567,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 farmId: ''
             },
             certificateData: {
-                certRequestId: 0,
-                farmName: ''
+                certificateRequestId: 0,
+                farmName: '',
+                status: ''
             },
             requestData: {
                 certRequestId: 0,
@@ -7669,18 +7677,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 Materialize.toast('Error occurred', 2000, 'red lighten-1');
             });
         },
+        showSwineView: function showSwineView(type, certificateRequestId, farmName, status) {
+            if (type === 'add') this.showAddSwine = true;else if (type === 'view') this.showViewSwine = true;
 
+            this.certificateData = {
+                certificateRequestId: certificateRequestId,
+                farmName: farmName,
+                status: status
+            };
+        },
 
-        // showSwineView(type, inspectionId, farmName, status) {
-        //     if (type === 'add') this.showAddSwine = true;
-        //     else if (type === 'view') this.showViewSwine = true;
-
-        //     this.inspectionData = {
-        //         inspectionId,
-        //         farmName,
-        //         status
-        //     };
-        // },
 
         // showRequestModal(inspectionId, farmName) {
         //     this.requestData.inspectionId = inspectionId;
@@ -7733,27 +7739,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //     });
         // },
 
-        // inspectionForRequest(data) {
-        //     const index = _.findIndex(this.customInspectionRequests, 
-        //         ['id', data.inspectionId]
-        //     );
+        certificateForApproval: function certificateForApproval(data) {
+            //     const index = _.findIndex(this.customInspectionRequests, 
+            //         ['id', data.inspectionId]
+            //     );
 
-        //     const inspectionRequest = this.customInspectionRequests[index];
-        //     inspectionRequest.status = 'requested';
-        //     inspectionRequest.dateRequested = data.dateRequested;
-        // },
+            //     const inspectionRequest = this.customInspectionRequests[index];
+            //     inspectionRequest.status = 'requested';
+            //     inspectionRequest.dateRequested = data.dateRequested;
+        },
+        hideSwineView: function hideSwineView(type) {
+            if (type === 'add') this.showAddSwine = false;else if (type === 'view') this.showViewSwine = false;
 
-        // hideSwineView(type) {
-        //     if(type === 'add') this.showAddSwine = false;
-        //     else if(type === 'view') this.showViewSwine = false;
-
-        //     // Re-initialize collapsbile component
-        //     this.$nextTick(() => {
-        //         $('.collapsible').collapsible();
-        //         $('.tooltipped').tooltip({delay: 50});
-        //     });
-        // },
-
+            // Re-initialize collapsbile component
+            this.$nextTick(function () {
+                $('.collapsible').collapsible();
+                $('.tooltipped').tooltip({ delay: 50 });
+            });
+        },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
             actionBtnElement.innerHTML = textToShow;
@@ -7943,7 +7946,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showSwineView('add', certificate.id, certificate.farmName)
+          _vm.showSwineView(
+            'add',
+            certificate.id,
+            certificate.farmName,
+            certificate.status
+          )
         }
       }
     }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
@@ -7954,7 +7962,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.showRequestModal(certificate.id, certificate.farmName)
         }
       }
-    }, [_vm._v("\n                            Request for Inspection\n                        ")])]) : _c('span', {
+    }, [_vm._v("\n                            Request for Approval\n                        ")])]) : _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
@@ -8052,7 +8060,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.requestForInspection($event)
       }
     }
-  }, [_vm._v("\n                        Request\n                    ")])])])])]) : _vm._e()])], 1)
+  }, [_vm._v("\n                        Request\n                    ")])])])])]) : _vm._e()]), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "add-fade"
+    }
+  }, [_c('certificate-requests-breeder-add-swine', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddSwine),
+      expression: "showAddSwine"
+    }],
+    attrs: {
+      "certificate-data": _vm.certificateData
+    },
+    on: {
+      "hideSwineViewEvent": _vm.hideSwineView,
+      "certificateForApprovalEvent": _vm.certificateForApproval
+    }
+  })], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -8443,7 +8469,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             inspectionData: {
                 inspectionId: 0,
-                farmName: ''
+                farmName: '',
+                status: ''
             },
             requestData: {
                 inspectionId: 0,
@@ -24435,6 +24462,766 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(186)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(188),
+  /* template */
+  __webpack_require__(189),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-10ad188c",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreederAddSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreederAddSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-10ad188c", Component.options)
+  } else {
+    hotAPI.reload("data-v-10ad188c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(187);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("08917498", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10ad188c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederAddSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10ad188c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederAddSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-10ad188c] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-10ad188c], #available-swines-container[data-v-10ad188c] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-10ad188c], .included-swine-container[data-v-10ad188c] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-10ad188c] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-10ad188c] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-10ad188c], #request-for-inspection-modal-2[data-v-10ad188c] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-10ad188c] {\n    padding-right: 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 188 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        certificateData: Object
+    },
+
+    data: function data() {
+        return {
+            loading: true,
+            availableSwines: [],
+            includedSwines: [],
+            swineIdsToAdd: [],
+            removeSwineData: {
+                certificateRequestId: 0,
+                itemId: 0,
+                registrationNo: ''
+            },
+            requestData: {
+                certificateRequestId: 0,
+                farmName: ''
+            }
+        };
+    },
+
+
+    watch: {
+        certificateData: {
+            handler: function handler(newValue, oldValue) {
+                if (newValue.certificateRequestId !== 0) {
+                    this.fetchSwinesWithCertificateRequest(newValue);
+                }
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        hideAddSwineView: function hideAddSwineView() {
+            this.loading = true;
+            this.$emit('hideSwineViewEvent', 'add');
+        },
+        fetchSwinesWithCertificateRequest: function fetchSwinesWithCertificateRequest(certificateData) {
+            var _this = this;
+
+            var certificateRequestId = certificateData.certificateRequestId;
+
+            axios.get('/breeder/certificates/' + certificateRequestId + '/swines').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.availableSwines = data.available;
+                _this.includedSwines = data.included;
+
+                setTimeout(function () {
+                    _this.loading = false;
+                }, 1000);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addSwines: function addSwines(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var addSwinesBtn = $('.add-swines-btn');
+            var certificateRequestId = this.certificate.certificateRequestId;
+
+            this.disableButtons(addSwinesBtn, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/breeder/inspections/' + certificateRequestId + '/swines', {
+                swineIds: vm.swineIdsToAdd
+            }).then(function (_ref2) {
+                var data = _ref2.data;
+
+                // Put response in local data storage
+                vm.availableSwines = data.available;
+                vm.includedSwines = data.included;
+
+                // Update UI after adding swines to inspection request
+                vm.$nextTick(function () {
+                    _this2.enableButtons(addSwinesBtn, event.target, 'Add Chosen Swines');
+
+                    Materialize.toast('Swines successfully added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRemoveSwineModal: function showRemoveSwineModal(removeSwineData) {
+            this.removeSwineData = removeSwineData;
+
+            // Materialize component initializations
+            $('.modal').modal();
+            $('#remove-swine-modal').modal('open');
+        },
+        removeSwine: function removeSwine(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var removeSwineBtn = $('.remove-swine-btn');
+            var certificateRequestId = this.removeSwineData.certificateRequestId;
+            var itemId = this.removeSwineData.itemId;
+
+            this.disableButtons(removeSwineBtn, event.target, 'Removing...');
+
+            // Remove from server's database
+            axios.delete('/breeder/inspections/' + certificateRequestId + '/item/' + itemId).then(function (_ref3) {
+                var data = _ref3.data;
+
+                var registrationNo = vm.removeSwineData.registrationNo;
+
+                // Put response in local data storage
+                vm.availableSwines = data.available;
+                vm.includedSwines = data.included;
+
+                vm.removeSwineData = {
+                    certificateRequestId: 0,
+                    itemId: 0,
+                    registrationNo: ''
+                };
+
+                // Update UI after removing swine from inspection
+                vm.$nextTick(function () {
+                    $('#remove-swine-modal').modal('close');
+
+                    _this3.enableButtons(removeSwineBtn, event.target, 'Remove');
+
+                    Materialize.toast('Swine ' + registrationNo + ' removed', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRequestModal: function showRequestModal() {
+            this.requestData.certificateRequestId = this.certificate.certificateRequestId;
+            this.requestData.farmName = this.certificate.farmName;
+
+            this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#request-for-inspection-modal-2').modal('open');
+            });
+        },
+        requestForInspection: function requestForInspection(event) {
+            var _this4 = this;
+
+            var vm = this;
+            var requestForInspectionBtn = $('.request-for-inspection-btn');
+            var addSwinesBtn = $('.add-swines-btn');
+            var certificateRequestId = this.certificate.certificateRequestId;
+
+            this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+            this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
+
+            // Update from server's database
+            axios.patch('/breeder/inspections/' + certificateRequestId, {}).then(function (_ref4) {
+                var data = _ref4.data;
+
+                if (data.requested) {
+                    // Update UI after requesting the inspection
+                    vm.$nextTick(function () {
+                        $('#request-for-inspection-modal-2').modal('close');
+
+                        _this4.enableButtons(requestForInspectionBtn, event.target, 'Requested');
+
+                        Materialize.toast('Inspection #' + certificateRequestId + ' successfully requested.', 2000, 'green lighten-1');
+
+                        _this4.$emit('inspectionForRequestEvent', {
+                            certificateRequestId: certificateRequestId,
+                            dateRequested: data.dateRequested
+                        });
+                        _this4.hideAddSwineView();
+                    });
+                } else {
+                    // Make sure there are included swines before requesting
+                    vm.$nextTick(function () {
+                        $('#request-for-inspection-modal-2').modal('close');
+                        _this4.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                        _this4.enableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
+
+                        Materialize.toast('Please include swines to request.', 2000);
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    }
+});
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideAddSwineView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(1)]) : _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card z-depth-0",
+    attrs: {
+      "id": "inspection-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.certificateData.certificateRequestId))]), _vm._v(" "), _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showRequestModal()
+      }
+    }
+  }, [_vm._v("\n                        Request for Approval\n                    ")])]), _vm._v(" "), _c('p', {
+    staticClass: "grey-text"
+  }, [_vm._v("\n                    " + _vm._s(_vm.certificateData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "included-swines-container"
+    }
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 included-swine-container"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left cancel-swine-icon",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showRemoveSwineModal({
+            certificateRequestId: _vm.certificateData.certificateRequestId,
+            itemId: swine.itemId,
+            registrationNo: swine.registrationNo
+          })
+        }
+      }
+    }, [_vm._v("\n                                    cancel\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
+  })], 2), _vm._v(" "), _c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "available-swines-container"
+    }
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.availableSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(5)]) : _vm._l((_vm.availableSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 checkbox-container"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.swineIdsToAdd),
+        expression: "swineIdsToAdd"
+      }],
+      staticClass: "filled-in",
+      attrs: {
+        "id": ("swine-" + (swine.swineId)),
+        "type": "checkbox"
+      },
+      domProps: {
+        "value": swine.swineId,
+        "checked": Array.isArray(_vm.swineIdsToAdd) ? _vm._i(_vm.swineIdsToAdd, swine.swineId) > -1 : (_vm.swineIdsToAdd)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.swineIdsToAdd,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = swine.swineId,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.swineIdsToAdd = $$a.concat([$$v]))
+            } else {
+              $$i > -1 && (_vm.swineIdsToAdd = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            _vm.swineIdsToAdd = $$c
+          }
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      staticClass: "black-text",
+      attrs: {
+        "for": ("swine-" + (swine.swineId))
+      }
+    }, [_vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
+  }), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align",
+    attrs: {
+      "id": "add-swine-btn-container"
+    }
+  }, [_c('button', {
+    staticClass: "btn z-depth-0 add-swines-btn",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addSwines($event)
+      }
+    }
+  }, [_vm._v("\n                                Add Chosen Swines\n                            ")])])], 2)])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "request-for-inspection-modal-2"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                            for inspection?\n                        ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.requestForInspection($event)
+      }
+    }
+  }, [_vm._v("\n                    Request\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "remove-swine-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(9), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to remove "), _c('b', [_vm._v(_vm._s(_vm.removeSwineData.registrationNo))]), _vm._v(" \n                            from "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.removeSwineData.inspectionId))]), _vm._v("?\n                        ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn red lighten-2 z-depth-0 remove-swine-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.removeSwine($event)
+      }
+    }
+  }, [_vm._v("\n                    Remove\n                ")])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Add Swine to Certificate Request ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "preloader-wrapper active"
+  }, [_c('div', {
+    staticClass: "spinner-layer spinner-blue-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Available Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no available swines.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Request for Inspection\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Remove Swine\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-10ad188c", module.exports)
+  }
+}
 
 /***/ })
 ],[19]);

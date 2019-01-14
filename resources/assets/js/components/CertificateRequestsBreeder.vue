@@ -106,7 +106,12 @@
                         <span v-if="certificate.status === 'draft'" 
                             class="secondary-content"
                         >
-                            <a @click.prevent="showSwineView('add', certificate.id, certificate.farmName)"
+                            <a @click.prevent="showSwineView(
+                                    'add', 
+                                    certificate.id, 
+                                    certificate.farmName,
+                                    certificate.status
+                                )"
                                 href="#"
                                 class="btn
                                     add-swine-button
@@ -121,7 +126,7 @@
                                     text-darken-1 
                                     custom-secondary-btn"
                             >
-                                Request for Inspection
+                                Request for Approval
                             </a>
                         </span>
                         <span v-else
@@ -209,33 +214,33 @@
         </div>
         </transition>
 
-        <!-- Add Swine to Inspection Request View -->
-        <!-- <transition name="add-fade">
-            <inspection-requests-breeder-add-swine
+        <!-- Add Swine to Certificate Request View -->
+        <transition name="add-fade">
+            <certificate-requests-breeder-add-swine
                 v-show="showAddSwine"
                 v-on:hideSwineViewEvent="hideSwineView"
-                v-on:inspectionForRequestEvent="inspectionForRequest"
-                :inspection-data="inspectionData"
+                v-on:certificateForApprovalEvent="certificateForApproval"
+                :certificate-data="certificateData"
             >
-            </inspection-requests-breeder-add-swine>
-        </transition> -->
+            </certificate-requests-breeder-add-swine>
+        </transition>
 
         <!-- Included Swine View -->
         <!-- <transition name="included-fade">
-            <inspection-requests-breeder-view-swine
+            <certificate-requests-breeder-view-swine
                 v-show="showViewSwine"
                 v-on:hideSwineViewEvent="hideSwineView"
-                :inspection-data="inspectionData"
+                :certificate-data="certificateData"
             >
-            </inspection-requests-breeder-view-swine>
+            </certificate-requests-breeder-view-swine>
         </transition> -->
   
     </div>
 </template>
 
 <script>
-    // import InspectionRequestsBreederAddSwine from './InspectionRequestsBreederAddSwine.vue';
-    // import InspectionRequestsBreederViewSwine from './InspectionRequestsBreederViewSwine.vue';
+    import CertificateRequestsBreederAddSwine from './CertificateRequestsBreederAddSwine.vue';
+    // import CertificateRequestsBreederViewSwine from './CertificateRequestsBreederViewSwine.vue';
 
     export default {
         props: {
@@ -246,10 +251,10 @@
             viewUrl: String
         },
 
-        // components: {
-        //     InspectionRequestsBreederAddSwine,
-        //     InspectionRequestsBreederViewSwine
-        // },
+        components: {
+            CertificateRequestsBreederAddSwine,
+            // CertificateRequestsBreederViewSwine
+        },
 
         data() {
             return {
@@ -283,8 +288,9 @@
                     farmId: ''
                 },
                 certificateData: {
-                    certRequestId: 0,
-                    farmName: ''
+                    certificateRequestId: 0,
+                    farmName: '',
+                    status: ''
                 },
                 requestData: {
                     certRequestId: 0,
@@ -398,16 +404,16 @@
                 });
             },
 
-            // showSwineView(type, inspectionId, farmName, status) {
-            //     if (type === 'add') this.showAddSwine = true;
-            //     else if (type === 'view') this.showViewSwine = true;
+            showSwineView(type, certificateRequestId, farmName, status) {
+                if (type === 'add') this.showAddSwine = true;
+                else if (type === 'view') this.showViewSwine = true;
 
-            //     this.inspectionData = {
-            //         inspectionId,
-            //         farmName,
-            //         status
-            //     };
-            // },
+                this.certificateData = {
+                    certificateRequestId,
+                    farmName,
+                    status
+                };
+            },
 
             // showRequestModal(inspectionId, farmName) {
             //     this.requestData.inspectionId = inspectionId;
@@ -460,7 +466,7 @@
             //     });
             // },
 
-            // inspectionForRequest(data) {
+            certificateForApproval(data) {
             //     const index = _.findIndex(this.customInspectionRequests, 
             //         ['id', data.inspectionId]
             //     );
@@ -468,18 +474,18 @@
             //     const inspectionRequest = this.customInspectionRequests[index];
             //     inspectionRequest.status = 'requested';
             //     inspectionRequest.dateRequested = data.dateRequested;
-            // },
+            },
 
-            // hideSwineView(type) {
-            //     if(type === 'add') this.showAddSwine = false;
-            //     else if(type === 'view') this.showViewSwine = false;
+            hideSwineView(type) {
+                if(type === 'add') this.showAddSwine = false;
+                else if(type === 'view') this.showViewSwine = false;
             
-            //     // Re-initialize collapsbile component
-            //     this.$nextTick(() => {
-            //         $('.collapsible').collapsible();
-            //         $('.tooltipped').tooltip({delay: 50});
-            //     });
-            // },
+                // Re-initialize collapsbile component
+                this.$nextTick(() => {
+                    $('.collapsible').collapsible();
+                    $('.tooltipped').tooltip({delay: 50});
+                });
+            },
 
             disableButtons(buttons, actionBtnElement, textToShow) {
                 buttons.addClass('disabled');

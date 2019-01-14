@@ -25,7 +25,7 @@ class CreateCertificateRequestsTable extends Migration
             $table->date('date_delivery')->nullable();
             $table->string('receipt_no')->nullable();
             $table->enum('status', [
-                'draft', 'requested', 'for_payment', 'on_delivery'
+                'draft', 'requested', 'on_delivery'
             ])->default('draft');
             $table->timestamps();
         });

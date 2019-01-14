@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/inspections/{inspectionId}/item/{itemId}', 'InspectionController@removeInspectionItem')->name('removeInspectionItem');
         Route::get('/certificates', 'CertificateController@breederViewAll')->name('breederCertificate');
         Route::post('/certificates', 'CertificateController@createCertificateRequest')->name('createCertificateRequest');
+        Route::get('/certificates/{inspectionId}/swines', 'CertificateController@getSwinesOfCertificateRequest')->name('getSwinesOfCertificateB');
     });
 
     // Admin-related
