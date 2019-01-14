@@ -7785,7 +7785,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Certificate Requests ")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 m3 l2"
+    staticClass: "col s4 m3 l3"
   }, [_c('ul', {
     staticClass: "collapsible",
     attrs: {
@@ -7838,7 +7838,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(" " + _vm._s(status.text) + " ")]), _vm._v(" "), _c('br')]
   })], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s8 m9 l10"
+    staticClass: "col s8 m9 l9"
   }, [_c('ul', {
     staticClass: "collection with-header"
   }, [_c('li', {
@@ -7887,7 +7887,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
+    staticClass: "input-field col s6 offset-s3"
   }, [_c('app-input-select', {
     attrs: {
       "labelDescription": "Farm",
@@ -9760,7 +9760,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Inspection Requests ")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 m3 l2"
+    staticClass: "col s4 m3 l3"
   }, [_c('ul', {
     staticClass: "collapsible",
     attrs: {
@@ -9813,7 +9813,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(" " + _vm._s(status.text) + " ")]), _vm._v(" "), _c('br')]
   })], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s8 m9 l10"
+    staticClass: "col s8 m9 l9"
   }, [_c('ul', {
     staticClass: "collection with-header"
   }, [_c('li', {
@@ -9862,7 +9862,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
+    staticClass: "input-field col s6 offset-s3"
   }, [_c('app-input-select', {
     attrs: {
       "labelDescription": "Farm",
@@ -10313,7 +10313,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             tabDisables: {
                 summary: true,
-                photos: false
+                photos: true
             }
         };
     },
@@ -17714,7 +17714,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h4', {
     staticClass: "title-page"
   }, [_vm._v(" Inspection Requests ")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 m3 l2"
+    staticClass: "col s4 m3 l3"
   }, [_c('ul', {
     staticClass: "collapsible",
     attrs: {
@@ -17767,7 +17767,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(" " + _vm._s(status.text) + " ")]), _vm._v(" "), _c('br')]
   })], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s8 m9 l10"
+    staticClass: "col s8 m9 l9"
   }, [_c('ul', {
     staticClass: "collection with-header"
   }, [_vm._l((_vm.paginatedRequests), function(inspection, index) {

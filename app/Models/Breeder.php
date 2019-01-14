@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\CertificateRequest;
 use App\Models\Farm;
 use App\Models\InspectionRequest;
 use App\Models\Swine;
@@ -43,5 +44,13 @@ class Breeder extends Model
     public function inspectionRequests()
     {
         return $this->hasMany(InspectionRequest::class);
+    }
+
+    /**
+     * Get certificate requests the breeder has requested
+     */
+    public function certificateRequests()
+    {
+        return $this->hasMany(CertificateRequest::class);
     }
 }

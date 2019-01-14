@@ -7,7 +7,7 @@
                 <h4 class="title-page"> Inspection Requests </h4>
             </div>
 
-            <div class="col s4 m3 l2">
+            <div class="col s4 m3 l3">
                 <ul class="collapsible" data-collapsible="expandable">
                     <li>
                         <!-- Status filter -->
@@ -29,7 +29,7 @@
                 </ul>
             </div>
 
-            <div class="col s8 m9 l10">
+            <div class="col s8 m9 l9">
                 <ul class="collection with-header">
                     <!-- Existing Inspection Requests container -->
                     <li v-for="(inspection, index) in paginatedRequests" 

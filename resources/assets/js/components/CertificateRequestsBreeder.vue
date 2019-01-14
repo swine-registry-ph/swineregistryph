@@ -7,7 +7,7 @@
                 <h4 class="title-page"> Certificate Requests </h4>
             </div>
 
-            <div class="col s4 m3 l2">
+            <div class="col s4 m3 l3">
                 <ul class="collapsible" data-collapsible="expandable">
                     <li>
                         <!-- Status filter -->
@@ -29,7 +29,7 @@
                 </ul>
             </div>
 
-            <div class="col s8 m9 l10">
+            <div class="col s8 m9 l9">
                 <ul class="collection with-header">
                     <!-- Toggle add inspection request container button -->
                     <li class="collection-header">
@@ -55,7 +55,7 @@
                                     close
                                 </i>
                             </div>
-                            <div class="input-field col s4 offset-s4">
+                            <div class="input-field col s6 offset-s3">
                                 <app-input-select
                                     labelDescription="Farm"
                                     v-model="addRequestData.farmId"

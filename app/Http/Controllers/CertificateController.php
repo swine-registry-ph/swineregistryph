@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CertificateRequest;
 use App\Models\Farm;
 use App\Models\InspectionItem;
 use App\Models\InspectionRequest;
@@ -24,16 +25,16 @@ class CertificateController extends Controller
         $this->breederUser = Auth::user();
         $breeder = $this->breederUser->userable()->first();
 
-        $inspectionRequests = $breeder->inspectionRequests;
-        $customInspectionRequests = [];
+        $certificateRequests = $breeder->certificateRequests;
+        $customCertificateRequests = [];
         $farmOptions = [];
         $currentFilterOptions = [
             'status' => []
         ];
 
-        if($request->status) {
+        if ($request->status) {
             $statusArray = explode(' ', $request->status);
-            $inspectionRequests = $inspectionRequests
+            $certificateRequests = $certificateRequests
                 ->whereIn('status', $statusArray)
                 ->values();
 
@@ -41,27 +42,28 @@ class CertificateController extends Controller
             $currentFilterOptions['status'] = $statusArray;
         }
 
-        // Customize Inspection request data
-        // foreach ($inspectionRequests as $inspectionRequest) {
-        //     $evaluatorName = ($request->evaluator) 
-        //         ? $inspectionRequest->evaluator->users()->first()->name
-        //         : '';
-        //     $farm = $inspectionRequest->farm;
+        // Customize Certificate request data
+        foreach ($certificateRequests as $certificateRequest) {
+            $adminName = ($certificateRequest->admin) 
+                ? $certificateRequest->admin->users()->first()->name
+                : '';
+            $farm = $certificateRequest->farm;
 
-        //     $customInspectionRequests[] = [
-        //         'id'             => $inspectionRequest->id,
-        //         'farmName'       => "{$farm->name}, {$farm->province}",
-        //         'evaluatorName'  => $evaluatorName,
-        //         'dateRequested'  => $this->changeDateFormat($inspectionRequest->date_requested),
-        //         'dateInspection' => $this->changeDateFormat($inspectionRequest->date_inspection),
-        //         'dateApproved'   => $this->changeDateFormat($inspectionRequest->date_approved),
-        //         'status'         => $inspectionRequest->status
-        //     ];
-        // }
+            $customCertificateRequests[] = [
+                'id'             => $certificateRequest->id,
+                'farmName'       => "{$farm->name}, {$farm->province}",
+                'adminName'      => $adminName,
+                'dateRequested'  => $this->changeDateFormat($certificateRequest->date_requested),
+                'datePayment'    => $this->changeDateFormat($certificateRequest->date_payment),
+                'dateDelivery'   => $this->changeDateFormat($certificateRequest->date_delivery),
+                'receiptNo'      => $certificateRequest->receipt_no,
+                'status'         => $certificateRequest->status
+            ];
+        }
 
         // Farm options
         foreach ($breeder->farms as $farm) {
-            if(!$farm->is_suspended){
+            if (!$farm->is_suspended) {
                 $farmOptions[] = [
                     'text'  => $farm->name . ' , ' . $farm->province,
                     'value' => $farm->id

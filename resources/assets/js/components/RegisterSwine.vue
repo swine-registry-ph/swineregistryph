@@ -140,7 +140,7 @@
             return {
                 tabDisables: {
                     summary: true,
-                    photos: false
+                    photos: true
                 }
             }
         },
