@@ -15,6 +15,8 @@ use Auth;
 
 class CertificateController extends Controller
 {
+    use CustomHelpers;
+    
     /**
      * Show Breeder's inspection requests
      *
@@ -71,13 +73,13 @@ class CertificateController extends Controller
             }
         }
 
-        $approvedSwines = collect([]);
+        $customCertificateRequests = collect($customCertificateRequests);
         $currentFilterOptions = collect($currentFilterOptions);
         $farmOptions = collect($farmOptions);
 
         return view('users.breeder.certificateRequests', 
             compact(
-                'approvedSwines',
+                'customCertificateRequests',
                 'currentFilterOptions',
                 'farmOptions'
             )

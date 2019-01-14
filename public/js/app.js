@@ -7515,12 +7515,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 // import InspectionRequestsBreederAddSwine from './InspectionRequestsBreederAddSwine.vue';
 // import InspectionRequestsBreederViewSwine from './InspectionRequestsBreederViewSwine.vue';
@@ -7529,7 +7523,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         user: Object,
         currentFilterOptions: Object,
-        approvedSwines: Array,
+        customCertificateRequests: Array,
         farmOptions: Array,
         viewUrl: String
     },
@@ -7547,7 +7541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             pageNumber: 0,
             paginationSize: 15,
             filterOptions: this.currentFilterOptions,
-            inspectionRequests: this.customInspectionRequests,
+            certificateRequests: this.customCertificateRequests,
             statuses: [{
                 text: 'Draft',
                 value: 'draft'
@@ -7579,7 +7573,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         pageCount: function pageCount() {
-            var l = this.approvedSwines.length;
+            var l = this.certificateRequests.length;
             var s = this.paginationSize;
 
             return Math.ceil(l / s);
@@ -7588,7 +7582,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var start = this.pageNumber * this.paginationSize;
             var end = start + this.paginationSize;
 
-            return _.sortBy(this.inspectionRequests, ['id']).slice(start, end);
+            return _.sortBy(this.certificateRequests, ['id']).slice(start, end);
         }
     },
 
@@ -7639,36 +7633,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Redirect to new url
             if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
         },
+        addCertificateRequest: function addCertificateRequest(event) {
+            var _this = this;
 
+            var vm = this;
+            var addCertificateRequestBtn = $('.add-request-button');
 
-        // addInspectionRequest(event) {
-        //     const vm = this;
-        //     const addInspectionRequestBtn = $('.add-request-button');
+            if (!vm.addRequestData.farmId) {
+                Materialize.toast('Please choose farm for request', 2000);
+                return;
+            }
 
-        //     this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
+            this.disableButtons(addCertificateRequestBtn, event.target, 'Adding...');
 
-        //     // Add to server's database
-        //     axios.post('/breeder/inspections', {
-        //         breederId: vm.addRequestData.breederId,
-        //         farmId: vm.addRequestData.farmId
-        //     })
-        //     .then((response) => {
-        //         // Put response in local data storage and erase adding of request data
-        //         vm.inspectionRequests.push(response.data);
-        //         vm.addRequestData.farmId = '';
+            // Add to server's database
+            axios.post('/breeder/certificates', {
+                breederId: vm.addRequestData.breederId,
+                farmId: vm.addRequestData.farmId
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of request data
+                vm.certificateRequests.push(response.data);
+                vm.addRequestData.farmId = '';
 
-        //         // Update UI after adding inspection request
-        //         vm.$nextTick(() => {
-        //             this.enableButtons(addInspectionRequestBtn, event.target, 'Add Inspection Request');
+                // Update UI after adding inspection request
+                vm.$nextTick(function () {
+                    _this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
 
-        //             Materialize.updateTextFields();
-        //             Materialize.toast('Inspection request added', 2000, 'green lighten-1');
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-        // },
+                    Materialize.updateTextFields();
+                    Materialize.toast('Certificate request added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                _this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
+
+                Materialize.updateTextFields();
+                Materialize.toast('Error occurred', 2000, 'red lighten-1');
+            });
+        },
+
 
         // showSwineView(type, inspectionId, farmName, status) {
         //     if (type === 'add') this.showAddSwine = true;
@@ -7915,26 +7916,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.addInspectionRequest($event)
+        _vm.addCertificateRequest($event)
       }
     }
-  }, [_vm._v("\n                                Add Certificate Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(inspection, index) {
+  }, [_vm._v("\n                                Add Certificate Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(certificate, index) {
     return _c('li', {
-      key: inspection.id,
+      key: certificate.id,
       staticClass: "collection-item avatar"
-    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', {
+    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Request #" + _vm._s(certificate.id))])]), _vm._v(" "), (certificate.status === 'draft') ? [_c('span', [_c('b', {
       staticClass: "grey-text text-darken-2"
-    }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
+    }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'requested') ? [_c('span', [_c('b', {
       staticClass: "lime-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'for_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
-    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
-      staticClass: "green-text text-darken-2"
-    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_vm._v("For Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(inspection.farmName) + "\n                        ")])], 2), _vm._v(" "), (inspection.status === 'draft') ? _c('span', {
+    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(certificate.farmName) + "\n                        ")])], 2), _vm._v(" "), (certificate.status === 'draft') ? _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
@@ -7944,7 +7943,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showSwineView('add', inspection.id, inspection.farmName)
+          _vm.showSwineView('add', certificate.id, certificate.farmName)
         }
       }
     }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
@@ -7952,7 +7951,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.showRequestModal(inspection.id, inspection.farmName)
+          _vm.showRequestModal(certificate.id, certificate.farmName)
         }
       }
     }, [_vm._v("\n                            Request for Inspection\n                        ")])]) : _c('span', {
@@ -7967,9 +7966,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           $event.preventDefault();
           _vm.showSwineView(
             'view',
-            inspection.id,
-            inspection.farmName,
-            inspection.status
+            certificate.id,
+            certificate.farmName,
+            certificate.status
           )
         }
       }
@@ -8521,6 +8520,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var vm = this;
             var addInspectionRequestBtn = $('.add-request-button');
+
+            if (!vm.addRequestData.farmId) {
+                Materialize.toast('Please choose farm for request', 2000);
+                return;
+            }
 
             this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
 

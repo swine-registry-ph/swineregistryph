@@ -31,7 +31,7 @@
 
             <div class="col s8 m9 l9">
                 <ul class="collection with-header">
-                    <!-- Toggle add inspection request container button -->
+                    <!-- Toggle add certificate request container button -->
                     <li class="collection-header">
                         <a @click.prevent="showAddRequestInput = !showAddRequestInput"
                             href="#!"
@@ -65,7 +65,7 @@
                                 </app-input-select>
                             </div>
                             <div class="col s4 offset-s4">
-                                <a @click.prevent="addInspectionRequest($event)"
+                                <a @click.prevent="addCertificateRequest($event)"
                                     href="#!"
                                     class="right btn z-depth-0 add-request-button"
                                 >
@@ -75,44 +75,38 @@
                         </div>
                     </li>
                     <!-- Existing Inspection Requests container -->
-                    <li v-for="(inspection, index) in paginatedRequests" 
+                    <li v-for="(certificate, index) in paginatedRequests" 
                         class="collection-item avatar"
-                        :key="inspection.id"
+                        :key="certificate.id"
                     >
                         <span>
-                            <h5><b>Inspection #{{ inspection.id }}</b></h5>
-                            <template v-if="inspection.status === 'draft'">
+                            <h5><b>Request #{{ certificate.id }}</b></h5>
+                            <template v-if="certificate.status === 'draft'">
                                 <span>
                                     <b class="grey-text text-darken-2">Draft</b>
                                 </span>
                             </template>
-                            <template v-if="inspection.status === 'requested'">
+                            <template v-if="certificate.status === 'requested'">
                                 <span>
                                     <b class="lime-text text-darken-2">Requested</b> <br>
-                                    {{ inspection.dateRequested }}
+                                    {{ certificate.dateRequested }}
                                 </span>
                             </template>
-                            <template v-if="inspection.status === 'for_inspection'">
+                            <template v-if="certificate.status === 'for_delivery'">
                                 <span>
-                                    <b class="purple-text text-darken-2">For Inspection</b> <br>
-                                    {{ inspection.dateInspection }}
-                                </span>
-                            </template>
-                            <template v-if="inspection.status === 'approved'">
-                                <span>
-                                    <b class="green-text text-darken-2">Approved</b> <br>
-                                    {{ inspection.dateApproved }}
+                                    <b class="purple-text text-darken-2">For Delivery</b> <br>
+                                    {{ certificate.dateDelivery }}
                                 </span>
                             </template> <br> <br>
                             <span class="grey-text text-darken-1">
                                 <i class="material-icons left">location_on</i>
-                                {{ inspection.farmName }}
+                                {{ certificate.farmName }}
                             </span>
                         </span>
-                        <span v-if="inspection.status === 'draft'" 
+                        <span v-if="certificate.status === 'draft'" 
                             class="secondary-content"
                         >
-                            <a @click.prevent="showSwineView('add', inspection.id, inspection.farmName)"
+                            <a @click.prevent="showSwineView('add', certificate.id, certificate.farmName)"
                                 href="#"
                                 class="btn
                                     add-swine-button
@@ -121,7 +115,7 @@
                             >
                                 Add Swine
                             </a>
-                            <a @click.prevent="showRequestModal(inspection.id, inspection.farmName)"
+                            <a @click.prevent="showRequestModal(certificate.id, certificate.farmName)"
                                 class="btn btn-flat 
                                     blue-text
                                     text-darken-1 
@@ -135,9 +129,9 @@
                         >
                             <a @click.prevent="showSwineView(
                                     'view', 
-                                    inspection.id, 
-                                    inspection.farmName,
-                                    inspection.status
+                                    certificate.id, 
+                                    certificate.farmName,
+                                    certificate.status
                                 )"
                                 href="#"
                                 class="btn
@@ -247,7 +241,7 @@
         props: {
             user: Object,
             currentFilterOptions: Object,
-            approvedSwines: Array,
+            customCertificateRequests: Array,
             farmOptions: Array,
             viewUrl: String
         },
@@ -265,7 +259,7 @@
                 pageNumber: 0,
                 paginationSize: 15,
                 filterOptions: this.currentFilterOptions,
-                inspectionRequests: this.customInspectionRequests,
+                certificateRequests: this.customCertificateRequests,
                 statuses: [
                     {
                         text: 'Draft',
@@ -301,7 +295,7 @@
 
         computed: {
             pageCount() {
-                let l = this.approvedSwines.length;
+                let l = this.certificateRequests.length;
                 let s = this.paginationSize;
 
                 return Math.ceil(l/s);
@@ -311,7 +305,7 @@
                 const start = this.pageNumber * this.paginationSize;
                 const end = start + this.paginationSize;
 
-                return _.sortBy(this.inspectionRequests, ['id']).slice(start, end);
+                return _.sortBy(this.certificateRequests, ['id']).slice(start, end);
             }
         },
 
@@ -367,34 +361,42 @@
                 else window.location = url;
             },
 
-            // addInspectionRequest(event) {
-            //     const vm = this;
-            //     const addInspectionRequestBtn = $('.add-request-button');
+            addCertificateRequest(event) {
+                const vm = this;
+                const addCertificateRequestBtn = $('.add-request-button');
 
-            //     this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
+                if (!vm.addRequestData.farmId) {
+                    Materialize.toast('Please choose farm for request', 2000);
+                    return;
+                }
 
-            //     // Add to server's database
-            //     axios.post('/breeder/inspections', {
-            //         breederId: vm.addRequestData.breederId,
-            //         farmId: vm.addRequestData.farmId
-            //     })
-            //     .then((response) => {
-            //         // Put response in local data storage and erase adding of request data
-            //         vm.inspectionRequests.push(response.data);
-            //         vm.addRequestData.farmId = '';
+                this.disableButtons(addCertificateRequestBtn, event.target, 'Adding...');
 
-            //         // Update UI after adding inspection request
-            //         vm.$nextTick(() => {
-            //             this.enableButtons(addInspectionRequestBtn, event.target, 'Add Inspection Request');
+                // Add to server's database
+                axios.post('/breeder/certificates', {
+                    breederId: vm.addRequestData.breederId,
+                    farmId: vm.addRequestData.farmId
+                })
+                .then((response) => {
+                    // Put response in local data storage and erase adding of request data
+                    vm.certificateRequests.push(response.data);
+                    vm.addRequestData.farmId = '';
 
-            //             Materialize.updateTextFields();
-            //             Materialize.toast('Inspection request added', 2000, 'green lighten-1');
-            //         });
-            //     })
-            //     .catch((error) => {
-            //         console.log(error);
-            //     });
-            // },
+                    // Update UI after adding inspection request
+                    vm.$nextTick(() => {
+                        this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Certificate request added', 2000, 'green lighten-1');
+                    });
+                })
+                .catch((error) => {
+                    this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Error occurred', 2000, 'red lighten-1');
+                });
+            },
 
             // showSwineView(type, inspectionId, farmName, status) {
             //     if (type === 'add') this.showAddSwine = true;
