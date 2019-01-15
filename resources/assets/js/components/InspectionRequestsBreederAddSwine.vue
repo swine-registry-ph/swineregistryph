@@ -346,13 +346,20 @@
                 const addSwinesBtn = $('.add-swines-btn');
                 const inspectionId = this.inspectionData.inspectionId;
 
+                if (this.includedSwines.length < 1) {
+                    $('#request-for-inspection-modal-2').modal('close');
+
+                    Materialize.toast('Please include swines to request.', 2000);
+                    return;
+                }
+
                 this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
                 this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
 
                 // Update from server's database
                 axios.patch(`/breeder/inspections/${inspectionId}`, {})
                 .then(({data}) => {
-                    if(data.requested) {
+                    if (data.requested) {
                         // Update UI after requesting the inspection
                         vm.$nextTick(() => {
                             $('#request-for-inspection-modal-2').modal('close');
@@ -366,16 +373,6 @@
                                 dateRequested: data.dateRequested
                             });
                             this.hideAddSwineView();
-                        });
-                    }
-                    else {
-                        // Make sure there are included swines before requesting
-                        vm.$nextTick(() => {
-                            $('#request-for-inspection-modal-2').modal('close');
-                            this.enableButtons(requestForInspectionBtn, event.target, 'Request');
-                            this.enableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
-    
-                            Materialize.toast('Please include swines to request.', 2000);
                         });
                     }
                 })

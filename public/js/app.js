@@ -7269,7 +7269,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-648b893f] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-648b893f] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-648b893f] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-648b893f]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-inspection-modal[data-v-648b893f] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-648b893f] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-648b893f], .fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-648b893f] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-648b893f], .included-fade-enter-active[data-v-648b893f] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-648b893f], .included-fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-648b893f], .fade-leave-to[data-v-648b893f],\n.view-fade-enter[data-v-648b893f], .view-fade-leave-to[data-v-648b893f],\n.add-fade-enter[data-v-648b893f], .add-fade-leave-to[data-v-648b893f],\n.included-fade-enter[data-v-648b893f], .included-fade-leave-to[data-v-648b893f] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-648b893f] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-648b893f] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-648b893f] {\n    margin: 0;\n}\np.range-field label[data-v-648b893f] {\n    color: black;\n}\n\n", ""]);
+exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-right: .5rem;\n}\n#add-request-container .input-field[data-v-648b893f] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#close-add-request-container-button[data-v-648b893f] {\n    cursor: pointer;\n}\n.custom-secondary-btn[data-v-648b893f] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-648b893f]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Modal customizations */\n#request-for-approval-modal[data-v-648b893f] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-648b893f] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-648b893f], .fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-648b893f] {\n    transition: opacity .15s;\n}\n.add-fade-enter-active[data-v-648b893f], .included-fade-enter-active[data-v-648b893f] {\n    transition: opacity 1.5s;\n}\n.add-fade-leave-active[data-v-648b893f], .included-fade-leave-active[data-v-648b893f] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-648b893f], .fade-leave-to[data-v-648b893f],\n.view-fade-enter[data-v-648b893f], .view-fade-leave-to[data-v-648b893f],\n.add-fade-enter[data-v-648b893f], .add-fade-leave-to[data-v-648b893f],\n.included-fade-enter[data-v-648b893f], .included-fade-leave-to[data-v-648b893f] {\n    opacity: 0;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-648b893f] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-648b893f] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-648b893f] {\n    margin: 0;\n}\np.range-field label[data-v-648b893f] {\n    color: black;\n}\n\n", ""]);
 
 // exports
 
@@ -7282,6 +7282,16 @@ exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-righ
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7556,9 +7566,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 text: 'Requested',
                 value: 'requested'
             }, {
-                text: 'For Payment',
-                value: 'for_payment'
-            }, {
                 text: 'On Delivery',
                 value: 'on_delivery'
             }],
@@ -7573,7 +7580,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             requestData: {
                 certRequestId: 0,
-                farmName: ''
+                farmName: '',
+                receiptNo: ''
             }
         };
     },
@@ -7663,7 +7671,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 vm.certificateRequests.push(response.data);
                 vm.addRequestData.farmId = '';
 
-                // Update UI after adding inspection request
+                // Update UI after adding certificate request
                 vm.$nextTick(function () {
                     _this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
 
@@ -7686,67 +7694,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 status: status
             };
         },
+        showRequestModal: function showRequestModal(certificateRequestId, farmName) {
+            this.requestData.certificateRequestId = certificateRequestId;
+            this.requestData.farmName = farmName;
 
+            this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#request-for-approval-modal').modal('open');
+            });
+        },
+        requestForApproval: function requestForApproval(event) {
+            var _this2 = this;
 
-        // showRequestModal(inspectionId, farmName) {
-        //     this.requestData.inspectionId = inspectionId;
-        //     this.requestData.farmName = farmName;
+            var vm = this;
+            var requestForApprovalBtn = $('.request-for-approval-btn');
+            var certificateRequestId = this.requestData.certificateRequestId;
 
-        //     this.$nextTick(() => {
-        //         // Materialize component initializations
-        //         $('.modal').modal();
-        //         $('#request-for-inspection-modal').modal('open');
-        //     });
-        // },
+            if (this.requestData.receiptNo === '') {
+                $('#request-for-approval-modal').modal('close');
 
-        // requestForInspection(event) {
-        //     const vm = this;
-        //     const requestForInspectionBtn = $('.request-for-inspection-btn');
-        //     const inspectionId = this.requestData.inspectionId;
+                Materialize.toast('Please input receipt no.', 2000);
+                return;
+            }
 
-        //     this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+            this.disableButtons(requestForApprovalBtn, event.target, 'Requesting...');
 
-        //     // Update from server's database
-        //     axios.patch(`/breeder/inspections/${inspectionId}`, {})
-        //     .then(({data}) => {
-        //         if(data.requested) {
-        //             // Update local data storage
-        //             this.inspectionForRequest({
-        //                 inspectionId: inspectionId,
-        //                 dateRequested: data.dateRequested
-        //             });
+            // Update from server's database
+            axios.patch('/breeder/certificates/' + certificateRequestId, {
+                receiptNo: vm.requestData.receiptNo
+            }).then(function (_ref) {
+                var data = _ref.data;
 
-        //             // Update UI after requesting the inspection
-        //             vm.$nextTick(() => {
-        //                 $('#request-for-inspection-modal').modal('close');
-        //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                if (data.requested) {
+                    // Update local data storage
+                    _this2.certificateForApproval({
+                        certificateRequestId: certificateRequestId,
+                        dateRequested: data.dateRequested,
+                        receiptNo: data.receiptNo
+                    });
 
-        //                 Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
-        //             });
-        //         }
-        //         else {
-        //             // Make sure there are included swines before requesting
-        //             vm.$nextTick(() => {
-        //                 $('#request-for-inspection-modal').modal('close');
-        //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                    // Update UI after requesting the certificate request
+                    vm.$nextTick(function () {
+                        $('#request-for-approval-modal').modal('close');
+                        _this2.enableButtons(requestForApprovalBtn, event.target, 'Request');
 
-        //                 Materialize.toast('Please include swines to request.', 2000);
-        //             });
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-        // },
+                        Materialize.toast('Certificate Request #' + certificateRequestId + ' for approval successfully requested.', 2500, 'green lighten-1');
+                    });
+                } else {
+                    // Make sure there are included swines before requesting
+                    vm.$nextTick(function () {
+                        $('#request-for-approval-modal').modal('close');
+                        _this2.enableButtons(requestForApprovalBtn, event.target, 'Request');
 
+                        Materialize.updateTextFields();
+                        Materialize.toast('Please include swines to request.', 2000);
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         certificateForApproval: function certificateForApproval(data) {
-            //     const index = _.findIndex(this.customInspectionRequests, 
-            //         ['id', data.inspectionId]
-            //     );
+            var index = _.findIndex(this.customCertificateRequests, ['id', data.certificateRequestId]);
 
-            //     const inspectionRequest = this.customInspectionRequests[index];
-            //     inspectionRequest.status = 'requested';
-            //     inspectionRequest.dateRequested = data.dateRequested;
+            var certificateRequest = this.customCertificateRequests[index];
+            certificateRequest.status = 'requested';
+            certificateRequest.dateRequested = data.dateRequested;
+            certificateRequest.receiptNo = data.receiptNo;
         },
         hideSwineView: function hideSwineView(type) {
             if (type === 'add') this.showAddSwine = false;else if (type === 'view') this.showViewSwine = false;
@@ -7930,9 +7945,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "grey-text text-darken-2"
     }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'requested') ? [_c('span', [_c('b', {
       staticClass: "lime-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'for_delivery') ? [_c('span', [_c('b', {
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'for_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
-    }, [_vm._v("For Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_vm._v("For Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
@@ -8030,11 +8045,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
-      "id": "request-for-inspection-modal"
+      "id": "request-for-approval-modal"
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("\n                        Request for Inspection\n                        "), _c('i', {
+  }, [_c('h4', [_vm._v("\n                        Request for Approval\n                        "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
@@ -8042,7 +8057,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('br')]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                                for inspection?\n                            ")])])])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                                for approval?\n                            ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.requestData.receiptNo),
+      expression: "requestData.receiptNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "request-data-receipt",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.requestData.receiptNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.requestData, "receiptNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "request-data-receipt"
+    }
+  }, [_vm._v("Receipt No.")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",
@@ -8050,14 +8092,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#!"
     }
   }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
+    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-approval-btn",
     attrs: {
       "href": "#!"
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.requestForInspection($event)
+        _vm.requestForApproval($event)
       }
     }
   }, [_vm._v("\n                        Request\n                    ")])])])])]) : _vm._e()]), _vm._v(" "), _c('transition', {
@@ -9107,6 +9149,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var addSwinesBtn = $('.add-swines-btn');
             var inspectionId = this.inspectionData.inspectionId;
 
+            if (this.includedSwines.length < 1) {
+                $('#request-for-inspection-modal-2').modal('close');
+
+                Materialize.toast('Please include swines to request.', 2000);
+                return;
+            }
+
             this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
             this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
 
@@ -9128,15 +9177,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             dateRequested: data.dateRequested
                         });
                         _this4.hideAddSwineView();
-                    });
-                } else {
-                    // Make sure there are included swines before requesting
-                    vm.$nextTick(function () {
-                        $('#request-for-inspection-modal-2').modal('close');
-                        _this4.enableButtons(requestForInspectionBtn, event.target, 'Request');
-                        _this4.enableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
-
-                        Materialize.toast('Please include swines to request.', 2000);
                     });
                 }
             }).catch(function (error) {
@@ -24562,7 +24602,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-10ad188c] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-10ad188c], #available-swines-container[data-v-10ad188c] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-10ad188c], .included-swine-container[data-v-10ad188c] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-10ad188c] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-10ad188c] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-10ad188c], #request-for-inspection-modal-2[data-v-10ad188c] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-10ad188c] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-10ad188c] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-10ad188c], #available-swines-container[data-v-10ad188c] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-10ad188c], .included-swine-container[data-v-10ad188c] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-10ad188c] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-10ad188c] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-10ad188c], #request-for-approval-modal-2[data-v-10ad188c] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-10ad188c] {\n    padding-right: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -24573,6 +24613,14 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border:
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24787,7 +24835,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             requestData: {
                 certificateRequestId: 0,
-                farmName: ''
+                farmName: '',
+                receiptNo: ''
             }
         };
     },
@@ -24851,7 +24900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 vm.availableSwines = data.available;
                 vm.includedSwines = data.included;
 
-                // Update UI after adding swines to inspection request
+                // Update UI after adding swines to certificate request
                 vm.$nextTick(function () {
                     _this2.enableButtons(addSwinesBtn, event.target, 'Add Chosen Swines');
 
@@ -24894,7 +24943,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     registrationNo: ''
                 };
 
-                // Update UI after removing swine from inspection
+                // Update UI after removing swine from certificate request
                 vm.$nextTick(function () {
                     $('#remove-swine-modal').modal('close');
 
@@ -24907,53 +24956,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         showRequestModal: function showRequestModal() {
-            this.requestData.certificateRequestId = this.certificate.certificateRequestId;
-            this.requestData.farmName = this.certificate.farmName;
+            this.requestData.certificateRequestId = this.certificateData.certificateRequestId;
+            this.requestData.farmName = this.certificateData.farmName;
 
             this.$nextTick(function () {
                 // Materialize component initializations
                 $('.modal').modal();
-                $('#request-for-inspection-modal-2').modal('open');
+                $('#request-for-approval-modal-2').modal('open');
             });
         },
-        requestForInspection: function requestForInspection(event) {
+        requestForApproval: function requestForApproval(event) {
             var _this4 = this;
 
             var vm = this;
-            var requestForInspectionBtn = $('.request-for-inspection-btn');
+            var requestForApprovalBtn = $('.request-for-approval-btn');
             var addSwinesBtn = $('.add-swines-btn');
-            var certificateRequestId = this.certificate.certificateRequestId;
+            var certificateRequestId = this.certificateData.certificateRequestId;
 
-            this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+            if (this.includedSwines.length < 1) {
+                $('#request-for-approval-modal-2').modal('close');
+
+                Materialize.updateTextFields();
+                Materialize.toast('Please include swines to request.', 2000);
+                return;
+            }
+
+            if (this.requestData.receiptNo === '') {
+                $('#request-for-approval-modal-2').modal('close');
+
+                Materialize.toast('Please input receipt no.', 2000);
+                return;
+            }
+
+            this.disableButtons(requestForApprovalBtn, event.target, 'Requesting...');
             this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
 
             // Update from server's database
-            axios.patch('/breeder/inspections/' + certificateRequestId, {}).then(function (_ref4) {
+            axios.patch('/breeder/certificates/' + certificateRequestId, {
+                receiptNo: vm.requestData.receiptNo
+            }).then(function (_ref4) {
                 var data = _ref4.data;
 
                 if (data.requested) {
-                    // Update UI after requesting the inspection
+                    // Update UI after requesting the certificate request
                     vm.$nextTick(function () {
-                        $('#request-for-inspection-modal-2').modal('close');
+                        $('#request-for-approval-modal-2').modal('close');
 
-                        _this4.enableButtons(requestForInspectionBtn, event.target, 'Requested');
+                        _this4.enableButtons(requestForApprovalBtn, event.target, 'Requested');
 
-                        Materialize.toast('Inspection #' + certificateRequestId + ' successfully requested.', 2000, 'green lighten-1');
+                        Materialize.toast('Certificate Request #' + certificateRequestId + ' for approval successfully requested.', 2500, 'green lighten-1');
 
-                        _this4.$emit('inspectionForRequestEvent', {
+                        _this4.$emit('certificateForApprovalEvent', {
                             certificateRequestId: certificateRequestId,
-                            dateRequested: data.dateRequested
+                            dateRequested: data.dateRequested,
+                            receiptNo: data.receiptNo
                         });
                         _this4.hideAddSwineView();
-                    });
-                } else {
-                    // Make sure there are included swines before requesting
-                    vm.$nextTick(function () {
-                        $('#request-for-inspection-modal-2').modal('close');
-                        _this4.enableButtons(requestForInspectionBtn, event.target, 'Request');
-                        _this4.enableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
-
-                        Materialize.toast('Please include swines to request.', 2000);
                     });
                 }
             }).catch(function (error) {
@@ -25000,14 +25058,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "card z-depth-0",
     attrs: {
-      "id": "inspection-container"
+      "id": "certificate-container"
     }
   }, [_c('div', {
     staticClass: "card-content"
   }, [_c('span', {
     staticClass: "card-title"
   }, [_c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.certificateData.certificateRequestId))]), _vm._v(" "), _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn",
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-approval-btn",
     attrs: {
       "href": "#"
     },
@@ -25120,7 +25178,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("\n                                Add Chosen Swines\n                            ")])])], 2)])])]), _vm._v(" "), _c('div', {
     staticClass: "modal",
     attrs: {
-      "id": "request-for-inspection-modal-2"
+      "id": "request-for-approval-modal-2"
     }
   }, [_c('div', {
     staticClass: "modal-content"
@@ -25128,7 +25186,34 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row modal-input-container"
   }, [_vm._m(7), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                            for inspection?\n                        ")])])])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                            for approval?\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.requestData.receiptNo),
+      expression: "requestData.receiptNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "request-data-receipt",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.requestData.receiptNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.requestData, "receiptNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "request-data-receipt"
+    }
+  }, [_vm._v("Receipt No.")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",
@@ -25136,14 +25221,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "#!"
     }
   }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
+    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-approval-btn",
     attrs: {
       "href": "#!"
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.requestForInspection($event)
+        _vm.requestForApproval($event)
       }
     }
   }, [_vm._v("\n                    Request\n                ")])])]), _vm._v(" "), _c('div', {
@@ -25209,7 +25294,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('br'), _vm._v("Sorry, there are no available swines.")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Request for Inspection\n                    "), _c('i', {
+  return _c('h4', [_vm._v("\n                    Request for Approval\n                    "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

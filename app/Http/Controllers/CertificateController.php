@@ -196,6 +196,38 @@ class CertificateController extends Controller
     }
 
     /**
+     * Request certificate request for approval
+     *
+     * @param  Request $request
+     * @param  integer $certificateRequestId
+     * @return JSON
+     */
+    public function requestForApproval(Request $request, int $certificateRequestId)
+    {
+        if ($request->ajax()) {
+            $certificateRequest = CertificateRequest::find($certificateRequestId);
+
+            // Check first if there are items to request
+            if (count($certificateRequest->certificateItems) < 1) 
+                return ['requested' => false];
+
+            if ($request->receiptNo == '') 
+                return ['requested' => false];
+
+            $certificateRequest->date_requested = Carbon::now()->format('Y-m-d');
+            $certificateRequest->status = 'requested';
+            $certificateRequest->receipt_no = $request->receiptNo;
+            $certificateRequest->save();
+
+            return [
+                'dateRequested' => $this->changeDateFormat($certificateRequest->date_requested),
+                'receiptNo'     => $certificateRequest->receipt_no,
+                'requested'     => true
+            ];
+        }
+    }
+
+    /**
      * ------------------------------------------
      * COMMON METHODS
      * ------------------------------------------

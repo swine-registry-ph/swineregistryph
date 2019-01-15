@@ -43,9 +43,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/inspections/{inspectionId}/item/{itemId}', 'InspectionController@removeInspectionItem')->name('removeInspectionItem');
         Route::get('/certificates', 'CertificateController@breederViewAll')->name('breederCertificate');
         Route::post('/certificates', 'CertificateController@createCertificateRequest')->name('createCertificateRequest');
-        Route::get('/certificates/{inspectionId}/swines', 'CertificateController@getSwinesOfCertificateRequest')->name('getSwinesOfCertificateB');
-        Route::post('/certificates/{inspectionId}/swines', 'CertificateController@addSwinesToCertificateRequest')->name('addSwinesToCertificate');
-        Route::delete('/certificates/{inspectionId}/item/{itemId}', 'CertificateController@removeCertificateItem')->name('removeCertificateItem');
+        Route::get('/certificates/{certificateId}/swines', 'CertificateController@getSwinesOfCertificateRequest')->name('getSwinesOfCertificateB');
+        Route::post('/certificates/{certificateId}/swines', 'CertificateController@addSwinesToCertificateRequest')->name('addSwinesToCertificate');
+        Route::delete('/certificates/{certificateId}/item/{itemId}', 'CertificateController@removeCertificateItem')->name('removeCertificateItem');
+        Route::patch('/certificates/{certificateId}', 'CertificateController@requestForApproval')->name('requestForApproval');
     });
 
     // Admin-related

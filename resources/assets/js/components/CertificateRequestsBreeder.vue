@@ -74,7 +74,7 @@
                             </div>
                         </div>
                     </li>
-                    <!-- Existing Inspection Requests container -->
+                    <!-- Existing Certificate Requests container -->
                     <li v-for="(certificate, index) in paginatedRequests" 
                         class="collection-item avatar"
                         :key="certificate.id"
@@ -89,13 +89,15 @@
                             <template v-if="certificate.status === 'requested'">
                                 <span>
                                     <b class="lime-text text-darken-2">Requested</b> <br>
-                                    {{ certificate.dateRequested }}
+                                    {{ certificate.dateRequested }} <br>
+                                    Receipt No: {{ certificate.receiptNo }}
                                 </span>
                             </template>
                             <template v-if="certificate.status === 'for_delivery'">
                                 <span>
                                     <b class="purple-text text-darken-2">For Delivery</b> <br>
-                                    {{ certificate.dateDelivery }}
+                                    {{ certificate.dateDelivery }} <br>
+                                    Receipt No: {{ certificate.receiptNo }}
                                 </span>
                             </template> <br> <br>
                             <span class="grey-text text-darken-1">
@@ -148,7 +150,7 @@
                             </a>
                         </span>
                     </li>
-                    <!-- Empty Inspection Requests container -->
+                    <!-- Empty Certificate Requests container -->
                     <li v-show="paginatedRequests.length === 0"
                         class="collection-item avatar center-align"
                     >
@@ -180,11 +182,11 @@
                     </ul>
                 </div>
 
-                <!-- Request for Inspection Modal -->
-                <div id="request-for-inspection-modal" class="modal">
+                <!-- Request for Approval Modal -->
+                <div id="request-for-approval-modal" class="modal">
                     <div class="modal-content">
                         <h4>
-                            Request for Inspection
+                            Request for Approval
                             <i class="material-icons right modal-close">close</i>
                         </h4>
 
@@ -193,18 +195,26 @@
                             <div class="input-field col s12">
                                 <p>
                                     Are you sure you want to request 
-                                    <b>Inspection #{{ requestData.inspectionId }}</b>
+                                    <b>Certificate Request #{{ requestData.certificateRequestId }}</b>
                                     from <b>{{ requestData.farmName }}</b>
-                                    for inspection?
+                                    for approval?
                                 </p>
+                            </div>
+                            <div class="input-field col s12">
+                                <input v-model="requestData.receiptNo"
+                                    id="request-data-receipt"
+                                    type="text"
+                                    class="validate"
+                                >
+                                <label for="request-data-receipt">Receipt No.</label>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer grey lighten-3">
                         <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
-                        <a @click.prevent="requestForInspection($event)" 
+                        <a @click.prevent="requestForApproval($event)" 
                             href="#!" 
-                            class="modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn"
+                            class="modal-action btn blue darken-1 z-depth-0 request-for-approval-btn"
                         >
                             Request
                         </a>
@@ -275,10 +285,6 @@
                         value: 'requested'
                     },
                     {
-                        text: 'For Payment',
-                        value: 'for_payment'
-                    },
-                    {
                         text: 'On Delivery',
                         value: 'on_delivery'
                     }
@@ -294,7 +300,8 @@
                 },
                 requestData: {
                     certRequestId: 0,
-                    farmName: ''
+                    farmName: '',
+                    receiptNo: ''
                 }
             }
         },
@@ -388,7 +395,7 @@
                     vm.certificateRequests.push(response.data);
                     vm.addRequestData.farmId = '';
 
-                    // Update UI after adding inspection request
+                    // Update UI after adding certificate request
                     vm.$nextTick(() => {
                         this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
 
@@ -415,65 +422,77 @@
                 };
             },
 
-            // showRequestModal(inspectionId, farmName) {
-            //     this.requestData.inspectionId = inspectionId;
-            //     this.requestData.farmName = farmName;
+            showRequestModal(certificateRequestId, farmName) {
+                this.requestData.certificateRequestId = certificateRequestId;
+                this.requestData.farmName = farmName;
 
-            //     this.$nextTick(() => {
-            //         // Materialize component initializations
-            //         $('.modal').modal();
-            //         $('#request-for-inspection-modal').modal('open');
-            //     });
-            // },
+                this.$nextTick(() => {
+                    // Materialize component initializations
+                    $('.modal').modal();
+                    $('#request-for-approval-modal').modal('open');
+                });
+            },
 
-            // requestForInspection(event) {
-            //     const vm = this;
-            //     const requestForInspectionBtn = $('.request-for-inspection-btn');
-            //     const inspectionId = this.requestData.inspectionId;
+            requestForApproval(event) {
+                const vm = this;
+                const requestForApprovalBtn = $('.request-for-approval-btn');
+                const certificateRequestId = this.requestData.certificateRequestId;
 
-            //     this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+                if (this.requestData.receiptNo === '') {
+                    $('#request-for-approval-modal').modal('close');
 
-            //     // Update from server's database
-            //     axios.patch(`/breeder/inspections/${inspectionId}`, {})
-            //     .then(({data}) => {
-            //         if(data.requested) {
-            //             // Update local data storage
-            //             this.inspectionForRequest({
-            //                 inspectionId: inspectionId,
-            //                 dateRequested: data.dateRequested
-            //             });
+                    Materialize.toast('Please input receipt no.', 2000);
+                    return;
+                }
 
-            //             // Update UI after requesting the inspection
-            //             vm.$nextTick(() => {
-            //                 $('#request-for-inspection-modal').modal('close');
-            //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                this.disableButtons(requestForApprovalBtn, event.target, 'Requesting...');
+
+                // Update from server's database
+                axios.patch(`/breeder/certificates/${certificateRequestId}`, {
+                    receiptNo: vm.requestData.receiptNo
+                })
+                .then(({data}) => {
+                    if(data.requested) {
+                        // Update local data storage
+                        this.certificateForApproval({
+                            certificateRequestId: certificateRequestId,
+                            dateRequested: data.dateRequested,
+                            receiptNo: data.receiptNo
+                        });
+
+                        // Update UI after requesting the certificate request
+                        vm.$nextTick(() => {
+                            $('#request-for-approval-modal').modal('close');
+                            this.enableButtons(requestForApprovalBtn, event.target, 'Request');
     
-            //                 Materialize.toast(`Inspection #${inspectionId} successfully requested.`, 2000, 'green lighten-1');
-            //             });
-            //         }
-            //         else {
-            //             // Make sure there are included swines before requesting
-            //             vm.$nextTick(() => {
-            //                 $('#request-for-inspection-modal').modal('close');
-            //                 this.enableButtons(requestForInspectionBtn, event.target, 'Request');
+                            Materialize.toast(`Certificate Request #${certificateRequestId} for approval successfully requested.`, 2500, 'green lighten-1');
+                        });
+                    }
+                    else {
+                        // Make sure there are included swines before requesting
+                        vm.$nextTick(() => {
+                            $('#request-for-approval-modal').modal('close');
+                            this.enableButtons(requestForApprovalBtn, event.target, 'Request');
     
-            //                 Materialize.toast('Please include swines to request.', 2000);
-            //             });
-            //         }
-            //     })
-            //     .catch((error) => {
-            //         console.log(error);
-            //     });
-            // },
+                            Materialize.updateTextFields();
+                            Materialize.toast('Please include swines to request.', 2000);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            },
 
             certificateForApproval(data) {
-            //     const index = _.findIndex(this.customInspectionRequests, 
-            //         ['id', data.inspectionId]
-            //     );
+                const index = _.findIndex(this.customCertificateRequests, 
+                    ['id', data.certificateRequestId]
+                );
 
-            //     const inspectionRequest = this.customInspectionRequests[index];
-            //     inspectionRequest.status = 'requested';
-            //     inspectionRequest.dateRequested = data.dateRequested;
+                const certificateRequest = this.customCertificateRequests[index];
+                certificateRequest.status = 'requested';
+                certificateRequest.dateRequested = data.dateRequested;
+                certificateRequest.receiptNo = data.receiptNo;
             },
 
             hideSwineView(type) {
@@ -531,7 +550,7 @@
     }
 
     /* Modal customizations */
-    #request-for-inspection-modal {
+    #request-for-approval-modal {
         width: 40rem;
     }
 

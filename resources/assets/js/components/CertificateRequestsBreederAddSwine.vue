@@ -37,7 +37,7 @@
 
         <!-- Certificate Request details container -->
         <div v-else class="col s12">
-            <div id="inspection-container" class="card z-depth-0">
+            <div id="certificate-container" class="card z-depth-0">
                 <div class="card-content">
                     <span class="card-title">
                         <b>Certificate Request #{{ certificateData.certificateRequestId }}</b>
@@ -48,7 +48,7 @@
                                 text-darken-1 
                                 custom-secondary-btn
                                 z-depth-0
-                                request-for-inspection-btn"
+                                request-for-approval-btn"
                         >
                             Request for Approval
                         </a>
@@ -130,11 +130,11 @@
                 </div>
             </div>
 
-            <!-- Request for Inspection Modal -->
-            <div id="request-for-inspection-modal-2" class="modal">
+            <!-- Request for Approval Modal -->
+            <div id="request-for-approval-modal-2" class="modal">
                 <div class="modal-content">
                     <h4>
-                        Request for Inspection
+                        Request for Approval
                         <i class="material-icons right modal-close">close</i>
                     </h4>
 
@@ -143,18 +143,26 @@
                         <div class="input-field col s12">
                             <p>
                                 Are you sure you want to request 
-                                <b>Inspection #{{ requestData.inspectionId }}</b>
+                                <b>Certificate Request #{{ requestData.certificateRequestId }}</b>
                                 from <b>{{ requestData.farmName }}</b>
-                                for inspection?
+                                for approval?
                             </p>
+                        </div>
+                        <div class="input-field col s12">
+                            <input v-model="requestData.receiptNo"
+                                id="request-data-receipt"
+                                type="text"
+                                class="validate"
+                            >
+                            <label for="request-data-receipt">Receipt No.</label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer grey lighten-3">
                     <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
-                    <a @click.prevent="requestForInspection($event)" 
+                    <a @click.prevent="requestForApproval($event)" 
                         href="#!" 
-                        class="modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn"
+                        class="modal-action btn blue darken-1 z-depth-0 request-for-approval-btn"
                     >
                         Request
                     </a>
@@ -212,7 +220,8 @@
                 },
                 requestData: {
                     certificateRequestId: 0,
-                    farmName: ''
+                    farmName: '',
+                    receiptNo: ''
                 }
             }
         },
@@ -272,7 +281,7 @@
                     vm.availableSwines = data.available;
                     vm.includedSwines = data.included;
 
-                    // Update UI after adding swines to inspection request
+                    // Update UI after adding swines to certificate request
                     vm.$nextTick(() => {
                         this.enableButtons(addSwinesBtn, event.target, 'Add Chosen Swines');
 
@@ -315,7 +324,7 @@
                         registrationNo: '',
                     };
 
-                    // Update UI after removing swine from inspection
+                    // Update UI after removing swine from certificate request
                     vm.$nextTick(() => {
                         $('#remove-swine-modal').modal('close');
 
@@ -330,52 +339,60 @@
             },
 
             showRequestModal() {
-                this.requestData.certificateRequestId = this.certificate.certificateRequestId;
-                this.requestData.farmName = this.certificate.farmName;
+                this.requestData.certificateRequestId = this.certificateData.certificateRequestId;
+                this.requestData.farmName = this.certificateData.farmName;
 
                 this.$nextTick(() => {
                     // Materialize component initializations
                     $('.modal').modal();
-                    $('#request-for-inspection-modal-2').modal('open');
+                    $('#request-for-approval-modal-2').modal('open');
                 });
             },
 
-            requestForInspection(event) {
+            requestForApproval(event) {
                 const vm = this;
-                const requestForInspectionBtn = $('.request-for-inspection-btn');
+                const requestForApprovalBtn = $('.request-for-approval-btn');
                 const addSwinesBtn = $('.add-swines-btn');
-                const certificateRequestId = this.certificate.certificateRequestId;
+                const certificateRequestId = this.certificateData.certificateRequestId;
 
-                this.disableButtons(requestForInspectionBtn, event.target, 'Requesting...');
+                if (this.includedSwines.length < 1) {
+                    $('#request-for-approval-modal-2').modal('close');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Please include swines to request.', 2000);
+                    return;
+                }
+
+                if (this.requestData.receiptNo === '') {
+                    $('#request-for-approval-modal-2').modal('close');
+
+                    Materialize.toast('Please input receipt no.', 2000);
+                    return;
+                }
+
+                this.disableButtons(requestForApprovalBtn, event.target, 'Requesting...');
                 this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
 
                 // Update from server's database
-                axios.patch(`/breeder/inspections/${certificateRequestId}`, {})
+                axios.patch(`/breeder/certificates/${certificateRequestId}`, { 
+                    receiptNo: vm.requestData.receiptNo 
+                })
                 .then(({data}) => {
-                    if(data.requested) {
-                        // Update UI after requesting the inspection
+                    if (data.requested) {
+                        // Update UI after requesting the certificate request
                         vm.$nextTick(() => {
-                            $('#request-for-inspection-modal-2').modal('close');
+                            $('#request-for-approval-modal-2').modal('close');
 
-                            this.enableButtons(requestForInspectionBtn, event.target, 'Requested');
+                            this.enableButtons(requestForApprovalBtn, event.target, 'Requested');
     
-                            Materialize.toast(`Inspection #${certificateRequestId} successfully requested.`, 2000, 'green lighten-1');
+                            Materialize.toast(`Certificate Request #${certificateRequestId} for approval successfully requested.`, 2500, 'green lighten-1');
 
-                            this.$emit('inspectionForRequestEvent', {
+                            this.$emit('certificateForApprovalEvent', {
                                 certificateRequestId: certificateRequestId,
-                                dateRequested: data.dateRequested
+                                dateRequested: data.dateRequested,
+                                receiptNo: data.receiptNo
                             });
                             this.hideAddSwineView();
-                        });
-                    }
-                    else {
-                        // Make sure there are included swines before requesting
-                        vm.$nextTick(() => {
-                            $('#request-for-inspection-modal-2').modal('close');
-                            this.enableButtons(requestForInspectionBtn, event.target, 'Request');
-                            this.enableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
-    
-                            Materialize.toast('Please include swines to request.', 2000);
                         });
                     }
                 })
@@ -425,7 +442,7 @@
     }
 
     /* Modal customizations */
-    #remove-swine-modal, #request-for-inspection-modal-2 {
+    #remove-swine-modal, #request-for-approval-modal-2 {
         width: 40rem;
     }
 
