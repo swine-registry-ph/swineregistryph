@@ -236,21 +236,21 @@
         </transition>
 
         <!-- Included Swine View -->
-        <!-- <transition name="included-fade">
+        <transition name="included-fade">
             <certificate-requests-breeder-view-swine
                 v-show="showViewSwine"
                 v-on:hideSwineViewEvent="hideSwineView"
                 :certificate-data="certificateData"
             >
             </certificate-requests-breeder-view-swine>
-        </transition> -->
+        </transition>
   
     </div>
 </template>
 
 <script>
     import CertificateRequestsBreederAddSwine from './CertificateRequestsBreederAddSwine.vue';
-    // import CertificateRequestsBreederViewSwine from './CertificateRequestsBreederViewSwine.vue';
+    import CertificateRequestsBreederViewSwine from './CertificateRequestsBreederViewSwine.vue';
 
     export default {
         props: {
@@ -263,7 +263,7 @@
 
         components: {
             CertificateRequestsBreederAddSwine,
-            // CertificateRequestsBreederViewSwine
+            CertificateRequestsBreederViewSwine
         },
 
         data() {

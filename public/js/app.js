@@ -7282,6 +7282,8 @@ exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-righ
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__);
 //
 //
 //
@@ -7534,7 +7536,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-// import CertificateRequestsBreederViewSwine from './CertificateRequestsBreederViewSwine.vue';
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -7546,8 +7548,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     components: {
-        CertificateRequestsBreederAddSwine: __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default.a
-        // CertificateRequestsBreederViewSwine
+        CertificateRequestsBreederAddSwine: __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default.a,
+        CertificateRequestsBreederViewSwine: __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue___default.a
     },
 
     data: function data() {
@@ -8119,6 +8121,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "hideSwineViewEvent": _vm.hideSwineView,
       "certificateForApprovalEvent": _vm.certificateForApproval
+    }
+  })], 1), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "included-fade"
+    }
+  }, [_c('certificate-requests-breeder-view-swine', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showViewSwine),
+      expression: "showViewSwine"
+    }],
+    attrs: {
+      "certificate-data": _vm.certificateData
+    },
+    on: {
+      "hideSwineViewEvent": _vm.hideSwineView
     }
   })], 1)], 1)
 },staticRenderFns: []}
@@ -25315,6 +25334,353 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-10ad188c", module.exports)
+  }
+}
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(191)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(193),
+  /* template */
+  __webpack_require__(194),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-fb2df0f0",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreederViewSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreederViewSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fb2df0f0", Component.options)
+  } else {
+    hotAPI.reload("data-v-fb2df0f0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(192);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("1a115ca0", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb2df0f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederViewSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb2df0f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederViewSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-fb2df0f0] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-fb2df0f0] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-fb2df0f0] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-fb2df0f0], .included-swine-container[data-v-fb2df0f0] {\n    padding: 1rem 0 0 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        certificateData: Object
+    },
+
+    data: function data() {
+        return {
+            loading: true,
+            includedSwines: []
+        };
+    },
+
+
+    watch: {
+        certificateData: {
+            handler: function handler(newValue, oldValue) {
+                if (newValue.certificateRequestId !== 0) {
+                    this.fetchSwinesWithCertificateRequest(newValue);
+                }
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        hideAddSwineView: function hideAddSwineView() {
+            this.loading = true;
+            this.$emit('hideSwineViewEvent', 'view');
+        },
+        fetchSwinesWithCertificateRequest: function fetchSwinesWithCertificateRequest(certificateData) {
+            var _this = this;
+
+            var certificateRequestId = certificateData.certificateRequestId;
+
+            axios.get('/breeder/certificates/' + certificateRequestId + '/swines').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.availableSwines = data.available;
+                _this.includedSwines = data.included;
+
+                setTimeout(function () {
+                    _this.loading = false;
+                }, 1000);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideAddSwineView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(1)]) : _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card z-depth-0",
+    attrs: {
+      "id": "certificate-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.certificateData.certificateRequestId))]), _vm._v(" "), (_vm.certificateData.status === 'requested') ? _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        Requested - Waiting Approval\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.certificateData.status === 'for_delivery') ? _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        For Delivery\n                    ")]) : _vm._e()]), _vm._v(" "), _c('p', {
+    staticClass: "grey-text"
+  }, [_vm._v("\n                    " + _vm._s(_vm.certificateData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "included-swines-container"
+    }
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 included-swine-container"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
+  })], 2)])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Certificate Request Swines ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "preloader-wrapper active"
+  }, [_c('div', {
+    staticClass: "spinner-layer spinner-blue-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-fb2df0f0", module.exports)
   }
 }
 
