@@ -93,9 +93,9 @@
                                     Receipt No: {{ certificate.receiptNo }}
                                 </span>
                             </template>
-                            <template v-if="certificate.status === 'for_delivery'">
+                            <template v-if="certificate.status === 'on_delivery'">
                                 <span>
-                                    <b class="purple-text text-darken-2">For Delivery</b> <br>
+                                    <b class="purple-text text-darken-2">On Delivery</b> <br>
                                     {{ certificate.dateDelivery }} <br>
                                     Receipt No: {{ certificate.receiptNo }}
                                 </span>

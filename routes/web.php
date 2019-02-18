@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/manage/evaluators', 'ManageEvaluatorsController@update')->name('updateEvaluator');
         Route::delete('/manage/evaluators/{userId}', 'ManageEvaluatorsController@delete')->name('deleteEvaluator');
         Route::get('/certificates', 'CertificateController@adminViewAll')->name('adminCertificate');
+        Route::patch('/certificates/{certificateId}', 'CertificateController@markForDelivery')->name('markForDelivery');
     });
 
     // Genomics-related

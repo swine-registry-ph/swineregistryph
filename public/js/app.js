@@ -2505,6 +2505,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 // import InspectionRequestsEvaluatorViewSwine from './InspectionRequestsEvaluatorViewSwine.vue';
 
@@ -2620,40 +2621,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var vm = this;
-            var markForInspectionBtn = $('.mark-for-inspection-btn');
-            var inspectionId = this.markInspectionData.inspectionId;
+            var markForDeliveryBtn = $('.mark-for-delivery-btn');
+            var certificateRequestId = this.markDeliveryData.certificateRequestId;
 
-            // Make sure dateInspection is filled out
-            if (!vm.markInspectionData.dateInspection) return;
+            // Make sure dateDelivery is filled out
+            if (!vm.markDeliveryData.dateDelivery) return;
 
-            this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
+            this.disableButtons(markForDeliveryBtn, event.target, 'Marking...');
 
             // Update from server's database
-            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
-                inspectionId: inspectionId,
-                dateInspection: vm.markInspectionData.dateInspection,
-                status: 'for_inspection'
+            axios.patch('/admin/certificates/' + certificateRequestId, {
+                certificateRequestId: certificateRequestId,
+                dateDelivery: vm.markDeliveryData.dateDelivery
             }).then(function (_ref) {
                 var data = _ref.data;
 
                 if (data.marked) {
                     // Update local data storage
-                    var index = _.findIndex(vm.customInspectionRequests, ['id', inspectionId]);
+                    var index = _.findIndex(vm.customCertificateRequests, ['id', certificateRequestId]);
 
-                    var inspectionRequest = vm.customInspectionRequests[index];
-                    inspectionRequest.status = 'for_inspection';
-                    inspectionRequest.dateInspection = data.dateInspection;
+                    var certificateRequest = vm.customCertificateRequests[index];
+                    certificateRequest.status = 'on_delivery';
+                    certificateRequest.dateDelivery = vm.markDeliveryData.dateDelivery;
 
-                    // Clear markInspectionData
-                    vm.markInspectionData.dateInspection = '';
+                    // Clear markDeliveryData
+                    vm.markDeliveryData.dateDelivery = '';
 
-                    // Update UI after requesting the inspection
+                    // Update UI after requesting the certificate
                     vm.$nextTick(function () {
-                        $('#mark-for-inspection-modal').modal('close');
-                        _this.enableButtons(markForInspectionBtn, event.target, 'Mark');
+                        $('#mark-for-delivery-modal').modal('close');
+                        _this.enableButtons(markForDeliveryBtn, event.target, 'Mark');
 
                         Materialize.updateTextFields();
-                        Materialize.toast('Inspection #' + inspectionId + ' successfully marked for inspection.', 2000, 'green lighten-1');
+                        Materialize.toast('Delivery #' + certificateRequestId + ' successfully marked for delivery.', 2000, 'green lighten-1');
                     });
                 }
             }).catch(function (error) {
@@ -2769,7 +2769,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "lime-text text-darken-2"
     }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
-    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
@@ -9838,9 +9838,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "grey-text text-darken-2"
     }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'requested') ? [_c('span', [_c('b', {
       staticClass: "lime-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'for_delivery') ? [_c('span', [_c('b', {
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
-    }, [_vm._v("For Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"

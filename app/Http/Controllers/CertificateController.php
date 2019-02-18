@@ -288,6 +288,33 @@ class CertificateController extends Controller
     }
 
     /**
+     * Mark Certificate Request for Delivery
+     *
+     * @param   Request $request
+     * @param   integer $certificateRequestId
+     * @return  JSON
+     */
+    public function markForDelivery(Request $request, int $certificateRequestId)
+    {
+        if ($request->ajax()) {
+            $certificateRequest = CertificateRequest::find($certificateRequestId);
+            $certificateRequest->date_delivery = Carbon::createFromFormat(
+                    'F d, Y', 
+                    $request->dateDelivery
+                )->toDateString();
+            $certificateRequest->status = 'on_delivery';
+            $certificateRequest->save();
+            
+            return [
+                'dateDelivery' => $this->changeDateFormat(
+                        $certificateRequest->date_delivery
+                    ),
+                'marked'       => true
+            ];
+        }
+    }
+
+    /**
      * ------------------------------------------
      * COMMON METHODS
      * ------------------------------------------

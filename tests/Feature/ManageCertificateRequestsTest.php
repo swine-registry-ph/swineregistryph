@@ -48,8 +48,8 @@ class ManageCertificateRequestsTest extends TestCase
             ])
             ->json('POST', '/breeder/certificates',
                 [
-                    'breederId'         => 1,
-                    'farmId'            => 1,
+                    'breederId' => 1,
+                    'farmId'    => 1,
                 ]
             );
 

@@ -47,7 +47,8 @@
                             <template v-if="certificate.status === 'on_delivery'">
                                 <span>
                                     <b class="purple-text text-darken-2">On Delivery</b> <br>
-                                    {{ certificate.dateDelivery }}
+                                    {{ certificate.dateDelivery }} <br>
+                                    Receipt No: {{ certificate.receiptNo }}
                                 </span>
                             </template> <br> <br>
                             <span class="grey-text text-darken-1">
@@ -322,44 +323,43 @@
 
             markForDelivery(event) {
                 const vm = this;
-                const markForInspectionBtn = $('.mark-for-inspection-btn');
-                const inspectionId = this.markInspectionData.inspectionId;
+                const markForDeliveryBtn = $('.mark-for-delivery-btn');
+                const certificateRequestId = this.markDeliveryData.certificateRequestId;
 
-                // Make sure dateInspection is filled out
-                if(!vm.markInspectionData.dateInspection) return;
+                // Make sure dateDelivery is filled out
+                if(!vm.markDeliveryData.dateDelivery) return;
 
-                this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
+                this.disableButtons(markForDeliveryBtn, event.target, 'Marking...');
 
                 // Update from server's database
-                axios.patch(`/evaluator/manage/inspections/${inspectionId}`, 
+                axios.patch(`/admin/certificates/${certificateRequestId}`, 
                     {
-                        inspectionId: inspectionId,
-                        dateInspection: vm.markInspectionData.dateInspection,
-                        status: 'for_inspection'
+                        certificateRequestId: certificateRequestId,
+                        dateDelivery: vm.markDeliveryData.dateDelivery
                     }
                 )
                 .then(({data}) => {
                     if(data.marked) {
                         // Update local data storage
-                        const index = _.findIndex(vm.customInspectionRequests, 
-                            ['id', inspectionId]
+                        const index = _.findIndex(vm.customCertificateRequests, 
+                            ['id', certificateRequestId]
                         );
 
-                        const inspectionRequest = vm.customInspectionRequests[index];
-                        inspectionRequest.status = 'for_inspection';
-                        inspectionRequest.dateInspection = data.dateInspection;
+                        const certificateRequest = vm.customCertificateRequests[index];
+                        certificateRequest.status = 'on_delivery';
+                        certificateRequest.dateDelivery = vm.markDeliveryData.dateDelivery;
 
-                        // Clear markInspectionData
-                        vm.markInspectionData.dateInspection = '';
+                        // Clear markDeliveryData
+                        vm.markDeliveryData.dateDelivery = '';
 
-                        // Update UI after requesting the inspection
+                        // Update UI after requesting the certificate
                         vm.$nextTick(() => {
-                            $('#mark-for-inspection-modal').modal('close');
-                            this.enableButtons(markForInspectionBtn, event.target, 'Mark');
+                            $('#mark-for-delivery-modal').modal('close');
+                            this.enableButtons(markForDeliveryBtn, event.target, 'Mark');
     
                             Materialize.updateTextFields();
                             Materialize.toast(
-                                `Inspection #${inspectionId} successfully marked for inspection.`, 
+                                `Delivery #${certificateRequestId} successfully marked for delivery.`, 
                                 2000, 
                                 'green lighten-1'
                             );
