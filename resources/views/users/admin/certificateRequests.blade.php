@@ -13,6 +13,7 @@
             :custom-certificate-requests="{{ $customCertificateRequests }}"
             :current-filter-options="{{ $currentFilterOptions }}"
             :view-url="'{{ route('adminCertificate') }}'"
+            :photo-url="'{{ asset('storage/images/payments') }}'"
         >  
         </certificate-requests-admin>
     </div>

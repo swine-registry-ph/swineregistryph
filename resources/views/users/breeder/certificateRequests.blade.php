@@ -14,6 +14,7 @@
             :current-filter-options="{{ $currentFilterOptions }}"
             :farm-options="{{ $farmOptions }}"
             :view-url="'{{ route('breederCertificate') }}'"
+            :photo-url="'{{ asset('storage/images/payments') }}'"
         >  
         </certificate-requests-breeder>
     </div>

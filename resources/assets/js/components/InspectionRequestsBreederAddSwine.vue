@@ -271,6 +271,7 @@
                     // Put response in local data storage
                     vm.availableSwines = data.available;
                     vm.includedSwines = data.included;
+                    vm.swineIdsToAdd = [];
 
                     // Update UI after adding swines to inspection request
                     vm.$nextTick(() => {

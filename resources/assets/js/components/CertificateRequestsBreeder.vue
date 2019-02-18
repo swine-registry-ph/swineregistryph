@@ -90,7 +90,12 @@
                                 <span>
                                     <b class="lime-text text-darken-2">Requested</b> <br>
                                     {{ certificate.dateRequested }} <br>
-                                    Receipt No: {{ certificate.receiptNo }}
+                                    <a :href="`${photoUrl}/${certificate.paymentPhotoName}`" 
+                                        target="_blank"
+                                        class="teal-text"
+                                    >
+                                        Payment Photo
+                                    </a>
                                 </span>
                             </template>
                             <template v-if="certificate.status === 'on_delivery'">
@@ -128,7 +133,7 @@
                                     text-darken-1 
                                     custom-secondary-btn"
                             >
-                                Request for Approval
+                                Request for Certificates
                             </a>
                         </span>
                         <span v-else
@@ -182,11 +187,11 @@
                     </ul>
                 </div>
 
-                <!-- Request for Approval Modal -->
+                <!-- Request for Certificates Modal -->
                 <div id="request-for-approval-modal" class="modal">
                     <div class="modal-content">
                         <h4>
-                            Request for Approval
+                            Request for Certificates
                             <i class="material-icons right modal-close">close</i>
                         </h4>
 
@@ -196,17 +201,18 @@
                                 <p>
                                     Are you sure you want to request 
                                     <b>Certificate Request #{{ requestData.certificateRequestId }}</b>
-                                    from <b>{{ requestData.farmName }}</b>
-                                    for approval?
+                                    from <b>{{ requestData.farmName }}</b>?
                                 </p>
+                                <blockquote class="info">
+                                    Please upload a photo of your payment below.
+                                </blockquote>
                             </div>
                             <div class="input-field col s12">
-                                <input v-model="requestData.receiptNo"
-                                    id="request-data-receipt"
-                                    type="text"
-                                    class="validate"
+                                <input type="file"
+                                    name="paymentPhoto"
+                                    @change="onFileChanged($event)"
+                                    accept="image/png, image/jpg, image/jpeg"
                                 >
-                                <label for="request-data-receipt">Receipt No.</label>
                             </div>
                         </div>
                     </div>
@@ -258,7 +264,8 @@
             currentFilterOptions: Object,
             customCertificateRequests: Array,
             farmOptions: Array,
-            viewUrl: String
+            viewUrl: String,
+            photoUrl: String
         },
 
         components: {
@@ -301,7 +308,7 @@
                 requestData: {
                     certRequestId: 0,
                     farmName: '',
-                    receiptNo: ''
+                    paymentPhoto: null
                 }
             }
         },
@@ -438,10 +445,10 @@
                 const requestForApprovalBtn = $('.request-for-approval-btn');
                 const certificateRequestId = this.requestData.certificateRequestId;
 
-                if (this.requestData.receiptNo === '') {
-                    $('#request-for-approval-modal').modal('close');
+                if (this.requestData.paymentPhoto === null) {
+                    $('#request-for-approval-modal-2').modal('close');
 
-                    Materialize.toast('Please input receipt no.', 2000);
+                    Materialize.toast('Please include payment photo.', 2000);
                     return;
                 }
 
@@ -449,7 +456,7 @@
 
                 // Update from server's database
                 axios.patch(`/breeder/certificates/${certificateRequestId}`, {
-                    receiptNo: vm.requestData.receiptNo
+                    paymentPhoto: vm.requestData.paymentPhoto
                 })
                 .then(({data}) => {
                     if(data.requested) {
@@ -457,7 +464,7 @@
                         this.certificateForApproval({
                             certificateRequestId: certificateRequestId,
                             dateRequested: data.dateRequested,
-                            receiptNo: data.receiptNo
+                            paymentPhotoName: data.paymentPhotoName
                         });
 
                         // Update UI after requesting the certificate request
@@ -492,7 +499,19 @@
                 const certificateRequest = this.customCertificateRequests[index];
                 certificateRequest.status = 'requested';
                 certificateRequest.dateRequested = data.dateRequested;
-                certificateRequest.receiptNo = data.receiptNo;
+                certificateRequest.paymentPhotoName = data.paymentPhotoName;
+            },
+
+            onFileChanged(event) {
+                const vm = this;
+                let image = event.target.files[0];
+                let reader = new FileReader();
+
+                reader.onload = (event) => {
+                    vm.requestData.paymentPhoto = event.target.result;
+                }
+
+                reader.readAsDataURL(image);
             },
 
             hideSwineView(type) {

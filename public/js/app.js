@@ -2506,6 +2506,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 // import InspectionRequestsEvaluatorViewSwine from './InspectionRequestsEvaluatorViewSwine.vue';
 
@@ -2514,7 +2520,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         user: Object,
         currentFilterOptions: Object,
         customCertificateRequests: Array,
-        viewUrl: String
+        viewUrl: String,
+        photoUrl: String
     },
 
     components: {
@@ -2767,7 +2774,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "collection-item avatar"
     }, [_c('span', [_c('h5', [_c('b', [_vm._v("Certificate #" + _vm._s(certificate.id))])]), _vm._v(" "), (certificate.status === 'requested') ? [_c('span', [_c('b', {
       staticClass: "lime-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + " "), _c('br'), _vm._v(" "), _c('a', {
+      staticClass: "teal-text",
+      attrs: {
+        "href": (_vm.photoUrl + "/" + (certificate.paymentPhotoName)),
+        "target": "_blank"
+      }
+    }, [_vm._v("\n                                    Payment Photo\n                                ")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
     }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
@@ -8283,6 +8296,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8293,7 +8312,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         currentFilterOptions: Object,
         customCertificateRequests: Array,
         farmOptions: Array,
-        viewUrl: String
+        viewUrl: String,
+        photoUrl: String
     },
 
     components: {
@@ -8332,7 +8352,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             requestData: {
                 certRequestId: 0,
                 farmName: '',
-                receiptNo: ''
+                paymentPhoto: null
             }
         };
     },
@@ -8462,10 +8482,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var requestForApprovalBtn = $('.request-for-approval-btn');
             var certificateRequestId = this.requestData.certificateRequestId;
 
-            if (this.requestData.receiptNo === '') {
-                $('#request-for-approval-modal').modal('close');
+            if (this.requestData.paymentPhoto === null) {
+                $('#request-for-approval-modal-2').modal('close');
 
-                Materialize.toast('Please input receipt no.', 2000);
+                Materialize.toast('Please include payment photo.', 2000);
                 return;
             }
 
@@ -8473,7 +8493,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // Update from server's database
             axios.patch('/breeder/certificates/' + certificateRequestId, {
-                receiptNo: vm.requestData.receiptNo
+                paymentPhoto: vm.requestData.paymentPhoto
             }).then(function (_ref) {
                 var data = _ref.data;
 
@@ -8482,7 +8502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.certificateForApproval({
                         certificateRequestId: certificateRequestId,
                         dateRequested: data.dateRequested,
-                        receiptNo: data.receiptNo
+                        paymentPhotoName: data.paymentPhotoName
                     });
 
                     // Update UI after requesting the certificate request
@@ -8512,7 +8532,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var certificateRequest = this.customCertificateRequests[index];
             certificateRequest.status = 'requested';
             certificateRequest.dateRequested = data.dateRequested;
-            certificateRequest.receiptNo = data.receiptNo;
+            certificateRequest.paymentPhotoName = data.paymentPhotoName;
+        },
+        onFileChanged: function onFileChanged(event) {
+            var vm = this;
+            var image = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                vm.requestData.paymentPhoto = event.target.result;
+            };
+
+            reader.readAsDataURL(image);
         },
         hideSwineView: function hideSwineView(type) {
             if (type === 'add') this.showAddSwine = false;else if (type === 'view') this.showViewSwine = false;
@@ -8832,6 +8863,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -8852,7 +8884,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             requestData: {
                 certificateRequestId: 0,
                 farmName: '',
-                receiptNo: ''
+                paymentPhoto: null
             }
         };
     },
@@ -8915,6 +8947,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Put response in local data storage
                 vm.availableSwines = data.available;
                 vm.includedSwines = data.included;
+                vm.swineIdsToAdd = [];
 
                 // Update UI after adding swines to certificate request
                 vm.$nextTick(function () {
@@ -8997,10 +9030,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return;
             }
 
-            if (this.requestData.receiptNo === '') {
+            if (this.requestData.paymentPhoto === null) {
                 $('#request-for-approval-modal-2').modal('close');
 
-                Materialize.toast('Please input receipt no.', 2000);
+                Materialize.toast('Please include payment photo.', 2000);
                 return;
             }
 
@@ -9009,7 +9042,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // Update from server's database
             axios.patch('/breeder/certificates/' + certificateRequestId, {
-                receiptNo: vm.requestData.receiptNo
+                paymentPhoto: vm.requestData.paymentPhoto
             }).then(function (_ref4) {
                 var data = _ref4.data;
 
@@ -9020,12 +9053,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                         _this4.enableButtons(requestForApprovalBtn, event.target, 'Requested');
 
-                        Materialize.toast('Certificate Request #' + certificateRequestId + ' for approval successfully requested.', 2500, 'green lighten-1');
+                        Materialize.toast('Certificate Request #' + certificateRequestId + ' for successfully requested.', 2500, 'green lighten-1');
 
                         _this4.$emit('certificateForApprovalEvent', {
                             certificateRequestId: certificateRequestId,
                             dateRequested: data.dateRequested,
-                            receiptNo: data.receiptNo
+                            paymentPhotoName: data.paymentPhotoName
                         });
                         _this4.hideAddSwineView();
                     });
@@ -9033,6 +9066,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        onFileChanged: function onFileChanged(event) {
+            var vm = this;
+            var image = event.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                vm.requestData.paymentPhoto = event.target.result;
+            };
+
+            reader.readAsDataURL(image);
         },
         disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
             buttons.addClass('disabled');
@@ -9091,7 +9135,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showRequestModal()
       }
     }
-  }, [_vm._v("\n                        Request for Approval\n                    ")])]), _vm._v(" "), _c('p', {
+  }, [_vm._v("\n                        Request for Certificates\n                    ")])]), _vm._v(" "), _c('p', {
     staticClass: "grey-text"
   }, [_vm._v("\n                    " + _vm._s(_vm.certificateData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
     staticClass: "row"
@@ -9202,34 +9246,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row modal-input-container"
   }, [_vm._m(7), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                            for approval?\n                        ")])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("?\n                        ")]), _vm._v(" "), _c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                            Please upload a photo of your payment below.\n                        ")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.requestData.receiptNo),
-      expression: "requestData.receiptNo"
-    }],
-    staticClass: "validate",
     attrs: {
-      "id": "request-data-receipt",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.requestData.receiptNo)
+      "type": "file",
+      "name": "paymentPhoto",
+      "accept": "image/png, image/jpg, image/jpeg"
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.requestData, "receiptNo", $event.target.value)
+      "change": function($event) {
+        _vm.onFileChanged($event)
       }
     }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "request-data-receipt"
-    }
-  }, [_vm._v("Receipt No.")])])])]), _vm._v(" "), _c('div', {
+  })])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",
@@ -9310,7 +9342,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('br'), _vm._v("Sorry, there are no available swines.")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Request for Approval\n                    "), _c('i', {
+  return _c('h4', [_vm._v("\n                    Request for Certificates\n                    "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9838,7 +9870,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "grey-text text-darken-2"
     }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'requested') ? [_c('span', [_c('b', {
       staticClass: "lime-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + " "), _c('br'), _vm._v(" "), _c('a', {
+      staticClass: "teal-text",
+      attrs: {
+        "href": (_vm.photoUrl + "/" + (certificate.paymentPhotoName)),
+        "target": "_blank"
+      }
+    }, [_vm._v("\n                                    Payment Photo\n                                ")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
     }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
@@ -9870,7 +9908,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.showRequestModal(certificate.id, certificate.farmName)
         }
       }
-    }, [_vm._v("\n                            Request for Approval\n                        ")])]) : _c('span', {
+    }, [_vm._v("\n                            Request for Certificates\n                        ")])]) : _c('span', {
       staticClass: "secondary-content"
     }, [_c('a', {
       staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
@@ -9942,7 +9980,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("\n                        Request for Approval\n                        "), _c('i', {
+  }, [_c('h4', [_vm._v("\n                        Request for Certificates\n                        "), _c('i', {
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
@@ -9950,34 +9988,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s12"
   }, [_c('br')]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                                for approval?\n                            ")])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("?\n                            ")]), _vm._v(" "), _c('blockquote', {
+    staticClass: "info"
+  }, [_vm._v("\n                                Please upload a photo of your payment below.\n                            ")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.requestData.receiptNo),
-      expression: "requestData.receiptNo"
-    }],
-    staticClass: "validate",
     attrs: {
-      "id": "request-data-receipt",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.requestData.receiptNo)
+      "type": "file",
+      "name": "paymentPhoto",
+      "accept": "image/png, image/jpg, image/jpeg"
     },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.requestData, "receiptNo", $event.target.value)
+      "change": function($event) {
+        _vm.onFileChanged($event)
       }
     }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "request-data-receipt"
-    }
-  }, [_vm._v("Receipt No.")])])])]), _vm._v(" "), _c('div', {
+  })])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",
@@ -10985,6 +11011,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Put response in local data storage
                 vm.availableSwines = data.available;
                 vm.includedSwines = data.included;
+                vm.swineIdsToAdd = [];
 
                 // Update UI after adding swines to inspection request
                 vm.$nextTick(function () {

@@ -41,7 +41,13 @@
                             <template v-if="certificate.status === 'requested'">
                                 <span>
                                     <b class="lime-text text-darken-2">Requested</b> <br>
-                                    {{ certificate.dateRequested }}
+                                    {{ certificate.dateRequested }} <br>
+                                    <a :href="`${photoUrl}/${certificate.paymentPhotoName}`" 
+                                        target="_blank"
+                                        class="teal-text"
+                                    >
+                                        Payment Photo
+                                    </a>
                                 </span>
                             </template>
                             <template v-if="certificate.status === 'on_delivery'">
@@ -209,7 +215,8 @@
             user: Object,
             currentFilterOptions: Object,
             customCertificateRequests: Array,
-            viewUrl: String
+            viewUrl: String,
+            photoUrl: String
         },
 
         components: {

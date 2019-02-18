@@ -50,7 +50,7 @@
                                 z-depth-0
                                 request-for-approval-btn"
                         >
-                            Request for Approval
+                            Request for Certificates
                         </a>
                     </span>
                     <p class="grey-text">
@@ -130,11 +130,11 @@
                 </div>
             </div>
 
-            <!-- Request for Approval Modal -->
+            <!-- Request for Certificates Modal -->
             <div id="request-for-approval-modal-2" class="modal">
                 <div class="modal-content">
                     <h4>
-                        Request for Approval
+                        Request for Certificates
                         <i class="material-icons right modal-close">close</i>
                     </h4>
 
@@ -144,17 +144,18 @@
                             <p>
                                 Are you sure you want to request 
                                 <b>Certificate Request #{{ requestData.certificateRequestId }}</b>
-                                from <b>{{ requestData.farmName }}</b>
-                                for approval?
+                                from <b>{{ requestData.farmName }}</b>?
                             </p>
+                            <blockquote class="info">
+                                Please upload a photo of your payment below.
+                            </blockquote>
                         </div>
                         <div class="input-field col s12">
-                            <input v-model="requestData.receiptNo"
-                                id="request-data-receipt"
-                                type="text"
-                                class="validate"
+                            <input type="file"
+                                name="paymentPhoto"
+                                @change="onFileChanged($event)"
+                                accept="image/png, image/jpg, image/jpeg"
                             >
-                            <label for="request-data-receipt">Receipt No.</label>
                         </div>
                     </div>
                 </div>
@@ -221,7 +222,7 @@
                 requestData: {
                     certificateRequestId: 0,
                     farmName: '',
-                    receiptNo: ''
+                    paymentPhoto: null
                 }
             }
         },
@@ -280,6 +281,7 @@
                     // Put response in local data storage
                     vm.availableSwines = data.available;
                     vm.includedSwines = data.included;
+                    vm.swineIdsToAdd = [];
 
                     // Update UI after adding swines to certificate request
                     vm.$nextTick(() => {
@@ -363,10 +365,10 @@
                     return;
                 }
 
-                if (this.requestData.receiptNo === '') {
+                if (this.requestData.paymentPhoto === null) {
                     $('#request-for-approval-modal-2').modal('close');
 
-                    Materialize.toast('Please input receipt no.', 2000);
+                    Materialize.toast('Please include payment photo.', 2000);
                     return;
                 }
 
@@ -374,8 +376,8 @@
                 this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
 
                 // Update from server's database
-                axios.patch(`/breeder/certificates/${certificateRequestId}`, { 
-                    receiptNo: vm.requestData.receiptNo 
+                axios.patch(`/breeder/certificates/${certificateRequestId}`, {
+                    paymentPhoto: vm.requestData.paymentPhoto
                 })
                 .then(({data}) => {
                     if (data.requested) {
@@ -385,12 +387,12 @@
 
                             this.enableButtons(requestForApprovalBtn, event.target, 'Requested');
     
-                            Materialize.toast(`Certificate Request #${certificateRequestId} for approval successfully requested.`, 2500, 'green lighten-1');
+                            Materialize.toast(`Certificate Request #${certificateRequestId} for successfully requested.`, 2500, 'green lighten-1');
 
                             this.$emit('certificateForApprovalEvent', {
                                 certificateRequestId: certificateRequestId,
                                 dateRequested: data.dateRequested,
-                                receiptNo: data.receiptNo
+                                paymentPhotoName: data.paymentPhotoName
                             });
                             this.hideAddSwineView();
                         });
@@ -399,6 +401,18 @@
                 .catch((error) => {
                     console.log(error);
                 });
+            },
+
+            onFileChanged(event) {
+                const vm = this;
+                let image = event.target.files[0];
+                let reader = new FileReader();
+
+                reader.onload = (event) => {
+                    vm.requestData.paymentPhoto = event.target.result;
+                }
+
+                reader.readAsDataURL(image);
             },
 
             disableButtons(buttons, actionBtnElement, textToShow) {

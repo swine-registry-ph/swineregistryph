@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Auth;
+use Image;
 
 class CertificateController extends Controller
 {
@@ -34,7 +35,8 @@ class CertificateController extends Controller
         
         $this->middleware('role:admin')
             ->only([
-                'adminViewAll'
+                'adminViewAll',
+                'markForDelivery'
             ]);
     }
 
@@ -79,13 +81,14 @@ class CertificateController extends Controller
             $farm = $certificateRequest->farm;
 
             $customCertificateRequests[] = [
-                'id'             => $certificateRequest->id,
-                'farmName'       => "{$farm->name}, {$farm->province}",
-                'adminName'      => $adminName,
-                'dateRequested'  => $this->changeDateFormat($certificateRequest->date_requested),
-                'dateDelivery'   => $this->changeDateFormat($certificateRequest->date_delivery),
-                'receiptNo'      => $certificateRequest->receipt_no,
-                'status'         => $certificateRequest->status
+                'id'               => $certificateRequest->id,
+                'farmName'         => "{$farm->name}, {$farm->province}",
+                'adminName'        => $adminName,
+                'dateRequested'    => $this->changeDateFormat($certificateRequest->date_requested),
+                'dateDelivery'     => $this->changeDateFormat($certificateRequest->date_delivery),
+                'receiptNo'        => $certificateRequest->receipt_no,
+                'paymentPhotoName' => $certificateRequest->payment_photo_name,
+                'status'           => $certificateRequest->status
             ];
         }
 
@@ -130,13 +133,14 @@ class CertificateController extends Controller
 
             // Return custom data
             return [
-                'id'             => $certificateRequest->id,
-                'farmName'       => "{$farm->name}, {$farm->province}",
-                'adminName'      => '',
-                'dateRequested'  => '',
-                'dateDelivery'   => '',
-                'receiptNo'      => '',
-                'status'         => 'draft'
+                'id'               => $certificateRequest->id,
+                'farmName'         => "{$farm->name}, {$farm->province}",
+                'adminName'        => '',
+                'dateRequested'    => '',
+                'dateDelivery'     => '',
+                'receiptNo'        => '',
+                'paymentPhotoName' => '',
+                'status'           => 'draft'
             ];
         }
     }
@@ -209,18 +213,32 @@ class CertificateController extends Controller
             if (count($certificateRequest->certificateItems) < 1) 
                 return ['requested' => false];
 
-            if ($request->receiptNo == '') 
-                return ['requested' => false];
+            if (!$request->paymentPhoto)
+                return [
+                    'requested' => false,
+                    'message'   => 'No Photo included.'
+                ];
+
+            $imageData = $request->paymentPhoto;
+            $photoName = 'request_' 
+                . uniqid($certificateRequestId) 
+                . '.' 
+                . explode('/', explode(
+                        ':', 
+                        substr($imageData, 0, strpos($imageData, ';'))
+                    )[1])[1];
+            $image = Image::make($imageData)
+                ->save(public_path('storage/images/payments/') . $photoName);
 
             $certificateRequest->date_requested = Carbon::now()->format('Y-m-d');
             $certificateRequest->status = 'requested';
-            $certificateRequest->receipt_no = $request->receiptNo;
+            $certificateRequest->payment_photo_name = $photoName;
             $certificateRequest->save();
 
             return [
-                'dateRequested' => $this->changeDateFormat($certificateRequest->date_requested),
-                'receiptNo'     => $certificateRequest->receipt_no,
-                'requested'     => true
+                'dateRequested'    => $this->changeDateFormat($certificateRequest->date_requested),
+                'paymentPhotoName' => $certificateRequest->payment_photo_name,
+                'requested'        => true
             ];
         }
     }
@@ -265,19 +283,19 @@ class CertificateController extends Controller
             $farm = $certificateRequest->farm;
 
             $customCertificateRequests[] = [
-                'id'             => $certificateRequest->id,
-                'farmName'       => "{$farm->name}, {$farm->province}",
-                'adminName'      => $adminName,
-                'dateRequested'  => $this->changeDateFormat($certificateRequest->date_requested),
-                'dateDelivery'   => $this->changeDateFormat($certificateRequest->date_delivery),
-                'receiptNo'      => $certificateRequest->receipt_no,
-                'status'         => $certificateRequest->status
+                'id'               => $certificateRequest->id,
+                'farmName'         => "{$farm->name}, {$farm->province}",
+                'adminName'        => $adminName,
+                'dateRequested'    => $this->changeDateFormat($certificateRequest->date_requested),
+                'dateDelivery'     => $this->changeDateFormat($certificateRequest->date_delivery),
+                'receiptNo'        => $certificateRequest->receipt_no,
+                'paymentPhotoName' => $certificateRequest->payment_photo_name,
+                'status'           => $certificateRequest->status
             ];
         }
 
         $customCertificateRequests = collect($customCertificateRequests);
         $currentFilterOptions = collect($currentFilterOptions);
-
 
         return view('users.admin.certificateRequests', 
             compact(
