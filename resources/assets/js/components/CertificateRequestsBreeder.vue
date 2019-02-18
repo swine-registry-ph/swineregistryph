@@ -102,7 +102,13 @@
                                 <span>
                                     <b class="purple-text text-darken-2">On Delivery</b> <br>
                                     {{ certificate.dateDelivery }} <br>
-                                    Receipt No: {{ certificate.receiptNo }}
+                                    Receipt No: {{ certificate.receiptNo }} <br>
+                                    <a :href="`${photoUrl}/${certificate.paymentPhotoName}`" 
+                                        target="_blank"
+                                        class="teal-text"
+                                    >
+                                        Payment Photo
+                                    </a>
                                 </span>
                             </template> <br> <br>
                             <span class="grey-text text-darken-1">

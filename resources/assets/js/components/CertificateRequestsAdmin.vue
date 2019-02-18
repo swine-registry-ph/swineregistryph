@@ -54,7 +54,13 @@
                                 <span>
                                     <b class="purple-text text-darken-2">On Delivery</b> <br>
                                     {{ certificate.dateDelivery }} <br>
-                                    Receipt No: {{ certificate.receiptNo }}
+                                    Receipt No: {{ certificate.receiptNo }} <br>
+                                    <a :href="`${photoUrl}/${certificate.paymentPhotoName}`" 
+                                        target="_blank"
+                                        class="teal-text"
+                                    >
+                                        Payment Photo
+                                    </a>
                                 </span>
                             </template> <br> <br>
                             <span class="grey-text text-darken-1">
@@ -342,7 +348,8 @@
                 axios.patch(`/admin/certificates/${certificateRequestId}`, 
                     {
                         certificateRequestId: certificateRequestId,
-                        dateDelivery: vm.markDeliveryData.dateDelivery
+                        dateDelivery: vm.markDeliveryData.dateDelivery,
+                        receiptNo: vm.markDeliveryData.receiptNo
                     }
                 )
                 .then(({data}) => {
@@ -355,9 +362,11 @@
                         const certificateRequest = vm.customCertificateRequests[index];
                         certificateRequest.status = 'on_delivery';
                         certificateRequest.dateDelivery = vm.markDeliveryData.dateDelivery;
+                        certificateRequest.receiptNo = vm.markDeliveryData.receiptNo;
 
                         // Clear markDeliveryData
                         vm.markDeliveryData.dateDelivery = '';
+                        vm.markDeliveryData.receiptNo = '';
 
                         // Update UI after requesting the certificate
                         vm.$nextTick(() => {
@@ -366,7 +375,7 @@
     
                             Materialize.updateTextFields();
                             Materialize.toast(
-                                `Delivery #${certificateRequestId} successfully marked for delivery.`, 
+                                `Certificate Request #${certificateRequestId} successfully marked for delivery.`, 
                                 2000, 
                                 'green lighten-1'
                             );

@@ -320,14 +320,12 @@ class CertificateController extends Controller
                     'F d, Y', 
                     $request->dateDelivery
                 )->toDateString();
+            $certificateRequest->receipt_no = $request->receiptNo;
             $certificateRequest->status = 'on_delivery';
             $certificateRequest->save();
             
             return [
-                'dateDelivery' => $this->changeDateFormat(
-                        $certificateRequest->date_delivery
-                    ),
-                'marked'       => true
+                'marked' => true
             ];
         }
     }

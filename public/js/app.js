@@ -2512,6 +2512,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 // import InspectionRequestsEvaluatorViewSwine from './InspectionRequestsEvaluatorViewSwine.vue';
 
@@ -2639,7 +2645,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // Update from server's database
             axios.patch('/admin/certificates/' + certificateRequestId, {
                 certificateRequestId: certificateRequestId,
-                dateDelivery: vm.markDeliveryData.dateDelivery
+                dateDelivery: vm.markDeliveryData.dateDelivery,
+                receiptNo: vm.markDeliveryData.receiptNo
             }).then(function (_ref) {
                 var data = _ref.data;
 
@@ -2650,9 +2657,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var certificateRequest = vm.customCertificateRequests[index];
                     certificateRequest.status = 'on_delivery';
                     certificateRequest.dateDelivery = vm.markDeliveryData.dateDelivery;
+                    certificateRequest.receiptNo = vm.markDeliveryData.receiptNo;
 
                     // Clear markDeliveryData
                     vm.markDeliveryData.dateDelivery = '';
+                    vm.markDeliveryData.receiptNo = '';
 
                     // Update UI after requesting the certificate
                     vm.$nextTick(function () {
@@ -2660,7 +2669,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this.enableButtons(markForDeliveryBtn, event.target, 'Mark');
 
                         Materialize.updateTextFields();
-                        Materialize.toast('Delivery #' + certificateRequestId + ' successfully marked for delivery.', 2000, 'green lighten-1');
+                        Materialize.toast('Certificate Request #' + certificateRequestId + ' successfully marked for delivery.', 2000, 'green lighten-1');
                     });
                 }
             }).catch(function (error) {
@@ -2782,7 +2791,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v("\n                                    Payment Photo\n                                ")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
-    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + " "), _c('br'), _vm._v(" "), _c('a', {
+      staticClass: "teal-text",
+      attrs: {
+        "href": (_vm.photoUrl + "/" + (certificate.paymentPhotoName)),
+        "target": "_blank"
+      }
+    }, [_vm._v("\n                                    Payment Photo\n                                ")])])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
@@ -8302,6 +8317,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9878,7 +9899,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v("\n                                    Payment Photo\n                                ")])])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
       staticClass: "purple-text text-darken-2"
-    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + " "), _c('br'), _vm._v("\n                                Receipt No: " + _vm._s(certificate.receiptNo) + " "), _c('br'), _vm._v(" "), _c('a', {
+      staticClass: "teal-text",
+      attrs: {
+        "href": (_vm.photoUrl + "/" + (certificate.paymentPhotoName)),
+        "target": "_blank"
+      }
+    }, [_vm._v("\n                                    Payment Photo\n                                ")])])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
       staticClass: "grey-text text-darken-1"
     }, [_c('i', {
       staticClass: "material-icons left"
