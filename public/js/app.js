@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(169);
+module.exports = __webpack_require__(184);
 
 
 /***/ }),
@@ -454,24 +454,25 @@ Vue.component('app-input-date', __webpack_require__(47));
 Vue.component('app-input-select', __webpack_require__(50));
 
 // Admin
-Vue.component('manage-breeds', __webpack_require__(53));
-Vue.component('manage-breeders', __webpack_require__(59));
-Vue.component('manage-evaluators', __webpack_require__(69));
-Vue.component('manage-properties', __webpack_require__(74));
-Vue.component('manage-apis', __webpack_require__(79));
+Vue.component('certificate-requests-admin', __webpack_require__(53));
+Vue.component('manage-breeds', __webpack_require__(59));
+Vue.component('manage-breeders', __webpack_require__(64));
+Vue.component('manage-evaluators', __webpack_require__(74));
+Vue.component('manage-properties', __webpack_require__(79));
+Vue.component('manage-apis', __webpack_require__(84));
 
 // Breeder
-Vue.component('certificate-requests-breeder', __webpack_require__(84));
-Vue.component('inspection-requests-breeder', __webpack_require__(89));
-Vue.component('register-swine', __webpack_require__(104));
-Vue.component('view-registered-swine', __webpack_require__(139));
+Vue.component('certificate-requests-breeder', __webpack_require__(89));
+Vue.component('inspection-requests-breeder', __webpack_require__(104));
+Vue.component('register-swine', __webpack_require__(119));
+Vue.component('view-registered-swine', __webpack_require__(154));
 
 // Evaluator
-Vue.component('inspection-requests-evaluator', __webpack_require__(144));
+Vue.component('inspection-requests-evaluator', __webpack_require__(159));
 
 // Genomics
-Vue.component('register-laboratory-results', __webpack_require__(154));
-Vue.component('view-laboratory-results', __webpack_require__(159));
+Vue.component('register-laboratory-results', __webpack_require__(169));
+Vue.component('view-laboratory-results', __webpack_require__(174));
 
 // For main container
 var app = new Vue({
@@ -492,6 +493,7 @@ var nav = new Vue({
                 showManagePropertiesView: false,
                 showManageBreedsView: false,
                 manageAPIsView: false,
+                showCertificates: false,
                 reports: false
             },
             breeder: {
@@ -562,6 +564,10 @@ var nav = new Vue({
 
             case '/admin/manage/evaluators':
                 this.currentRoute.admin.showManageEvaluators = true;
+                break;
+
+            case '/admin/certificates':
+                this.currentRoute.admin.showCertificates = true;
                 break;
 
             case '/breeder/manage-swine/register':
@@ -2191,13 +2197,13 @@ var Component = __webpack_require__(0)(
   /* styles */
   injectStyle,
   /* scopeId */
-  "data-v-63d665c6",
+  "data-v-3d1cb5ed",
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeds.vue"
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsAdmin.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageBreeds.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsAdmin.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -2206,9 +2212,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-63d665c6", Component.options)
+    hotAPI.createRecord("data-v-3d1cb5ed", Component.options)
   } else {
-    hotAPI.reload("data-v-63d665c6", Component.options)
+    hotAPI.reload("data-v-3d1cb5ed", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -2229,13 +2235,13 @@ var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("84fa81c4", content, false);
+var update = __webpack_require__(2)("0ea8073c", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d1cb5ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsAdmin.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3d1cb5ed\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsAdmin.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -2253,7 +2259,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-button[data-v-63d665c6], #close-add-breed-container-button[data-v-63d665c6] {\n    cursor: pointer;\n}\n.collection-item[data-v-63d665c6] {\n    overflow: auto;\n}\n.collection-item .row[data-v-63d665c6] {\n    margin-bottom: 0;\n}\n#add-breed-container[data-v-63d665c6] {\n    padding-bottom: 2rem;\n}\n#edit-breed-modal[data-v-63d665c6] {\n    width: 30rem;\n    height: 30rem;\n}\n.custom-secondary-btn[data-v-63d665c6] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-63d665c6] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-63d665c6] {\n    border: 0;\n}\n.modal .modal-footer[data-v-63d665c6] {\n    padding-right: 2rem;\n}\n\n", ""]);
+exports.push([module.i, "\n.mark-delivery-button[data-v-3d1cb5ed] {\n    margin-right: .5rem;\n}\n.custom-secondary-btn[data-v-3d1cb5ed] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-3d1cb5ed]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body[data-v-3d1cb5ed] {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field[data-v-3d1cb5ed] {\n    margin: 0;\n}\np.range-field label[data-v-3d1cb5ed] {\n    color: black;\n}\n\n/* Collection customizations */\n.collection-item.avatar[data-v-3d1cb5ed] {\n    padding-left: 20px !important;\n    padding-bottom: 1.5rem;\n}\n\n/* Modal customizations */\n#mark-for-delivery-modal[data-v-3d1cb5ed] {\n    width: 40rem;\n}\n#mark-for-delivery-modal .modal-input-container[data-v-3d1cb5ed] {\n    padding-bottom: 7rem;\n}\n.modal .modal-footer[data-v-3d1cb5ed] {\n    padding-right: 2rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-3d1cb5ed], .fade-leave-active[data-v-3d1cb5ed] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-3d1cb5ed] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-3d1cb5ed] {\n    transition: opacity .15s;\n}\n.included-fade-enter-active[data-v-3d1cb5ed] {\n    transition: opacity 1.5s;\n}\n.included-fade-leave-active[data-v-3d1cb5ed] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-3d1cb5ed], .fade-leave-to[data-v-3d1cb5ed],\n.view-fade-enter[data-v-3d1cb5ed], .view-fade-leave-to[data-v-3d1cb5ed],\n.included-fade-enter[data-v-3d1cb5ed], .included-fade-leave-to[data-v-3d1cb5ed] {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -2293,6 +2299,749 @@ module.exports = function listToStyles (parentId, list) {
 
 /***/ }),
 /* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// import InspectionRequestsEvaluatorViewSwine from './InspectionRequestsEvaluatorViewSwine.vue';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: Object,
+        currentFilterOptions: Object,
+        customCertificateRequests: Array,
+        viewUrl: String
+    },
+
+    components: {
+        // InspectionRequestsEvaluatorViewSwine
+    },
+
+    data: function data() {
+        return {
+            showViewSwine: false,
+            pageNumber: 0,
+            paginationSize: 15,
+            filterOptions: this.currentFilterOptions,
+            certificateRequests: this.customCertificateRequests,
+            statuses: [{
+                text: 'Requested',
+                value: 'requested'
+            }, {
+                text: 'On Delivery',
+                value: 'on_delivery'
+            }],
+            markDeliveryData: {
+                certificateRequestId: 0,
+                farmName: '',
+                dateDelivery: '',
+                receiptNo: ''
+            }
+        };
+    },
+
+
+    computed: {
+        pageCount: function pageCount() {
+            var l = this.certificateRequests.length;
+            var s = this.paginationSize;
+
+            return Math.ceil(l / s);
+        },
+        paginatedRequests: function paginatedRequests() {
+            var start = this.pageNumber * this.paginationSize;
+            var end = start + this.paginationSize;
+
+            return _.sortBy(this.certificateRequests, ['id']).slice(start, end);
+        }
+    },
+
+    watch: {
+        filterOptions: {
+            handler: function handler(oldValue, newValue) {
+                // Watch filterOptions object for url rewrite
+                this.rewriteUrl(newValue, '');
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        previousPage: function previousPage() {
+            if (this.pageNumber !== 0) this.pageNumber--;
+        },
+        nextPage: function nextPage() {
+            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
+        },
+        goToPage: function goToPage(page) {
+            this.pageNumber = page - 1;
+        },
+        rewriteUrl: function rewriteUrl(filterOptions, searchParameter) {
+            /**
+             *  URL rewrite syntax: 
+             *  ?q=value*
+             *  &status=value[+value]*
+             */
+            var url = this.viewUrl;
+            var parameters = [];
+
+            // Put search parameter in parameters if it is non-empty
+            if (searchParameter.length > 0) {
+                var qParameter = 'q=' + searchParameter;
+
+                parameters.push(qParameter);
+            }
+
+            // Put status parameter in parameters if filter is chosen
+            if (filterOptions.status.length > 0) {
+                var statusParameter = 'status=';
+                statusParameter += filterOptions.status.join('+');
+
+                parameters.push(statusParameter);
+            }
+
+            // Redirect to new url
+            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
+        },
+        showMarkDeliveryModal: function showMarkDeliveryModal(certificateRequestId, farmName) {
+            this.markDeliveryData.certificateRequestId = certificateRequestId;
+            this.markDeliveryData.farmName = farmName;
+
+            this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#mark-for-delivery-modal').modal('open');
+            });
+        },
+        markForDelivery: function markForDelivery(event) {
+            var _this = this;
+
+            var vm = this;
+            var markForInspectionBtn = $('.mark-for-inspection-btn');
+            var inspectionId = this.markInspectionData.inspectionId;
+
+            // Make sure dateInspection is filled out
+            if (!vm.markInspectionData.dateInspection) return;
+
+            this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
+
+            // Update from server's database
+            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
+                inspectionId: inspectionId,
+                dateInspection: vm.markInspectionData.dateInspection,
+                status: 'for_inspection'
+            }).then(function (_ref) {
+                var data = _ref.data;
+
+                if (data.marked) {
+                    // Update local data storage
+                    var index = _.findIndex(vm.customInspectionRequests, ['id', inspectionId]);
+
+                    var inspectionRequest = vm.customInspectionRequests[index];
+                    inspectionRequest.status = 'for_inspection';
+                    inspectionRequest.dateInspection = data.dateInspection;
+
+                    // Clear markInspectionData
+                    vm.markInspectionData.dateInspection = '';
+
+                    // Update UI after requesting the inspection
+                    vm.$nextTick(function () {
+                        $('#mark-for-inspection-modal').modal('close');
+                        _this.enableButtons(markForInspectionBtn, event.target, 'Mark');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Inspection #' + inspectionId + ' successfully marked for inspection.', 2000, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showSwineView: function showSwineView(type, inspectionId, farmName, status) {
+            if (type === 'edit') this.showEditSwine = true;else if (type === 'view') this.showViewSwine = true;
+
+            this.inspectionData = {
+                inspectionId: inspectionId,
+                farmName: farmName,
+                status: status
+            };
+        },
+        hideSwineView: function hideSwineView(type) {
+            if (type === 'edit') this.showEditSwine = false;else if (type === 'view') this.showViewSwine = false;
+
+            // Re-initialize collapsbile component
+            this.$nextTick(function () {
+                $('.collapsible').collapsible();
+                $('.tooltipped').tooltip({ delay: 50 });
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    }
+});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s10 offset-s1"
+  }, [_c('transition', {
+    attrs: {
+      "name": "view-fade"
+    }
+  }, [(!_vm.showViewSwine) ? _c('div', [_c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Certificate Requests ")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 m3 l3"
+  }, [_c('ul', {
+    staticClass: "collapsible",
+    attrs: {
+      "data-collapsible": "expandable"
+    }
+  }, [_c('li', [_c('div', {
+    staticClass: "collapsible-header active"
+  }, [_c('b', [_vm._v("Status")])]), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('p', {
+    staticClass: "range-field"
+  }, [_vm._l((_vm.statuses), function(status) {
+    return [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.filterOptions.status),
+        expression: "filterOptions.status"
+      }],
+      staticClass: "filled-in",
+      attrs: {
+        "type": "checkbox",
+        "id": status.value
+      },
+      domProps: {
+        "value": status.value,
+        "checked": Array.isArray(_vm.filterOptions.status) ? _vm._i(_vm.filterOptions.status, status.value) > -1 : (_vm.filterOptions.status)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.filterOptions.status,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = status.value,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.$set(_vm.filterOptions, "status", $$a.concat([$$v])))
+            } else {
+              $$i > -1 && (_vm.$set(_vm.filterOptions, "status", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+            }
+          } else {
+            _vm.$set(_vm.filterOptions, "status", $$c)
+          }
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      attrs: {
+        "for": status.value
+      }
+    }, [_vm._v(" " + _vm._s(status.text) + " ")]), _vm._v(" "), _c('br')]
+  })], 2)])])])]), _vm._v(" "), _c('div', {
+    staticClass: "col s8 m9 l9"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_vm._l((_vm.paginatedRequests), function(certificate, index) {
+    return _c('li', {
+      key: certificate.id,
+      staticClass: "collection-item avatar"
+    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Certificate #" + _vm._s(certificate.id))])]), _vm._v(" "), (certificate.status === 'requested') ? [_c('span', [_c('b', {
+      staticClass: "lime-text text-darken-2"
+    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? [_c('span', [_c('b', {
+      staticClass: "purple-text text-darken-2"
+    }, [_vm._v("On Delivery")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(certificate.dateDelivery) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text text-darken-1"
+    }, [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(certificate.farmName) + "\n                        ")])], 2), _vm._v(" "), (certificate.status === 'requested') ? _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn\n                                mark-delivery-button\n                                blue darken-1\n                                z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showMarkDeliveryModal(
+            certificate.id,
+            certificate.farmName
+          )
+        }
+      }
+    }, [_vm._v("\n                            Mark for Delivery\n                        ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showSwineView(
+            'view',
+            certificate.id,
+            certificate.farmName,
+            certificate.status
+          )
+        }
+      }
+    }, [_vm._v("\n                            View Swine\n                        ")])]) : _vm._e(), _vm._v(" "), (certificate.status === 'on_delivery') ? _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn\n                                blue\n                                darken-1\n                                z-depth-0",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showSwineView(
+            'view',
+            certificate.id,
+            certificate.farmName,
+            certificate.status
+          )
+        }
+      }
+    }, [_vm._v("\n                            View Swine\n                        ")])]) : _vm._e()])
+  }), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.paginatedRequests.length === 0),
+      expression: "paginatedRequests.length === 0"
+    }],
+    staticClass: "collection-item avatar center-align"
+  }, [_c('p', [_c('br'), _vm._v(" "), _c('b', [_vm._v("Sorry, no certificate requests found.")])])])], 2), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align pagination-container"
+  }, [_c('ul', {
+    staticClass: "pagination"
+  }, [_c('li', {
+    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.previousPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
+    return _c('li', {
+      staticClass: "waves-effect",
+      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
+    }, [_c('a', {
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.goToPage(i)
+        }
+      }
+    }, [_vm._v(" " + _vm._s(i) + " ")])])
+  }), _vm._v(" "), _c('li', {
+    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.nextPage()
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "mark-for-delivery-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('h4', [_vm._v("\n                        Mark for Delivery\n                        "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('br')]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                                Are you sure you want to mark \n                                "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.markDeliveryData.certificateRequestId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.markDeliveryData.farmName))]), _vm._v("\n                                for delivery?\n                            ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.markDeliveryData.receiptNo),
+      expression: "markDeliveryData.receiptNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "type": "text",
+      "id": "delivery-receipt"
+    },
+    domProps: {
+      "value": (_vm.markDeliveryData.receiptNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.markDeliveryData, "receiptNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "delivery-receipt"
+    }
+  }, [_vm._v(" Receipt No. ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('app-input-date', {
+    attrs: {
+      "min": true
+    },
+    on: {
+      "date-select": function (val) {
+        _vm.markDeliveryData.dateDelivery = val
+      }
+    },
+    model: {
+      value: (_vm.markDeliveryData.dateDelivery),
+      callback: function($$v) {
+        _vm.$set(_vm.markDeliveryData, "dateDelivery", $$v)
+      },
+      expression: "markDeliveryData.dateDelivery"
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v(" Date of Delivery ")])], 1)])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 mark-for-delivery-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.markForDelivery($event)
+      }
+    }
+  }, [_vm._v("\n                        Mark\n                    ")])])])])]) : _vm._e()])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3d1cb5ed", module.exports)
+  }
+}
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(60)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(62),
+  /* template */
+  __webpack_require__(63),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-63d665c6",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageBreeds.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageBreeds.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-63d665c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-63d665c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(61);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("84fa81c4", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-63d665c6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageBreeds.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-button[data-v-63d665c6], #close-add-breed-container-button[data-v-63d665c6] {\n    cursor: pointer;\n}\n.collection-item[data-v-63d665c6] {\n    overflow: auto;\n}\n.collection-item .row[data-v-63d665c6] {\n    margin-bottom: 0;\n}\n#add-breed-container[data-v-63d665c6] {\n    padding-bottom: 2rem;\n}\n#edit-breed-modal[data-v-63d665c6] {\n    width: 30rem;\n    height: 30rem;\n}\n.custom-secondary-btn[data-v-63d665c6] {\n    border: 1px solid;\n    background-color: white;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-63d665c6] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-63d665c6] {\n    border: 0;\n}\n.modal .modal-footer[data-v-63d665c6] {\n    padding-right: 2rem;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2550,7 +3299,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 58 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2794,19 +3543,19 @@ if (false) {
 }
 
 /***/ }),
-/* 59 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(60)
+  __webpack_require__(65)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(62),
+  __webpack_require__(67),
   /* template */
-  __webpack_require__(68),
+  __webpack_require__(73),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2838,13 +3587,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 60 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(61);
+var content = __webpack_require__(66);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2864,7 +3613,7 @@ if(false) {
 }
 
 /***/ }),
-/* 61 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2878,12 +3627,12 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 
 
 /***/ }),
-/* 62 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
 //
 //
@@ -3370,19 +4119,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 63 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(64)
+  __webpack_require__(69)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(66),
+  __webpack_require__(71),
   /* template */
-  __webpack_require__(67),
+  __webpack_require__(72),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3414,13 +4163,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 64 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(65);
+var content = __webpack_require__(70);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3440,7 +4189,7 @@ if(false) {
 }
 
 /***/ }),
-/* 65 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -3454,7 +4203,7 @@ exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspa
 
 
 /***/ }),
-/* 66 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4011,7 +4760,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 67 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4605,7 +5354,7 @@ if (false) {
 }
 
 /***/ }),
-/* 68 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4919,19 +5668,19 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(70)
+  __webpack_require__(75)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(72),
+  __webpack_require__(77),
   /* template */
-  __webpack_require__(73),
+  __webpack_require__(78),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -4963,13 +5712,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(71);
+var content = __webpack_require__(76);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -4989,7 +5738,7 @@ if(false) {
 }
 
 /***/ }),
-/* 71 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -5003,7 +5752,7 @@ exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-eva
 
 
 /***/ }),
-/* 72 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5367,7 +6116,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 73 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -5663,19 +6412,19 @@ if (false) {
 }
 
 /***/ }),
-/* 74 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(75)
+  __webpack_require__(80)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(77),
+  __webpack_require__(82),
   /* template */
-  __webpack_require__(78),
+  __webpack_require__(83),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -5707,13 +6456,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 75 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(76);
+var content = __webpack_require__(81);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -5733,7 +6482,7 @@ if(false) {
 }
 
 /***/ }),
-/* 76 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -5747,7 +6496,7 @@ exports.push([module.i, "\n.collection-header a[data-v-0e4e505e], .edit-property
 
 
 /***/ }),
-/* 77 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6044,7 +6793,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 78 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6351,19 +7100,19 @@ if (false) {
 }
 
 /***/ }),
-/* 79 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(80)
+  __webpack_require__(85)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(82),
+  __webpack_require__(87),
   /* template */
-  __webpack_require__(83),
+  __webpack_require__(88),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -6395,13 +7144,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 80 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(86);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6421,7 +7170,7 @@ if(false) {
 }
 
 /***/ }),
-/* 81 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -6435,7 +7184,7 @@ exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-propert
 
 
 /***/ }),
-/* 82 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6850,7 +7599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 83 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7191,19 +7940,19 @@ if (false) {
 }
 
 /***/ }),
-/* 84 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(85)
+  __webpack_require__(90)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(87),
+  __webpack_require__(92),
   /* template */
-  __webpack_require__(88),
+  __webpack_require__(103),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7235,13 +7984,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 85 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(86);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7261,7 +8010,7 @@ if(false) {
 }
 
 /***/ }),
-/* 86 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7275,14 +8024,14 @@ exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-righ
 
 
 /***/ }),
-/* 87 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__);
 //
 //
@@ -7791,7 +8540,1149 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(94)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(96),
+  /* template */
+  __webpack_require__(97),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-10ad188c",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreederAddSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreederAddSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-10ad188c", Component.options)
+  } else {
+    hotAPI.reload("data-v-10ad188c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(95);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("08917498", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10ad188c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederAddSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10ad188c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederAddSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-10ad188c] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-10ad188c], #available-swines-container[data-v-10ad188c] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-10ad188c], .included-swine-container[data-v-10ad188c] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-10ad188c] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-10ad188c] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-10ad188c], #request-for-approval-modal-2[data-v-10ad188c] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-10ad188c] {\n    padding-right: 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        certificateData: Object
+    },
+
+    data: function data() {
+        return {
+            loading: true,
+            availableSwines: [],
+            includedSwines: [],
+            swineIdsToAdd: [],
+            removeSwineData: {
+                certificateRequestId: 0,
+                itemId: 0,
+                registrationNo: ''
+            },
+            requestData: {
+                certificateRequestId: 0,
+                farmName: '',
+                receiptNo: ''
+            }
+        };
+    },
+
+
+    watch: {
+        certificateData: {
+            handler: function handler(newValue, oldValue) {
+                if (newValue.certificateRequestId !== 0) {
+                    this.fetchSwinesWithCertificateRequest(newValue);
+                }
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        hideAddSwineView: function hideAddSwineView() {
+            this.loading = true;
+            this.$emit('hideSwineViewEvent', 'add');
+        },
+        fetchSwinesWithCertificateRequest: function fetchSwinesWithCertificateRequest(certificateData) {
+            var _this = this;
+
+            var certificateRequestId = certificateData.certificateRequestId;
+
+            axios.get('/breeder/certificates/' + certificateRequestId + '/swines').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.availableSwines = data.available;
+                _this.includedSwines = data.included;
+
+                setTimeout(function () {
+                    _this.loading = false;
+                }, 1000);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addSwines: function addSwines(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var addSwinesBtn = $('.add-swines-btn');
+            var certificateRequestId = this.certificateData.certificateRequestId;
+
+            if (this.swineIdsToAdd.length < 1) {
+                Materialize.toast('Please choose swines to add', 2000);
+                return;
+            }
+
+            this.disableButtons(addSwinesBtn, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/breeder/certificates/' + certificateRequestId + '/swines', {
+                swineIds: vm.swineIdsToAdd
+            }).then(function (_ref2) {
+                var data = _ref2.data;
+
+                // Put response in local data storage
+                vm.availableSwines = data.available;
+                vm.includedSwines = data.included;
+
+                // Update UI after adding swines to certificate request
+                vm.$nextTick(function () {
+                    _this2.enableButtons(addSwinesBtn, event.target, 'Add Chosen Swines');
+
+                    Materialize.toast('Swines successfully added', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRemoveSwineModal: function showRemoveSwineModal(removeSwineData) {
+            this.removeSwineData = removeSwineData;
+
+            // Materialize component initializations
+            $('.modal').modal();
+            $('#remove-swine-modal').modal('open');
+        },
+        removeSwine: function removeSwine(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var removeSwineBtn = $('.remove-swine-btn');
+            var certificateRequestId = this.removeSwineData.certificateRequestId;
+            var itemId = this.removeSwineData.itemId;
+
+            this.disableButtons(removeSwineBtn, event.target, 'Removing...');
+
+            // Remove from server's database
+            axios.delete('/breeder/certificates/' + certificateRequestId + '/item/' + itemId).then(function (_ref3) {
+                var data = _ref3.data;
+
+                var registrationNo = vm.removeSwineData.registrationNo;
+
+                // Put response in local data storage
+                vm.availableSwines = data.available;
+                vm.includedSwines = data.included;
+
+                vm.removeSwineData = {
+                    certificateRequestId: 0,
+                    itemId: 0,
+                    registrationNo: ''
+                };
+
+                // Update UI after removing swine from certificate request
+                vm.$nextTick(function () {
+                    $('#remove-swine-modal').modal('close');
+
+                    _this3.enableButtons(removeSwineBtn, event.target, 'Remove');
+
+                    Materialize.toast('Swine ' + registrationNo + ' removed', 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showRequestModal: function showRequestModal() {
+            this.requestData.certificateRequestId = this.certificateData.certificateRequestId;
+            this.requestData.farmName = this.certificateData.farmName;
+
+            this.$nextTick(function () {
+                // Materialize component initializations
+                $('.modal').modal();
+                $('#request-for-approval-modal-2').modal('open');
+            });
+        },
+        requestForApproval: function requestForApproval(event) {
+            var _this4 = this;
+
+            var vm = this;
+            var requestForApprovalBtn = $('.request-for-approval-btn');
+            var addSwinesBtn = $('.add-swines-btn');
+            var certificateRequestId = this.certificateData.certificateRequestId;
+
+            if (this.includedSwines.length < 1) {
+                $('#request-for-approval-modal-2').modal('close');
+
+                Materialize.updateTextFields();
+                Materialize.toast('Please include swines to request.', 2000);
+                return;
+            }
+
+            if (this.requestData.receiptNo === '') {
+                $('#request-for-approval-modal-2').modal('close');
+
+                Materialize.toast('Please input receipt no.', 2000);
+                return;
+            }
+
+            this.disableButtons(requestForApprovalBtn, event.target, 'Requesting...');
+            this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
+
+            // Update from server's database
+            axios.patch('/breeder/certificates/' + certificateRequestId, {
+                receiptNo: vm.requestData.receiptNo
+            }).then(function (_ref4) {
+                var data = _ref4.data;
+
+                if (data.requested) {
+                    // Update UI after requesting the certificate request
+                    vm.$nextTick(function () {
+                        $('#request-for-approval-modal-2').modal('close');
+
+                        _this4.enableButtons(requestForApprovalBtn, event.target, 'Requested');
+
+                        Materialize.toast('Certificate Request #' + certificateRequestId + ' for approval successfully requested.', 2500, 'green lighten-1');
+
+                        _this4.$emit('certificateForApprovalEvent', {
+                            certificateRequestId: certificateRequestId,
+                            dateRequested: data.dateRequested,
+                            receiptNo: data.receiptNo
+                        });
+                        _this4.hideAddSwineView();
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    }
+});
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideAddSwineView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(1)]) : _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card z-depth-0",
+    attrs: {
+      "id": "certificate-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.certificateData.certificateRequestId))]), _vm._v(" "), _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-approval-btn",
+    attrs: {
+      "href": "#"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showRequestModal()
+      }
+    }
+  }, [_vm._v("\n                        Request for Approval\n                    ")])]), _vm._v(" "), _c('p', {
+    staticClass: "grey-text"
+  }, [_vm._v("\n                    " + _vm._s(_vm.certificateData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "included-swines-container"
+    }
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 included-swine-container"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left cancel-swine-icon",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showRemoveSwineModal({
+            certificateRequestId: _vm.certificateData.certificateRequestId,
+            itemId: swine.itemId,
+            registrationNo: swine.registrationNo
+          })
+        }
+      }
+    }, [_vm._v("\n                                    cancel\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
+  })], 2), _vm._v(" "), _c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "available-swines-container"
+    }
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.availableSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(5)]) : _vm._l((_vm.availableSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 checkbox-container"
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.swineIdsToAdd),
+        expression: "swineIdsToAdd"
+      }],
+      staticClass: "filled-in",
+      attrs: {
+        "id": ("swine-" + (swine.swineId)),
+        "type": "checkbox"
+      },
+      domProps: {
+        "value": swine.swineId,
+        "checked": Array.isArray(_vm.swineIdsToAdd) ? _vm._i(_vm.swineIdsToAdd, swine.swineId) > -1 : (_vm.swineIdsToAdd)
+      },
+      on: {
+        "change": function($event) {
+          var $$a = _vm.swineIdsToAdd,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = swine.swineId,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.swineIdsToAdd = $$a.concat([$$v]))
+            } else {
+              $$i > -1 && (_vm.swineIdsToAdd = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+            }
+          } else {
+            _vm.swineIdsToAdd = $$c
+          }
+        }
+      }
+    }), _vm._v(" "), _c('label', {
+      staticClass: "black-text",
+      attrs: {
+        "for": ("swine-" + (swine.swineId))
+      }
+    }, [_vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
+  }), _vm._v(" "), _c('div', {
+    staticClass: "col s12 center-align",
+    attrs: {
+      "id": "add-swine-btn-container"
+    }
+  }, [_c('button', {
+    staticClass: "btn z-depth-0 add-swines-btn",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addSwines($event)
+      }
+    }
+  }, [_vm._v("\n                                Add Chosen Swines\n                            ")])])], 2)])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "request-for-approval-modal-2"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(6), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                            for approval?\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.requestData.receiptNo),
+      expression: "requestData.receiptNo"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "request-data-receipt",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.requestData.receiptNo)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.requestData, "receiptNo", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "request-data-receipt"
+    }
+  }, [_vm._v("Receipt No.")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-approval-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.requestForApproval($event)
+      }
+    }
+  }, [_vm._v("\n                    Request\n                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "remove-swine-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(9), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('p', [_vm._v("\n                            Are you sure you want to remove "), _c('b', [_vm._v(_vm._s(_vm.removeSwineData.registrationNo))]), _vm._v(" \n                            from "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.removeSwineData.certificateRequestId))]), _vm._v("?\n                        ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn red lighten-2 z-depth-0 remove-swine-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.removeSwine($event)
+      }
+    }
+  }, [_vm._v("\n                    Remove\n                ")])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Add Swine to Certificate Request ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "preloader-wrapper active"
+  }, [_c('div', {
+    staticClass: "spinner-layer spinner-blue-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Available Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no available swines.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Request for Approval\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                    Remove Swine\n                    "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-10ad188c", module.exports)
+  }
+}
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(99)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(101),
+  /* template */
+  __webpack_require__(102),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-fb2df0f0",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreederViewSwine.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreederViewSwine.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fb2df0f0", Component.options)
+  } else {
+    hotAPI.reload("data-v-fb2df0f0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(100);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("1a115ca0", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb2df0f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederViewSwine.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb2df0f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederViewSwine.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.custom-secondary-btn[data-v-fb2df0f0] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-fb2df0f0] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-fb2df0f0] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-fb2df0f0], .included-swine-container[data-v-fb2df0f0] {\n    padding: 1rem 0 0 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        certificateData: Object
+    },
+
+    data: function data() {
+        return {
+            loading: true,
+            includedSwines: []
+        };
+    },
+
+
+    watch: {
+        certificateData: {
+            handler: function handler(newValue, oldValue) {
+                if (newValue.certificateRequestId !== 0) {
+                    this.fetchSwinesWithCertificateRequest(newValue);
+                }
+            },
+            deep: true
+        }
+    },
+
+    methods: {
+        hideAddSwineView: function hideAddSwineView() {
+            this.loading = true;
+            this.$emit('hideSwineViewEvent', 'view');
+        },
+        fetchSwinesWithCertificateRequest: function fetchSwinesWithCertificateRequest(certificateData) {
+            var _this = this;
+
+            var certificateRequestId = certificateData.certificateRequestId;
+
+            axios.get('/breeder/certificates/' + certificateRequestId + '/swines').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.availableSwines = data.available;
+                _this.includedSwines = data.included;
+
+                setTimeout(function () {
+                    _this.loading = false;
+                }, 1000);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('a', {
+    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        return _vm.hideAddSwineView($event)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
+    staticClass: "col s12 center-align"
+  }, [_vm._m(1)]) : _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "card z-depth-0",
+    attrs: {
+      "id": "certificate-container"
+    }
+  }, [_c('div', {
+    staticClass: "card-content"
+  }, [_c('span', {
+    staticClass: "card-title"
+  }, [_c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.certificateData.certificateRequestId))]), _vm._v(" "), (_vm.certificateData.status === 'requested') ? _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        Requested - Waiting Approval\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.certificateData.status === 'for_delivery') ? _c('a', {
+    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
+    attrs: {
+      "href": "#"
+    }
+  }, [_vm._v("\n                        For Delivery\n                    ")]) : _vm._e()]), _vm._v(" "), _c('p', {
+    staticClass: "grey-text"
+  }, [_vm._v("\n                    " + _vm._s(_vm.certificateData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12",
+    attrs: {
+      "id": "included-swines-container"
+    }
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "divider"
+  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
+    staticClass: "center-align"
+  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
+    return _c('div', {
+      key: swine.swineId,
+      staticClass: "col s6 m3 included-swine-container"
+    }, [_c('span', [_c('i', {
+      staticClass: "material-icons left"
+    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
+      staticClass: "grey-text"
+    }, [_vm._v(_vm._s(swine.breedTitle))])])])
+  })], 2)])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Certificate Request Swines ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "preloader-wrapper active"
+  }, [_c('div', {
+    staticClass: "spinner-layer spinner-blue-only"
+  }, [_c('div', {
+    staticClass: "circle-clipper left"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "gap-patch"
+  }, [_c('div', {
+    staticClass: "circle"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "circle-clipper right"
+  }, [_c('div', {
+    staticClass: "circle"
+  })])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-fb2df0f0", module.exports)
+  }
+}
+
+/***/ }),
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8150,19 +10041,19 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(90)
+  __webpack_require__(105)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(92),
+  __webpack_require__(107),
   /* template */
-  __webpack_require__(103),
+  __webpack_require__(118),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8194,13 +10085,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 90 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(106);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8220,7 +10111,7 @@ if(false) {
 }
 
 /***/ }),
-/* 91 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -8234,14 +10125,14 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 
 
 /***/ }),
-/* 92 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__);
 //
 //
@@ -8728,19 +10619,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 93 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(94)
+  __webpack_require__(109)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(96),
+  __webpack_require__(111),
   /* template */
-  __webpack_require__(97),
+  __webpack_require__(112),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8772,13 +10663,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 94 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(95);
+var content = __webpack_require__(110);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8798,7 +10689,7 @@ if(false) {
 }
 
 /***/ }),
-/* 95 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -8812,7 +10703,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border:
 
 
 /***/ }),
-/* 96 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9214,7 +11105,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 97 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9476,19 +11367,19 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(99)
+  __webpack_require__(114)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(101),
+  __webpack_require__(116),
   /* template */
-  __webpack_require__(102),
+  __webpack_require__(117),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9520,13 +11411,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 99 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(100);
+var content = __webpack_require__(115);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9546,7 +11437,7 @@ if(false) {
 }
 
 /***/ }),
-/* 100 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9560,7 +11451,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-184cd2c7] {\n    border:
 
 
 /***/ }),
-/* 101 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9730,7 +11621,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 102 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9840,7 +11731,7 @@ if (false) {
 }
 
 /***/ }),
-/* 103 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10169,19 +12060,19 @@ if (false) {
 }
 
 /***/ }),
-/* 104 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(105)
+  __webpack_require__(120)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(107),
+  __webpack_require__(122),
   /* template */
-  __webpack_require__(138),
+  __webpack_require__(153),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -10213,13 +12104,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 105 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(106);
+var content = __webpack_require__(121);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -10239,7 +12130,7 @@ if(false) {
 }
 
 /***/ }),
-/* 106 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10253,18 +12144,18 @@ exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 
 
 
 /***/ }),
-/* 107 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__);
 //
 //
@@ -10512,19 +12403,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 108 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(109)
+  __webpack_require__(124)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(111),
+  __webpack_require__(126),
   /* template */
-  __webpack_require__(117),
+  __webpack_require__(132),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -10556,13 +12447,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 109 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(110);
+var content = __webpack_require__(125);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -10582,7 +12473,7 @@ if(false) {
 }
 
 /***/ }),
-/* 110 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10596,12 +12487,12 @@ exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow
 
 
 /***/ }),
-/* 111 */
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
 //
 //
@@ -10729,19 +12620,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 112 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(113)
+  __webpack_require__(128)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(115),
+  __webpack_require__(130),
   /* template */
-  __webpack_require__(116),
+  __webpack_require__(131),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -10773,13 +12664,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 113 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(114);
+var content = __webpack_require__(129);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -10799,7 +12690,7 @@ if(false) {
 }
 
 /***/ }),
-/* 114 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10813,7 +12704,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 115 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11650,7 +13541,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 116 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -12505,7 +14396,7 @@ if (false) {
 }
 
 /***/ }),
-/* 117 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -12614,19 +14505,19 @@ if (false) {
 }
 
 /***/ }),
-/* 118 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(119)
+  __webpack_require__(134)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(121),
+  __webpack_require__(136),
   /* template */
-  __webpack_require__(122),
+  __webpack_require__(137),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -12658,13 +14549,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 119 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(120);
+var content = __webpack_require__(135);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -12684,7 +14575,7 @@ if(false) {
 }
 
 /***/ }),
-/* 120 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -12698,7 +14589,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 121 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13229,7 +15120,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 122 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13836,19 +15727,19 @@ if (false) {
 }
 
 /***/ }),
-/* 123 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(124)
+  __webpack_require__(139)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(126),
+  __webpack_require__(141),
   /* template */
-  __webpack_require__(127),
+  __webpack_require__(142),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -13880,13 +15771,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 124 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(125);
+var content = __webpack_require__(140);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -13906,7 +15797,7 @@ if(false) {
 }
 
 /***/ }),
-/* 125 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -13920,7 +15811,7 @@ exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;
 
 
 /***/ }),
-/* 126 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14538,7 +16429,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 127 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14709,19 +16600,19 @@ if (false) {
 }
 
 /***/ }),
-/* 128 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(129)
+  __webpack_require__(144)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(131),
+  __webpack_require__(146),
   /* template */
-  __webpack_require__(137),
+  __webpack_require__(152),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14753,13 +16644,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 129 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(130);
+var content = __webpack_require__(145);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14779,7 +16670,7 @@ if(false) {
 }
 
 /***/ }),
-/* 130 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -14793,12 +16684,12 @@ exports.push([module.i, "\n#photos > .card[data-v-5bf32331] {\n    padding: 0;\n
 
 
 /***/ }),
-/* 131 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__);
 //
 //
@@ -15010,19 +16901,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 132 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(133)
+  __webpack_require__(148)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(135),
+  __webpack_require__(150),
   /* template */
-  __webpack_require__(136),
+  __webpack_require__(151),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -15054,13 +16945,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 133 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(134);
+var content = __webpack_require__(149);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15080,7 +16971,7 @@ if(false) {
 }
 
 /***/ }),
-/* 134 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -15094,7 +16985,7 @@ exports.push([module.i, "/* Custom style from vue-dropzone */\n.vue-dropzone[dat
 
 
 /***/ }),
-/* 135 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15197,7 +17088,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 136 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15249,7 +17140,7 @@ if (false) {
 }
 
 /***/ }),
-/* 137 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15363,7 +17254,7 @@ if (false) {
 }
 
 /***/ }),
-/* 138 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15585,19 +17476,19 @@ if (false) {
 }
 
 /***/ }),
-/* 139 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(140)
+  __webpack_require__(155)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(142),
+  __webpack_require__(157),
   /* template */
-  __webpack_require__(143),
+  __webpack_require__(158),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -15629,13 +17520,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 140 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(141);
+var content = __webpack_require__(156);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15655,7 +17546,7 @@ if(false) {
 }
 
 /***/ }),
-/* 141 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -15669,7 +17560,7 @@ exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    m
 
 
 /***/ }),
-/* 142 */
+/* 157 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16108,7 +17999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 143 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -16670,19 +18561,19 @@ if (false) {
 }
 
 /***/ }),
-/* 144 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(145)
+  __webpack_require__(160)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(147),
+  __webpack_require__(162),
   /* template */
-  __webpack_require__(153),
+  __webpack_require__(168),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -16714,13 +18605,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 145 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(146);
+var content = __webpack_require__(161);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16740,7 +18631,7 @@ if(false) {
 }
 
 /***/ }),
-/* 146 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -16754,12 +18645,12 @@ exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-
 
 
 /***/ }),
-/* 147 */
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__);
 //
 //
@@ -17275,19 +19166,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 148 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(149)
+  __webpack_require__(164)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(151),
+  __webpack_require__(166),
   /* template */
-  __webpack_require__(152),
+  __webpack_require__(167),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -17319,13 +19210,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 149 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(150);
+var content = __webpack_require__(165);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -17345,7 +19236,7 @@ if(false) {
 }
 
 /***/ }),
-/* 150 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -17359,7 +19250,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-ff4fdf8e] {\n    border:
 
 
 /***/ }),
-/* 151 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17624,7 +19515,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 152 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -17794,7 +19685,7 @@ if (false) {
 }
 
 /***/ }),
-/* 153 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -18111,19 +20002,19 @@ if (false) {
 }
 
 /***/ }),
-/* 154 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(155)
+  __webpack_require__(170)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(157),
+  __webpack_require__(172),
   /* template */
-  __webpack_require__(158),
+  __webpack_require__(173),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -18155,13 +20046,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 155 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(156);
+var content = __webpack_require__(171);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -18181,7 +20072,7 @@ if(false) {
 }
 
 /***/ }),
-/* 156 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -18195,7 +20086,7 @@ exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n
 
 
 /***/ }),
-/* 157 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19067,7 +20958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 158 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -20761,19 +22652,19 @@ if (false) {
 }
 
 /***/ }),
-/* 159 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(160)
+  __webpack_require__(175)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(162),
+  __webpack_require__(177),
   /* template */
-  __webpack_require__(168),
+  __webpack_require__(183),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -20805,13 +22696,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 160 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(161);
+var content = __webpack_require__(176);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -20831,7 +22722,7 @@ if(false) {
 }
 
 /***/ }),
-/* 161 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -20845,12 +22736,12 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border:
 
 
 /***/ }),
-/* 162 */
+/* 177 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
 //
 //
@@ -21415,19 +23306,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 163 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(164)
+  __webpack_require__(179)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(166),
+  __webpack_require__(181),
   /* template */
-  __webpack_require__(167),
+  __webpack_require__(182),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -21459,13 +23350,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 164 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(165);
+var content = __webpack_require__(180);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -21485,7 +23376,7 @@ if(false) {
 }
 
 /***/ }),
-/* 165 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -21499,7 +23390,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-615ddffa] {\n    border:
 
 
 /***/ }),
-/* 166 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22400,7 +24291,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 167 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -24114,7 +26005,7 @@ if (false) {
 }
 
 /***/ }),
-/* 168 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -24522,1167 +26413,10 @@ if (false) {
 }
 
 /***/ }),
-/* 169 */
+/* 184 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(186)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(188),
-  /* template */
-  __webpack_require__(189),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-10ad188c",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreederAddSwine.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreederAddSwine.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-10ad188c", Component.options)
-  } else {
-    hotAPI.reload("data-v-10ad188c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(187);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("08917498", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10ad188c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederAddSwine.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-10ad188c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederAddSwine.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-10ad188c] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-10ad188c], #available-swines-container[data-v-10ad188c] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-10ad188c], .included-swine-container[data-v-10ad188c] {\n    padding: 1rem 0 0 0;\n}\n#add-swine-btn-container[data-v-10ad188c] {\n    padding: 2rem 0 0 0;\n}\n.cancel-swine-icon[data-v-10ad188c] {\n    cursor: pointer;\n}\n\n/* Modal customizations */\n#remove-swine-modal[data-v-10ad188c], #request-for-approval-modal-2[data-v-10ad188c] {\n    width: 40rem;\n}\n.modal .modal-footer[data-v-10ad188c] {\n    padding-right: 2rem;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 188 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        certificateData: Object
-    },
-
-    data: function data() {
-        return {
-            loading: true,
-            availableSwines: [],
-            includedSwines: [],
-            swineIdsToAdd: [],
-            removeSwineData: {
-                certificateRequestId: 0,
-                itemId: 0,
-                registrationNo: ''
-            },
-            requestData: {
-                certificateRequestId: 0,
-                farmName: '',
-                receiptNo: ''
-            }
-        };
-    },
-
-
-    watch: {
-        certificateData: {
-            handler: function handler(newValue, oldValue) {
-                if (newValue.certificateRequestId !== 0) {
-                    this.fetchSwinesWithCertificateRequest(newValue);
-                }
-            },
-            deep: true
-        }
-    },
-
-    methods: {
-        hideAddSwineView: function hideAddSwineView() {
-            this.loading = true;
-            this.$emit('hideSwineViewEvent', 'add');
-        },
-        fetchSwinesWithCertificateRequest: function fetchSwinesWithCertificateRequest(certificateData) {
-            var _this = this;
-
-            var certificateRequestId = certificateData.certificateRequestId;
-
-            axios.get('/breeder/certificates/' + certificateRequestId + '/swines').then(function (_ref) {
-                var data = _ref.data;
-
-                _this.availableSwines = data.available;
-                _this.includedSwines = data.included;
-
-                setTimeout(function () {
-                    _this.loading = false;
-                }, 1000);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        addSwines: function addSwines(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var addSwinesBtn = $('.add-swines-btn');
-            var certificateRequestId = this.certificateData.certificateRequestId;
-
-            if (this.swineIdsToAdd.length < 1) {
-                Materialize.toast('Please choose swines to add', 2000);
-                return;
-            }
-
-            this.disableButtons(addSwinesBtn, event.target, 'Adding...');
-
-            // Add to server's database
-            axios.post('/breeder/certificates/' + certificateRequestId + '/swines', {
-                swineIds: vm.swineIdsToAdd
-            }).then(function (_ref2) {
-                var data = _ref2.data;
-
-                // Put response in local data storage
-                vm.availableSwines = data.available;
-                vm.includedSwines = data.included;
-
-                // Update UI after adding swines to certificate request
-                vm.$nextTick(function () {
-                    _this2.enableButtons(addSwinesBtn, event.target, 'Add Chosen Swines');
-
-                    Materialize.toast('Swines successfully added', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showRemoveSwineModal: function showRemoveSwineModal(removeSwineData) {
-            this.removeSwineData = removeSwineData;
-
-            // Materialize component initializations
-            $('.modal').modal();
-            $('#remove-swine-modal').modal('open');
-        },
-        removeSwine: function removeSwine(event) {
-            var _this3 = this;
-
-            var vm = this;
-            var removeSwineBtn = $('.remove-swine-btn');
-            var certificateRequestId = this.removeSwineData.certificateRequestId;
-            var itemId = this.removeSwineData.itemId;
-
-            this.disableButtons(removeSwineBtn, event.target, 'Removing...');
-
-            // Remove from server's database
-            axios.delete('/breeder/certificates/' + certificateRequestId + '/item/' + itemId).then(function (_ref3) {
-                var data = _ref3.data;
-
-                var registrationNo = vm.removeSwineData.registrationNo;
-
-                // Put response in local data storage
-                vm.availableSwines = data.available;
-                vm.includedSwines = data.included;
-
-                vm.removeSwineData = {
-                    certificateRequestId: 0,
-                    itemId: 0,
-                    registrationNo: ''
-                };
-
-                // Update UI after removing swine from certificate request
-                vm.$nextTick(function () {
-                    $('#remove-swine-modal').modal('close');
-
-                    _this3.enableButtons(removeSwineBtn, event.target, 'Remove');
-
-                    Materialize.toast('Swine ' + registrationNo + ' removed', 2000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showRequestModal: function showRequestModal() {
-            this.requestData.certificateRequestId = this.certificateData.certificateRequestId;
-            this.requestData.farmName = this.certificateData.farmName;
-
-            this.$nextTick(function () {
-                // Materialize component initializations
-                $('.modal').modal();
-                $('#request-for-approval-modal-2').modal('open');
-            });
-        },
-        requestForApproval: function requestForApproval(event) {
-            var _this4 = this;
-
-            var vm = this;
-            var requestForApprovalBtn = $('.request-for-approval-btn');
-            var addSwinesBtn = $('.add-swines-btn');
-            var certificateRequestId = this.certificateData.certificateRequestId;
-
-            if (this.includedSwines.length < 1) {
-                $('#request-for-approval-modal-2').modal('close');
-
-                Materialize.updateTextFields();
-                Materialize.toast('Please include swines to request.', 2000);
-                return;
-            }
-
-            if (this.requestData.receiptNo === '') {
-                $('#request-for-approval-modal-2').modal('close');
-
-                Materialize.toast('Please input receipt no.', 2000);
-                return;
-            }
-
-            this.disableButtons(requestForApprovalBtn, event.target, 'Requesting...');
-            this.disableButtons(addSwinesBtn, {}, 'Add Chosen Swines');
-
-            // Update from server's database
-            axios.patch('/breeder/certificates/' + certificateRequestId, {
-                receiptNo: vm.requestData.receiptNo
-            }).then(function (_ref4) {
-                var data = _ref4.data;
-
-                if (data.requested) {
-                    // Update UI after requesting the certificate request
-                    vm.$nextTick(function () {
-                        $('#request-for-approval-modal-2').modal('close');
-
-                        _this4.enableButtons(requestForApprovalBtn, event.target, 'Requested');
-
-                        Materialize.toast('Certificate Request #' + certificateRequestId + ' for approval successfully requested.', 2500, 'green lighten-1');
-
-                        _this4.$emit('certificateForApprovalEvent', {
-                            certificateRequestId: certificateRequestId,
-                            dateRequested: data.dateRequested,
-                            receiptNo: data.receiptNo
-                        });
-                        _this4.hideAddSwineView();
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    }
-});
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('a', {
-    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.hideAddSwineView($event)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_vm._m(1)]) : _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "card z-depth-0",
-    attrs: {
-      "id": "certificate-container"
-    }
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title"
-  }, [_c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.certificateData.certificateRequestId))]), _vm._v(" "), _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-approval-btn",
-    attrs: {
-      "href": "#"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showRequestModal()
-      }
-    }
-  }, [_vm._v("\n                        Request for Approval\n                    ")])]), _vm._v(" "), _c('p', {
-    staticClass: "grey-text"
-  }, [_vm._v("\n                    " + _vm._s(_vm.certificateData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "included-swines-container"
-    }
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "divider"
-  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
-    staticClass: "center-align"
-  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
-    return _c('div', {
-      key: swine.swineId,
-      staticClass: "col s6 m3 included-swine-container"
-    }, [_c('span', [_c('i', {
-      staticClass: "material-icons left cancel-swine-icon",
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showRemoveSwineModal({
-            certificateRequestId: _vm.certificateData.certificateRequestId,
-            itemId: swine.itemId,
-            registrationNo: swine.registrationNo
-          })
-        }
-      }
-    }, [_vm._v("\n                                    cancel\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
-      staticClass: "grey-text"
-    }, [_vm._v(_vm._s(swine.breedTitle))])])])
-  })], 2), _vm._v(" "), _c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "available-swines-container"
-    }
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "divider"
-  }), _vm._v(" "), (_vm.availableSwines.length < 1) ? _c('div', {
-    staticClass: "center-align"
-  }, [_vm._m(5)]) : _vm._l((_vm.availableSwines), function(swine) {
-    return _c('div', {
-      key: swine.swineId,
-      staticClass: "col s6 m3 checkbox-container"
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.swineIdsToAdd),
-        expression: "swineIdsToAdd"
-      }],
-      staticClass: "filled-in",
-      attrs: {
-        "id": ("swine-" + (swine.swineId)),
-        "type": "checkbox"
-      },
-      domProps: {
-        "value": swine.swineId,
-        "checked": Array.isArray(_vm.swineIdsToAdd) ? _vm._i(_vm.swineIdsToAdd, swine.swineId) > -1 : (_vm.swineIdsToAdd)
-      },
-      on: {
-        "change": function($event) {
-          var $$a = _vm.swineIdsToAdd,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = swine.swineId,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (_vm.swineIdsToAdd = $$a.concat([$$v]))
-            } else {
-              $$i > -1 && (_vm.swineIdsToAdd = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-            }
-          } else {
-            _vm.swineIdsToAdd = $$c
-          }
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      staticClass: "black-text",
-      attrs: {
-        "for": ("swine-" + (swine.swineId))
-      }
-    }, [_vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
-      staticClass: "grey-text"
-    }, [_vm._v(_vm._s(swine.breedTitle))])])])
-  }), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align",
-    attrs: {
-      "id": "add-swine-btn-container"
-    }
-  }, [_c('button', {
-    staticClass: "btn z-depth-0 add-swines-btn",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addSwines($event)
-      }
-    }
-  }, [_vm._v("\n                                Add Chosen Swines\n                            ")])])], 2)])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "request-for-approval-modal-2"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(6), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to request \n                            "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.requestData.certificateRequestId))]), _vm._v("\n                            from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                            for approval?\n                        ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.requestData.receiptNo),
-      expression: "requestData.receiptNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "request-data-receipt",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.requestData.receiptNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.requestData, "receiptNo", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "request-data-receipt"
-    }
-  }, [_vm._v("Receipt No.")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-approval-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.requestForApproval($event)
-      }
-    }
-  }, [_vm._v("\n                    Request\n                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "remove-swine-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(8), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(9), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to remove "), _c('b', [_vm._v(_vm._s(_vm.removeSwineData.registrationNo))]), _vm._v(" \n                            from "), _c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.removeSwineData.certificateRequestId))]), _vm._v("?\n                        ")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn red lighten-2 z-depth-0 remove-swine-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.removeSwine($event)
-      }
-    }
-  }, [_vm._v("\n                    Remove\n                ")])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Add Swine to Certificate Request ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "preloader-wrapper active"
-  }, [_c('div', {
-    staticClass: "spinner-layer spinner-blue-only"
-  }, [_c('div', {
-    staticClass: "circle-clipper left"
-  }, [_c('div', {
-    staticClass: "circle"
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "gap-patch"
-  }, [_c('div', {
-    staticClass: "circle"
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "circle-clipper right"
-  }, [_c('div', {
-    staticClass: "circle"
-  })])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Available Swines")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br'), _vm._v("Sorry, there are no available swines.")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Request for Approval\n                    "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                    Remove Swine\n                    "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-10ad188c", module.exports)
-  }
-}
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(191)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(193),
-  /* template */
-  __webpack_require__(194),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-fb2df0f0",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/CertificateRequestsBreederViewSwine.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] CertificateRequestsBreederViewSwine.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fb2df0f0", Component.options)
-  } else {
-    hotAPI.reload("data-v-fb2df0f0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 191 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(192);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("1a115ca0", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb2df0f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederViewSwine.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fb2df0f0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CertificateRequestsBreederViewSwine.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-fb2df0f0] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-fb2df0f0] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-fb2df0f0] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-fb2df0f0], .included-swine-container[data-v-fb2df0f0] {\n    padding: 1rem 0 0 0;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 193 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        certificateData: Object
-    },
-
-    data: function data() {
-        return {
-            loading: true,
-            includedSwines: []
-        };
-    },
-
-
-    watch: {
-        certificateData: {
-            handler: function handler(newValue, oldValue) {
-                if (newValue.certificateRequestId !== 0) {
-                    this.fetchSwinesWithCertificateRequest(newValue);
-                }
-            },
-            deep: true
-        }
-    },
-
-    methods: {
-        hideAddSwineView: function hideAddSwineView() {
-            this.loading = true;
-            this.$emit('hideSwineViewEvent', 'view');
-        },
-        fetchSwinesWithCertificateRequest: function fetchSwinesWithCertificateRequest(certificateData) {
-            var _this = this;
-
-            var certificateRequestId = certificateData.certificateRequestId;
-
-            axios.get('/breeder/certificates/' + certificateRequestId + '/swines').then(function (_ref) {
-                var data = _ref.data;
-
-                _this.availableSwines = data.available;
-                _this.includedSwines = data.included;
-
-                setTimeout(function () {
-                    _this.loading = false;
-                }, 1000);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 194 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('a', {
-    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.hideAddSwineView($event)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_vm._m(1)]) : _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "card z-depth-0",
-    attrs: {
-      "id": "certificate-container"
-    }
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title"
-  }, [_c('b', [_vm._v("Certificate Request #" + _vm._s(_vm.certificateData.certificateRequestId))]), _vm._v(" "), (_vm.certificateData.status === 'requested') ? _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("\n                        Requested - Waiting Approval\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.certificateData.status === 'for_delivery') ? _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("\n                        For Delivery\n                    ")]) : _vm._e()]), _vm._v(" "), _c('p', {
-    staticClass: "grey-text"
-  }, [_vm._v("\n                    " + _vm._s(_vm.certificateData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "included-swines-container"
-    }
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "divider"
-  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
-    staticClass: "center-align"
-  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
-    return _c('div', {
-      key: swine.swineId,
-      staticClass: "col s6 m3 included-swine-container"
-    }, [_c('span', [_c('i', {
-      staticClass: "material-icons left"
-    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
-      staticClass: "grey-text"
-    }, [_vm._v(_vm._s(swine.breedTitle))])])])
-  })], 2)])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Certificate Request Swines ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "preloader-wrapper active"
-  }, [_c('div', {
-    staticClass: "spinner-layer spinner-blue-only"
-  }, [_c('div', {
-    staticClass: "circle-clipper left"
-  }, [_c('div', {
-    staticClass: "circle"
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "gap-patch"
-  }, [_c('div', {
-    staticClass: "circle"
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "circle-clipper right"
-  }, [_c('div', {
-    staticClass: "circle"
-  })])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-fb2df0f0", module.exports)
-  }
-}
 
 /***/ })
 ],[19]);

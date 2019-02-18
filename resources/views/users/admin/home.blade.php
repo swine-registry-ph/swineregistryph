@@ -31,6 +31,9 @@
         <li :class="{ active : currentRoute.admin.showManageBreedsView }">
             <a href="{{ route('showManageBreedsView') }}"> <i class="material-icons">toc</i> Manage Breeds </a>
         </li>
+        <li :class="{ active : currentRoute.admin.showCertificates }">
+            <a href="{{ route('adminCertificate') }}"> <i class="material-icons">picture_in_picture</i> Certificate Requests </a>
+        </li>
         <li :class="{ active : currentRoute.admin.manageAPIsView }">
             <a href="{{ route('manageAPIsView') }}"> <i class="material-icons">build</i> Manage API Credentials </a>
         </li>

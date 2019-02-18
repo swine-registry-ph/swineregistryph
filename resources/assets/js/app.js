@@ -23,6 +23,7 @@ Vue.component('app-input-date', require('./components/AppInputDate.vue'));
 Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
 
 // Admin
+Vue.component('certificate-requests-admin', require('./components/CertificateRequestsAdmin.vue'));
 Vue.component('manage-breeds', require('./components/ManageBreeds.vue'));
 Vue.component('manage-breeders', require('./components/ManageBreeders.vue'));
 Vue.component('manage-evaluators', require('./components/ManageEvaluators.vue'));
@@ -61,6 +62,7 @@ const nav = new Vue({
                 showManagePropertiesView: false,
                 showManageBreedsView: false,
                 manageAPIsView: false,
+                showCertificates: false,
                 reports: false
             },
             breeder: {
@@ -131,6 +133,10 @@ const nav = new Vue({
 
             case '/admin/manage/evaluators':
                 this.currentRoute.admin.showManageEvaluators = true;
+                break;
+            
+            case '/admin/certificates':
+                this.currentRoute.admin.showCertificates = true;
                 break;
 
             case '/breeder/manage-swine/register':

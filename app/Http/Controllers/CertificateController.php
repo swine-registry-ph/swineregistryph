@@ -29,12 +29,12 @@ class CertificateController extends Controller
                 'createCertificateRequest',
                 'addSwinesToCertificateRequest',
                 'removeCertificateItem',
-                // 'requestForApproval'
+                'requestForApproval'
             ]);
         
-        $this->middleware('role:evaluator')
+        $this->middleware('role:admin')
             ->only([
-                // 'evaluatorViewAll'
+                'adminViewAll'
             ]);
     }
 
@@ -83,7 +83,6 @@ class CertificateController extends Controller
                 'farmName'       => "{$farm->name}, {$farm->province}",
                 'adminName'      => $adminName,
                 'dateRequested'  => $this->changeDateFormat($certificateRequest->date_requested),
-                'datePayment'    => $this->changeDateFormat($certificateRequest->date_payment),
                 'dateDelivery'   => $this->changeDateFormat($certificateRequest->date_delivery),
                 'receiptNo'      => $certificateRequest->receipt_no,
                 'status'         => $certificateRequest->status
@@ -135,7 +134,6 @@ class CertificateController extends Controller
                 'farmName'       => "{$farm->name}, {$farm->province}",
                 'adminName'      => '',
                 'dateRequested'  => '',
-                'datePayment'    => '',
                 'dateDelivery'   => '',
                 'receiptNo'      => '',
                 'status'         => 'draft'
@@ -225,6 +223,68 @@ class CertificateController extends Controller
                 'requested'     => true
             ];
         }
+    }
+
+    /**
+     * ------------------------------------------
+     * ADMIN-SPECIFIC METHODS
+     * ------------------------------------------
+     */
+
+    /**
+     * Show requested inspections to Administrator
+     *
+     * @return  View
+     */
+    public function adminViewAll(Request $request)
+    {
+        $certificateRequests = CertificateRequest::whereIn(
+                'status', 
+                ['requested', 'on_delivery']
+            )->get();
+        $customCertificateRequests = [];
+        $currentFilterOptions = [
+            'status' => []
+        ];
+
+        if($request->status) {
+            $statusArray = explode(' ', $request->status);
+            $certificateRequests = $certificateRequests
+                ->whereIn('status', $statusArray)
+                ->values();
+
+            // Include status in currentFilterOptions
+            $currentFilterOptions['status'] = $statusArray;
+        }
+
+        // Customize Certificate request data
+        foreach ($certificateRequests as $certificateRequest) {
+            $adminName = ($certificateRequest->admin) 
+                ? $certificateRequest->admin->users()->first()->name
+                : '';
+            $farm = $certificateRequest->farm;
+
+            $customCertificateRequests[] = [
+                'id'             => $certificateRequest->id,
+                'farmName'       => "{$farm->name}, {$farm->province}",
+                'adminName'      => $adminName,
+                'dateRequested'  => $this->changeDateFormat($certificateRequest->date_requested),
+                'dateDelivery'   => $this->changeDateFormat($certificateRequest->date_delivery),
+                'receiptNo'      => $certificateRequest->receipt_no,
+                'status'         => $certificateRequest->status
+            ];
+        }
+
+        $customCertificateRequests = collect($customCertificateRequests);
+        $currentFilterOptions = collect($currentFilterOptions);
+
+
+        return view('users.admin.certificateRequests', 
+            compact(
+                'customCertificateRequests',
+                'currentFilterOptions'
+            )
+        );
     }
 
     /**
