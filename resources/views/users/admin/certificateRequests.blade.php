@@ -1,4 +1,4 @@
-@extends('users.breeder.home')
+@extends('users.admin.home')
 
 @section('title')
     | Certificate Requests
@@ -8,15 +8,14 @@
 
 <div class="">
     <div class="row">
-        <certificate-requests-breeder
+        <certificate-requests-admin
             :user="{{ Auth::user()->userable()->first() }}" 
             :custom-certificate-requests="{{ $customCertificateRequests }}"
             :current-filter-options="{{ $currentFilterOptions }}"
-            :farm-options="{{ $farmOptions }}"
-            :view-url="'{{ route('breederCertificate') }}'"
+            :view-url="'{{ route('adminCertificate') }}'"
             :photo-url="'{{ asset('storage/images/payments') }}'"
         >  
-        </certificate-requests-breeder>
+        </certificate-requests-admin>
     </div>
 </div>
 

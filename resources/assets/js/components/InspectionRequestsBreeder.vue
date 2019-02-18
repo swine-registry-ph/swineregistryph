@@ -290,7 +290,8 @@
                 },
                 inspectionData: {
                     inspectionId: 0,
-                    farmName: ''
+                    farmName: '',
+                    status: ''
                 },
                 requestData: {
                     inspectionId: 0,
@@ -370,6 +371,11 @@
             addInspectionRequest(event) {
                 const vm = this;
                 const addInspectionRequestBtn = $('.add-request-button');
+
+                if (!vm.addRequestData.farmId) {
+                    Materialize.toast('Please choose farm for request', 2000);
+                    return;
+                }
 
                 this.disableButtons(addInspectionRequestBtn, event.target, 'Adding...');
 

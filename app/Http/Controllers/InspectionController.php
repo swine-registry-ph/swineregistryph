@@ -147,7 +147,7 @@ class InspectionController extends Controller
 
     /**
      * Add swines to respective inspection request. Adding swines
-     * is the same as adding an inspection items to 
+     * is the same as adding inspection items to 
      * respective inspection request
      *
      * @param   Request $request

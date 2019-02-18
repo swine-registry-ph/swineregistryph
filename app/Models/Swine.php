@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Breed;
 use App\Models\Breeder;
+use App\Models\CertificateItem;
 use App\Models\Farm;
 use App\Models\InspectionItem;
 use App\Models\Photo;
@@ -74,5 +75,13 @@ class Swine extends Model
     public function inspectionItem()
     {
         return $this->hasOne(InspectionItem::class);
+    }
+
+    /**
+     * Get the certificate item of the swine
+     */
+    public function certificateItem()
+    {
+        return $this->hasOne(CertificateItem::class);
     }
 }

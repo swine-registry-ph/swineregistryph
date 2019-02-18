@@ -1,8 +1,8 @@
 <template lang="html">
     <div class="col s10 offset-s1">
-        
+
         <transition name="view-fade">
-        <div v-if="!showAddSwine && !showViewSwine">
+        <div v-if="!showViewSwine">
             <div class="col s12">
                 <h4 class="title-page"> Certificate Requests </h4>
             </div>
@@ -31,61 +31,13 @@
 
             <div class="col s8 m9 l9">
                 <ul class="collection with-header">
-                    <!-- Toggle add certificate request container button -->
-                    <li class="collection-header">
-                        <a @click.prevent="showAddRequestInput = !showAddRequestInput"
-                            href="#!"
-                            id="toggle-add-request-container-button"
-                            class="btn-floating waves-effect waves-light tooltipped"
-                            data-position="right"
-                            data-delay="50"
-                            data-tooltip="Add new certificate request"
-                        >
-                            <i class="material-icons right">add</i>
-                        </a>
-                    </li>
-                    <!-- Add certificate request container -->
-                    <li v-show="showAddRequestInput" id="add-request-container" class="collection-item">
-                        <div class="row">
-                            <div class="col s12">
-                                <i @click.prevent="showAddRequestInput = !showAddRequestInput"
-                                    id="close-add-request-container-button"
-                                    class="material-icons right"
-                                >
-                                    close
-                                </i>
-                            </div>
-                            <div class="input-field col s6 offset-s3">
-                                <app-input-select
-                                    labelDescription="Farm"
-                                    v-model="addRequestData.farmId"
-                                    :options="farmOptions"
-                                    @select="val => {addRequestData.farmId = val}"
-                                >
-                                </app-input-select>
-                            </div>
-                            <div class="col s4 offset-s4">
-                                <a @click.prevent="addCertificateRequest($event)"
-                                    href="#!"
-                                    class="right btn z-depth-0 add-request-button"
-                                >
-                                    Add Certificate Request
-                                </a>
-                            </div>
-                        </div>
-                    </li>
                     <!-- Existing Certificate Requests container -->
                     <li v-for="(certificate, index) in paginatedRequests" 
                         class="collection-item avatar"
                         :key="certificate.id"
                     >
                         <span>
-                            <h5><b>Request #{{ certificate.id }}</b></h5>
-                            <template v-if="certificate.status === 'draft'">
-                                <span>
-                                    <b class="grey-text text-darken-2">Draft</b>
-                                </span>
-                            </template>
+                            <h5><b>Certificate #{{ certificate.id }}</b></h5>
                             <template v-if="certificate.status === 'requested'">
                                 <span>
                                     <b class="lime-text text-darken-2">Requested</b> <br>
@@ -116,33 +68,36 @@
                                 {{ certificate.farmName }}
                             </span>
                         </span>
-                        <span v-if="certificate.status === 'draft'" 
+                        <span v-if="certificate.status === 'requested'" 
                             class="secondary-content"
                         >
+                            <a @click.prevent="showMarkDeliveryModal(
+                                    certificate.id,
+                                    certificate.farmName
+                                )"
+                                href="#"
+                                class="btn
+                                    mark-delivery-button
+                                    blue darken-1
+                                    z-depth-0"
+                            >
+                                Mark for Delivery
+                            </a>
                             <a @click.prevent="showSwineView(
-                                    'add', 
+                                    'view', 
                                     certificate.id, 
                                     certificate.farmName,
                                     certificate.status
                                 )"
-                                href="#"
-                                class="btn
-                                    add-swine-button
-                                    blue darken-1
-                                    z-depth-0"
-                            >
-                                Add Swine
-                            </a>
-                            <a @click.prevent="showRequestModal(certificate.id, certificate.farmName)"
                                 class="btn btn-flat 
                                     blue-text
                                     text-darken-1 
                                     custom-secondary-btn"
                             >
-                                Request for Certificates
+                                View Swine
                             </a>
                         </span>
-                        <span v-else
+                        <span v-if="certificate.status === 'on_delivery'" 
                             class="secondary-content"
                         >
                             <a @click.prevent="showSwineView(
@@ -151,10 +106,9 @@
                                     certificate.farmName,
                                     certificate.status
                                 )"
-                                href="#"
                                 class="btn
-                                    add-swine-button
-                                    blue darken-1
+                                    blue
+                                    darken-1
                                     z-depth-0"
                             >
                                 View Swine
@@ -166,6 +120,7 @@
                         class="collection-item avatar center-align"
                     >
                         <p>
+                            <br>
                             <b>Sorry, no certificate requests found.</b>
                         </p>
                     </li>
@@ -193,11 +148,11 @@
                     </ul>
                 </div>
 
-                <!-- Request for Certificates Modal -->
-                <div id="request-for-approval-modal" class="modal">
+                <!-- Mark for Delivery Modal -->
+                <div id="mark-for-delivery-modal" class="modal">
                     <div class="modal-content">
                         <h4>
-                            Request for Certificates
+                            Mark for Delivery
                             <i class="material-icons right modal-close">close</i>
                         </h4>
 
@@ -205,94 +160,83 @@
                             <div class="col s12"><br/></div>
                             <div class="input-field col s12">
                                 <p>
-                                    Are you sure you want to request 
-                                    <b>Certificate Request #{{ requestData.certificateRequestId }}</b>
-                                    from <b>{{ requestData.farmName }}</b>?
+                                    Are you sure you want to mark 
+                                    <b>Certificate Request #{{ markDeliveryData.certificateRequestId }}</b>
+                                    from <b>{{ markDeliveryData.farmName }}</b>
+                                    for delivery?
                                 </p>
-                                <blockquote class="info">
-                                    Please upload a photo of your payment below.
-                                </blockquote>
                             </div>
                             <div class="input-field col s12">
-                                <input type="file"
-                                    name="paymentPhoto"
-                                    @change="onFileChanged($event)"
-                                    accept="image/png, image/jpg, image/jpeg"
+                                <input v-model="markDeliveryData.receiptNo"
+                                    type="text"
+                                    id="delivery-receipt"
+                                    class="validate"
                                 >
+                                <label for="delivery-receipt"> Receipt No. </label>
+                            </div>
+                            <div class="input-field col s12">
+                                <app-input-date
+                                    v-model="markDeliveryData.dateDelivery"
+                                    :min="true"
+                                    @date-select="val => {markDeliveryData.dateDelivery = val}"
+                                >
+                                </app-input-date>
+                                <label for=""> Date of Delivery </label>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer grey lighten-3">
                         <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
-                        <a @click.prevent="requestForApproval($event)" 
+                        <a @click.prevent="markForDelivery($event)" 
                             href="#!" 
-                            class="modal-action btn blue darken-1 z-depth-0 request-for-approval-btn"
+                            class="modal-action btn blue darken-1 z-depth-0 mark-for-delivery-btn"
                         >
-                            Request
+                            Mark
                         </a>
                     </div>
                 </div>
+
             </div>
         </div>
         </transition>
 
-        <!-- Add Swine to Certificate Request View -->
-        <transition name="add-fade">
-            <certificate-requests-breeder-add-swine
-                v-show="showAddSwine"
-                v-on:hideSwineViewEvent="hideSwineView"
-                v-on:certificateForApprovalEvent="certificateForApproval"
-                :certificate-data="certificateData"
-            >
-            </certificate-requests-breeder-add-swine>
-        </transition>
-
         <!-- Included Swine View -->
         <transition name="included-fade">
-            <certificate-requests-breeder-view-swine
+            <certificate-requests-admin-view-swine
                 v-show="showViewSwine"
                 v-on:hideSwineViewEvent="hideSwineView"
+                v-on:markDeliveryEvent="certificateForMarking"
                 :certificate-data="certificateData"
             >
-            </certificate-requests-breeder-view-swine>
+            </certificate-requests-admin-view-swine>
         </transition>
-  
     </div>
 </template>
 
 <script>
-    import CertificateRequestsBreederAddSwine from './CertificateRequestsBreederAddSwine.vue';
-    import CertificateRequestsBreederViewSwine from './CertificateRequestsBreederViewSwine.vue';
-
+    import CertificateRequestsAdminViewSwine from './CertificateRequestsAdminViewSwine.vue';
+    
     export default {
         props: {
             user: Object,
             currentFilterOptions: Object,
             customCertificateRequests: Array,
-            farmOptions: Array,
             viewUrl: String,
             photoUrl: String
         },
 
         components: {
-            CertificateRequestsBreederAddSwine,
-            CertificateRequestsBreederViewSwine
+            CertificateRequestsAdminViewSwine
         },
 
         data() {
             return {
-                showAddRequestInput: false,
-                showAddSwine: false,
                 showViewSwine: false,
                 pageNumber: 0,
                 paginationSize: 15,
                 filterOptions: this.currentFilterOptions,
                 certificateRequests: this.customCertificateRequests,
                 statuses: [
-                    {
-                        text: 'Draft',
-                        value: 'draft'
-                    },
                     {
                         text: 'Requested',
                         value: 'requested'
@@ -302,19 +246,16 @@
                         value: 'on_delivery'
                     }
                 ],
-                addRequestData: {
-                    breederId: this.user.id,
-                    farmId: ''
-                },
                 certificateData: {
                     certificateRequestId: 0,
                     farmName: '',
                     status: ''
                 },
-                requestData: {
-                    certRequestId: 0,
+                markDeliveryData: {
+                    certificateRequestId: 0,
                     farmName: '',
-                    paymentPhoto: null
+                    dateDelivery: '',
+                    receiptNo: ''
                 }
             }
         },
@@ -387,108 +328,62 @@
                 else window.location = url;
             },
 
-            addCertificateRequest(event) {
-                const vm = this;
-                const addCertificateRequestBtn = $('.add-request-button');
-
-                if (!vm.addRequestData.farmId) {
-                    Materialize.toast('Please choose farm for request', 2000);
-                    return;
-                }
-
-                this.disableButtons(addCertificateRequestBtn, event.target, 'Adding...');
-
-                // Add to server's database
-                axios.post('/breeder/certificates', {
-                    breederId: vm.addRequestData.breederId,
-                    farmId: vm.addRequestData.farmId
-                })
-                .then((response) => {
-                    // Put response in local data storage and erase adding of request data
-                    vm.certificateRequests.push(response.data);
-                    vm.addRequestData.farmId = '';
-
-                    // Update UI after adding certificate request
-                    vm.$nextTick(() => {
-                        this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast('Certificate request added', 2000, 'green lighten-1');
-                    });
-                })
-                .catch((error) => {
-                    this.enableButtons(addCertificateRequestBtn, event.target, 'Add Certificate Request');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Error occurred', 2000, 'red lighten-1');
-                });
-            },
-
-            showSwineView(type, certificateRequestId, farmName, status) {
-                if (type === 'add') this.showAddSwine = true;
-                else if (type === 'view') this.showViewSwine = true;
-
-                this.certificateData = {
-                    certificateRequestId,
-                    farmName,
-                    status
-                };
-            },
-
-            showRequestModal(certificateRequestId, farmName) {
-                this.requestData.certificateRequestId = certificateRequestId;
-                this.requestData.farmName = farmName;
+            showMarkDeliveryModal(certificateRequestId, farmName) {
+                this.markDeliveryData.certificateRequestId = certificateRequestId;
+                this.markDeliveryData.farmName = farmName;
 
                 this.$nextTick(() => {
                     // Materialize component initializations
                     $('.modal').modal();
-                    $('#request-for-approval-modal').modal('open');
+                    $('#mark-for-delivery-modal').modal('open');
                 });
             },
 
-            requestForApproval(event) {
+            markForDelivery(event) {
                 const vm = this;
-                const requestForApprovalBtn = $('.request-for-approval-btn');
-                const certificateRequestId = this.requestData.certificateRequestId;
+                const markForDeliveryBtn = $('.mark-for-delivery-btn');
+                const certificateRequestId = this.markDeliveryData.certificateRequestId;
 
-                if (this.requestData.paymentPhoto === null) {
-                    $('#request-for-approval-modal-2').modal('close');
+                // Make sure dateDelivery is filled out
+                if(!vm.markDeliveryData.dateDelivery) return;
 
-                    Materialize.toast('Please include payment photo.', 2000);
-                    return;
-                }
-
-                this.disableButtons(requestForApprovalBtn, event.target, 'Requesting...');
+                this.disableButtons(markForDeliveryBtn, event.target, 'Marking...');
 
                 // Update from server's database
-                axios.patch(`/breeder/certificates/${certificateRequestId}`, {
-                    paymentPhoto: vm.requestData.paymentPhoto
-                })
-                .then(({data}) => {
-                    if(data.requested) {
-                        // Update local data storage
-                        this.certificateForApproval({
-                            certificateRequestId: certificateRequestId,
-                            dateRequested: data.dateRequested,
-                            paymentPhotoName: data.paymentPhotoName
-                        });
-
-                        // Update UI after requesting the certificate request
-                        vm.$nextTick(() => {
-                            $('#request-for-approval-modal').modal('close');
-                            this.enableButtons(requestForApprovalBtn, event.target, 'Request');
-    
-                            Materialize.toast(`Certificate Request #${certificateRequestId} for approval successfully requested.`, 2500, 'green lighten-1');
-                        });
+                axios.patch(`/admin/certificates/${certificateRequestId}`, 
+                    {
+                        certificateRequestId: certificateRequestId,
+                        dateDelivery: vm.markDeliveryData.dateDelivery,
+                        receiptNo: vm.markDeliveryData.receiptNo
                     }
-                    else {
-                        // Make sure there are included swines before requesting
+                )
+                .then(({data}) => {
+                    if(data.marked) {
+                        // Update local data storage
+                        const index = _.findIndex(vm.customCertificateRequests, 
+                            ['id', certificateRequestId]
+                        );
+
+                        const certificateRequest = vm.customCertificateRequests[index];
+                        certificateRequest.status = 'on_delivery';
+                        certificateRequest.dateDelivery = vm.markDeliveryData.dateDelivery;
+                        certificateRequest.receiptNo = vm.markDeliveryData.receiptNo;
+
+                        // Clear markDeliveryData
+                        vm.markDeliveryData.dateDelivery = '';
+                        vm.markDeliveryData.receiptNo = '';
+
+                        // Update UI after requesting the certificate
                         vm.$nextTick(() => {
-                            $('#request-for-approval-modal').modal('close');
-                            this.enableButtons(requestForApprovalBtn, event.target, 'Request');
+                            $('#mark-for-delivery-modal').modal('close');
+                            this.enableButtons(markForDeliveryBtn, event.target, 'Mark');
     
                             Materialize.updateTextFields();
-                            Materialize.toast('Please include swines to request.', 2000);
+                            Materialize.toast(
+                                `Certificate Request #${certificateRequestId} successfully marked for delivery.`, 
+                                2000, 
+                                'green lighten-1'
+                            );
                         });
                     }
                 })
@@ -497,32 +392,29 @@
                 });
             },
 
-            certificateForApproval(data) {
-                const index = _.findIndex(this.customCertificateRequests, 
+            certificateForMarking(data) {
+                const index = _.findIndex(this.certificateRequests, 
                     ['id', data.certificateRequestId]
                 );
 
                 const certificateRequest = this.customCertificateRequests[index];
-                certificateRequest.status = 'requested';
-                certificateRequest.dateRequested = data.dateRequested;
-                certificateRequest.paymentPhotoName = data.paymentPhotoName;
+                certificateRequest.status = 'on_delivery';
+                certificateRequest.dateDelivery = data.dateDelivery;
+                certificateRequest.receiptNo = data.receiptNo;
             },
 
-            onFileChanged(event) {
-                const vm = this;
-                let image = event.target.files[0];
-                let reader = new FileReader();
+            showSwineView(type, certificateRequestId, farmName, status) {
+                if (type === 'view') this.showViewSwine = true;
 
-                reader.onload = (event) => {
-                    vm.requestData.paymentPhoto = event.target.result;
-                }
-
-                reader.readAsDataURL(image);
+                this.certificateData = {
+                    certificateRequestId,
+                    farmName,
+                    status
+                };
             },
 
             hideSwineView(type) {
-                if(type === 'add') this.showAddSwine = false;
-                else if(type === 'view') this.showViewSwine = false;
+                if(type === 'view') this.showViewSwine = false;
             
                 // Re-initialize collapsbile component
                 this.$nextTick(() => {
@@ -540,29 +432,13 @@
                 buttons.removeClass('disabled');
                 actionBtnElement.innerHTML = textToShow;
             }
-
-        },
-
-        mounted() {
-            // Materialize component initializations
-            $('.modal').modal();
         }
-
     }
 </script>
 
-<style scoped lang="css">
-    .add-swine-button {
+<style scoped> 
+    .mark-delivery-button {
         margin-right: .5rem;
-    }
-
-    #add-request-container .input-field {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    #close-add-request-container-button {
-        cursor: pointer;
     }
 
     .custom-secondary-btn {
@@ -574,9 +450,32 @@
         background-color: rgba(173, 173, 173, 0.3);
     }
 
+    /* Collapsible customizations */
+    div.collapsible-body {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    p.range-field {
+        margin: 0;
+    }
+
+    p.range-field label {
+        color: black;
+    }
+
+    /* Collection customizations */
+    .collection-item.avatar {
+        padding-left: 20px !important;
+        padding-bottom: 1.5rem;
+    }
+
     /* Modal customizations */
-    #request-for-approval-modal {
+    #mark-for-delivery-modal {
         width: 40rem;
+    }
+
+    #mark-for-delivery-modal .modal-input-container {
+        padding-bottom: 7rem;
     }
 
     .modal .modal-footer {
@@ -596,39 +495,18 @@
         transition: opacity .15s;
     }
 
-    .add-fade-enter-active, .included-fade-enter-active {
+    .included-fade-enter-active {
         transition: opacity 1.5s;
     }
 
-    .add-fade-leave-active, .included-fade-leave-active {
+    .included-fade-leave-active {
         transition: opacity .5s;
     }
 
     /* .fade-leave-active below version 2.1.8 */
     .fade-enter, .fade-leave-to,
     .view-fade-enter, .view-fade-leave-to,
-    .add-fade-enter, .add-fade-leave-to,
     .included-fade-enter, .included-fade-leave-to {
         opacity: 0;
     }
-
-    /* Collection customizations */
-    .collection-item.avatar {
-        padding-left: 20px !important;
-        padding-bottom: 1.5rem;
-    }
-
-    /* Collapsible customizations */
-    div.collapsible-body {
-        background-color: rgba(255, 255, 255, 0.7);
-    }
-
-    p.range-field {
-        margin: 0;
-    }
-
-    p.range-field label {
-        color: black;
-    }
-
 </style>

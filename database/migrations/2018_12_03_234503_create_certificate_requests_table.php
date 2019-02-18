@@ -21,11 +21,11 @@ class CreateCertificateRequestsTable extends Migration
             $table->integer('farm_id')->unsigned();
             $table->foreign('farm_id')->references('id')->on('farms');
             $table->date('date_requested')->nullable();
-            $table->date('date_payment')->nullable();
             $table->date('date_delivery')->nullable();
+            $table->string('payment_photo_name')->nullable();
             $table->string('receipt_no')->nullable();
             $table->enum('status', [
-                'draft', 'requested', 'for_payment', 'on_delivery'
+                'draft', 'requested', 'on_delivery'
             ])->default('draft');
             $table->timestamps();
         });
