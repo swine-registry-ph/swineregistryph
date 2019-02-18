@@ -71,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/manage/evaluators', 'ManageEvaluatorsController@add')->name('addEvaluator');
         Route::patch('/manage/evaluators', 'ManageEvaluatorsController@update')->name('updateEvaluator');
         Route::delete('/manage/evaluators/{userId}', 'ManageEvaluatorsController@delete')->name('deleteEvaluator');
+        Route::get('/certificates/{certificateId}/swines', 'CertificateController@getSwinesOfCertificateRequest')->name('getSwinesOfCertificateA');
         Route::get('/certificates', 'CertificateController@adminViewAll')->name('adminCertificate');
         Route::patch('/certificates/{certificateId}', 'CertificateController@markForDelivery')->name('markForDelivery');
     });

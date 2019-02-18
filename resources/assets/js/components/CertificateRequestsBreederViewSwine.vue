@@ -51,7 +51,7 @@
                         >
                             Requested - Waiting Approval
                         </a>
-                        <a v-if="certificateData.status === 'for_delivery'" href="#"
+                        <a v-if="certificateData.status === 'on_delivery'" href="#"
                             class="btn right 
                                 blue-text
                                 text-darken-1 
@@ -59,7 +59,7 @@
                                 z-depth-0
                                 disabled"
                         >
-                            For Delivery
+                            On Delivery
                         </a>
                     </span>
                     <p class="grey-text">

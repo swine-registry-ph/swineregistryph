@@ -201,7 +201,7 @@
         </transition>
 
         <!-- Included Swine View -->
-        <!-- <transition name="included-fade">
+        <transition name="included-fade">
             <certificate-requests-admin-view-swine
                 v-show="showViewSwine"
                 v-on:hideSwineViewEvent="hideSwineView"
@@ -209,12 +209,12 @@
                 :certificate-data="certificateData"
             >
             </certificate-requests-admin-view-swine>
-        </transition> -->
+        </transition>
     </div>
 </template>
 
 <script>
-    // import InspectionRequestsEvaluatorViewSwine from './InspectionRequestsEvaluatorViewSwine.vue';
+    import CertificateRequestsAdminViewSwine from './CertificateRequestsAdminViewSwine.vue';
     
     export default {
         props: {
@@ -226,7 +226,7 @@
         },
 
         components: {
-            // InspectionRequestsEvaluatorViewSwine
+            CertificateRequestsAdminViewSwine
         },
 
         data() {
@@ -246,6 +246,11 @@
                         value: 'on_delivery'
                     }
                 ],
+                certificateData: {
+                    certificateRequestId: 0,
+                    farmName: '',
+                    status: ''
+                },
                 markDeliveryData: {
                     certificateRequestId: 0,
                     farmName: '',
@@ -387,20 +392,29 @@
                 });
             },
 
-            showSwineView(type, inspectionId, farmName, status) {
-                if (type === 'edit') this.showEditSwine = true;
-                else if (type === 'view') this.showViewSwine = true;
+            certificateForMarking(data) {
+                const index = _.findIndex(this.certificateRequests, 
+                    ['id', data.certificateRequestId]
+                );
 
-                this.inspectionData = {
-                    inspectionId,
+                const certificateRequest = this.customCertificateRequests[index];
+                certificateRequest.status = 'on_delivery';
+                certificateRequest.dateDelivery = data.dateDelivery;
+                certificateRequest.receiptNo = data.receiptNo;
+            },
+
+            showSwineView(type, certificateRequestId, farmName, status) {
+                if (type === 'view') this.showViewSwine = true;
+
+                this.certificateData = {
+                    certificateRequestId,
                     farmName,
                     status
                 };
             },
 
             hideSwineView(type) {
-                if(type === 'edit') this.showEditSwine = false;
-                else if(type === 'view') this.showViewSwine = false;
+                if(type === 'view') this.showViewSwine = false;
             
                 // Re-initialize collapsbile component
                 this.$nextTick(() => {
