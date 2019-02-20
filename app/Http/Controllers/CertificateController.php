@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use Image;
+use PDF;
 
 class CertificateController extends Controller
 {
@@ -335,6 +336,79 @@ class CertificateController extends Controller
     }
 
     /**
+     * Download registry certificates
+     *
+     * @param  Request $request
+     * @param  integer $certificateRequestId
+     * @return PDF
+     */
+    public function viewRegistryCertificates(
+        Request $request, 
+        int $certificateRequestId
+    ) {
+        
+        $certificateRequest = CertificateRequest::find($certificateRequestId);
+
+        if ($certificateRequest->status != 'on_delivery') {
+            return response('Certificate Request must be on delivery.', 400);
+        }
+
+        $items = $certificateRequest
+            ->certificateItems()
+            ->with('swine.swineProperties', 'swine.farm')
+            ->get();
+
+        if (empty($items)) {
+            return response('Certificate Request has no swines', 404);
+        }
+
+        $tagvs = [
+            'h1' => [
+                ['h' => 0, 'n' => 0]
+            ],
+            'h2' => [
+                ['h' => 0, 'n' => 0]
+            ],
+            'p' => [
+                ['h' => 0, 'n' => 0]
+            ]
+        ];
+        
+        // Set configuration and show pdf
+        PDF::setPageOrientation('L');
+        PDF::SetCellPadding(0);
+        PDF::setHtmlVSpace($tagvs);
+        PDF::setFont('dejavusanscondensed', '', 10);
+        PDF::SetTitle("Certificate_Request_{$certificateRequest->id}");
+
+        foreach ($items as $item) {
+            $swine = $item->swine;
+            $swineInfo = $this->getSwineInfo($swine);
+
+            $view = \View::make('users.admin._certificate', compact('swineInfo'));
+            $html = $view->render();
+
+            $tagvs = [
+                'h1' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'h2' => [
+                    ['h' => 0, 'n' => 0]
+                ],
+                'p' => [
+                    ['h' => 0, 'n' => 0]
+                ]
+            ];
+
+            
+            PDF::AddPage();
+            PDF::WriteHTML($html, true, false, true, false, '');
+        }
+
+        PDF::Output("Certificate_Request_{$certificateRequest->id}.pdf");
+    }
+
+    /**
      * ------------------------------------------
      * COMMON METHODS
      * ------------------------------------------
@@ -401,5 +475,50 @@ class CertificateController extends Controller
                 'available' => $availableSwines 
             ]);
         }
+    }
+
+    /**
+     * Get essential info for swine. Used for viewing 
+     * swine registry certificate
+     *
+     * @param   Swine   $swine
+     * @return  Array
+     */
+    private function getSwineInfo(Swine $swine)
+    {
+        $farm = $swine->farm;
+
+        return [
+            'registrationNo'            => $swine->registration_no,
+            'imported' => [
+                'regNo'                 => ($swine->farm_id == 0) ? $swine->registration_no : '',
+                'farmOfOrigin'          => ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 26) : '',
+                'countryOfOrigin'       => ($swine->farm_id == 0) ? $this->getSwinePropValue($swine, 27) : ''
+            ],
+            'breed'                     => $swine->breed->title,
+            'breedCode'                 => $swine->breed->code,
+            'breederName'               => $swine->breeder->users()->first()->name,
+            'farmName'                  => $farm->name,
+            'farmCode'                  => $farm->farm_code,
+            'farmAddressLine1'          => $farm->address_line1,
+            'farmAddressLine2'          => $farm->address_line2,
+            'farmProvince'              => $farm->province,
+            'farmProvinceCode'          => $farm->province_code,
+            'farmAccreditationNo'       => $farm->farm_accreditation_no,
+            'sex'                       => $this->getSwinePropValue($swine, 1),
+            'birthDate'                 => $this->changeDateFormat($this->getSwinePropValue($swine, 2)),
+            'birthYear'                 => $this->changeDateFormat($this->getSwinePropValue($swine, 2), 'year'),
+            'adgFromBirth'              => $this->getSwinePropValue($swine, 4),
+            'adgOnTest'                 => $this->getSwinePropValue($swine, 7),
+            'houseType'                 => $this->getSwinePropValue($swine, 12),
+            'bft'                       => $this->getSwinePropValue($swine, 13),
+            'feedEfficiency'            => $this->getSwinePropValue($swine, 16),
+            'teatNo'                    => $this->getSwinePropValue($swine, 17),
+            'littersizeAliveMale'       => $this->getSwinePropValue($swine, 19),
+            'littersizeAliveFemale'     => $this->getSwinePropValue($swine, 20),
+            'farmSwineId'               => $this->getSwinePropValue($swine, 24),
+            'labResultNo'               => $this->getSwinePropValue($swine, 25),
+            'selectionIndex'            => $this->getSwinePropValue($swine, 28)
+        ];
     }
 }

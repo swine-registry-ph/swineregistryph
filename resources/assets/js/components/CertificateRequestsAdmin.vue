@@ -100,16 +100,26 @@
                         <span v-if="certificate.status === 'on_delivery'" 
                             class="secondary-content"
                         >
+                            <a :href="`/admin/certificates/${certificate.id}/view-pdf`" 
+                                target="_blank"
+                                class="btn
+                                    view-pdf-button 
+                                    blue
+                                    darken-1
+                                    z-depth-0"
+                            >
+                                View PDF
+                            </a>
                             <a @click.prevent="showSwineView(
                                     'view', 
                                     certificate.id, 
                                     certificate.farmName,
                                     certificate.status
                                 )"
-                                class="btn
-                                    blue
-                                    darken-1
-                                    z-depth-0"
+                                class="btn btn-flat
+                                    blue-text
+                                    text-darken-1
+                                    custom-secondary-btn"
                             >
                                 View Swine
                             </a>
@@ -437,7 +447,7 @@
 </script>
 
 <style scoped> 
-    .mark-delivery-button {
+    .mark-delivery-button, .view-pdf-button {
         margin-right: .5rem;
     }
 
