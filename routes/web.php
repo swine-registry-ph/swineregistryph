@@ -94,6 +94,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'genomics'], function(){
 
         Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
+        Route::get('/change-password', 'PasswordController@indexGenomics')->name('changePassGenomics');
         Route::get('/register', 'GenomicsController@showRegisterLaboratoryResults')->name('genomicsRegisterForm');
         Route::get('/pdf-lab-results/{labResultId}', 'GenomicsController@viewPDFLaboratoryResults')->name('viewPDFLabResults');
         Route::post('/pdf-lab-results/{labResultId}', 'GenomicsController@downloadPDFLaboratoryResults')->name('downloadPDFLabResults');

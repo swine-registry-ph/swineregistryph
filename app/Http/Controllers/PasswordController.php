@@ -21,6 +21,9 @@ class PasswordController extends Controller
         
         $this->middleware('role:breeder')
             ->only(['indexBreeder']);
+
+        $this->middleware('role:genomics')
+            ->only(['indexGenomics']);
     }
 
     /**
@@ -41,6 +44,16 @@ class PasswordController extends Controller
     public function indexBreeder()
     {
         return view('users.breeder.changePassword');
+    }
+
+    /**
+     * Show change password page for Genomics
+     *
+     * @return View
+     */
+    public function indexGenomics()
+    {
+        return view('users.genomics.changePassword');
     }
 
     /**

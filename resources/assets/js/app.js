@@ -84,7 +84,8 @@ const nav = new Vue({
             },
             genomics: {
                 regLabResults: false,
-                viewLabResults: false
+                viewLabResults: false,
+                changePassword: false
             }
         }
     },
@@ -186,6 +187,10 @@ const nav = new Vue({
             
             case '/genomics/manage/laboratory-results':
                 this.currentRoute.genomics.viewLabResults = true;
+                break;
+
+            case '/genomics/change-password':
+                this.currentRoute.genomics.changePassword = true;
                 break;
 
             default: break;
