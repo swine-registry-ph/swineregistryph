@@ -458,6 +458,7 @@ Vue.component('certificate-requests-admin', __webpack_require__(53));
 Vue.component('manage-breeds', __webpack_require__(64));
 Vue.component('manage-breeders', __webpack_require__(69));
 Vue.component('manage-evaluators', __webpack_require__(79));
+Vue.component('manage-genomics', __webpack_require__(205));
 Vue.component('manage-properties', __webpack_require__(84));
 Vue.component('manage-apis', __webpack_require__(89));
 
@@ -490,6 +491,7 @@ var nav = new Vue({
                 adminViewRegdSwine: false,
                 showManageBreeders: false,
                 showManageEvaluators: false,
+                showManageGenomics: false,
                 showManagePropertiesView: false,
                 showManageBreedsView: false,
                 manageAPIsView: false,
@@ -564,6 +566,10 @@ var nav = new Vue({
 
             case '/admin/manage/evaluators':
                 this.currentRoute.admin.showManageEvaluators = true;
+                break;
+
+            case '/admin/manage/genomics':
+                this.currentRoute.admin.showManageGenomics = true;
                 break;
 
             case '/admin/certificates':
@@ -7001,7 +7007,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row modal-input-container"
   }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteEvaluatorData.name))]), _vm._v(" ?\n                    ")])])])]), _vm._v(" "), _c('div', {
+  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteEvaluatorData.name))]), _vm._v("?\n                    ")])])])]), _vm._v(" "), _c('div', {
     staticClass: "modal-footer grey lighten-3"
   }, [_c('a', {
     staticClass: "modal-action modal-close btn-flat",
@@ -27083,6 +27089,765 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(206)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(208),
+  /* template */
+  __webpack_require__(209),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-f775626e",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageGenomics.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageGenomics.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f775626e", Component.options)
+  } else {
+    hotAPI.reload("data-v-f775626e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 206 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(207);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4f73c84b", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f775626e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageGenomics.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f775626e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageGenomics.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a[data-v-f775626e], #close-add-genomics-container-button[data-v-f775626e] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-f775626e] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-f775626e] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-f775626e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-f775626e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-genomics-container[data-v-f775626e] {\n    padding-bottom: 2rem;\n}\n#edit-genomics-modal[data-v-f775626e] {\n    width: 40rem;\n}\n#delete-genomics-modal[data-v-f775626e] {\n    width: 30rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-f775626e] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-f775626e] {\n    border: 0;\n}\n.modal .modal-footer[data-v-f775626e] {\n    padding-right: 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 208 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        initialGenomics: Array
+    },
+
+    data: function data() {
+        return {
+            genomics: this.initialGenomics,
+            showAddGenomicsContainer: false,
+            addGenomicsData: {
+                name: '',
+                email: ''
+            },
+            editGenomicsData: {
+                index: 0,
+                userId: 0,
+                name: '',
+                email: ''
+            },
+            deleteGenomicsData: {
+                index: 0,
+                userId: 0,
+                name: ''
+            }
+        };
+    },
+
+
+    computed: {
+        sortedGenomics: function sortedGenomics() {
+            return _.sortBy(this.genomics, ['name']);
+        }
+    },
+
+    methods: {
+        findGenomicsIndexById: function findGenomicsIndexById(id) {
+            for (var i = 0; i < this.genomics.length; i++) {
+                if (this.genomics[i].genomicsId === id) return i;
+            }
+
+            return -1;
+        },
+        addGenomics: function addGenomics(event) {
+            var _this = this;
+
+            var vm = this;
+            var addGenomicsButton = $('.add-genomics-btn');
+
+            this.disableButtons(addGenomicsButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/genomics', {
+                name: vm.addGenomicsData.name,
+                email: vm.addGenomicsData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of Genomics data
+                vm.genomics.push(response.data);
+                vm.addGenomicsData = {
+                    name: '',
+                    email: ''
+                };
+
+                // Update UI after adding Genomics
+                vm.$nextTick(function () {
+                    $('#add-name').removeClass('valid');
+                    $('#add-email').removeClass('valid');
+
+                    _this.enableButtons(addGenomicsButton, event.target, 'Add Genomics');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Genomics ' + response.data.name + ' added', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditGenomicsModal: function showEditGenomicsModal(genomicsId) {
+            // Initialize data for editing
+            var index = this.findGenomicsIndexById(genomicsId);
+            var genomics = this.genomics[index];
+
+            this.editGenomicsData.index = index;
+            this.editGenomicsData.userId = genomics.userId;
+            this.editGenomicsData.name = genomics.name;
+            this.editGenomicsData.email = genomics.email;
+
+            $('#edit-genomics-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateGenomics: function updateGenomics(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateGenomicsButton = $('.update-genomics-btn');
+
+            this.disableButtons(updateGenomicsButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/genomics', {
+                userId: vm.editGenomicsData.userId,
+                name: vm.editGenomicsData.name,
+                email: vm.editGenomicsData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase editing of Genomics data
+                if (response.data.updated) {
+                    var index = vm.editGenomicsData.index;
+
+                    vm.genomics[index].name = vm.editGenomicsData.name;
+                    vm.genomics[index].email = vm.editGenomicsData.email;
+                    vm.editGenomicsData = {
+                        index: 0,
+                        userId: 0,
+                        name: '',
+                        email: ''
+                    };
+
+                    // Update UI after updating Genomics
+                    vm.$nextTick(function () {
+                        $('#edit-genomics-modal').modal('close');
+                        $('#edit-name').removeClass('valid');
+                        $('#edit-email').removeClass('valid');
+
+                        _this2.enableButtons(updateGenomicsButton, event.target, 'Update');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(vm.genomics[index].name + ' updated', 2500, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showDeleteGenomicsModal: function showDeleteGenomicsModal(genomicsId) {
+            // Initialize data for deleting
+            var index = this.findGenomicsIndexById(genomicsId);
+            var genomics = this.genomics[index];
+
+            this.deleteGenomicsData.index = index;
+            this.deleteGenomicsData.userId = genomics.userId;
+            this.deleteGenomicsData.name = genomics.name;
+
+            $('#delete-genomics-modal').modal('open');
+        },
+        deleteGenomics: function deleteGenomics(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var deleteGenomicsButton = $('.delete-genomics-btn');
+
+            this.disableButtons(deleteGenomicsButton, event.target, 'Deleting...');
+
+            // Remove from server's database
+            axios.delete('/admin/manage/genomics/' + vm.deleteGenomicsData.userId).then(function (response) {
+                // Remove genomics details on local storage and erase
+                // deleting of genomics data
+                if (response.data.deleted) {
+                    var genomicsName = vm.deleteGenomicsData.name;
+
+                    vm.genomics.splice(vm.deleteGenomicsData.index, 1);
+                    vm.deleteGenomicsData = {
+                        index: 0,
+                        userId: 0,
+                        name: ''
+                    };
+
+                    // Update UI after deleting Genomics
+                    vm.$nextTick(function () {
+                        $('#delete-genomics-modal').modal('close');
+
+                        _this3.enableButtons(deleteGenomicsButton, event.target, 'Delete');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Genomics ' + genomicsName + ' deleted', 3000, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-genomics-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new genomics"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddGenomicsContainer = !_vm.showAddGenomicsContainer
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddGenomicsContainer),
+      expression: "showAddGenomicsContainer"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-genomics-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-genomics-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddGenomicsContainer = !_vm.showAddGenomicsContainer
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addGenomicsData.name),
+      expression: "addGenomicsData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addGenomicsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addGenomicsData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addGenomicsData.email),
+      expression: "addGenomicsData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addGenomicsData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addGenomicsData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-email"
+    }
+  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-genomics-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addGenomics($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Genomics\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedGenomics), function(genomics) {
+    return _c('li', {
+      key: genomics.userId,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(_vm._s(genomics.name))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(genomics.email) + "\n                ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn custom-secondary-btn\n                            edit-genomics-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditGenomicsModal(genomics.genomicsId)
+        }
+      }
+    }, [_vm._v("\n                        Edit\n                    ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat delete-genomics-button custom-tertiary-btn",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showDeleteGenomicsModal(genomics.genomicsId)
+        }
+      }
+    }, [_vm._v("\n                        Delete\n                    ")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "edit-genomics-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editGenomicsData.name),
+      expression: "editGenomicsData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editGenomicsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editGenomicsData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editGenomicsData.email),
+      expression: "editGenomicsData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editGenomicsData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editGenomicsData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-genomics-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateGenomics($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "delete-genomics-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteGenomicsData.name))]), _vm._v("?\n                    ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn red lighten-2 z-depth-0 delete-genomics-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deleteGenomics($event)
+      }
+    }
+  }, [_vm._v("\n                Delete\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Genomics ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Genomics\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Delete Genomics\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-f775626e", module.exports)
+  }
+}
 
 /***/ })
 ],[19]);
