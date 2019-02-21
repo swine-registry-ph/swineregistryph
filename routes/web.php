@@ -26,6 +26,7 @@ Route::get('/pedigree/reg/{regNo}/gen/{generation}', 'PedigreeController@getSwin
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::patch('/change-password', 'PasswordController@changePassword')->name('changePassword');
 
     // Breeder-related
     Route::group(['prefix' => 'breeder'], function(){
@@ -59,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin'], function() {
 
         Route::get('/home', 'AdminController@index')->name('adminHome');
+        Route::get('/change-password', 'PasswordController@indexAdmin')->name('changePassAdmin');
         Route::get('/view-registered-swine', 'AdminController@viewRegisteredSwine')->name('adminViewRegdSwine');
         Route::get('/manage/apis', 'AdminController@viewManageAPIs')->name('manageAPIsView');
         Route::get('/manage/breeds', 'ManageFieldsController@showManageBreedsView')->name('showManageBreedsView');

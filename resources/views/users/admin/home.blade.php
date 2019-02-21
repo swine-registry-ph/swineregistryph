@@ -40,17 +40,20 @@
         <li :class="{ active : currentRoute.admin.manageAPIsView }">
             <a href="{{ route('manageAPIsView') }}"> <i class="material-icons">build</i> Manage API Credentials </a>
         </li>
-        <li :class="{ active : currentRoute.admin.reports }">
-            <a href="#!"> <i class="material-icons">description</i> Reports </a>
+        <li :class="{ active : currentRoute.admin.changePassword }">
+            <a href="{{ route('changePassAdmin') }}"> <i class="material-icons">lock</i> Change Password </a>
         </li>
+        {{-- <li :class="{ active : currentRoute.admin.reports }">
+            <a href="#!"> <i class="material-icons">description</i> Reports </a>
+        </li> --}}
         <li class="hide-on-large-only show-on-medium-and-down">
             <div class="divider"></div>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
-            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
                 Logout
             </a>
-            <form id="logout-form" method="POST" action="{{ route('logout') }}">
+            <form id="logout-form-2" method="POST" action="{{ route('logout') }}">
                 {{ csrf_field() }}
             </form>
         </li>

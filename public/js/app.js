@@ -197,7 +197,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(56)
+var listToStyles = __webpack_require__(59)
 
 /*
 type StyleObject = {
@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(189);
+module.exports = __webpack_require__(197);
 
 
 /***/ }),
@@ -450,30 +450,31 @@ window.Vue = __webpack_require__(7);
 
 
 // App
-Vue.component('app-input-date', __webpack_require__(47));
-Vue.component('app-input-select', __webpack_require__(50));
+Vue.component('app-change-password', __webpack_require__(47));
+Vue.component('app-input-date', __webpack_require__(50));
+Vue.component('app-input-select', __webpack_require__(53));
 
 // Admin
-Vue.component('certificate-requests-admin', __webpack_require__(53));
-Vue.component('manage-breeds', __webpack_require__(64));
-Vue.component('manage-breeders', __webpack_require__(69));
-Vue.component('manage-evaluators', __webpack_require__(79));
-Vue.component('manage-genomics', __webpack_require__(205));
-Vue.component('manage-properties', __webpack_require__(84));
-Vue.component('manage-apis', __webpack_require__(89));
+Vue.component('certificate-requests-admin', __webpack_require__(56));
+Vue.component('manage-breeds', __webpack_require__(67));
+Vue.component('manage-breeders', __webpack_require__(72));
+Vue.component('manage-evaluators', __webpack_require__(82));
+Vue.component('manage-genomics', __webpack_require__(87));
+Vue.component('manage-properties', __webpack_require__(92));
+Vue.component('manage-apis', __webpack_require__(97));
 
 // Breeder
-Vue.component('certificate-requests-breeder', __webpack_require__(94));
-Vue.component('inspection-requests-breeder', __webpack_require__(109));
-Vue.component('register-swine', __webpack_require__(124));
-Vue.component('view-registered-swine', __webpack_require__(159));
+Vue.component('certificate-requests-breeder', __webpack_require__(102));
+Vue.component('inspection-requests-breeder', __webpack_require__(117));
+Vue.component('register-swine', __webpack_require__(132));
+Vue.component('view-registered-swine', __webpack_require__(167));
 
 // Evaluator
-Vue.component('inspection-requests-evaluator', __webpack_require__(164));
+Vue.component('inspection-requests-evaluator', __webpack_require__(172));
 
 // Genomics
-Vue.component('register-laboratory-results', __webpack_require__(174));
-Vue.component('view-laboratory-results', __webpack_require__(179));
+Vue.component('register-laboratory-results', __webpack_require__(182));
+Vue.component('view-laboratory-results', __webpack_require__(187));
 
 // For main container
 var app = new Vue({
@@ -1940,11 +1941,191 @@ var actions = {};
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(213)
+}
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(48),
   /* template */
-  __webpack_require__(49),
+  __webpack_require__(215),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-5a1dca3a",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/AppChangePassword.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] AppChangePassword.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5a1dca3a", Component.options)
+  } else {
+    hotAPI.reload("data-v-5a1dca3a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            currentPassword: '',
+            newPassword: '',
+            reTypeNewPassword: ''
+        };
+    },
+
+
+    methods: {
+        changePassword: function changePassword(event) {
+            var _this = this;
+
+            var changePasswordButton = $('.change-password-button');
+            var currentPassword = this.currentPassword;
+            var newPassword = this.newPassword;
+            var reTypeNewPassword = this.reTypeNewPassword;
+
+            if (!currentPassword && !newPassword && !reTypeNewPassword) {
+                Materialize.toast('Please enter all input details', 2000);
+                return;
+            }
+
+            this.disableButtons(changePasswordButton, event.target, 'Changing...');
+
+            // Update to server's database
+            axios.patch('/change-password', {
+                currentPassword: currentPassword,
+                newPassword: newPassword,
+                reTypeNewPassword: reTypeNewPassword
+            }).then(function (response) {
+                _this.currentPassword = '';
+                _this.newPassword = '';
+                _this.reTypeNewPassword = '';
+
+                // Update UI after
+                _this.$nextTick(function () {
+                    $('#current-password').removeClass('valid');
+                    $('#new-password').removeClass('valid');
+                    $('#re-new-password').removeClass('valid');
+
+                    _this.enableButtons(changePasswordButton, event.target, 'Change Password');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(response.data, 2000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                _this.currentPassword = '';
+                _this.newPassword = '';
+                _this.reTypeNewPassword = '';
+
+                // Update UI after
+                _this.$nextTick(function () {
+                    $('#current-password').removeClass('valid');
+                    $('#new-password').removeClass('valid');
+                    $('#re-new-password').removeClass('valid');
+
+                    _this.enableButtons(changePasswordButton, event.target, 'Change Password');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast(error.response.data, 2500);
+                });
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    }
+});
+
+/***/ }),
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(51),
+  /* template */
+  __webpack_require__(52),
   /* styles */
   null,
   /* scopeId */
@@ -1976,7 +2157,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2013,7 +2194,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2038,15 +2219,15 @@ if (false) {
 }
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(51),
+  __webpack_require__(54),
   /* template */
-  __webpack_require__(52),
+  __webpack_require__(55),
   /* styles */
   null,
   /* scopeId */
@@ -2078,7 +2259,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2144,7 +2325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2187,19 +2368,19 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(54)
+  __webpack_require__(57)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(57),
+  __webpack_require__(60),
   /* template */
-  __webpack_require__(63),
+  __webpack_require__(66),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2231,13 +2412,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(55);
+var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2257,7 +2438,7 @@ if(false) {
 }
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2271,7 +2452,7 @@ exports.push([module.i, "\n.mark-delivery-button[data-v-3d1cb5ed], .view-pdf-but
 
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports) {
 
 /**
@@ -2304,12 +2485,12 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue__);
 //
 //
@@ -2737,19 +2918,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(59)
+  __webpack_require__(62)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(61),
+  __webpack_require__(64),
   /* template */
-  __webpack_require__(62),
+  __webpack_require__(65),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2781,13 +2962,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2807,7 +2988,7 @@ if(false) {
 }
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2821,7 +3002,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-66543e9a] {\n    border:
 
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3100,7 +3281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3300,7 +3481,7 @@ if (false) {
 }
 
 /***/ }),
-/* 63 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3603,19 +3784,19 @@ if (false) {
 }
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(65)
+  __webpack_require__(68)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(67),
+  __webpack_require__(70),
   /* template */
-  __webpack_require__(68),
+  __webpack_require__(71),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3647,13 +3828,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(66);
+var content = __webpack_require__(69);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3673,7 +3854,7 @@ if(false) {
 }
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -3687,7 +3868,7 @@ exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-bu
 
 
 /***/ }),
-/* 67 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3945,7 +4126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4189,19 +4370,19 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(70)
+  __webpack_require__(73)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(72),
+  __webpack_require__(75),
   /* template */
-  __webpack_require__(78),
+  __webpack_require__(81),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -4233,13 +4414,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(71);
+var content = __webpack_require__(74);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -4259,7 +4440,7 @@ if(false) {
 }
 
 /***/ }),
-/* 71 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -4273,12 +4454,12 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
 //
 //
@@ -4765,19 +4946,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(74)
+  __webpack_require__(77)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(76),
+  __webpack_require__(79),
   /* template */
-  __webpack_require__(77),
+  __webpack_require__(80),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -4809,13 +4990,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(75);
+var content = __webpack_require__(78);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -4835,7 +5016,7 @@ if(false) {
 }
 
 /***/ }),
-/* 75 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -4849,7 +5030,7 @@ exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspa
 
 
 /***/ }),
-/* 76 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5406,7 +5587,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 77 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6000,7 +6181,7 @@ if (false) {
 }
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6314,19 +6495,19 @@ if (false) {
 }
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(80)
+  __webpack_require__(83)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(82),
+  __webpack_require__(85),
   /* template */
-  __webpack_require__(83),
+  __webpack_require__(86),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -6358,13 +6539,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(84);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6384,7 +6565,7 @@ if(false) {
 }
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -6398,7 +6579,7 @@ exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-eva
 
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6762,7 +6943,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7058,19 +7239,763 @@ if (false) {
 }
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(85)
+  __webpack_require__(88)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(87),
+  __webpack_require__(90),
   /* template */
-  __webpack_require__(88),
+  __webpack_require__(91),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-f775626e",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageGenomics.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ManageGenomics.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f775626e", Component.options)
+  } else {
+    hotAPI.reload("data-v-f775626e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(89);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4f73c84b", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f775626e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageGenomics.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f775626e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageGenomics.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-header a[data-v-f775626e], #close-add-genomics-container-button[data-v-f775626e] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-f775626e] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-f775626e] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-f775626e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-f775626e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-genomics-container[data-v-f775626e] {\n    padding-bottom: 2rem;\n}\n#edit-genomics-modal[data-v-f775626e] {\n    width: 40rem;\n}\n#delete-genomics-modal[data-v-f775626e] {\n    width: 30rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-f775626e] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-f775626e] {\n    border: 0;\n}\n.modal .modal-footer[data-v-f775626e] {\n    padding-right: 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        initialGenomics: Array
+    },
+
+    data: function data() {
+        return {
+            genomics: this.initialGenomics,
+            showAddGenomicsContainer: false,
+            addGenomicsData: {
+                name: '',
+                email: ''
+            },
+            editGenomicsData: {
+                index: 0,
+                userId: 0,
+                name: '',
+                email: ''
+            },
+            deleteGenomicsData: {
+                index: 0,
+                userId: 0,
+                name: ''
+            }
+        };
+    },
+
+
+    computed: {
+        sortedGenomics: function sortedGenomics() {
+            return _.sortBy(this.genomics, ['name']);
+        }
+    },
+
+    methods: {
+        findGenomicsIndexById: function findGenomicsIndexById(id) {
+            for (var i = 0; i < this.genomics.length; i++) {
+                if (this.genomics[i].genomicsId === id) return i;
+            }
+
+            return -1;
+        },
+        addGenomics: function addGenomics(event) {
+            var _this = this;
+
+            var vm = this;
+            var addGenomicsButton = $('.add-genomics-btn');
+
+            this.disableButtons(addGenomicsButton, event.target, 'Adding...');
+
+            // Add to server's database
+            axios.post('/admin/manage/genomics', {
+                name: vm.addGenomicsData.name,
+                email: vm.addGenomicsData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase adding of Genomics data
+                vm.genomics.push(response.data);
+                vm.addGenomicsData = {
+                    name: '',
+                    email: ''
+                };
+
+                // Update UI after adding Genomics
+                vm.$nextTick(function () {
+                    $('#add-name').removeClass('valid');
+                    $('#add-email').removeClass('valid');
+
+                    _this.enableButtons(addGenomicsButton, event.target, 'Add Genomics');
+
+                    Materialize.updateTextFields();
+                    Materialize.toast('Genomics ' + response.data.name + ' added', 3000, 'green lighten-1');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showEditGenomicsModal: function showEditGenomicsModal(genomicsId) {
+            // Initialize data for editing
+            var index = this.findGenomicsIndexById(genomicsId);
+            var genomics = this.genomics[index];
+
+            this.editGenomicsData.index = index;
+            this.editGenomicsData.userId = genomics.userId;
+            this.editGenomicsData.name = genomics.name;
+            this.editGenomicsData.email = genomics.email;
+
+            $('#edit-genomics-modal').modal('open');
+            this.$nextTick(function () {
+                Materialize.updateTextFields();
+            });
+        },
+        updateGenomics: function updateGenomics(event) {
+            var _this2 = this;
+
+            var vm = this;
+            var updateGenomicsButton = $('.update-genomics-btn');
+
+            this.disableButtons(updateGenomicsButton, event.target, 'Updating...');
+
+            // Update to server's database
+            axios.patch('/admin/manage/genomics', {
+                userId: vm.editGenomicsData.userId,
+                name: vm.editGenomicsData.name,
+                email: vm.editGenomicsData.email
+            }).then(function (response) {
+                // Put response in local data storage and erase editing of Genomics data
+                if (response.data.updated) {
+                    var index = vm.editGenomicsData.index;
+
+                    vm.genomics[index].name = vm.editGenomicsData.name;
+                    vm.genomics[index].email = vm.editGenomicsData.email;
+                    vm.editGenomicsData = {
+                        index: 0,
+                        userId: 0,
+                        name: '',
+                        email: ''
+                    };
+
+                    // Update UI after updating Genomics
+                    vm.$nextTick(function () {
+                        $('#edit-genomics-modal').modal('close');
+                        $('#edit-name').removeClass('valid');
+                        $('#edit-email').removeClass('valid');
+
+                        _this2.enableButtons(updateGenomicsButton, event.target, 'Update');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast(vm.genomics[index].name + ' updated', 2500, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        showDeleteGenomicsModal: function showDeleteGenomicsModal(genomicsId) {
+            // Initialize data for deleting
+            var index = this.findGenomicsIndexById(genomicsId);
+            var genomics = this.genomics[index];
+
+            this.deleteGenomicsData.index = index;
+            this.deleteGenomicsData.userId = genomics.userId;
+            this.deleteGenomicsData.name = genomics.name;
+
+            $('#delete-genomics-modal').modal('open');
+        },
+        deleteGenomics: function deleteGenomics(event) {
+            var _this3 = this;
+
+            var vm = this;
+            var deleteGenomicsButton = $('.delete-genomics-btn');
+
+            this.disableButtons(deleteGenomicsButton, event.target, 'Deleting...');
+
+            // Remove from server's database
+            axios.delete('/admin/manage/genomics/' + vm.deleteGenomicsData.userId).then(function (response) {
+                // Remove genomics details on local storage and erase
+                // deleting of genomics data
+                if (response.data.deleted) {
+                    var genomicsName = vm.deleteGenomicsData.name;
+
+                    vm.genomics.splice(vm.deleteGenomicsData.index, 1);
+                    vm.deleteGenomicsData = {
+                        index: 0,
+                        userId: 0,
+                        name: ''
+                    };
+
+                    // Update UI after deleting Genomics
+                    vm.$nextTick(function () {
+                        $('#delete-genomics-modal').modal('close');
+
+                        _this3.enableButtons(deleteGenomicsButton, event.target, 'Delete');
+
+                        Materialize.updateTextFields();
+                        Materialize.toast('Genomics ' + genomicsName + ' deleted', 3000, 'green lighten-1');
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.addClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        },
+        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
+            buttons.removeClass('disabled');
+            actionBtnElement.innerHTML = textToShow;
+        }
+    },
+
+    mounted: function mounted() {
+        // Materialize component initializations
+        $('.modal').modal();
+    }
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('a', {
+    staticClass: "btn-floating waves-effect waves-light tooltipped",
+    attrs: {
+      "href": "#!",
+      "id": "toggle-add-genomics-container-button",
+      "data-position": "right",
+      "data-delay": "50",
+      "data-tooltip": "Add new genomics"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddGenomicsContainer = !_vm.showAddGenomicsContainer
+      }
+    }
+  }, [_c('i', {
+    staticClass: "material-icons right"
+  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.showAddGenomicsContainer),
+      expression: "showAddGenomicsContainer"
+    }],
+    staticClass: "collection-item",
+    attrs: {
+      "id": "add-genomics-container"
+    }
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col s12"
+  }, [_c('i', {
+    staticClass: "material-icons right",
+    attrs: {
+      "id": "close-add-genomics-container-button"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.showAddGenomicsContainer = !_vm.showAddGenomicsContainer
+      }
+    }
+  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addGenomicsData.name),
+      expression: "addGenomicsData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addGenomicsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addGenomicsData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addGenomicsData.email),
+      expression: "addGenomicsData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "add-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.addGenomicsData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.addGenomicsData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "add-email"
+    }
+  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 add-genomics-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addGenomics($event)
+      }
+    }
+  }, [_vm._v("\n                            Add Genomics\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedGenomics), function(genomics) {
+    return _c('li', {
+      key: genomics.userId,
+      staticClass: "collection-item avatar"
+    }, [_c('span', {
+      staticClass: "title"
+    }, [_c('b', [_vm._v(_vm._s(genomics.name))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(genomics.email) + "\n                ")]), _vm._v(" "), _c('span', {
+      staticClass: "secondary-content"
+    }, [_c('a', {
+      staticClass: "btn custom-secondary-btn\n                            edit-genomics-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showEditGenomicsModal(genomics.genomicsId)
+        }
+      }
+    }, [_vm._v("\n                        Edit\n                    ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-flat delete-genomics-button custom-tertiary-btn",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showDeleteGenomicsModal(genomics.genomicsId)
+        }
+      }
+    }, [_vm._v("\n                        Delete\n                    ")])])])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "edit-genomics-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editGenomicsData.name),
+      expression: "editGenomicsData.name"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-name",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editGenomicsData.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editGenomicsData, "name", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-name"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editGenomicsData.email),
+      expression: "editGenomicsData.email"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "edit-email",
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.editGenomicsData.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.editGenomicsData, "email", $event.target.value)
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "edit-email"
+    }
+  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn blue darken-1 z-depth-0 update-genomics-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.updateGenomics($event)
+      }
+    }
+  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal",
+    attrs: {
+      "id": "delete-genomics-modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
+    staticClass: "row modal-input-container"
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s12"
+  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteGenomicsData.name))]), _vm._v("?\n                    ")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer grey lighten-3"
+  }, [_c('a', {
+    staticClass: "modal-action modal-close btn-flat",
+    attrs: {
+      "href": "#!"
+    }
+  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
+    staticClass: "modal-action btn red lighten-2 z-depth-0 delete-genomics-btn",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deleteGenomics($event)
+      }
+    }
+  }, [_vm._v("\n                Delete\n            ")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Manage Genomics ")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Edit Genomics\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h4', [_vm._v("\n                Delete Genomics\n                "), _c('i', {
+    staticClass: "material-icons right modal-close"
+  }, [_vm._v("close")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('br')])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-f775626e", module.exports)
+  }
+}
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(93)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(95),
+  /* template */
+  __webpack_require__(96),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7102,13 +8027,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 85 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(86);
+var content = __webpack_require__(94);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7128,7 +8053,7 @@ if(false) {
 }
 
 /***/ }),
-/* 86 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7142,7 +8067,7 @@ exports.push([module.i, "\n.collection-header a[data-v-0e4e505e], .edit-property
 
 
 /***/ }),
-/* 87 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7439,7 +8364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7746,19 +8671,19 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(90)
+  __webpack_require__(98)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(92),
+  __webpack_require__(100),
   /* template */
-  __webpack_require__(93),
+  __webpack_require__(101),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7790,13 +8715,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 90 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(99);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7816,7 +8741,7 @@ if(false) {
 }
 
 /***/ }),
-/* 91 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7830,7 +8755,7 @@ exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-propert
 
 
 /***/ }),
-/* 92 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8245,7 +9170,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 93 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8586,19 +9511,19 @@ if (false) {
 }
 
 /***/ }),
-/* 94 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(95)
+  __webpack_require__(103)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(97),
+  __webpack_require__(105),
   /* template */
-  __webpack_require__(108),
+  __webpack_require__(116),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8630,13 +9555,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 95 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(96);
+var content = __webpack_require__(104);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8656,7 +9581,7 @@ if(false) {
 }
 
 /***/ }),
-/* 96 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -8670,14 +9595,14 @@ exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-righ
 
 
 /***/ }),
-/* 97 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__);
 //
 //
@@ -9210,19 +10135,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 98 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(99)
+  __webpack_require__(107)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(101),
+  __webpack_require__(109),
   /* template */
-  __webpack_require__(102),
+  __webpack_require__(110),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9254,13 +10179,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 99 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(100);
+var content = __webpack_require__(108);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9280,7 +10205,7 @@ if(false) {
 }
 
 /***/ }),
-/* 100 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9294,7 +10219,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border:
 
 
 /***/ }),
-/* 101 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9729,7 +10654,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 102 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10006,19 +10931,19 @@ if (false) {
 }
 
 /***/ }),
-/* 103 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(104)
+  __webpack_require__(112)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(106),
+  __webpack_require__(114),
   /* template */
-  __webpack_require__(107),
+  __webpack_require__(115),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -10050,13 +10975,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 104 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(105);
+var content = __webpack_require__(113);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -10076,7 +11001,7 @@ if(false) {
 }
 
 /***/ }),
-/* 105 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10090,7 +11015,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-fb2df0f0] {\n    border:
 
 
 /***/ }),
-/* 106 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10248,7 +11173,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 107 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10353,7 +11278,7 @@ if (false) {
 }
 
 /***/ }),
-/* 108 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10712,19 +11637,19 @@ if (false) {
 }
 
 /***/ }),
-/* 109 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(110)
+  __webpack_require__(118)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(112),
+  __webpack_require__(120),
   /* template */
-  __webpack_require__(123),
+  __webpack_require__(131),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -10756,13 +11681,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 110 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(111);
+var content = __webpack_require__(119);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -10782,7 +11707,7 @@ if(false) {
 }
 
 /***/ }),
-/* 111 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10796,14 +11721,14 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 
 
 /***/ }),
-/* 112 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__);
 //
 //
@@ -11290,19 +12215,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 113 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(114)
+  __webpack_require__(122)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(116),
+  __webpack_require__(124),
   /* template */
-  __webpack_require__(117),
+  __webpack_require__(125),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -11334,13 +12259,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(115);
+var content = __webpack_require__(123);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -11360,7 +12285,7 @@ if(false) {
 }
 
 /***/ }),
-/* 115 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -11374,7 +12299,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border:
 
 
 /***/ }),
-/* 116 */
+/* 124 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11777,7 +12702,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 117 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -12039,19 +12964,19 @@ if (false) {
 }
 
 /***/ }),
-/* 118 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(119)
+  __webpack_require__(127)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(121),
+  __webpack_require__(129),
   /* template */
-  __webpack_require__(122),
+  __webpack_require__(130),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -12083,13 +13008,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 119 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(120);
+var content = __webpack_require__(128);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -12109,7 +13034,7 @@ if(false) {
 }
 
 /***/ }),
-/* 120 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -12123,7 +13048,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-184cd2c7] {\n    border:
 
 
 /***/ }),
-/* 121 */
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12293,7 +13218,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 122 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -12403,7 +13328,7 @@ if (false) {
 }
 
 /***/ }),
-/* 123 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -12732,19 +13657,19 @@ if (false) {
 }
 
 /***/ }),
-/* 124 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(125)
+  __webpack_require__(133)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(127),
+  __webpack_require__(135),
   /* template */
-  __webpack_require__(158),
+  __webpack_require__(166),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -12776,13 +13701,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 125 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(126);
+var content = __webpack_require__(134);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -12802,7 +13727,7 @@ if(false) {
 }
 
 /***/ }),
-/* 126 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -12816,18 +13741,18 @@ exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 
 
 
 /***/ }),
-/* 127 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__);
 //
 //
@@ -13075,19 +14000,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 128 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(129)
+  __webpack_require__(137)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(131),
+  __webpack_require__(139),
   /* template */
-  __webpack_require__(137),
+  __webpack_require__(145),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -13119,13 +14044,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 129 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(130);
+var content = __webpack_require__(138);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -13145,7 +14070,7 @@ if(false) {
 }
 
 /***/ }),
-/* 130 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -13159,12 +14084,12 @@ exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow
 
 
 /***/ }),
-/* 131 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
 //
 //
@@ -13292,19 +14217,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 132 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(133)
+  __webpack_require__(141)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(135),
+  __webpack_require__(143),
   /* template */
-  __webpack_require__(136),
+  __webpack_require__(144),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -13336,13 +14261,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 133 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(134);
+var content = __webpack_require__(142);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -13362,7 +14287,7 @@ if(false) {
 }
 
 /***/ }),
-/* 134 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -13376,7 +14301,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 135 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14213,7 +15138,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 136 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15068,7 +15993,7 @@ if (false) {
 }
 
 /***/ }),
-/* 137 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15177,19 +16102,19 @@ if (false) {
 }
 
 /***/ }),
-/* 138 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(139)
+  __webpack_require__(147)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(141),
+  __webpack_require__(149),
   /* template */
-  __webpack_require__(142),
+  __webpack_require__(150),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -15221,13 +16146,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 139 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(140);
+var content = __webpack_require__(148);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15247,7 +16172,7 @@ if(false) {
 }
 
 /***/ }),
-/* 140 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -15261,7 +16186,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 141 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15792,7 +16717,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 142 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -16399,19 +17324,19 @@ if (false) {
 }
 
 /***/ }),
-/* 143 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(144)
+  __webpack_require__(152)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(146),
+  __webpack_require__(154),
   /* template */
-  __webpack_require__(147),
+  __webpack_require__(155),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -16443,13 +17368,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 144 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(145);
+var content = __webpack_require__(153);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16469,7 +17394,7 @@ if(false) {
 }
 
 /***/ }),
-/* 145 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -16483,7 +17408,7 @@ exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;
 
 
 /***/ }),
-/* 146 */
+/* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17101,7 +18026,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 147 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -17272,19 +18197,19 @@ if (false) {
 }
 
 /***/ }),
-/* 148 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(149)
+  __webpack_require__(157)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(151),
+  __webpack_require__(159),
   /* template */
-  __webpack_require__(157),
+  __webpack_require__(165),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -17316,13 +18241,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 149 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(150);
+var content = __webpack_require__(158);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -17342,7 +18267,7 @@ if(false) {
 }
 
 /***/ }),
-/* 150 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -17356,12 +18281,12 @@ exports.push([module.i, "\n#photos > .card[data-v-5bf32331] {\n    padding: 0;\n
 
 
 /***/ }),
-/* 151 */
+/* 159 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__);
 //
 //
@@ -17573,19 +18498,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 152 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(153)
+  __webpack_require__(161)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(155),
+  __webpack_require__(163),
   /* template */
-  __webpack_require__(156),
+  __webpack_require__(164),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -17617,13 +18542,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 153 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(154);
+var content = __webpack_require__(162);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -17643,7 +18568,7 @@ if(false) {
 }
 
 /***/ }),
-/* 154 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -17657,7 +18582,7 @@ exports.push([module.i, "/* Custom style from vue-dropzone */\n.vue-dropzone[dat
 
 
 /***/ }),
-/* 155 */
+/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17760,7 +18685,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 156 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -17812,7 +18737,7 @@ if (false) {
 }
 
 /***/ }),
-/* 157 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -17926,7 +18851,7 @@ if (false) {
 }
 
 /***/ }),
-/* 158 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -18148,19 +19073,19 @@ if (false) {
 }
 
 /***/ }),
-/* 159 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(160)
+  __webpack_require__(168)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(162),
+  __webpack_require__(170),
   /* template */
-  __webpack_require__(163),
+  __webpack_require__(171),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -18192,13 +19117,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 160 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(161);
+var content = __webpack_require__(169);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -18218,7 +19143,7 @@ if(false) {
 }
 
 /***/ }),
-/* 161 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -18232,7 +19157,7 @@ exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    m
 
 
 /***/ }),
-/* 162 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18671,7 +19596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 163 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -19233,19 +20158,19 @@ if (false) {
 }
 
 /***/ }),
-/* 164 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(165)
+  __webpack_require__(173)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(167),
+  __webpack_require__(175),
   /* template */
-  __webpack_require__(173),
+  __webpack_require__(181),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -19277,13 +20202,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 165 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(166);
+var content = __webpack_require__(174);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -19303,7 +20228,7 @@ if(false) {
 }
 
 /***/ }),
-/* 166 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -19317,12 +20242,12 @@ exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-
 
 
 /***/ }),
-/* 167 */
+/* 175 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__);
 //
 //
@@ -19838,19 +20763,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 168 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(169)
+  __webpack_require__(177)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(171),
+  __webpack_require__(179),
   /* template */
-  __webpack_require__(172),
+  __webpack_require__(180),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -19882,13 +20807,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 169 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(170);
+var content = __webpack_require__(178);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -19908,7 +20833,7 @@ if(false) {
 }
 
 /***/ }),
-/* 170 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -19922,7 +20847,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-ff4fdf8e] {\n    border:
 
 
 /***/ }),
-/* 171 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20187,7 +21112,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 172 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -20357,7 +21282,7 @@ if (false) {
 }
 
 /***/ }),
-/* 173 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -20674,19 +21599,19 @@ if (false) {
 }
 
 /***/ }),
-/* 174 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(175)
+  __webpack_require__(183)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(177),
+  __webpack_require__(185),
   /* template */
-  __webpack_require__(178),
+  __webpack_require__(186),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -20718,13 +21643,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 175 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(176);
+var content = __webpack_require__(184);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -20744,7 +21669,7 @@ if(false) {
 }
 
 /***/ }),
-/* 176 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -20758,7 +21683,7 @@ exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n
 
 
 /***/ }),
-/* 177 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21630,7 +22555,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 178 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -23324,19 +24249,19 @@ if (false) {
 }
 
 /***/ }),
-/* 179 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(180)
+  __webpack_require__(188)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(182),
+  __webpack_require__(190),
   /* template */
-  __webpack_require__(188),
+  __webpack_require__(196),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -23368,13 +24293,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 180 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(181);
+var content = __webpack_require__(189);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -23394,7 +24319,7 @@ if(false) {
 }
 
 /***/ }),
-/* 181 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -23408,12 +24333,12 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border:
 
 
 /***/ }),
-/* 182 */
+/* 190 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
 //
 //
@@ -23978,19 +24903,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 183 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(184)
+  __webpack_require__(192)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(186),
+  __webpack_require__(194),
   /* template */
-  __webpack_require__(187),
+  __webpack_require__(195),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -24022,13 +24947,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 184 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(185);
+var content = __webpack_require__(193);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -24048,7 +24973,7 @@ if(false) {
 }
 
 /***/ }),
-/* 185 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -24062,7 +24987,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-615ddffa] {\n    border:
 
 
 /***/ }),
-/* 186 */
+/* 194 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24963,7 +25888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 187 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -26677,7 +27602,7 @@ if (false) {
 }
 
 /***/ }),
-/* 188 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -27085,20 +28010,12 @@ if (false) {
 }
 
 /***/ }),
-/* 189 */
+/* 197 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
 /* 198 */,
 /* 199 */,
 /* 200 */,
@@ -27106,67 +28023,31 @@ if (false) {
 /* 202 */,
 /* 203 */,
 /* 204 */,
-/* 205 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(206)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(208),
-  /* template */
-  __webpack_require__(209),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-f775626e",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ManageGenomics.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ManageGenomics.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f775626e", Component.options)
-  } else {
-    hotAPI.reload("data-v-f775626e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 206 */
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(207);
+var content = __webpack_require__(214);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("4f73c84b", content, false);
+var update = __webpack_require__(2)("c6cba308", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f775626e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageGenomics.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f775626e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ManageGenomics.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5a1dca3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AppChangePassword.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5a1dca3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AppChangePassword.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -27176,7 +28057,7 @@ if(false) {
 }
 
 /***/ }),
-/* 207 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -27184,668 +28065,133 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.collection-header a[data-v-f775626e], #close-add-genomics-container-button[data-v-f775626e] {\n    cursor: pointer;\n}\n.collection-item .row[data-v-f775626e] {\n    margin-bottom: 0;\n}\n.collection-item.avatar[data-v-f775626e] {\n    padding-left: 20px !important;\n}\n.custom-secondary-btn[data-v-f775626e] {\n    border: 1px solid;\n    background-color: white;\n}\n.custom-tertiary-btn[data-v-f775626e]:hover {\n    background-color: rgba(173, 173, 173, 0.3);\n}\n#add-genomics-container[data-v-f775626e] {\n    padding-bottom: 2rem;\n}\n#edit-genomics-modal[data-v-f775626e] {\n    width: 40rem;\n}\n#delete-genomics-modal[data-v-f775626e] {\n    width: 30rem;\n}\n\n/* Modal customizations */\ndiv.modal-input-container[data-v-f775626e] {\n    padding-left: 2rem;\n    padding-right: 2rem;\n}\n.modal.modal-fixed-footer .modal-footer[data-v-f775626e] {\n    border: 0;\n}\n.modal .modal-footer[data-v-f775626e] {\n    padding-right: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.collection-item[data-v-5a1dca3a] {\n    overflow: auto;\n    padding-top: 2rem;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 208 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        initialGenomics: Array
-    },
-
-    data: function data() {
-        return {
-            genomics: this.initialGenomics,
-            showAddGenomicsContainer: false,
-            addGenomicsData: {
-                name: '',
-                email: ''
-            },
-            editGenomicsData: {
-                index: 0,
-                userId: 0,
-                name: '',
-                email: ''
-            },
-            deleteGenomicsData: {
-                index: 0,
-                userId: 0,
-                name: ''
-            }
-        };
-    },
-
-
-    computed: {
-        sortedGenomics: function sortedGenomics() {
-            return _.sortBy(this.genomics, ['name']);
-        }
-    },
-
-    methods: {
-        findGenomicsIndexById: function findGenomicsIndexById(id) {
-            for (var i = 0; i < this.genomics.length; i++) {
-                if (this.genomics[i].genomicsId === id) return i;
-            }
-
-            return -1;
-        },
-        addGenomics: function addGenomics(event) {
-            var _this = this;
-
-            var vm = this;
-            var addGenomicsButton = $('.add-genomics-btn');
-
-            this.disableButtons(addGenomicsButton, event.target, 'Adding...');
-
-            // Add to server's database
-            axios.post('/admin/manage/genomics', {
-                name: vm.addGenomicsData.name,
-                email: vm.addGenomicsData.email
-            }).then(function (response) {
-                // Put response in local data storage and erase adding of Genomics data
-                vm.genomics.push(response.data);
-                vm.addGenomicsData = {
-                    name: '',
-                    email: ''
-                };
-
-                // Update UI after adding Genomics
-                vm.$nextTick(function () {
-                    $('#add-name').removeClass('valid');
-                    $('#add-email').removeClass('valid');
-
-                    _this.enableButtons(addGenomicsButton, event.target, 'Add Genomics');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Genomics ' + response.data.name + ' added', 3000, 'green lighten-1');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showEditGenomicsModal: function showEditGenomicsModal(genomicsId) {
-            // Initialize data for editing
-            var index = this.findGenomicsIndexById(genomicsId);
-            var genomics = this.genomics[index];
-
-            this.editGenomicsData.index = index;
-            this.editGenomicsData.userId = genomics.userId;
-            this.editGenomicsData.name = genomics.name;
-            this.editGenomicsData.email = genomics.email;
-
-            $('#edit-genomics-modal').modal('open');
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-        updateGenomics: function updateGenomics(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var updateGenomicsButton = $('.update-genomics-btn');
-
-            this.disableButtons(updateGenomicsButton, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.patch('/admin/manage/genomics', {
-                userId: vm.editGenomicsData.userId,
-                name: vm.editGenomicsData.name,
-                email: vm.editGenomicsData.email
-            }).then(function (response) {
-                // Put response in local data storage and erase editing of Genomics data
-                if (response.data.updated) {
-                    var index = vm.editGenomicsData.index;
-
-                    vm.genomics[index].name = vm.editGenomicsData.name;
-                    vm.genomics[index].email = vm.editGenomicsData.email;
-                    vm.editGenomicsData = {
-                        index: 0,
-                        userId: 0,
-                        name: '',
-                        email: ''
-                    };
-
-                    // Update UI after updating Genomics
-                    vm.$nextTick(function () {
-                        $('#edit-genomics-modal').modal('close');
-                        $('#edit-name').removeClass('valid');
-                        $('#edit-email').removeClass('valid');
-
-                        _this2.enableButtons(updateGenomicsButton, event.target, 'Update');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast(vm.genomics[index].name + ' updated', 2500, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showDeleteGenomicsModal: function showDeleteGenomicsModal(genomicsId) {
-            // Initialize data for deleting
-            var index = this.findGenomicsIndexById(genomicsId);
-            var genomics = this.genomics[index];
-
-            this.deleteGenomicsData.index = index;
-            this.deleteGenomicsData.userId = genomics.userId;
-            this.deleteGenomicsData.name = genomics.name;
-
-            $('#delete-genomics-modal').modal('open');
-        },
-        deleteGenomics: function deleteGenomics(event) {
-            var _this3 = this;
-
-            var vm = this;
-            var deleteGenomicsButton = $('.delete-genomics-btn');
-
-            this.disableButtons(deleteGenomicsButton, event.target, 'Deleting...');
-
-            // Remove from server's database
-            axios.delete('/admin/manage/genomics/' + vm.deleteGenomicsData.userId).then(function (response) {
-                // Remove genomics details on local storage and erase
-                // deleting of genomics data
-                if (response.data.deleted) {
-                    var genomicsName = vm.deleteGenomicsData.name;
-
-                    vm.genomics.splice(vm.deleteGenomicsData.index, 1);
-                    vm.deleteGenomicsData = {
-                        index: 0,
-                        userId: 0,
-                        name: ''
-                    };
-
-                    // Update UI after deleting Genomics
-                    vm.$nextTick(function () {
-                        $('#delete-genomics-modal').modal('close');
-
-                        _this3.enableButtons(deleteGenomicsButton, event.target, 'Delete');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast('Genomics ' + genomicsName + ' deleted', 3000, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
-    }
-});
-
-/***/ }),
-/* 209 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row"
+    staticClass: "col s10 offset-s1"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
-    attrs: {
-      "href": "#!",
-      "id": "toggle-add-genomics-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new genomics"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddGenomicsContainer = !_vm.showAddGenomicsContainer
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showAddGenomicsContainer),
-      expression: "showAddGenomicsContainer"
-    }],
-    staticClass: "collection-item",
-    attrs: {
-      "id": "add-genomics-container"
-    }
+  }, [_c('div', {
+    staticClass: "collection"
+  }, [_c('div', {
+    staticClass: "collection-item"
   }, [_c('div', {
     staticClass: "row"
   }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-genomics-container-button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddGenomicsContainer = !_vm.showAddGenomicsContainer
-      }
-    }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s4 offset-s4"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.addGenomicsData.name),
-      expression: "addGenomicsData.name"
+      value: (_vm.currentPassword),
+      expression: "currentPassword"
     }],
     staticClass: "validate",
     attrs: {
-      "id": "add-name",
-      "type": "text"
+      "id": "current-password",
+      "type": "password"
     },
     domProps: {
-      "value": (_vm.addGenomicsData.name)
+      "value": (_vm.currentPassword)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.addGenomicsData, "name", $event.target.value)
+        _vm.currentPassword = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "add-name"
+      "for": "current-password"
     }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Current Password")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s4 offset-s4"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.addGenomicsData.email),
-      expression: "addGenomicsData.email"
+      value: (_vm.newPassword),
+      expression: "newPassword"
     }],
     staticClass: "validate",
     attrs: {
-      "id": "add-email",
-      "type": "text"
+      "id": "new-password",
+      "type": "password"
     },
     domProps: {
-      "value": (_vm.addGenomicsData.email)
+      "value": (_vm.newPassword)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.addGenomicsData, "email", $event.target.value)
+        _vm.newPassword = $event.target.value
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": "add-email"
+      "for": "new-password"
     }
-  }, [_vm._v("Email")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("New Password")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.reTypeNewPassword),
+      expression: "reTypeNewPassword"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "re-new-password",
+      "type": "password"
+    },
+    domProps: {
+      "value": (_vm.reTypeNewPassword)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.reTypeNewPassword = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "re-new-password"
+    }
+  }, [_vm._v("Re-Type New Password")])]), _vm._v(" "), _c('div', {
     staticClass: "col s4 offset-s4"
   }, [_c('a', {
-    staticClass: "right btn z-depth-0 add-genomics-btn",
+    staticClass: "right btn z-depth-0 change-password-button",
     attrs: {
       "href": "#!"
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.addGenomics($event)
+        _vm.changePassword($event)
       }
     }
-  }, [_vm._v("\n                            Add Genomics\n                        ")])])])]), _vm._v(" "), _vm._l((_vm.sortedGenomics), function(genomics) {
-    return _c('li', {
-      key: genomics.userId,
-      staticClass: "collection-item avatar"
-    }, [_c('span', {
-      staticClass: "title"
-    }, [_c('b', [_vm._v(_vm._s(genomics.name))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                    " + _vm._s(genomics.email) + "\n                ")]), _vm._v(" "), _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn custom-secondary-btn\n                            edit-genomics-button\n                            blue-text\n                            text-darken-1\n                            z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showEditGenomicsModal(genomics.genomicsId)
-        }
-      }
-    }, [_vm._v("\n                        Edit\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat delete-genomics-button custom-tertiary-btn",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showDeleteGenomicsModal(genomics.genomicsId)
-        }
-      }
-    }, [_vm._v("\n                        Delete\n                    ")])])])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "edit-genomics-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editGenomicsData.name),
-      expression: "editGenomicsData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editGenomicsData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editGenomicsData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editGenomicsData.email),
-      expression: "editGenomicsData.email"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-email",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editGenomicsData.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editGenomicsData, "email", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "edit-email"
-    }
-  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 update-genomics-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.updateGenomics($event)
-      }
-    }
-  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "delete-genomics-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteGenomicsData.name))]), _vm._v("?\n                    ")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn red lighten-2 z-depth-0 delete-genomics-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.deleteGenomics($event)
-      }
-    }
-  }, [_vm._v("\n                Delete\n            ")])])])])
+  }, [_vm._v("\n                            Change Password\n                        ")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
   }, [_c('h4', {
     staticClass: "title-page"
-  }, [_vm._v(" Manage Genomics ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Edit Genomics\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Delete Genomics\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
+  }, [_vm._v(" Change Password ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-f775626e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5a1dca3a", module.exports)
   }
 }
 

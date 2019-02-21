@@ -19,6 +19,7 @@ window.Vue = require('vue');
 import store from './store';
 
 // App
+Vue.component('app-change-password', require('./components/AppChangePassword.vue'));
 Vue.component('app-input-date', require('./components/AppInputDate.vue'));
 Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
 
