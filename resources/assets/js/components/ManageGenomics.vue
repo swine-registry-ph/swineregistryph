@@ -1,37 +1,37 @@
 <template>
     <div class="row">
         <div class="col s12">
-            <h4 class="title-page"> Manage Evaluators </h4>
+            <h4 class="title-page"> Manage Genomics </h4>
         </div>
 
         <div class="col s12">
             <ul class="collection with-header">
-                <!-- Toggle add evaluator container button -->
+                <!-- Toggle add genomics container button -->
                 <li class="collection-header">
-                    <a @click.prevent="showAddEvaluatorContainer = !showAddEvaluatorContainer"
+                    <a @click.prevent="showAddGenomicsContainer = !showAddGenomicsContainer"
                         href="#!"
-                        id="toggle-add-evaluator-container-button"
+                        id="toggle-add-genomics-container-button"
                         class="btn-floating waves-effect waves-light tooltipped"
                         data-position="right"
                         data-delay="50"
-                        data-tooltip="Add new evaluator"
+                        data-tooltip="Add new genomics"
                     >
                         <i class="material-icons right">add</i>
                     </a>
                 </li>
-                <!-- Add evaluator container -->
-                <li v-show="showAddEvaluatorContainer" id="add-evaluator-container" class="collection-item">
+                <!-- Add genomics container -->
+                <li v-show="showAddGenomicsContainer" id="add-genomics-container" class="collection-item">
                     <div class="row">
                         <div class="col s12">
-                            <i @click.prevent="showAddEvaluatorContainer = !showAddEvaluatorContainer"
-                                id="close-add-evaluator-container-button"
+                            <i @click.prevent="showAddGenomicsContainer = !showAddGenomicsContainer"
+                                id="close-add-genomics-container-button"
                                 class="material-icons right"
                             >
                                 close
                             </i>
                         </div>
                         <div class="input-field col s4 offset-s4">
-                            <input v-model="addEvaluatorData.name"
+                            <input v-model="addGenomicsData.name"
                                 id="add-name"
                                 type="text"
                                 class="validate"
@@ -39,7 +39,7 @@
                             <label for="add-name">Name</label>
                         </div>
                         <div class="input-field col s4 offset-s4">
-                            <input v-model="addEvaluatorData.email"
+                            <input v-model="addGenomicsData.email"
                                 id="add-email"
                                 type="text"
                                 class="validate"
@@ -47,29 +47,29 @@
                             <label for="add-email">Email</label>
                         </div>
                         <div class="col s4 offset-s4">
-                            <a @click.prevent="addEvaluator($event)"
+                            <a @click.prevent="addGenomics($event)"
                                 href="#!"
-                                class="right btn z-depth-0 add-evaluator-btn"
+                                class="right btn z-depth-0 add-genomics-btn"
                             >
-                                Add Evaluator
+                                Add Genomics
                             </a>
                         </div>
                     </div>
                 </li>
-                <!-- Existing evaluators list -->
-                <li v-for="(evaluator) in sortedEvaluators"
+                <!-- Existing genomics list -->
+                <li v-for="(genomics) in sortedGenomics"
                     class="collection-item avatar"
-                    :key="evaluator.userId"
+                    :key="genomics.userId"
                 >
-                    <span class="title"> <b>{{ evaluator.name }}</b> </span>
+                    <span class="title"> <b>{{ genomics.name }}</b> </span>
                     <p class="">
-                        {{ evaluator.email }}
+                        {{ genomics.email }}
                     </p>
                     <span class="secondary-content">
-                        <a @click.prevent="showEditEvaluatorModal(evaluator.evaluatorId)"
+                        <a @click.prevent="showEditGenomicsModal(genomics.genomicsId)"
                             href="#"
                             class="btn custom-secondary-btn
-                                edit-evaluator-button
+                                edit-genomics-button
                                 blue-text
                                 text-darken-1
                                 z-depth-0"
@@ -77,9 +77,9 @@
                             Edit
                         </a>
 
-                        <a @click.prevent="showDeleteEvaluatorModal(evaluator.evaluatorId)"
+                        <a @click.prevent="showDeleteGenomicsModal(genomics.genomicsId)"
                             href="#"
-                            class="btn btn-flat delete-evaluator-button custom-tertiary-btn"
+                            class="btn btn-flat delete-genomics-button custom-tertiary-btn"
                         >
                             Delete
                         </a>
@@ -88,18 +88,18 @@
             </ul>
         </div>
 
-        <!-- Edit Evaluator Modal -->
-        <div id="edit-evaluator-modal" class="modal">
+        <!-- Edit Genomics Modal -->
+        <div id="edit-genomics-modal" class="modal">
             <div class="modal-content">
                 <h4>
-                    Edit Evaluator
+                    Edit Genomics
                     <i class="material-icons right modal-close">close</i>
                 </h4>
 
                 <div class="row modal-input-container">
                     <div class="col s12"><br/></div>
                     <div class="input-field col s12">
-                        <input v-model="editEvaluatorData.name"
+                        <input v-model="editGenomicsData.name"
                             id="edit-name"
                             type="text"
                             class="validate"
@@ -107,7 +107,7 @@
                         <label for="edit-name">Name</label>
                     </div>
                     <div class="input-field col s12">
-                        <input v-model="editEvaluatorData.email"
+                        <input v-model="editGenomicsData.email"
                             id="edit-email"
                             type="text"
                             class="validate"
@@ -118,20 +118,20 @@
             </div>
             <div class="modal-footer grey lighten-3">
                 <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
-                <a @click.prevent="updateEvaluator($event)" 
+                <a @click.prevent="updateGenomics($event)" 
                     href="#!" 
-                    class="modal-action btn blue darken-1 z-depth-0 update-evaluator-btn"
+                    class="modal-action btn blue darken-1 z-depth-0 update-genomics-btn"
                 >
                     Update
                 </a>
             </div>
         </div>
 
-        <!-- Delete Evaluator Modal -->
-        <div id="delete-evaluator-modal" class="modal">
+        <!-- Delete Genomics Modal -->
+        <div id="delete-genomics-modal" class="modal">
             <div class="modal-content">
                 <h4>
-                    Delete Evaluator
+                    Delete Genomics
                     <i class="material-icons right modal-close">close</i>
                 </h4>
 
@@ -139,16 +139,16 @@
                     <div class="col s12"><br/></div>
                     <div class="input-field col s12">
                         <p>
-                            Are you sure you want to delete <b>{{ deleteEvaluatorData.name }}</b>?
+                            Are you sure you want to delete <b>{{ deleteGenomicsData.name }}</b>?
                         </p>
                     </div>
                 </div>
             </div>
             <div class="modal-footer grey lighten-3">
                 <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
-                <a @click.prevent="deleteEvaluator($event)" 
+                <a @click.prevent="deleteGenomics($event)" 
                     href="#!" 
-                    class="modal-action btn red lighten-2 z-depth-0 delete-evaluator-btn"
+                    class="modal-action btn red lighten-2 z-depth-0 delete-genomics-btn"
                 >
                     Delete
                 </a>
@@ -161,24 +161,24 @@
 <script>
     export default {
         props: {
-            initialEvaluators: Array
+            initialGenomics: Array
         },
 
         data() {
             return {
-                evaluators: this.initialEvaluators,
-                showAddEvaluatorContainer: false,
-                addEvaluatorData: {
+                genomics: this.initialGenomics,
+                showAddGenomicsContainer: false,
+                addGenomicsData: {
                     name: '',
                     email: ''
                 },
-                editEvaluatorData: {
+                editGenomicsData: {
                     index: 0,
                     userId: 0,
                     name: '',
                     email: ''
                 },
-                deleteEvaluatorData: {
+                deleteGenomicsData: {
                     index: 0,
                     userId: 0,
                     name: ''
@@ -187,48 +187,48 @@
         },
 
         computed: {
-            sortedEvaluators() {
-                return _.sortBy(this.evaluators, ['name']);
+            sortedGenomics() {
+                return _.sortBy(this.genomics, ['name']);
             }
         },
 
         methods: {
-            findEvaluatorIndexById(id) {
-                for (let i = 0; i < this.evaluators.length; i++) {
-                    if(this.evaluators[i].evaluatorId === id) return i;
+            findGenomicsIndexById(id) {
+                for (let i = 0; i < this.genomics.length; i++) {
+                    if(this.genomics[i].genomicsId === id) return i;
                 }
 
                 return -1;
             },
 
-            addEvaluator(event) {
+            addGenomics(event) {
                 const vm = this;
-                const addEvaluatorButton = $('.add-evaluator-btn');
+                const addGenomicsButton = $('.add-genomics-btn');
 
-                this.disableButtons(addEvaluatorButton, event.target, 'Adding...');
+                this.disableButtons(addGenomicsButton, event.target, 'Adding...');
 
                 // Add to server's database
-                axios.post('/admin/manage/evaluators', {
-                    name: vm.addEvaluatorData.name,
-                    email: vm.addEvaluatorData.email
+                axios.post('/admin/manage/genomics', {
+                    name: vm.addGenomicsData.name,
+                    email: vm.addGenomicsData.email
                 })
                 .then((response) => {
-                    // Put response in local data storage and erase adding of evaluator data
-                    vm.evaluators.push(response.data);
-                    vm.addEvaluatorData = {
+                    // Put response in local data storage and erase adding of Genomics data
+                    vm.genomics.push(response.data);
+                    vm.addGenomicsData = {
                         name: '',
                         email: ''
                     };
 
-                    // Update UI after adding evaluator
+                    // Update UI after adding Genomics
                     vm.$nextTick(() => {
                         $('#add-name').removeClass('valid');
                         $('#add-email').removeClass('valid');
                         
-                        this.enableButtons(addEvaluatorButton, event.target, 'Add Evaluator');
+                        this.enableButtons(addGenomicsButton, event.target, 'Add Genomics');
 
                         Materialize.updateTextFields();
-                        Materialize.toast(`Evaluator ${response.data.name} added`, 3000, 'green lighten-1');
+                        Materialize.toast(`Genomics ${response.data.name} added`, 3000, 'green lighten-1');
                     });
                 })
                 .catch((error) => {
@@ -236,58 +236,58 @@
                 });
             },
 
-            showEditEvaluatorModal(evaluatorId) {
+            showEditGenomicsModal(genomicsId) {
                 // Initialize data for editing
-                const index = this.findEvaluatorIndexById(evaluatorId);
-                const evaluator = this.evaluators[index];
+                const index = this.findGenomicsIndexById(genomicsId);
+                const genomics = this.genomics[index];
                 
-                this.editEvaluatorData.index = index;
-                this.editEvaluatorData.userId = evaluator.userId;
-                this.editEvaluatorData.name = evaluator.name;
-                this.editEvaluatorData.email = evaluator.email;
+                this.editGenomicsData.index = index;
+                this.editGenomicsData.userId = genomics.userId;
+                this.editGenomicsData.name = genomics.name;
+                this.editGenomicsData.email = genomics.email;
 
-                $('#edit-evaluator-modal').modal('open');
+                $('#edit-genomics-modal').modal('open');
                 this.$nextTick(() => {
                     Materialize.updateTextFields();
                 });
             },
 
-            updateEvaluator(event) {
+            updateGenomics(event) {
                 const vm = this;
-                const updateEvaluatorButton = $('.update-evaluator-btn');
+                const updateGenomicsButton = $('.update-genomics-btn');
 
-                this.disableButtons(updateEvaluatorButton, event.target, 'Updating...');
+                this.disableButtons(updateGenomicsButton, event.target, 'Updating...');
 
                 // Update to server's database
-                axios.patch('/admin/manage/evaluators', {
-                    userId: vm.editEvaluatorData.userId,
-                    name: vm.editEvaluatorData.name,
-                    email: vm.editEvaluatorData.email
+                axios.patch('/admin/manage/genomics', {
+                    userId: vm.editGenomicsData.userId,
+                    name: vm.editGenomicsData.name,
+                    email: vm.editGenomicsData.email
                 })
                 .then((response) => {
-                    // Put response in local data storage and erase editing of evaluator data
+                    // Put response in local data storage and erase editing of Genomics data
                     if(response.data.updated){
-                        const index = vm.editEvaluatorData.index;
+                        const index = vm.editGenomicsData.index;
 
-                        vm.evaluators[index].name = vm.editEvaluatorData.name;
-                        vm.evaluators[index].email = vm.editEvaluatorData.email;
-                        vm.editEvaluatorData = {
+                        vm.genomics[index].name = vm.editGenomicsData.name;
+                        vm.genomics[index].email = vm.editGenomicsData.email;
+                        vm.editGenomicsData = {
                             index: 0,
                             userId: 0,
                             name: '',
                             email: ''
                         };
 
-                        // Update UI after updating breeder
+                        // Update UI after updating Genomics
                         vm.$nextTick(() => {
-                            $('#edit-evaluator-modal').modal('close');
+                            $('#edit-genomics-modal').modal('close');
                             $('#edit-name').removeClass('valid');
                             $('#edit-email').removeClass('valid');
 
-                            this.enableButtons(updateEvaluatorButton, event.target, 'Update');
+                            this.enableButtons(updateGenomicsButton, event.target, 'Update');
 
                             Materialize.updateTextFields();
-                            Materialize.toast(`${vm.evaluators[index].name} updated`, 2500, 'green lighten-1');
+                            Materialize.toast(`${vm.genomics[index].name} updated`, 2500, 'green lighten-1');
                         });
                     }
                 })
@@ -296,49 +296,49 @@
                 });
             },
 
-            showDeleteEvaluatorModal(evaluatorId) {
+            showDeleteGenomicsModal(genomicsId) {
                 // Initialize data for deleting
-                const index = this.findEvaluatorIndexById(evaluatorId);
-                const evaluator = this.evaluators[index];
+                const index = this.findGenomicsIndexById(genomicsId);
+                const genomics = this.genomics[index];
                 
-                this.deleteEvaluatorData.index = index;
-                this.deleteEvaluatorData.userId = evaluator.userId;
-                this.deleteEvaluatorData.name = evaluator.name;
+                this.deleteGenomicsData.index = index;
+                this.deleteGenomicsData.userId = genomics.userId;
+                this.deleteGenomicsData.name = genomics.name;
 
-                $('#delete-evaluator-modal').modal('open');
+                $('#delete-genomics-modal').modal('open');
             },
 
-            deleteEvaluator(event) {
+            deleteGenomics(event) {
                 const vm = this;
-                const deleteEvaluatorButton = $('.delete-evaluator-btn');
+                const deleteGenomicsButton = $('.delete-genomics-btn');
 
-                this.disableButtons(deleteEvaluatorButton, event.target, 'Deleting...');
+                this.disableButtons(deleteGenomicsButton, event.target, 'Deleting...');
 
                 // Remove from server's database
                 axios.delete(
-                    `/admin/manage/evaluators/${vm.deleteEvaluatorData.userId}`
+                    `/admin/manage/genomics/${vm.deleteGenomicsData.userId}`
                 )
                 .then((response) => {
-                    // Remove evaluator details on local storage and erase
-                    // deleting of evaluator data
+                    // Remove genomics details on local storage and erase
+                    // deleting of genomics data
                     if(response.data.deleted){
-                        const evaluatorName = vm.deleteEvaluatorData.name;
+                        const genomicsName = vm.deleteGenomicsData.name;
 
-                        vm.evaluators.splice(vm.deleteEvaluatorData.index, 1);
-                        vm.deleteEvaluatorData = {
+                        vm.genomics.splice(vm.deleteGenomicsData.index, 1);
+                        vm.deleteGenomicsData = {
                             index: 0,
                             userId: 0,
                             name: ''
                         };
     
-                        // Update UI after deleting evaluator
+                        // Update UI after deleting Genomics
                         vm.$nextTick(() => {
-                            $('#delete-evaluator-modal').modal('close');
+                            $('#delete-genomics-modal').modal('close');
     
-                            this.enableButtons(deleteEvaluatorButton, event.target, 'Delete');
+                            this.enableButtons(deleteGenomicsButton, event.target, 'Delete');
     
                             Materialize.updateTextFields();
-                            Materialize.toast(`Evaluator ${evaluatorName} deleted`, 3000, 'green lighten-1');
+                            Materialize.toast(`Genomics ${genomicsName} deleted`, 3000, 'green lighten-1');
                         });
                     }
                 })
@@ -366,7 +366,7 @@
 </script>
 
 <style scoped>
-    .collection-header a, #close-add-evaluator-container-button {
+    .collection-header a, #close-add-genomics-container-button {
         cursor: pointer;
     }
 
@@ -387,15 +387,15 @@
         background-color: rgba(173, 173, 173, 0.3);
     }
 
-    #add-evaluator-container {
+    #add-genomics-container {
         padding-bottom: 2rem;
     }
 
-    #edit-evaluator-modal {
+    #edit-genomics-modal {
         width: 40rem;
     }
 
-    #delete-evaluator-modal {
+    #delete-genomics-modal {
         width: 30rem;
     }
 

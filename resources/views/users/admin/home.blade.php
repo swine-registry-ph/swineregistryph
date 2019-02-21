@@ -25,6 +25,9 @@
         <li :class="{ active : currentRoute.admin.showManageEvaluators }">
             <a href="{{ route('showManageEvaluators') }}"> <i class="material-icons">gavel</i> Manage Evaluators </a>
         </li>
+        <li :class="{ active : currentRoute.admin.showManageGenomics }">
+            <a href="{{ route('showManageGenomics') }}"> <i class="material-icons">person</i> Manage Genomics </a>
+        </li>
         <li :class="{ active : currentRoute.admin.showManagePropertiesView }">
             <a href="{{ route('showManagePropertiesView') }}"> <i class="material-icons">list</i> Manage Properties </a>
         </li>

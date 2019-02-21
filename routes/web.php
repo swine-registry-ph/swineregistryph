@@ -71,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/manage/evaluators', 'ManageEvaluatorsController@add')->name('addEvaluator');
         Route::patch('/manage/evaluators', 'ManageEvaluatorsController@update')->name('updateEvaluator');
         Route::delete('/manage/evaluators/{userId}', 'ManageEvaluatorsController@delete')->name('deleteEvaluator');
+        Route::get('/manage/genomics', 'ManageGenomicsController@index')->name('showManageGenomics');
+        Route::post('/manage/genomics', 'ManageGenomicsController@add')->name('addGenomics');
+        Route::patch('/manage/genomics', 'ManageGenomicsController@update')->name('updateGenomics');
+        Route::delete('/manage/genomics/{userId}', 'ManageGenomicsController@delete')->name('deleteGenomics');
         Route::get('/certificates/{certificateId}/swines', 'CertificateController@getSwinesOfCertificateRequest')->name('getSwinesOfCertificateA');
         Route::get('/certificates/{certificateId}/view-pdf', 'CertificateController@viewRegistryCertificates')->name('viewCertificates');
         Route::get('/certificates', 'CertificateController@adminViewAll')->name('adminCertificate');

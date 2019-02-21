@@ -7,23 +7,23 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EvaluatorDeleted extends Mailable
+class GenomicsDeleted extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $evaluator;
+    protected $genomics;
 
     /**
      * Create a new message instance.
      *
-     * @param  array $evaluator
+     * @param  array $genomics
      * @return void
      */
-    public function __construct($evaluator)
+    public function __construct($genomics)
     {
-        // $evaluator is an associative array that should consist of
+        // $genomics is an associative array that should consist of
         // 'name', 'email' keys
-        $this->evaluator = $evaluator;
+        $this->genomics = $genomics;
     }
 
     /**
@@ -34,19 +34,19 @@ class EvaluatorDeleted extends Mailable
     public function build()
     {
         $introLines = [
-            'Your Evaluator account was deleted!',
-            'The following is your deleted evaluator user credentials:'
+            'Your Genomics account was deleted!',
+            'The following is your deleted genomics user credentials:'
         ];
         $outroLines = ['Contact administrator for more queries.'];
 
-        return $this->view('emails.evaluatorNotice')
-                    ->subject('Swine Breed Registry PH Evaluator Account Deleted')
+        return $this->view('emails.genomicsNotice')
+                    ->subject('Swine Breed Registry PH Genomics Account Deleted')
                     ->with([
                         'level'             => 'success',
                         'introLines'        => $introLines,
                         'outroLines'        => $outroLines,
-                        'name'              => $this->evaluator['name'],
-                        'email'             => $this->evaluator['email']
+                        'name'              => $this->genomics['name'],
+                        'email'             => $this->genomics['email']
                     ]);
     }
 }
