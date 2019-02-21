@@ -16,7 +16,7 @@ class EvaluatorUpdated extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param  array $breeder
+     * @param  array $evaluator
      * @return void
      */
     public function __construct($evaluator)

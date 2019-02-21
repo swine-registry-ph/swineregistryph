@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\GenomicsCreated;
+use App\Mail\GenomicsUpdated;
+use App\Mail\GenomicsDeleted;
 use App\Models\Genomics;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -79,7 +82,7 @@ class ManageGenomicsController extends Controller
                 'initialPassword'   => $initialPassword
             ];
 
-            // Mail::to($genomicsUser->email)->queue(new GenomicsCreated($genomicsDetails));
+            Mail::to($genomicsUser->email)->queue(new GenomicsCreated($genomicsDetails));
 
             return [
                 'genomicsId'  => $genomics->id,
@@ -103,7 +106,6 @@ class ManageGenomicsController extends Controller
 
             $genomicsUser = User::find($request->userId);
             $genomicsUser->name = $request->name;
-            $genomicsUser->email = $request->email;
             $genomicsUser->save();
 
             // Send email to updated Genomics user
@@ -113,7 +115,7 @@ class ManageGenomicsController extends Controller
                 'email'             => $genomicsUser->email
             ];
 
-            // Mail::to($genomicsUser->email)->queue(new GenomicsUpdated($genomicsDetails));
+            Mail::to($genomicsUser->email)->queue(new GenomicsUpdated($genomicsDetails));
 
             return [
                 'updated' => true
@@ -142,7 +144,7 @@ class ManageGenomicsController extends Controller
                 'email'             => $genomicsUser->email
             ];
 
-            // Mail::to($genomicsUser->email)->queue(new GenomicsDeleted($genomicsDetails));
+            Mail::to($genomicsUser->email)->queue(new GenomicsDeleted($genomicsDetails));
 
             $genomics = $genomicsUser->userable()->first();
             $genomics->status_instance = 'inactive';

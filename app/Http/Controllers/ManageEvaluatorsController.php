@@ -106,7 +106,6 @@ class ManageEvaluatorsController extends Controller
 
             $evaluatorUser = User::find($request->userId);
             $evaluatorUser->name = $request->name;
-            $evaluatorUser->email = $request->email;
             $evaluatorUser->save();
 
             // Send email to updated Evaluator user
