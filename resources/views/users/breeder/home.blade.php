@@ -31,20 +31,23 @@
         <li :class="{ active : currentRoute.breeder.showCertificates }">
             <a href="{{ route('breederCertificate') }}"> <i class="material-icons">picture_in_picture</i> Certificate Requests </a>
         </li>
-        <li :class="{ active : currentRoute.breeder.manageFarms }">
+        <li :class="{ active : currentRoute.breeder.changePassword }">
+            <a href="{{ route('changePassBreeder') }}"> <i class="material-icons">lock</i> Change Password </a>
+        </li>
+        {{-- <li :class="{ active : currentRoute.breeder.manageFarms }">
             <a href="#!"> <i class="material-icons">store</i> Manage Farms </a>
         </li>
         <li :class="{ active : currentRoute.breeder.reports }">
             <a href="#!"> <i class="material-icons">description</i> Reports </a>
-        </li>
+        </li> --}}
         <li class="hide-on-large-only show-on-medium-and-down">
             <div class="divider"></div>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
-            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
                 Logout
             </a>
-            <form id="logout-form" method="POST" action="{{ route('logout') }}">
+            <form id="logout-form-2" method="POST" action="{{ route('logout') }}">
                 {{ csrf_field() }}
             </form>
         </li>

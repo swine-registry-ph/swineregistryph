@@ -26,11 +26,13 @@ Route::get('/pedigree/reg/{regNo}/gen/{generation}', 'PedigreeController@getSwin
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::patch('/change-password', 'PasswordController@changePassword')->name('changePassword');
 
     // Breeder-related
     Route::group(['prefix' => 'breeder'], function(){
 
         Route::get('/home', 'BreederController@index')->name('breederHome');
+        Route::get('/change-password', 'PasswordController@indexBreeder')->name('changePassBreeder');
         Route::get('/manage-swine/register', 'SwineController@showRegistrationForm')->name('showRegForm');
         Route::get('/manage-swine/view', 'SwineController@viewRegisteredSwine')->name('viewRegdSwine');
         Route::post('/manage-swine/register', 'SwineController@addSwineInfo')->name('addSwineInfo');
@@ -59,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'admin'], function() {
 
         Route::get('/home', 'AdminController@index')->name('adminHome');
+        Route::get('/change-password', 'PasswordController@indexAdmin')->name('changePassAdmin');
         Route::get('/view-registered-swine', 'AdminController@viewRegisteredSwine')->name('adminViewRegdSwine');
         Route::get('/manage/apis', 'AdminController@viewManageAPIs')->name('manageAPIsView');
         Route::get('/manage/breeds', 'ManageFieldsController@showManageBreedsView')->name('showManageBreedsView');
@@ -91,6 +94,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'genomics'], function(){
 
         Route::get('/home', 'GenomicsController@index')->name('genomicsHome');
+        Route::get('/change-password', 'PasswordController@indexGenomics')->name('changePassGenomics');
         Route::get('/register', 'GenomicsController@showRegisterLaboratoryResults')->name('genomicsRegisterForm');
         Route::get('/pdf-lab-results/{labResultId}', 'GenomicsController@viewPDFLaboratoryResults')->name('viewPDFLabResults');
         Route::post('/pdf-lab-results/{labResultId}', 'GenomicsController@downloadPDFLaboratoryResults')->name('downloadPDFLabResults');
@@ -103,6 +107,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'evaluator'], function(){
 
         Route::get('/home', 'EvaluatorController@index')->name('evaluatorHome');
+        Route::get('/change-password', 'PasswordController@indexEvaluator')->name('changePassEvaluator');
         Route::get('/manage/inspections', 'InspectionController@evaluatorViewAll')->name('evaluatorInspection');
         Route::patch('/manage/inspections/{inspectionId}', 'InspectionController@changeStatusOfInspection')->name('changeInspectionStatus');
         Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionE');

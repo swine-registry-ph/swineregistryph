@@ -19,6 +19,7 @@ window.Vue = require('vue');
 import store from './store';
 
 // App
+Vue.component('app-change-password', require('./components/AppChangePassword.vue'));
 Vue.component('app-input-date', require('./components/AppInputDate.vue'));
 Vue.component('app-input-select', require('./components/AppInputSelect.vue'));
 
@@ -65,7 +66,8 @@ const nav = new Vue({
                 showManageBreedsView: false,
                 manageAPIsView: false,
                 showCertificates: false,
-                reports: false
+                reports: false,
+                changePassword: false
             },
             breeder: {
                 showRegForm: false,
@@ -74,14 +76,17 @@ const nav = new Vue({
                 showInspection: false, 
                 showCertificates: false, 
                 manageFarms: false,
-                reports: false
+                reports: false,
+                changePassword: false
             },
             evaluator: {
                 manageInspections: false,
+                changePassword: false
             },
             genomics: {
                 regLabResults: false,
-                viewLabResults: false
+                viewLabResults: false,
+                changePassword: false
             }
         }
     },
@@ -144,6 +149,10 @@ const nav = new Vue({
             case '/admin/certificates':
                 this.currentRoute.admin.showCertificates = true;
                 break;
+            
+            case '/admin/change-password':
+                this.currentRoute.admin.changePassword = true;
+                break;
 
             case '/breeder/manage-swine/register':
                 this.currentRoute.breeder.showRegForm = true;
@@ -165,8 +174,16 @@ const nav = new Vue({
                 this.currentRoute.breeder.viewSwinePedigree = true;
                 break;
 
+            case '/breeder/change-password':
+                this.currentRoute.breeder.changePassword = true;
+                break;
+
             case '/evaluator/manage/inspections':
                 this.currentRoute.evaluator.manageInspections = true;
+                break;
+
+            case '/evaluator/change-password':
+                this.currentRoute.evaluator.changePassword = true;
                 break;
 
             case '/genomics/register':
@@ -175,6 +192,10 @@ const nav = new Vue({
             
             case '/genomics/manage/laboratory-results':
                 this.currentRoute.genomics.viewLabResults = true;
+                break;
+
+            case '/genomics/change-password':
+                this.currentRoute.genomics.changePassword = true;
                 break;
 
             default: break;

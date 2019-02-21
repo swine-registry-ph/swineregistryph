@@ -22,14 +22,17 @@
         <li :class="{ active : currentRoute.genomics.viewLabResults }">
             <a href="{{ route('viewLabResults') }}"> <i class="material-icons">find_in_page</i> View Lab Results </a>
         </li>
+        <li :class="{ active : currentRoute.genomics.changePassword }">
+            <a href="{{ route('changePassGenomics') }}"> <i class="material-icons">lock</i> Change Password </a>
+        </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <div class="divider"></div>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
-            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
                 Logout
             </a>
-            <form id="logout-form" method="POST" action="{{ route('logout') }}">
+            <form id="logout-form-2" method="POST" action="{{ route('logout') }}">
                 {{ csrf_field() }}
             </form>
         </li>

@@ -19,15 +19,17 @@
         <li :class="{ active : currentRoute.evaluator.manageInspections }">
             <a href="{{ route('evaluatorInspection') }}"> <i class="material-icons">highlight</i> Manage Inspections </a>
         </li>
+        <li :class="{ active : currentRoute.evaluator.changePassword }">
+            <a href="{{ route('changePassEvaluator') }}"> <i class="material-icons">lock</i> Change Password </a>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <div class="divider"></div>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
-            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a href="#!" onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
                 Logout
             </a>
-            <form id="logout-form" method="POST" action="{{ route('logout') }}">
+            <form id="logout-form-2" method="POST" action="{{ route('logout') }}">
                 {{ csrf_field() }}
             </form>
         </li>
