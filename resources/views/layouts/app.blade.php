@@ -26,6 +26,7 @@
                     <a href="{{ route('home') }}" class="brand-logo">{{ config('app.name', 'Laravel') }}</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         @if (Auth::guest())
+                            <li><a href="{{ route('viewSwinePedigreePageGuest') }}">View Pedigree</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             {{-- <li><a href="{{ route('register') }}">Register</a></li> --}}
                         @else
@@ -90,7 +91,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container black-text">
-                    © 2018 Purebred Swine Registry PH
+                    © {{ date('Y') }} Purebred Swine Registry PH
                 </div>
             </div>
         </footer>

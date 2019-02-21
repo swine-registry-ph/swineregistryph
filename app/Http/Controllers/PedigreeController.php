@@ -19,7 +19,10 @@ class PedigreeController extends Controller
      */
     public function __construct(PedigreeRepository $pedigreeRepository)
     {
-        $this->middleware('role:breeder');
+        $this->middleware('role:breeder')
+            ->only([
+                'index'
+            ]);
 
         $this->pedigreeRepo = $pedigreeRepository;
     }

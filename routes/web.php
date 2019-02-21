@@ -18,6 +18,12 @@ Route::get('/', function () {
     else return redirect('home');
 });
 
+Route::get('/pedigree', function () {
+    if (Auth::guest()) return view('users.guest.pedigree');
+    else return redirect('home');
+})->name('viewSwinePedigreePageGuest');;
+Route::get('/pedigree/reg/{regNo}/gen/{generation}', 'PedigreeController@getSwinePedigree')->name('getSwinePedigreeGuest');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
