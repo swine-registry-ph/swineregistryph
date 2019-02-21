@@ -19,6 +19,8 @@
         <li :class="{ active : currentRoute.evaluator.manageInspections }">
             <a href="{{ route('evaluatorInspection') }}"> <i class="material-icons">highlight</i> Manage Inspections </a>
         </li>
+        <li :class="{ active : currentRoute.evaluator.changePassword }">
+            <a href="{{ route('changePassEvaluator') }}"> <i class="material-icons">lock</i> Change Password </a>
         </li>
         <li class="hide-on-large-only show-on-medium-and-down">
             <div class="divider"></div>

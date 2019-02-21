@@ -24,6 +24,9 @@ class PasswordController extends Controller
 
         $this->middleware('role:genomics')
             ->only(['indexGenomics']);
+
+        $this->middleware('role:evaluator')
+            ->only(['indexEvaluator']);
     }
 
     /**
@@ -54,6 +57,16 @@ class PasswordController extends Controller
     public function indexGenomics()
     {
         return view('users.genomics.changePassword');
+    }
+
+    /**
+     * Show change password page for Evaluator
+     *
+     * @return View
+     */
+    public function indexEvaluator()
+    {
+        return view('users.evaluator.changePassword');
     }
 
     /**

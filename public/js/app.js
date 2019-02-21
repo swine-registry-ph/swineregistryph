@@ -511,7 +511,8 @@ var nav = new Vue({
                 changePassword: false
             },
             evaluator: {
-                manageInspections: false
+                manageInspections: false,
+                changePassword: false
             },
             genomics: {
                 regLabResults: false,
@@ -610,6 +611,10 @@ var nav = new Vue({
 
             case '/evaluator/manage/inspections':
                 this.currentRoute.evaluator.manageInspections = true;
+                break;
+
+            case '/evaluator/change-password':
+                this.currentRoute.evaluator.changePassword = true;
                 break;
 
             case '/genomics/register':

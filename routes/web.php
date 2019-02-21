@@ -107,6 +107,7 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'evaluator'], function(){
 
         Route::get('/home', 'EvaluatorController@index')->name('evaluatorHome');
+        Route::get('/change-password', 'PasswordController@indexEvaluator')->name('changePassEvaluator');
         Route::get('/manage/inspections', 'InspectionController@evaluatorViewAll')->name('evaluatorInspection');
         Route::patch('/manage/inspections/{inspectionId}', 'InspectionController@changeStatusOfInspection')->name('changeInspectionStatus');
         Route::get('/inspections/{inspectionId}/swines', 'InspectionController@getSwinesOfInspectionRequest')->name('getSwinesOfInspectionE');
