@@ -18,6 +18,9 @@ class PasswordController extends Controller
     {
         $this->middleware('role:admin')
             ->only(['indexAdmin']);
+        
+        $this->middleware('role:breeder')
+            ->only(['indexBreeder']);
     }
 
     /**
@@ -28,6 +31,16 @@ class PasswordController extends Controller
     public function indexAdmin()
     {
         return view('users.admin.changePassword');
+    }
+
+    /**
+     * Show change password page for Breeder
+     *
+     * @return View
+     */
+    public function indexBreeder()
+    {
+        return view('users.breeder.changePassword');
     }
 
     /**

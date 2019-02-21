@@ -66,7 +66,8 @@ const nav = new Vue({
                 showManageBreedsView: false,
                 manageAPIsView: false,
                 showCertificates: false,
-                reports: false
+                reports: false,
+                changePassword: false
             },
             breeder: {
                 showRegForm: false,
@@ -75,7 +76,8 @@ const nav = new Vue({
                 showInspection: false, 
                 showCertificates: false, 
                 manageFarms: false,
-                reports: false
+                reports: false,
+                changePassword: false
             },
             evaluator: {
                 manageInspections: false,
@@ -145,6 +147,10 @@ const nav = new Vue({
             case '/admin/certificates':
                 this.currentRoute.admin.showCertificates = true;
                 break;
+            
+            case '/admin/change-password':
+                this.currentRoute.admin.changePassword = true;
+                break;
 
             case '/breeder/manage-swine/register':
                 this.currentRoute.breeder.showRegForm = true;
@@ -164,6 +170,10 @@ const nav = new Vue({
 
             case '/breeder/pedigree':
                 this.currentRoute.breeder.viewSwinePedigree = true;
+                break;
+
+            case '/breeder/change-password':
+                this.currentRoute.breeder.changePassword = true;
                 break;
 
             case '/evaluator/manage/inspections':
