@@ -84,7 +84,6 @@ class RegisterSwineRequest extends FormRequest
             'gpSire.litterweightWeaning' => 'required_if:gpSire.status,new',
             'gpSire.dateWeaning' => 'required_if:gpSire.status,new',
             'gpSire.farmSwineId' => 'required_if:gpSire.status,new',
-            'gpSire.swinecart' => 'required_if:gpSire.status,new',
             // GP Dam
             'gpDam.status' => 'required',
             'gpDam.existingRegNo' => 'required_if:gpDam.status,registered',
@@ -117,7 +116,6 @@ class RegisterSwineRequest extends FormRequest
             'gpDam.litterweightWeaning' => 'required_if:gpDam.status,new',
             'gpDam.dateWeaning' => 'required_if:gpDam.status,new',
             'gpDam.farmSwineId' => 'required_if:gpDam.status,new',
-            'gpDam.swinecart' => 'required_if:gpDam.status,new',
         ];
     }
 }

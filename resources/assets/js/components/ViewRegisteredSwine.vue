@@ -152,7 +152,15 @@
                 >
                     <div class="card">
                         <div class="card-image">
-                            <img :src="swinePhotosDirectory + swine.photos[0].name" class="materialboxed">
+                            <img v-if="swine.photos.length > 0"
+                                :src="swinePhotosDirectory + swine.photos[0].name" 
+                                class="materialboxed"
+                            >
+                            <img v-else
+                                :src="swinePhotosDirectory + 'default.jpg'" 
+                                alt="No swine photo found."
+                                class="materialboxed"
+                            >
                             <a v-if="swine.swinecart"
                                 class="btn-floating halfway-fab red lighten-1 tooltipped"
                                 data-position="top" 
@@ -197,7 +205,16 @@
                         :key="swine.id"
                         class="collection-item avatar"
                     >
-                        <img :src="swinePhotosDirectory + swine.photos[0].name" alt="" class="circle materialboxed">
+                        <img v-if="swine.photos.length > 0" 
+                            :src="swinePhotosDirectory + swine.photos[0].name" 
+                            alt="" 
+                            class="circle materialboxed"
+                        >
+                        <img v-else 
+                            :src="swinePhotosDirectory + 'default.jpg'" 
+                            alt="No swine photo found." 
+                            class="circle materialboxed"
+                        >
                         <span class="title"><b>{{ swine.registration_no }}</b></span>
                         <p class="">
                             {{ swine.farm.name }}, {{ swine.farm.province }} <br>
@@ -281,6 +298,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <div v-show="viewPhotosModal.photos.length === 0" class="col s4">
+                        <p> Sorry, no photos available </p>
+                    </div>
+
                 </div>
             </div>
             <div class="modal-footer">

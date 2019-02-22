@@ -29,7 +29,7 @@ class SwineRepository
             // For existing swine
             return Swine::where('registration_no', $swine['existingRegNo'])->first();
         }
-        else if(isset($swine['imported']['regNo'])){
+        elseif(isset($swine['imported']['regNo'])){
             // For imported swine
 
             // Swine Instance. Note: 0 in farm_id
