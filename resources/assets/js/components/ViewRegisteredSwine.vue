@@ -157,7 +157,7 @@
                                 class="materialboxed"
                             >
                             <img v-else
-                                :src="swinePhotosDirectory + 'default.jpg'" 
+                                :src="swinePhotosDirectory + 'default.png'" 
                                 alt="No swine photo found."
                                 class="materialboxed"
                             >
@@ -211,7 +211,7 @@
                             class="circle materialboxed"
                         >
                         <img v-else 
-                            :src="swinePhotosDirectory + 'default.jpg'" 
+                            :src="swinePhotosDirectory + 'default.png'" 
                             alt="No swine photo found." 
                             class="circle materialboxed"
                         >

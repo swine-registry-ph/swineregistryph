@@ -20141,7 +20141,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }) : _c('img', {
       staticClass: "materialboxed",
       attrs: {
-        "src": _vm.swinePhotosDirectory + 'default.jpg',
+        "src": _vm.swinePhotosDirectory + 'default.png',
         "alt": "No swine photo found."
       }
     }), _vm._v(" "), (swine.swinecart) ? _c('a', {
@@ -20203,7 +20203,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }) : _c('img', {
       staticClass: "circle materialboxed",
       attrs: {
-        "src": _vm.swinePhotosDirectory + 'default.jpg',
+        "src": _vm.swinePhotosDirectory + 'default.png',
         "alt": "No swine photo found."
       }
     }), _vm._v(" "), _c('span', {
