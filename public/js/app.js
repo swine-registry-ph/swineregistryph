@@ -197,7 +197,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(59)
+var listToStyles = __webpack_require__(50)
 
 /*
 type StyleObject = {
@@ -419,7 +419,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(197);
+module.exports = __webpack_require__(199);
 
 
 /***/ }),
@@ -450,34 +450,31 @@ window.Vue = __webpack_require__(7);
 
 
 // App
-<<<<<<< Updated upstream
 Vue.component('app-change-password', __webpack_require__(47));
-=======
->>>>>>> Stashed changes
-Vue.component('app-input-date', __webpack_require__(50));
-Vue.component('app-input-select', __webpack_require__(53));
+Vue.component('app-input-date', __webpack_require__(53));
+Vue.component('app-input-select', __webpack_require__(56));
 
 // Admin
-Vue.component('certificate-requests-admin', __webpack_require__(56));
-Vue.component('manage-breeds', __webpack_require__(67));
-Vue.component('manage-breeders', __webpack_require__(72));
-Vue.component('manage-evaluators', __webpack_require__(82));
-Vue.component('manage-genomics', __webpack_require__(87));
-Vue.component('manage-properties', __webpack_require__(92));
-Vue.component('manage-apis', __webpack_require__(97));
+Vue.component('certificate-requests-admin', __webpack_require__(59));
+Vue.component('manage-breeds', __webpack_require__(69));
+Vue.component('manage-breeders', __webpack_require__(74));
+Vue.component('manage-evaluators', __webpack_require__(84));
+Vue.component('manage-genomics', __webpack_require__(89));
+Vue.component('manage-properties', __webpack_require__(94));
+Vue.component('manage-apis', __webpack_require__(99));
 
 // Breeder
-Vue.component('certificate-requests-breeder', __webpack_require__(102));
-Vue.component('inspection-requests-breeder', __webpack_require__(117));
-Vue.component('register-swine', __webpack_require__(132));
-Vue.component('view-registered-swine', __webpack_require__(167));
+Vue.component('certificate-requests-breeder', __webpack_require__(104));
+Vue.component('inspection-requests-breeder', __webpack_require__(119));
+Vue.component('register-swine', __webpack_require__(134));
+Vue.component('view-registered-swine', __webpack_require__(169));
 
 // Evaluator
-Vue.component('inspection-requests-evaluator', __webpack_require__(172));
+Vue.component('inspection-requests-evaluator', __webpack_require__(174));
 
 // Genomics
-Vue.component('register-laboratory-results', __webpack_require__(182));
-Vue.component('view-laboratory-results', __webpack_require__(187));
+Vue.component('register-laboratory-results', __webpack_require__(184));
+Vue.component('view-laboratory-results', __webpack_require__(189));
 
 // For main container
 var app = new Vue({
@@ -1960,23 +1957,19 @@ var actions = {};
 });
 
 /***/ }),
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(213)
+  __webpack_require__(48)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(51),
   /* template */
-<<<<<<< Updated upstream
-  __webpack_require__(215),
+  __webpack_require__(52),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2009,6 +2002,79 @@ module.exports = Component.exports
 
 /***/ }),
 /* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(49);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("c6cba308", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5a1dca3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AppChangePassword.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5a1dca3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AppChangePassword.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection-item[data-v-5a1dca3a] {\n    overflow: auto;\n    padding-top: 2rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2143,18 +2209,140 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 49 */,
-/* 50 */
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s10 offset-s1"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col s12"
+  }, [_c('div', {
+    staticClass: "collection"
+  }, [_c('div', {
+    staticClass: "collection-item"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.currentPassword),
+      expression: "currentPassword"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "current-password",
+      "type": "password"
+    },
+    domProps: {
+      "value": (_vm.currentPassword)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.currentPassword = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "current-password"
+    }
+  }, [_vm._v("Current Password")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.newPassword),
+      expression: "newPassword"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "new-password",
+      "type": "password"
+    },
+    domProps: {
+      "value": (_vm.newPassword)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.newPassword = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "new-password"
+    }
+  }, [_vm._v("New Password")])]), _vm._v(" "), _c('div', {
+    staticClass: "input-field col s4 offset-s4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.reTypeNewPassword),
+      expression: "reTypeNewPassword"
+    }],
+    staticClass: "validate",
+    attrs: {
+      "id": "re-new-password",
+      "type": "password"
+    },
+    domProps: {
+      "value": (_vm.reTypeNewPassword)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.reTypeNewPassword = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "re-new-password"
+    }
+  }, [_vm._v("Re-Type New Password")])]), _vm._v(" "), _c('div', {
+    staticClass: "col s4 offset-s4"
+  }, [_c('a', {
+    staticClass: "right btn z-depth-0 change-password-button",
+    attrs: {
+      "href": "#!"
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.changePassword($event)
+      }
+    }
+  }, [_vm._v("\n                            Change Password\n                        ")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col s12"
+  }, [_c('h4', {
+    staticClass: "title-page"
+  }, [_vm._v(" Change Password ")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5a1dca3a", module.exports)
+  }
+}
+
+/***/ }),
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(51),
+  __webpack_require__(54),
   /* template */
-=======
->>>>>>> Stashed changes
-  __webpack_require__(52),
+  __webpack_require__(55),
   /* styles */
   null,
   /* scopeId */
@@ -2186,7 +2374,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2223,7 +2411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2248,15 +2436,15 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(54),
+  __webpack_require__(57),
   /* template */
-  __webpack_require__(55),
+  __webpack_require__(58),
   /* styles */
   null,
   /* scopeId */
@@ -2288,7 +2476,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2354,7 +2542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2397,19 +2585,19 @@ if (false) {
 }
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(57)
+  __webpack_require__(60)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(60),
+  __webpack_require__(62),
   /* template */
-  __webpack_require__(66),
+  __webpack_require__(68),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2441,13 +2629,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(58);
+var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -2467,7 +2655,7 @@ if(false) {
 }
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -2481,45 +2669,12 @@ exports.push([module.i, "\n.mark-delivery-button[data-v-3d1cb5ed], .view-pdf-but
 
 
 /***/ }),
-/* 59 */
-/***/ (function(module, exports) {
-
-/**
- * Translates the list format produced by css-loader into something
- * easier to manipulate.
- */
-module.exports = function listToStyles (parentId, list) {
-  var styles = []
-  var newStyles = {}
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-    var id = item[0]
-    var css = item[1]
-    var media = item[2]
-    var sourceMap = item[3]
-    var part = {
-      id: parentId + ':' + i,
-      css: css,
-      media: media,
-      sourceMap: sourceMap
-    }
-    if (!newStyles[id]) {
-      styles.push(newStyles[id] = { id: id, parts: [part] })
-    } else {
-      newStyles[id].parts.push(part)
-    }
-  }
-  return styles
-}
-
-
-/***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsAdminViewSwine_vue__);
 //
 //
@@ -2947,19 +3102,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(62)
+  __webpack_require__(64)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(64),
+  __webpack_require__(66),
   /* template */
-  __webpack_require__(65),
+  __webpack_require__(67),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -2991,13 +3146,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(63);
+var content = __webpack_require__(65);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3017,7 +3172,7 @@ if(false) {
 }
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -3031,7 +3186,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-66543e9a] {\n    border:
 
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3310,7 +3465,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3510,7 +3665,7 @@ if (false) {
 }
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -3813,19 +3968,19 @@ if (false) {
 }
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(68)
+  __webpack_require__(70)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(70),
+  __webpack_require__(72),
   /* template */
-  __webpack_require__(71),
+  __webpack_require__(73),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -3857,13 +4012,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(69);
+var content = __webpack_require__(71);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -3883,7 +4038,7 @@ if(false) {
 }
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -3897,7 +4052,7 @@ exports.push([module.i, "\n.collection-header a[data-v-63d665c6], .edit-breed-bu
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4155,7 +4310,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4399,19 +4554,19 @@ if (false) {
 }
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(73)
+  __webpack_require__(75)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(75),
+  __webpack_require__(77),
   /* template */
-  __webpack_require__(81),
+  __webpack_require__(83),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -4443,13 +4598,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(74);
+var content = __webpack_require__(76);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -4469,7 +4624,7 @@ if(false) {
 }
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -4483,12 +4638,12 @@ exports.push([module.i, "\nh4 i[data-v-2b3e0810] {\n    cursor: pointer;\n}\n.ca
 
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ManageBreedersManageFarm_vue__);
 //
 //
@@ -4975,19 +5130,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(77)
+  __webpack_require__(79)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(79),
+  __webpack_require__(81),
   /* template */
-  __webpack_require__(80),
+  __webpack_require__(82),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -5019,13 +5174,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(78);
+var content = __webpack_require__(80);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -5045,7 +5200,7 @@ if(false) {
 }
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -5059,7 +5214,7 @@ exports.push([module.i, "\nh5 i[data-v-6d46f7eb] {\n    cursor: pointer;\n}\nspa
 
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5616,7 +5771,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6210,7 +6365,7 @@ if (false) {
 }
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6524,19 +6679,19 @@ if (false) {
 }
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(83)
+  __webpack_require__(85)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(85),
+  __webpack_require__(87),
   /* template */
-  __webpack_require__(86),
+  __webpack_require__(88),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -6568,13 +6723,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(84);
+var content = __webpack_require__(86);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6594,7 +6749,7 @@ if(false) {
 }
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -6608,7 +6763,7 @@ exports.push([module.i, "\n.collection-header a[data-v-0298ef7c], #close-add-eva
 
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6972,7 +7127,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7268,19 +7423,19 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(88)
+  __webpack_require__(90)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(90),
+  __webpack_require__(92),
   /* template */
-  __webpack_require__(91),
+  __webpack_require__(93),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7312,13 +7467,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(89);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7338,7 +7493,7 @@ if(false) {
 }
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -7352,7 +7507,7 @@ exports.push([module.i, "\n.collection-header a[data-v-f775626e], #close-add-gen
 
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7635,7 +7790,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         name: '',
                         email: ''
                     };
-<<<<<<< Updated upstream
 
                     // Update UI after updating Genomics
                     vm.$nextTick(function () {
@@ -7667,39 +7821,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteGenomics: function deleteGenomics(event) {
             var _this3 = this;
 
-=======
-
-                    // Update UI after updating Genomics
-                    vm.$nextTick(function () {
-                        $('#edit-genomics-modal').modal('close');
-                        $('#edit-name').removeClass('valid');
-                        $('#edit-email').removeClass('valid');
-
-                        _this2.enableButtons(updateGenomicsButton, event.target, 'Update');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast(vm.genomics[index].name + ' updated', 2500, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showDeleteGenomicsModal: function showDeleteGenomicsModal(genomicsId) {
-            // Initialize data for deleting
-            var index = this.findGenomicsIndexById(genomicsId);
-            var genomics = this.genomics[index];
-
-            this.deleteGenomicsData.index = index;
-            this.deleteGenomicsData.userId = genomics.userId;
-            this.deleteGenomicsData.name = genomics.name;
-
-            $('#delete-genomics-modal').modal('open');
-        },
-        deleteGenomics: function deleteGenomics(event) {
-            var _this3 = this;
-
->>>>>>> Stashed changes
             var vm = this;
             var deleteGenomicsButton = $('.delete-genomics-btn');
 
@@ -7750,7 +7871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7803,7 +7924,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": function($event) {
         $event.preventDefault();
         _vm.showAddGenomicsContainer = !_vm.showAddGenomicsContainer
-<<<<<<< Updated upstream
       }
     }
   }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
@@ -7834,46 +7954,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": "add-name"
     }
   }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-=======
-      }
-    }
-  }, [_vm._v("\n                            close\n                        ")])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
     staticClass: "input-field col s4 offset-s4"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-<<<<<<< Updated upstream
-=======
-      value: (_vm.addGenomicsData.name),
-      expression: "addGenomicsData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "add-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.addGenomicsData.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.addGenomicsData, "name", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "add-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
->>>>>>> Stashed changes
       value: (_vm.addGenomicsData.email),
       expression: "addGenomicsData.email"
     }],
@@ -7949,7 +8034,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "row modal-input-container"
   }, [_vm._m(2), _vm._v(" "), _c('div', {
-<<<<<<< Updated upstream
     staticClass: "input-field col s12"
   }, [_c('input', {
     directives: [{
@@ -7977,14 +8061,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "for": "edit-name"
     }
   }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-=======
->>>>>>> Stashed changes
     staticClass: "input-field col s12"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-<<<<<<< Updated upstream
       value: (_vm.editGenomicsData.email),
       expression: "editGenomicsData.email"
     }],
@@ -7995,32 +8076,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     domProps: {
       "value": (_vm.editGenomicsData.email)
-=======
-      value: (_vm.editGenomicsData.name),
-      expression: "editGenomicsData.name"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editGenomicsData.name)
->>>>>>> Stashed changes
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-<<<<<<< Updated upstream
         _vm.$set(_vm.editGenomicsData, "email", $event.target.value)
-=======
-        _vm.$set(_vm.editGenomicsData, "name", $event.target.value)
->>>>>>> Stashed changes
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-<<<<<<< Updated upstream
       "for": "edit-email"
     }
   }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
@@ -8038,75 +8102,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.updateGenomics($event)
-=======
-      "for": "edit-name"
-    }
-  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editGenomicsData.email),
-      expression: "editGenomicsData.email"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "edit-email",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.editGenomicsData.email)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.editGenomicsData, "email", $event.target.value)
->>>>>>> Stashed changes
-      }
-    }
-  }, [_vm._v("\n                Update\n            ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-<<<<<<< Updated upstream
-      "id": "delete-genomics-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                        Are you sure you want to delete "), _c('b', [_vm._v(_vm._s(_vm.deleteGenomicsData.name))]), _vm._v("?\n                    ")])])])]), _vm._v(" "), _c('div', {
-=======
-      "for": "edit-email"
-    }
-  }, [_vm._v("Email")])])])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-<<<<<<< Updated upstream
-    staticClass: "modal-action btn red lighten-2 z-depth-0 delete-genomics-btn",
-=======
-    staticClass: "modal-action btn blue darken-1 z-depth-0 update-genomics-btn",
->>>>>>> Stashed changes
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-<<<<<<< Updated upstream
-        _vm.deleteGenomics($event)
-      }
-    }
-=======
         _vm.updateGenomics($event)
       }
     }
@@ -8139,7 +8134,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.deleteGenomics($event)
       }
     }
->>>>>>> Stashed changes
   }, [_vm._v("\n                Delete\n            ")])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -8173,19 +8167,19 @@ if (false) {
 }
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(93)
+  __webpack_require__(95)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(95),
+  __webpack_require__(97),
   /* template */
-  __webpack_require__(96),
+  __webpack_require__(98),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8217,13 +8211,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(94);
+var content = __webpack_require__(96);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8243,7 +8237,7 @@ if(false) {
 }
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -8257,7 +8251,7 @@ exports.push([module.i, "\n.collection-header a[data-v-0e4e505e], .edit-property
 
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8554,7 +8548,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8861,19 +8855,19 @@ if (false) {
 }
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(98)
+  __webpack_require__(100)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(100),
+  __webpack_require__(102),
   /* template */
-  __webpack_require__(101),
+  __webpack_require__(103),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8905,13 +8899,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(99);
+var content = __webpack_require__(101);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -8931,7 +8925,7 @@ if(false) {
 }
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -8945,13 +8939,11 @@ exports.push([module.i, "\n.collection-header a[data-v-13cd11b7],\n.edit-propert
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-<<<<<<< Updated upstream
-=======
 //
 //
 //
@@ -8970,7 +8962,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
->>>>>>> Stashed changes
 //
 //
 //
@@ -9188,27 +9179,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-<<<<<<< Updated upstream
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-=======
->>>>>>> Stashed changes
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -9292,7 +9262,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         updateCredentials: function updateCredentials(event) {
             var _this3 = this;
-<<<<<<< Updated upstream
 
             var index = this.editCredentialsData.index;
             var updateButtons = $('.update-credentials-button');
@@ -9306,21 +9275,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 var data = response.data;
 
-=======
-
-            var index = this.editCredentialsData.index;
-            var updateButtons = $('.update-credentials-button');
-
-            this.disableButtons(updateButtons, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.put('/oauth/clients/' + this.editCredentialsData.id, {
-                name: this.editCredentialsData.name,
-                redirect: this.editCredentialsData.redirect
-            }).then(function (response) {
-                var data = response.data;
-
->>>>>>> Stashed changes
                 _this3.clients[index].name = data.name;
                 _this3.clients[index].redirect = data.redirect;
                 _this3.editCredentialsData = {
@@ -9400,7 +9354,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9741,19 +9695,19 @@ if (false) {
 }
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(103)
+  __webpack_require__(105)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(105),
+  __webpack_require__(107),
   /* template */
-  __webpack_require__(116),
+  __webpack_require__(118),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9785,13 +9739,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(104);
+var content = __webpack_require__(106);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -9811,7 +9765,7 @@ if(false) {
 }
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -9825,14 +9779,14 @@ exports.push([module.i, "\n.add-swine-button[data-v-648b893f] {\n    margin-righ
 
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CertificateRequestsBreederAddSwine_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CertificateRequestsBreederViewSwine_vue__);
 //
 //
@@ -10365,19 +10319,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(107)
+  __webpack_require__(109)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(109),
+  __webpack_require__(111),
   /* template */
-  __webpack_require__(110),
+  __webpack_require__(112),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -10409,13 +10363,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(108);
+var content = __webpack_require__(110);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -10435,7 +10389,7 @@ if(false) {
 }
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10449,7 +10403,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-10ad188c] {\n    border:
 
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10884,7 +10838,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11161,19 +11115,19 @@ if (false) {
 }
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(112)
+  __webpack_require__(114)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(114),
+  __webpack_require__(116),
   /* template */
-  __webpack_require__(115),
+  __webpack_require__(117),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -11205,13 +11159,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(113);
+var content = __webpack_require__(115);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -11231,7 +11185,7 @@ if(false) {
 }
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -11245,7 +11199,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-fb2df0f0] {\n    border:
 
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11403,7 +11357,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11508,7 +11462,7 @@ if (false) {
 }
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -11867,19 +11821,19 @@ if (false) {
 }
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(118)
+  __webpack_require__(120)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(120),
+  __webpack_require__(122),
   /* template */
-  __webpack_require__(131),
+  __webpack_require__(133),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -11911,13 +11865,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(119);
+var content = __webpack_require__(121);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -11937,7 +11891,7 @@ if(false) {
 }
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -11951,14 +11905,14 @@ exports.push([module.i, "\n.add-swine-button[data-v-649d4b20] {\n    margin-righ
 
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsBreederAddSwine_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__InspectionRequestsBreederViewSwine_vue__);
 //
 //
@@ -12445,19 +12399,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(122)
+  __webpack_require__(124)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(124),
+  __webpack_require__(126),
   /* template */
-  __webpack_require__(125),
+  __webpack_require__(127),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -12489,13 +12443,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(123);
+var content = __webpack_require__(125);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -12515,7 +12469,7 @@ if(false) {
 }
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -12529,7 +12483,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-3e8fc49b] {\n    border:
 
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12932,7 +12886,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13194,19 +13148,19 @@ if (false) {
 }
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(127)
+  __webpack_require__(129)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(129),
+  __webpack_require__(131),
   /* template */
-  __webpack_require__(130),
+  __webpack_require__(132),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -13238,13 +13192,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(128);
+var content = __webpack_require__(130);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -13264,7 +13218,7 @@ if(false) {
 }
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -13278,7 +13232,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-184cd2c7] {\n    border:
 
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13429,7 +13383,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         fetchIncludedSwinesWithInspection: function fetchIncludedSwinesWithInspection(inspectionData) {
             var _this = this;
-<<<<<<< Updated upstream
 
             var inspectionId = inspectionData.inspectionId;
 
@@ -13449,33 +13402,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
-=======
-
-            var inspectionId = inspectionData.inspectionId;
-
-            axios.get('/breeder/inspections/' + inspectionId + '/swines').then(function (_ref) {
-                var data = _ref.data;
-
-                _this.includedSwines = data.included;
-
-                setTimeout(function () {
-                    _this.loading = false;
-                }, 1000);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
->>>>>>> Stashed changes
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -13491,7 +13420,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         $event.preventDefault();
         return _vm.hideAddSwineView($event)
       }
-<<<<<<< Updated upstream
     }
   }, [_c('i', {
     staticClass: "material-icons left"
@@ -13532,48 +13460,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "included-swines-container"
     }
-=======
-    }
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_vm._m(1)]) : _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "card z-depth-0",
-    attrs: {
-      "id": "inspection-container"
-    }
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title"
-  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))]), _vm._v(" "), (_vm.inspectionData.status === 'requested') ? _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn\n                            disabled",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("\n                        Requested - Waiting Confirmation\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.inspectionData.status === 'for_inspection') ? _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            request-for-inspection-btn\n                            disabled",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("\n                        For Inspection\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.inspectionData.status === 'approved') ? _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("\n                        Approved\n                    ")]) : _vm._e()]), _vm._v(" "), _c('p', {
-    staticClass: "grey-text"
-  }, [_vm._v("\n                    " + _vm._s(_vm.inspectionData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "included-swines-container"
-    }
->>>>>>> Stashed changes
   }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "divider"
   }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
@@ -13626,7 +13512,7 @@ if (false) {
 }
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -13662,7 +13548,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "filterOptions.status"
       }],
       staticClass: "filled-in",
-<<<<<<< Updated upstream
       attrs: {
         "type": "checkbox",
         "id": status.value
@@ -13903,58 +13788,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
     attrs: {
       "href": "#!"
-=======
-      attrs: {
-        "type": "checkbox",
-        "id": status.value
-      },
-      domProps: {
-        "value": status.value,
-        "checked": Array.isArray(_vm.filterOptions.status) ? _vm._i(_vm.filterOptions.status, status.value) > -1 : (_vm.filterOptions.status)
-      },
-      on: {
-        "change": function($event) {
-          var $$a = _vm.filterOptions.status,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = status.value,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (_vm.$set(_vm.filterOptions, "status", $$a.concat([$$v])))
-            } else {
-              $$i > -1 && (_vm.$set(_vm.filterOptions, "status", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-            }
-          } else {
-            _vm.$set(_vm.filterOptions, "status", $$c)
-          }
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": status.value
-      }
-    }, [_vm._v(" " + _vm._s(status.text) + " ")]), _vm._v(" "), _c('br')]
-  })], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s8 m9 l9"
-  }, [_c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('a', {
-    staticClass: "btn-floating waves-effect waves-light tooltipped",
-    attrs: {
-      "href": "#!",
-      "id": "toggle-add-request-container-button",
-      "data-position": "right",
-      "data-delay": "50",
-      "data-tooltip": "Add new inspection request"
->>>>>>> Stashed changes
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-<<<<<<< Updated upstream
         _vm.requestForInspection($event)
       }
     }
@@ -14004,19 +13841,19 @@ if (false) {
 }
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(133)
+  __webpack_require__(135)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(135),
+  __webpack_require__(137),
   /* template */
-  __webpack_require__(166),
+  __webpack_require__(168),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14048,13 +13885,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(134);
+var content = __webpack_require__(136);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -14074,7 +13911,7 @@ if(false) {
 }
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -14088,18 +13925,18 @@ exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 
 
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__);
 //
 //
@@ -14347,703 +14184,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 136 */
-=======
-        _vm.showAddRequestInput = !_vm.showAddRequestInput
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons right"
-  }, [_vm._v("add")])])]), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showAddRequestInput),
-      expression: "showAddRequestInput"
-    }],
-    staticClass: "collection-item",
-    attrs: {
-      "id": "add-request-container"
-    }
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('i', {
-    staticClass: "material-icons right",
-    attrs: {
-      "id": "close-add-request-container-button"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showAddRequestInput = !_vm.showAddRequestInput
-      }
-    }
-  }, [_vm._v("\n                                close\n                            ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s6 offset-s3"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Farm",
-      "options": _vm.farmOptions
-    },
-    on: {
-      "select": function (val) {
-        _vm.addRequestData.farmId = val
-      }
-    },
-    model: {
-      value: (_vm.addRequestData.farmId),
-      callback: function($$v) {
-        _vm.$set(_vm.addRequestData, "farmId", $$v)
-      },
-      expression: "addRequestData.farmId"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn z-depth-0 add-request-button",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.addInspectionRequest($event)
-      }
-    }
-  }, [_vm._v("\n                                Add Inspection Request\n                            ")])])])]), _vm._v(" "), _vm._l((_vm.paginatedRequests), function(inspection, index) {
-    return _c('li', {
-      key: inspection.id,
-      staticClass: "collection-item avatar"
-    }, [_c('span', [_c('h5', [_c('b', [_vm._v("Inspection #" + _vm._s(inspection.id))])]), _vm._v(" "), (inspection.status === 'draft') ? [_c('span', [_c('b', {
-      staticClass: "grey-text text-darken-2"
-    }, [_vm._v("Draft")])])] : _vm._e(), _vm._v(" "), (inspection.status === 'requested') ? [_c('span', [_c('b', {
-      staticClass: "lime-text text-darken-2"
-    }, [_vm._v("Requested")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateRequested) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'for_inspection') ? [_c('span', [_c('b', {
-      staticClass: "purple-text text-darken-2"
-    }, [_vm._v("For Inspection")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateInspection) + "\n                            ")])] : _vm._e(), _vm._v(" "), (inspection.status === 'approved') ? [_c('span', [_c('b', {
-      staticClass: "green-text text-darken-2"
-    }, [_vm._v("Approved")]), _vm._v(" "), _c('br'), _vm._v("\n                                " + _vm._s(inspection.dateApproved) + "\n                            ")])] : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), _c('span', {
-      staticClass: "grey-text text-darken-1"
-    }, [_c('i', {
-      staticClass: "material-icons left"
-    }, [_vm._v("location_on")]), _vm._v("\n                            " + _vm._s(inspection.farmName) + "\n                        ")])], 2), _vm._v(" "), (inspection.status === 'draft') ? _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showSwineView('add', inspection.id, inspection.farmName)
-        }
-      }
-    }, [_vm._v("\n                            Add Swine\n                        ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-flat \n                                blue-text\n                                text-darken-1 \n                                custom-secondary-btn",
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showRequestModal(inspection.id, inspection.farmName)
-        }
-      }
-    }, [_vm._v("\n                            Request for Inspection\n                        ")])]) : _c('span', {
-      staticClass: "secondary-content"
-    }, [_c('a', {
-      staticClass: "btn\n                                add-swine-button\n                                blue darken-1\n                                z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showSwineView(
-            'view',
-            inspection.id,
-            inspection.farmName,
-            inspection.status
-          )
-        }
-      }
-    }, [_vm._v("\n                            View Swine\n                        ")])])])
-  }), _vm._v(" "), _c('li', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.paginatedRequests.length === 0),
-      expression: "paginatedRequests.length === 0"
-    }],
-    staticClass: "collection-item avatar center-align"
-  }, [_c('p', [_c('b', [_vm._v("Sorry, no inspection requests found.")])])])], 2), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align pagination-container"
-  }, [_c('ul', {
-    staticClass: "pagination"
-  }, [_c('li', {
-    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.previousPage()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
-    return _c('li', {
-      staticClass: "waves-effect",
-      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
-    }, [_c('a', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.goToPage(i)
-        }
-      }
-    }, [_vm._v(" " + _vm._s(i) + " ")])])
-  }), _vm._v(" "), _c('li', {
-    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.nextPage()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "request-for-inspection-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("\n                        Request for Inspection\n                        "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('br')]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                                Are you sure you want to request \n                                "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.requestData.inspectionId))]), _vm._v("\n                                from "), _c('b', [_vm._v(_vm._s(_vm.requestData.farmName))]), _vm._v("\n                                for inspection?\n                            ")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 request-for-inspection-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.requestForInspection($event)
-      }
-    }
-  }, [_vm._v("\n                        Request\n                    ")])])])])]) : _vm._e()]), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "add-fade"
-    }
-  }, [_c('inspection-requests-breeder-add-swine', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showAddSwine),
-      expression: "showAddSwine"
-    }],
-    attrs: {
-      "inspection-data": _vm.inspectionData
-    },
-    on: {
-      "hideSwineViewEvent": _vm.hideSwineView,
-      "inspectionForRequestEvent": _vm.inspectionForRequest
-    }
-  })], 1), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "included-fade"
-    }
-  }, [_c('inspection-requests-breeder-view-swine', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showViewSwine),
-      expression: "showViewSwine"
-    }],
-    attrs: {
-      "inspection-data": _vm.inspectionData
-    },
-    on: {
-      "hideSwineViewEvent": _vm.hideSwineView
-    }
-  })], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-649d4b20", module.exports)
-  }
-}
-
-/***/ }),
-/* 132 */
->>>>>>> Stashed changes
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-<<<<<<< Updated upstream
-  __webpack_require__(137)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(139),
-  /* template */
-  __webpack_require__(145),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-17cbae1c",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineParentsProperties.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegisterSwineParentsProperties.vue: functional components are not supported with templates, they should use render functions.")}
-=======
-  __webpack_require__(133)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(135),
-  /* template */
-  __webpack_require__(166),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-ee7fd1e0",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwine.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegisterSwine.vue: functional components are not supported with templates, they should use render functions.")}
->>>>>>> Stashed changes
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-<<<<<<< Updated upstream
-    hotAPI.createRecord("data-v-17cbae1c", Component.options)
-  } else {
-    hotAPI.reload("data-v-17cbae1c", Component.options)
-=======
-    hotAPI.createRecord("data-v-ee7fd1e0", Component.options)
-  } else {
-    hotAPI.reload("data-v-ee7fd1e0", Component.options)
->>>>>>> Stashed changes
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-<<<<<<< Updated upstream
-/* 137 */
-=======
-/* 133 */
->>>>>>> Stashed changes
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-<<<<<<< Updated upstream
-var content = __webpack_require__(138);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("2dc705b9", content, false);
-=======
-var content = __webpack_require__(134);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("eab6435a", content, false);
->>>>>>> Stashed changes
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-<<<<<<< Updated upstream
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17cbae1c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsProperties.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17cbae1c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineParentsProperties.vue");
-=======
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ee7fd1e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwine.vue");
->>>>>>> Stashed changes
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-<<<<<<< Updated upstream
 /* 138 */
-=======
-/* 134 */
->>>>>>> Stashed changes
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-<<<<<<< Updated upstream
-exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow: auto;\n}\n", ""]);
-=======
-exports.push([module.i, "\n.tab a.active[data-v-ee7fd1e0] {\n    color: #c62828 !important;\n}\n.tab.disabled a[data-v-ee7fd1e0] {\n    color: #9e9e9e !important;\n    cursor: not-allowed !important;\n}\n.tabs .indicator[data-v-ee7fd1e0] {\n    background-color: #c62828 !important;\n}\n", ""]);
->>>>>>> Stashed changes
-
-// exports
-
-
-/***/ }),
-<<<<<<< Updated upstream
-/* 139 */
-=======
-/* 135 */
->>>>>>> Stashed changes
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-<<<<<<< Updated upstream
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
-=======
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
->>>>>>> Stashed changes
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-<<<<<<< Updated upstream
-=======
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
->>>>>>> Stashed changes
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-<<<<<<< Updated upstream
-        farmoptions: Array
-    },
-
-    components: {
-        RegisterSwineParentsPropertiesInputs: __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default.a
-=======
-        farmoptions: Array,
-        breeds: Array,
-        uploadurl: String
-    },
-
-    components: {
-        RegisterSwineParentsProperties: __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsProperties_vue___default.a,
-        RegisterSwineProperties: __WEBPACK_IMPORTED_MODULE_1__RegisterSwineProperties_vue___default.a,
-        RegisterSwineSummary: __WEBPACK_IMPORTED_MODULE_2__RegisterSwineSummary_vue___default.a,
-        RegisterSwineUploadPhoto: __WEBPACK_IMPORTED_MODULE_3__RegisterSwineUploadPhoto_vue___default.a
->>>>>>> Stashed changes
-    },
-
-    data: function data() {
-        return {
-<<<<<<< Updated upstream
-            gpSireIdPrefix: 'gp-sire-',
-            gpDamIdPrefix: 'gp-dam-',
-            collapsibleStatus: {
-                sire: true,
-                dam: true
-=======
-            tabDisables: {
-                summary: true,
-                photos: true
->>>>>>> Stashed changes
-            }
-        };
-    },
-
-
-<<<<<<< Updated upstream
-    methods: {
-        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
-            this.$emit('goToTabEvent', tabId);
-=======
-    computed: {
-        gpOneId: function gpOneId() {
-            return this.$store.state.registerSwine.gpOne.id;
-        },
-
-        gpOneBreedId: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.breedId;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'breedId',
-                    value: value
-                });
-            }
-        },
-        gpOneSex: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.sex;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'sex',
-                    value: value
-                });
-            }
-        },
-        gpOneBirthDate: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.birthDate;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'birthDate',
-                    value: value
-                });
-            }
-        },
-        gpOneFarmFromId: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.farmFromId;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'farmFromId',
-                    value: value
-                });
-            }
-        }
-    },
-
-    methods: {
-        getIndex: function getIndex(id, arrayToBeSearched) {
-            // Return index of object to find
-            for (var i = 0; i < arrayToBeSearched.length; i++) {
-                if (arrayToBeSearched[i].id === id) return i;
-            }
-        },
-        goToTab: function goToTab(tabId) {
-            // Function used in tab navigation links
-            if (tabId === 'summary') {
-                this.tabDisables.summary = false;
-
-                // Add onbeforeunload event to help users from discarding changes
-                // they have made in registering swine
-                window.onbeforeunload = function (e) {
-                    var dialogText = 'Changes you made may not be saved.';
-                    e.returnValue = dialogText;
-                    return dialogText;
-                };
-            } else if (tabId === 'photos') {
-                this.tabDisables.photos = false;
-            }
-
-            this.$nextTick(function () {
-                $('#add-swine-tabs ul.tabs').tabs('select_tab', tabId);
-                // Scroll animation
-                $('html, body').animate({
-                    scrollTop: $('#add-swine-tabs').offset().top - 70 + "px"
-                }, 500);
-            });
->>>>>>> Stashed changes
-        }
-    },
-
-    mounted: function mounted() {
-<<<<<<< Updated upstream
-        // Open GP Sire and GP Dam collapsible by default
-        $('.collapsible').collapsible('open', 0);
-        $('.collapsible').collapsible('open', 1);
-    }
-});
-
-/***/ }),
-=======
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(137)
+  __webpack_require__(139)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(139),
+  __webpack_require__(141),
   /* template */
-  __webpack_require__(145),
+  __webpack_require__(147),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -15075,13 +14228,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(138);
+var content = __webpack_require__(140);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15101,167 +14254,166 @@ if(false) {
 }
 
 /***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow: auto;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 139 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        farmoptions: Array
-    },
-
-    components: {
-        RegisterSwineParentsPropertiesInputs: __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default.a
-    },
-
-    data: function data() {
-        return {
-            gpSireIdPrefix: 'gp-sire-',
-            gpDamIdPrefix: 'gp-dam-',
-            collapsibleStatus: {
-                sire: true,
-                dam: true
-            }
-        };
-    },
-
-
-    methods: {
-        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
-            this.$emit('goToTabEvent', tabId);
-        }
-    },
-
-    mounted: function mounted() {
-        // Open GP Sire and GP Dam collapsible by default
-        $('.collapsible').collapsible('open', 0);
-        $('.collapsible').collapsible('open', 1);
-    }
-});
-
-/***/ }),
->>>>>>> Stashed changes
 /* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\ndiv.collapsible-body[data-v-17cbae1c] {\n    overflow: auto;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        farmoptions: Array
+    },
+
+    components: {
+        RegisterSwineParentsPropertiesInputs: __WEBPACK_IMPORTED_MODULE_0__RegisterSwineParentsPropertiesInputs_vue___default.a
+    },
+
+    data: function data() {
+        return {
+            gpSireIdPrefix: 'gp-sire-',
+            gpDamIdPrefix: 'gp-dam-',
+            collapsibleStatus: {
+                sire: true,
+                dam: true
+            }
+        };
+    },
+
+
+    methods: {
+        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
+            this.$emit('goToTabEvent', tabId);
+        }
+    },
+
+    mounted: function mounted() {
+        // Open GP Sire and GP Dam collapsible by default
+        $('.collapsible').collapsible('open', 0);
+        $('.collapsible').collapsible('open', 1);
+    }
+});
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(141)
+  __webpack_require__(143)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(143),
+  __webpack_require__(145),
   /* template */
-  __webpack_require__(144),
+  __webpack_require__(146),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -15293,13 +14445,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(142);
+var content = __webpack_require__(144);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15319,7 +14471,7 @@ if(false) {
 }
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -15333,7 +14485,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15355,8 +14507,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-<<<<<<< Updated upstream
-=======
 //
 //
 //
@@ -15390,7 +14540,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
->>>>>>> Stashed changes
 //
 //
 //
@@ -15699,42 +14848,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-<<<<<<< Updated upstream
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-=======
->>>>>>> Stashed changes
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -16111,7 +15224,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             }
         }
     },
-<<<<<<< Updated upstream
 
     methods: {
         simpleCatch: function simpleCatch() {
@@ -16202,98 +15314,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             // update parent's properties to default
             this.updateParentPropertiesToDefault();
 
-=======
-
-    methods: {
-        simpleCatch: function simpleCatch() {
-            var _this = this;
-
-            // simple catch from stop and prevent event default from
-            // gpParentExistingRegNo input text
-            setTimeout(function () {
-                _this.existingButtonPressed = false;
-            }, 0);
-        },
-        checkParent: function checkParent(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var checkButton = $('#' + vm.parentIdPrefix + 'check');
-
-            if (!this.gpParentExistingRegNo) {
-                this.existingButtonPressed = false;
-                return;
-            }
-
-            this.disableButtons(checkButton, event.target, 'Checking ' + vm.parentGender + '...');
-            this.existingButtonPressed = true;
-
-            // Fetch from server parent details
-            axios.get('/breeder/manage-swine/get/' + vm.parentSex + '/' + vm.gpParentExistingRegNo).then(function (response) {
-                // Check if object or string is returned
-                // If object is returned then it is
-                // a success else if it is a
-                // string, it's a fail
-                if (_typeof(response.data) === 'object') {
-                    // Put response to vuex store
-                    _this2.$store.commit('updateParent', {
-                        instance: _this2.prefixedGender,
-                        data: response.data
-                    });
-
-                    setTimeout(function () {
-                        _this2.existingInputIsValid = true;
-                        _this2.existingInputDataSuccess = vm.parentGender + ' exists.';
-                        _this2.existingInputDataError = '';
-                        Materialize.toast(vm.parentGender + ' exists.', 2500, 'green lighten-1');
-                    }, 0);
-                } else if (typeof response.data === 'string') {
-                    setTimeout(function () {
-                        _this2.existingInputIsValid = false;
-                        _this2.existingInputDataError = response.data;
-                        _this2.existingInputDataSuccess = '';
-                        Materialize.toast(response.data, 3000, 'red darken-1');
-                    }, 0);
-                }
-
-                _this2.enableButtons(checkButton, event.target, 'Check ' + vm.parentGender + ' if existing');
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        updateParentPropertiesToDefault: function updateParentPropertiesToDefault() {
-            // Update vuex store
-            this.$store.commit('updateParent', {
-                instance: this.prefixedGender,
-                sex: this.parentSex,
-                data: null
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    watch: {
-        'status': function status() {
-            // update parent's properties to default
-            this.updateParentPropertiesToDefault();
-
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-            });
-        },
-
-        'imported': function imported() {
-            // update parent's properties to default
-            this.updateParentPropertiesToDefault();
-
->>>>>>> Stashed changes
             this.$nextTick(function () {
                 Materialize.updateTextFields();
             });
@@ -16302,7 +15322,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -16654,7 +15674,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "date-select": function (val) {
         _vm.gpParentBirthDate = val
       }
-<<<<<<< Updated upstream
     },
     model: {
       value: (_vm.gpParentBirthDate),
@@ -16762,115 +15781,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": _vm.parentIdPrefix + 'littersize-weaning',
       "type": "text"
     },
-=======
-    },
-    model: {
-      value: (_vm.gpParentBirthDate),
-      callback: function($$v) {
-        _vm.gpParentBirthDate = $$v
-      },
-      expression: "gpParentBirthDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpParentBirthWeight),
-      expression: "gpParentBirthWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'birth-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpParentBirthWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpParentBirthWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.parentIdPrefix + 'birth-weight'
-    }
-  }, [_vm._v("Birth Weight (kg)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpParentLittersizeAliveMale),
-      expression: "gpParentLittersizeAliveMale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpParentLittersizeAliveMale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpParentLittersizeAliveMale = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.parentIdPrefix + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpParentLittersizeAliveFemale),
-      expression: "gpParentLittersizeAliveFemale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpParentLittersizeAliveFemale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpParentLittersizeAliveFemale = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.parentIdPrefix + 'total-f'
-    }
-  }, [_vm._v("Total (F) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpParentLittersizeWeaning),
-      expression: "gpParentLittersizeWeaning"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'littersize-weaning',
-      "type": "text"
-    },
->>>>>>> Stashed changes
     domProps: {
       "value": (_vm.gpParentLittersizeWeaning)
     },
@@ -17016,15 +15926,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "date-select": function (val) {
         _vm.gpParentAdgBirthEndDate = val
       }
-<<<<<<< Updated upstream
-    },
-    model: {
-      value: (_vm.gpParentAdgBirthEndDate),
-      callback: function($$v) {
-        _vm.gpParentAdgBirthEndDate = $$v
-      },
-      expression: "gpParentAdgBirthEndDate"
-=======
     },
     model: {
       value: (_vm.gpParentAdgBirthEndDate),
@@ -17062,121 +15963,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.parentIdPrefix + 'adg-birth-end-weight'
-    }
-  }, [_vm._v("End Weight (kg)")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpParentAdgTestStartDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpParentAdgTestStartDate),
-      callback: function($$v) {
-        _vm.gpParentAdgTestStartDate = $$v
-      },
-      expression: "gpParentAdgTestStartDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Start Date of Testing ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpParentAdgTestStartWeight),
-      expression: "gpParentAdgTestStartWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'adg-test-start-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpParentAdgTestStartWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpParentAdgTestStartWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.parentIdPrefix + 'adg-test-start-weight'
-    }
-  }, [_vm._v("Weight at Start of Testing (kg)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpParentAdgTestEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpParentAdgTestEndDate),
-      callback: function($$v) {
-        _vm.gpParentAdgTestEndDate = $$v
-      },
-      expression: "gpParentAdgTestEndDate"
->>>>>>> Stashed changes
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-<<<<<<< Updated upstream
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
-=======
-  }, [_vm._v(" End Date of Testing ")])], 1), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.gpParentAdgBirthEndWeight),
-      expression: "gpParentAdgBirthEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'adg-birth-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpParentAdgBirthEndWeight)
-=======
-      value: (_vm.gpParentAdgTestEndWeight),
-      expression: "gpParentAdgTestEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'adg-test-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpParentAdgTestEndWeight)
->>>>>>> Stashed changes
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-<<<<<<< Updated upstream
-        _vm.gpParentAdgBirthEndWeight = $event.target.value
-=======
-        _vm.gpParentAdgTestEndWeight = $event.target.value
->>>>>>> Stashed changes
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-<<<<<<< Updated upstream
       "for": _vm.parentIdPrefix + 'adg-birth-end-weight'
     }
   }, [_vm._v("End Weight (kg)")])]), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8), _vm._v(" "), _c('div', {
@@ -17285,24 +16071,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": _vm.parentIdPrefix + 'bft',
       "type": "text"
     },
-=======
-      "for": _vm.parentIdPrefix + 'adg-test-end-weight'
-    }
-  }, [_vm._v("Weight at End of Testing (kg)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpParentBft),
-      expression: "gpParentBft"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.parentIdPrefix + 'bft',
-      "type": "text"
-    },
->>>>>>> Stashed changes
     domProps: {
       "value": (_vm.gpParentBft)
     },
@@ -17409,7 +16177,7 @@ if (false) {
 }
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -17417,7 +16185,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row",
     attrs: {
       "id": "gp-parents"
-<<<<<<< Updated upstream
     }
   }, [_c('div', {
     staticClass: "card col s12"
@@ -17455,45 +16222,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "parent-gender": 'Sire',
       "parent-id-prefix": _vm.gpSireIdPrefix
     }
-=======
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v("GP Parents")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('ul', {
-    staticClass: "collapsible",
-    attrs: {
-      "data-collapsible": "expandable"
-    }
-  }, [_c('li', [_c('div', {
-    staticClass: "collapsible-header",
-    on: {
-      "click": function($event) {
-        _vm.collapsibleStatus.sire = !_vm.collapsibleStatus.sire
-      }
-    }
-  }, [(_vm.collapsibleStatus.sire) ? [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v(" label_outline ")])] : [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v(" label ")])], _vm._v("\n                                    GP Sire\n                                ")], 2), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
-  }, [_c('register-swine-parents-properties-inputs', {
-    attrs: {
-      "farmoptions": _vm.farmoptions,
-      "parent-gender": 'Sire',
-      "parent-id-prefix": _vm.gpSireIdPrefix
-    }
->>>>>>> Stashed changes
   })], 1)]), _vm._v(" "), _c('li', [_c('div', {
     staticClass: "collapsible-header",
     on: {
@@ -17558,19 +16286,19 @@ if (false) {
 }
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(147)
+  __webpack_require__(149)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(149),
+  __webpack_require__(151),
   /* template */
-  __webpack_require__(150),
+  __webpack_require__(152),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -17602,13 +16330,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(148);
+var content = __webpack_require__(150);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -17628,7 +16356,7 @@ if(false) {
 }
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -17642,7 +16370,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17889,7 +16617,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-<<<<<<< Updated upstream
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -18162,280 +16889,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
 
-=======
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            gpOneIdPrefix: 'gp-one-'
-        };
-    },
-
-
-    computed: {
-        gpOneLabResultNo: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.labResultNo;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'labResultNo',
-                    value: value
-                });
-            }
-        },
-        gpOneFarmSwineId: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.farmSwineId;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'farmSwineId',
-                    value: value
-                });
-            }
-        },
-        gpOneHouseType: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.houseType;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'houseType',
-                    value: value
-                });
-            }
-        },
-        gpOneTeatNo: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.teatNo;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'teatNo',
-                    value: value
-                });
-            }
-        },
-        gpOneAdgBirthEndDate: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.adgBirthEndDate;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'adgBirthEndDate',
-                    value: value
-                });
-            }
-        },
-        gpOneAdgBirthEndWeight: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.adgBirthEndWeight;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'adgBirthEndWeight',
-                    value: value
-                });
-            }
-        },
-        gpOneAdgTestStartDate: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.adgTestStartDate;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'adgTestStartDate',
-                    value: value
-                });
-            }
-        },
-        gpOneAdgTestEndDate: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.adgTestEndDate;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'adgTestEndDate',
-                    value: value
-                });
-            }
-        },
-        gpOneAdgTestStartWeight: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.adgTestStartWeight;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'adgTestStartWeight',
-                    value: value
-                });
-            }
-        },
-        gpOneAdgTestEndWeight: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.adgTestEndWeight;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'adgTestEndWeight',
-                    value: value
-                });
-            }
-        },
-        gpOneBft: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.bft;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'bft',
-                    value: value
-                });
-            }
-        },
-        gpOneBftCollected: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.bftCollected;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'bftCollected',
-                    value: value
-                });
-            }
-        },
-        gpOneFeedIntake: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.feedIntake;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'feedIntake',
-                    value: value
-                });
-            }
-        },
-        gpOneBirthWeight: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.birthWeight;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'birthWeight',
-                    value: value
-                });
-            }
-        },
-        gpOneLittersizeAliveMale: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.littersizeAliveMale;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'littersizeAliveMale',
-                    value: value
-                });
-            }
-        },
-        gpOneLittersizeAliveFemale: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.littersizeAliveFemale;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'littersizeAliveFemale',
-                    value: value
-                });
-            }
-        },
-        gpOneParity: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.parity;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'parity',
-                    value: value
-                });
-            }
-        },
-        gpOneLittersizeWeaning: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.littersizeWeaning;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'littersizeWeaning',
-                    value: value
-                });
-            }
-        },
-        gpOneLitterweightWeaning: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.litterweightWeaning;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'litterweightWeaning',
-                    value: value
-                });
-            }
-        },
-        gpOneDateWeaning: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.dateWeaning;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'dateWeaning',
-                    value: value
-                });
-            }
-        }
-    },
-
->>>>>>> Stashed changes
     methods: {
         triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
             this.$emit('goToTabEvent', tabId);
@@ -18444,52 +16897,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         console.log('Component mounted.');
-<<<<<<< Updated upstream
     }
 });
 
 /***/ }),
-/* 150 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "gp-1"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v("GP 1")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m10 l6 offset-m1 offset-l3"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneLabResultNo),
-      expression: "gpOneLabResultNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'lab-result-no',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneLabResultNo)
-=======
-    }
-});
-
-/***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -18686,176 +17098,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     domProps: {
       "value": (_vm.gpOneLittersizeAliveFemale)
->>>>>>> Stashed changes
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-<<<<<<< Updated upstream
-        _vm.gpOneLabResultNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'lab-result-no'
-    }
-  }, [_vm._v("Laboratory Result No. (optional)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneFarmSwineId),
-      expression: "gpOneFarmSwineId"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'farm-swine-id',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneFarmSwineId)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOneFarmSwineId = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'farm-swine-id'
-    }
-  }, [_vm._v("Farm Swine ID / Earmark")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneTeatNo),
-      expression: "gpOneTeatNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'teatno',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneTeatNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOneTeatNo = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'teatno'
-    }
-  }, [_vm._v("Number of Teats")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneBirthWeight),
-      expression: "gpOneBirthWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'birth-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneBirthWeight)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOneBirthWeight = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'birth-weight'
-    }
-  }, [_vm._v("Birth weight (kg)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneParity),
-      expression: "gpOneParity"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'parity',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneParity)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOneParity = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'parity'
-    }
-  }, [_vm._v("Parity")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneLittersizeAliveMale),
-      expression: "gpOneLittersizeAliveMale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'total-m',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneLittersizeAliveMale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.gpOneLittersizeAliveMale = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": _vm.gpOneIdPrefix + 'total-m'
-    }
-  }, [_vm._v("Total (M) born alive")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneLittersizeAliveFemale),
-      expression: "gpOneLittersizeAliveFemale"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'total-f',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneLittersizeAliveFemale)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-=======
->>>>>>> Stashed changes
         _vm.gpOneLittersizeAliveFemale = $event.target.value
       }
     }
@@ -18982,7 +17228,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": function($event) {
         _vm.gpOneHouseType = "open"
-<<<<<<< Updated upstream
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -19029,26 +17274,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.gpOneAdgBirthEndWeight = $event.target.value
-=======
->>>>>>> Stashed changes
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-<<<<<<< Updated upstream
       "for": _vm.gpOneIdPrefix + 'adg-birth-end-weight'
     }
   }, [_vm._v("End Weight (kg)")])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
-=======
-      "for": "house-type-open"
-    }
-  }, [_vm._v("Open sided")])])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
     staticClass: "col s6 input-field"
   }, [_c('app-input-date', {
     on: {
       "date-select": function (val) {
-<<<<<<< Updated upstream
         _vm.gpOneAdgTestStartDate = val
       }
     },
@@ -19058,33 +17294,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.gpOneAdgTestStartDate = $$v
       },
       expression: "gpOneAdgTestStartDate"
-=======
-        _vm.gpOneAdgBirthEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOneAdgBirthEndDate),
-      callback: function($$v) {
-        _vm.gpOneAdgBirthEndDate = $$v
-      },
-      expression: "gpOneAdgBirthEndDate"
->>>>>>> Stashed changes
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
       "for": ""
     }
-<<<<<<< Updated upstream
   }, [_vm._v(" Start Date of Testing ")])], 1), _vm._v(" "), _c('div', {
-=======
-  }, [_vm._v(" End Date ")])], 1), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-<<<<<<< Updated upstream
       value: (_vm.gpOneAdgTestStartWeight),
       expression: "gpOneAdgTestStartWeight"
     }],
@@ -19095,131 +17315,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     domProps: {
       "value": (_vm.gpOneAdgTestStartWeight)
-=======
-      value: (_vm.gpOneAdgBirthEndWeight),
-      expression: "gpOneAdgBirthEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'adg-birth-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneAdgBirthEndWeight)
->>>>>>> Stashed changes
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-<<<<<<< Updated upstream
         _vm.gpOneAdgTestStartWeight = $event.target.value
-=======
-        _vm.gpOneAdgBirthEndWeight = $event.target.value
->>>>>>> Stashed changes
       }
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-<<<<<<< Updated upstream
-      "for": _vm.gpOneIdPrefix + 'adg-test-start-weight'
-    }
-  }, [_vm._v("Weight at Start of Testing (kg)")])]), _vm._v(" "), _c('div', {
-=======
-      "for": _vm.gpOneIdPrefix + 'adg-birth-end-weight'
-    }
-  }, [_vm._v("End Weight (kg)")])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s6 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-<<<<<<< Updated upstream
-        _vm.gpOneAdgTestEndDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOneAdgTestEndDate),
-      callback: function($$v) {
-        _vm.gpOneAdgTestEndDate = $$v
-      },
-      expression: "gpOneAdgTestEndDate"
-=======
-        _vm.gpOneAdgTestStartDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOneAdgTestStartDate),
-      callback: function($$v) {
-        _vm.gpOneAdgTestStartDate = $$v
-      },
-      expression: "gpOneAdgTestStartDate"
->>>>>>> Stashed changes
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-<<<<<<< Updated upstream
-  }, [_vm._v(" End Date  of Testing ")])], 1), _vm._v(" "), _c('div', {
-=======
-  }, [_vm._v(" Start Date of Testing ")])], 1), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.gpOneAdgTestEndWeight),
-      expression: "gpOneAdgTestEndWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'adg-test-end-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneAdgTestEndWeight)
-=======
-      value: (_vm.gpOneAdgTestStartWeight),
-      expression: "gpOneAdgTestStartWeight"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": _vm.gpOneIdPrefix + 'adg-test-start-weight',
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.gpOneAdgTestStartWeight)
->>>>>>> Stashed changes
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-<<<<<<< Updated upstream
-        _vm.gpOneAdgTestEndWeight = $event.target.value
-=======
-        _vm.gpOneAdgTestStartWeight = $event.target.value
->>>>>>> Stashed changes
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-<<<<<<< Updated upstream
-      "for": _vm.gpOneIdPrefix + 'adg-test-end-weight'
-    }
-  }, [_vm._v("Weight at End of Testing (kg)")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneBft),
-      expression: "gpOneBft"
-    }],
-    staticClass: "validate",
-    attrs: {
-=======
       "for": _vm.gpOneIdPrefix + 'adg-test-start-weight'
     }
   }, [_vm._v("Weight at Start of Testing (kg)")])]), _vm._v(" "), _c('div', {
@@ -19279,7 +17383,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "validate",
     attrs: {
->>>>>>> Stashed changes
       "id": _vm.gpOneIdPrefix + 'bft',
       "type": "text"
     },
@@ -19405,19 +17508,19 @@ if (false) {
 }
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(152)
+  __webpack_require__(154)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(154),
+  __webpack_require__(156),
   /* template */
-  __webpack_require__(155),
+  __webpack_require__(157),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -19449,13 +17552,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(153);
+var content = __webpack_require__(155);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -19475,7 +17578,7 @@ if(false) {
 }
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -19489,13 +17592,11 @@ exports.push([module.i, "\n.summary-table td[data-v-4aec38b4] {\n    padding: 0;
 
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-<<<<<<< Updated upstream
-=======
 //
 //
 //
@@ -19656,7 +17757,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
->>>>>>> Stashed changes
 //
 //
 //
@@ -20110,7 +18210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -20281,19 +18381,19 @@ if (false) {
 }
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(157)
+  __webpack_require__(159)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(159),
+  __webpack_require__(161),
   /* template */
-  __webpack_require__(165),
+  __webpack_require__(167),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -20325,13 +18425,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(158);
+var content = __webpack_require__(160);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -20351,7 +18451,7 @@ if(false) {
 }
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -20365,12 +18465,12 @@ exports.push([module.i, "\n#photos > .card[data-v-5bf32331] {\n    padding: 0;\n
 
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__);
 //
 //
@@ -20582,859 +18682,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 160 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(161)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(163),
-  /* template */
-  __webpack_require__(164),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-babde828",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineUploadPhotoDropzone.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegisterSwineUploadPhotoDropzone.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-babde828", Component.options)
-  } else {
-    hotAPI.reload("data-v-babde828", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 161 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(162);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("1c04ba02", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-babde828\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhotoDropzone.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-babde828\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhotoDropzone.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
 /* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/* Custom style from vue-dropzone */\n.vue-dropzone[data-v-babde828] {\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n  min-height: 20rem;\n  border: 2px solid #000000;\n  font-family: inherit;\n  letter-spacing: 0.2px;\n  color: #777;\n  transition: background-color .2s linear;\n}\n.vue-dropzone[data-v-babde828]:hover {\n    background-color: #F6F6F6;\n}\n.vue-dropzone i[data-v-babde828] {\n    color: #CCC;\n}\n.vue-dropzone .dz-preview .dz-image[data-v-babde828] {\n    border-radius: 1;\n}\n.vue-dropzone .dz-preview .dz-image:hover img[data-v-babde828] {\n      transform: none;\n      filter: none;\n      -webkit-filter: none;\n}\n.vue-dropzone .dz-preview .dz-details[data-v-babde828] {\n    bottom: 0;\n    top: 0;\n    color: white;\n    background-color: rgba(33, 150, 243, 0.8);\n    transition: opacity .2s linear;\n    text-align: left;\n}\n.vue-dropzone .dz-preview .dz-details .dz-filename span[data-v-babde828], .vue-dropzone .dz-preview .dz-details .dz-size span[data-v-babde828] {\n      background-color: transparent;\n}\n.vue-dropzone .dz-preview .dz-details .dz-filename:not(:hover) span[data-v-babde828] {\n      border: none;\n}\n.vue-dropzone .dz-preview .dz-details .dz-filename:hover span[data-v-babde828] {\n      background-color: transparent;\n      border: none;\n}\n.vue-dropzone .dz-preview .dz-progress .dz-upload[data-v-babde828] {\n    background: #cccccc;\n}\n.vue-dropzone .dz-preview .dz-remove[data-v-babde828] {\n    position: absolute;\n    z-index: 30;\n    color: white;\n    margin-left: 15px;\n    padding: 10px;\n    top: inherit;\n    bottom: 15px;\n    border: 2px white solid;\n    text-decoration: none;\n    text-transform: uppercase;\n    font-size: 0.8rem;\n    font-weight: 800;\n    letter-spacing: 1.1px;\n    opacity: 0;\n}\n.vue-dropzone .dz-preview:hover .dz-remove[data-v-babde828] {\n    opacity: 1;\n}\n.vue-dropzone .dz-preview .dz-success-mark[data-v-babde828], .vue-dropzone .dz-preview .dz-error-mark[data-v-babde828] {\n    margin-left: auto !important;\n    margin-top: auto !important;\n    width: 100% !important;\n    top: 35% !important;\n    left: 0;\n}\n.vue-dropzone .dz-preview .dz-success-mark i[data-v-babde828], .vue-dropzone .dz-preview .dz-error-mark i[data-v-babde828] {\n      color: white !important;\n      font-size: 5rem !important;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 163 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-<<<<<<< Updated upstream
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        breeds: Array,
-        farmoptions: Array
-    },
-
-    data: function data() {
-        return {
-            successfullyRegistered: false
-        };
-    },
-
-
-    computed: {
-        tempRegistryCertificateLink: function tempRegistryCertificateLink() {
-            return '/breeder/temp-registry-certificate';
-        },
-        registryCertificateLink: function registryCertificateLink() {
-            var certificateLink = '/breeder/registry-certificate';
-            var gpOneId = this.gpOneData.id;
-            return certificateLink + '/' + gpOneId;
-        },
-        gpOneData: function gpOneData() {
-            return this.$store.getters.gpOneData;
-        },
-        gpOneComputedAdgFromBirth: function gpOneComputedAdgFromBirth() {
-            return this.$store.getters.computedAdgFromBirth('gpOne');
-        },
-        gpOneComputedAdgOnTest: function gpOneComputedAdgOnTest() {
-            return this.$store.getters.computedAdgOnTest('gpOne');
-        },
-        gpOneComputedFeedEfficiency: function gpOneComputedFeedEfficiency() {
-            return this.$store.getters.computedFeedEfficiency('gpOne');
-        },
-        gpOneSelectionIndex: function gpOneSelectionIndex() {
-            return this.$store.getters.computedSelectionIndex('gpOne');
-        },
-        gpSireData: function gpSireData() {
-            return this.$store.getters.gpSireData;
-        },
-        gpSireComputedAdgFromBirth: function gpSireComputedAdgFromBirth() {
-            return this.$store.getters.computedAdgFromBirth('gpSire');
-        },
-        gpSireComputedAdgOnTest: function gpSireComputedAdgOnTest() {
-            return this.$store.getters.computedAdgOnTest('gpSire');
-        },
-        gpSireComputedFeedEfficiency: function gpSireComputedFeedEfficiency() {
-            return this.$store.getters.computedFeedEfficiency('gpSire');
-        },
-        gpSireSelectionIndex: function gpSireSelectionIndex() {
-            return this.$store.getters.computedSelectionIndex('gpSire');
-        },
-        gpDamData: function gpDamData() {
-            return this.$store.getters.gpDamData;
-        },
-        gpDamComputedAdgFromBirth: function gpDamComputedAdgFromBirth() {
-            return this.$store.getters.computedAdgFromBirth('gpDam');
-        },
-        gpDamComputedAdgOnTest: function gpDamComputedAdgOnTest() {
-            return this.$store.getters.computedAdgOnTest('gpDam');
-        },
-        gpDamComputedFeedEfficiency: function gpDamComputedFeedEfficiency() {
-            return this.$store.getters.computedFeedEfficiency('gpDam');
-        },
-        gpDamSelectionIndex: function gpDamSelectionIndex() {
-            return this.$store.getters.computedSelectionIndex('gpDam');
-        },
-
-        gpOneSwinecart: {
-            // get and set value from vuex store
-            get: function get() {
-                return this.$store.state.registerSwine.gpOne.swinecart;
-            },
-            set: function set(value) {
-                this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'swinecart',
-                    value: value
-                });
-            }
-=======
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        dropzoneId: String,
-        orientation: String,
-        swineId: Number,
-        uploadurl: String
-    },
-
-    components: {
-        Dropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a
-    },
-
-    data: function data() {
-        return {
-            customOptions: {
-                language: {
-                    dictDefaultMessage: '<br/> Drop image here to upload'
-                },
-                parallelUploads: 1,
-                maxNumberOfFiles: 1,
-                maxFileSizeInMB: 50,
-                acceptedFileTypes: 'image/png, image/jpeg, image/jpg, image/tiff, image/heif, image/heic'
-            }
-        };
-    },
-
-
-    computed: {
-        csrfToken: function csrfToken() {
-            return document.head.querySelector('meta[name="csrf-token"]').content;
-        },
-        csrfHeader: function csrfHeader() {
-            return {
-                'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
-            };
->>>>>>> Stashed changes
-        }
-    },
-
-    methods: {
-<<<<<<< Updated upstream
-        transformFarmId: function transformFarmId(id) {
-            var index = _.findIndex(this.farmoptions, ['value', parseInt(id)]);
-
-            return id > 0 ? this.farmoptions[index].text : '';
-        },
-        transformBreedId: function transformBreedId(id) {
-            var index = _.findIndex(this.breeds, ['value', parseInt(id)]);
-
-            return id > 0 ? this.breeds[index].text : '';
-        },
-        capitalize: function capitalize(string) {
-            return _.capitalize(string);
-        },
-        registerSwine: function registerSwine(event) {
-            var _this = this;
-
-            var gpOneData = this.gpOneData;
-            var gpSireData = this.gpSireData;
-            var gpDamData = this.gpDamData;
-            var submitButton = $('.register-and-generate-cert');
-
-            this.disableButtons(submitButton, event.target, 'Registering...');
-
-            // Attach derived values such as ADG, FE, Selection index, and 
-            // breedId for parents to original object before submit
-            gpOneData.adgBirth = this.gpOneComputedAdgFromBirth;
-            gpOneData.adgTest = this.gpOneComputedAdgOnTest;
-            gpOneData.feedEfficiency = this.gpOneComputedFeedEfficiency;
-            gpOneData.selectionIndex = this.gpOneSelectionIndex;
-            gpSireData.adgBirth = this.gpSireComputedAdgFromBirth;
-            gpSireData.adgTest = this.gpSireComputedAdgOnTest;
-            gpSireData.feedEfficiency = this.gpSireComputedFeedEfficiency;
-            gpSireData.selectionIndex = this.gpSireSelectionIndex;
-            gpSireData.breedId = gpOneData.breedId;
-            gpSireData.status = this.determineStatus(gpSireData);
-            gpDamData.adgBirth = this.gpDamComputedAdgFromBirth;
-            gpDamData.adgTest = this.gpDamComputedAdgOnTest;
-            gpDamData.feedEfficiency = this.gpDamComputedFeedEfficiency;
-            gpDamData.selectionIndex = this.gpDamSelectionIndex;
-            gpDamData.breedId = this.gpOneData.breedId;
-            gpDamData.status = this.determineStatus(gpDamData);
-
-            // Add to server's database
-            axios.post('/breeder/manage-swine/register', {
-                gpOne: gpOneData,
-                gpSire: gpSireData,
-                gpDam: gpDamData
-            }).then(function (response) {
-                var data = response.data;
-
-                // Mutate state of gpOne
-                _this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'id',
-                    value: data.id
-                });
-
-                _this.$store.commit('updateValue', {
-                    instance: 'gpOne',
-                    property: 'regNo',
-                    value: data.registration_no
-                });
-
-                _this.successfullyRegistered = true;
-                // this.enableButtons(submitButton, event.target, 'Register Swine and Generate Certificate');
-                Materialize.toast('Registration Successful! You can now upload swine photos', 4000, 'green lighten-1');
-            }).catch(function (error) {
-=======
-        renameFile: function renameFile(file, response) {
-            var previewElement = file.previewElement;
-            var imageDetails = response;
-
-            // setAttribute is for photo id purposes. Chose not to put it
-            // into vue local data storage for ease of use in
-            // fetching id upon removal of file
-            previewElement.setAttribute('data-photo-id', imageDetails.id);
-            previewElement.getElementsByClassName('dz-filename')[0].getElementsByTagName('span')[0].innerHTML = imageDetails.name;
-
-            // Trigger addedPhotoEvent
-            this.$emit('addedPhotoEvent', {
-                data: imageDetails,
-                orientation: this.orientation
-            });
-        },
-        removeFile: function removeFile(file, error, xhr) {
-            var photoId = file.previewElement.getAttribute('data-photo-id');
-
-            axios.delete('/breeder/manage-swine/photo/' + photoId + '/orientation/' + this.orientation).then(function (response) {}).catch(function (error) {
->>>>>>> Stashed changes
-                console.log(error);
-            });
-
-            // Trigger removedPhotoEvent
-            this.$emit('removedPhotoEvent', {
-                orientation: this.orientation
-            });
-        },
-<<<<<<< Updated upstream
-        determineStatus: function determineStatus(parentData) {
-            // Help determine if parent to be added is
-            // registered, imported, or new
-            var status = '';
-
-            if (parentData.existingRegNo) status = 'registered';else if (parentData.imported.regNo) status = 'imported';else status = 'new';
-
-            return status;
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
-            this.$emit('goToTabEvent', tabId);
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Component mounted.');
-=======
-        template: function template() {
-            return '\n                <div class="dz-preview dz-file-preview">\n                    <div class="dz-image" style="width: 200px;height: 200px">\n                        <img data-dz-thumbnail />\n                    </div>\n                    <div class="dz-details">\n                        <div class="dz-size"><span data-dz-size></span></div>\n                        <div class="dz-filename"><span data-dz-name></span></div>\n                    </div>\n                    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>\n                    <div class="dz-error-message"><span data-dz-errormessage></span></div>\n                    <div class="dz-success-mark"><i class="fa fa-check"></i></div>\n                    <div class="dz-error-mark"><i class="fa fa-close"></i></div>\n                </div>\n            ';
-        }
->>>>>>> Stashed changes
-    }
-});
-
-/***/ }),
-<<<<<<< Updated upstream
-/* 155 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "summary"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v("Summary")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12 m12 l6 offset-l3",
-    attrs: {
-      "id": "swineinfo-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('table', {
-    staticClass: "striped summary-table"
-  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v(" Laboratory Result No. (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.labResultNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpOneData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Breed ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformBreedId(_vm.gpOneData.breedId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Sex ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.capitalize(_vm.gpOneData.sex)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneData.bftCollected) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Selection Index ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpOneSelectionIndex) + " ")])])])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m12 l6",
-    attrs: {
-      "id": "gp-sire-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('h6', {
-    staticClass: "center-align"
-  }, [(_vm.gpSireData.existingRegNo) ? [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (Registered)\n                                    ")])] : (_vm.gpSireData.imported.regNo) ? [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (Imported)\n                                    ")])] : [_c('b', [_vm._v("\n                                        GP Sire Information\n                                        (New)\n                                    ")])]], 2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
-    staticClass: "striped summary-table"
-  }, [_c('tbody', [(_vm.gpSireData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpSireData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Laboratory Result No. (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.labResultNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpSireData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireData.bftCollected) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Selection Index ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpSireSelectionIndex) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 m12 l6",
-    attrs: {
-      "id": "gp-dam-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('h6', {
-    staticClass: "center-align"
-  }, [(_vm.gpDamData.existingRegNo) ? [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (Registered)\n                                    ")])] : (_vm.gpDamData.imported.regNo) ? [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (Imported)\n                                    ")])] : [_c('b', [_vm._v("\n                                        GP Dam Information\n                                        (New)\n                                    ")])]], 2), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
-    staticClass: "striped summary-table"
-  }, [_c('tbody', [(_vm.gpDamData.imported.regNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.regNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.farmOfOrigin) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Country of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.imported.countryOfOrigin) + " ")])])] : [(_vm.gpDamData.existingRegNo) ? [_c('tr', [_c('td', [_vm._v(" Registration Number ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.existingRegNo) + " ")])])] : _vm._e(), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Laboratory Result No. (optional) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.labResultNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Of Origin ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.transformFarmId(_vm.gpDamData.farmFromId)) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Farm Swine ID / Earmark ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.farmSwineId) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Number of Teats ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.teatNo) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Date ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthDate) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Birth Weight ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.birthWeight) + " kg")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Parity ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.parity) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (M) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveMale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total (F) born alive ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeAliveFemale) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Littersize at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.littersizeWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Total litterweight at weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.litterweightWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date at Weaning ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.dateWeaning) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG from Birth (180 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgFromBirth) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Adjusted ADG on Test (90-150 days) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedAdgOnTest) + " kg/day")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Feed Efficiency ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamComputedFeedEfficiency) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Backfat Thickness (BFT) ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bft) + " mm")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Date of BFT Collection ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamData.bftCollected) + " ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(" Selection Index ")]), _vm._v(" "), _c('td', [_vm._v(" " + _vm._s(_vm.gpDamSelectionIndex) + " ")])])]], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 m12 l6 offset-l3",
-    attrs: {
-      "id": "swinecart-container"
-    }
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.gpOneSwinecart),
-      expression: "gpOneSwinecart"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "check-swinecart"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.gpOneSwinecart) ? _vm._i(_vm.gpOneSwinecart, null) > -1 : (_vm.gpOneSwinecart)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.gpOneSwinecart,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.gpOneSwinecart = $$a.concat([$$v]))
-          } else {
-            $$i > -1 && (_vm.gpOneSwinecart = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-          }
-        } else {
-          _vm.gpOneSwinecart = $$c
-        }
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "check-swinecart"
-    }
-  }, [_vm._v("Include this swine in SwineCart?")])])])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "card-action center-align",
-    attrs: {
-      "id": "summary-card-action"
-    }
-  }, [(!_vm.successfullyRegistered) ? _c('button', {
-    staticClass: "btn waves-effect waves-light register-and-generate-cert",
-    attrs: {
-      "href": "#!",
-      "type": "submit",
-      "name": "action"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.registerSwine($event)
-      }
-    }
-  }, [_vm._v("\n                Register Swine and Generate Certificate\n            ")]) : _vm._e(), _vm._v(" "), (_vm.successfullyRegistered) ? _c('a', {
-    staticClass: "btn-flat waves-effect waves-light view-generated-cert black-text",
-    attrs: {
-      "href": _vm.registryCertificateLink,
-      "target": "_blank",
-      "name": "action"
-    }
-  }, [_vm._v("\n                View Generated Certificate\n            ")]) : _vm._e(), _vm._v(" "), (_vm.successfullyRegistered) ? _c('a', {
-    staticClass: "btn waves-effect waves-light",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.triggerGoToTabEvent('photos')
-      }
-    }
-  }, [_vm._v("\n                Upload Swine Photos\n            ")]) : _vm._e()])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v(" Swine Information ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("SwineCart")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4aec38b4", module.exports)
-  }
-}
-
-/***/ }),
-/* 156 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(157)
+  __webpack_require__(163)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(159),
-  /* template */
   __webpack_require__(165),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-5bf32331",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/RegisterSwineUploadPhoto.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] RegisterSwineUploadPhoto.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5bf32331", Component.options)
-  } else {
-    hotAPI.reload("data-v-5bf32331", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 157 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(158);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("d3795bfc", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5bf32331\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegisterSwineUploadPhoto.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 158 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n#photos > .card[data-v-5bf32331] {\n    padding: 0;\n}\n#photos-card-action[data-v-5bf32331] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n#uploaded-photos-container[data-v-5bf32331] {\n    margin-top: 3rem;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 159 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        swineId: Number,
-        uploadurl: String
-    },
-
-    components: {
-        RegisterSwineUploadPhotoDropzone: __WEBPACK_IMPORTED_MODULE_0__RegisterSwineUploadPhotoDropzone_vue___default.a
-    },
-
-    computed: {
-        imageFiles: function imageFiles() {
-            return this.$store.getters.imageFiles;
-        },
-        gpOneRegistrationNo: function gpOneRegistrationNo() {
-            return this.$store.state.registerSwine.gpOne.regNo;
-        }
-    },
-
-    methods: {
-        addPhotoToImageFiles: function addPhotoToImageFiles(imageDetails) {
-            // Put information of uploaded photos in vuex state
-            this.$store.commit('addToImageFiles', {
-                imageDetails: imageDetails.data,
-                orientation: imageDetails.orientation
-            });
-        },
-        removePhotoFromImageFiles: function removePhotoFromImageFiles(imageDetails) {
-            // Remove photo from vuex state
-            this.$store.commit('removeFromImageFiles', {
-                orientation: imageDetails.orientation
-            });
-        },
-        savePhotos: function savePhotos(event) {
-            var sidePhoto = this.imageFiles.side;
-
-            // Check if there is a side photo
-            if (!_.isEmpty(sidePhoto)) {
-                var savePhotosButton = $('.save-photos-button');
-
-                this.disableButtons(savePhotosButton, event.target, 'Saving...');
-                Materialize.toast('Photos saved.', 1500, 'green lighten-1');
-
-                // Remove onbeforeunload event
-                window.onbeforeunload = null;
-
-                // Reload page
-                setTimeout(function () {
-                    window.location.reload();
-                }, 1600);
-            } else {
-                Materialize.toast('Photo in side view orientation is required.', 3500, 'orange darken-1');
-            }
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 160 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(161)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(163),
   /* template */
-  __webpack_require__(164),
+  __webpack_require__(166),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -21466,13 +18726,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(162);
+var content = __webpack_require__(164);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -21492,7 +18752,7 @@ if(false) {
 }
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -21506,7 +18766,7 @@ exports.push([module.i, "/* Custom style from vue-dropzone */\n.vue-dropzone[dat
 
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21609,7 +18869,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -21661,68 +18921,7 @@ if (false) {
 }
 
 /***/ }),
-/* 165 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "photos"
-=======
-/* 164 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('dropzone', {
-    ref: _vm.dropzoneId,
-    attrs: {
-      "id": _vm.dropzoneId,
-      "url": _vm.uploadurl,
-      "headers": _vm.csrfHeader,
-      "use-custom-dropzone-options": true,
-      "dropzone-options": _vm.customOptions
-    },
-    on: {
-      "vdropzone-success": _vm.renameFile,
-      "vdropzone-removed-file": _vm.removeFile
-    }
-  }, [_c('input', {
-    attrs: {
-      "type": "hidden",
-      "name": "swineId"
-    },
-    domProps: {
-      "value": _vm.swineId
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "hidden",
-      "name": "orientation"
-    },
-    domProps: {
-      "value": _vm.orientation
-    }
-  }), _vm._v(" "), _c('input', {
-    attrs: {
-      "type": "hidden",
-      "name": "token"
-    },
-    domProps: {
-      "value": _vm.csrfToken
-    }
-  })])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-babde828", module.exports)
-  }
-}
-
-/***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -21836,159 +19035,7 @@ if (false) {
 }
 
 /***/ }),
-/* 166 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s10 offset-s1"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "row",
-    staticStyle: {
-      "margin-bottom": "0"
-    }
-  }, [_c('div', {
-    staticClass: "col s12",
-    staticStyle: {
-      "margin-top": "2rem",
-      "padding": "0"
-    },
-    attrs: {
-      "id": "add-swine-tabs"
-    }
-  }, [_c('ul', {
-    staticClass: "tabs tabs-fixed-width z-depth-2"
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.summary
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#summary"
-    }
-  }, [_vm._v("Summary")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s2",
-    class: {
-      'disabled': _vm.tabDisables.photos
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "#photos"
-    }
-  }, [_vm._v("Photos")])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "basic-information"
->>>>>>> Stashed changes
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-<<<<<<< Updated upstream
-  }, [_vm._v("Upload Photos")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h5', [_vm._v(_vm._s(_vm.gpOneRegistrationNo))]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('br'), _c('br'), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s6 m6 l3"
-  }, [_vm._m(1), _vm._v(" "), _c('register-swine-upload-photo-dropzone', {
-    attrs: {
-      "dropzoneId": 'uploadSidePhotoDropzone',
-      "orientation": 'side',
-      "swineId": _vm.swineId,
-      "uploadurl": _vm.uploadurl
-    },
-    on: {
-      "addedPhotoEvent": _vm.addPhotoToImageFiles,
-      "removedPhotoEvent": _vm.removePhotoFromImageFiles
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 m6 l3"
-  }, [_vm._m(2), _vm._v(" "), _c('register-swine-upload-photo-dropzone', {
-    attrs: {
-      "dropzoneId": 'uploadFrontPhotoDropzone',
-      "orientation": 'front',
-      "swineId": _vm.swineId,
-      "uploadurl": _vm.uploadurl
-    },
-    on: {
-      "addedPhotoEvent": _vm.addPhotoToImageFiles,
-      "removedPhotoEvent": _vm.removePhotoFromImageFiles
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 m6 l3"
-  }, [_vm._m(3), _vm._v(" "), _c('register-swine-upload-photo-dropzone', {
-    attrs: {
-      "dropzoneId": 'uploadBackPhotoDropzone',
-      "orientation": 'back',
-      "swineId": _vm.swineId,
-      "uploadurl": _vm.uploadurl
-    },
-    on: {
-      "addedPhotoEvent": _vm.addPhotoToImageFiles,
-      "removedPhotoEvent": _vm.removePhotoFromImageFiles
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s6 m6 l3"
-  }, [_vm._m(4), _vm._v(" "), _c('register-swine-upload-photo-dropzone', {
-    attrs: {
-      "dropzoneId": 'uploadTopPhotoDropzone',
-      "orientation": 'top',
-      "swineId": _vm.swineId,
-      "uploadurl": _vm.uploadurl
-    },
-    on: {
-      "addedPhotoEvent": _vm.addPhotoToImageFiles,
-      "removedPhotoEvent": _vm.removePhotoFromImageFiles
-    }
-  })], 1), _vm._v(" "), _vm._m(5)])]), _vm._v(" "), _c('div', {
-    staticClass: "card-action center-align",
-    attrs: {
-      "id": "photos-card-action"
-    }
-  }, [_c('button', {
-    staticClass: "btn waves-effect waves-light save-photos-button",
-    attrs: {
-      "href": "#!",
-      "type": "submit",
-      "name": "action"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.savePhotos($event)
-      }
-    }
-  }, [_vm._v("\n                Save Photos\n            ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('blockquote', {
-    staticClass: "info"
-  }, [_vm._v("\n                Please upload good quality images with recommended\n                "), _c('b', [_vm._v("side")]), _vm._v(", "), _c('b', [_vm._v("front")]), _vm._v(", "), _c('b', [_vm._v("back")]), _vm._v(", and "), _c('b', [_vm._v("top")]), _vm._v(" orientations. "), _c('br'), _vm._v("\n                Recommended image file formats are "), _c('b', [_vm._v("JPEG")]), _vm._v(" and "), _c('b', [_vm._v("PNG")]), _vm._v(".\n            ")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Side View *")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Front View")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Back View")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Top View")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('p', [_c('br'), _vm._v("\n                        * Photo in side view orientation is required.\n                    ")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5bf32331", module.exports)
-  }
-}
-
-/***/ }),
-/* 166 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22210,19 +19257,19 @@ if (false) {
 }
 
 /***/ }),
-/* 167 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(168)
+  __webpack_require__(170)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(170),
+  __webpack_require__(172),
   /* template */
-  __webpack_require__(171),
+  __webpack_require__(173),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -22254,13 +19301,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(169);
+var content = __webpack_require__(171);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -22280,7 +19327,7 @@ if(false) {
 }
 
 /***/ }),
-/* 169 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -22294,11 +19341,33 @@ exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    m
 
 
 /***/ }),
-/* 170 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -22733,726 +19802,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 171 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "col s4 m3 l2"
-  }, [_c('ul', {
-    staticClass: "collapsible",
-    attrs: {
-      "data-collapsible": "expandable"
-    }
-  }, [_c('li', [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
-  }, [_c('p', {
-    staticClass: "range-field"
-  }, [_vm._l((_vm.breeds), function(breed) {
-    return [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.filterOptions.breed),
-        expression: "filterOptions.breed"
-=======
-  }, [_vm._v("Basic Information")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Breed",
-      "options": _vm.breeds
-    },
-    on: {
-      "select": function (val) {
-        _vm.gpOneBreedId = val
-      }
-    },
-    model: {
-      value: (_vm.gpOneBreedId),
-      callback: function($$v) {
-        _vm.gpOneBreedId = $$v
-      },
-      expression: "gpOneBreedId"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Sex",
-      "options": [{
-        text: 'Male',
-        value: 'male'
-      }, {
-        text: 'Female',
-        value: 'female'
-      }]
-    },
-    on: {
-      "select": function (val) {
-        _vm.gpOneSex = val
-      }
-    },
-    model: {
-      value: (_vm.gpOneSex),
-      callback: function($$v) {
-        _vm.gpOneSex = $$v
-      },
-      expression: "gpOneSex"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.gpOneBirthDate = val
-      }
-    },
-    model: {
-      value: (_vm.gpOneBirthDate),
-      callback: function($$v) {
-        _vm.gpOneBirthDate = $$v
-      },
-      expression: "gpOneBirthDate"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Birth Date ")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Farm Of Origin",
-      "options": _vm.farmoptions
-    },
-    on: {
-      "select": function (val) {
-        _vm.gpOneFarmFromId = val
-      }
-    },
-    model: {
-      value: (_vm.gpOneFarmFromId),
-      callback: function($$v) {
-        _vm.gpOneFarmFromId = $$v
-      },
-      expression: "gpOneFarmFromId"
-    }
-  })], 1), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('a', {
-    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.goToTab('gp-1')
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('register-swine-properties', {
-    on: {
-      "goToTabEvent": _vm.goToTab
-    }
-  }), _vm._v(" "), _c('register-swine-parents-properties', {
-    attrs: {
-      "farmoptions": _vm.farmoptions
-    },
-    on: {
-      "goToTabEvent": _vm.goToTab
-    }
-  }), _vm._v(" "), _c('register-swine-summary', {
-    attrs: {
-      "breeds": _vm.breeds,
-      "farmoptions": _vm.farmoptions
-    },
-    on: {
-      "goToTabEvent": _vm.goToTab
-    }
-  }), _vm._v(" "), _c('register-swine-upload-photo', {
-    attrs: {
-      "swineId": _vm.gpOneId,
-      "uploadurl": _vm.uploadurl
-    }
-  })], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Register Swine ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', {
-    staticClass: "tab col s3"
-  }, [_c('a', {
-    attrs: {
-      "href": "#basic-information"
-    }
-  }, [_vm._v("Basic Information")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', {
-    staticClass: "tab col s2"
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-1"
-    }
-  }, [_vm._v("GP1")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('li', {
-    staticClass: "tab col s3"
-  }, [_c('a', {
-    attrs: {
-      "href": "#gp-parents"
-    }
-  }, [_vm._v("GP Parents")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-ee7fd1e0", module.exports)
-  }
-}
-
-/***/ }),
-/* 167 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(168)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(170),
-  /* template */
-  __webpack_require__(171),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewRegisteredSwine.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ViewRegisteredSwine.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-181327ec", Component.options)
-  } else {
-    hotAPI.reload("data-v-181327ec", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 168 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(169);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("6f86576b", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-181327ec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewRegisteredSwine.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-181327ec\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewRegisteredSwine.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 169 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\ndiv#options-container {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\ndiv#view-icons-container {\n    cursor: pointer;\n}\ndiv#empty-swine-container {\n    padding-top: 1rem;\n    padding-bottom: 1rem;\n}\nspan#view-label {\n    margin-right: 1rem;\n}\n.custom-secondary-btn {\n    border: 1px solid;\n    background-color: white !important;\n}\na#list-swinecart-icon {\n    margin-right: 2rem;\n}\n\n/* Collapsible customizations */\ndiv.collapsible-body {\n    background-color: rgba(255, 255, 255, 0.7);\n}\np.range-field {\n    margin: 0;\n}\np.range-field label {\n    color: black;\n}\n\n/* Card customizations */\n.card-image {\n    background-color: white;\n}\n.card-image img {\n    margin: 0 auto;\n\twidth: auto;\n\tpadding: 0.5rem;\n}\n.card-action a {\n    margin-top: 0.5rem;\n    margin-bottom: 0.5rem;\n}\n\n/* Search component overrides */\n.input-field label[for='search'] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search {\n    color: black;\n}\n\n/* Medium Screen */\n@media only screen and (min-width: 601px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 160px;\n}\n}\n\n/* Large Screen */\n@media only screen and (min-width: 993px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 168px;\n}\n}\n\n/* Extra Large Screen */\n@media only screen and (min-width: 1100px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 180px;\n}\n}\n\n/* Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 210px;\n}\n}\n\n/* Super Super Extra Large Screen */\n@media only screen and (min-width: 1560px){\n    /* Image resize */\n#card-layout-container .card-image img {\n        height: 270px;\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 170 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        breeds: Array,
-        currentFilterOptions: Object,
-        farmoptions: Array,
-        currentSearchParameter: String,
-        swines: Array,
-        viewUrl: String
-    },
-
-    data: function data() {
-        return {
-            swinePhotosDirectory: '/storage/images/swine/',
-            viewLayout: 'card',
-            pageNumber: 0,
-            paginationSize: 15,
-            filterOptions: this.currentFilterOptions,
-            searchParameter: this.currentSearchParameter,
-            viewPhotosModal: {
-                registrationNo: '',
-                photos: []
-            }
-        };
-    },
-
-
-    computed: {
-        pageCount: function pageCount() {
-            var l = this.swines.length;
-            var s = this.paginationSize;
-
-            return Math.ceil(l / s);
-        },
-        paginatedSwines: function paginatedSwines() {
-            var start = this.pageNumber * this.paginationSize;
-            var end = start + this.paginationSize;
-
-            return _.sortBy(this.swines, ['registration_no']).slice(start, end);
-        }
-    },
-
-    watch: {
-        filterOptions: {
-            handler: function handler(oldValue, newValue) {
-                // Watch filterOptions object for url rewrite
-                this.rewriteUrl(newValue, this.searchParameter);
-            },
-            deep: true
-        }
-    },
-
-    methods: {
-        previousPage: function previousPage() {
-            if (this.pageNumber !== 0) this.pageNumber--;
-        },
-        nextPage: function nextPage() {
-            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
-        },
-        goToPage: function goToPage(page) {
-            this.pageNumber = page - 1;
-        },
-        getIndex: function getIndex(id, arrayToBeSearched) {
-            // Return index of object to find
-            for (var i = 0; i < arrayToBeSearched.length; i++) {
-                if (arrayToBeSearched[i].id === id) return i;
-            }
-        },
-        rewriteUrl: function rewriteUrl(filterOptions, searchParameter) {
-            /**
-             *  URL rewrite syntax: 
-             *  ?q=value*
-             *  &breed=value[+value]*
-             *  &sex=value[+value]
-             *  &farm=value[+value]*
-             *  &sc=[0|1]
-             */
-            var url = this.viewUrl;
-            var parameters = [];
-
-            // Put search parameter in parameters if it is non-empty
-            if (searchParameter.length > 0) {
-                var qParameter = 'q=' + searchParameter;
-
-                parameters.push(qParameter);
-            }
-
-            // Put breed parameter in parameters if filter is chosen
-            if (filterOptions.breed.length > 0) {
-                var breedParameter = 'breed=';
-                breedParameter += filterOptions.breed.join('+');
-
-                parameters.push(breedParameter);
-            }
-
-            // Put sex parameter in parameters if filter is chosen
-            if (filterOptions.sex.length > 0) {
-                var sexParameter = 'sex=';
-                sexParameter += filterOptions.sex.join('+');
-
-                parameters.push(sexParameter);
-            }
-
-            // Put farm parameter in parameters if filter is chosen
-            if (filterOptions.farm.length > 0) {
-                var farmParameter = 'farm=';
-                farmParameter += filterOptions.farm.join('+');
-
-                parameters.push(farmParameter);
-            }
-
-            // Put swineCart parameter in parameters if filter is chosen
-            if (filterOptions.sc) {
-                var swineCartParameter = 'sc=' + filterOptions.sc;
-
-                parameters.push(swineCartParameter);
-            }
-
-            // Redirect to new url
-            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
-        },
-        viewPhotos: function viewPhotos(swineId) {
-            // Prepare needed data for modal
-            var index = this.getIndex(swineId, this.swines);
-            var swine = this.swines[index];
-
-            this.viewPhotosModal.registrationNo = swine.registration_no;
-            this.viewPhotosModal.photos = swine.photos;
-
-            $('#view-photos-modal').modal('open');
-        }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
-    }
-});
-
-/***/ }),
-/* 171 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -23600,34 +19950,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         rawName: "v-model",
         value: (_vm.filterOptions.farm),
         expression: "filterOptions.farm"
->>>>>>> Stashed changes
       }],
       staticClass: "filled-in",
       attrs: {
         "type": "checkbox",
-<<<<<<< Updated upstream
-        "id": breed.text
-      },
-      domProps: {
-        "value": breed.value,
-        "checked": Array.isArray(_vm.filterOptions.breed) ? _vm._i(_vm.filterOptions.breed, breed.value) > -1 : (_vm.filterOptions.breed)
-      },
-      on: {
-        "change": function($event) {
-          var $$a = _vm.filterOptions.breed,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = breed.value,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (_vm.$set(_vm.filterOptions, "breed", $$a.concat([$$v])))
-            } else {
-              $$i > -1 && (_vm.$set(_vm.filterOptions, "breed", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-            }
-          } else {
-            _vm.$set(_vm.filterOptions, "breed", $$c)
-=======
         "id": farm.text
       },
       domProps: {
@@ -23649,23 +19975,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
             }
           } else {
             _vm.$set(_vm.filterOptions, "farm", $$c)
->>>>>>> Stashed changes
           }
         }
       }
     }), _vm._v(" "), _c('label', {
       attrs: {
-<<<<<<< Updated upstream
-        "for": breed.text
-      }
-    }, [_vm._v(" " + _vm._s(breed.text) + " ")]), _vm._v(" "), _c('br')]
-  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(3), _vm._v(" "), _c('div', {
-=======
         "for": farm.text
       }
     }, [_vm._v(" " + _vm._s(farm.text) + " ")])])]
   })], 2)])]), _vm._v(" "), _c('li', [_vm._m(5), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
     staticClass: "collapsible-body"
   }, [_c('p', {
     staticClass: "range-field"
@@ -23673,374 +19991,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.filterOptions.sex),
-      expression: "filterOptions.sex"
-=======
       value: (_vm.filterOptions.sc),
       expression: "filterOptions.sc"
->>>>>>> Stashed changes
     }],
     staticClass: "filled-in",
     attrs: {
-      "true-value": "1",
-      "false-value": "0",
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "male",
-      "value": "male"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.filterOptions.sex) ? _vm._i(_vm.filterOptions.sex, "male") > -1 : (_vm.filterOptions.sex)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.filterOptions.sex,
-=======
-      "id": "swinecart"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.filterOptions.sc) ? _vm._i(_vm.filterOptions.sc, null) > -1 : _vm._q(_vm.filterOptions.sc, "1")
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.filterOptions.sc,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? ("1") : ("0");
-        if (Array.isArray($$a)) {
-          var $$v = "male",
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.filterOptions, "sex", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.filterOptions, "sex", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.filterOptions, "sex", $$c)
-=======
-            $$i < 0 && (_vm.$set(_vm.filterOptions, "sc", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.filterOptions, "sc", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.filterOptions, "sc", $$c)
->>>>>>> Stashed changes
-        }
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-<<<<<<< Updated upstream
-      "for": "male"
-    }
-  }, [_vm._v("Male")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.filterOptions.sex),
-      expression: "filterOptions.sex"
-=======
-      "for": "swinecart"
-    }
-  }, [_vm._v("Included in SwineCart")])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s8 m9 l10"
-  }, [_c('div', {
-    staticClass: "col s8 offset-s2"
-  }, [_c('nav', {
-    attrs: {
-      "id": "search-container"
-    }
-  }, [_c('div', {
-    staticClass: "nav-wrapper white",
-    attrs: {
-      "id": "search-field"
-    }
-  }, [_c('div', {
-    staticStyle: {
-      "height": "1px"
-    }
-  }), _vm._v(" "), _c('form', {
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.rewriteUrl(_vm.filterOptions, _vm.searchParameter)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.searchParameter),
-      expression: "searchParameter"
-    }],
-    attrs: {
-      "id": "search",
-      "name": "q",
-      "type": "search",
-      "placeholder": "Type swine registration no. and press enter to search",
-      "autocomplete": "off"
-    },
-    domProps: {
-      "value": (_vm.searchParameter)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.searchParameter = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("close")])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "options-container"
-    }
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
-    staticClass: "left",
-    attrs: {
-      "id": "view-icons-container"
-    }
-  }, [_c('i', {
-    staticClass: "material-icons tooltipped",
-    class: _vm.viewLayout === 'card' ? 'blue-text' : 'grey-text',
-    attrs: {
-      "data-position": "top",
-      "data-delay": "50",
-      "data-tooltip": "Card"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.viewLayout = 'card'
-      }
-    }
-  }, [_vm._v("\n                    view_module\n                ")]), _vm._v(" "), _c('i', {
-    staticClass: "material-icons tooltipped",
-    class: _vm.viewLayout === 'list' ? 'blue-text' : 'grey-text',
-    attrs: {
-      "data-position": "top",
-      "data-delay": "50",
-      "data-tooltip": "List"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.viewLayout = 'list'
-      }
-    }
-  }, [_vm._v("\n                    view_list\n                ")])])]), _vm._v(" "), _c('div', {
-    attrs: {
-      "id": "card-layout-container"
-    }
-  }, _vm._l((_vm.paginatedSwines), function(swine, index) {
-    return _c('div', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.viewLayout === 'card'),
-        expression: "viewLayout === 'card'"
-      }],
-      key: swine.id,
-      staticClass: "col s12 m6 l4"
-    }, [_c('div', {
-      staticClass: "card"
-    }, [_c('div', {
-      staticClass: "card-image"
-    }, [_c('img', {
-      staticClass: "materialboxed",
-      attrs: {
-        "src": _vm.swinePhotosDirectory + swine.photos[0].name
-      }
-    }), _vm._v(" "), (swine.swinecart) ? _c('a', {
-      staticClass: "btn-floating halfway-fab red lighten-1 tooltipped",
-      attrs: {
-        "data-position": "top",
-        "data-delay": "50",
-        "data-tooltip": "Included in SwineCart"
-      }
-    }, [_c('i', {
-      staticClass: "material-icons"
-    }, [_vm._v("shopping_cart")])]) : _vm._e()]), _vm._v(" "), _c('div', {
-      staticClass: "card-content"
-    }, [_c('span', {
-      staticClass: "card-title flow-text"
-    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                            " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                            " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                        ")])]), _vm._v(" "), _c('div', {
-      staticClass: "card-action"
-    }, [_c('a', {
-      staticClass: "btn blue darken-1 z-depth-0",
-      attrs: {
-        "href": ("/breeder/registry-certificate/" + (swine.id)),
-        "target": "_blank"
-      }
-    }, [_vm._v("\n                            Certificate\n                        ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
-      attrs: {
-        "href": "#"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.viewPhotos(swine.id)
-        }
-      }
-    }, [_vm._v("\n                            Photos\n                        ")])])])])
-  })), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.viewLayout === 'list'),
-      expression: "viewLayout === 'list'"
->>>>>>> Stashed changes
-    }],
-    staticClass: "col s12",
-    attrs: {
-<<<<<<< Updated upstream
-      "type": "checkbox",
-      "id": "female",
-      "value": "female"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.filterOptions.sex) ? _vm._i(_vm.filterOptions.sex, "female") > -1 : (_vm.filterOptions.sex)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.filterOptions.sex,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = "female",
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.filterOptions, "sex", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.filterOptions, "sex", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.filterOptions, "sex", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "female"
-    }
-  }, [_vm._v("Female")])])])]), _vm._v(" "), _c('li', [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
-  }, [_c('p', {
-    staticClass: "range-field"
-  }, [_vm._l((_vm.farmoptions), function(farm) {
-    return [_c('div', [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.filterOptions.farm),
-        expression: "filterOptions.farm"
-      }],
-      staticClass: "filled-in",
-      attrs: {
-        "type": "checkbox",
-        "id": farm.text
-      },
-      domProps: {
-        "value": farm.value,
-        "checked": Array.isArray(_vm.filterOptions.farm) ? _vm._i(_vm.filterOptions.farm, farm.value) > -1 : (_vm.filterOptions.farm)
-      },
-      on: {
-        "change": function($event) {
-          var $$a = _vm.filterOptions.farm,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = farm.value,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (_vm.$set(_vm.filterOptions, "farm", $$a.concat([$$v])))
-            } else {
-              $$i > -1 && (_vm.$set(_vm.filterOptions, "farm", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-            }
-          } else {
-            _vm.$set(_vm.filterOptions, "farm", $$c)
-          }
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": farm.text
-      }
-    }, [_vm._v(" " + _vm._s(farm.text) + " ")])])]
-  })], 2)])]), _vm._v(" "), _c('li', [_vm._m(5), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
-  }, [_c('p', {
-    staticClass: "range-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.filterOptions.sc),
-      expression: "filterOptions.sc"
-=======
-      "id": "list-layout-container"
-    }
-  }, [_c('ul', {
-    staticClass: "collection"
-  }, _vm._l((_vm.paginatedSwines), function(swine, index) {
-    return _c('li', {
-      key: swine.id,
-      staticClass: "collection-item avatar"
-    }, [_c('img', {
-      staticClass: "circle materialboxed",
-      attrs: {
-        "src": _vm.swinePhotosDirectory + swine.photos[0].name,
-        "alt": ""
-      }
-    }), _vm._v(" "), _c('span', {
-      staticClass: "title"
-    }, [_c('b', [_vm._v(_vm._s(swine.registration_no))])]), _vm._v(" "), _c('p', {}, [_vm._v("\n                        " + _vm._s(swine.farm.name) + ", " + _vm._s(swine.farm.province) + " "), _c('br'), _vm._v("\n                        " + _vm._s(swine.breed.title) + " (" + _vm._s(swine.swine_properties[0].value) + ")\n                    ")]), _vm._v(" "), _c('div', {
-      staticClass: "secondary-content"
-    }, [(swine.swinecart) ? _c('a', {
-      staticClass: "btn-floating red lighten-1 z-depth-0 tooltipped",
-      attrs: {
-        "id": "list-swinecart-icon",
-        "data-position": "top",
-        "data-delay": "50",
-        "data-tooltip": "Included in SwineCart"
-      }
-    }, [_c('i', {
-      staticClass: "material-icons"
-    }, [_vm._v("shopping_cart")])]) : _vm._e(), _vm._v(" "), _c('a', {
-      staticClass: "btn blue darken-1 z-depth-0",
-      attrs: {
-        "href": ("/breeder/registry-certificate/" + (swine.id)),
-        "target": "_blank"
-      }
-    }, [_vm._v("\n                            Certificate\n                        ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
-      attrs: {
-        "href": "#!"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.viewPhotos(swine.id)
-        }
-      }
-    }, [_vm._v("\n                            Photos\n                        ")])])])
-  }))]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.paginatedSwines.length === 0),
-      expression: "paginatedSwines.length === 0"
->>>>>>> Stashed changes
-    }],
-    staticClass: "col s12 center-align",
-    attrs: {
-<<<<<<< Updated upstream
       "true-value": "1",
       "false-value": "0",
       "type": "checkbox",
@@ -24178,10 +20133,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card"
     }, [_c('div', {
       staticClass: "card-image"
-    }, [_c('img', {
+    }, [(swine.photos.length > 0) ? _c('img', {
       staticClass: "materialboxed",
       attrs: {
         "src": _vm.swinePhotosDirectory + swine.photos[0].name
+      }
+    }) : _c('img', {
+      staticClass: "materialboxed",
+      attrs: {
+        "src": _vm.swinePhotosDirectory + 'default.jpg',
+        "alt": "No swine photo found."
       }
     }), _vm._v(" "), (swine.swinecart) ? _c('a', {
       staticClass: "btn-floating halfway-fab red lighten-1 tooltipped",
@@ -24233,11 +20194,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       key: swine.id,
       staticClass: "collection-item avatar"
-    }, [_c('img', {
+    }, [(swine.photos.length > 0) ? _c('img', {
       staticClass: "circle materialboxed",
       attrs: {
         "src": _vm.swinePhotosDirectory + swine.photos[0].name,
         "alt": ""
+      }
+    }) : _c('img', {
+      staticClass: "circle materialboxed",
+      attrs: {
+        "src": _vm.swinePhotosDirectory + 'default.jpg',
+        "alt": "No swine photo found."
       }
     }), _vm._v(" "), _c('span', {
       staticClass: "title"
@@ -24308,36 +20275,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.goToPage(i)
         }
       }
-=======
-      "id": "empty-swine-container"
-    }
-  }, [_vm._m(8)]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align pagination-container"
-  }, [_c('ul', {
-    staticClass: "pagination"
-  }, [_c('li', {
-    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.previousPage()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
-    return _c('li', {
-      staticClass: "waves-effect",
-      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
-    }, [_c('a', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.goToPage(i)
-        }
-      }
->>>>>>> Stashed changes
     }, [_vm._v(" " + _vm._s(i) + " ")])])
   }), _vm._v(" "), _c('li', {
     class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
@@ -24361,7 +20298,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "material-icons right modal-close"
   }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }, _vm._l((_vm.viewPhotosModal.photos), function(photo) {
+  }, [_vm._l((_vm.viewPhotosModal.photos), function(photo) {
     return _c('div', {
       key: photo.id,
       staticClass: "col s4"
@@ -24374,7 +20311,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": _vm.swinePhotosDirectory + photo.name
       }
     })])])])
-  }))]), _vm._v(" "), _vm._m(9)])])
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.viewPhotosModal.photos.length === 0),
+      expression: "viewPhotosModal.photos.length === 0"
+    }],
+    staticClass: "col s4"
+  }, [_c('p', [_vm._v(" Sorry, no photos available ")])])], 2)]), _vm._v(" "), _vm._m(9)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s12"
@@ -24439,19 +20384,19 @@ if (false) {
 }
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(173)
+  __webpack_require__(175)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(175),
+  __webpack_require__(177),
   /* template */
-  __webpack_require__(181),
+  __webpack_require__(183),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -24483,13 +20428,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(174);
+var content = __webpack_require__(176);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -24509,7 +20454,7 @@ if(false) {
 }
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -24523,12 +20468,12 @@ exports.push([module.i, "\n.approve-inspection-button[data-v-089bc56e], \n.mark-
 
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue__);
 //
 //
@@ -24547,7 +20492,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-<<<<<<< Updated upstream
 //
 //
 //
@@ -24559,8 +20503,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-=======
->>>>>>> Stashed changes
 //
 //
 //
@@ -25047,19 +20989,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(177)
+  __webpack_require__(179)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(179),
+  __webpack_require__(181),
   /* template */
-  __webpack_require__(180),
+  __webpack_require__(182),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -25091,13 +21033,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(178);
+var content = __webpack_require__(180);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -25117,7 +21059,7 @@ if(false) {
 }
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -25131,401 +21073,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-ff4fdf8e] {\n    border:
 
 
 /***/ }),
-/* 179 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        currentFilterOptions: Object,
-        customInspectionRequests: Array,
-        viewUrl: String
-    },
-
-    components: {
-        InspectionRequestsEvaluatorViewSwine: __WEBPACK_IMPORTED_MODULE_0__InspectionRequestsEvaluatorViewSwine_vue___default.a
-    },
-
-    data: function data() {
-        return {
-            showViewSwine: false,
-            pageNumber: 0,
-            paginationSize: 15,
-            filterOptions: this.currentFilterOptions,
-            inspectionRequests: this.customInspectionRequests,
-            statuses: [{
-                text: 'Requested',
-                value: 'requested'
-            }, {
-                text: 'For Inspection',
-                value: 'for_inspection'
-            }, {
-                text: 'Approved',
-                value: 'approved'
-            }],
-            inspectionData: {
-                inspectionId: 0,
-                farmName: '',
-                status: ''
-            },
-            markInspectionData: {
-                inspectionId: 0,
-                farmName: '',
-                dateInspection: ''
-            },
-            approveInspectionData: {
-                inspectionId: 0,
-                farmName: ''
-            }
-        };
-    },
-
-
-    computed: {
-        pageCount: function pageCount() {
-            var l = this.inspectionRequests.length;
-            var s = this.paginationSize;
-
-            return Math.ceil(l / s);
-        },
-        paginatedRequests: function paginatedRequests() {
-            var start = this.pageNumber * this.paginationSize;
-            var end = start + this.paginationSize;
-
-            return _.sortBy(this.inspectionRequests, ['id']).slice(start, end);
-        }
-    },
-
-    watch: {
-        filterOptions: {
-            handler: function handler(oldValue, newValue) {
-                // Watch filterOptions object for url rewrite
-                this.rewriteUrl(newValue, '');
-            },
-            deep: true
-        }
-    },
-
-    methods: {
-        previousPage: function previousPage() {
-            if (this.pageNumber !== 0) this.pageNumber--;
-        },
-        nextPage: function nextPage() {
-            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
-        },
-        goToPage: function goToPage(page) {
-            this.pageNumber = page - 1;
-        },
-        rewriteUrl: function rewriteUrl(filterOptions, searchParameter) {
-            /**
-             *  URL rewrite syntax: 
-             *  ?q=value*
-             *  &status=value[+value]*
-             */
-            var url = this.viewUrl;
-            var parameters = [];
-
-            // Put search parameter in parameters if it is non-empty
-            if (searchParameter.length > 0) {
-                var qParameter = 'q=' + searchParameter;
-
-                parameters.push(qParameter);
-            }
-
-            // Put status parameter in parameters if filter is chosen
-            if (filterOptions.status.length > 0) {
-                var statusParameter = 'status=';
-                statusParameter += filterOptions.status.join('+');
-
-                parameters.push(statusParameter);
-            }
-
-            // Redirect to new url
-            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
-        },
-        showMarkInspectionModal: function showMarkInspectionModal(inspectionId, farmName) {
-            this.markInspectionData.inspectionId = inspectionId;
-            this.markInspectionData.farmName = farmName;
-
-            this.$nextTick(function () {
-                // Materialize component initializations
-                $('.modal').modal();
-                $('#mark-for-inspection-modal').modal('open');
-            });
-        },
-        markForInspection: function markForInspection(event) {
-            var _this = this;
-
-            var vm = this;
-            var markForInspectionBtn = $('.mark-for-inspection-btn');
-            var inspectionId = this.markInspectionData.inspectionId;
-
-            // Make sure dateInspection is filled out
-            if (!vm.markInspectionData.dateInspection) return;
-
-            this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
-
-            // Update from server's database
-            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
-                inspectionId: inspectionId,
-                dateInspection: vm.markInspectionData.dateInspection,
-                status: 'for_inspection'
-            }).then(function (_ref) {
-                var data = _ref.data;
-
-                if (data.marked) {
-                    // Update local data storage
-                    var index = _.findIndex(vm.customInspectionRequests, ['id', inspectionId]);
-
-                    var inspectionRequest = vm.customInspectionRequests[index];
-                    inspectionRequest.status = 'for_inspection';
-                    inspectionRequest.dateInspection = data.dateInspection;
-
-                    // Clear markInspectionData
-                    vm.markInspectionData.dateInspection = '';
-
-                    // Update UI after requesting the inspection
-                    vm.$nextTick(function () {
-                        $('#mark-for-inspection-modal').modal('close');
-                        _this.enableButtons(markForInspectionBtn, event.target, 'Mark');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast('Inspection #' + inspectionId + ' successfully marked for inspection.', 2000, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        inspectionForMarking: function inspectionForMarking(data) {
-            var index = _.findIndex(this.inspectionRequests, ['id', data.inspectionId]);
-
-            var inspectionRequest = this.customInspectionRequests[index];
-            inspectionRequest.status = 'for_inspection';
-            inspectionRequest.dateInspection = data.dateInspection;
-        },
-        showApproveInspectionModal: function showApproveInspectionModal(inspectionId, farmName) {
-            this.approveInspectionData.inspectionId = inspectionId;
-            this.approveInspectionData.farmName = farmName;
-
-            this.$nextTick(function () {
-                // Materialize component initializations
-                $('.modal').modal();
-                $('#approve-inspection-modal').modal('open');
-            });
-        },
-        approveInspection: function approveInspection(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var approveInspectionBtn = $('.approve-inspection-btn');
-            var inspectionId = this.approveInspectionData.inspectionId;
-
-            this.disableButtons(approveInspectionBtn, event.target, 'Approving...');
-
-            // Update from server's database
-            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
-                inspectionId: inspectionId,
-                status: 'approved'
-            }).then(function (_ref2) {
-                var data = _ref2.data;
-
-                if (data.approved) {
-                    // Update local data storage
-                    var index = _.findIndex(vm.customInspectionRequests, ['id', inspectionId]);
-
-                    var inspectionRequest = vm.customInspectionRequests[index];
-                    inspectionRequest.status = 'approved';
-                    inspectionRequest.dateApproved = data.dateApproved;
-
-                    // Update UI after requesting the inspection
-                    vm.$nextTick(function () {
-                        $('#approve-inspection-modal').modal('close');
-                        _this2.enableButtons(approveInspectionBtn, event.target, 'Approve');
-
-                        Materialize.toast('Inspection #' + inspectionId + ' successfully approved.', 2000, 'green lighten-1');
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showSwineView: function showSwineView(type, inspectionId, farmName, status) {
-            if (type === 'edit') this.showEditSwine = true;else if (type === 'view') this.showViewSwine = true;
-
-            this.inspectionData = {
-                inspectionId: inspectionId,
-                farmName: farmName,
-                status: status
-            };
-        },
-        hideSwineView: function hideSwineView(type) {
-            if (type === 'edit') this.showEditSwine = false;else if (type === 'view') this.showViewSwine = false;
-
-            // Re-initialize collapsbile component
-            this.$nextTick(function () {
-                $('.collapsible').collapsible();
-                $('.tooltipped').tooltip({ delay: 50 });
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    }
-});
-
-/***/ }),
-/* 176 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(177)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(179),
-  /* template */
-  __webpack_require__(180),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-ff4fdf8e",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/InspectionRequestsEvaluatorViewSwine.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] InspectionRequestsEvaluatorViewSwine.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ff4fdf8e", Component.options)
-  } else {
-    hotAPI.reload("data-v-ff4fdf8e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 177 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(178);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("4f2962a2", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ff4fdf8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsEvaluatorViewSwine.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ff4fdf8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./InspectionRequestsEvaluatorViewSwine.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 178 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-ff4fdf8e] {\n    border: 1px solid;\n    background-color: white !important;\n}\n.back-to-viewing-btn[data-v-ff4fdf8e] {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n}\n#included-swines-container[data-v-ff4fdf8e] {\n    padding: 2rem 0 1rem 0;\n}\n.checkbox-container[data-v-ff4fdf8e], .included-swine-container[data-v-ff4fdf8e] {\n    padding: 1rem 0 0 0;\n}\n\n/* Modal customizations */\n#mark-for-inspection-modal-2[data-v-ff4fdf8e] {\n    width: 40rem;\n}\n#mark-for-inspection-modal-2 .modal-input-container[data-v-ff4fdf8e] {\n    padding-bottom: 10rem;\n}\n.modal .modal-footer[data-v-ff4fdf8e] {\n    padding-right: 2rem;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25717,7 +21265,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var data = _ref.data;
 
                 _this.includedSwines = data.included;
-<<<<<<< Updated upstream
 
                 setTimeout(function () {
                     _this.loading = false;
@@ -25791,7 +21338,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -25961,257 +21508,9 @@ if (false) {
 }
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
-=======
-
-                setTimeout(function () {
-                    _this.loading = false;
-                }, 1000);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        showMarkInspectionModal: function showMarkInspectionModal() {
-            this.markInspectionData.inspectionId = this.inspectionData.inspectionId;
-            this.markInspectionData.farmName = this.inspectionData.farmName;
-
-            this.$nextTick(function () {
-                // Materialize component initializations
-                $('.modal').modal();
-                $('#mark-for-inspection-modal-2').modal('open');
-            });
-        },
-        markForInspection: function markForInspection(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var markForInspectionBtn = $('.mark-for-inspection-btn');
-            var inspectionId = this.markInspectionData.inspectionId;
-
-            // Make sure dateInspection is filled out
-            if (!vm.markInspectionData.dateInspection) return;
-
-            this.disableButtons(markForInspectionBtn, event.target, 'Marking...');
-
-            // Update from server's database
-            axios.patch('/evaluator/manage/inspections/' + inspectionId, {
-                inspectionId: inspectionId,
-                dateInspection: vm.markInspectionData.dateInspection,
-                status: 'for_inspection'
-            }).then(function (_ref2) {
-                var data = _ref2.data;
-
-                if (data.marked) {
-                    // Clear markInspectionData
-                    vm.markInspectionData.dateInspection = '';
-
-                    // Update UI after requesting the inspection
-                    vm.$nextTick(function () {
-                        $('#mark-for-inspection-modal-2').modal('close');
-                        _this2.enableButtons(markForInspectionBtn, event.target, 'Mark');
-
-                        Materialize.updateTextFields();
-                        Materialize.toast('Inspection #' + inspectionId + ' successfully marked for inspection.', 2000, 'green lighten-1');
-
-                        _this2.$emit('markInspectionEvent', {
-                            inspectionId: inspectionId,
-                            dateInspection: data.dateInspection
-                        });
-                        _this2.hideAddSwineView();
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    }
-});
-
-/***/ }),
-/* 180 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('a', {
-    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0 back-to-viewing-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.hideAddSwineView($event)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), (_vm.loading) ? _c('div', {
-    staticClass: "col s12 center-align"
-  }, [_vm._m(1)]) : _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "card z-depth-0",
-    attrs: {
-      "id": "inspection-container"
-    }
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title"
-  }, [_c('b', [_vm._v("Inspection #" + _vm._s(_vm.inspectionData.inspectionId))]), _vm._v(" "), (_vm.inspectionData.status === 'requested') ? _c('a', {
-    staticClass: "btn right \n                            blue\n                            darken-1\n                            z-depth-0\n                            mark-inspection-btn",
-    attrs: {
-      "href": "#"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.showMarkInspectionModal()
-      }
-    }
-  }, [_vm._v("\n                        Mark for Inspection\n                    ")]) : _vm._e(), _vm._v(" "), (_vm.inspectionData.status === 'approved') ? _c('a', {
-    staticClass: "btn right \n                            blue-text\n                            text-darken-1 \n                            custom-secondary-btn\n                            z-depth-0\n                            disabled",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("\n                        Approved\n                    ")]) : _vm._e()]), _vm._v(" "), _c('p', {
-    staticClass: "grey-text"
-  }, [_vm._v("\n                    " + _vm._s(_vm.inspectionData.farmName) + "\n                ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12",
-    attrs: {
-      "id": "included-swines-container"
-    }
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "divider"
-  }), _vm._v(" "), (_vm.includedSwines.length < 1) ? _c('div', {
-    staticClass: "center-align"
-  }, [_vm._m(3)]) : _vm._l((_vm.includedSwines), function(swine) {
-    return _c('div', {
-      key: swine.swineId,
-      staticClass: "col s6 m3 included-swine-container"
-    }, [_c('span', [_c('i', {
-      staticClass: "material-icons left"
-    }, [_vm._v("\n                                    check\n                                ")]), _vm._v("\n                                " + _vm._s(swine.registrationNo) + " "), _c('br'), _vm._v(" "), _c('span', {
-      staticClass: "grey-text"
-    }, [_vm._v(_vm._s(swine.breedTitle))])])])
-  })], 2)])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "mark-for-inspection-modal-2"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                        Are you sure you want to mark \n                        "), _c('b', [_vm._v("Inspection #" + _vm._s(_vm.markInspectionData.inspectionId))]), _vm._v("\n                        from "), _c('b', [_vm._v(_vm._s(_vm.markInspectionData.farmName))]), _vm._v("\n                        for inspection?\n                    ")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('app-input-date', {
-    attrs: {
-      "min": true
-    },
-    on: {
-      "date-select": function (val) {
-        _vm.markInspectionData.dateInspection = val
-      }
-    },
-    model: {
-      value: (_vm.markInspectionData.dateInspection),
-      callback: function($$v) {
-        _vm.$set(_vm.markInspectionData, "dateInspection", $$v)
-      },
-      expression: "markInspectionData.dateInspection"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v(" Date of Inspection ")])], 1)])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue darken-1 z-depth-0 mark-for-inspection-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.markForInspection($event)
-      }
-    }
-  }, [_vm._v("\n                Mark\n            ")])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Inspection Request Swines ")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "preloader-wrapper active"
-  }, [_c('div', {
-    staticClass: "spinner-layer spinner-blue-only"
-  }, [_c('div', {
-    staticClass: "circle-clipper left"
-  }, [_c('div', {
-    staticClass: "circle"
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "gap-patch"
-  }, [_c('div', {
-    staticClass: "circle"
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "circle-clipper right"
-  }, [_c('div', {
-    staticClass: "circle"
-  })])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Included Swines")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_c('br'), _vm._v("Sorry, there are no included swines.")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h4', [_vm._v("\n                Mark for Inspection\n                "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-ff4fdf8e", module.exports)
-  }
-}
-
-/***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
->>>>>>> Stashed changes
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col s10 offset-s1"
@@ -26526,19 +21825,19 @@ if (false) {
 }
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(183)
+  __webpack_require__(185)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(185),
+  __webpack_require__(187),
   /* template */
-  __webpack_require__(186),
+  __webpack_require__(188),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -26570,13 +21869,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(184);
+var content = __webpack_require__(186);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -26596,7 +21895,7 @@ if(false) {
 }
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -26610,7 +21909,7 @@ exports.push([module.i, "\np.padded[data-v-091d2757] {\n    padding-top: 1rem;\n
 
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27348,7 +22647,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         };
     },
-<<<<<<< Updated upstream
 
 
     computed: {
@@ -27483,7 +22781,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -29177,19 +24475,19 @@ if (false) {
 }
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(188)
+  __webpack_require__(190)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(190),
+  __webpack_require__(192),
   /* template */
-  __webpack_require__(196),
+  __webpack_require__(198),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -29221,13 +24519,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 188 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(189);
+var content = __webpack_require__(191);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -29247,7 +24545,7 @@ if(false) {
 }
 
 /***/ }),
-/* 189 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -29261,12 +24559,12 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border:
 
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
 //
 //
@@ -29809,124 +25107,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     Materialize.toast('Laboratory Result No. ' + labResult.labResultNo + ' PDF downloaded', 1800, 'green lighten-1');
 
                     $('#download-confirmation-modal').modal('close');
-=======
-
-
-    computed: {
-        tempPdfLink: function tempPdfLink() {
-            return '/genomics/temp-pdf-lab-results';
-        }
-    },
-
-    watch: {
-        // Check if test is not chosen/shown anymore
-        // then reset value of test to default
-        'showChoices.esr': function showChoicesEsr(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.esr = '';
-        },
-        'showChoices.prlr': function showChoicesPrlr(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.prlr = '';
-        },
-        'showChoices.rbp4': function showChoicesRbp4(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.rbp4 = '';
-        },
-        'showChoices.lif': function showChoicesLif(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.lif = '';
-        },
-        'showChoices.hfabp': function showChoicesHfabp(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.hfabp = '';
-        },
-        'showChoices.igf2': function showChoicesIgf2(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.igf2 = '';
-        },
-        'showChoices.lepr': function showChoicesLepr(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.lepr = '';
-        },
-        'showChoices.myog': function showChoicesMyog(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.myog = '';
-        },
-        'showChoices.pss': function showChoicesPss(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.pss = '';
-        },
-        'showChoices.rn': function showChoicesRn(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.rn = '';
-        },
-        'showChoices.bax': function showChoicesBax(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.bax = '';
-        },
-        'showChoices.fut1': function showChoicesFut1(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.fut1 = '';
-        },
-        'showChoices.mx1': function showChoicesMx1(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.mx1 = '';
-        },
-        'showChoices.nramp': function showChoicesNramp(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.nramp = '';
-        },
-        'showChoices.bpi': function showChoicesBpi(newValue, oldValue) {
-            if (newValue === false) this.recordInfoData.tests.bpi = '';
-        }
-    },
-
-    methods: {
-        goToTab: function goToTab(tabId) {
-            this.$nextTick(function () {
-                $('#add-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
-                // Scroll animation
-                $('html, body').animate({
-                    scrollTop: $('#add-lab-result-tabs').offset().top - 70 + "px"
-                }, 500);
-            });
-        },
-        saveLaboratoryResults: function saveLaboratoryResults(event) {
-            var _this = this;
-
-            var vm = this;
-            var saveLabResultsButton = $('.save-btn');
-
-            this.disableButtons(saveLabResultsButton, event.target, 'Saving...');
-
-            // Add to server's database
-            axios.post('/genomics/manage/laboratory-results', vm.recordInfoData).then(function (response) {
-                // Reset registering of lab results to default values
-                vm.recordInfoData = {
-                    laboratoryResultNo: '',
-                    animalId: '',
-                    sex: '',
-                    farmId: '',
-                    farmName: '',
-                    dateResult: '',
-                    dateSubmitted: '',
-                    tests: {
-                        esr: '',
-                        prlr: '',
-                        rbp4: '',
-                        lif: '',
-                        hfabp: '',
-                        igf2: '',
-                        lepr: '',
-                        myog: '',
-                        pss: '',
-                        rn: '',
-                        bax: '',
-                        fut1: '',
-                        mx1: '',
-                        nramp: '',
-                        bpi: ''
-                    }
-                };
-
-                // Update UI after adding breed
-                vm.$nextTick(function () {
-                    _this.enableButtons(saveLabResultsButton, event.target, 'Save');
-
-                    Materialize.toast('Laboratory Results saved.', 2500, 'green lighten-1');
-
-                    // Reload page
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 2600);
->>>>>>> Stashed changes
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -29940,7 +25120,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             buttons.removeClass('disabled');
             actionBtnElement.innerHTML = textToShow;
         }
-<<<<<<< Updated upstream
     },
 
     mounted: function mounted() {
@@ -29950,19 +25129,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(192)
+  __webpack_require__(194)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(194),
+  __webpack_require__(196),
   /* template */
-  __webpack_require__(195),
+  __webpack_require__(197),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -29994,13 +25173,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(193);
+var content = __webpack_require__(195);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -30020,7 +25199,7 @@ if(false) {
 }
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -30034,7 +25213,7 @@ exports.push([module.i, "\n.custom-secondary-btn[data-v-615ddffa] {\n    border:
 
 
 /***/ }),
-/* 194 */
+/* 196 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30935,4632 +26114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 195 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('a', {
-    staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
-    attrs: {
-      "id": "back-to-viewing-btn",
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        return _vm.hideEditLabResultsView($event)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("keyboard_arrow_left")]), _vm._v("\n            Back To Viewing\n        ")])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "general-information"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v(" General Information ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.labResultData.laboratoryResultNo),
-      expression: "labResultData.laboratoryResultNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "lab-result-no",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.labResultData.laboratoryResultNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.labResultData, "laboratoryResultNo", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "lab-result-no"
-    }
-  }, [_vm._v("Laboratory Result No.")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.labResultData.animalId),
-      expression: "labResultData.animalId"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "animal-id",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.labResultData.animalId)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.labResultData, "animalId", $event.target.value)
-=======
-    }
-
-});
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s10 offset-s1"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "general-information"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v(" General Information ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.recordInfoData.laboratoryResultNo),
-      expression: "recordInfoData.laboratoryResultNo"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "lab-result-no",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.recordInfoData.laboratoryResultNo)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.recordInfoData, "laboratoryResultNo", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "lab-result-no"
-    }
-  }, [_vm._v("Laboratory Result No.")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.recordInfoData.animalId),
-      expression: "recordInfoData.animalId"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "animal-id",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.recordInfoData.animalId)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.recordInfoData, "animalId", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "animal-id"
-    }
-  }, [_vm._v("Animal ID")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Sex",
-      "options": [{
-        text: 'Male',
-        value: 'male'
-      }, {
-        text: 'Female',
-        value: 'female'
-      }]
-    },
-    on: {
-      "select": function (val) {
-        _vm.recordInfoData.sex = val
-      }
-    },
-    model: {
-      value: (_vm.recordInfoData.sex),
-      callback: function($$v) {
-        _vm.$set(_vm.recordInfoData, "sex", $$v)
-      },
-      expression: "recordInfoData.sex"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.recordInfoData.dateResult = val
-      }
-    },
-    model: {
-      value: (_vm.recordInfoData.dateResult),
-      callback: function($$v) {
-        _vm.$set(_vm.recordInfoData, "dateResult", $$v)
-      },
-      expression: "recordInfoData.dateResult"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("Date of Result")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.recordInfoData.dateSubmitted = val
-      }
-    },
-    model: {
-      value: (_vm.recordInfoData.dateSubmitted),
-      callback: function($$v) {
-        _vm.$set(_vm.recordInfoData, "dateSubmitted", $$v)
-      },
-      expression: "recordInfoData.dateSubmitted"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.farm),
-      expression: "showChoices.farm"
-    }],
-    attrs: {
-      "name": "yes",
-      "type": "radio",
-      "id": "yes",
-      "value": "registered"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.showChoices.farm, "registered")
-    },
-    on: {
-      "change": function($event) {
-        _vm.$set(_vm.showChoices, "farm", "registered")
->>>>>>> Stashed changes
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-<<<<<<< Updated upstream
-      "for": "animal-id"
-    }
-  }, [_vm._v("Animal ID")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-select', {
-    tag: "component",
-    attrs: {
-      "labelDescription": "Sex",
-      "options": [{
-        text: 'Male',
-        value: 'male'
-      }, {
-        text: 'Female',
-        value: 'female'
-      }]
-    },
-    on: {
-      "select": function (val) {
-        _vm.labResultData.sex = val
-      }
-    },
-    model: {
-      value: (_vm.labResultData.sex),
-      callback: function($$v) {
-        _vm.$set(_vm.labResultData, "sex", $$v)
-      },
-      expression: "labResultData.sex"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.labResultData.dateResult = val
-      }
-    },
-    model: {
-      value: (_vm.labResultData.dateResult),
-      callback: function($$v) {
-        _vm.$set(_vm.labResultData, "dateResult", $$v)
-      },
-      expression: "labResultData.dateResult"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("Date of Result")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-date', {
-    on: {
-      "date-select": function (val) {
-        _vm.labResultData.dateSubmitted = val
-      }
-    },
-    model: {
-      value: (_vm.labResultData.dateSubmitted),
-      callback: function($$v) {
-        _vm.$set(_vm.labResultData, "dateSubmitted", $$v)
-      },
-      expression: "labResultData.dateSubmitted"
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("Date Submitted")])], 1), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_vm._m(4), _vm._v(" "), _c('p', [_c('input', {
-=======
-      "for": "yes"
-    }
-  }, [_vm._v("Yes")])]), _vm._v(" "), _c('p', [_c('input', {
->>>>>>> Stashed changes
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.farm),
-      expression: "showChoices.farm"
-    }],
-    attrs: {
-<<<<<<< Updated upstream
-      "name": "yes",
-      "type": "radio",
-      "id": "yes",
-      "value": "registered"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.showChoices.farm, "registered")
-    },
-    on: {
-      "change": function($event) {
-        _vm.$set(_vm.showChoices, "farm", "registered")
-=======
-      "name": "no",
-      "type": "radio",
-      "id": "no",
-      "value": "not-registered"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.showChoices.farm, "not-registered")
-    },
-    on: {
-      "change": function($event) {
-        _vm.$set(_vm.showChoices, "farm", "not-registered")
->>>>>>> Stashed changes
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-<<<<<<< Updated upstream
-      "for": "yes"
-    }
-  }, [_vm._v("Yes")])]), _vm._v(" "), _c('p', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.farm),
-      expression: "showChoices.farm"
-    }],
-    attrs: {
-      "name": "no",
-      "type": "radio",
-      "id": "no",
-      "value": "not-registered"
-    },
-    domProps: {
-      "checked": _vm._q(_vm.showChoices.farm, "not-registered")
-    },
-    on: {
-      "change": function($event) {
-        _vm.$set(_vm.showChoices, "farm", "not-registered")
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "no"
-    }
-  }, [_vm._v("No")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.farm === 'registered'),
-      expression: "showChoices.farm === 'registered'"
-=======
-      "for": "no"
-    }
-  }, [_vm._v("No")])])]), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.farm === 'registered'),
-      expression: "showChoices.farm === 'registered'"
-    }],
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-select', {
-    attrs: {
-      "labelDescription": "Farm Of Origin",
-      "options": _vm.farmoptions
-    },
-    on: {
-      "select": function (val) {
-        _vm.recordInfoData.farmId = val
-      }
-    },
-    model: {
-      value: (_vm.recordInfoData.farmId),
-      callback: function($$v) {
-        _vm.$set(_vm.recordInfoData, "farmId", $$v)
-      },
-      expression: "recordInfoData.farmId"
-    }
-  })], 1), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.farm === 'not-registered'),
-      expression: "showChoices.farm === 'not-registered'"
-    }],
-    staticClass: "col s12 input-field"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.recordInfoData.farmName),
-      expression: "recordInfoData.farmName"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "farm-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.recordInfoData.farmName)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.recordInfoData, "farmName", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "farm-name"
-    }
-  }, [_vm._v("Farm Name")])]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('a', {
-    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.goToTab('genetic-information')
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "genetic-information"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v(" Genetic Information ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
-    staticClass: "col s12 m6",
-    attrs: {
-      "id": "fertility-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(8), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.esr),
-      expression: "showChoices.esr"
->>>>>>> Stashed changes
-    }],
-    staticClass: "col s12 input-field"
-  }, [_c('app-input-select', {
-    tag: "component",
-    attrs: {
-<<<<<<< Updated upstream
-      "labelDescription": "Farm Of Origin",
-      "options": _vm.farmoptions
-    },
-    on: {
-      "select": function (val) {
-        _vm.labResultData.farmId = val
-=======
-      "type": "checkbox",
-      "id": "esr-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.esr) ? _vm._i(_vm.showChoices.esr, null) > -1 : (_vm.showChoices.esr)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.esr,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "esr", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "esr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "esr", $$c)
-        }
->>>>>>> Stashed changes
-      }
-    },
-    model: {
-      value: (_vm.labResultData.farmId),
-      callback: function($$v) {
-        _vm.$set(_vm.labResultData, "farmId", $$v)
-      },
-      expression: "labResultData.farmId"
-    }
-<<<<<<< Updated upstream
-  })], 1), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.farm === 'not-registered'),
-      expression: "showChoices.farm === 'not-registered'"
-    }],
-    staticClass: "col s12 input-field"
-=======
-  }), _vm._v(" "), _vm._m(9)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.esr),
-      expression: "showChoices.esr"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_vm._l((_vm.testChoices.esr), function(choice, index) {
-    return [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.recordInfoData.tests.esr),
-        expression: "recordInfoData.tests.esr"
-      }],
-      attrs: {
-        "name": "esr",
-        "type": "radio",
-        "id": ("esr-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.esr, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "esr", choice)
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("esr-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])]
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
->>>>>>> Stashed changes
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.labResultData.farmName),
-      expression: "labResultData.farmName"
-=======
-      value: (_vm.showChoices.prlr),
-      expression: "showChoices.prlr"
->>>>>>> Stashed changes
-    }],
-    staticClass: "validate",
-    attrs: {
-<<<<<<< Updated upstream
-      "id": "farm-name",
-      "type": "text"
-    },
-    domProps: {
-      "value": (_vm.labResultData.farmName)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.labResultData, "farmName", $event.target.value)
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "farm-name"
-    }
-  }, [_vm._v("Farm Name")])]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('a', {
-    staticClass: "btn-floating btn-large waves-effect waves-light blue right",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.goToTab('genetic-information')
-=======
-      "type": "checkbox",
-      "id": "prlr-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.prlr) ? _vm._i(_vm.showChoices.prlr, null) > -1 : (_vm.showChoices.prlr)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.prlr,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "prlr", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "prlr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "prlr", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.prlr),
-      expression: "showChoices.prlr"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.prlr), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.recordInfoData.tests.prlr),
-        expression: "recordInfoData.tests.prlr"
-      }],
-      attrs: {
-        "name": "prlr",
-        "type": "radio",
-        "id": ("prlr" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.prlr, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "prlr", choice)
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("prlr" + index)
->>>>>>> Stashed changes
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("arrow_forward")])])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "row",
-    attrs: {
-      "id": "genetic-information"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_c('span', {
-    staticClass: "card-title center-align"
-  }, [_vm._v(" Genetic Information ")]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
-    staticClass: "col s12 m6",
-    attrs: {
-      "id": "fertility-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(8), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.esr),
-      expression: "showChoices.esr"
-=======
-      value: (_vm.showChoices.rbp4),
-      expression: "showChoices.rbp4"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "esr-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.esr) ? _vm._i(_vm.showChoices.esr, null) > -1 : (_vm.showChoices.esr)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.esr,
-=======
-      "id": "rbp4-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.rbp4) ? _vm._i(_vm.showChoices.rbp4, null) > -1 : (_vm.showChoices.rbp4)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.rbp4,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "esr", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "esr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "esr", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(9)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "rbp4", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "rbp4", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "rbp4", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(11)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.esr),
-      expression: "showChoices.esr"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.esr), function(choice, index) {
-=======
-      value: (_vm.showChoices.rbp4),
-      expression: "showChoices.rbp4"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.rbp4), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.esr),
-        expression: "labResultData.tests.esr"
-      }],
-      attrs: {
-        "name": "esr",
-        "type": "radio",
-        "id": ("esr-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.esr, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "esr", choice)
-=======
-        value: (_vm.recordInfoData.tests.rbp4),
-        expression: "recordInfoData.tests.rbp4"
-      }],
-      attrs: {
-        "name": "rbp4",
-        "type": "radio",
-        "id": ("rbp4-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.rbp4, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "rbp4", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("esr-" + index)
-=======
-        "for": ("rbp4-" + index)
->>>>>>> Stashed changes
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.prlr),
-      expression: "showChoices.prlr"
-=======
-      value: (_vm.showChoices.lif),
-      expression: "showChoices.lif"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "prlr-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.prlr) ? _vm._i(_vm.showChoices.prlr, null) > -1 : (_vm.showChoices.prlr)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.prlr,
-=======
-      "id": "lif-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.lif) ? _vm._i(_vm.showChoices.lif, null) > -1 : (_vm.showChoices.lif)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.lif,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "prlr", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "prlr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "prlr", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "lif", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "lif", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "lif", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(12)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.prlr),
-      expression: "showChoices.prlr"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.prlr), function(choice, index) {
-=======
-      value: (_vm.showChoices.lif),
-      expression: "showChoices.lif"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.lif), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.prlr),
-        expression: "labResultData.tests.prlr"
-      }],
-      attrs: {
-        "name": "prlr",
-        "type": "radio",
-        "id": ("prlr" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.prlr, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "prlr", choice)
-=======
-        value: (_vm.recordInfoData.tests.lif),
-        expression: "recordInfoData.tests.lif"
-      }],
-      attrs: {
-        "name": "lif",
-        "type": "radio",
-        "id": ("lif-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.lif, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "lif", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("prlr" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-=======
-        "for": ("lif-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6",
-    attrs: {
-      "id": "meat-and-growth-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(13), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.rbp4),
-      expression: "showChoices.rbp4"
-=======
-      value: (_vm.showChoices.hfabp),
-      expression: "showChoices.hfabp"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "rbp4-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.rbp4) ? _vm._i(_vm.showChoices.rbp4, null) > -1 : (_vm.showChoices.rbp4)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.rbp4,
-=======
-      "id": "hfabp-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.hfabp) ? _vm._i(_vm.showChoices.hfabp, null) > -1 : (_vm.showChoices.hfabp)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.hfabp,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "rbp4", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "rbp4", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "rbp4", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(11)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "hfabp", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "hfabp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "hfabp", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(14)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.rbp4),
-      expression: "showChoices.rbp4"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.rbp4), function(choice, index) {
-=======
-      value: (_vm.showChoices.hfabp),
-      expression: "showChoices.hfabp"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.hfabp), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.rbp4),
-        expression: "labResultData.tests.rbp4"
-      }],
-      attrs: {
-        "name": "rbp4",
-        "type": "radio",
-        "id": ("rbp4-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.rbp4, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "rbp4", choice)
-=======
-        value: (_vm.recordInfoData.tests.hfabp),
-        expression: "recordInfoData.tests.hfabp"
-      }],
-      attrs: {
-        "name": "hfabp",
-        "type": "radio",
-        "id": ("hfabp-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.hfabp, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "hfabp", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("rbp4-" + index)
-=======
-        "for": ("hfabp-" + index)
->>>>>>> Stashed changes
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.lif),
-      expression: "showChoices.lif"
-=======
-      value: (_vm.showChoices.igf2),
-      expression: "showChoices.igf2"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "lif-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.lif) ? _vm._i(_vm.showChoices.lif, null) > -1 : (_vm.showChoices.lif)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.lif,
-=======
-      "id": "igf2-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.igf2) ? _vm._i(_vm.showChoices.igf2, null) > -1 : (_vm.showChoices.igf2)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.igf2,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "lif", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "lif", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "lif", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(12)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "igf2", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "igf2", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "igf2", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.lif),
-      expression: "showChoices.lif"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.lif), function(choice, index) {
-=======
-      value: (_vm.showChoices.igf2),
-      expression: "showChoices.igf2"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.igf2), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.lif),
-        expression: "labResultData.tests.lif"
-      }],
-      attrs: {
-        "name": "lif",
-        "type": "radio",
-        "id": ("lif-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.lif, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "lif", choice)
-=======
-        value: (_vm.recordInfoData.tests.igf2),
-        expression: "recordInfoData.tests.igf2"
-      }],
-      attrs: {
-        "name": "igf2",
-        "type": "radio",
-        "id": ("igf2-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.igf2, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "igf2", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("lif-" + index)
-=======
-        "for": ("igf2-" + index)
->>>>>>> Stashed changes
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6",
-    attrs: {
-      "id": "meat-and-growth-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(13), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.hfabp),
-      expression: "showChoices.hfabp"
-=======
-      value: (_vm.showChoices.lepr),
-      expression: "showChoices.lepr"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "hfabp-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.hfabp) ? _vm._i(_vm.showChoices.hfabp, null) > -1 : (_vm.showChoices.hfabp)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.hfabp,
-=======
-      "id": "lepr-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.lepr) ? _vm._i(_vm.showChoices.lepr, null) > -1 : (_vm.showChoices.lepr)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.lepr,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "hfabp", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "hfabp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "hfabp", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(14)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "lepr", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "lepr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "lepr", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(16)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.hfabp),
-      expression: "showChoices.hfabp"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.hfabp), function(choice, index) {
-=======
-      value: (_vm.showChoices.lepr),
-      expression: "showChoices.lepr"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.lepr), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.hfabp),
-        expression: "labResultData.tests.hfabp"
-      }],
-      attrs: {
-        "name": "hfabp",
-        "type": "radio",
-        "id": ("hfabp-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.hfabp, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "hfabp", choice)
-=======
-        value: (_vm.recordInfoData.tests.lepr),
-        expression: "recordInfoData.tests.lepr"
-      }],
-      attrs: {
-        "name": "lepr",
-        "type": "radio",
-        "id": ("lepr-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.lepr, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "lepr", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("hfabp-" + index)
-=======
-        "for": ("lepr-" + index)
->>>>>>> Stashed changes
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.igf2),
-      expression: "showChoices.igf2"
-=======
-      value: (_vm.showChoices.myog),
-      expression: "showChoices.myog"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "igf2-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.igf2) ? _vm._i(_vm.showChoices.igf2, null) > -1 : (_vm.showChoices.igf2)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.igf2,
-=======
-      "id": "myog-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.myog) ? _vm._i(_vm.showChoices.myog, null) > -1 : (_vm.showChoices.myog)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.myog,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "igf2", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "igf2", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "igf2", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(15)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "myog", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "myog", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "myog", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.igf2),
-      expression: "showChoices.igf2"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.igf2), function(choice, index) {
-=======
-      value: (_vm.showChoices.myog),
-      expression: "showChoices.myog"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.myog), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.igf2),
-        expression: "labResultData.tests.igf2"
-      }],
-      attrs: {
-        "name": "igf2",
-        "type": "radio",
-        "id": ("igf2-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.igf2, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "igf2", choice)
-=======
-        value: (_vm.recordInfoData.tests.myog),
-        expression: "recordInfoData.tests.myog"
-      }],
-      attrs: {
-        "name": "myog",
-        "type": "radio",
-        "id": ("myog-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.myog, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "myog", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("igf2-" + index)
-=======
-        "for": ("myog-" + index)
->>>>>>> Stashed changes
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6",
-    attrs: {
-      "id": "defects-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(18), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.lepr),
-      expression: "showChoices.lepr"
-=======
-      value: (_vm.showChoices.pss),
-      expression: "showChoices.pss"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "lepr-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.lepr) ? _vm._i(_vm.showChoices.lepr, null) > -1 : (_vm.showChoices.lepr)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.lepr,
-=======
-      "id": "pss-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.pss) ? _vm._i(_vm.showChoices.pss, null) > -1 : (_vm.showChoices.pss)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.pss,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "lepr", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "lepr", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "lepr", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(16)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "pss", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "pss", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "pss", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.lepr),
-      expression: "showChoices.lepr"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.lepr), function(choice, index) {
-=======
-      value: (_vm.showChoices.pss),
-      expression: "showChoices.pss"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.pss), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.lepr),
-        expression: "labResultData.tests.lepr"
-      }],
-      attrs: {
-        "name": "lepr",
-        "type": "radio",
-        "id": ("lepr-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.lepr, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "lepr", choice)
-=======
-        value: (_vm.recordInfoData.tests.pss),
-        expression: "recordInfoData.tests.pss"
-      }],
-      attrs: {
-        "name": "pss",
-        "type": "radio",
-        "id": ("pss-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.recordInfoData.tests.pss, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "pss", choice.toUpperCase())
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("lepr-" + index)
-=======
-        "for": ("pss-" + index)
->>>>>>> Stashed changes
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.myog),
-      expression: "showChoices.myog"
-=======
-      value: (_vm.showChoices.rn),
-      expression: "showChoices.rn"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "myog-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.myog) ? _vm._i(_vm.showChoices.myog, null) > -1 : (_vm.showChoices.myog)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.myog,
-=======
-      "id": "rn-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.rn) ? _vm._i(_vm.showChoices.rn, null) > -1 : (_vm.showChoices.rn)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.rn,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "myog", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "myog", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "myog", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(17)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "rn", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "rn", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "rn", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(20)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.myog),
-      expression: "showChoices.myog"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.myog), function(choice, index) {
-=======
-      value: (_vm.showChoices.rn),
-      expression: "showChoices.rn"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.rn), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.myog),
-        expression: "labResultData.tests.myog"
-      }],
-      attrs: {
-        "name": "myog",
-        "type": "radio",
-        "id": ("myog-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.myog, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "myog", choice)
-=======
-        value: (_vm.recordInfoData.tests.rn),
-        expression: "recordInfoData.tests.rn"
-      }],
-      attrs: {
-        "name": "rn",
-        "type": "radio",
-        "id": ("rn-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.recordInfoData.tests.rn, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "rn", choice.toUpperCase())
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("myog-" + index)
-=======
-        "for": ("rn-" + index)
->>>>>>> Stashed changes
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6",
-    attrs: {
-      "id": "defects-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(18), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.pss),
-      expression: "showChoices.pss"
-=======
-      value: (_vm.showChoices.bax),
-      expression: "showChoices.bax"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "pss-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.pss) ? _vm._i(_vm.showChoices.pss, null) > -1 : (_vm.showChoices.pss)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.pss,
-=======
-      "id": "bax-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.bax) ? _vm._i(_vm.showChoices.bax, null) > -1 : (_vm.showChoices.bax)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.bax,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "pss", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "pss", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "pss", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(19)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "bax", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "bax", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "bax", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(21)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.pss),
-      expression: "showChoices.pss"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.pss), function(choice, index) {
-=======
-      value: (_vm.showChoices.bax),
-      expression: "showChoices.bax"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.bax), function(choice, index) {
->>>>>>> Stashed changes
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.pss),
-        expression: "labResultData.tests.pss"
-      }],
-      attrs: {
-        "name": "pss",
-        "type": "radio",
-        "id": ("pss-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.labResultData.tests.pss, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "pss", choice.toUpperCase())
-=======
-        value: (_vm.recordInfoData.tests.bax),
-        expression: "recordInfoData.tests.bax"
-      }],
-      attrs: {
-        "name": "bax",
-        "type": "radio",
-        "id": ("bax-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.recordInfoData.tests.bax, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "bax", choice.toUpperCase())
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-<<<<<<< Updated upstream
-        "for": ("pss-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-=======
-        "for": ("bax-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6",
-    attrs: {
-      "id": "diseases-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(22), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.rn),
-      expression: "showChoices.rn"
-=======
-      value: (_vm.showChoices.fut1),
-      expression: "showChoices.fut1"
->>>>>>> Stashed changes
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-<<<<<<< Updated upstream
-      "id": "rn-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.rn) ? _vm._i(_vm.showChoices.rn, null) > -1 : (_vm.showChoices.rn)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.rn,
-=======
-      "id": "fut1-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.fut1) ? _vm._i(_vm.showChoices.fut1, null) > -1 : (_vm.showChoices.fut1)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.fut1,
->>>>>>> Stashed changes
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-<<<<<<< Updated upstream
-            $$i < 0 && (_vm.$set(_vm.showChoices, "rn", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "rn", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "rn", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(20)])]), _vm._v(" "), _c('div', {
-=======
-            $$i < 0 && (_vm.$set(_vm.showChoices, "fut1", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "fut1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "fut1", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(23)])]), _vm._v(" "), _c('div', {
->>>>>>> Stashed changes
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (_vm.showChoices.rn),
-      expression: "showChoices.rn"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.rn), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.labResultData.tests.rn),
-        expression: "labResultData.tests.rn"
-      }],
-      attrs: {
-        "name": "rn",
-        "type": "radio",
-        "id": ("rn-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.labResultData.tests.rn, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "rn", choice.toUpperCase())
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("rn-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.bax),
-      expression: "showChoices.bax"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "bax-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.bax) ? _vm._i(_vm.showChoices.bax, null) > -1 : (_vm.showChoices.bax)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.bax,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "bax", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "bax", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "bax", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(21)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.bax),
-      expression: "showChoices.bax"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.bax), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.labResultData.tests.bax),
-        expression: "labResultData.tests.bax"
-      }],
-      attrs: {
-        "name": "bax",
-        "type": "radio",
-        "id": ("bax-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.labResultData.tests.bax, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "bax", choice.toUpperCase())
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("bax-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s6",
-    attrs: {
-      "id": "diseases-container"
-    }
-  }, [_c('div', {
-    staticClass: "card col s12 card-traits-container"
-  }, [_c('div', {
-    staticClass: "card-content"
-  }, [_vm._m(22), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.fut1),
-      expression: "showChoices.fut1"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "fut1-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.fut1) ? _vm._i(_vm.showChoices.fut1, null) > -1 : (_vm.showChoices.fut1)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.fut1,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "fut1", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "fut1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "fut1", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(23)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.fut1),
-      expression: "showChoices.fut1"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-=======
-      value: (_vm.showChoices.fut1),
-      expression: "showChoices.fut1"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
->>>>>>> Stashed changes
-  }, _vm._l((_vm.testChoices.fut1), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.fut1),
-        expression: "labResultData.tests.fut1"
-=======
-        value: (_vm.recordInfoData.tests.fut1),
-        expression: "recordInfoData.tests.fut1"
->>>>>>> Stashed changes
-      }],
-      attrs: {
-        "name": "fut1",
-        "type": "radio",
-        "id": ("fut1-" + index)
-      },
-      domProps: {
-        "value": choice,
-<<<<<<< Updated upstream
-        "checked": _vm._q(_vm.labResultData.tests.fut1, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "fut1", choice)
-=======
-        "checked": _vm._q(_vm.recordInfoData.tests.fut1, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "fut1", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("fut1-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.mx1),
-      expression: "showChoices.mx1"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "mx1-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.mx1) ? _vm._i(_vm.showChoices.mx1, null) > -1 : (_vm.showChoices.mx1)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.mx1,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "mx1", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "mx1", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "mx1", $$c)
-<<<<<<< Updated upstream
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.mx1),
-      expression: "showChoices.mx1"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.mx1), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.labResultData.tests.mx1),
-        expression: "labResultData.tests.mx1"
-      }],
-      attrs: {
-        "name": "mx1",
-        "type": "radio",
-        "id": ("mx1-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.labResultData.tests.mx1, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "mx1", choice.toUpperCase())
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("mx1-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.nramp),
-      expression: "showChoices.nramp"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "nramp-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.nramp) ? _vm._i(_vm.showChoices.nramp, null) > -1 : (_vm.showChoices.nramp)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.nramp,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "nramp", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "nramp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "nramp", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(25)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.nramp),
-      expression: "showChoices.nramp"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.nramp), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.labResultData.tests.nramp),
-        expression: "labResultData.tests.nramp"
-      }],
-      attrs: {
-        "name": "nramp",
-        "type": "radio",
-        "id": ("nramp-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.labResultData.tests.nramp, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "nramp", choice)
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("nramp-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.bpi),
-      expression: "showChoices.bpi"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "bpi-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.bpi) ? _vm._i(_vm.showChoices.bpi, null) > -1 : (_vm.showChoices.bpi)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.bpi,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "bpi", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "bpi", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "bpi", $$c)
-        }
-      }
-=======
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.mx1),
-      expression: "showChoices.mx1"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.mx1), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.recordInfoData.tests.mx1),
-        expression: "recordInfoData.tests.mx1"
-      }],
-      attrs: {
-        "name": "mx1",
-        "type": "radio",
-        "id": ("mx1-" + index)
-      },
-      domProps: {
-        "value": choice.toUpperCase(),
-        "checked": _vm._q(_vm.recordInfoData.tests.mx1, choice.toUpperCase())
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "mx1", choice.toUpperCase())
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("mx1-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.nramp),
-      expression: "showChoices.nramp"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "nramp-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.nramp) ? _vm._i(_vm.showChoices.nramp, null) > -1 : (_vm.showChoices.nramp)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.nramp,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "nramp", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "nramp", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "nramp", $$c)
-        }
-      }
-    }
-  }), _vm._v(" "), _vm._m(25)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.nramp),
-      expression: "showChoices.nramp"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.nramp), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.recordInfoData.tests.nramp),
-        expression: "recordInfoData.tests.nramp"
-      }],
-      attrs: {
-        "name": "nramp",
-        "type": "radio",
-        "id": ("nramp-" + index)
-      },
-      domProps: {
-        "value": choice,
-        "checked": _vm._q(_vm.recordInfoData.tests.nramp, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "nramp", choice)
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("nramp-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s5 m5"
-  }, [_c('p', {
-    staticClass: "padded"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.showChoices.bpi),
-      expression: "showChoices.bpi"
-    }],
-    staticClass: "filled-in",
-    attrs: {
-      "type": "checkbox",
-      "id": "bpi-checkbox"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.showChoices.bpi) ? _vm._i(_vm.showChoices.bpi, null) > -1 : (_vm.showChoices.bpi)
-    },
-    on: {
-      "change": function($event) {
-        var $$a = _vm.showChoices.bpi,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$el.checked) {
-            $$i < 0 && (_vm.$set(_vm.showChoices, "bpi", $$a.concat([$$v])))
-          } else {
-            $$i > -1 && (_vm.$set(_vm.showChoices, "bpi", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
-          }
-        } else {
-          _vm.$set(_vm.showChoices, "bpi", $$c)
-        }
-      }
->>>>>>> Stashed changes
-    }
-  }), _vm._v(" "), _vm._m(26)])]), _vm._v(" "), _c('div', {
-    staticClass: "col s7 m7"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showChoices.bpi),
-      expression: "showChoices.bpi"
-    }]
-  }, [_c('p', {
-    staticClass: "padded"
-  }, _vm._l((_vm.testChoices.bpi), function(choice, index) {
-    return _c('span', {
-      key: choice
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-<<<<<<< Updated upstream
-        value: (_vm.labResultData.tests.bpi),
-        expression: "labResultData.tests.bpi"
-=======
-        value: (_vm.recordInfoData.tests.bpi),
-        expression: "recordInfoData.tests.bpi"
->>>>>>> Stashed changes
-      }],
-      attrs: {
-        "name": "bpi",
-        "type": "radio",
-        "id": ("bpi-" + index)
-      },
-      domProps: {
-        "value": choice,
-<<<<<<< Updated upstream
-        "checked": _vm._q(_vm.labResultData.tests.bpi, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.labResultData.tests, "bpi", choice)
-=======
-        "checked": _vm._q(_vm.recordInfoData.tests.bpi, choice)
-      },
-      on: {
-        "change": function($event) {
-          _vm.$set(_vm.recordInfoData.tests, "bpi", choice)
->>>>>>> Stashed changes
-        }
-      }
-    }), _vm._v(" "), _c('label', {
-      attrs: {
-        "for": ("bpi-" + index)
-      }
-    }, [_vm._v(" " + _vm._s(choice) + " ")])])
-  }))])])])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "card-action center-align"
-  }, [_c('button', {
-<<<<<<< Updated upstream
-    staticClass: "btn save-btn blue darken-1 update-lab-results-btn",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.updateLabResults($event)
-      }
-    }
-  }, [_vm._v("\n                    Update\n                ")])])])])])
-=======
-    staticClass: "btn save-btn",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.saveLaboratoryResults($event)
-      }
-    }
-  }, [_vm._v("\n                    Save\n                ")])])])])])
->>>>>>> Stashed changes
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-<<<<<<< Updated upstream
-  }, [_vm._v(" Edit Laboratory Results ")])])
-=======
-  }, [_vm._v(" Register Laboratory Results ")])])
->>>>>>> Stashed changes
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row",
-    staticStyle: {
-      "margin-bottom": "0"
-    }
-  }, [_c('div', {
-    staticClass: "col s12",
-    staticStyle: {
-      "margin-top": "2rem",
-      "padding": "0"
-    },
-    attrs: {
-<<<<<<< Updated upstream
-      "id": "edit-lab-result-tabs"
-=======
-      "id": "add-lab-result-tabs"
->>>>>>> Stashed changes
-    }
-  }, [_c('ul', {
-    staticClass: "tabs tabs-fixed-width z-depth-2"
-  }, [_c('li', {
-    staticClass: "tab col s6"
-  }, [_c('a', {
-    attrs: {
-      "href": "#general-information"
-    }
-  }, [_vm._v("General Information")])]), _vm._v(" "), _c('li', {
-    staticClass: "tab col s6"
-  }, [_c('a', {
-    attrs: {
-      "href": "#genetic-information"
-    }
-  }, [_vm._v("Genetic Information")])])])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', [_c('b', [_vm._v("Is Farm registered in the system?")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('blockquote', {
-    staticClass: "info"
-  }, [_vm._v("\n                            *   -   Favorable genotype\n                        ")]), _vm._v(" "), _c('br')])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("Fertility Traits")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "esr-checkbox"
-    }
-  }, [_c('b', [_vm._v("ESR")]), _vm._v(" (BB)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "prlr-checkbox"
-    }
-  }, [_c('b', [_vm._v("PRLR")]), _vm._v(" (AA)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "rbp4-checkbox"
-    }
-  }, [_c('b', [_vm._v("RBP4")]), _vm._v(" (BB)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "lif-checkbox"
-    }
-  }, [_c('b', [_vm._v("LIF")]), _vm._v(" (BB)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("Meat Quality and Growth Rate")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "hfabp-checkbox"
-    }
-  }, [_c('b', [_vm._v("HFABP")]), _vm._v(" (AA)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "igf2-checkbox"
-    }
-  }, [_c('b', [_vm._v("IGF2")]), _vm._v(" (CC)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "lepr-checkbox"
-    }
-  }, [_c('b', [_vm._v("LEPR")]), _vm._v(" (BB)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "myog-checkbox"
-    }
-  }, [_c('b', [_vm._v("MYOG")]), _vm._v(" (AA)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("Genetic Defects")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "pss-checkbox"
-    }
-  }, [_c('b', [_vm._v("PSS")]), _vm._v(" (Negative)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "rn-checkbox"
-    }
-  }, [_c('b', [_vm._v("RN")]), _vm._v(" (Negative)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "bax-checkbox"
-    }
-  }, [_c('b', [_vm._v("BAX")]), _vm._v(" (Negative)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h6', {
-    staticClass: "center-align"
-  }, [_c('b', [_vm._v("Diseases Resistance")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "fut1-checkbox"
-    }
-  }, [_c('b', [_vm._v("FUT1")]), _vm._v(" (AA)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "mx1-checkbox"
-    }
-  }, [_c('b', [_vm._v("MX1")]), _vm._v(" (Resistant)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "nramp-checkbox"
-    }
-  }, [_c('b', [_vm._v("NRAMP")]), _vm._v(" (BB)*")])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "black-text",
-    attrs: {
-      "for": "bpi-checkbox"
-    }
-  }, [_c('b', [_vm._v("BPI")]), _vm._v(" (GG)*")])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-<<<<<<< Updated upstream
-     require("vue-hot-reload-api").rerender("data-v-615ddffa", module.exports)
-  }
-}
-
-/***/ }),
-/* 196 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s10 offset-s1"
-  }, [_c('transition', {
-    attrs: {
-      "name": "view-fade"
-    }
-=======
-     require("vue-hot-reload-api").rerender("data-v-091d2757", module.exports)
-  }
-}
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(188)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(190),
-  /* template */
-  __webpack_require__(196),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-241c1815",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewLaboratoryResults.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ViewLaboratoryResults.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-241c1815", Component.options)
-  } else {
-    hotAPI.reload("data-v-241c1815", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 188 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(189);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("17ae8e14", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-241c1815\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResults.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-241c1815\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResults.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-241c1815] {\n    border: 1px solid;\n    background-color: white !important;\n}\nspan.title[data-v-241c1815] {\n    font-size: 20px !important;\n}\np.primary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 1rem;\n}\np.secondary-details[data-v-241c1815] {\n    margin: 0;\n    padding-bottom: 0.7rem;\n    padding-left: 2rem;\n}\np.genetic-details > span[data-v-241c1815] {\n    cursor: pointer;\n}\n#download-confirmation-modal[data-v-241c1815] {\n    width: 40rem;\n}\n\n/* Modal customizations */\n.modal .modal-footer[data-v-241c1815] {\n    padding-right: 2rem;\n}\n\n/* Table styles */\ntable.striped > tbody > tr[data-v-241c1815]:nth-child(odd) {\n    background-color: #f5f5f5;\n}\ntd[data-v-241c1815], th[data-v-241c1815] {\n    padding-left: 1rem;\n}\n.genetic-details table[data-v-241c1815] {\n    margin-top: 0.5rem;\n    margin-left: 2rem;\n}\n.genetic-details table td[data-v-241c1815] {\n    padding-top: 0;\n    padding-right: 0;\n    padding-bottom: 0;\n    padding-left: 1rem;\n}\n.genetic-details table tr td[data-v-241c1815]:first-child {\n    width: 5rem;\n}\n\n/* Fade animations */\n.fade-enter-active[data-v-241c1815], .fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-enter-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n.view-fade-leave-active[data-v-241c1815] {\n    transition: opacity .15s;\n}\n.edit-fade-enter-active[data-v-241c1815] {\n    transition: opacity 1.5s;\n}\n.edit-fade-leave-active[data-v-241c1815] {\n    transition: opacity .5s;\n}\n\n/* .fade-leave-active below version 2.1.8 */\n.fade-enter[data-v-241c1815], .fade-leave-to[data-v-241c1815],\n.view-fade-enter[data-v-241c1815], .view-fade-leave-to[data-v-241c1815],\n.edit-fade-enter[data-v-241c1815], .edit-fade-leave-to[data-v-241c1815] {\n    opacity: 0;\n}\n\n/* Search component overrides */\n.input-field label[for='search'][data-v-241c1815] {\n    font-size: inherit;\n    -webkit-transform: none;\n    -moz-transform: none;\n    -ms-transform: none;\n    -o-transform: none;\n    transform: none;\n}\ninput#search[data-v-241c1815] {\n    color: black;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 190 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        customLabResults: Array,
-        currentSearchParameter: String,
-        farmoptions: Array,
-        viewUrl: String
-    },
-
-    components: {
-        ViewLaboratoryResultsUpdateView: __WEBPACK_IMPORTED_MODULE_0__ViewLaboratoryResultsUpdateView_vue___default.a
-    },
-
-    data: function data() {
-        return {
-            searchParameter: this.currentSearchParameter,
-            pageNumber: 0,
-            paginationSize: 6,
-            showEditLabResult: false,
-            labResults: this.customLabResults,
-            editLabResultData: {},
-            downloadData: {
-                labResultIndex: -1,
-                labResultId: 0,
-                labResultNo: '',
-                canBeEdited: true
-            }
-        };
-    },
-
-
-    computed: {
-        pageCount: function pageCount() {
-            var l = this.labResults.length;
-            var s = this.paginationSize;
-
-            return Math.ceil(l / s);
-        },
-        paginatedLabResults: function paginatedLabResults() {
-            var start = this.pageNumber * this.paginationSize;
-            var end = start + this.paginationSize;
-
-            return this.labResults.slice(start, end);
-        }
-    },
-
-    methods: {
-        findLabResultIndexById: function findLabResultIndexById(id) {
-            for (var i = 0; i < this.labResults.length; i++) {
-                if (this.labResults[i].id === id) return i;
-            }
-
-            return -1;
-        },
-        previousPage: function previousPage() {
-            // For pagination
-            if (this.pageNumber !== 0) this.pageNumber--;
-        },
-        nextPage: function nextPage() {
-            // For pagination
-            if (this.pageNumber < this.pageCount - 1) this.pageNumber++;
-        },
-        goToPage: function goToPage(page) {
-            // For pagination
-            this.pageNumber = page - 1;
-        },
-        rewriteUrl: function rewriteUrl(searchParameter) {
-            /**
-             *  URL rewrite syntax: ?q=value
-             */
-            var url = this.viewUrl;
-            var parameters = [];
-
-            // Put search parameter in parameters if it is non-empty
-            if (searchParameter.length > 0) {
-                var qParameter = 'q=' + searchParameter;
-
-                parameters.push(qParameter);
-            }
-
-            // Redirect to new url
-            if (parameters.length > 0) window.location = url + '?' + parameters.join('&');else window.location = url;
-        },
-        capitalizeFirstLetter: function capitalizeFirstLetter(string) {
-            return _.capitalize(string);
-        },
-        showGeneticInformation: function showGeneticInformation(id, category) {
-            var index = this.findLabResultIndexById(id);
-
-            var booleanValue = this.paginatedLabResults[index]['showTests'][category];
-            this.paginatedLabResults[index]['showTests'][category] = !booleanValue;
-        },
-        showEditLabResultsView: function showEditLabResultsView(id) {
-            var index = this.findLabResultIndexById(id);
-            var labResult = this.labResults[index];
-
-            // Customize lab result data
-            this.editLabResultData = {
-                index: index,
-                laboratoryResultId: labResult.id,
-                laboratoryResultNo: labResult.labResultNo,
-                animalId: labResult.animalId,
-                sex: labResult.sex,
-                farmId: labResult.farm.id ? labResult.farm.id.toString() : '',
-                farmName: labResult.farm.id ? '' : labResult.farm.name,
-                dateResult: labResult.dateResult,
-                dateSubmitted: labResult.dateSubmitted,
-                tests: labResult.tests
-            };
-
-            this.showEditLabResult = true;
-
-            this.$nextTick(function () {
-                // Make sure UI is clean
-                $('#lab-result-no').removeClass('valid');
-                $('#animal-id').removeClass('valid');
-                $('#farm-name').removeClass('valid');
-            });
-        },
-        updateLabResult: function updateLabResult(_ref) {
-            var labResult = _ref.labResult;
-
-            var updatedLabResult = this.labResults[labResult.index];
-
-            // Update local data storage
-            updatedLabResult.labResultNo = labResult.laboratoryResultNo;
-            updatedLabResult.animalId = labResult.animalId;
-            updatedLabResult.sex = labResult.sex;
-            updatedLabResult.dateResult = labResult.dateResult;
-            updatedLabResult.dateSubmitted = labResult.dateSubmitted;
-            updatedLabResult.tests = labResult.tests;
-
-            // Check if farm is registered or not
-            if (labResult.farmId) {
-                updatedLabResult.farm.id = labResult.farmId;
-                updatedLabResult.farm.registered = true;
-                updatedLabResult.farm.name = labResult.farmName;
-            } else {
-                updatedLabResult.farm.id = null;
-                updatedLabResult.farm.registered = false;
-                updatedLabResult.farm.name = labResult.farmName;
-            }
-        },
-        openDownloadConfirmationModal: function openDownloadConfirmationModal(id) {
-            var index = this.findLabResultIndexById(id);
-            var labResult = this.labResults[index];
-
-            this.downloadData.labResultIndex = index;
-            this.downloadData.labResultId = labResult.id;
-            this.downloadData.labResultNo = labResult.labResultNo;
-            this.downloadData.canBeEdited = labResult.canBeEdited;
-
-            $('#download-confirmation-modal').modal('open');
-        },
-        downloadFinalLabResults: function downloadFinalLabResults(event) {
-            var _this = this;
-
-            var vm = this;
-            var downloadFinalLabResultsBtn = $('.download-btn');
-            var labResult = this.labResults[this.downloadData.labResultIndex];
-
-            this.disableButtons(downloadFinalLabResultsBtn, event.target, 'Downloading...');
-
-            // Add to server's database
-            axios.post('/genomics/pdf-lab-results/' + vm.downloadData.labResultId, {}, { responseType: 'arraybuffer' }).then(function (response) {
-                // Make BLOB then download then manually download the pdf file returned
-                // Try to find out the filename from the content 
-                // disposition `filename` value
-                var disposition = response.headers['content-disposition'];
-                var matches = /"([^"]*)"/.exec(disposition);
-                var filename = matches != null && matches[1] ? matches[1] : 'file.pdf';
-                var blob = new Blob([response.data], { type: 'application/pdf' });
-                var data = window.URL.createObjectURL(blob);
-
-                // IE doesn't allow using a blob object directly as link href
-                // instead it is necessary to use msSaveOrOpenBlob
-                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                    window.navigator.msSaveOrOpenBlob(blob);
-                    return;
-                }
-
-                // The actual download
-                var link = document.createElement('a');
-                link.href = data;
-                link.download = filename;
-                document.body.appendChild(link);
-                link.click();
-
-                setTimeout(function () {
-                    // For Firefox it is necessary to delay revoking the ObjectURL
-                    window.URL.revokeObjectURL(data);
-                    document.body.removeChild(link);
-                }, 500);
-
-                // Update local storage data
-                labResult.canBeEdited = false;
-
-                // Update UI after downloading
-                vm.$nextTick(function () {
-                    _this.enableButtons(downloadFinalLabResultsBtn, event.target, 'Download');
-
-                    Materialize.toast('Laboratory Result No. ' + labResult.labResultNo + ' PDF downloaded', 1800, 'green lighten-1');
-
-                    $('#download-confirmation-modal').modal('close');
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    },
-
-    mounted: function mounted() {
-        // Materialize component initializations
-        $('.modal').modal();
-    }
-});
-
-/***/ }),
-/* 191 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(192)
-}
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(194),
-  /* template */
-  __webpack_require__(195),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-615ddffa",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/var/www/breedregistry/resources/assets/js/components/ViewLaboratoryResultsUpdateView.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ViewLaboratoryResultsUpdateView.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-615ddffa", Component.options)
-  } else {
-    hotAPI.reload("data-v-615ddffa", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(193);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("63a7e8a0", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-615ddffa\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResultsUpdateView.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-615ddffa\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewLaboratoryResultsUpdateView.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.custom-secondary-btn[data-v-615ddffa] {\n    border: 1px solid;\n    background-color: white !important;\n}\n#back-to-viewing-btn[data-v-615ddffa] {\n    margin-top: 2rem;\n    margin-bottom: 1rem;\n}\np.padded[data-v-615ddffa] {\n    padding-top: 1rem;\n}\np.padded label[data-v-615ddffa] {\n    padding-right: 2rem;\n}\n\n/* Card Customizations */\n.card[data-v-615ddffa] {\n    padding: 0;\n}\n.card-traits-container[data-v-615ddffa] {\n    padding-bottom: 2rem;\n}\ndiv.card-action[data-v-615ddffa] {\n    border-top: 0;\n    background-color: rgba(236, 239, 241, 0.7);\n}\n\n/* Accent highlights on cards */\n#fertility-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#meat-and-growth-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#defects-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n#diseases-container > .card[data-v-615ddffa] {\n    border-top: 4px solid #9a26a6;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 194 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        editLabResultData: Object,
-        farmoptions: Array
-    },
-
-    data: function data() {
-        return {
-            labResultData: {
-                laboratoryResultId: 0,
-                laboratoryResultNo: '',
-                animalId: '',
-                sex: '',
-                farmId: '',
-                farmName: '',
-                dateResult: '',
-                dateSubmitted: '',
-                tests: {
-                    esr: '',
-                    prlr: '',
-                    rbp4: '',
-                    lif: '',
-                    hfabp: '',
-                    igf2: '',
-                    lepr: '',
-                    myog: '',
-                    pss: '',
-                    rn: '',
-                    bax: '',
-                    fut1: '',
-                    mx1: '',
-                    nramp: '',
-                    bpi: ''
-                }
-            },
-            showChoices: {
-                farm: 'registered',
-                esr: false,
-                prlr: false,
-                rbp4: false,
-                lif: false,
-                hfabp: false,
-                igf2: false,
-                lepr: false,
-                myog: false,
-                pss: false,
-                rn: false,
-                bax: false,
-                fut1: false,
-                mx1: false,
-                nramp: false,
-                bpi: false
-            },
-            testChoices: {
-                esr: ['BB', 'Bb', 'bb'],
-                prlr: ['AA', 'Aa', 'aa'],
-                rbp4: ['BB', 'Bb', 'bb'],
-                lif: ['BB', 'Bb', 'bb'],
-                hfabp: ['AA', 'Aa', 'aa'],
-                igf2: ['CC', 'Cc', 'cc'],
-                lepr: ['BB', 'Bb', 'bb'],
-                myog: ['AA', 'Aa', 'aa'],
-                pss: ['Positive', 'Negative'],
-                rn: ['Positive', 'Negative'],
-                bax: ['Positive', 'Negative'],
-                fut1: ['AA', 'Aa', 'aa'],
-                mx1: ['Resistant', 'Non-resistant'],
-                nramp: ['BB', 'Bb', 'bb'],
-                bpi: ['GG', 'Gg', 'gg']
-            }
-        };
-    },
-
-
-    watch: {
-        editLabResultData: function editLabResultData(newValue, oldValue) {
-            var _this = this;
-
-            this.labResultData = newValue;
-
-            // Check if farm is existing or not
-            if (newValue.farmId) this.showChoices.farm = 'registered';else this.showChoices.farm = 'not-registered';
-
-            // Iterate through existing tests 
-            _.forIn(newValue.tests, function (value, key) {
-                _this.showChoices[key] = value ? true : false;
-            });
-
-            // Update UI after data changes
-            this.$nextTick(function () {
-                Materialize.updateTextFields();
-
-                $('ul.tabs').tabs();
-                $('ul.tabs').tabs('select_tab', 'general-information');
-            });
-        },
-
-        // If farmId exists, find its corresponding farm name
-        'labResultData.farmId': function labResultDataFarmId(newValue, oldValue) {
-            var farmName = this.findFarmNameById(newValue);
-
-            if (farmName !== -1) this.labResultData.farmName = farmName;
-        },
-        // Check if test is not chosen/shown anymore
-        // then reset value of test to default
-        'showChoices.esr': function showChoicesEsr(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.esr = '';
-        },
-        'showChoices.prlr': function showChoicesPrlr(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.prlr = '';
-        },
-        'showChoices.rbp4': function showChoicesRbp4(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.rbp4 = '';
-        },
-        'showChoices.lif': function showChoicesLif(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.lif = '';
-        },
-        'showChoices.hfabp': function showChoicesHfabp(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.hfabp = '';
-        },
-        'showChoices.igf2': function showChoicesIgf2(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.igf2 = '';
-        },
-        'showChoices.lepr': function showChoicesLepr(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.lepr = '';
-        },
-        'showChoices.myog': function showChoicesMyog(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.myog = '';
-        },
-        'showChoices.pss': function showChoicesPss(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.pss = '';
-        },
-        'showChoices.rn': function showChoicesRn(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.rn = '';
-        },
-        'showChoices.bax': function showChoicesBax(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.bax = '';
-        },
-        'showChoices.fut1': function showChoicesFut1(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.fut1 = '';
-        },
-        'showChoices.mx1': function showChoicesMx1(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.mx1 = '';
-        },
-        'showChoices.nramp': function showChoicesNramp(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.nramp = '';
-        },
-        'showChoices.bpi': function showChoicesBpi(newValue, oldValue) {
-            if (newValue === false) this.labResultData.tests.bpi = '';
-        }
-    },
-
-    methods: {
-        findFarmNameById: function findFarmNameById(id) {
-            for (var i = 0; i < this.farmoptions.length; i++) {
-                if (this.farmoptions[i].value === parseInt(id)) {
-                    return this.farmoptions[i].text;
-                }
-            }
-
-            return -1;
-        },
-        goToTab: function goToTab(tabId) {
-            this.$nextTick(function () {
-                $('#edit-lab-result-tabs ul.tabs').tabs('select_tab', tabId);
-                // Scroll animation
-                $('html, body').animate({
-                    scrollTop: $('#edit-lab-result-tabs').offset().top - 70 + "px"
-                }, 500);
-            });
-        },
-        hideEditLabResultsView: function hideEditLabResultsView() {
-            this.$emit('hideEditLabResultsViewEvent');
-        },
-        updateLabResults: function updateLabResults(event) {
-            var _this2 = this;
-
-            var vm = this;
-            var labResult = this.labResultData;
-            var updateLabResultsBtn = $('.update-lab-results-btn');
-
-            this.disableButtons(updateLabResultsBtn, event.target, 'Updating...');
-
-            // Update to server's database
-            axios.patch('/genomics/manage/laboratory-results', labResult).then(function (response) {
-                // Update parent component for changes
-                if (response.data.updated) {
-                    _this2.$emit('updateLabResultEvent', { labResult: labResult });
-                }
-
-                // Update UI after updating lab result
-                vm.$nextTick(function () {
-                    $('#lab-result-no').removeClass('valid');
-                    $('#animal-id').removeClass('valid');
-                    $('#farm-name').removeClass('valid');
-
-                    _this2.enableButtons(updateLabResultsBtn, event.target, 'Update');
-
-                    Materialize.updateTextFields();
-                    Materialize.toast('Laboratory Result No. ' + labResult.laboratoryResultNo + ' updated', 1800, 'green lighten-1');
-
-                    // Call hiding of this view
-                    setTimeout(function () {
-                        vm.hideEditLabResultsView();
-                    }, 2000);
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        disableButtons: function disableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.addClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        },
-        enableButtons: function enableButtons(buttons, actionBtnElement, textToShow) {
-            buttons.removeClass('disabled');
-            actionBtnElement.innerHTML = textToShow;
-        }
-    }
-});
-
-/***/ }),
-/* 195 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -36059,48 +26613,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _vm._m(11)])]), _vm._v(" "), _c('div', {
     staticClass: "col s7 m7"
->>>>>>> Stashed changes
   }, [_c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
-<<<<<<< Updated upstream
-      value: (!_vm.showEditLabResult),
-      expression: "!showEditLabResult"
-    }]
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" View Laboratory Results ")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('p', [_c('br')])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "col s8 offset-s2"
-  }, [_c('nav', {
-    attrs: {
-      "id": "search-container"
-    }
-  }, [_c('div', {
-    staticClass: "nav-wrapper white",
-    attrs: {
-      "id": "search-field"
-    }
-  }, [_c('div', {
-    staticStyle: {
-      "height": "1px"
-    }
-  }), _vm._v(" "), _c('form', {
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.rewriteUrl(_vm.searchParameter)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "input-field"
-=======
       value: (_vm.showChoices.rbp4),
       expression: "showChoices.rbp4"
     }]
@@ -36800,445 +27316,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col s5 m5"
   }, [_c('p', {
     staticClass: "padded"
->>>>>>> Stashed changes
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.searchParameter),
-      expression: "searchParameter"
-    }],
-    attrs: {
-      "id": "search",
-      "name": "q",
-      "type": "search",
-      "placeholder": "Type laboratory result no. and press enter to search",
-      "autocomplete": "off"
-    },
-    domProps: {
-      "value": (_vm.searchParameter)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.searchParameter = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    staticClass: "label-icon",
-    attrs: {
-      "for": "search"
-    }
-  }, [_c('i', {
-    staticClass: "material-icons teal-text"
-  }, [_vm._v("search")])]), _vm._v(" "), _c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("close")])])])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('p', [_c('br')])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('table', {
-    staticClass: "z-depth-1 striped white"
-  }, [_c('thead', [_c('tr', [_c('th', [_vm._v("General Information")]), _vm._v(" "), _c('th', [_vm._v("Genetic Information")]), _vm._v(" "), _c('th', [_vm._v("Action")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.paginatedLabResults), function(result, index) {
-    return _c('tr', {
-      key: result.id
-    }, [_c('td', [_c('span', {
-      staticClass: "title"
-    }, [_c('b', [_vm._v(_vm._s(result.labResultNo))])]), _vm._v(" "), _c('p', {
-      staticClass: "primary-details"
-    }, [_vm._v("\n                                " + _vm._s(_vm.capitalizeFirstLetter(result.sex)) + " • " + _vm._s(result.animalId) + "\n                            ")]), _vm._v(" "), _c('p', {
-      staticClass: "secondary-details grey-text text-darken-2"
-    }, [_c('span', [_c('i', {
-      staticClass: "material-icons left tooltipped",
-      attrs: {
-        "data-position": "top",
-        "data-delay": "50",
-        "data-tooltip": "Farm Name"
-      }
-    }, [_vm._v("\n                                        location_on\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.farm.name) + "\n                                ")])]), _vm._v(" "), _c('p', {
-      staticClass: "secondary-details grey-text text-darken-2"
-    }, [_c('span', [_c('i', {
-      staticClass: "material-icons left tooltipped",
-      attrs: {
-        "data-position": "top",
-        "data-delay": "50",
-        "data-tooltip": "Date Submitted"
-      }
-    }, [_vm._v("\n                                        event_note\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.dateSubmitted) + "\n                                ")])]), _vm._v(" "), _c('p', {
-      staticClass: "secondary-details grey-text text-darken-2"
-    }, [_c('span', [_c('i', {
-      staticClass: "material-icons left tooltipped",
-      attrs: {
-        "data-position": "top",
-        "data-delay": "50",
-        "data-tooltip": "Date of Result"
-      }
-    }, [_vm._v("\n                                        event_available\n                                    ")]), _vm._v(" \n                                    " + _vm._s(result.dateResult) + "\n                                ")])])]), _vm._v(" "), _c('td', [_c('p', {
-      staticClass: "genetic-details"
-    }, [_c('span', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showGeneticInformation(result.id, 'fertility')
-        }
-      }
-    }, [_c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (!result.showTests.fertility),
-        expression: "!result.showTests.fertility"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.fertility),
-        expression: "result.showTests.fertility"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Fertility\n                                ")]), _vm._v(" "), _c('transition', {
-      attrs: {
-        "name": "fade"
-      }
-    }, [_c('table', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.fertility),
-        expression: "result.showTests.fertility"
-      }]
-    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("ESR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.esr) ? result.tests.esr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("PRLR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.prlr) ? result.tests.prlr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("RBP4")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.rbp4) ? result.tests.rbp4 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("LIF")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.lif) ? result.tests.lif : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
-      staticClass: "genetic-details"
-    }, [_c('span', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showGeneticInformation(result.id, 'meatAndGrowth')
-        }
-      }
-    }, [_c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (!result.showTests.meatAndGrowth),
-        expression: "!result.showTests.meatAndGrowth"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.meatAndGrowth),
-        expression: "result.showTests.meatAndGrowth"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Meat Quality and Growth Rate\n                                ")]), _vm._v(" "), _c('transition', {
-      attrs: {
-        "name": "fade"
-      }
-    }, [_c('table', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.meatAndGrowth),
-        expression: "result.showTests.meatAndGrowth"
-      }]
-    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("HFABP")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.hfabp) ? result.tests.hfabp : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("IGF2")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.igf2) ? result.tests.igf2 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("LEPR")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.lepr) ? result.tests.lepr : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("MYOG")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.myog) ? result.tests.myog : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
-      staticClass: "genetic-details"
-    }, [_c('span', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showGeneticInformation(result.id, 'defects')
-        }
-      }
-    }, [_c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (!result.showTests.defects),
-        expression: "!result.showTests.defects"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.defects),
-        expression: "result.showTests.defects"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Genetic Defects\n                                ")]), _vm._v(" "), _c('transition', {
-      attrs: {
-        "name": "fade"
-      }
-    }, [_c('table', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.defects),
-        expression: "result.showTests.defects"
-      }]
-    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("PSS")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.pss) ? result.tests.pss : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("RN")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.rn) ? result.tests.rn : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("BAX")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.bax) ? result.tests.bax : '---'))])])])])])])], 1), _vm._v(" "), _c('p', {
-      staticClass: "genetic-details"
-    }, [_c('span', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showGeneticInformation(result.id, 'diseases')
-        }
-      }
-    }, [_c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (!result.showTests.diseases),
-        expression: "!result.showTests.diseases"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_down")]), _vm._v(" "), _c('i', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.diseases),
-        expression: "result.showTests.diseases"
-      }],
-      staticClass: "material-icons left"
-    }, [_vm._v("keyboard_arrow_up")]), _vm._v("\n                                    Diseases Resistance\n                                ")]), _vm._v(" "), _c('transition', {
-      attrs: {
-        "name": "fade"
-      }
-    }, [_c('table', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (result.showTests.diseases),
-        expression: "result.showTests.diseases"
-      }]
-    }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("FUT1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.fut1) ? result.tests.fut1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("MX1")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.mx1) ? result.tests.mx1 : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("NRAMP")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.nramp) ? result.tests.nramp : '---'))])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("BPI")]), _vm._v(" "), _c('td', [_c('b', [_vm._v(_vm._s((result.tests.bpi) ? result.tests.bpi : '---'))])])])])])])], 1)]), _vm._v(" "), _c('td', [_c('a', {
-      staticClass: "btn blue darken-1 z-depth-0",
-      attrs: {
-        "target": "_blank"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.openDownloadConfirmationModal(result.id)
-        }
-      }
-    }, [_vm._v("\n                                Download PDF\n                            ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (result.canBeEdited) ? _c('a', {
-      staticClass: "btn custom-secondary-btn teal-text text-darken-1 z-depth-0",
-      attrs: {
-        "href": ("/genomics/pdf-lab-results/" + (result.id)),
-        "target": "_blank"
-      }
-    }, [_vm._v("\n                                View PDF\n                            ")]) : _vm._e(), _vm._v(" "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (result.canBeEdited) ? _c('a', {
-      staticClass: "btn custom-secondary-btn blue-text text-darken-1 z-depth-0",
-      attrs: {
-        "href": "#!"
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showEditLabResultsView(result.id)
-        }
-      }
-    }, [_vm._v("\n                                Edit\n                            ")]) : _vm._e()])])
-  }))])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.paginatedLabResults.length === 0),
-      expression: "paginatedLabResults.length === 0"
-    }],
-    staticClass: "col s12 center-align",
-    attrs: {
-      "id": "empty-lab-results-container"
-    }
-  }, [_c('p', [_c('br'), _vm._v(" "), _c('b', [_vm._v("Sorry, no laboratory results found.")]), _vm._v(" "), _c('br')])]), _vm._v(" "), _c('div', {
-    staticClass: "col s12 center-align pagination-container"
-  }, [_c('ul', {
-    staticClass: "pagination"
-  }, [_c('li', {
-    class: (_vm.pageNumber === 0) ? 'disabled' : 'waves-effect'
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.previousPage()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("chevron_left")])])]), _vm._v(" "), _vm._l((_vm.pageCount), function(i) {
-    return _c('li', {
-      staticClass: "waves-effect",
-      class: (i === _vm.pageNumber + 1) ? 'active' : 'waves-effect'
-    }, [_c('a', {
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.goToPage(i)
-        }
-      }
-    }, [_vm._v(" " + _vm._s(i) + " ")])])
-  }), _vm._v(" "), _c('li', {
-    class: (_vm.pageNumber >= _vm.pageCount - 1) ? 'disabled' : 'waves-effect'
-  }, [_c('a', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.nextPage()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("chevron_right")])])])], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "modal",
-    attrs: {
-      "id": "download-confirmation-modal"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_c('h4', [_vm._v("\n                    Download PDF Confirmation\n                    "), _c('i', {
-    staticClass: "material-icons right modal-close"
-  }, [_vm._v("close")])]), _vm._v(" "), _c('div', {
-    staticClass: "row modal-input-container"
-  }, [_c('div', {
-    staticClass: "col s12"
-  }, [_c('br')]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s12"
-  }, [_c('p', [_vm._v("\n                            Are you sure you want to download final PDF for\n                            laboratory result "), _c('b', [_vm._v(_vm._s(_vm.downloadData.labResultNo))]), _vm._v(" ? \n                            "), _c('br'), _vm._v(" "), _c('br'), _vm._v(" "), (_vm.downloadData.canBeEdited) ? _c('b', [_vm._v("\n                                Note that this laboratory result CANNOT be edited \n                                anymore after downloading.\n                            ")]) : _c('b', [_vm._v("\n                                This laboratory result CANNOT be edited \n                                anymore.\n                            ")])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "modal-footer grey lighten-3"
-  }, [_c('a', {
-    staticClass: "modal-action modal-close btn-flat",
-    attrs: {
-      "href": "#!"
-    }
-  }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
-    staticClass: "modal-action btn blue lighten-2 z-depth-0 download-btn",
-    attrs: {
-      "href": "#!"
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.downloadFinalLabResults($event)
-      }
-    }
-  }, [_vm._v("\n                    Download\n                ")])])])])]), _vm._v(" "), _c('transition', {
-    attrs: {
-      "name": "edit-fade"
-    }
-  }, [_c('view-laboratory-results-update-view', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.showEditLabResult),
-      expression: "showEditLabResult"
-    }],
-    attrs: {
-      "edit-lab-result-data": _vm.editLabResultData,
-      "farmoptions": _vm.farmoptions
-    },
-    on: {
-      "hideEditLabResultsViewEvent": function($event) {
-        _vm.showEditLabResult = false
-      },
-      "updateLabResultEvent": _vm.updateLabResult
-    }
-  })], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-241c1815", module.exports)
-  }
-}
-
-/***/ }),
-/* 197 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(214);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("c6cba308", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5a1dca3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AppChangePassword.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5a1dca3a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AppChangePassword.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 214 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.collection-item[data-v-5a1dca3a] {\n    overflow: auto;\n    padding-top: 2rem;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 215 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s10 offset-s1"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col s12"
-  }, [_c('div', {
-    staticClass: "collection"
-  }, [_c('div', {
-    staticClass: "collection-item"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "input-field col s4 offset-s4"
-=======
       value: (_vm.showChoices.fut1),
       expression: "showChoices.fut1"
     }],
@@ -37747,7 +27828,7 @@ if (false) {
 }
 
 /***/ }),
-/* 196 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -37796,27 +27877,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "input-field"
->>>>>>> Stashed changes
   }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-<<<<<<< Updated upstream
-      value: (_vm.currentPassword),
-      expression: "currentPassword"
-=======
       value: (_vm.searchParameter),
       expression: "searchParameter"
->>>>>>> Stashed changes
     }],
     attrs: {
-<<<<<<< Updated upstream
-      "id": "current-password",
-      "type": "password"
-    },
-    domProps: {
-      "value": (_vm.currentPassword)
-=======
       "id": "search",
       "name": "q",
       "type": "search",
@@ -37825,83 +27893,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     domProps: {
       "value": (_vm.searchParameter)
->>>>>>> Stashed changes
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-<<<<<<< Updated upstream
-        _vm.currentPassword = $event.target.value
-=======
         _vm.searchParameter = $event.target.value
->>>>>>> Stashed changes
       }
     }
   }), _vm._v(" "), _c('label', {
     staticClass: "label-icon",
     attrs: {
-<<<<<<< Updated upstream
-      "for": "current-password"
-    }
-  }, [_vm._v("Current Password")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.newPassword),
-      expression: "newPassword"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "new-password",
-      "type": "password"
-    },
-    domProps: {
-      "value": (_vm.newPassword)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.newPassword = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "new-password"
-    }
-  }, [_vm._v("New Password")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-field col s4 offset-s4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.reTypeNewPassword),
-      expression: "reTypeNewPassword"
-    }],
-    staticClass: "validate",
-    attrs: {
-      "id": "re-new-password",
-      "type": "password"
-    },
-    domProps: {
-      "value": (_vm.reTypeNewPassword)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.reTypeNewPassword = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('label', {
-    attrs: {
-      "for": "re-new-password"
-    }
-  }, [_vm._v("Re-Type New Password")])]), _vm._v(" "), _c('div', {
-    staticClass: "col s4 offset-s4"
-  }, [_c('a', {
-    staticClass: "right btn z-depth-0 change-password-button",
-=======
       "for": "search"
     }
   }, [_c('i', {
@@ -38194,26 +28195,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Cancel")]), _vm._v(" "), _c('a', {
     staticClass: "modal-action btn blue lighten-2 z-depth-0 download-btn",
->>>>>>> Stashed changes
     attrs: {
       "href": "#!"
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-<<<<<<< Updated upstream
-        _vm.changePassword($event)
-      }
-    }
-  }, [_vm._v("\n                            Change Password\n                        ")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col s12"
-  }, [_c('h4', {
-    staticClass: "title-page"
-  }, [_vm._v(" Change Password ")])])
-}]}
-=======
         _vm.downloadFinalLabResults($event)
       }
     }
@@ -38240,21 +28227,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)], 1)
 },staticRenderFns: []}
->>>>>>> Stashed changes
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-<<<<<<< Updated upstream
-     require("vue-hot-reload-api").rerender("data-v-5a1dca3a", module.exports)
-=======
      require("vue-hot-reload-api").rerender("data-v-241c1815", module.exports)
->>>>>>> Stashed changes
   }
 }
 
 /***/ }),
-/* 197 */
+/* 199 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
