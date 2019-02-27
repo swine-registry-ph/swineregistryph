@@ -492,9 +492,13 @@
             checkLaboratoryResult() {
                 const vm = this;
 
-                this.labResultInputClass = 'valid';
-                this.labResultInputDataError = 'Checking...';
-                this.labResultInputDataSuccess = '';
+                if (!vm.gpOneLabResultNo) return;
+
+                setTimeout(() => {
+                    this.labResultInputClass = 'valid';
+                    this.labResultInputDataError = '';
+                    this.labResultInputDataSuccess = 'Checking...';
+                }, 0);
 
                 if (!vm.gpOneFarmFromId) {
                     setTimeout(() => {
@@ -507,6 +511,12 @@
                     // Check laboratory result from server
                     axios.get(`/breeder/manage-swine/farm/${vm.gpOneFarmFromId}/check/${vm.gpOneLabResultNo}`)
                         .then((response) => {
+                            this.$store.commit('updateValue', {
+                                instance: 'gpOne',
+                                property: 'labResultId',
+                                value: response.data
+                            });
+
                             setTimeout(() => {
                                 this.labResultInputClass = 'valid';
                                 this.labResultInputDataSuccess = `Laboratory Result ${vm.gpOneLabResultNo} exists`;

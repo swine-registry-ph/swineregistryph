@@ -249,9 +249,12 @@ class SwineController extends Controller
     {
         if($request->ajax()){
             $swine = Swine::where('registration_no', $regNo)->first();
-
+            
             if($swine){
                 $swineSex = $this->getSwinePropValue($swine,1);
+                $labResultNo = ($swine->laboratoryResult)
+                    ? $swine->laboratoryResult->laboratory_result_no
+                    : '';
 
                 if($swineSex === $sex){
                     return $data = [
@@ -283,7 +286,7 @@ class SwineController extends Controller
                         'litterweightWeaning'       => $this->getSwinePropValue($swine, 22),
                         'dateWeaning'               => $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
                         'farmSwineId'               => $this->getSwinePropValue($swine, 24),
-                        'labResultNo'               => $this->getSwinePropValue($swine, 25),
+                        'labResultNo'               => $labResultNo,
                         'selectionIndex'            => $this->getSwinePropValue($swine, 28)
                     ];
                 }
@@ -342,6 +345,14 @@ class SwineController extends Controller
                 );
             }
 
+            if ($laboratoryResult->swine_id) {
+                return response('Laboratory Result ' 
+                    . $labResultNo 
+                    . ' is already taken'
+                    , 404
+                );
+            }
+
             return $laboratoryResult->id;
         }
     }
@@ -356,6 +367,9 @@ class SwineController extends Controller
     private function getSwineInfo(Swine $swine)
     {
         $farm = $swine->farm;
+        $labResultNo = ($swine->laboratoryResult)
+            ? $swine->laboratoryResult->laboratory_result_no
+            : '';
 
         return [
             'registrationNo'            => $swine->registration_no,
@@ -386,7 +400,7 @@ class SwineController extends Controller
             'littersizeAliveMale'       => $this->getSwinePropValue($swine, 19),
             'littersizeAliveFemale'     => $this->getSwinePropValue($swine, 20),
             'farmSwineId'               => $this->getSwinePropValue($swine, 24),
-            'labResultNo'               => $this->getSwinePropValue($swine, 25),
+            'labResultNo'               => $labResultNo,
             'selectionIndex'            => $this->getSwinePropValue($swine, 28)
         ];
     }

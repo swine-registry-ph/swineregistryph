@@ -752,21 +752,31 @@
             checkLaboratoryResult() {
                 const vm = this;
 
-                this.labResultInputClass = 'valid';
-                this.labResultInputDataError = 'Checking...';
-                this.labResultInputDataSuccess = '';
+                if (!vm.gpParentLabResultNo) return;
+
+                setTimeout(() => {
+                    this.labResultInputClass = 'valid';
+                    this.labResultInputDataError = '';
+                    this.labResultInputDataSuccess = 'Checking...';
+                }, 0);
 
                 if (!vm.gpOneFarmFromId) {
                     setTimeout(() => {
                         this.labResultInputClass = 'invalid';
                         this.labResultInputDataError = 'Please provide Farm of Origin';
                         this.labResultInputDataSuccess = '';   
-                    });
+                    }, 0);
                 }
                 else {
                     // Check laboratory result from server
                     axios.get(`/breeder/manage-swine/farm/${vm.gpOneFarmFromId}/check/${vm.gpParentLabResultNo}`)
                         .then((response) => {
+                            this.$store.commit('updateValue', {
+                                instance: this.prefixedGender,
+                                property: 'labResultId',
+                                value: response.data
+                            });
+
                             setTimeout(() => {
                                 this.labResultInputClass = 'valid';
                                 this.labResultInputDataSuccess = `Laboratory Result ${vm.gpParentLabResultNo} exists`;

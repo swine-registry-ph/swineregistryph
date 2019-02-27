@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Breed;
 use App\Models\Farm;
+use App\Models\LaboratoryResult;
 use App\Models\Swine;
 use App\Models\SwineProperty;
 use App\Repositories\CustomHelpers;
@@ -82,6 +83,16 @@ class SwineRepository
             $swineInstance->gpSire_id = null;
             $swineInstance->gpDam_id = null;
             $swineInstance->save();
+
+            if ($swine['labResultId']) {
+                $laboratoryResult = LaboratoryResult::find($swine['labResultId']);
+                
+                // Check if laboratory result is not yet taken
+                if (!$laboratoryResult->swine_id) {
+                    $laboratoryResult->swine_id = $swineInstance->id;
+                    $laboratoryResult->save();
+                }
+            }
 
             // Swine Properties
             $swineInstance->swineProperties()->saveMany(
@@ -183,10 +194,6 @@ class SwineRepository
                         'value'       => $swine['farmSwineId']
                     ]),
                     new SwineProperty([
-                        'property_id' => 25, // lab result no
-                        'value'       => $swine['labResultNo']
-                    ]),
-                    new SwineProperty([
                         'property_id' => 28, // selection index
                         'value'       => $swine['selectionIndex']
                     ])
@@ -230,6 +237,16 @@ class SwineRepository
         $swineInstance->gpDam_id = $damId;
         $swineInstance->swinecart = ($swine['swinecart']) ? 1 : 0;
         $swineInstance->save();
+
+        if ($swine['labResultId']) {
+            $laboratoryResult = LaboratoryResult::find($swine['labResultId']);
+            
+            // Check if laboratory result is not yet taken
+            if (!$laboratoryResult->swine_id) {
+                $laboratoryResult->swine_id = $swineInstance->id;
+                $laboratoryResult->save();
+            }
+        }
 
         // Swine Properties
         $swineInstance->swineProperties()->saveMany(
@@ -329,10 +346,6 @@ class SwineRepository
                 new SwineProperty([
                     'property_id' => 24, // farm swine id / ear mark
                     'value'       => $swine['farmSwineId']
-                ]),
-                new SwineProperty([
-                    'property_id' => 25, // lab result no
-                    'value'       => $swine['labResultNo']
                 ]),
                 new SwineProperty([
                     'property_id' => 28, // selection index
