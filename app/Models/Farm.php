@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Breeder;
 use App\Models\FarmCode;
 use App\Models\InspectionRequest;
+use App\Models\LaboratoryResult;
 use App\Models\Swine;
 use Illuminate\Database\Eloquent\Model;
 
@@ -48,5 +49,13 @@ class Farm extends Model
     public function inspectionRequests()
     {
         return $this->hasMany(InspectionRequest::class);
+    }
+
+    /**
+     * Get laboratory results related to the farm
+     */
+    public function laboratoryResults()
+    {
+        return $this->hasMany(LaboratoryResult::class);
     }
 }

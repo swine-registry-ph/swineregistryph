@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterSwineRequest;
 use App\Models\Breed;
+use App\Models\Farm;
 use App\Models\Photo;
 use App\Models\Property;
 use App\Models\Swine;
@@ -296,16 +297,52 @@ class SwineController extends Controller
      * Add Swine to database
      *
      * @param   RegisterSwineRequest     $request
-     * @return  integer
+     * @return  Swine
      */
     public function addSwineInfo(RegisterSwineRequest $request)
     {
         if($request->ajax()){
             $gpSireInstance = $this->swineRepo->addParent($request->gpSire);
             $gpDamInstance = $this->swineRepo->addParent($request->gpDam);
-            $gpOneInstance = $this->swineRepo->addSwine($request->gpOne, $gpSireInstance->id, $gpDamInstance->id);
+            $gpOneInstance = $this->swineRepo->addSwine(
+                $request->gpOne, 
+                $gpSireInstance->id, 
+                $gpDamInstance->id
+            );
 
             return $gpOneInstance;
+        }
+    }
+
+    /**
+     * Check if Laboratory Result No. is existing in farm
+     *
+     * @param  Request $request
+     * @param  integer $farmId
+     * @param  string  $labResultNo
+     * @return JSON
+     */
+    public function checkLaboratoryResult(Request $request, $farmId, $labResultNo)
+    {
+        if ($request->ajax()) {
+            if (!isset($farmId)) {
+                return response('Please provide Farm of Origin.', 404);
+            }
+
+            $laboratoryResult = Farm::find($farmId)
+                ->laboratoryResults()
+                ->where('laboratory_result_no', $labResultNo)
+                ->first();
+
+            if (!$laboratoryResult) {
+                return response('Laboratory Result ' 
+                    . $labResultNo 
+                    . ' does not exist for Farm'
+                    , 404
+                );
+            }
+
+            return $laboratoryResult->id;
         }
     }
 

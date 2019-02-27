@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/manage-swine/view', 'SwineController@viewRegisteredSwine')->name('viewRegdSwine');
         Route::post('/manage-swine/register', 'SwineController@addSwineInfo')->name('addSwineInfo');
         Route::get('/manage-swine/get/{sex}/{regNo}', 'SwineController@getSwine')->name('getSwine');
+        Route::get('/manage-swine/farm/{farmId}/check/{labResultNo}', 'SwineController@checkLaboratoryResult')->name('checkLaboratoryResult');
         Route::post('/manage-swine/set-primary-photo', 'PhotoController@setPrimaryPhoto')->name('setPrimaryPhoto');
         Route::post('/manage-swine/photo', 'PhotoController@uploadPhoto')->name('uploadPhoto');
         Route::delete('/manage-swine/photo/{photoId}/orientation/{orientation}', 'PhotoController@deletePhoto')->name('deletePhoto');

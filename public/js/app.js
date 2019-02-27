@@ -14479,7 +14479,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14492,6 +14492,13 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14863,7 +14870,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             existingButtonPressed: false,
             existingInputIsValid: true,
             existingInputDataError: '',
-            existingInputDataSuccess: ''
+            existingInputDataSuccess: '',
+            labResultInputClass: '',
+            labResultInputDataError: '',
+            labResultInputDataSuccess: ''
         };
     },
 
@@ -14883,6 +14893,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         prefixedGender: function prefixedGender() {
             // add gp prefix to parentGender
             return 'gp' + this.parentGender;
+        },
+        gpOneFarmFromId: function gpOneFarmFromId() {
+            return this.$store.state.registerSwine.gpOne.farmFromId;
         },
 
         gpParentExistingRegNo: {
@@ -15282,6 +15295,38 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 console.log(error);
             });
         },
+        checkLaboratoryResult: function checkLaboratoryResult() {
+            var _this3 = this;
+
+            var vm = this;
+
+            this.labResultInputClass = 'valid';
+            this.labResultInputDataError = 'Checking...';
+            this.labResultInputDataSuccess = '';
+
+            if (!vm.gpOneFarmFromId) {
+                setTimeout(function () {
+                    _this3.labResultInputClass = 'invalid';
+                    _this3.labResultInputDataError = 'Please provide Farm of Origin';
+                    _this3.labResultInputDataSuccess = '';
+                });
+            } else {
+                // Check laboratory result from server
+                axios.get('/breeder/manage-swine/farm/' + vm.gpOneFarmFromId + '/check/' + vm.gpParentLabResultNo).then(function (response) {
+                    setTimeout(function () {
+                        _this3.labResultInputClass = 'valid';
+                        _this3.labResultInputDataSuccess = 'Laboratory Result ' + vm.gpParentLabResultNo + ' exists';
+                        _this3.labResultInputDataError = '';
+                    }, 0);
+                }).catch(function (error) {
+                    setTimeout(function () {
+                        _this3.labResultInputClass = 'invalid';
+                        _this3.labResultInputDataError = error.response.data;
+                        _this3.labResultInputDataSuccess = '';
+                    }, 0);
+                });
+            }
+        },
         updateParentPropertiesToDefault: function updateParentPropertiesToDefault() {
             // Update vuex store
             this.$store.commit('updateParent', {
@@ -15577,6 +15622,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "gpParentLabResultNo"
     }],
     staticClass: "validate",
+    class: _vm.labResultInputClass,
     attrs: {
       "id": _vm.parentIdPrefix + 'lab-result-no',
       "type": "text"
@@ -15585,6 +15631,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.gpParentLabResultNo)
     },
     on: {
+      "focusout": function($event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        return _vm.checkLaboratoryResult($event)
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.gpParentLabResultNo = $event.target.value
@@ -15592,9 +15643,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.parentIdPrefix + 'lab-result-no'
+      "for": _vm.parentIdPrefix + 'lab-result-no',
+      "data-error": _vm.labResultInputDataError,
+      "data-success": _vm.labResultInputDataSuccess
     }
-  }, [_vm._v("Laboratory Result No. (optional)")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                    Laboratory Result No. (optional)\n                ")])]), _vm._v(" "), _c('div', {
     staticClass: "input-field col s12"
   }, [_c('app-input-select', {
     attrs: {
@@ -16364,7 +16417,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16617,16 +16670,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            gpOneIdPrefix: 'gp-one-'
+            gpOneIdPrefix: 'gp-one-',
+            labResultInputClass: '',
+            labResultInputDataError: '',
+            labResultInputDataSuccess: ''
         };
     },
 
 
     computed: {
+        gpOneFarmFromId: function gpOneFarmFromId() {
+            return this.$store.state.registerSwine.gpOne.farmFromId;
+        },
+
         gpOneLabResultNo: {
             // get and set value from vuex store
             get: function get() {
@@ -16892,6 +16959,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         triggerGoToTabEvent: function triggerGoToTabEvent(tabId) {
             this.$emit('goToTabEvent', tabId);
+        },
+        checkLaboratoryResult: function checkLaboratoryResult() {
+            var _this = this;
+
+            var vm = this;
+
+            this.labResultInputClass = 'valid';
+            this.labResultInputDataError = 'Checking...';
+            this.labResultInputDataSuccess = '';
+
+            if (!vm.gpOneFarmFromId) {
+                setTimeout(function () {
+                    _this.labResultInputClass = 'invalid';
+                    _this.labResultInputDataError = 'Please provide Farm of Origin';
+                    _this.labResultInputDataSuccess = '';
+                }, 0);
+            } else {
+                // Check laboratory result from server
+                axios.get('/breeder/manage-swine/farm/' + vm.gpOneFarmFromId + '/check/' + vm.gpOneLabResultNo).then(function (response) {
+                    setTimeout(function () {
+                        _this.labResultInputClass = 'valid';
+                        _this.labResultInputDataSuccess = 'Laboratory Result ' + vm.gpOneLabResultNo + ' exists';
+                        _this.labResultInputDataError = '';
+                    }, 0);
+                }).catch(function (error) {
+                    setTimeout(function () {
+                        _this.labResultInputClass = 'invalid';
+                        _this.labResultInputDataError = error.response.data;
+                        _this.labResultInputDataSuccess = '';
+                    }, 0);
+                });
+            }
         }
     },
 
@@ -16930,6 +17029,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "gpOneLabResultNo"
     }],
     staticClass: "validate",
+    class: _vm.labResultInputClass,
     attrs: {
       "id": _vm.gpOneIdPrefix + 'lab-result-no',
       "type": "text"
@@ -16938,6 +17038,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.gpOneLabResultNo)
     },
     on: {
+      "focusout": function($event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        _vm.checkLaboratoryResult()
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.gpOneLabResultNo = $event.target.value
@@ -16945,9 +17050,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('label', {
     attrs: {
-      "for": _vm.gpOneIdPrefix + 'lab-result-no'
+      "for": _vm.gpOneIdPrefix + 'lab-result-no',
+      "data-error": _vm.labResultInputDataError,
+      "data-success": _vm.labResultInputDataSuccess
     }
-  }, [_vm._v("Laboratory Result No. (optional)")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                            Laboratory Result No. (optional)\n                        ")])]), _vm._v(" "), _c('div', {
     staticClass: "col s6 input-field"
   }, [_c('input', {
     directives: [{
@@ -22801,7 +22908,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" General Information ")]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
-    staticClass: "col s12 m6 l4 offset-m3 offset-l4"
+    staticClass: "col s12 m6 l6 offset-m3 offset-l3"
   }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "col s12 input-field"
   }, [_c('input', {

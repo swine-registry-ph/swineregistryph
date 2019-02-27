@@ -17,8 +17,15 @@
                                 :id="gpOneIdPrefix + 'lab-result-no'"
                                 type="text"
                                 class="validate"
+                                :class="labResultInputClass"
+                                @focusout.stop.prevent="checkLaboratoryResult()"
                             >
-                            <label :for="gpOneIdPrefix + 'lab-result-no'">Laboratory Result No. (optional)</label>
+                            <label :for="gpOneIdPrefix + 'lab-result-no'"
+                                :data-error="labResultInputDataError"
+                                :data-success="labResultInputDataSuccess"
+                            >
+                                Laboratory Result No. (optional)
+                            </label>
                         </div>
                         <div class="col s6 input-field">
                             <input v-model="gpOneFarmSwineId"
@@ -244,11 +251,17 @@
     export default {
         data() {
             return {
-                gpOneIdPrefix: 'gp-one-'
+                gpOneIdPrefix: 'gp-one-',
+                labResultInputClass: '',
+                labResultInputDataError: '',
+                labResultInputDataSuccess: ''
             }
         },
 
         computed: {
+            gpOneFarmFromId () {
+                return this.$store.state.registerSwine.gpOne.farmFromId;
+            },
             gpOneLabResultNo: {
                 // get and set value from vuex store
                 get() { return this.$store.state.registerSwine.gpOne.labResultNo; },
@@ -474,6 +487,40 @@
         methods: {
             triggerGoToTabEvent(tabId) {
                 this.$emit('goToTabEvent', tabId);
+            },
+
+            checkLaboratoryResult() {
+                const vm = this;
+
+                this.labResultInputClass = 'valid';
+                this.labResultInputDataError = 'Checking...';
+                this.labResultInputDataSuccess = '';
+
+                if (!vm.gpOneFarmFromId) {
+                    setTimeout(() => {
+                        this.labResultInputClass = 'invalid';
+                        this.labResultInputDataError = 'Please provide Farm of Origin';
+                        this.labResultInputDataSuccess = '';
+                    }, 0);
+                }
+                else {
+                    // Check laboratory result from server
+                    axios.get(`/breeder/manage-swine/farm/${vm.gpOneFarmFromId}/check/${vm.gpOneLabResultNo}`)
+                        .then((response) => {
+                            setTimeout(() => {
+                                this.labResultInputClass = 'valid';
+                                this.labResultInputDataSuccess = `Laboratory Result ${vm.gpOneLabResultNo} exists`;
+                                this.labResultInputDataError = '';
+                            }, 0);
+                        })
+                        .catch((error) => {
+                            setTimeout(() => {
+                                this.labResultInputClass = 'invalid';
+                                this.labResultInputDataError = error.response.data;
+                                this.labResultInputDataSuccess = '';
+                            }, 0);
+                        });
+                }
             }
         },
 

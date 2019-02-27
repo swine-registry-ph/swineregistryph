@@ -7,6 +7,7 @@ use App\Models\Breeder;
 use App\Models\CertificateItem;
 use App\Models\Farm;
 use App\Models\InspectionItem;
+use App\Models\LaboratoryResult;
 use App\Models\Photo;
 use App\Models\SwineProperty;
 use Illuminate\Database\Eloquent\Model;
@@ -83,5 +84,13 @@ class Swine extends Model
     public function certificateItem()
     {
         return $this->hasOne(CertificateItem::class);
+    }
+
+    /**
+     * Get laboratory result of swine
+     */
+    public function laboratoryResult()
+    {
+        return $this->hasOne(LaboratoryResult::class);
     }
 }
