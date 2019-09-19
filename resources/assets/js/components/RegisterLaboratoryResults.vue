@@ -21,7 +21,7 @@
                     <span class="card-title center-align"> General Information </span>
                     <div class="row">
                         <!-- General info -->
-                        <div class="col s12 m6 l4 offset-m3 offset-l4">
+                        <div class="col s12 m6 l6 offset-m3 offset-l3">
                             <div class="col s12">
                                 <br>
                             </div>

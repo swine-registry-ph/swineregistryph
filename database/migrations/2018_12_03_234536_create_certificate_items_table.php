@@ -16,7 +16,7 @@ class CreateCertificateItemsTable extends Migration
         Schema::create('certificate_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('certificate_request_id')->unsigned();
-            $table->foreign('certificate_request_id')->references('id')->on('inspection_requests');
+            $table->foreign('certificate_request_id')->references('id')->on('certificate_requests');
             $table->integer('swine_id')->unsigned();
             $table->foreign('swine_id')->references('id')->on('swines');
             $table->timestamps();

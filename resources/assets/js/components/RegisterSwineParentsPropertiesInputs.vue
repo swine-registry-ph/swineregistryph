@@ -129,8 +129,15 @@
                         :id="parentIdPrefix + 'lab-result-no'"
                         type="text"
                         class="validate"
+                        :class="labResultInputClass"
+                        @focusout.stop.prevent="checkLaboratoryResult"
                     >
-                    <label :for="parentIdPrefix + 'lab-result-no'">Laboratory Result No. (optional)</label>
+                    <label :for="parentIdPrefix + 'lab-result-no'"
+                        :data-error="labResultInputDataError"
+                        :data-success="labResultInputDataSuccess"
+                    >
+                        Laboratory Result No. (optional)
+                    </label>
                 </div>
                 <div class="input-field col s12">
                     <app-input-select
@@ -369,7 +376,10 @@
                 existingButtonPressed: false,
                 existingInputIsValid: true,
                 existingInputDataError: '',
-                existingInputDataSuccess: ''
+                existingInputDataSuccess: '',
+                labResultInputClass: '',
+                labResultInputDataError: '',
+                labResultInputDataSuccess: ''
             }
         },
 
@@ -389,6 +399,9 @@
             prefixedGender() {
                 // add gp prefix to parentGender
                 return `gp${this.parentGender}`;
+            },
+            gpOneFarmFromId() {
+                return this.$store.state.registerSwine.gpOne.farmFromId;
             },
             gpParentExistingRegNo: {
                 // get and set value from vuex store
@@ -686,6 +699,7 @@
                     this.existingButtonPressed = false;
                 }, 0);
             },
+
             checkParent(event) {
                 const vm = this;
                 const checkButton = $(`#${vm.parentIdPrefix}check`);
@@ -733,6 +747,51 @@
                     .catch((error) => {
                         console.log(error);
                     });
+            },
+
+            checkLaboratoryResult() {
+                const vm = this;
+
+                if (!vm.gpParentLabResultNo) return;
+
+                setTimeout(() => {
+                    this.labResultInputClass = 'valid';
+                    this.labResultInputDataError = '';
+                    this.labResultInputDataSuccess = 'Checking...';
+                }, 0);
+
+                if (!vm.gpOneFarmFromId) {
+                    setTimeout(() => {
+                        this.labResultInputClass = 'invalid';
+                        this.labResultInputDataError = 'Please provide Farm of Origin';
+                        this.labResultInputDataSuccess = '';   
+                    }, 0);
+                }
+                else {
+                    // Check laboratory result from server
+                    axios.get(`/breeder/manage-swine/farm/${vm.gpOneFarmFromId}/check/${vm.gpParentLabResultNo}`)
+                        .then((response) => {
+                            this.$store.commit('updateValue', {
+                                instance: this.prefixedGender,
+                                property: 'labResultId',
+                                value: response.data
+                            });
+
+                            setTimeout(() => {
+                                this.labResultInputClass = 'valid';
+                                this.labResultInputDataSuccess = `Laboratory Result ${vm.gpParentLabResultNo} exists`;
+                                this.labResultInputDataError = '';
+                            }, 0);
+                        })
+                        .catch((error) => {
+                            setTimeout(() => {
+                                this.labResultInputClass = 'invalid';
+                                this.labResultInputDataError = error.response.data;
+                                this.labResultInputDataSuccess = '';
+                            }, 0);
+                        });
+                }
+
             },
 
             updateParentPropertiesToDefault() {

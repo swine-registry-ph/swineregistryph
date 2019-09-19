@@ -19,13 +19,14 @@ class CreateLaboratoryResultsTable extends Migration
             $table->foreign('genomics_id')->references('id')->on('genomics');
             $table->integer('farm_id')->unsigned()->nullable();
             $table->foreign('farm_id')->references('id')->on('farms');
+            $table->integer('swine_id')->unsigned()->nullable();
+            $table->foreign('swine_id')->references('id')->on('swines');
             $table->text('farm_name')->nullable();
-            $table->text('laboratory_result_no');
+            $table->string('laboratory_result_no', 100)->unique();
             $table->text('animal_id');
             $table->string('sex');
             $table->date('date_result');
             $table->date('date_submitted');
-            $table->boolean('is_used')->default('0');
             $table->boolean('is_downloaded')->default('0');
             $table->timestamps();
         });

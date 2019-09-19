@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterSwineRequest;
 use App\Models\Breed;
+use App\Models\Farm;
 use App\Models\Photo;
 use App\Models\Property;
 use App\Models\Swine;
@@ -248,9 +249,12 @@ class SwineController extends Controller
     {
         if($request->ajax()){
             $swine = Swine::where('registration_no', $regNo)->first();
-
+            
             if($swine){
                 $swineSex = $this->getSwinePropValue($swine,1);
+                $labResultNo = ($swine->laboratoryResult)
+                    ? $swine->laboratoryResult->laboratory_result_no
+                    : '';
 
                 if($swineSex === $sex){
                     return $data = [
@@ -282,7 +286,7 @@ class SwineController extends Controller
                         'litterweightWeaning'       => $this->getSwinePropValue($swine, 22),
                         'dateWeaning'               => $this->changeDateFormat($this->getSwinePropValue($swine, 23)),
                         'farmSwineId'               => $this->getSwinePropValue($swine, 24),
-                        'labResultNo'               => $this->getSwinePropValue($swine, 25),
+                        'labResultNo'               => $labResultNo,
                         'selectionIndex'            => $this->getSwinePropValue($swine, 28)
                     ];
                 }
@@ -296,16 +300,60 @@ class SwineController extends Controller
      * Add Swine to database
      *
      * @param   RegisterSwineRequest     $request
-     * @return  integer
+     * @return  Swine
      */
     public function addSwineInfo(RegisterSwineRequest $request)
     {
         if($request->ajax()){
             $gpSireInstance = $this->swineRepo->addParent($request->gpSire);
             $gpDamInstance = $this->swineRepo->addParent($request->gpDam);
-            $gpOneInstance = $this->swineRepo->addSwine($request->gpOne, $gpSireInstance->id, $gpDamInstance->id);
+            $gpOneInstance = $this->swineRepo->addSwine(
+                $request->gpOne, 
+                $gpSireInstance->id, 
+                $gpDamInstance->id
+            );
 
             return $gpOneInstance;
+        }
+    }
+
+    /**
+     * Check if Laboratory Result No. is existing in farm
+     *
+     * @param  Request $request
+     * @param  integer $farmId
+     * @param  string  $labResultNo
+     * @return JSON
+     */
+    public function checkLaboratoryResult(Request $request, $farmId, $labResultNo)
+    {
+        if ($request->ajax()) {
+            if (!isset($farmId)) {
+                return response('Please provide Farm of Origin.', 404);
+            }
+
+            $laboratoryResult = Farm::find($farmId)
+                ->laboratoryResults()
+                ->where('laboratory_result_no', $labResultNo)
+                ->first();
+
+            if (!$laboratoryResult) {
+                return response('Laboratory Result ' 
+                    . $labResultNo 
+                    . ' does not exist for Farm'
+                    , 404
+                );
+            }
+
+            if ($laboratoryResult->swine_id) {
+                return response('Laboratory Result ' 
+                    . $labResultNo 
+                    . ' is already taken'
+                    , 404
+                );
+            }
+
+            return $laboratoryResult->id;
         }
     }
 
@@ -319,6 +367,9 @@ class SwineController extends Controller
     private function getSwineInfo(Swine $swine)
     {
         $farm = $swine->farm;
+        $labResultNo = ($swine->laboratoryResult)
+            ? $swine->laboratoryResult->laboratory_result_no
+            : '';
 
         return [
             'registrationNo'            => $swine->registration_no,
@@ -349,7 +400,7 @@ class SwineController extends Controller
             'littersizeAliveMale'       => $this->getSwinePropValue($swine, 19),
             'littersizeAliveFemale'     => $this->getSwinePropValue($swine, 20),
             'farmSwineId'               => $this->getSwinePropValue($swine, 24),
-            'labResultNo'               => $this->getSwinePropValue($swine, 25),
+            'labResultNo'               => $labResultNo,
             'selectionIndex'            => $this->getSwinePropValue($swine, 28)
         ];
     }
